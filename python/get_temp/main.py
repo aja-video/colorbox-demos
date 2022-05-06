@@ -11,7 +11,7 @@ else:
 
 sys.path.append(
     os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../common/python")
+        os.path.join(os.path.dirname(__file__), "../api")
     )
 )
 
@@ -20,7 +20,7 @@ from openapi_client.api import default_api
 from openapi_client.rest import ApiException
 
 # Chnage to IP Address of desired Color Box
-configuration = openapi_client.Configuration(host="http://192.168.1.141/v2")
+configuration = openapi_client.Configuration(host="http://192.168.10.206/v2")
 
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:

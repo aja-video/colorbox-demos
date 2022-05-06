@@ -1,13 +1,13 @@
 # Build the ColorBox OpenAPI
 ```
-cd ../common/go
-go mod download golang.org/x/oauth2
-go get golang.org/x/oauth2/internal@v0.0.0-20210323180902-22b0adad7558
+cd api
+go build
 ```
 
 ## Build get_temp
 ```
 cd get_temp
+go get colorbox-api
 go build
 cd -
 ```
@@ -15,6 +15,7 @@ cd -
 ## Build set_overlay_text
 ```
 cd set_overlay_text
+go get colorbox-api
 go build
 cd -
 ```
