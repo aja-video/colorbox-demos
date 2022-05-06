@@ -46,17 +46,17 @@ INCLUDEPATH += $$NTV2_ROOT/ajalibraries
 INCLUDEPATH += $$NTV2_ROOT/ajalibraries/ajantv2/includes
 
 # To support NTV2 ANC related routines
-# Need to install NTV2 sdk to sojiremotedemos/ntv2sdk
+# Need to install NTV2 sdk to cpp/ntv2sdk
 exists ($$NTV2_ROOT) {
 DEFINES += SUPPORT_ANC
 #For Windows
-#copy .lib and .dll from ntv2sdk\bin\libajantv2dll_16\x64\Release_MD to sojiremotedemos/bin directory
+#copy .lib and .dll from ntv2sdk\bin\libajantv2dll_16\x64\Release_MD to cpp/bin directory
 win32:LIBS += -L$$DESTDIR/ -llibajantv2dll
 #win32:debug:LIBS += -L$$DESTDIR/ -llibajantv2dlld
 
 
 #For Linux
-#copy .so from ntv2sdk/lib/gcc_5_1_and_after/libajantv2_16.so to sojiremotedemos/bin directory and rename libajantv2.so
+#copy .so from ntv2sdk/lib/gcc_5_1_and_after/libajantv2_16.so to cpp/bin directory and rename libajantv2.so
 #and need to add '.' to LD_LIBRARY_PATH
 unix:!macx::LIBS += -L$$DESTDIR/ -lajantv2
 
