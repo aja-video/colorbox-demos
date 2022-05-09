@@ -19,6 +19,17 @@
 
 using namespace OpenAPI;
 
+// This is needed to compile with older Qt versions like Qt 5.13.2
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+namespace Qt {
+	QTextStream &endl(QTextStream &s)
+	{
+		return ::endl(s);
+	}
+}
+#endif
+
+
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent),
       _sojiConnected(false),
@@ -28,10 +39,7 @@ Dialog::Dialog(QWidget *parent)
 {
     _ui->setupUi(this);
 
-    Qt::WindowFlags flags = 0;
-    flags |= Qt::WindowMinMaxButtonsHint;
-    flags |= Qt::WindowCloseButtonHint;
-    setWindowFlags( flags );
+	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
     _webSocketThread = new QThread;
     _webSocketLoad = new AJAWebSocketInterface();
@@ -313,7 +321,7 @@ void Dialog::doProcAmp()
 
     if ( _printMatrix )
     {
-        qDebug().noquote() << "Qt Matrix" << endl << finalMatrix;
+		qDebug().noquote() << "Qt Matrix" << Qt::endl << finalMatrix;
 
         writeMatrixFile(sojiMatrix);
         _printMatrix =false;
@@ -344,24 +352,24 @@ void  Dialog::writeMatrixFile(SojiDynamicMatrix m)
     QFile outMTXFile(s);
     outMTXFile.open(QIODevice::WriteOnly);
     QTextStream out(&outMTXFile);   // we will serialize the data into the file
-    out << "# Setup 3x3 Matrix applied to 12 bit components." << endl;
-    out << "# Preoffset is a floating point offset applied. 256.0 is 12 bit black offset. " << endl;
-    out << "# in R G B order. The Next two lines need to be contiguous" << endl;
-    out << "3X3_PRE_OFFSET " << endl;
-    out << 0.0 << " "<< 0.0 << " "<< 0.0 << endl;
+	out << "# Setup 3x3 Matrix applied to 12 bit components." << Qt::endl;
+	out << "# Preoffset is a floating point offset applied. 256.0 is 12 bit black offset. " << Qt::endl;
+	out << "# in R G B order. The Next two lines need to be contiguous" << Qt::endl;
+	out << "3X3_PRE_OFFSET " << Qt::endl;
+	out << 0.0 << " "<< 0.0 << " "<< 0.0 << Qt::endl;
 
-    out << "# in R G B order. The Next two lines need to be contiguous" << endl;
-    out << "3X3_POST_OFFSET " << endl;
-    out << m.matrix4x4[3] << " " << m.matrix4x4[7] << "  " << m.matrix4x4[11] << endl;
+	out << "# in R G B order. The Next two lines need to be contiguous" << Qt::endl;
+	out << "3X3_POST_OFFSET " << Qt::endl;
+	out << m.matrix4x4[3] << " " << m.matrix4x4[7] << "  " << m.matrix4x4[11] << Qt::endl;
 
-    out << "# Rout = ((Rin-PRE_OFFSET_R)*r11+(Gin-PRE_OFFSET_G)*r12+(Bin-PRE_OFFSET_B)*r13)+POST_OFFSET_R;" << endl;
-    out << "# Gout = ((Rin-PRE_OFFSET_R)*g21+(Gin-PRE_OFFSET_G)*g22+(Bin-PRE_OFFSET_B)*g23)+POST_OFFSET_G;" << endl;
-    out << "# Bout = ((Rin-PRE_OFFSET_R)*b31+(Gin-PRE_OFFSET_G)*b32+(Bin-PRE_OFFSET_B)*b33)+POST_OFFSET_B;" << endl;
-    out << "# Next 4 lines need to be contiguous and correspond to above coefs." << endl;
-    out << "3X3_SIZE 3" << endl;
-    out << m.matrix4x4[0] << " "<< m.matrix4x4[1] << " "<< m.matrix4x4[2] << endl;
-    out << m.matrix4x4[4] << " "<< m.matrix4x4[5] << " "<< m.matrix4x4[6] << endl;
-    out << m.matrix4x4[8] << " "<< m.matrix4x4[9] << " "<< m.matrix4x4[10] << endl;
+	out << "# Rout = ((Rin-PRE_OFFSET_R)*r11+(Gin-PRE_OFFSET_G)*r12+(Bin-PRE_OFFSET_B)*r13)+POST_OFFSET_R;" << Qt::endl;
+	out << "# Gout = ((Rin-PRE_OFFSET_R)*g21+(Gin-PRE_OFFSET_G)*g22+(Bin-PRE_OFFSET_B)*g23)+POST_OFFSET_G;" << Qt::endl;
+	out << "# Bout = ((Rin-PRE_OFFSET_R)*b31+(Gin-PRE_OFFSET_G)*b32+(Bin-PRE_OFFSET_B)*b33)+POST_OFFSET_B;" << Qt::endl;
+	out << "# Next 4 lines need to be contiguous and correspond to above coefs." << Qt::endl;
+	out << "3X3_SIZE 3" << Qt::endl;
+	out << m.matrix4x4[0] << " "<< m.matrix4x4[1] << " "<< m.matrix4x4[2] << Qt::endl;
+	out << m.matrix4x4[4] << " "<< m.matrix4x4[5] << " "<< m.matrix4x4[6] << Qt::endl;
+	out << m.matrix4x4[8] << " "<< m.matrix4x4[9] << " "<< m.matrix4x4[10] << Qt::endl;
 
     outMTXFile.close();
  }

@@ -40,10 +40,7 @@ Dialog::Dialog(QWidget *parent)
 {
     _ui->setupUi(this);
 
-    Qt::WindowFlags flags = 0;
-    flags |= Qt::WindowMinMaxButtonsHint;
-    flags |= Qt::WindowCloseButtonHint;
-    setWindowFlags( flags );
+	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
     _webSocketThread = new QThread;
     _webSocktLoader = new AJAWebSocketInterface();

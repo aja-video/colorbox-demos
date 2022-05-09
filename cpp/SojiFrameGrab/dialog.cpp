@@ -267,7 +267,7 @@ void Dialog::updatePreview()
     std::string msgVPIDFormat("No");
 
     uint32_t numAncDataPkts =  _ancDataList.CountAncillaryData();
-    for ( int ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
+	for ( uint32_t ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
     {
         AJAAncillaryData *ancData =  _ancDataList.GetAncillaryDataAtIndex (ancCount);
         ts << hex << "DID/SID: " <<  "0x" << ancData->GetDID() << "/" <<  "0x" << ancData->GetSID() << endl;

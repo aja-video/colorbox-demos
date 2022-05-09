@@ -36,10 +36,7 @@ Dialog::Dialog(QWidget *parent)
 {
     _ui->setupUi(this);
 
-    Qt::WindowFlags flags = nullptr;
-    flags |= Qt::WindowMinMaxButtonsHint;
-    flags |= Qt::WindowCloseButtonHint;
-    setWindowFlags( flags );
+	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
     // Web Socket BoilerPlate Code
     _webSocketThread = new QThread;
