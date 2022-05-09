@@ -123,6 +123,7 @@ void Dialog::handleGetStages(OpenAPI::OAIPipelineStages stages)
 {
     Q_UNUSED(stages)
 
+    _sojiConnected = true;
     _ui->connectLabel->setText("CONNECTED");
 
     // Get Web Socket Going.
@@ -242,7 +243,7 @@ void Dialog::dynmicLutChoiceChanged(int index)
         break;
     }
 
-   // _api.setPipelineStages(stages);
+   _api.setPipelineStages(stages);
 
     this->setFocus();
 }
