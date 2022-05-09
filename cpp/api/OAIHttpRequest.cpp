@@ -334,9 +334,10 @@ void OAIHttpRequestWorker::execute(OAIHttpRequestInput *input) {
     // prepare connection
 
     QNetworkRequest request = QNetworkRequest(QUrl(input->url_str));
-    if (OAIHttpRequestWorker::sslDefaultConfiguration != nullptr) {
-        request.setSslConfiguration(*OAIHttpRequestWorker::sslDefaultConfiguration);
-    }
+    // https currently not supported, no need for this and the ssl dependency it introduces
+    //if (OAIHttpRequestWorker::sslDefaultConfiguration != nullptr) {
+    //    request.setSslConfiguration(*OAIHttpRequestWorker::sslDefaultConfiguration);
+    //}
     request.setRawHeader("User-Agent", "OpenAPI-Generator/1.0.0/cpp-qt");
     foreach (QString key, input->headers.keys()) { request.setRawHeader(key.toStdString().c_str(), input->headers.value(key).toStdString().c_str()); }
 

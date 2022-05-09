@@ -87,9 +87,9 @@ add_library(${PROJECT_NAME}
 
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBS} )
-if(NOT APPLE)
-  target_link_libraries(${PROJECT_NAME} PRIVATE ssl crypto)
-endif()
+#if(NOT APPLE)
+#  target_link_libraries(${PROJECT_NAME} PRIVATE ssl crypto)
+#endif()
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
