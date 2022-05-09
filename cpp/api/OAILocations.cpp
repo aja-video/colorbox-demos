@@ -127,8 +127,8 @@ bool OAILocations::isValid() const {
 }
 
 bool OAILocations::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -60,19 +60,19 @@ void OAILibraryControl::fromJson(QString jsonString) {
 
 void OAILibraryControl::fromJsonObject(QJsonObject json) {
 
-    m_library_isValid = ::OpenAPI::fromJsonValue(library, json[QString("library")]);
+    m_library_isValid = ::OpenAPI::fromJsonValue(m_library, json[QString("library")]);
     m_library_isSet = !json[QString("library")].isNull() && m_library_isValid;
 
-    m_entry_isValid = ::OpenAPI::fromJsonValue(entry, json[QString("entry")]);
+    m_entry_isValid = ::OpenAPI::fromJsonValue(m_entry, json[QString("entry")]);
     m_entry_isSet = !json[QString("entry")].isNull() && m_entry_isValid;
 
-    m_action_isValid = ::OpenAPI::fromJsonValue(action, json[QString("action")]);
+    m_action_isValid = ::OpenAPI::fromJsonValue(m_action, json[QString("action")]);
     m_action_isSet = !json[QString("action")].isNull() && m_action_isValid;
 
-    m_data_isValid = ::OpenAPI::fromJsonValue(data, json[QString("data")]);
+    m_data_isValid = ::OpenAPI::fromJsonValue(m_data, json[QString("data")]);
     m_data_isSet = !json[QString("data")].isNull() && m_data_isValid;
 
-    m_error_msg_isValid = ::OpenAPI::fromJsonValue(error_msg, json[QString("errorMsg")]);
+    m_error_msg_isValid = ::OpenAPI::fromJsonValue(m_error_msg, json[QString("errorMsg")]);
     m_error_msg_isSet = !json[QString("errorMsg")].isNull() && m_error_msg_isValid;
 
     applyMinMaxConstraints();
@@ -87,30 +87,30 @@ QString OAILibraryControl::asJson() const {
 
 QJsonObject OAILibraryControl::asJsonObject() const {
     QJsonObject obj;
-    if (library.isSet()) {
-        obj.insert(QString("library"), ::OpenAPI::toJsonValue(library));
+    if (m_library.isSet()) {
+        obj.insert(QString("library"), ::OpenAPI::toJsonValue(m_library));
     }
     if (m_entry_isSet) {
-        obj.insert(QString("entry"), ::OpenAPI::toJsonValue(entry));
+        obj.insert(QString("entry"), ::OpenAPI::toJsonValue(m_entry));
     }
-    if (action.isSet()) {
-        obj.insert(QString("action"), ::OpenAPI::toJsonValue(action));
+    if (m_action.isSet()) {
+        obj.insert(QString("action"), ::OpenAPI::toJsonValue(m_action));
     }
     if (m_data_isSet) {
-        obj.insert(QString("data"), ::OpenAPI::toJsonValue(data));
+        obj.insert(QString("data"), ::OpenAPI::toJsonValue(m_data));
     }
     if (m_error_msg_isSet) {
-        obj.insert(QString("errorMsg"), ::OpenAPI::toJsonValue(error_msg));
+        obj.insert(QString("errorMsg"), ::OpenAPI::toJsonValue(m_error_msg));
     }
     return obj;
 }
 
 OAILibrary OAILibraryControl::getLibrary() const {
-    return library;
+    return m_library;
 }
 void OAILibraryControl::setLibrary(const OAILibrary &library) {
 	OAILibrary v = library;
-	this->library = v;
+	this->m_library = v;
     this->m_library_isSet = true;
 }
 
@@ -124,11 +124,11 @@ bool OAILibraryControl::is_library_Valid() const{
 
 
 qint32 OAILibraryControl::getEntry() const {
-    return entry;
+    return m_entry;
 }
 void OAILibraryControl::setEntry(const qint32 &entry) {
 	qint32 v = entry;
-	this->entry = v;
+	this->m_entry = v;
     this->m_entry_isSet = true;
 }
 
@@ -143,11 +143,11 @@ bool OAILibraryControl::is_entry_Valid() const{
 
 
 OAILibraryAction OAILibraryControl::getAction() const {
-    return action;
+    return m_action;
 }
 void OAILibraryControl::setAction(const OAILibraryAction &action) {
 	OAILibraryAction v = action;
-	this->action = v;
+	this->m_action = v;
     this->m_action_isSet = true;
 }
 
@@ -161,11 +161,11 @@ bool OAILibraryControl::is_action_Valid() const{
 
 
 QString OAILibraryControl::getData() const {
-    return data;
+    return m_data;
 }
 void OAILibraryControl::setData(const QString &data) {
 	QString v = data;
-	this->data = v;
+	this->m_data = v;
     this->m_data_isSet = true;
 }
 
@@ -180,11 +180,11 @@ bool OAILibraryControl::is_data_Valid() const{
 
 
 QString OAILibraryControl::getErrorMsg() const {
-    return error_msg;
+    return m_error_msg;
 }
 void OAILibraryControl::setErrorMsg(const QString &error_msg) {
 	QString v = error_msg;
-	this->error_msg = v;
+	this->m_error_msg = v;
     this->m_error_msg_isSet = true;
 }
 
@@ -201,7 +201,7 @@ bool OAILibraryControl::is_error_msg_Valid() const{
 bool OAILibraryControl::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (library.isSet()) {
+        if (m_library.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -211,7 +211,7 @@ bool OAILibraryControl::isSet() const {
             break;
         }
 
-        if (action.isSet()) {
+        if (m_action.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -235,26 +235,26 @@ bool OAILibraryControl::isValid() const {
 }
 
 bool OAILibraryControl::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_entry_Set())
 	{
 		bool entryChanged = false;
 		qint32 v = getEntry();
-		if (entryChanged) { setEntry(v); valueChanged = true; }
+		if (entryChanged) { setEntry(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_data_Set())
 	{
 		bool dataChanged = false;
 		QString v = getData();
-		if (dataChanged) { setData(v); valueChanged = true; }
+		if (dataChanged) { setData(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_error_msg_Set())
 	{
 		bool errorMsgChanged = false;
 		QString v = getErrorMsg();
-		if (errorMsgChanged) { setErrorMsg(v); valueChanged = true; }
+		if (errorMsgChanged) { setErrorMsg(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -69,28 +69,28 @@ void OAIProcAmp::fromJson(QString jsonString) {
 
 void OAIProcAmp::fromJsonObject(QJsonObject json) {
 
-    m_black_isValid = ::OpenAPI::fromJsonValue(black, json[QString("black")]);
+    m_black_isValid = ::OpenAPI::fromJsonValue(m_black, json[QString("black")]);
     m_black_isSet = !json[QString("black")].isNull() && m_black_isValid;
 
-    m_gain_isValid = ::OpenAPI::fromJsonValue(gain, json[QString("gain")]);
+    m_gain_isValid = ::OpenAPI::fromJsonValue(m_gain, json[QString("gain")]);
     m_gain_isSet = !json[QString("gain")].isNull() && m_gain_isValid;
 
-    m_hue_isValid = ::OpenAPI::fromJsonValue(hue, json[QString("hue")]);
+    m_hue_isValid = ::OpenAPI::fromJsonValue(m_hue, json[QString("hue")]);
     m_hue_isSet = !json[QString("hue")].isNull() && m_hue_isValid;
 
-    m_sat_isValid = ::OpenAPI::fromJsonValue(sat, json[QString("sat")]);
+    m_sat_isValid = ::OpenAPI::fromJsonValue(m_sat, json[QString("sat")]);
     m_sat_isSet = !json[QString("sat")].isNull() && m_sat_isValid;
 
-    m_units_black_isValid = ::OpenAPI::fromJsonValue(units_black, json[QString("unitsBlack")]);
+    m_units_black_isValid = ::OpenAPI::fromJsonValue(m_units_black, json[QString("unitsBlack")]);
     m_units_black_isSet = !json[QString("unitsBlack")].isNull() && m_units_black_isValid;
 
-    m_units_gain_isValid = ::OpenAPI::fromJsonValue(units_gain, json[QString("unitsGain")]);
+    m_units_gain_isValid = ::OpenAPI::fromJsonValue(m_units_gain, json[QString("unitsGain")]);
     m_units_gain_isSet = !json[QString("unitsGain")].isNull() && m_units_gain_isValid;
 
-    m_units_hue_isValid = ::OpenAPI::fromJsonValue(units_hue, json[QString("unitsHue")]);
+    m_units_hue_isValid = ::OpenAPI::fromJsonValue(m_units_hue, json[QString("unitsHue")]);
     m_units_hue_isSet = !json[QString("unitsHue")].isNull() && m_units_hue_isValid;
 
-    m_units_sat_isValid = ::OpenAPI::fromJsonValue(units_sat, json[QString("unitsSat")]);
+    m_units_sat_isValid = ::OpenAPI::fromJsonValue(m_units_sat, json[QString("unitsSat")]);
     m_units_sat_isSet = !json[QString("unitsSat")].isNull() && m_units_sat_isValid;
 
     applyMinMaxConstraints();
@@ -106,34 +106,34 @@ QString OAIProcAmp::asJson() const {
 QJsonObject OAIProcAmp::asJsonObject() const {
     QJsonObject obj;
     if (m_black_isSet) {
-        obj.insert(QString("black"), ::OpenAPI::toJsonValue(black));
+        obj.insert(QString("black"), ::OpenAPI::toJsonValue(m_black));
     }
     if (m_gain_isSet) {
-        obj.insert(QString("gain"), ::OpenAPI::toJsonValue(gain));
+        obj.insert(QString("gain"), ::OpenAPI::toJsonValue(m_gain));
     }
     if (m_hue_isSet) {
-        obj.insert(QString("hue"), ::OpenAPI::toJsonValue(hue));
+        obj.insert(QString("hue"), ::OpenAPI::toJsonValue(m_hue));
     }
     if (m_sat_isSet) {
-        obj.insert(QString("sat"), ::OpenAPI::toJsonValue(sat));
+        obj.insert(QString("sat"), ::OpenAPI::toJsonValue(m_sat));
     }
     if (m_units_black_isSet) {
-        obj.insert(QString("unitsBlack"), ::OpenAPI::toJsonValue(units_black));
+        obj.insert(QString("unitsBlack"), ::OpenAPI::toJsonValue(m_units_black));
     }
     if (m_units_gain_isSet) {
-        obj.insert(QString("unitsGain"), ::OpenAPI::toJsonValue(units_gain));
+        obj.insert(QString("unitsGain"), ::OpenAPI::toJsonValue(m_units_gain));
     }
     if (m_units_hue_isSet) {
-        obj.insert(QString("unitsHue"), ::OpenAPI::toJsonValue(units_hue));
+        obj.insert(QString("unitsHue"), ::OpenAPI::toJsonValue(m_units_hue));
     }
     if (m_units_sat_isSet) {
-        obj.insert(QString("unitsSat"), ::OpenAPI::toJsonValue(units_sat));
+        obj.insert(QString("unitsSat"), ::OpenAPI::toJsonValue(m_units_sat));
     }
     return obj;
 }
 
 double OAIProcAmp::getBlack() const {
-    return black;
+    return m_black;
 }
 void OAIProcAmp::setBlack(const double &black) {
 	double v = black;
@@ -141,7 +141,7 @@ void OAIProcAmp::setBlack(const double &black) {
 	double max = blackMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->black = v;
+	this->m_black = v;
     this->m_black_isSet = true;
 }
 
@@ -162,7 +162,7 @@ double OAIProcAmp::blackMax() const {
 }
 
 double OAIProcAmp::getGain() const {
-    return gain;
+    return m_gain;
 }
 void OAIProcAmp::setGain(const double &gain) {
 	double v = gain;
@@ -170,7 +170,7 @@ void OAIProcAmp::setGain(const double &gain) {
 	double max = gainMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->gain = v;
+	this->m_gain = v;
     this->m_gain_isSet = true;
 }
 
@@ -191,7 +191,7 @@ double OAIProcAmp::gainMax() const {
 }
 
 double OAIProcAmp::getHue() const {
-    return hue;
+    return m_hue;
 }
 void OAIProcAmp::setHue(const double &hue) {
 	double v = hue;
@@ -199,7 +199,7 @@ void OAIProcAmp::setHue(const double &hue) {
 	double max = hueMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->hue = v;
+	this->m_hue = v;
     this->m_hue_isSet = true;
 }
 
@@ -220,7 +220,7 @@ double OAIProcAmp::hueMax() const {
 }
 
 double OAIProcAmp::getSat() const {
-    return sat;
+    return m_sat;
 }
 void OAIProcAmp::setSat(const double &sat) {
 	double v = sat;
@@ -228,7 +228,7 @@ void OAIProcAmp::setSat(const double &sat) {
 	double max = satMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->sat = v;
+	this->m_sat = v;
     this->m_sat_isSet = true;
 }
 
@@ -249,11 +249,11 @@ double OAIProcAmp::satMax() const {
 }
 
 QString OAIProcAmp::getUnitsBlack() const {
-    return units_black;
+    return m_units_black;
 }
 void OAIProcAmp::setUnitsBlack(const QString &units_black) {
 	QString v = units_black;
-	this->units_black = v;
+	this->m_units_black = v;
     this->m_units_black_isSet = true;
 }
 
@@ -268,11 +268,11 @@ bool OAIProcAmp::is_units_black_Valid() const{
 
 
 QString OAIProcAmp::getUnitsGain() const {
-    return units_gain;
+    return m_units_gain;
 }
 void OAIProcAmp::setUnitsGain(const QString &units_gain) {
 	QString v = units_gain;
-	this->units_gain = v;
+	this->m_units_gain = v;
     this->m_units_gain_isSet = true;
 }
 
@@ -287,11 +287,11 @@ bool OAIProcAmp::is_units_gain_Valid() const{
 
 
 QString OAIProcAmp::getUnitsHue() const {
-    return units_hue;
+    return m_units_hue;
 }
 void OAIProcAmp::setUnitsHue(const QString &units_hue) {
 	QString v = units_hue;
-	this->units_hue = v;
+	this->m_units_hue = v;
     this->m_units_hue_isSet = true;
 }
 
@@ -306,11 +306,11 @@ bool OAIProcAmp::is_units_hue_Valid() const{
 
 
 QString OAIProcAmp::getUnitsSat() const {
-    return units_sat;
+    return m_units_sat;
 }
 void OAIProcAmp::setUnitsSat(const QString &units_sat) {
 	QString v = units_sat;
-	this->units_sat = v;
+	this->m_units_sat = v;
     this->m_units_sat_isSet = true;
 }
 
@@ -376,7 +376,7 @@ bool OAIProcAmp::isValid() const {
 }
 
 bool OAIProcAmp::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_black_Set())
 	{
 		bool blackChanged = false;
@@ -385,7 +385,7 @@ bool OAIProcAmp::applyMinMaxConstraints() {
 		double max = blackMax();
 		if (v < min) { v = min; blackChanged = true; }
 		if (v > max) { v = max; blackChanged = true; }
-		if (blackChanged) { setBlack(v); valueChanged = true; }
+		if (blackChanged) { setBlack(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gain_Set())
 	{
@@ -395,7 +395,7 @@ bool OAIProcAmp::applyMinMaxConstraints() {
 		double max = gainMax();
 		if (v < min) { v = min; gainChanged = true; }
 		if (v > max) { v = max; gainChanged = true; }
-		if (gainChanged) { setGain(v); valueChanged = true; }
+		if (gainChanged) { setGain(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_hue_Set())
 	{
@@ -405,7 +405,7 @@ bool OAIProcAmp::applyMinMaxConstraints() {
 		double max = hueMax();
 		if (v < min) { v = min; hueChanged = true; }
 		if (v > max) { v = max; hueChanged = true; }
-		if (hueChanged) { setHue(v); valueChanged = true; }
+		if (hueChanged) { setHue(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_sat_Set())
 	{
@@ -415,33 +415,33 @@ bool OAIProcAmp::applyMinMaxConstraints() {
 		double max = satMax();
 		if (v < min) { v = min; satChanged = true; }
 		if (v > max) { v = max; satChanged = true; }
-		if (satChanged) { setSat(v); valueChanged = true; }
+		if (satChanged) { setSat(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_units_black_Set())
 	{
 		bool unitsBlackChanged = false;
 		QString v = getUnitsBlack();
-		if (unitsBlackChanged) { setUnitsBlack(v); valueChanged = true; }
+		if (unitsBlackChanged) { setUnitsBlack(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_units_gain_Set())
 	{
 		bool unitsGainChanged = false;
 		QString v = getUnitsGain();
-		if (unitsGainChanged) { setUnitsGain(v); valueChanged = true; }
+		if (unitsGainChanged) { setUnitsGain(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_units_hue_Set())
 	{
 		bool unitsHueChanged = false;
 		QString v = getUnitsHue();
-		if (unitsHueChanged) { setUnitsHue(v); valueChanged = true; }
+		if (unitsHueChanged) { setUnitsHue(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_units_sat_Set())
 	{
 		bool unitsSatChanged = false;
 		QString v = getUnitsSat();
-		if (unitsSatChanged) { setUnitsSat(v); valueChanged = true; }
+		if (unitsSatChanged) { setUnitsSat(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -70,27 +70,27 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    OAILibrary library;
+    OAILibrary m_library;
     bool m_library_isSet;
     bool m_library_isValid;
 
-    qint32 entry;
+    qint32 m_entry;
     bool m_entry_isSet;
     bool m_entry_isValid;
 
-    OAILibraryAction action;
+    OAILibraryAction m_action;
     bool m_action_isSet;
     bool m_action_isValid;
 
-    QString data;
+    QString m_data;
     bool m_data_isSet;
     bool m_data_isValid;
 
-    QString error_msg;
+    QString m_error_msg;
     bool m_error_msg_isSet;
     bool m_error_msg_isValid;
 };

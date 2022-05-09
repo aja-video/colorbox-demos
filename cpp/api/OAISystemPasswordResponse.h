@@ -53,15 +53,15 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    bool successful;
+    bool m_successful;
     bool m_successful_isSet;
     bool m_successful_isValid;
 
-    QString message;
+    QString m_message;
     bool m_message_isSet;
     bool m_message_isValid;
 };

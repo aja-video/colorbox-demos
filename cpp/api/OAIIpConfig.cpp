@@ -99,8 +99,8 @@ bool OAIIpConfig::isValid() const {
 }
 
 bool OAIIpConfig::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

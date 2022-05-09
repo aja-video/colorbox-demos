@@ -60,19 +60,19 @@ void OAISystemStatus::fromJson(QString jsonString) {
 
 void OAISystemStatus::fromJsonObject(QJsonObject json) {
 
-    m_safeboot_version_isValid = ::OpenAPI::fromJsonValue(safeboot_version, json[QString("safebootVersion")]);
+    m_safeboot_version_isValid = ::OpenAPI::fromJsonValue(m_safeboot_version, json[QString("safebootVersion")]);
     m_safeboot_version_isSet = !json[QString("safebootVersion")].isNull() && m_safeboot_version_isValid;
 
-    m_mainboot_version_isValid = ::OpenAPI::fromJsonValue(mainboot_version, json[QString("mainbootVersion")]);
+    m_mainboot_version_isValid = ::OpenAPI::fromJsonValue(m_mainboot_version, json[QString("mainbootVersion")]);
     m_mainboot_version_isSet = !json[QString("mainbootVersion")].isNull() && m_mainboot_version_isValid;
 
-    m_running_version_isValid = ::OpenAPI::fromJsonValue(running_version, json[QString("runningVersion")]);
+    m_running_version_isValid = ::OpenAPI::fromJsonValue(m_running_version, json[QString("runningVersion")]);
     m_running_version_isSet = !json[QString("runningVersion")].isNull() && m_running_version_isValid;
 
-    m_safeboot_isValid = ::OpenAPI::fromJsonValue(safeboot, json[QString("safeboot")]);
+    m_safeboot_isValid = ::OpenAPI::fromJsonValue(m_safeboot, json[QString("safeboot")]);
     m_safeboot_isSet = !json[QString("safeboot")].isNull() && m_safeboot_isValid;
 
-    m_update_msg_isValid = ::OpenAPI::fromJsonValue(update_msg, json[QString("updateMsg")]);
+    m_update_msg_isValid = ::OpenAPI::fromJsonValue(m_update_msg, json[QString("updateMsg")]);
     m_update_msg_isSet = !json[QString("updateMsg")].isNull() && m_update_msg_isValid;
 
     applyMinMaxConstraints();
@@ -88,29 +88,29 @@ QString OAISystemStatus::asJson() const {
 QJsonObject OAISystemStatus::asJsonObject() const {
     QJsonObject obj;
     if (m_safeboot_version_isSet) {
-        obj.insert(QString("safebootVersion"), ::OpenAPI::toJsonValue(safeboot_version));
+        obj.insert(QString("safebootVersion"), ::OpenAPI::toJsonValue(m_safeboot_version));
     }
     if (m_mainboot_version_isSet) {
-        obj.insert(QString("mainbootVersion"), ::OpenAPI::toJsonValue(mainboot_version));
+        obj.insert(QString("mainbootVersion"), ::OpenAPI::toJsonValue(m_mainboot_version));
     }
     if (m_running_version_isSet) {
-        obj.insert(QString("runningVersion"), ::OpenAPI::toJsonValue(running_version));
+        obj.insert(QString("runningVersion"), ::OpenAPI::toJsonValue(m_running_version));
     }
     if (m_safeboot_isSet) {
-        obj.insert(QString("safeboot"), ::OpenAPI::toJsonValue(safeboot));
+        obj.insert(QString("safeboot"), ::OpenAPI::toJsonValue(m_safeboot));
     }
-    if (update_msg.size() > 0) {
-        obj.insert(QString("updateMsg"), ::OpenAPI::toJsonValue(update_msg));
+    if (m_update_msg.size() > 0) {
+        obj.insert(QString("updateMsg"), ::OpenAPI::toJsonValue(m_update_msg));
     }
     return obj;
 }
 
 QString OAISystemStatus::getSafebootVersion() const {
-    return safeboot_version;
+    return m_safeboot_version;
 }
 void OAISystemStatus::setSafebootVersion(const QString &safeboot_version) {
 	QString v = safeboot_version;
-	this->safeboot_version = v;
+	this->m_safeboot_version = v;
     this->m_safeboot_version_isSet = true;
 }
 
@@ -125,11 +125,11 @@ bool OAISystemStatus::is_safeboot_version_Valid() const{
 
 
 QString OAISystemStatus::getMainbootVersion() const {
-    return mainboot_version;
+    return m_mainboot_version;
 }
 void OAISystemStatus::setMainbootVersion(const QString &mainboot_version) {
 	QString v = mainboot_version;
-	this->mainboot_version = v;
+	this->m_mainboot_version = v;
     this->m_mainboot_version_isSet = true;
 }
 
@@ -144,11 +144,11 @@ bool OAISystemStatus::is_mainboot_version_Valid() const{
 
 
 QString OAISystemStatus::getRunningVersion() const {
-    return running_version;
+    return m_running_version;
 }
 void OAISystemStatus::setRunningVersion(const QString &running_version) {
 	QString v = running_version;
-	this->running_version = v;
+	this->m_running_version = v;
     this->m_running_version_isSet = true;
 }
 
@@ -163,11 +163,11 @@ bool OAISystemStatus::is_running_version_Valid() const{
 
 
 bool OAISystemStatus::isSafeboot() const {
-    return safeboot;
+    return m_safeboot;
 }
 void OAISystemStatus::setSafeboot(const bool &safeboot) {
 	bool v = safeboot;
-	this->safeboot = v;
+	this->m_safeboot = v;
     this->m_safeboot_isSet = true;
 }
 
@@ -181,11 +181,11 @@ bool OAISystemStatus::is_safeboot_Valid() const{
 
 
 QList<QString> OAISystemStatus::getUpdateMsg() const {
-    return update_msg;
+    return m_update_msg;
 }
 void OAISystemStatus::setUpdateMsg(const QList<QString> &update_msg) {
 	QList<QString> v = update_msg;
-	this->update_msg = v;
+	this->m_update_msg = v;
     this->m_update_msg_isSet = true;
 }
 
@@ -221,7 +221,7 @@ bool OAISystemStatus::isSet() const {
             break;
         }
 
-        if (update_msg.size() > 0) {
+        if (m_update_msg.size() > 0) {
             isObjectUpdated = true;
             break;
         }
@@ -235,26 +235,26 @@ bool OAISystemStatus::isValid() const {
 }
 
 bool OAISystemStatus::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_safeboot_version_Set())
 	{
 		bool safebootVersionChanged = false;
 		QString v = getSafebootVersion();
-		if (safebootVersionChanged) { setSafebootVersion(v); valueChanged = true; }
+		if (safebootVersionChanged) { setSafebootVersion(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_mainboot_version_Set())
 	{
 		bool mainbootVersionChanged = false;
 		QString v = getMainbootVersion();
-		if (mainbootVersionChanged) { setMainbootVersion(v); valueChanged = true; }
+		if (mainbootVersionChanged) { setMainbootVersion(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_running_version_Set())
 	{
 		bool runningVersionChanged = false;
 		QString v = getRunningVersion();
-		if (runningVersionChanged) { setRunningVersion(v); valueChanged = true; }
+		if (runningVersionChanged) { setRunningVersion(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

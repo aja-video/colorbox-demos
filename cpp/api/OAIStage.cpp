@@ -60,19 +60,19 @@ void OAIStage::fromJson(QString jsonString) {
 
 void OAIStage::fromJsonObject(QJsonObject json) {
 
-    m_enabled_isValid = ::OpenAPI::fromJsonValue(enabled, json[QString("enabled")]);
+    m_enabled_isValid = ::OpenAPI::fromJsonValue(m_enabled, json[QString("enabled")]);
     m_enabled_isSet = !json[QString("enabled")].isNull() && m_enabled_isValid;
 
-    m_dynamic_isValid = ::OpenAPI::fromJsonValue(dynamic, json[QString("dynamic")]);
+    m_dynamic_isValid = ::OpenAPI::fromJsonValue(m_dynamic, json[QString("dynamic")]);
     m_dynamic_isSet = !json[QString("dynamic")].isNull() && m_dynamic_isValid;
 
-    m_library_entry_isValid = ::OpenAPI::fromJsonValue(library_entry, json[QString("libraryEntry")]);
+    m_library_entry_isValid = ::OpenAPI::fromJsonValue(m_library_entry, json[QString("libraryEntry")]);
     m_library_entry_isSet = !json[QString("libraryEntry")].isNull() && m_library_entry_isValid;
 
-    m_color_corrector_isValid = ::OpenAPI::fromJsonValue(color_corrector, json[QString("colorCorrector")]);
+    m_color_corrector_isValid = ::OpenAPI::fromJsonValue(m_color_corrector, json[QString("colorCorrector")]);
     m_color_corrector_isSet = !json[QString("colorCorrector")].isNull() && m_color_corrector_isValid;
 
-    m_proc_amp_isValid = ::OpenAPI::fromJsonValue(proc_amp, json[QString("procAmp")]);
+    m_proc_amp_isValid = ::OpenAPI::fromJsonValue(m_proc_amp, json[QString("procAmp")]);
     m_proc_amp_isSet = !json[QString("procAmp")].isNull() && m_proc_amp_isValid;
 
     applyMinMaxConstraints();
@@ -88,29 +88,29 @@ QString OAIStage::asJson() const {
 QJsonObject OAIStage::asJsonObject() const {
     QJsonObject obj;
     if (m_enabled_isSet) {
-        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(enabled));
+        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(m_enabled));
     }
     if (m_dynamic_isSet) {
-        obj.insert(QString("dynamic"), ::OpenAPI::toJsonValue(dynamic));
+        obj.insert(QString("dynamic"), ::OpenAPI::toJsonValue(m_dynamic));
     }
     if (m_library_entry_isSet) {
-        obj.insert(QString("libraryEntry"), ::OpenAPI::toJsonValue(library_entry));
+        obj.insert(QString("libraryEntry"), ::OpenAPI::toJsonValue(m_library_entry));
     }
-    if (color_corrector.isSet()) {
-        obj.insert(QString("colorCorrector"), ::OpenAPI::toJsonValue(color_corrector));
+    if (m_color_corrector.isSet()) {
+        obj.insert(QString("colorCorrector"), ::OpenAPI::toJsonValue(m_color_corrector));
     }
-    if (proc_amp.isSet()) {
-        obj.insert(QString("procAmp"), ::OpenAPI::toJsonValue(proc_amp));
+    if (m_proc_amp.isSet()) {
+        obj.insert(QString("procAmp"), ::OpenAPI::toJsonValue(m_proc_amp));
     }
     return obj;
 }
 
 bool OAIStage::isEnabled() const {
-    return enabled;
+    return m_enabled;
 }
 void OAIStage::setEnabled(const bool &enabled) {
 	bool v = enabled;
-	this->enabled = v;
+	this->m_enabled = v;
     this->m_enabled_isSet = true;
 }
 
@@ -124,11 +124,11 @@ bool OAIStage::is_enabled_Valid() const{
 
 
 bool OAIStage::isDynamic() const {
-    return dynamic;
+    return m_dynamic;
 }
 void OAIStage::setDynamic(const bool &dynamic) {
 	bool v = dynamic;
-	this->dynamic = v;
+	this->m_dynamic = v;
     this->m_dynamic_isSet = true;
 }
 
@@ -142,11 +142,11 @@ bool OAIStage::is_dynamic_Valid() const{
 
 
 qint32 OAIStage::getLibraryEntry() const {
-    return library_entry;
+    return m_library_entry;
 }
 void OAIStage::setLibraryEntry(const qint32 &library_entry) {
 	qint32 v = library_entry;
-	this->library_entry = v;
+	this->m_library_entry = v;
     this->m_library_entry_isSet = true;
 }
 
@@ -161,11 +161,11 @@ bool OAIStage::is_library_entry_Valid() const{
 
 
 OAIColorCorrector OAIStage::getColorCorrector() const {
-    return color_corrector;
+    return m_color_corrector;
 }
 void OAIStage::setColorCorrector(const OAIColorCorrector &color_corrector) {
 	OAIColorCorrector v = color_corrector;
-	this->color_corrector = v;
+	this->m_color_corrector = v;
     this->m_color_corrector_isSet = true;
 }
 
@@ -179,11 +179,11 @@ bool OAIStage::is_color_corrector_Valid() const{
 
 
 OAIProcAmp OAIStage::getProcAmp() const {
-    return proc_amp;
+    return m_proc_amp;
 }
 void OAIStage::setProcAmp(const OAIProcAmp &proc_amp) {
 	OAIProcAmp v = proc_amp;
-	this->proc_amp = v;
+	this->m_proc_amp = v;
     this->m_proc_amp_isSet = true;
 }
 
@@ -214,12 +214,12 @@ bool OAIStage::isSet() const {
             break;
         }
 
-        if (color_corrector.isSet()) {
+        if (m_color_corrector.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (proc_amp.isSet()) {
+        if (m_proc_amp.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -233,14 +233,14 @@ bool OAIStage::isValid() const {
 }
 
 bool OAIStage::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_library_entry_Set())
 	{
 		bool libraryEntryChanged = false;
 		qint32 v = getLibraryEntry();
-		if (libraryEntryChanged) { setLibraryEntry(v); valueChanged = true; }
+		if (libraryEntryChanged) { setLibraryEntry(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

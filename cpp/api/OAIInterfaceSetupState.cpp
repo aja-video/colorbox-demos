@@ -106,8 +106,8 @@ bool OAIInterfaceSetupState::isValid() const {
 }
 
 bool OAIInterfaceSetupState::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

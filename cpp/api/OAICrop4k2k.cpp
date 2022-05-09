@@ -106,8 +106,8 @@ bool OAICrop4k2k::isValid() const {
 }
 
 bool OAICrop4k2k::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

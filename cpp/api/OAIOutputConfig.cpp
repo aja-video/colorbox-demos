@@ -75,34 +75,34 @@ void OAIOutputConfig::fromJson(QString jsonString) {
 
 void OAIOutputConfig::fromJsonObject(QJsonObject json) {
 
-    m_color_space_isValid = ::OpenAPI::fromJsonValue(color_space, json[QString("colorSpace")]);
+    m_color_space_isValid = ::OpenAPI::fromJsonValue(m_color_space, json[QString("colorSpace")]);
     m_color_space_isSet = !json[QString("colorSpace")].isNull() && m_color_space_isValid;
 
-    m_rgb_range_isValid = ::OpenAPI::fromJsonValue(rgb_range, json[QString("rgbRange")]);
+    m_rgb_range_isValid = ::OpenAPI::fromJsonValue(m_rgb_range, json[QString("rgbRange")]);
     m_rgb_range_isSet = !json[QString("rgbRange")].isNull() && m_rgb_range_isValid;
 
-    m_bit_depth_isValid = ::OpenAPI::fromJsonValue(bit_depth, json[QString("bitDepth")]);
+    m_bit_depth_isValid = ::OpenAPI::fromJsonValue(m_bit_depth, json[QString("bitDepth")]);
     m_bit_depth_isSet = !json[QString("bitDepth")].isNull() && m_bit_depth_isValid;
 
-    m_scan_mode_isValid = ::OpenAPI::fromJsonValue(scan_mode, json[QString("scanMode")]);
+    m_scan_mode_isValid = ::OpenAPI::fromJsonValue(m_scan_mode, json[QString("scanMode")]);
     m_scan_mode_isSet = !json[QString("scanMode")].isNull() && m_scan_mode_isValid;
 
-    m_colorimetry_isValid = ::OpenAPI::fromJsonValue(colorimetry, json[QString("colorimetry")]);
+    m_colorimetry_isValid = ::OpenAPI::fromJsonValue(m_colorimetry, json[QString("colorimetry")]);
     m_colorimetry_isSet = !json[QString("colorimetry")].isNull() && m_colorimetry_isValid;
 
-    m_transfer_isValid = ::OpenAPI::fromJsonValue(transfer, json[QString("transfer")]);
+    m_transfer_isValid = ::OpenAPI::fromJsonValue(m_transfer, json[QString("transfer")]);
     m_transfer_isSet = !json[QString("transfer")].isNull() && m_transfer_isValid;
 
-    m_format_isValid = ::OpenAPI::fromJsonValue(format, json[QString("format")]);
+    m_format_isValid = ::OpenAPI::fromJsonValue(m_format, json[QString("format")]);
     m_format_isSet = !json[QString("format")].isNull() && m_format_isValid;
 
-    m_sdi_mode3g_isValid = ::OpenAPI::fromJsonValue(sdi_mode3g, json[QString("sdiMode3g")]);
+    m_sdi_mode3g_isValid = ::OpenAPI::fromJsonValue(m_sdi_mode3g, json[QString("sdiMode3g")]);
     m_sdi_mode3g_isSet = !json[QString("sdiMode3g")].isNull() && m_sdi_mode3g_isValid;
 
-    m_hdmi_crop4k2k_isValid = ::OpenAPI::fromJsonValue(hdmi_crop4k2k, json[QString("hdmiCrop4k2k")]);
+    m_hdmi_crop4k2k_isValid = ::OpenAPI::fromJsonValue(m_hdmi_crop4k2k, json[QString("hdmiCrop4k2k")]);
     m_hdmi_crop4k2k_isSet = !json[QString("hdmiCrop4k2k")].isNull() && m_hdmi_crop4k2k_isValid;
 
-    m_hdmi_connection_isValid = ::OpenAPI::fromJsonValue(hdmi_connection, json[QString("hdmiConnection")]);
+    m_hdmi_connection_isValid = ::OpenAPI::fromJsonValue(m_hdmi_connection, json[QString("hdmiConnection")]);
     m_hdmi_connection_isSet = !json[QString("hdmiConnection")].isNull() && m_hdmi_connection_isValid;
 
     applyMinMaxConstraints();
@@ -117,45 +117,45 @@ QString OAIOutputConfig::asJson() const {
 
 QJsonObject OAIOutputConfig::asJsonObject() const {
     QJsonObject obj;
-    if (color_space.isSet()) {
-        obj.insert(QString("colorSpace"), ::OpenAPI::toJsonValue(color_space));
+    if (m_color_space.isSet()) {
+        obj.insert(QString("colorSpace"), ::OpenAPI::toJsonValue(m_color_space));
     }
-    if (rgb_range.isSet()) {
-        obj.insert(QString("rgbRange"), ::OpenAPI::toJsonValue(rgb_range));
+    if (m_rgb_range.isSet()) {
+        obj.insert(QString("rgbRange"), ::OpenAPI::toJsonValue(m_rgb_range));
     }
-    if (bit_depth.isSet()) {
-        obj.insert(QString("bitDepth"), ::OpenAPI::toJsonValue(bit_depth));
+    if (m_bit_depth.isSet()) {
+        obj.insert(QString("bitDepth"), ::OpenAPI::toJsonValue(m_bit_depth));
     }
-    if (scan_mode.isSet()) {
-        obj.insert(QString("scanMode"), ::OpenAPI::toJsonValue(scan_mode));
+    if (m_scan_mode.isSet()) {
+        obj.insert(QString("scanMode"), ::OpenAPI::toJsonValue(m_scan_mode));
     }
-    if (colorimetry.isSet()) {
-        obj.insert(QString("colorimetry"), ::OpenAPI::toJsonValue(colorimetry));
+    if (m_colorimetry.isSet()) {
+        obj.insert(QString("colorimetry"), ::OpenAPI::toJsonValue(m_colorimetry));
     }
-    if (transfer.isSet()) {
-        obj.insert(QString("transfer"), ::OpenAPI::toJsonValue(transfer));
+    if (m_transfer.isSet()) {
+        obj.insert(QString("transfer"), ::OpenAPI::toJsonValue(m_transfer));
     }
-    if (format.isSet()) {
-        obj.insert(QString("format"), ::OpenAPI::toJsonValue(format));
+    if (m_format.isSet()) {
+        obj.insert(QString("format"), ::OpenAPI::toJsonValue(m_format));
     }
-    if (sdi_mode3g.isSet()) {
-        obj.insert(QString("sdiMode3g"), ::OpenAPI::toJsonValue(sdi_mode3g));
+    if (m_sdi_mode3g.isSet()) {
+        obj.insert(QString("sdiMode3g"), ::OpenAPI::toJsonValue(m_sdi_mode3g));
     }
-    if (hdmi_crop4k2k.isSet()) {
-        obj.insert(QString("hdmiCrop4k2k"), ::OpenAPI::toJsonValue(hdmi_crop4k2k));
+    if (m_hdmi_crop4k2k.isSet()) {
+        obj.insert(QString("hdmiCrop4k2k"), ::OpenAPI::toJsonValue(m_hdmi_crop4k2k));
     }
-    if (hdmi_connection.isSet()) {
-        obj.insert(QString("hdmiConnection"), ::OpenAPI::toJsonValue(hdmi_connection));
+    if (m_hdmi_connection.isSet()) {
+        obj.insert(QString("hdmiConnection"), ::OpenAPI::toJsonValue(m_hdmi_connection));
     }
     return obj;
 }
 
 OAIColorSpace OAIOutputConfig::getColorSpace() const {
-    return color_space;
+    return m_color_space;
 }
 void OAIOutputConfig::setColorSpace(const OAIColorSpace &color_space) {
 	OAIColorSpace v = color_space;
-	this->color_space = v;
+	this->m_color_space = v;
     this->m_color_space_isSet = true;
 }
 
@@ -169,11 +169,11 @@ bool OAIOutputConfig::is_color_space_Valid() const{
 
 
 OAIRgbRange OAIOutputConfig::getRgbRange() const {
-    return rgb_range;
+    return m_rgb_range;
 }
 void OAIOutputConfig::setRgbRange(const OAIRgbRange &rgb_range) {
 	OAIRgbRange v = rgb_range;
-	this->rgb_range = v;
+	this->m_rgb_range = v;
     this->m_rgb_range_isSet = true;
 }
 
@@ -187,11 +187,11 @@ bool OAIOutputConfig::is_rgb_range_Valid() const{
 
 
 OAIBitDepth OAIOutputConfig::getBitDepth() const {
-    return bit_depth;
+    return m_bit_depth;
 }
 void OAIOutputConfig::setBitDepth(const OAIBitDepth &bit_depth) {
 	OAIBitDepth v = bit_depth;
-	this->bit_depth = v;
+	this->m_bit_depth = v;
     this->m_bit_depth_isSet = true;
 }
 
@@ -205,11 +205,11 @@ bool OAIOutputConfig::is_bit_depth_Valid() const{
 
 
 OAIScanMode OAIOutputConfig::getScanMode() const {
-    return scan_mode;
+    return m_scan_mode;
 }
 void OAIOutputConfig::setScanMode(const OAIScanMode &scan_mode) {
 	OAIScanMode v = scan_mode;
-	this->scan_mode = v;
+	this->m_scan_mode = v;
     this->m_scan_mode_isSet = true;
 }
 
@@ -223,11 +223,11 @@ bool OAIOutputConfig::is_scan_mode_Valid() const{
 
 
 OAIColorimetry OAIOutputConfig::getColorimetry() const {
-    return colorimetry;
+    return m_colorimetry;
 }
 void OAIOutputConfig::setColorimetry(const OAIColorimetry &colorimetry) {
 	OAIColorimetry v = colorimetry;
-	this->colorimetry = v;
+	this->m_colorimetry = v;
     this->m_colorimetry_isSet = true;
 }
 
@@ -241,11 +241,11 @@ bool OAIOutputConfig::is_colorimetry_Valid() const{
 
 
 OAITransfer OAIOutputConfig::getTransfer() const {
-    return transfer;
+    return m_transfer;
 }
 void OAIOutputConfig::setTransfer(const OAITransfer &transfer) {
 	OAITransfer v = transfer;
-	this->transfer = v;
+	this->m_transfer = v;
     this->m_transfer_isSet = true;
 }
 
@@ -259,11 +259,11 @@ bool OAIOutputConfig::is_transfer_Valid() const{
 
 
 OAIVideoFormat OAIOutputConfig::getFormat() const {
-    return format;
+    return m_format;
 }
 void OAIOutputConfig::setFormat(const OAIVideoFormat &format) {
 	OAIVideoFormat v = format;
-	this->format = v;
+	this->m_format = v;
     this->m_format_isSet = true;
 }
 
@@ -277,11 +277,11 @@ bool OAIOutputConfig::is_format_Valid() const{
 
 
 OAISdiMode3g OAIOutputConfig::getSdiMode3g() const {
-    return sdi_mode3g;
+    return m_sdi_mode3g;
 }
 void OAIOutputConfig::setSdiMode3g(const OAISdiMode3g &sdi_mode3g) {
 	OAISdiMode3g v = sdi_mode3g;
-	this->sdi_mode3g = v;
+	this->m_sdi_mode3g = v;
     this->m_sdi_mode3g_isSet = true;
 }
 
@@ -295,11 +295,11 @@ bool OAIOutputConfig::is_sdi_mode3g_Valid() const{
 
 
 OAICrop4k2k OAIOutputConfig::getHdmiCrop4k2k() const {
-    return hdmi_crop4k2k;
+    return m_hdmi_crop4k2k;
 }
 void OAIOutputConfig::setHdmiCrop4k2k(const OAICrop4k2k &hdmi_crop4k2k) {
 	OAICrop4k2k v = hdmi_crop4k2k;
-	this->hdmi_crop4k2k = v;
+	this->m_hdmi_crop4k2k = v;
     this->m_hdmi_crop4k2k_isSet = true;
 }
 
@@ -313,11 +313,11 @@ bool OAIOutputConfig::is_hdmi_crop4k2k_Valid() const{
 
 
 OAIConnection OAIOutputConfig::getHdmiConnection() const {
-    return hdmi_connection;
+    return m_hdmi_connection;
 }
 void OAIOutputConfig::setHdmiConnection(const OAIConnection &hdmi_connection) {
 	OAIConnection v = hdmi_connection;
-	this->hdmi_connection = v;
+	this->m_hdmi_connection = v;
     this->m_hdmi_connection_isSet = true;
 }
 
@@ -333,52 +333,52 @@ bool OAIOutputConfig::is_hdmi_connection_Valid() const{
 bool OAIOutputConfig::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (color_space.isSet()) {
+        if (m_color_space.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (rgb_range.isSet()) {
+        if (m_rgb_range.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (bit_depth.isSet()) {
+        if (m_bit_depth.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (scan_mode.isSet()) {
+        if (m_scan_mode.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (colorimetry.isSet()) {
+        if (m_colorimetry.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (transfer.isSet()) {
+        if (m_transfer.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (format.isSet()) {
+        if (m_format.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (sdi_mode3g.isSet()) {
+        if (m_sdi_mode3g.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (hdmi_crop4k2k.isSet()) {
+        if (m_hdmi_crop4k2k.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (hdmi_connection.isSet()) {
+        if (m_hdmi_connection.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -392,8 +392,8 @@ bool OAIOutputConfig::isValid() const {
 }
 
 bool OAIOutputConfig::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

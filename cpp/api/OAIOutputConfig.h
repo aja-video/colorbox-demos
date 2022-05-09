@@ -102,47 +102,47 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    OAIColorSpace color_space;
+    OAIColorSpace m_color_space;
     bool m_color_space_isSet;
     bool m_color_space_isValid;
 
-    OAIRgbRange rgb_range;
+    OAIRgbRange m_rgb_range;
     bool m_rgb_range_isSet;
     bool m_rgb_range_isValid;
 
-    OAIBitDepth bit_depth;
+    OAIBitDepth m_bit_depth;
     bool m_bit_depth_isSet;
     bool m_bit_depth_isValid;
 
-    OAIScanMode scan_mode;
+    OAIScanMode m_scan_mode;
     bool m_scan_mode_isSet;
     bool m_scan_mode_isValid;
 
-    OAIColorimetry colorimetry;
+    OAIColorimetry m_colorimetry;
     bool m_colorimetry_isSet;
     bool m_colorimetry_isValid;
 
-    OAITransfer transfer;
+    OAITransfer m_transfer;
     bool m_transfer_isSet;
     bool m_transfer_isValid;
 
-    OAIVideoFormat format;
+    OAIVideoFormat m_format;
     bool m_format_isSet;
     bool m_format_isValid;
 
-    OAISdiMode3g sdi_mode3g;
+    OAISdiMode3g m_sdi_mode3g;
     bool m_sdi_mode3g_isSet;
     bool m_sdi_mode3g_isValid;
 
-    OAICrop4k2k hdmi_crop4k2k;
+    OAICrop4k2k m_hdmi_crop4k2k;
     bool m_hdmi_crop4k2k_isSet;
     bool m_hdmi_crop4k2k_isValid;
 
-    OAIConnection hdmi_connection;
+    OAIConnection m_hdmi_connection;
     bool m_hdmi_connection_isSet;
     bool m_hdmi_connection_isValid;
 };

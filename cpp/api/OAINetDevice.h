@@ -65,23 +65,23 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    OAINetConfig config;
+    OAINetConfig m_config;
     bool m_config_isSet;
     bool m_config_isValid;
 
-    OAINetStatus status;
+    OAINetStatus m_status;
     bool m_status_isSet;
     bool m_status_isValid;
 
-    OAINetParams active_params;
+    OAINetParams m_active_params;
     bool m_active_params_isSet;
     bool m_active_params_isValid;
 
-    OAINetParams staged_params;
+    OAINetParams m_staged_params;
     bool m_staged_params_isSet;
     bool m_staged_params_isValid;
 };

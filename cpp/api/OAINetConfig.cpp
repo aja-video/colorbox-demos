@@ -51,10 +51,10 @@ void OAINetConfig::fromJson(QString jsonString) {
 
 void OAINetConfig::fromJsonObject(QJsonObject json) {
 
-    m_ip_config_isValid = ::OpenAPI::fromJsonValue(ip_config, json[QString("ipConfig")]);
+    m_ip_config_isValid = ::OpenAPI::fromJsonValue(m_ip_config, json[QString("ipConfig")]);
     m_ip_config_isSet = !json[QString("ipConfig")].isNull() && m_ip_config_isValid;
 
-    m_ip_change_commit_isValid = ::OpenAPI::fromJsonValue(ip_change_commit, json[QString("ipChangeCommit")]);
+    m_ip_change_commit_isValid = ::OpenAPI::fromJsonValue(m_ip_change_commit, json[QString("ipChangeCommit")]);
     m_ip_change_commit_isSet = !json[QString("ipChangeCommit")].isNull() && m_ip_change_commit_isValid;
 
     applyMinMaxConstraints();
@@ -69,21 +69,21 @@ QString OAINetConfig::asJson() const {
 
 QJsonObject OAINetConfig::asJsonObject() const {
     QJsonObject obj;
-    if (ip_config.isSet()) {
-        obj.insert(QString("ipConfig"), ::OpenAPI::toJsonValue(ip_config));
+    if (m_ip_config.isSet()) {
+        obj.insert(QString("ipConfig"), ::OpenAPI::toJsonValue(m_ip_config));
     }
     if (m_ip_change_commit_isSet) {
-        obj.insert(QString("ipChangeCommit"), ::OpenAPI::toJsonValue(ip_change_commit));
+        obj.insert(QString("ipChangeCommit"), ::OpenAPI::toJsonValue(m_ip_change_commit));
     }
     return obj;
 }
 
 OAIIpConfig OAINetConfig::getIpConfig() const {
-    return ip_config;
+    return m_ip_config;
 }
 void OAINetConfig::setIpConfig(const OAIIpConfig &ip_config) {
 	OAIIpConfig v = ip_config;
-	this->ip_config = v;
+	this->m_ip_config = v;
     this->m_ip_config_isSet = true;
 }
 
@@ -97,11 +97,11 @@ bool OAINetConfig::is_ip_config_Valid() const{
 
 
 qint32 OAINetConfig::getIpChangeCommit() const {
-    return ip_change_commit;
+    return m_ip_change_commit;
 }
 void OAINetConfig::setIpChangeCommit(const qint32 &ip_change_commit) {
 	qint32 v = ip_change_commit;
-	this->ip_change_commit = v;
+	this->m_ip_change_commit = v;
     this->m_ip_change_commit_isSet = true;
 }
 
@@ -118,7 +118,7 @@ bool OAINetConfig::is_ip_change_commit_Valid() const{
 bool OAINetConfig::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (ip_config.isSet()) {
+        if (m_ip_config.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -137,14 +137,14 @@ bool OAINetConfig::isValid() const {
 }
 
 bool OAINetConfig::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_ip_change_commit_Set())
 	{
 		bool ipChangeCommitChanged = false;
 		qint32 v = getIpChangeCommit();
-		if (ipChangeCommitChanged) { setIpChangeCommit(v); valueChanged = true; }
+		if (ipChangeCommitChanged) { setIpChangeCommit(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

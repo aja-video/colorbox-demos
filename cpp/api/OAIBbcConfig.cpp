@@ -54,13 +54,13 @@ void OAIBbcConfig::fromJson(QString jsonString) {
 
 void OAIBbcConfig::fromJsonObject(QJsonObject json) {
 
-    m_lut1d_1_isValid = ::OpenAPI::fromJsonValue(lut1d_1, json[QString("lut1d_1")]);
+    m_lut1d_1_isValid = ::OpenAPI::fromJsonValue(m_lut1d_1, json[QString("lut1d_1")]);
     m_lut1d_1_isSet = !json[QString("lut1d_1")].isNull() && m_lut1d_1_isValid;
 
-    m_m3x3_2_isValid = ::OpenAPI::fromJsonValue(m3x3_2, json[QString("m3x3_2")]);
+    m_m3x3_2_isValid = ::OpenAPI::fromJsonValue(m_m3x3_2, json[QString("m3x3_2")]);
     m_m3x3_2_isSet = !json[QString("m3x3_2")].isNull() && m_m3x3_2_isValid;
 
-    m_lut3d_1_isValid = ::OpenAPI::fromJsonValue(lut3d_1, json[QString("lut3d_1")]);
+    m_lut3d_1_isValid = ::OpenAPI::fromJsonValue(m_lut3d_1, json[QString("lut3d_1")]);
     m_lut3d_1_isSet = !json[QString("lut3d_1")].isNull() && m_lut3d_1_isValid;
 
     applyMinMaxConstraints();
@@ -75,24 +75,24 @@ QString OAIBbcConfig::asJson() const {
 
 QJsonObject OAIBbcConfig::asJsonObject() const {
     QJsonObject obj;
-    if (lut1d_1.isSet()) {
-        obj.insert(QString("lut1d_1"), ::OpenAPI::toJsonValue(lut1d_1));
+    if (m_lut1d_1.isSet()) {
+        obj.insert(QString("lut1d_1"), ::OpenAPI::toJsonValue(m_lut1d_1));
     }
-    if (m3x3_2.isSet()) {
-        obj.insert(QString("m3x3_2"), ::OpenAPI::toJsonValue(m3x3_2));
+    if (m_m3x3_2.isSet()) {
+        obj.insert(QString("m3x3_2"), ::OpenAPI::toJsonValue(m_m3x3_2));
     }
-    if (lut3d_1.isSet()) {
-        obj.insert(QString("lut3d_1"), ::OpenAPI::toJsonValue(lut3d_1));
+    if (m_lut3d_1.isSet()) {
+        obj.insert(QString("lut3d_1"), ::OpenAPI::toJsonValue(m_lut3d_1));
     }
     return obj;
 }
 
 OAIStage OAIBbcConfig::getLut1d1() const {
-    return lut1d_1;
+    return m_lut1d_1;
 }
 void OAIBbcConfig::setLut1d1(const OAIStage &lut1d_1) {
 	OAIStage v = lut1d_1;
-	this->lut1d_1 = v;
+	this->m_lut1d_1 = v;
     this->m_lut1d_1_isSet = true;
 }
 
@@ -106,11 +106,11 @@ bool OAIBbcConfig::is_lut1d_1_Valid() const{
 
 
 OAIStage OAIBbcConfig::getM3x32() const {
-    return m3x3_2;
+    return m_m3x3_2;
 }
 void OAIBbcConfig::setM3x32(const OAIStage &m3x3_2) {
 	OAIStage v = m3x3_2;
-	this->m3x3_2 = v;
+	this->m_m3x3_2 = v;
     this->m_m3x3_2_isSet = true;
 }
 
@@ -124,11 +124,11 @@ bool OAIBbcConfig::is_m3x3_2_Valid() const{
 
 
 OAIStage OAIBbcConfig::getLut3d1() const {
-    return lut3d_1;
+    return m_lut3d_1;
 }
 void OAIBbcConfig::setLut3d1(const OAIStage &lut3d_1) {
 	OAIStage v = lut3d_1;
-	this->lut3d_1 = v;
+	this->m_lut3d_1 = v;
     this->m_lut3d_1_isSet = true;
 }
 
@@ -144,17 +144,17 @@ bool OAIBbcConfig::is_lut3d_1_Valid() const{
 bool OAIBbcConfig::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (lut1d_1.isSet()) {
+        if (m_lut1d_1.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m3x3_2.isSet()) {
+        if (m_m3x3_2.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (lut3d_1.isSet()) {
+        if (m_lut3d_1.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -168,8 +168,8 @@ bool OAIBbcConfig::isValid() const {
 }
 
 bool OAIBbcConfig::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

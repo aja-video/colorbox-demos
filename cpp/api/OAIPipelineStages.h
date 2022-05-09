@@ -84,39 +84,39 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    OAIStage lut1d_1;
+    OAIStage m_lut1d_1;
     bool m_lut1d_1_isSet;
     bool m_lut1d_1_isValid;
 
-    OAIStage m3x3_2;
+    OAIStage m_m3x3_2;
     bool m_m3x3_2_isSet;
     bool m_m3x3_2_isValid;
 
-    OAIStage lut1d_2;
+    OAIStage m_lut1d_2;
     bool m_lut1d_2_isSet;
     bool m_lut1d_2_isValid;
 
-    OAIStage lut3d_1;
+    OAIStage m_lut3d_1;
     bool m_lut3d_1_isSet;
     bool m_lut3d_1_isValid;
 
-    OAIStage lut1d_3;
+    OAIStage m_lut1d_3;
     bool m_lut1d_3_isSet;
     bool m_lut1d_3_isValid;
 
-    OAIStage m3x3_3;
+    OAIStage m_m3x3_3;
     bool m_m3x3_3_isSet;
     bool m_m3x3_3_isValid;
 
-    OAIStage lut1d_4;
+    OAIStage m_lut1d_4;
     bool m_lut1d_4_isSet;
     bool m_lut1d_4_isValid;
 
-    OAIPipelineRange pipeline_range;
+    OAIPipelineRange m_pipeline_range;
     bool m_pipeline_range_isSet;
     bool m_pipeline_range_isValid;
 };

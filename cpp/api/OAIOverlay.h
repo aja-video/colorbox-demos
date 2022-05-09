@@ -103,51 +103,51 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    bool enabled;
+    bool m_enabled;
     bool m_enabled_isSet;
     bool m_enabled_isValid;
 
-    bool vpid_format;
+    bool m_vpid_format;
     bool m_vpid_format_isSet;
     bool m_vpid_format_isValid;
 
-    bool vpid_range;
+    bool m_vpid_range;
     bool m_vpid_range_isSet;
     bool m_vpid_range_isValid;
 
-    bool vpid_hdr;
+    bool m_vpid_hdr;
     bool m_vpid_hdr_isSet;
     bool m_vpid_hdr_isValid;
 
-    bool vpid_bit_depth;
+    bool m_vpid_bit_depth;
     bool m_vpid_bit_depth_isSet;
     bool m_vpid_bit_depth_isValid;
 
-    bool time_code;
+    bool m_time_code;
     bool m_time_code_isSet;
     bool m_time_code_isValid;
 
-    bool closed_caption;
+    bool m_closed_caption;
     bool m_closed_caption_isSet;
     bool m_closed_caption_isValid;
 
-    bool user_text_enabled;
+    bool m_user_text_enabled;
     bool m_user_text_enabled_isSet;
     bool m_user_text_enabled_isValid;
 
-    QString user_text_line1;
+    QString m_user_text_line1;
     bool m_user_text_line1_isSet;
     bool m_user_text_line1_isValid;
 
-    QString user_text_line2;
+    QString m_user_text_line2;
     bool m_user_text_line2_isSet;
     bool m_user_text_line2_isValid;
 
-    OAILocations location;
+    OAILocations m_location;
     bool m_location_isSet;
     bool m_location_isValid;
 };

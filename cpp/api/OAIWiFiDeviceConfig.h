@@ -88,43 +88,43 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QString wifi_control;
+    QString m_wifi_control;
     bool m_wifi_control_isSet;
     bool m_wifi_control_isValid;
 
-    QString wifi_network;
+    QString m_wifi_network;
     bool m_wifi_network_isSet;
     bool m_wifi_network_isValid;
 
-    QString wifi_password;
+    QString m_wifi_password;
     bool m_wifi_password_isSet;
     bool m_wifi_password_isValid;
 
-    QString wifi_security;
+    QString m_wifi_security;
     bool m_wifi_security_isSet;
     bool m_wifi_security_isValid;
 
-    QString wifi_ip_config;
+    QString m_wifi_ip_config;
     bool m_wifi_ip_config_isSet;
     bool m_wifi_ip_config_isValid;
 
-    QString address;
+    QString m_address;
     bool m_address_isSet;
     bool m_address_isValid;
 
-    QString subnet;
+    QString m_subnet;
     bool m_subnet_isSet;
     bool m_subnet_isValid;
 
-    QString gateway;
+    QString m_gateway;
     bool m_gateway_isSet;
     bool m_gateway_isValid;
 
-    qint32 wifi_ip_change_commit;
+    qint32 m_wifi_ip_change_commit;
     bool m_wifi_ip_change_commit_isSet;
     bool m_wifi_ip_change_commit_isValid;
 };

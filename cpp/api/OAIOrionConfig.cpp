@@ -90,49 +90,49 @@ void OAIOrionConfig::fromJson(QString jsonString) {
 
 void OAIOrionConfig::fromJsonObject(QJsonObject json) {
 
-    m_enabled_isValid = ::OpenAPI::fromJsonValue(enabled, json[QString("enabled")]);
+    m_enabled_isValid = ::OpenAPI::fromJsonValue(m_enabled, json[QString("enabled")]);
     m_enabled_isSet = !json[QString("enabled")].isNull() && m_enabled_isValid;
 
-    m_conversion_isValid = ::OpenAPI::fromJsonValue(conversion, json[QString("conversion")]);
+    m_conversion_isValid = ::OpenAPI::fromJsonValue(m_conversion, json[QString("conversion")]);
     m_conversion_isSet = !json[QString("conversion")].isNull() && m_conversion_isValid;
 
-    m_mode_isValid = ::OpenAPI::fromJsonValue(mode, json[QString("mode")]);
+    m_mode_isValid = ::OpenAPI::fromJsonValue(m_mode, json[QString("mode")]);
     m_mode_isSet = !json[QString("mode")].isNull() && m_mode_isValid;
 
-    m_method_isValid = ::OpenAPI::fromJsonValue(method, json[QString("method")]);
+    m_method_isValid = ::OpenAPI::fromJsonValue(m_method, json[QString("method")]);
     m_method_isSet = !json[QString("method")].isNull() && m_method_isValid;
 
-    m_source_range_isValid = ::OpenAPI::fromJsonValue(source_range, json[QString("sourceRange")]);
+    m_source_range_isValid = ::OpenAPI::fromJsonValue(m_source_range, json[QString("sourceRange")]);
     m_source_range_isSet = !json[QString("sourceRange")].isNull() && m_source_range_isValid;
 
-    m_hdr_ref_isValid = ::OpenAPI::fromJsonValue(hdr_ref, json[QString("hdrRef")]);
+    m_hdr_ref_isValid = ::OpenAPI::fromJsonValue(m_hdr_ref, json[QString("hdrRef")]);
     m_hdr_ref_isSet = !json[QString("hdrRef")].isNull() && m_hdr_ref_isValid;
 
-    m_sdr_ref_isValid = ::OpenAPI::fromJsonValue(sdr_ref, json[QString("sdrRef")]);
+    m_sdr_ref_isValid = ::OpenAPI::fromJsonValue(m_sdr_ref, json[QString("sdrRef")]);
     m_sdr_ref_isSet = !json[QString("sdrRef")].isNull() && m_sdr_ref_isValid;
 
-    m_hdr_peak_isValid = ::OpenAPI::fromJsonValue(hdr_peak, json[QString("hdrPeak")]);
+    m_hdr_peak_isValid = ::OpenAPI::fromJsonValue(m_hdr_peak, json[QString("hdrPeak")]);
     m_hdr_peak_isSet = !json[QString("hdrPeak")].isNull() && m_hdr_peak_isValid;
 
-    m_sdr_eotf_isValid = ::OpenAPI::fromJsonValue(sdr_eotf, json[QString("sdrEotf")]);
+    m_sdr_eotf_isValid = ::OpenAPI::fromJsonValue(m_sdr_eotf, json[QString("sdrEotf")]);
     m_sdr_eotf_isSet = !json[QString("sdrEotf")].isNull() && m_sdr_eotf_isValid;
 
-    m_pre_knee_isValid = ::OpenAPI::fromJsonValue(pre_knee, json[QString("preKnee")]);
+    m_pre_knee_isValid = ::OpenAPI::fromJsonValue(m_pre_knee, json[QString("preKnee")]);
     m_pre_knee_isSet = !json[QString("preKnee")].isNull() && m_pre_knee_isValid;
 
-    m_pre_amount_isValid = ::OpenAPI::fromJsonValue(pre_amount, json[QString("preAmount")]);
+    m_pre_amount_isValid = ::OpenAPI::fromJsonValue(m_pre_amount, json[QString("preAmount")]);
     m_pre_amount_isSet = !json[QString("preAmount")].isNull() && m_pre_amount_isValid;
 
-    m_post_knee_isValid = ::OpenAPI::fromJsonValue(post_knee, json[QString("postKnee")]);
+    m_post_knee_isValid = ::OpenAPI::fromJsonValue(m_post_knee, json[QString("postKnee")]);
     m_post_knee_isSet = !json[QString("postKnee")].isNull() && m_post_knee_isValid;
 
-    m_post_amount_isValid = ::OpenAPI::fromJsonValue(post_amount, json[QString("postAmount")]);
+    m_post_amount_isValid = ::OpenAPI::fromJsonValue(m_post_amount, json[QString("postAmount")]);
     m_post_amount_isSet = !json[QString("postAmount")].isNull() && m_post_amount_isValid;
 
-    m_clamping_isValid = ::OpenAPI::fromJsonValue(clamping, json[QString("clamping")]);
+    m_clamping_isValid = ::OpenAPI::fromJsonValue(m_clamping, json[QString("clamping")]);
     m_clamping_isSet = !json[QString("clamping")].isNull() && m_clamping_isValid;
 
-    m_implementation_isValid = ::OpenAPI::fromJsonValue(implementation, json[QString("implementation")]);
+    m_implementation_isValid = ::OpenAPI::fromJsonValue(m_implementation, json[QString("implementation")]);
     m_implementation_isSet = !json[QString("implementation")].isNull() && m_implementation_isValid;
 
     applyMinMaxConstraints();
@@ -148,59 +148,59 @@ QString OAIOrionConfig::asJson() const {
 QJsonObject OAIOrionConfig::asJsonObject() const {
     QJsonObject obj;
     if (m_enabled_isSet) {
-        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(enabled));
+        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(m_enabled));
     }
-    if (conversion.isSet()) {
-        obj.insert(QString("conversion"), ::OpenAPI::toJsonValue(conversion));
+    if (m_conversion.isSet()) {
+        obj.insert(QString("conversion"), ::OpenAPI::toJsonValue(m_conversion));
     }
-    if (mode.isSet()) {
-        obj.insert(QString("mode"), ::OpenAPI::toJsonValue(mode));
+    if (m_mode.isSet()) {
+        obj.insert(QString("mode"), ::OpenAPI::toJsonValue(m_mode));
     }
-    if (method.isSet()) {
-        obj.insert(QString("method"), ::OpenAPI::toJsonValue(method));
+    if (m_method.isSet()) {
+        obj.insert(QString("method"), ::OpenAPI::toJsonValue(m_method));
     }
-    if (source_range.isSet()) {
-        obj.insert(QString("sourceRange"), ::OpenAPI::toJsonValue(source_range));
+    if (m_source_range.isSet()) {
+        obj.insert(QString("sourceRange"), ::OpenAPI::toJsonValue(m_source_range));
     }
     if (m_hdr_ref_isSet) {
-        obj.insert(QString("hdrRef"), ::OpenAPI::toJsonValue(hdr_ref));
+        obj.insert(QString("hdrRef"), ::OpenAPI::toJsonValue(m_hdr_ref));
     }
     if (m_sdr_ref_isSet) {
-        obj.insert(QString("sdrRef"), ::OpenAPI::toJsonValue(sdr_ref));
+        obj.insert(QString("sdrRef"), ::OpenAPI::toJsonValue(m_sdr_ref));
     }
     if (m_hdr_peak_isSet) {
-        obj.insert(QString("hdrPeak"), ::OpenAPI::toJsonValue(hdr_peak));
+        obj.insert(QString("hdrPeak"), ::OpenAPI::toJsonValue(m_hdr_peak));
     }
-    if (sdr_eotf.isSet()) {
-        obj.insert(QString("sdrEotf"), ::OpenAPI::toJsonValue(sdr_eotf));
+    if (m_sdr_eotf.isSet()) {
+        obj.insert(QString("sdrEotf"), ::OpenAPI::toJsonValue(m_sdr_eotf));
     }
     if (m_pre_knee_isSet) {
-        obj.insert(QString("preKnee"), ::OpenAPI::toJsonValue(pre_knee));
+        obj.insert(QString("preKnee"), ::OpenAPI::toJsonValue(m_pre_knee));
     }
     if (m_pre_amount_isSet) {
-        obj.insert(QString("preAmount"), ::OpenAPI::toJsonValue(pre_amount));
+        obj.insert(QString("preAmount"), ::OpenAPI::toJsonValue(m_pre_amount));
     }
     if (m_post_knee_isSet) {
-        obj.insert(QString("postKnee"), ::OpenAPI::toJsonValue(post_knee));
+        obj.insert(QString("postKnee"), ::OpenAPI::toJsonValue(m_post_knee));
     }
     if (m_post_amount_isSet) {
-        obj.insert(QString("postAmount"), ::OpenAPI::toJsonValue(post_amount));
+        obj.insert(QString("postAmount"), ::OpenAPI::toJsonValue(m_post_amount));
     }
-    if (clamping.isSet()) {
-        obj.insert(QString("clamping"), ::OpenAPI::toJsonValue(clamping));
+    if (m_clamping.isSet()) {
+        obj.insert(QString("clamping"), ::OpenAPI::toJsonValue(m_clamping));
     }
-    if (implementation.isSet()) {
-        obj.insert(QString("implementation"), ::OpenAPI::toJsonValue(implementation));
+    if (m_implementation.isSet()) {
+        obj.insert(QString("implementation"), ::OpenAPI::toJsonValue(m_implementation));
     }
     return obj;
 }
 
 bool OAIOrionConfig::isEnabled() const {
-    return enabled;
+    return m_enabled;
 }
 void OAIOrionConfig::setEnabled(const bool &enabled) {
 	bool v = enabled;
-	this->enabled = v;
+	this->m_enabled = v;
     this->m_enabled_isSet = true;
 }
 
@@ -214,11 +214,11 @@ bool OAIOrionConfig::is_enabled_Valid() const{
 
 
 OAIOrionConversion OAIOrionConfig::getConversion() const {
-    return conversion;
+    return m_conversion;
 }
 void OAIOrionConfig::setConversion(const OAIOrionConversion &conversion) {
 	OAIOrionConversion v = conversion;
-	this->conversion = v;
+	this->m_conversion = v;
     this->m_conversion_isSet = true;
 }
 
@@ -232,11 +232,11 @@ bool OAIOrionConfig::is_conversion_Valid() const{
 
 
 OAIOrionMode OAIOrionConfig::getMode() const {
-    return mode;
+    return m_mode;
 }
 void OAIOrionConfig::setMode(const OAIOrionMode &mode) {
 	OAIOrionMode v = mode;
-	this->mode = v;
+	this->m_mode = v;
     this->m_mode_isSet = true;
 }
 
@@ -250,11 +250,11 @@ bool OAIOrionConfig::is_mode_Valid() const{
 
 
 OAIOrionMethod OAIOrionConfig::getMethod() const {
-    return method;
+    return m_method;
 }
 void OAIOrionConfig::setMethod(const OAIOrionMethod &method) {
 	OAIOrionMethod v = method;
-	this->method = v;
+	this->m_method = v;
     this->m_method_isSet = true;
 }
 
@@ -268,11 +268,11 @@ bool OAIOrionConfig::is_method_Valid() const{
 
 
 OAIOrionSourceRange OAIOrionConfig::getSourceRange() const {
-    return source_range;
+    return m_source_range;
 }
 void OAIOrionConfig::setSourceRange(const OAIOrionSourceRange &source_range) {
 	OAIOrionSourceRange v = source_range;
-	this->source_range = v;
+	this->m_source_range = v;
     this->m_source_range_isSet = true;
 }
 
@@ -286,7 +286,7 @@ bool OAIOrionConfig::is_source_range_Valid() const{
 
 
 double OAIOrionConfig::getHdrRef() const {
-    return hdr_ref;
+    return m_hdr_ref;
 }
 void OAIOrionConfig::setHdrRef(const double &hdr_ref) {
 	double v = hdr_ref;
@@ -294,7 +294,7 @@ void OAIOrionConfig::setHdrRef(const double &hdr_ref) {
 	double max = hdrRefMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->hdr_ref = v;
+	this->m_hdr_ref = v;
     this->m_hdr_ref_isSet = true;
 }
 
@@ -315,7 +315,7 @@ double OAIOrionConfig::hdrRefMax() const {
 }
 
 double OAIOrionConfig::getSdrRef() const {
-    return sdr_ref;
+    return m_sdr_ref;
 }
 void OAIOrionConfig::setSdrRef(const double &sdr_ref) {
 	double v = sdr_ref;
@@ -323,7 +323,7 @@ void OAIOrionConfig::setSdrRef(const double &sdr_ref) {
 	double max = sdrRefMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->sdr_ref = v;
+	this->m_sdr_ref = v;
     this->m_sdr_ref_isSet = true;
 }
 
@@ -344,7 +344,7 @@ double OAIOrionConfig::sdrRefMax() const {
 }
 
 qint32 OAIOrionConfig::getHdrPeak() const {
-    return hdr_peak;
+    return m_hdr_peak;
 }
 void OAIOrionConfig::setHdrPeak(const qint32 &hdr_peak) {
 	qint32 v = hdr_peak;
@@ -352,7 +352,7 @@ void OAIOrionConfig::setHdrPeak(const qint32 &hdr_peak) {
 	qint32 max = hdrPeakMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->hdr_peak = v;
+	this->m_hdr_peak = v;
     this->m_hdr_peak_isSet = true;
 }
 
@@ -373,11 +373,11 @@ qint32 OAIOrionConfig::hdrPeakMax() const {
 }
 
 OAIOrionSdrEotf OAIOrionConfig::getSdrEotf() const {
-    return sdr_eotf;
+    return m_sdr_eotf;
 }
 void OAIOrionConfig::setSdrEotf(const OAIOrionSdrEotf &sdr_eotf) {
 	OAIOrionSdrEotf v = sdr_eotf;
-	this->sdr_eotf = v;
+	this->m_sdr_eotf = v;
     this->m_sdr_eotf_isSet = true;
 }
 
@@ -391,7 +391,7 @@ bool OAIOrionConfig::is_sdr_eotf_Valid() const{
 
 
 double OAIOrionConfig::getPreKnee() const {
-    return pre_knee;
+    return m_pre_knee;
 }
 void OAIOrionConfig::setPreKnee(const double &pre_knee) {
 	double v = pre_knee;
@@ -399,7 +399,7 @@ void OAIOrionConfig::setPreKnee(const double &pre_knee) {
 	double max = preKneeMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->pre_knee = v;
+	this->m_pre_knee = v;
     this->m_pre_knee_isSet = true;
 }
 
@@ -420,7 +420,7 @@ double OAIOrionConfig::preKneeMax() const {
 }
 
 double OAIOrionConfig::getPreAmount() const {
-    return pre_amount;
+    return m_pre_amount;
 }
 void OAIOrionConfig::setPreAmount(const double &pre_amount) {
 	double v = pre_amount;
@@ -428,7 +428,7 @@ void OAIOrionConfig::setPreAmount(const double &pre_amount) {
 	double max = preAmountMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->pre_amount = v;
+	this->m_pre_amount = v;
     this->m_pre_amount_isSet = true;
 }
 
@@ -449,7 +449,7 @@ double OAIOrionConfig::preAmountMax() const {
 }
 
 double OAIOrionConfig::getPostKnee() const {
-    return post_knee;
+    return m_post_knee;
 }
 void OAIOrionConfig::setPostKnee(const double &post_knee) {
 	double v = post_knee;
@@ -457,7 +457,7 @@ void OAIOrionConfig::setPostKnee(const double &post_knee) {
 	double max = postKneeMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->post_knee = v;
+	this->m_post_knee = v;
     this->m_post_knee_isSet = true;
 }
 
@@ -478,7 +478,7 @@ double OAIOrionConfig::postKneeMax() const {
 }
 
 double OAIOrionConfig::getPostAmount() const {
-    return post_amount;
+    return m_post_amount;
 }
 void OAIOrionConfig::setPostAmount(const double &post_amount) {
 	double v = post_amount;
@@ -486,7 +486,7 @@ void OAIOrionConfig::setPostAmount(const double &post_amount) {
 	double max = postAmountMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->post_amount = v;
+	this->m_post_amount = v;
     this->m_post_amount_isSet = true;
 }
 
@@ -507,11 +507,11 @@ double OAIOrionConfig::postAmountMax() const {
 }
 
 OAIOrionClamping OAIOrionConfig::getClamping() const {
-    return clamping;
+    return m_clamping;
 }
 void OAIOrionConfig::setClamping(const OAIOrionClamping &clamping) {
 	OAIOrionClamping v = clamping;
-	this->clamping = v;
+	this->m_clamping = v;
     this->m_clamping_isSet = true;
 }
 
@@ -525,11 +525,11 @@ bool OAIOrionConfig::is_clamping_Valid() const{
 
 
 OAIOrionImplementation OAIOrionConfig::getImplementation() const {
-    return implementation;
+    return m_implementation;
 }
 void OAIOrionConfig::setImplementation(const OAIOrionImplementation &implementation) {
 	OAIOrionImplementation v = implementation;
-	this->implementation = v;
+	this->m_implementation = v;
     this->m_implementation_isSet = true;
 }
 
@@ -550,22 +550,22 @@ bool OAIOrionConfig::isSet() const {
             break;
         }
 
-        if (conversion.isSet()) {
+        if (m_conversion.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (mode.isSet()) {
+        if (m_mode.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (method.isSet()) {
+        if (m_method.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (source_range.isSet()) {
+        if (m_source_range.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -585,7 +585,7 @@ bool OAIOrionConfig::isSet() const {
             break;
         }
 
-        if (sdr_eotf.isSet()) {
+        if (m_sdr_eotf.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -610,12 +610,12 @@ bool OAIOrionConfig::isSet() const {
             break;
         }
 
-        if (clamping.isSet()) {
+        if (m_clamping.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (implementation.isSet()) {
+        if (m_implementation.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -629,7 +629,7 @@ bool OAIOrionConfig::isValid() const {
 }
 
 bool OAIOrionConfig::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_hdr_ref_Set())
 	{
 		bool hdrRefChanged = false;
@@ -638,7 +638,7 @@ bool OAIOrionConfig::applyMinMaxConstraints() {
 		double max = hdrRefMax();
 		if (v < min) { v = min; hdrRefChanged = true; }
 		if (v > max) { v = max; hdrRefChanged = true; }
-		if (hdrRefChanged) { setHdrRef(v); valueChanged = true; }
+		if (hdrRefChanged) { setHdrRef(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_sdr_ref_Set())
 	{
@@ -648,7 +648,7 @@ bool OAIOrionConfig::applyMinMaxConstraints() {
 		double max = sdrRefMax();
 		if (v < min) { v = min; sdrRefChanged = true; }
 		if (v > max) { v = max; sdrRefChanged = true; }
-		if (sdrRefChanged) { setSdrRef(v); valueChanged = true; }
+		if (sdrRefChanged) { setSdrRef(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_hdr_peak_Set())
 	{
@@ -658,7 +658,7 @@ bool OAIOrionConfig::applyMinMaxConstraints() {
 		qint32 max = hdrPeakMax();
 		if (v < min) { v = min; hdrPeakChanged = true; }
 		if (v > max) { v = max; hdrPeakChanged = true; }
-		if (hdrPeakChanged) { setHdrPeak(v); valueChanged = true; }
+		if (hdrPeakChanged) { setHdrPeak(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_pre_knee_Set())
 	{
@@ -668,7 +668,7 @@ bool OAIOrionConfig::applyMinMaxConstraints() {
 		double max = preKneeMax();
 		if (v < min) { v = min; preKneeChanged = true; }
 		if (v > max) { v = max; preKneeChanged = true; }
-		if (preKneeChanged) { setPreKnee(v); valueChanged = true; }
+		if (preKneeChanged) { setPreKnee(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_pre_amount_Set())
 	{
@@ -678,7 +678,7 @@ bool OAIOrionConfig::applyMinMaxConstraints() {
 		double max = preAmountMax();
 		if (v < min) { v = min; preAmountChanged = true; }
 		if (v > max) { v = max; preAmountChanged = true; }
-		if (preAmountChanged) { setPreAmount(v); valueChanged = true; }
+		if (preAmountChanged) { setPreAmount(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_post_knee_Set())
 	{
@@ -688,7 +688,7 @@ bool OAIOrionConfig::applyMinMaxConstraints() {
 		double max = postKneeMax();
 		if (v < min) { v = min; postKneeChanged = true; }
 		if (v > max) { v = max; postKneeChanged = true; }
-		if (postKneeChanged) { setPostKnee(v); valueChanged = true; }
+		if (postKneeChanged) { setPostKnee(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_post_amount_Set())
 	{
@@ -698,9 +698,9 @@ bool OAIOrionConfig::applyMinMaxConstraints() {
 		double max = postAmountMax();
 		if (v < min) { v = min; postAmountChanged = true; }
 		if (v > max) { v = max; postAmountChanged = true; }
-		if (postAmountChanged) { setPostAmount(v); valueChanged = true; }
+		if (postAmountChanged) { setPostAmount(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

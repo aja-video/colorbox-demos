@@ -57,16 +57,16 @@ void OAIFrame::fromJson(QString jsonString) {
 
 void OAIFrame::fromJsonObject(QJsonObject json) {
 
-    m_image_isValid = ::OpenAPI::fromJsonValue(image, json[QString("image")]);
+    m_image_isValid = ::OpenAPI::fromJsonValue(m_image, json[QString("image")]);
     m_image_isSet = !json[QString("image")].isNull() && m_image_isValid;
 
-    m_anc_data_isValid = ::OpenAPI::fromJsonValue(anc_data, json[QString("ancData")]);
+    m_anc_data_isValid = ::OpenAPI::fromJsonValue(m_anc_data, json[QString("ancData")]);
     m_anc_data_isSet = !json[QString("ancData")].isNull() && m_anc_data_isValid;
 
-    m_user_data1_isValid = ::OpenAPI::fromJsonValue(user_data1, json[QString("userData1")]);
+    m_user_data1_isValid = ::OpenAPI::fromJsonValue(m_user_data1, json[QString("userData1")]);
     m_user_data1_isSet = !json[QString("userData1")].isNull() && m_user_data1_isValid;
 
-    m_user_data2_isValid = ::OpenAPI::fromJsonValue(user_data2, json[QString("userData2")]);
+    m_user_data2_isValid = ::OpenAPI::fromJsonValue(m_user_data2, json[QString("userData2")]);
     m_user_data2_isSet = !json[QString("userData2")].isNull() && m_user_data2_isValid;
 
     applyMinMaxConstraints();
@@ -82,26 +82,26 @@ QString OAIFrame::asJson() const {
 QJsonObject OAIFrame::asJsonObject() const {
     QJsonObject obj;
     if (m_image_isSet) {
-        obj.insert(QString("image"), ::OpenAPI::toJsonValue(image));
+        obj.insert(QString("image"), ::OpenAPI::toJsonValue(m_image));
     }
     if (m_anc_data_isSet) {
-        obj.insert(QString("ancData"), ::OpenAPI::toJsonValue(anc_data));
+        obj.insert(QString("ancData"), ::OpenAPI::toJsonValue(m_anc_data));
     }
     if (m_user_data1_isSet) {
-        obj.insert(QString("userData1"), ::OpenAPI::toJsonValue(user_data1));
+        obj.insert(QString("userData1"), ::OpenAPI::toJsonValue(m_user_data1));
     }
     if (m_user_data2_isSet) {
-        obj.insert(QString("userData2"), ::OpenAPI::toJsonValue(user_data2));
+        obj.insert(QString("userData2"), ::OpenAPI::toJsonValue(m_user_data2));
     }
     return obj;
 }
 
 QByteArray OAIFrame::getImage() const {
-    return image;
+    return m_image;
 }
 void OAIFrame::setImage(const QByteArray &image) {
 	QByteArray v = image;
-	this->image = v;
+	this->m_image = v;
     this->m_image_isSet = true;
 }
 
@@ -115,11 +115,11 @@ bool OAIFrame::is_image_Valid() const{
 
 
 QByteArray OAIFrame::getAncData() const {
-    return anc_data;
+    return m_anc_data;
 }
 void OAIFrame::setAncData(const QByteArray &anc_data) {
 	QByteArray v = anc_data;
-	this->anc_data = v;
+	this->m_anc_data = v;
     this->m_anc_data_isSet = true;
 }
 
@@ -133,11 +133,11 @@ bool OAIFrame::is_anc_data_Valid() const{
 
 
 QString OAIFrame::getUserData1() const {
-    return user_data1;
+    return m_user_data1;
 }
 void OAIFrame::setUserData1(const QString &user_data1) {
 	QString v = user_data1;
-	this->user_data1 = v;
+	this->m_user_data1 = v;
     this->m_user_data1_isSet = true;
 }
 
@@ -152,11 +152,11 @@ bool OAIFrame::is_user_data1_Valid() const{
 
 
 QString OAIFrame::getUserData2() const {
-    return user_data2;
+    return m_user_data2;
 }
 void OAIFrame::setUserData2(const QString &user_data2) {
 	QString v = user_data2;
-	this->user_data2 = v;
+	this->m_user_data2 = v;
     this->m_user_data2_isSet = true;
 }
 
@@ -202,20 +202,20 @@ bool OAIFrame::isValid() const {
 }
 
 bool OAIFrame::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_user_data1_Set())
 	{
 		bool userData1Changed = false;
 		QString v = getUserData1();
-		if (userData1Changed) { setUserData1(v); valueChanged = true; }
+		if (userData1Changed) { setUserData1(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_user_data2_Set())
 	{
 		bool userData2Changed = false;
 		QString v = getUserData2();
-		if (userData2Changed) { setUserData2(v); valueChanged = true; }
+		if (userData2Changed) { setUserData2(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

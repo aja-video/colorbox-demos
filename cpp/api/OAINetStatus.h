@@ -100,51 +100,51 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QString name;
+    QString m_name;
     bool m_name_isSet;
     bool m_name_isValid;
 
-    QString mac;
+    QString m_mac;
     bool m_mac_isSet;
     bool m_mac_isValid;
 
-    bool connected;
+    bool m_connected;
     bool m_connected_isSet;
     bool m_connected_isValid;
 
-    OAIDHCPState dhcp_state;
+    OAIDHCPState m_dhcp_state;
     bool m_dhcp_state_isSet;
     bool m_dhcp_state_isValid;
 
-    OAIInterfaceSetupState interface_setup_state;
+    OAIInterfaceSetupState m_interface_setup_state;
     bool m_interface_setup_state_isSet;
     bool m_interface_setup_state_isValid;
 
-    QString ip_address_offered;
+    QString m_ip_address_offered;
     bool m_ip_address_offered_isSet;
     bool m_ip_address_offered_isValid;
 
-    qint32 link_errors;
+    qint32 m_link_errors;
     bool m_link_errors_isSet;
     bool m_link_errors_isValid;
 
-    QString link_state;
+    QString m_link_state;
     bool m_link_state_isSet;
     bool m_link_state_isValid;
 
-    QString lldp_chassis_id;
+    QString m_lldp_chassis_id;
     bool m_lldp_chassis_id_isSet;
     bool m_lldp_chassis_id_isValid;
 
-    QString lldp_port_id;
+    QString m_lldp_port_id;
     bool m_lldp_port_id_isSet;
     bool m_lldp_port_id_isValid;
 
-    QString lldp_name;
+    QString m_lldp_name;
     bool m_lldp_name_isSet;
     bool m_lldp_name_isValid;
 };

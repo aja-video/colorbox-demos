@@ -66,25 +66,25 @@ void OAIStatusInfo::fromJson(QString jsonString) {
 
 void OAIStatusInfo::fromJsonObject(QJsonObject json) {
 
-    m_upper_bound_good_isValid = ::OpenAPI::fromJsonValue(upper_bound_good, json[QString("upperBoundGood")]);
+    m_upper_bound_good_isValid = ::OpenAPI::fromJsonValue(m_upper_bound_good, json[QString("upperBoundGood")]);
     m_upper_bound_good_isSet = !json[QString("upperBoundGood")].isNull() && m_upper_bound_good_isValid;
 
-    m_upper_bound_maybe_isValid = ::OpenAPI::fromJsonValue(upper_bound_maybe, json[QString("upperBoundMaybe")]);
+    m_upper_bound_maybe_isValid = ::OpenAPI::fromJsonValue(m_upper_bound_maybe, json[QString("upperBoundMaybe")]);
     m_upper_bound_maybe_isSet = !json[QString("upperBoundMaybe")].isNull() && m_upper_bound_maybe_isValid;
 
-    m_value_isValid = ::OpenAPI::fromJsonValue(value, json[QString("value")]);
+    m_value_isValid = ::OpenAPI::fromJsonValue(m_value, json[QString("value")]);
     m_value_isSet = !json[QString("value")].isNull() && m_value_isValid;
 
-    m_label_isValid = ::OpenAPI::fromJsonValue(label, json[QString("label")]);
+    m_label_isValid = ::OpenAPI::fromJsonValue(m_label, json[QString("label")]);
     m_label_isSet = !json[QString("label")].isNull() && m_label_isValid;
 
-    m_extra_value_isValid = ::OpenAPI::fromJsonValue(extra_value, json[QString("extraValue")]);
+    m_extra_value_isValid = ::OpenAPI::fromJsonValue(m_extra_value, json[QString("extraValue")]);
     m_extra_value_isSet = !json[QString("extraValue")].isNull() && m_extra_value_isValid;
 
-    m_extra_label_isValid = ::OpenAPI::fromJsonValue(extra_label, json[QString("extraLabel")]);
+    m_extra_label_isValid = ::OpenAPI::fromJsonValue(m_extra_label, json[QString("extraLabel")]);
     m_extra_label_isSet = !json[QString("extraLabel")].isNull() && m_extra_label_isValid;
 
-    m_state_isValid = ::OpenAPI::fromJsonValue(state, json[QString("state")]);
+    m_state_isValid = ::OpenAPI::fromJsonValue(m_state, json[QString("state")]);
     m_state_isSet = !json[QString("state")].isNull() && m_state_isValid;
 
     applyMinMaxConstraints();
@@ -100,35 +100,35 @@ QString OAIStatusInfo::asJson() const {
 QJsonObject OAIStatusInfo::asJsonObject() const {
     QJsonObject obj;
     if (m_upper_bound_good_isSet) {
-        obj.insert(QString("upperBoundGood"), ::OpenAPI::toJsonValue(upper_bound_good));
+        obj.insert(QString("upperBoundGood"), ::OpenAPI::toJsonValue(m_upper_bound_good));
     }
     if (m_upper_bound_maybe_isSet) {
-        obj.insert(QString("upperBoundMaybe"), ::OpenAPI::toJsonValue(upper_bound_maybe));
+        obj.insert(QString("upperBoundMaybe"), ::OpenAPI::toJsonValue(m_upper_bound_maybe));
     }
     if (m_value_isSet) {
-        obj.insert(QString("value"), ::OpenAPI::toJsonValue(value));
+        obj.insert(QString("value"), ::OpenAPI::toJsonValue(m_value));
     }
     if (m_label_isSet) {
-        obj.insert(QString("label"), ::OpenAPI::toJsonValue(label));
+        obj.insert(QString("label"), ::OpenAPI::toJsonValue(m_label));
     }
     if (m_extra_value_isSet) {
-        obj.insert(QString("extraValue"), ::OpenAPI::toJsonValue(extra_value));
+        obj.insert(QString("extraValue"), ::OpenAPI::toJsonValue(m_extra_value));
     }
     if (m_extra_label_isSet) {
-        obj.insert(QString("extraLabel"), ::OpenAPI::toJsonValue(extra_label));
+        obj.insert(QString("extraLabel"), ::OpenAPI::toJsonValue(m_extra_label));
     }
-    if (state.isSet()) {
-        obj.insert(QString("state"), ::OpenAPI::toJsonValue(state));
+    if (m_state.isSet()) {
+        obj.insert(QString("state"), ::OpenAPI::toJsonValue(m_state));
     }
     return obj;
 }
 
 double OAIStatusInfo::getUpperBoundGood() const {
-    return upper_bound_good;
+    return m_upper_bound_good;
 }
 void OAIStatusInfo::setUpperBoundGood(const double &upper_bound_good) {
 	double v = upper_bound_good;
-	this->upper_bound_good = v;
+	this->m_upper_bound_good = v;
     this->m_upper_bound_good_isSet = true;
 }
 
@@ -143,11 +143,11 @@ bool OAIStatusInfo::is_upper_bound_good_Valid() const{
 
 
 double OAIStatusInfo::getUpperBoundMaybe() const {
-    return upper_bound_maybe;
+    return m_upper_bound_maybe;
 }
 void OAIStatusInfo::setUpperBoundMaybe(const double &upper_bound_maybe) {
 	double v = upper_bound_maybe;
-	this->upper_bound_maybe = v;
+	this->m_upper_bound_maybe = v;
     this->m_upper_bound_maybe_isSet = true;
 }
 
@@ -162,11 +162,11 @@ bool OAIStatusInfo::is_upper_bound_maybe_Valid() const{
 
 
 QString OAIStatusInfo::getValue() const {
-    return value;
+    return m_value;
 }
 void OAIStatusInfo::setValue(const QString &value) {
 	QString v = value;
-	this->value = v;
+	this->m_value = v;
     this->m_value_isSet = true;
 }
 
@@ -181,11 +181,11 @@ bool OAIStatusInfo::is_value_Valid() const{
 
 
 QString OAIStatusInfo::getLabel() const {
-    return label;
+    return m_label;
 }
 void OAIStatusInfo::setLabel(const QString &label) {
 	QString v = label;
-	this->label = v;
+	this->m_label = v;
     this->m_label_isSet = true;
 }
 
@@ -200,11 +200,11 @@ bool OAIStatusInfo::is_label_Valid() const{
 
 
 QString OAIStatusInfo::getExtraValue() const {
-    return extra_value;
+    return m_extra_value;
 }
 void OAIStatusInfo::setExtraValue(const QString &extra_value) {
 	QString v = extra_value;
-	this->extra_value = v;
+	this->m_extra_value = v;
     this->m_extra_value_isSet = true;
 }
 
@@ -219,11 +219,11 @@ bool OAIStatusInfo::is_extra_value_Valid() const{
 
 
 QString OAIStatusInfo::getExtraLabel() const {
-    return extra_label;
+    return m_extra_label;
 }
 void OAIStatusInfo::setExtraLabel(const QString &extra_label) {
 	QString v = extra_label;
-	this->extra_label = v;
+	this->m_extra_label = v;
     this->m_extra_label_isSet = true;
 }
 
@@ -238,11 +238,11 @@ bool OAIStatusInfo::is_extra_label_Valid() const{
 
 
 OAIStatusState OAIStatusInfo::getState() const {
-    return state;
+    return m_state;
 }
 void OAIStatusInfo::setState(const OAIStatusState &state) {
 	OAIStatusState v = state;
-	this->state = v;
+	this->m_state = v;
     this->m_state_isSet = true;
 }
 
@@ -288,7 +288,7 @@ bool OAIStatusInfo::isSet() const {
             break;
         }
 
-        if (state.isSet()) {
+        if (m_state.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -302,44 +302,44 @@ bool OAIStatusInfo::isValid() const {
 }
 
 bool OAIStatusInfo::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_upper_bound_good_Set())
 	{
 		bool upperBoundGoodChanged = false;
 		double v = getUpperBoundGood();
-		if (upperBoundGoodChanged) { setUpperBoundGood(v); valueChanged = true; }
+		if (upperBoundGoodChanged) { setUpperBoundGood(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_upper_bound_maybe_Set())
 	{
 		bool upperBoundMaybeChanged = false;
 		double v = getUpperBoundMaybe();
-		if (upperBoundMaybeChanged) { setUpperBoundMaybe(v); valueChanged = true; }
+		if (upperBoundMaybeChanged) { setUpperBoundMaybe(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_value_Set())
 	{
 		bool valueChanged = false;
 		QString v = getValue();
-		if (valueChanged) { setValue(v); valueChanged = true; }
+		if (valueChanged) { setValue(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_label_Set())
 	{
 		bool labelChanged = false;
 		QString v = getLabel();
-		if (labelChanged) { setLabel(v); valueChanged = true; }
+		if (labelChanged) { setLabel(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_extra_value_Set())
 	{
 		bool extraValueChanged = false;
 		QString v = getExtraValue();
-		if (extraValueChanged) { setExtraValue(v); valueChanged = true; }
+		if (extraValueChanged) { setExtraValue(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_extra_label_Set())
 	{
 		bool extraLabelChanged = false;
 		QString v = getExtraLabel();
-		if (extraLabelChanged) { setExtraLabel(v); valueChanged = true; }
+		if (extraLabelChanged) { setExtraLabel(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

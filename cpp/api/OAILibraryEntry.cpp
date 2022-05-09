@@ -51,10 +51,10 @@ void OAILibraryEntry::fromJson(QString jsonString) {
 
 void OAILibraryEntry::fromJsonObject(QJsonObject json) {
 
-    m_user_name_isValid = ::OpenAPI::fromJsonValue(user_name, json[QString("userName")]);
+    m_user_name_isValid = ::OpenAPI::fromJsonValue(m_user_name, json[QString("userName")]);
     m_user_name_isSet = !json[QString("userName")].isNull() && m_user_name_isValid;
 
-    m_file_name_isValid = ::OpenAPI::fromJsonValue(file_name, json[QString("fileName")]);
+    m_file_name_isValid = ::OpenAPI::fromJsonValue(m_file_name, json[QString("fileName")]);
     m_file_name_isSet = !json[QString("fileName")].isNull() && m_file_name_isValid;
 
     applyMinMaxConstraints();
@@ -70,20 +70,20 @@ QString OAILibraryEntry::asJson() const {
 QJsonObject OAILibraryEntry::asJsonObject() const {
     QJsonObject obj;
     if (m_user_name_isSet) {
-        obj.insert(QString("userName"), ::OpenAPI::toJsonValue(user_name));
+        obj.insert(QString("userName"), ::OpenAPI::toJsonValue(m_user_name));
     }
     if (m_file_name_isSet) {
-        obj.insert(QString("fileName"), ::OpenAPI::toJsonValue(file_name));
+        obj.insert(QString("fileName"), ::OpenAPI::toJsonValue(m_file_name));
     }
     return obj;
 }
 
 QString OAILibraryEntry::getUserName() const {
-    return user_name;
+    return m_user_name;
 }
 void OAILibraryEntry::setUserName(const QString &user_name) {
 	QString v = user_name;
-	this->user_name = v;
+	this->m_user_name = v;
     this->m_user_name_isSet = true;
 }
 
@@ -98,11 +98,11 @@ bool OAILibraryEntry::is_user_name_Valid() const{
 
 
 QString OAILibraryEntry::getFileName() const {
-    return file_name;
+    return m_file_name;
 }
 void OAILibraryEntry::setFileName(const QString &file_name) {
 	QString v = file_name;
-	this->file_name = v;
+	this->m_file_name = v;
     this->m_file_name_isSet = true;
 }
 
@@ -138,20 +138,20 @@ bool OAILibraryEntry::isValid() const {
 }
 
 bool OAILibraryEntry::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_user_name_Set())
 	{
 		bool userNameChanged = false;
 		QString v = getUserName();
-		if (userNameChanged) { setUserName(v); valueChanged = true; }
+		if (userNameChanged) { setUserName(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_file_name_Set())
 	{
 		bool fileNameChanged = false;
 		QString v = getFileName();
-		if (fileNameChanged) { setFileName(v); valueChanged = true; }
+		if (fileNameChanged) { setFileName(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

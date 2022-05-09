@@ -73,31 +73,31 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QString address;
+    QString m_address;
     bool m_address_isSet;
     bool m_address_isValid;
 
-    QString subnet;
+    QString m_subnet;
     bool m_subnet_isSet;
     bool m_subnet_isValid;
 
-    QString gateway;
+    QString m_gateway;
     bool m_gateway_isSet;
     bool m_gateway_isValid;
 
-    QString dns_server1;
+    QString m_dns_server1;
     bool m_dns_server1_isSet;
     bool m_dns_server1_isValid;
 
-    QString dns_server2;
+    QString m_dns_server2;
     bool m_dns_server2_isSet;
     bool m_dns_server2_isValid;
 
-    QString dns_search;
+    QString m_dns_search;
     bool m_dns_search_isSet;
     bool m_dns_search_isValid;
 };

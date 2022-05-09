@@ -78,37 +78,37 @@ void OAISystemDiscover::fromJson(QString jsonString) {
 
 void OAISystemDiscover::fromJsonObject(QJsonObject json) {
 
-    m_service_description_isValid = ::OpenAPI::fromJsonValue(service_description, json[QString("serviceDescription")]);
+    m_service_description_isValid = ::OpenAPI::fromJsonValue(m_service_description, json[QString("serviceDescription")]);
     m_service_description_isSet = !json[QString("serviceDescription")].isNull() && m_service_description_isValid;
 
-    m_service_type_isValid = ::OpenAPI::fromJsonValue(service_type, json[QString("serviceType")]);
+    m_service_type_isValid = ::OpenAPI::fromJsonValue(m_service_type, json[QString("serviceType")]);
     m_service_type_isSet = !json[QString("serviceType")].isNull() && m_service_type_isValid;
 
-    m_service_domain_isValid = ::OpenAPI::fromJsonValue(service_domain, json[QString("serviceDomain")]);
+    m_service_domain_isValid = ::OpenAPI::fromJsonValue(m_service_domain, json[QString("serviceDomain")]);
     m_service_domain_isSet = !json[QString("serviceDomain")].isNull() && m_service_domain_isValid;
 
-    m_host_name_isValid = ::OpenAPI::fromJsonValue(host_name, json[QString("hostName")]);
+    m_host_name_isValid = ::OpenAPI::fromJsonValue(m_host_name, json[QString("hostName")]);
     m_host_name_isSet = !json[QString("hostName")].isNull() && m_host_name_isValid;
 
-    m_ip_address_isValid = ::OpenAPI::fromJsonValue(ip_address, json[QString("ipAddress")]);
+    m_ip_address_isValid = ::OpenAPI::fromJsonValue(m_ip_address, json[QString("ipAddress")]);
     m_ip_address_isSet = !json[QString("ipAddress")].isNull() && m_ip_address_isValid;
 
-    m_port_isValid = ::OpenAPI::fromJsonValue(port, json[QString("port")]);
+    m_port_isValid = ::OpenAPI::fromJsonValue(m_port, json[QString("port")]);
     m_port_isSet = !json[QString("port")].isNull() && m_port_isValid;
 
-    m_device_name_isValid = ::OpenAPI::fromJsonValue(device_name, json[QString("deviceName")]);
+    m_device_name_isValid = ::OpenAPI::fromJsonValue(m_device_name, json[QString("deviceName")]);
     m_device_name_isSet = !json[QString("deviceName")].isNull() && m_device_name_isValid;
 
-    m_description_isValid = ::OpenAPI::fromJsonValue(description, json[QString("description")]);
+    m_description_isValid = ::OpenAPI::fromJsonValue(m_description, json[QString("description")]);
     m_description_isSet = !json[QString("description")].isNull() && m_description_isValid;
 
-    m_board_type_isValid = ::OpenAPI::fromJsonValue(board_type, json[QString("boardType")]);
+    m_board_type_isValid = ::OpenAPI::fromJsonValue(m_board_type, json[QString("boardType")]);
     m_board_type_isSet = !json[QString("boardType")].isNull() && m_board_type_isValid;
 
-    m_board_number_isValid = ::OpenAPI::fromJsonValue(board_number, json[QString("boardNumber")]);
+    m_board_number_isValid = ::OpenAPI::fromJsonValue(m_board_number, json[QString("boardNumber")]);
     m_board_number_isSet = !json[QString("boardNumber")].isNull() && m_board_number_isValid;
 
-    m_board_id_isValid = ::OpenAPI::fromJsonValue(board_id, json[QString("boardID")]);
+    m_board_id_isValid = ::OpenAPI::fromJsonValue(m_board_id, json[QString("boardID")]);
     m_board_id_isSet = !json[QString("boardID")].isNull() && m_board_id_isValid;
 
     applyMinMaxConstraints();
@@ -124,47 +124,47 @@ QString OAISystemDiscover::asJson() const {
 QJsonObject OAISystemDiscover::asJsonObject() const {
     QJsonObject obj;
     if (m_service_description_isSet) {
-        obj.insert(QString("serviceDescription"), ::OpenAPI::toJsonValue(service_description));
+        obj.insert(QString("serviceDescription"), ::OpenAPI::toJsonValue(m_service_description));
     }
     if (m_service_type_isSet) {
-        obj.insert(QString("serviceType"), ::OpenAPI::toJsonValue(service_type));
+        obj.insert(QString("serviceType"), ::OpenAPI::toJsonValue(m_service_type));
     }
     if (m_service_domain_isSet) {
-        obj.insert(QString("serviceDomain"), ::OpenAPI::toJsonValue(service_domain));
+        obj.insert(QString("serviceDomain"), ::OpenAPI::toJsonValue(m_service_domain));
     }
     if (m_host_name_isSet) {
-        obj.insert(QString("hostName"), ::OpenAPI::toJsonValue(host_name));
+        obj.insert(QString("hostName"), ::OpenAPI::toJsonValue(m_host_name));
     }
     if (m_ip_address_isSet) {
-        obj.insert(QString("ipAddress"), ::OpenAPI::toJsonValue(ip_address));
+        obj.insert(QString("ipAddress"), ::OpenAPI::toJsonValue(m_ip_address));
     }
     if (m_port_isSet) {
-        obj.insert(QString("port"), ::OpenAPI::toJsonValue(port));
+        obj.insert(QString("port"), ::OpenAPI::toJsonValue(m_port));
     }
     if (m_device_name_isSet) {
-        obj.insert(QString("deviceName"), ::OpenAPI::toJsonValue(device_name));
+        obj.insert(QString("deviceName"), ::OpenAPI::toJsonValue(m_device_name));
     }
     if (m_description_isSet) {
-        obj.insert(QString("description"), ::OpenAPI::toJsonValue(description));
+        obj.insert(QString("description"), ::OpenAPI::toJsonValue(m_description));
     }
     if (m_board_type_isSet) {
-        obj.insert(QString("boardType"), ::OpenAPI::toJsonValue(board_type));
+        obj.insert(QString("boardType"), ::OpenAPI::toJsonValue(m_board_type));
     }
     if (m_board_number_isSet) {
-        obj.insert(QString("boardNumber"), ::OpenAPI::toJsonValue(board_number));
+        obj.insert(QString("boardNumber"), ::OpenAPI::toJsonValue(m_board_number));
     }
     if (m_board_id_isSet) {
-        obj.insert(QString("boardID"), ::OpenAPI::toJsonValue(board_id));
+        obj.insert(QString("boardID"), ::OpenAPI::toJsonValue(m_board_id));
     }
     return obj;
 }
 
 QString OAISystemDiscover::getServiceDescription() const {
-    return service_description;
+    return m_service_description;
 }
 void OAISystemDiscover::setServiceDescription(const QString &service_description) {
 	QString v = service_description;
-	this->service_description = v;
+	this->m_service_description = v;
     this->m_service_description_isSet = true;
 }
 
@@ -179,11 +179,11 @@ bool OAISystemDiscover::is_service_description_Valid() const{
 
 
 QString OAISystemDiscover::getServiceType() const {
-    return service_type;
+    return m_service_type;
 }
 void OAISystemDiscover::setServiceType(const QString &service_type) {
 	QString v = service_type;
-	this->service_type = v;
+	this->m_service_type = v;
     this->m_service_type_isSet = true;
 }
 
@@ -198,11 +198,11 @@ bool OAISystemDiscover::is_service_type_Valid() const{
 
 
 QString OAISystemDiscover::getServiceDomain() const {
-    return service_domain;
+    return m_service_domain;
 }
 void OAISystemDiscover::setServiceDomain(const QString &service_domain) {
 	QString v = service_domain;
-	this->service_domain = v;
+	this->m_service_domain = v;
     this->m_service_domain_isSet = true;
 }
 
@@ -217,11 +217,11 @@ bool OAISystemDiscover::is_service_domain_Valid() const{
 
 
 QString OAISystemDiscover::getHostName() const {
-    return host_name;
+    return m_host_name;
 }
 void OAISystemDiscover::setHostName(const QString &host_name) {
 	QString v = host_name;
-	this->host_name = v;
+	this->m_host_name = v;
     this->m_host_name_isSet = true;
 }
 
@@ -236,11 +236,11 @@ bool OAISystemDiscover::is_host_name_Valid() const{
 
 
 QString OAISystemDiscover::getIpAddress() const {
-    return ip_address;
+    return m_ip_address;
 }
 void OAISystemDiscover::setIpAddress(const QString &ip_address) {
 	QString v = ip_address;
-	this->ip_address = v;
+	this->m_ip_address = v;
     this->m_ip_address_isSet = true;
 }
 
@@ -255,11 +255,11 @@ bool OAISystemDiscover::is_ip_address_Valid() const{
 
 
 double OAISystemDiscover::getPort() const {
-    return port;
+    return m_port;
 }
 void OAISystemDiscover::setPort(const double &port) {
 	double v = port;
-	this->port = v;
+	this->m_port = v;
     this->m_port_isSet = true;
 }
 
@@ -274,11 +274,11 @@ bool OAISystemDiscover::is_port_Valid() const{
 
 
 QString OAISystemDiscover::getDeviceName() const {
-    return device_name;
+    return m_device_name;
 }
 void OAISystemDiscover::setDeviceName(const QString &device_name) {
 	QString v = device_name;
-	this->device_name = v;
+	this->m_device_name = v;
     this->m_device_name_isSet = true;
 }
 
@@ -293,11 +293,11 @@ bool OAISystemDiscover::is_device_name_Valid() const{
 
 
 QString OAISystemDiscover::getDescription() const {
-    return description;
+    return m_description;
 }
 void OAISystemDiscover::setDescription(const QString &description) {
 	QString v = description;
-	this->description = v;
+	this->m_description = v;
     this->m_description_isSet = true;
 }
 
@@ -312,11 +312,11 @@ bool OAISystemDiscover::is_description_Valid() const{
 
 
 QString OAISystemDiscover::getBoardType() const {
-    return board_type;
+    return m_board_type;
 }
 void OAISystemDiscover::setBoardType(const QString &board_type) {
 	QString v = board_type;
-	this->board_type = v;
+	this->m_board_type = v;
     this->m_board_type_isSet = true;
 }
 
@@ -331,11 +331,11 @@ bool OAISystemDiscover::is_board_type_Valid() const{
 
 
 QString OAISystemDiscover::getBoardNumber() const {
-    return board_number;
+    return m_board_number;
 }
 void OAISystemDiscover::setBoardNumber(const QString &board_number) {
 	QString v = board_number;
-	this->board_number = v;
+	this->m_board_number = v;
     this->m_board_number_isSet = true;
 }
 
@@ -350,11 +350,11 @@ bool OAISystemDiscover::is_board_number_Valid() const{
 
 
 QString OAISystemDiscover::getBoardId() const {
-    return board_id;
+    return m_board_id;
 }
 void OAISystemDiscover::setBoardId(const QString &board_id) {
 	QString v = board_id;
-	this->board_id = v;
+	this->m_board_id = v;
     this->m_board_id_isSet = true;
 }
 
@@ -435,74 +435,74 @@ bool OAISystemDiscover::isValid() const {
 }
 
 bool OAISystemDiscover::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_service_description_Set())
 	{
 		bool serviceDescriptionChanged = false;
 		QString v = getServiceDescription();
-		if (serviceDescriptionChanged) { setServiceDescription(v); valueChanged = true; }
+		if (serviceDescriptionChanged) { setServiceDescription(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_service_type_Set())
 	{
 		bool serviceTypeChanged = false;
 		QString v = getServiceType();
-		if (serviceTypeChanged) { setServiceType(v); valueChanged = true; }
+		if (serviceTypeChanged) { setServiceType(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_service_domain_Set())
 	{
 		bool serviceDomainChanged = false;
 		QString v = getServiceDomain();
-		if (serviceDomainChanged) { setServiceDomain(v); valueChanged = true; }
+		if (serviceDomainChanged) { setServiceDomain(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_host_name_Set())
 	{
 		bool hostNameChanged = false;
 		QString v = getHostName();
-		if (hostNameChanged) { setHostName(v); valueChanged = true; }
+		if (hostNameChanged) { setHostName(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_ip_address_Set())
 	{
 		bool ipAddressChanged = false;
 		QString v = getIpAddress();
-		if (ipAddressChanged) { setIpAddress(v); valueChanged = true; }
+		if (ipAddressChanged) { setIpAddress(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_port_Set())
 	{
 		bool portChanged = false;
 		double v = getPort();
-		if (portChanged) { setPort(v); valueChanged = true; }
+		if (portChanged) { setPort(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_device_name_Set())
 	{
 		bool deviceNameChanged = false;
 		QString v = getDeviceName();
-		if (deviceNameChanged) { setDeviceName(v); valueChanged = true; }
+		if (deviceNameChanged) { setDeviceName(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_description_Set())
 	{
 		bool descriptionChanged = false;
 		QString v = getDescription();
-		if (descriptionChanged) { setDescription(v); valueChanged = true; }
+		if (descriptionChanged) { setDescription(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_board_type_Set())
 	{
 		bool boardTypeChanged = false;
 		QString v = getBoardType();
-		if (boardTypeChanged) { setBoardType(v); valueChanged = true; }
+		if (boardTypeChanged) { setBoardType(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_board_number_Set())
 	{
 		bool boardNumberChanged = false;
 		QString v = getBoardNumber();
-		if (boardNumberChanged) { setBoardNumber(v); valueChanged = true; }
+		if (boardNumberChanged) { setBoardNumber(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_board_id_Set())
 	{
 		bool boardIDChanged = false;
 		QString v = getBoardId();
-		if (boardIDChanged) { setBoardId(v); valueChanged = true; }
+		if (boardIDChanged) { setBoardId(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

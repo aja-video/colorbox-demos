@@ -72,31 +72,31 @@ void OAIWiFiDeviceConfig::fromJson(QString jsonString) {
 
 void OAIWiFiDeviceConfig::fromJsonObject(QJsonObject json) {
 
-    m_wifi_control_isValid = ::OpenAPI::fromJsonValue(wifi_control, json[QString("wifiControl")]);
+    m_wifi_control_isValid = ::OpenAPI::fromJsonValue(m_wifi_control, json[QString("wifiControl")]);
     m_wifi_control_isSet = !json[QString("wifiControl")].isNull() && m_wifi_control_isValid;
 
-    m_wifi_network_isValid = ::OpenAPI::fromJsonValue(wifi_network, json[QString("wifiNetwork")]);
+    m_wifi_network_isValid = ::OpenAPI::fromJsonValue(m_wifi_network, json[QString("wifiNetwork")]);
     m_wifi_network_isSet = !json[QString("wifiNetwork")].isNull() && m_wifi_network_isValid;
 
-    m_wifi_password_isValid = ::OpenAPI::fromJsonValue(wifi_password, json[QString("wifiPassword")]);
+    m_wifi_password_isValid = ::OpenAPI::fromJsonValue(m_wifi_password, json[QString("wifiPassword")]);
     m_wifi_password_isSet = !json[QString("wifiPassword")].isNull() && m_wifi_password_isValid;
 
-    m_wifi_security_isValid = ::OpenAPI::fromJsonValue(wifi_security, json[QString("wifiSecurity")]);
+    m_wifi_security_isValid = ::OpenAPI::fromJsonValue(m_wifi_security, json[QString("wifiSecurity")]);
     m_wifi_security_isSet = !json[QString("wifiSecurity")].isNull() && m_wifi_security_isValid;
 
-    m_wifi_ip_config_isValid = ::OpenAPI::fromJsonValue(wifi_ip_config, json[QString("wifiIpConfig")]);
+    m_wifi_ip_config_isValid = ::OpenAPI::fromJsonValue(m_wifi_ip_config, json[QString("wifiIpConfig")]);
     m_wifi_ip_config_isSet = !json[QString("wifiIpConfig")].isNull() && m_wifi_ip_config_isValid;
 
-    m_address_isValid = ::OpenAPI::fromJsonValue(address, json[QString("address")]);
+    m_address_isValid = ::OpenAPI::fromJsonValue(m_address, json[QString("address")]);
     m_address_isSet = !json[QString("address")].isNull() && m_address_isValid;
 
-    m_subnet_isValid = ::OpenAPI::fromJsonValue(subnet, json[QString("subnet")]);
+    m_subnet_isValid = ::OpenAPI::fromJsonValue(m_subnet, json[QString("subnet")]);
     m_subnet_isSet = !json[QString("subnet")].isNull() && m_subnet_isValid;
 
-    m_gateway_isValid = ::OpenAPI::fromJsonValue(gateway, json[QString("gateway")]);
+    m_gateway_isValid = ::OpenAPI::fromJsonValue(m_gateway, json[QString("gateway")]);
     m_gateway_isSet = !json[QString("gateway")].isNull() && m_gateway_isValid;
 
-    m_wifi_ip_change_commit_isValid = ::OpenAPI::fromJsonValue(wifi_ip_change_commit, json[QString("wifiIpChangeCommit")]);
+    m_wifi_ip_change_commit_isValid = ::OpenAPI::fromJsonValue(m_wifi_ip_change_commit, json[QString("wifiIpChangeCommit")]);
     m_wifi_ip_change_commit_isSet = !json[QString("wifiIpChangeCommit")].isNull() && m_wifi_ip_change_commit_isValid;
 
     applyMinMaxConstraints();
@@ -112,41 +112,41 @@ QString OAIWiFiDeviceConfig::asJson() const {
 QJsonObject OAIWiFiDeviceConfig::asJsonObject() const {
     QJsonObject obj;
     if (m_wifi_control_isSet) {
-        obj.insert(QString("wifiControl"), ::OpenAPI::toJsonValue(wifi_control));
+        obj.insert(QString("wifiControl"), ::OpenAPI::toJsonValue(m_wifi_control));
     }
     if (m_wifi_network_isSet) {
-        obj.insert(QString("wifiNetwork"), ::OpenAPI::toJsonValue(wifi_network));
+        obj.insert(QString("wifiNetwork"), ::OpenAPI::toJsonValue(m_wifi_network));
     }
     if (m_wifi_password_isSet) {
-        obj.insert(QString("wifiPassword"), ::OpenAPI::toJsonValue(wifi_password));
+        obj.insert(QString("wifiPassword"), ::OpenAPI::toJsonValue(m_wifi_password));
     }
     if (m_wifi_security_isSet) {
-        obj.insert(QString("wifiSecurity"), ::OpenAPI::toJsonValue(wifi_security));
+        obj.insert(QString("wifiSecurity"), ::OpenAPI::toJsonValue(m_wifi_security));
     }
     if (m_wifi_ip_config_isSet) {
-        obj.insert(QString("wifiIpConfig"), ::OpenAPI::toJsonValue(wifi_ip_config));
+        obj.insert(QString("wifiIpConfig"), ::OpenAPI::toJsonValue(m_wifi_ip_config));
     }
     if (m_address_isSet) {
-        obj.insert(QString("address"), ::OpenAPI::toJsonValue(address));
+        obj.insert(QString("address"), ::OpenAPI::toJsonValue(m_address));
     }
     if (m_subnet_isSet) {
-        obj.insert(QString("subnet"), ::OpenAPI::toJsonValue(subnet));
+        obj.insert(QString("subnet"), ::OpenAPI::toJsonValue(m_subnet));
     }
     if (m_gateway_isSet) {
-        obj.insert(QString("gateway"), ::OpenAPI::toJsonValue(gateway));
+        obj.insert(QString("gateway"), ::OpenAPI::toJsonValue(m_gateway));
     }
     if (m_wifi_ip_change_commit_isSet) {
-        obj.insert(QString("wifiIpChangeCommit"), ::OpenAPI::toJsonValue(wifi_ip_change_commit));
+        obj.insert(QString("wifiIpChangeCommit"), ::OpenAPI::toJsonValue(m_wifi_ip_change_commit));
     }
     return obj;
 }
 
 QString OAIWiFiDeviceConfig::getWifiControl() const {
-    return wifi_control;
+    return m_wifi_control;
 }
 void OAIWiFiDeviceConfig::setWifiControl(const QString &wifi_control) {
 	QString v = wifi_control;
-	this->wifi_control = v;
+	this->m_wifi_control = v;
     this->m_wifi_control_isSet = true;
 }
 
@@ -161,11 +161,11 @@ bool OAIWiFiDeviceConfig::is_wifi_control_Valid() const{
 
 
 QString OAIWiFiDeviceConfig::getWifiNetwork() const {
-    return wifi_network;
+    return m_wifi_network;
 }
 void OAIWiFiDeviceConfig::setWifiNetwork(const QString &wifi_network) {
 	QString v = wifi_network;
-	this->wifi_network = v;
+	this->m_wifi_network = v;
     this->m_wifi_network_isSet = true;
 }
 
@@ -180,11 +180,11 @@ bool OAIWiFiDeviceConfig::is_wifi_network_Valid() const{
 
 
 QString OAIWiFiDeviceConfig::getWifiPassword() const {
-    return wifi_password;
+    return m_wifi_password;
 }
 void OAIWiFiDeviceConfig::setWifiPassword(const QString &wifi_password) {
 	QString v = wifi_password;
-	this->wifi_password = v;
+	this->m_wifi_password = v;
     this->m_wifi_password_isSet = true;
 }
 
@@ -199,11 +199,11 @@ bool OAIWiFiDeviceConfig::is_wifi_password_Valid() const{
 
 
 QString OAIWiFiDeviceConfig::getWifiSecurity() const {
-    return wifi_security;
+    return m_wifi_security;
 }
 void OAIWiFiDeviceConfig::setWifiSecurity(const QString &wifi_security) {
 	QString v = wifi_security;
-	this->wifi_security = v;
+	this->m_wifi_security = v;
     this->m_wifi_security_isSet = true;
 }
 
@@ -218,11 +218,11 @@ bool OAIWiFiDeviceConfig::is_wifi_security_Valid() const{
 
 
 QString OAIWiFiDeviceConfig::getWifiIpConfig() const {
-    return wifi_ip_config;
+    return m_wifi_ip_config;
 }
 void OAIWiFiDeviceConfig::setWifiIpConfig(const QString &wifi_ip_config) {
 	QString v = wifi_ip_config;
-	this->wifi_ip_config = v;
+	this->m_wifi_ip_config = v;
     this->m_wifi_ip_config_isSet = true;
 }
 
@@ -237,11 +237,11 @@ bool OAIWiFiDeviceConfig::is_wifi_ip_config_Valid() const{
 
 
 QString OAIWiFiDeviceConfig::getAddress() const {
-    return address;
+    return m_address;
 }
 void OAIWiFiDeviceConfig::setAddress(const QString &address) {
 	QString v = address;
-	this->address = v;
+	this->m_address = v;
     this->m_address_isSet = true;
 }
 
@@ -256,11 +256,11 @@ bool OAIWiFiDeviceConfig::is_address_Valid() const{
 
 
 QString OAIWiFiDeviceConfig::getSubnet() const {
-    return subnet;
+    return m_subnet;
 }
 void OAIWiFiDeviceConfig::setSubnet(const QString &subnet) {
 	QString v = subnet;
-	this->subnet = v;
+	this->m_subnet = v;
     this->m_subnet_isSet = true;
 }
 
@@ -275,11 +275,11 @@ bool OAIWiFiDeviceConfig::is_subnet_Valid() const{
 
 
 QString OAIWiFiDeviceConfig::getGateway() const {
-    return gateway;
+    return m_gateway;
 }
 void OAIWiFiDeviceConfig::setGateway(const QString &gateway) {
 	QString v = gateway;
-	this->gateway = v;
+	this->m_gateway = v;
     this->m_gateway_isSet = true;
 }
 
@@ -294,11 +294,11 @@ bool OAIWiFiDeviceConfig::is_gateway_Valid() const{
 
 
 qint32 OAIWiFiDeviceConfig::getWifiIpChangeCommit() const {
-    return wifi_ip_change_commit;
+    return m_wifi_ip_change_commit;
 }
 void OAIWiFiDeviceConfig::setWifiIpChangeCommit(const qint32 &wifi_ip_change_commit) {
 	qint32 v = wifi_ip_change_commit;
-	this->wifi_ip_change_commit = v;
+	this->m_wifi_ip_change_commit = v;
     this->m_wifi_ip_change_commit_isSet = true;
 }
 
@@ -369,62 +369,62 @@ bool OAIWiFiDeviceConfig::isValid() const {
 }
 
 bool OAIWiFiDeviceConfig::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_wifi_control_Set())
 	{
 		bool wifiControlChanged = false;
 		QString v = getWifiControl();
-		if (wifiControlChanged) { setWifiControl(v); valueChanged = true; }
+		if (wifiControlChanged) { setWifiControl(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_wifi_network_Set())
 	{
 		bool wifiNetworkChanged = false;
 		QString v = getWifiNetwork();
-		if (wifiNetworkChanged) { setWifiNetwork(v); valueChanged = true; }
+		if (wifiNetworkChanged) { setWifiNetwork(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_wifi_password_Set())
 	{
 		bool wifiPasswordChanged = false;
 		QString v = getWifiPassword();
-		if (wifiPasswordChanged) { setWifiPassword(v); valueChanged = true; }
+		if (wifiPasswordChanged) { setWifiPassword(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_wifi_security_Set())
 	{
 		bool wifiSecurityChanged = false;
 		QString v = getWifiSecurity();
-		if (wifiSecurityChanged) { setWifiSecurity(v); valueChanged = true; }
+		if (wifiSecurityChanged) { setWifiSecurity(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_wifi_ip_config_Set())
 	{
 		bool wifiIpConfigChanged = false;
 		QString v = getWifiIpConfig();
-		if (wifiIpConfigChanged) { setWifiIpConfig(v); valueChanged = true; }
+		if (wifiIpConfigChanged) { setWifiIpConfig(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_address_Set())
 	{
 		bool addressChanged = false;
 		QString v = getAddress();
-		if (addressChanged) { setAddress(v); valueChanged = true; }
+		if (addressChanged) { setAddress(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_subnet_Set())
 	{
 		bool subnetChanged = false;
 		QString v = getSubnet();
-		if (subnetChanged) { setSubnet(v); valueChanged = true; }
+		if (subnetChanged) { setSubnet(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gateway_Set())
 	{
 		bool gatewayChanged = false;
 		QString v = getGateway();
-		if (gatewayChanged) { setGateway(v); valueChanged = true; }
+		if (gatewayChanged) { setGateway(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_wifi_ip_change_commit_Set())
 	{
 		bool wifiIpChangeCommitChanged = false;
 		qint32 v = getWifiIpChangeCommit();
-		if (wifiIpChangeCommitChanged) { setWifiIpChangeCommit(v); valueChanged = true; }
+		if (wifiIpChangeCommitChanged) { setWifiIpChangeCommit(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -111,59 +111,59 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QString name;
+    QString m_name;
     bool m_name_isSet;
     bool m_name_isValid;
 
-    QString mac;
+    QString m_mac;
     bool m_mac_isSet;
     bool m_mac_isValid;
 
-    QString address;
+    QString m_address;
     bool m_address_isSet;
     bool m_address_isValid;
 
-    QString subnet;
+    QString m_subnet;
     bool m_subnet_isSet;
     bool m_subnet_isValid;
 
-    QString gateway;
+    QString m_gateway;
     bool m_gateway_isSet;
     bool m_gateway_isValid;
 
-    QList<QString> networks;
+    QList<QString> m_networks;
     bool m_networks_isSet;
     bool m_networks_isValid;
 
-    bool connected;
+    bool m_connected;
     bool m_connected_isSet;
     bool m_connected_isValid;
 
-    OAIDHCPState dhcp_state;
+    OAIDHCPState m_dhcp_state;
     bool m_dhcp_state_isSet;
     bool m_dhcp_state_isValid;
 
-    OAIInterfaceSetupState interface_setup_state;
+    OAIInterfaceSetupState m_interface_setup_state;
     bool m_interface_setup_state_isSet;
     bool m_interface_setup_state_isValid;
 
-    QString ip_address_offered;
+    QString m_ip_address_offered;
     bool m_ip_address_offered_isSet;
     bool m_ip_address_offered_isValid;
 
-    QString link_state;
+    QString m_link_state;
     bool m_link_state_isSet;
     bool m_link_state_isValid;
 
-    QString wifi_dongle_state;
+    QString m_wifi_dongle_state;
     bool m_wifi_dongle_state_isSet;
     bool m_wifi_dongle_state_isValid;
 
-    QString authentication_state;
+    QString m_authentication_state;
     bool m_authentication_state_isSet;
     bool m_authentication_state_isValid;
 };

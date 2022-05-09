@@ -51,10 +51,10 @@ void OAISystemPassword::fromJson(QString jsonString) {
 
 void OAISystemPassword::fromJsonObject(QJsonObject json) {
 
-    m_current_password_isValid = ::OpenAPI::fromJsonValue(current_password, json[QString("currentPassword")]);
+    m_current_password_isValid = ::OpenAPI::fromJsonValue(m_current_password, json[QString("currentPassword")]);
     m_current_password_isSet = !json[QString("currentPassword")].isNull() && m_current_password_isValid;
 
-    m_new_password_isValid = ::OpenAPI::fromJsonValue(new_password, json[QString("newPassword")]);
+    m_new_password_isValid = ::OpenAPI::fromJsonValue(m_new_password, json[QString("newPassword")]);
     m_new_password_isSet = !json[QString("newPassword")].isNull() && m_new_password_isValid;
 
     applyMinMaxConstraints();
@@ -70,20 +70,20 @@ QString OAISystemPassword::asJson() const {
 QJsonObject OAISystemPassword::asJsonObject() const {
     QJsonObject obj;
     if (m_current_password_isSet) {
-        obj.insert(QString("currentPassword"), ::OpenAPI::toJsonValue(current_password));
+        obj.insert(QString("currentPassword"), ::OpenAPI::toJsonValue(m_current_password));
     }
     if (m_new_password_isSet) {
-        obj.insert(QString("newPassword"), ::OpenAPI::toJsonValue(new_password));
+        obj.insert(QString("newPassword"), ::OpenAPI::toJsonValue(m_new_password));
     }
     return obj;
 }
 
 QString OAISystemPassword::getCurrentPassword() const {
-    return current_password;
+    return m_current_password;
 }
 void OAISystemPassword::setCurrentPassword(const QString &current_password) {
 	QString v = current_password;
-	this->current_password = v;
+	this->m_current_password = v;
     this->m_current_password_isSet = true;
 }
 
@@ -98,11 +98,11 @@ bool OAISystemPassword::is_current_password_Valid() const{
 
 
 QString OAISystemPassword::getNewPassword() const {
-    return new_password;
+    return m_new_password;
 }
 void OAISystemPassword::setNewPassword(const QString &new_password) {
 	QString v = new_password;
-	this->new_password = v;
+	this->m_new_password = v;
     this->m_new_password_isSet = true;
 }
 
@@ -138,20 +138,20 @@ bool OAISystemPassword::isValid() const {
 }
 
 bool OAISystemPassword::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_current_password_Set())
 	{
 		bool currentPasswordChanged = false;
 		QString v = getCurrentPassword();
-		if (currentPasswordChanged) { setCurrentPassword(v); valueChanged = true; }
+		if (currentPasswordChanged) { setCurrentPassword(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_new_password_Set())
 	{
 		bool newPasswordChanged = false;
 		QString v = getNewPassword();
-		if (newPasswordChanged) { setNewPassword(v); valueChanged = true; }
+		if (newPasswordChanged) { setNewPassword(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

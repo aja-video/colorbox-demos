@@ -72,31 +72,31 @@ void OAIFrameStore::fromJson(QString jsonString) {
 
 void OAIFrameStore::fromJsonObject(QJsonObject json) {
 
-    m_enabled_isValid = ::OpenAPI::fromJsonValue(enabled, json[QString("enabled")]);
+    m_enabled_isValid = ::OpenAPI::fromJsonValue(m_enabled, json[QString("enabled")]);
     m_enabled_isSet = !json[QString("enabled")].isNull() && m_enabled_isValid;
 
-    m_dynamic_isValid = ::OpenAPI::fromJsonValue(dynamic, json[QString("dynamic")]);
+    m_dynamic_isValid = ::OpenAPI::fromJsonValue(m_dynamic, json[QString("dynamic")]);
     m_dynamic_isSet = !json[QString("dynamic")].isNull() && m_dynamic_isValid;
 
-    m_image_name_isValid = ::OpenAPI::fromJsonValue(image_name, json[QString("imageName")]);
+    m_image_name_isValid = ::OpenAPI::fromJsonValue(m_image_name, json[QString("imageName")]);
     m_image_name_isSet = !json[QString("imageName")].isNull() && m_image_name_isValid;
 
-    m_clip_name_appended_isValid = ::OpenAPI::fromJsonValue(clip_name_appended, json[QString("clipNameAppended")]);
+    m_clip_name_appended_isValid = ::OpenAPI::fromJsonValue(m_clip_name_appended, json[QString("clipNameAppended")]);
     m_clip_name_appended_isSet = !json[QString("clipNameAppended")].isNull() && m_clip_name_appended_isValid;
 
-    m_timecode_appended_isValid = ::OpenAPI::fromJsonValue(timecode_appended, json[QString("timecodeAppended")]);
+    m_timecode_appended_isValid = ::OpenAPI::fromJsonValue(m_timecode_appended, json[QString("timecodeAppended")]);
     m_timecode_appended_isSet = !json[QString("timecodeAppended")].isNull() && m_timecode_appended_isValid;
 
-    m_library_entry_isValid = ::OpenAPI::fromJsonValue(library_entry, json[QString("libraryEntry")]);
+    m_library_entry_isValid = ::OpenAPI::fromJsonValue(m_library_entry, json[QString("libraryEntry")]);
     m_library_entry_isSet = !json[QString("libraryEntry")].isNull() && m_library_entry_isValid;
 
-    m_format_isValid = ::OpenAPI::fromJsonValue(format, json[QString("format")]);
+    m_format_isValid = ::OpenAPI::fromJsonValue(m_format, json[QString("format")]);
     m_format_isSet = !json[QString("format")].isNull() && m_format_isValid;
 
-    m_convert_isValid = ::OpenAPI::fromJsonValue(convert, json[QString("convert")]);
+    m_convert_isValid = ::OpenAPI::fromJsonValue(m_convert, json[QString("convert")]);
     m_convert_isSet = !json[QString("convert")].isNull() && m_convert_isValid;
 
-    m_rgb_range_isValid = ::OpenAPI::fromJsonValue(rgb_range, json[QString("rgbRange")]);
+    m_rgb_range_isValid = ::OpenAPI::fromJsonValue(m_rgb_range, json[QString("rgbRange")]);
     m_rgb_range_isSet = !json[QString("rgbRange")].isNull() && m_rgb_range_isValid;
 
     applyMinMaxConstraints();
@@ -112,41 +112,41 @@ QString OAIFrameStore::asJson() const {
 QJsonObject OAIFrameStore::asJsonObject() const {
     QJsonObject obj;
     if (m_enabled_isSet) {
-        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(enabled));
+        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(m_enabled));
     }
     if (m_dynamic_isSet) {
-        obj.insert(QString("dynamic"), ::OpenAPI::toJsonValue(dynamic));
+        obj.insert(QString("dynamic"), ::OpenAPI::toJsonValue(m_dynamic));
     }
     if (m_image_name_isSet) {
-        obj.insert(QString("imageName"), ::OpenAPI::toJsonValue(image_name));
+        obj.insert(QString("imageName"), ::OpenAPI::toJsonValue(m_image_name));
     }
     if (m_clip_name_appended_isSet) {
-        obj.insert(QString("clipNameAppended"), ::OpenAPI::toJsonValue(clip_name_appended));
+        obj.insert(QString("clipNameAppended"), ::OpenAPI::toJsonValue(m_clip_name_appended));
     }
     if (m_timecode_appended_isSet) {
-        obj.insert(QString("timecodeAppended"), ::OpenAPI::toJsonValue(timecode_appended));
+        obj.insert(QString("timecodeAppended"), ::OpenAPI::toJsonValue(m_timecode_appended));
     }
     if (m_library_entry_isSet) {
-        obj.insert(QString("libraryEntry"), ::OpenAPI::toJsonValue(library_entry));
+        obj.insert(QString("libraryEntry"), ::OpenAPI::toJsonValue(m_library_entry));
     }
-    if (format.isSet()) {
-        obj.insert(QString("format"), ::OpenAPI::toJsonValue(format));
+    if (m_format.isSet()) {
+        obj.insert(QString("format"), ::OpenAPI::toJsonValue(m_format));
     }
-    if (convert.isSet()) {
-        obj.insert(QString("convert"), ::OpenAPI::toJsonValue(convert));
+    if (m_convert.isSet()) {
+        obj.insert(QString("convert"), ::OpenAPI::toJsonValue(m_convert));
     }
-    if (rgb_range.isSet()) {
-        obj.insert(QString("rgbRange"), ::OpenAPI::toJsonValue(rgb_range));
+    if (m_rgb_range.isSet()) {
+        obj.insert(QString("rgbRange"), ::OpenAPI::toJsonValue(m_rgb_range));
     }
     return obj;
 }
 
 bool OAIFrameStore::isEnabled() const {
-    return enabled;
+    return m_enabled;
 }
 void OAIFrameStore::setEnabled(const bool &enabled) {
 	bool v = enabled;
-	this->enabled = v;
+	this->m_enabled = v;
     this->m_enabled_isSet = true;
 }
 
@@ -160,11 +160,11 @@ bool OAIFrameStore::is_enabled_Valid() const{
 
 
 bool OAIFrameStore::isDynamic() const {
-    return dynamic;
+    return m_dynamic;
 }
 void OAIFrameStore::setDynamic(const bool &dynamic) {
 	bool v = dynamic;
-	this->dynamic = v;
+	this->m_dynamic = v;
     this->m_dynamic_isSet = true;
 }
 
@@ -178,11 +178,11 @@ bool OAIFrameStore::is_dynamic_Valid() const{
 
 
 QString OAIFrameStore::getImageName() const {
-    return image_name;
+    return m_image_name;
 }
 void OAIFrameStore::setImageName(const QString &image_name) {
 	QString v = image_name;
-	this->image_name = v;
+	this->m_image_name = v;
     this->m_image_name_isSet = true;
 }
 
@@ -197,11 +197,11 @@ bool OAIFrameStore::is_image_name_Valid() const{
 
 
 bool OAIFrameStore::isClipNameAppended() const {
-    return clip_name_appended;
+    return m_clip_name_appended;
 }
 void OAIFrameStore::setClipNameAppended(const bool &clip_name_appended) {
 	bool v = clip_name_appended;
-	this->clip_name_appended = v;
+	this->m_clip_name_appended = v;
     this->m_clip_name_appended_isSet = true;
 }
 
@@ -215,11 +215,11 @@ bool OAIFrameStore::is_clip_name_appended_Valid() const{
 
 
 bool OAIFrameStore::isTimecodeAppended() const {
-    return timecode_appended;
+    return m_timecode_appended;
 }
 void OAIFrameStore::setTimecodeAppended(const bool &timecode_appended) {
 	bool v = timecode_appended;
-	this->timecode_appended = v;
+	this->m_timecode_appended = v;
     this->m_timecode_appended_isSet = true;
 }
 
@@ -233,11 +233,11 @@ bool OAIFrameStore::is_timecode_appended_Valid() const{
 
 
 qint32 OAIFrameStore::getLibraryEntry() const {
-    return library_entry;
+    return m_library_entry;
 }
 void OAIFrameStore::setLibraryEntry(const qint32 &library_entry) {
 	qint32 v = library_entry;
-	this->library_entry = v;
+	this->m_library_entry = v;
     this->m_library_entry_isSet = true;
 }
 
@@ -252,11 +252,11 @@ bool OAIFrameStore::is_library_entry_Valid() const{
 
 
 OAIVideoFormat OAIFrameStore::getFormat() const {
-    return format;
+    return m_format;
 }
 void OAIFrameStore::setFormat(const OAIVideoFormat &format) {
 	OAIVideoFormat v = format;
-	this->format = v;
+	this->m_format = v;
     this->m_format_isSet = true;
 }
 
@@ -270,11 +270,11 @@ bool OAIFrameStore::is_format_Valid() const{
 
 
 OAIVideoConvertChoice OAIFrameStore::getConvert() const {
-    return convert;
+    return m_convert;
 }
 void OAIFrameStore::setConvert(const OAIVideoConvertChoice &convert) {
 	OAIVideoConvertChoice v = convert;
-	this->convert = v;
+	this->m_convert = v;
     this->m_convert_isSet = true;
 }
 
@@ -288,11 +288,11 @@ bool OAIFrameStore::is_convert_Valid() const{
 
 
 OAIRgbRange OAIFrameStore::getRgbRange() const {
-    return rgb_range;
+    return m_rgb_range;
 }
 void OAIFrameStore::setRgbRange(const OAIRgbRange &rgb_range) {
 	OAIRgbRange v = rgb_range;
-	this->rgb_range = v;
+	this->m_rgb_range = v;
     this->m_rgb_range_isSet = true;
 }
 
@@ -338,17 +338,17 @@ bool OAIFrameStore::isSet() const {
             break;
         }
 
-        if (format.isSet()) {
+        if (m_format.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (convert.isSet()) {
+        if (m_convert.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (rgb_range.isSet()) {
+        if (m_rgb_range.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -362,20 +362,20 @@ bool OAIFrameStore::isValid() const {
 }
 
 bool OAIFrameStore::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_image_name_Set())
 	{
 		bool imageNameChanged = false;
 		QString v = getImageName();
-		if (imageNameChanged) { setImageName(v); valueChanged = true; }
+		if (imageNameChanged) { setImageName(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_library_entry_Set())
 	{
 		bool libraryEntryChanged = false;
 		qint32 v = getLibraryEntry();
-		if (libraryEntryChanged) { setLibraryEntry(v); valueChanged = true; }
+		if (libraryEntryChanged) { setLibraryEntry(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

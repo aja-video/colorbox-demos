@@ -57,16 +57,16 @@ void OAINetDevice::fromJson(QString jsonString) {
 
 void OAINetDevice::fromJsonObject(QJsonObject json) {
 
-    m_config_isValid = ::OpenAPI::fromJsonValue(config, json[QString("config")]);
+    m_config_isValid = ::OpenAPI::fromJsonValue(m_config, json[QString("config")]);
     m_config_isSet = !json[QString("config")].isNull() && m_config_isValid;
 
-    m_status_isValid = ::OpenAPI::fromJsonValue(status, json[QString("status")]);
+    m_status_isValid = ::OpenAPI::fromJsonValue(m_status, json[QString("status")]);
     m_status_isSet = !json[QString("status")].isNull() && m_status_isValid;
 
-    m_active_params_isValid = ::OpenAPI::fromJsonValue(active_params, json[QString("activeParams")]);
+    m_active_params_isValid = ::OpenAPI::fromJsonValue(m_active_params, json[QString("activeParams")]);
     m_active_params_isSet = !json[QString("activeParams")].isNull() && m_active_params_isValid;
 
-    m_staged_params_isValid = ::OpenAPI::fromJsonValue(staged_params, json[QString("stagedParams")]);
+    m_staged_params_isValid = ::OpenAPI::fromJsonValue(m_staged_params, json[QString("stagedParams")]);
     m_staged_params_isSet = !json[QString("stagedParams")].isNull() && m_staged_params_isValid;
 
     applyMinMaxConstraints();
@@ -81,27 +81,27 @@ QString OAINetDevice::asJson() const {
 
 QJsonObject OAINetDevice::asJsonObject() const {
     QJsonObject obj;
-    if (config.isSet()) {
-        obj.insert(QString("config"), ::OpenAPI::toJsonValue(config));
+    if (m_config.isSet()) {
+        obj.insert(QString("config"), ::OpenAPI::toJsonValue(m_config));
     }
-    if (status.isSet()) {
-        obj.insert(QString("status"), ::OpenAPI::toJsonValue(status));
+    if (m_status.isSet()) {
+        obj.insert(QString("status"), ::OpenAPI::toJsonValue(m_status));
     }
-    if (active_params.isSet()) {
-        obj.insert(QString("activeParams"), ::OpenAPI::toJsonValue(active_params));
+    if (m_active_params.isSet()) {
+        obj.insert(QString("activeParams"), ::OpenAPI::toJsonValue(m_active_params));
     }
-    if (staged_params.isSet()) {
-        obj.insert(QString("stagedParams"), ::OpenAPI::toJsonValue(staged_params));
+    if (m_staged_params.isSet()) {
+        obj.insert(QString("stagedParams"), ::OpenAPI::toJsonValue(m_staged_params));
     }
     return obj;
 }
 
 OAINetConfig OAINetDevice::getConfig() const {
-    return config;
+    return m_config;
 }
 void OAINetDevice::setConfig(const OAINetConfig &config) {
 	OAINetConfig v = config;
-	this->config = v;
+	this->m_config = v;
     this->m_config_isSet = true;
 }
 
@@ -115,11 +115,11 @@ bool OAINetDevice::is_config_Valid() const{
 
 
 OAINetStatus OAINetDevice::getStatus() const {
-    return status;
+    return m_status;
 }
 void OAINetDevice::setStatus(const OAINetStatus &status) {
 	OAINetStatus v = status;
-	this->status = v;
+	this->m_status = v;
     this->m_status_isSet = true;
 }
 
@@ -133,11 +133,11 @@ bool OAINetDevice::is_status_Valid() const{
 
 
 OAINetParams OAINetDevice::getActiveParams() const {
-    return active_params;
+    return m_active_params;
 }
 void OAINetDevice::setActiveParams(const OAINetParams &active_params) {
 	OAINetParams v = active_params;
-	this->active_params = v;
+	this->m_active_params = v;
     this->m_active_params_isSet = true;
 }
 
@@ -151,11 +151,11 @@ bool OAINetDevice::is_active_params_Valid() const{
 
 
 OAINetParams OAINetDevice::getStagedParams() const {
-    return staged_params;
+    return m_staged_params;
 }
 void OAINetDevice::setStagedParams(const OAINetParams &staged_params) {
 	OAINetParams v = staged_params;
-	this->staged_params = v;
+	this->m_staged_params = v;
     this->m_staged_params_isSet = true;
 }
 
@@ -171,22 +171,22 @@ bool OAINetDevice::is_staged_params_Valid() const{
 bool OAINetDevice::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (config.isSet()) {
+        if (m_config.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (status.isSet()) {
+        if (m_status.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (active_params.isSet()) {
+        if (m_active_params.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (staged_params.isSet()) {
+        if (m_staged_params.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -200,8 +200,8 @@ bool OAINetDevice::isValid() const {
 }
 
 bool OAINetDevice::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -138,67 +138,67 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    bool enabled;
+    bool m_enabled;
     bool m_enabled_isSet;
     bool m_enabled_isValid;
 
-    OAIOrionConversion conversion;
+    OAIOrionConversion m_conversion;
     bool m_conversion_isSet;
     bool m_conversion_isValid;
 
-    OAIOrionMode mode;
+    OAIOrionMode m_mode;
     bool m_mode_isSet;
     bool m_mode_isValid;
 
-    OAIOrionMethod method;
+    OAIOrionMethod m_method;
     bool m_method_isSet;
     bool m_method_isValid;
 
-    OAIOrionSourceRange source_range;
+    OAIOrionSourceRange m_source_range;
     bool m_source_range_isSet;
     bool m_source_range_isValid;
 
-    double hdr_ref;
+    double m_hdr_ref;
     bool m_hdr_ref_isSet;
     bool m_hdr_ref_isValid;
 
-    double sdr_ref;
+    double m_sdr_ref;
     bool m_sdr_ref_isSet;
     bool m_sdr_ref_isValid;
 
-    qint32 hdr_peak;
+    qint32 m_hdr_peak;
     bool m_hdr_peak_isSet;
     bool m_hdr_peak_isValid;
 
-    OAIOrionSdrEotf sdr_eotf;
+    OAIOrionSdrEotf m_sdr_eotf;
     bool m_sdr_eotf_isSet;
     bool m_sdr_eotf_isValid;
 
-    double pre_knee;
+    double m_pre_knee;
     bool m_pre_knee_isSet;
     bool m_pre_knee_isValid;
 
-    double pre_amount;
+    double m_pre_amount;
     bool m_pre_amount_isSet;
     bool m_pre_amount_isValid;
 
-    double post_knee;
+    double m_post_knee;
     bool m_post_knee_isSet;
     bool m_post_knee_isValid;
 
-    double post_amount;
+    double m_post_amount;
     bool m_post_amount_isSet;
     bool m_post_amount_isValid;
 
-    OAIOrionClamping clamping;
+    OAIOrionClamping m_clamping;
     bool m_clamping_isSet;
     bool m_clamping_isValid;
 
-    OAIOrionImplementation implementation;
+    OAIOrionImplementation m_implementation;
     bool m_implementation_isSet;
     bool m_implementation_isValid;
 };

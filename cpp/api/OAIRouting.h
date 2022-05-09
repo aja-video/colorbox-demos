@@ -64,23 +64,23 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    OAIMode mode;
+    OAIMode m_mode;
     bool m_mode_isSet;
     bool m_mode_isValid;
 
-    OAIPreviewTap preview_tap;
+    OAIPreviewTap m_preview_tap;
     bool m_preview_tap_isSet;
     bool m_preview_tap_isValid;
 
-    bool pipeline_bypass_button;
+    bool m_pipeline_bypass_button;
     bool m_pipeline_bypass_button_isSet;
     bool m_pipeline_bypass_button_isValid;
 
-    bool pipeline_bypass_user;
+    bool m_pipeline_bypass_user;
     bool m_pipeline_bypass_user_isSet;
     bool m_pipeline_bypass_user_isValid;
 };

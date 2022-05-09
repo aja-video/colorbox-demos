@@ -54,13 +54,13 @@ void OAIColorfrontConfig::fromJson(QString jsonString) {
 
 void OAIColorfrontConfig::fromJsonObject(QJsonObject json) {
 
-    m_enabled_isValid = ::OpenAPI::fromJsonValue(enabled, json[QString("enabled")]);
+    m_enabled_isValid = ::OpenAPI::fromJsonValue(m_enabled, json[QString("enabled")]);
     m_enabled_isSet = !json[QString("enabled")].isNull() && m_enabled_isValid;
 
-    m_in_colorspace_isValid = ::OpenAPI::fromJsonValue(in_colorspace, json[QString("inColorspace")]);
+    m_in_colorspace_isValid = ::OpenAPI::fromJsonValue(m_in_colorspace, json[QString("inColorspace")]);
     m_in_colorspace_isSet = !json[QString("inColorspace")].isNull() && m_in_colorspace_isValid;
 
-    m_out_colorspace_isValid = ::OpenAPI::fromJsonValue(out_colorspace, json[QString("outColorspace")]);
+    m_out_colorspace_isValid = ::OpenAPI::fromJsonValue(m_out_colorspace, json[QString("outColorspace")]);
     m_out_colorspace_isSet = !json[QString("outColorspace")].isNull() && m_out_colorspace_isValid;
 
     applyMinMaxConstraints();
@@ -76,23 +76,23 @@ QString OAIColorfrontConfig::asJson() const {
 QJsonObject OAIColorfrontConfig::asJsonObject() const {
     QJsonObject obj;
     if (m_enabled_isSet) {
-        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(enabled));
+        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(m_enabled));
     }
-    if (in_colorspace.isSet()) {
-        obj.insert(QString("inColorspace"), ::OpenAPI::toJsonValue(in_colorspace));
+    if (m_in_colorspace.isSet()) {
+        obj.insert(QString("inColorspace"), ::OpenAPI::toJsonValue(m_in_colorspace));
     }
-    if (out_colorspace.isSet()) {
-        obj.insert(QString("outColorspace"), ::OpenAPI::toJsonValue(out_colorspace));
+    if (m_out_colorspace.isSet()) {
+        obj.insert(QString("outColorspace"), ::OpenAPI::toJsonValue(m_out_colorspace));
     }
     return obj;
 }
 
 bool OAIColorfrontConfig::isEnabled() const {
-    return enabled;
+    return m_enabled;
 }
 void OAIColorfrontConfig::setEnabled(const bool &enabled) {
 	bool v = enabled;
-	this->enabled = v;
+	this->m_enabled = v;
     this->m_enabled_isSet = true;
 }
 
@@ -106,11 +106,11 @@ bool OAIColorfrontConfig::is_enabled_Valid() const{
 
 
 OAIColorfrontColorspace OAIColorfrontConfig::getInColorspace() const {
-    return in_colorspace;
+    return m_in_colorspace;
 }
 void OAIColorfrontConfig::setInColorspace(const OAIColorfrontColorspace &in_colorspace) {
 	OAIColorfrontColorspace v = in_colorspace;
-	this->in_colorspace = v;
+	this->m_in_colorspace = v;
     this->m_in_colorspace_isSet = true;
 }
 
@@ -124,11 +124,11 @@ bool OAIColorfrontConfig::is_in_colorspace_Valid() const{
 
 
 OAIColorfrontColorspace OAIColorfrontConfig::getOutColorspace() const {
-    return out_colorspace;
+    return m_out_colorspace;
 }
 void OAIColorfrontConfig::setOutColorspace(const OAIColorfrontColorspace &out_colorspace) {
 	OAIColorfrontColorspace v = out_colorspace;
-	this->out_colorspace = v;
+	this->m_out_colorspace = v;
     this->m_out_colorspace_isSet = true;
 }
 
@@ -149,12 +149,12 @@ bool OAIColorfrontConfig::isSet() const {
             break;
         }
 
-        if (in_colorspace.isSet()) {
+        if (m_in_colorspace.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (out_colorspace.isSet()) {
+        if (m_out_colorspace.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -168,8 +168,8 @@ bool OAIColorfrontConfig::isValid() const {
 }
 
 bool OAIColorfrontConfig::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -51,10 +51,10 @@ void OAISystemPasswordResponse::fromJson(QString jsonString) {
 
 void OAISystemPasswordResponse::fromJsonObject(QJsonObject json) {
 
-    m_successful_isValid = ::OpenAPI::fromJsonValue(successful, json[QString("successful")]);
+    m_successful_isValid = ::OpenAPI::fromJsonValue(m_successful, json[QString("successful")]);
     m_successful_isSet = !json[QString("successful")].isNull() && m_successful_isValid;
 
-    m_message_isValid = ::OpenAPI::fromJsonValue(message, json[QString("message")]);
+    m_message_isValid = ::OpenAPI::fromJsonValue(m_message, json[QString("message")]);
     m_message_isSet = !json[QString("message")].isNull() && m_message_isValid;
 
     applyMinMaxConstraints();
@@ -70,20 +70,20 @@ QString OAISystemPasswordResponse::asJson() const {
 QJsonObject OAISystemPasswordResponse::asJsonObject() const {
     QJsonObject obj;
     if (m_successful_isSet) {
-        obj.insert(QString("successful"), ::OpenAPI::toJsonValue(successful));
+        obj.insert(QString("successful"), ::OpenAPI::toJsonValue(m_successful));
     }
     if (m_message_isSet) {
-        obj.insert(QString("message"), ::OpenAPI::toJsonValue(message));
+        obj.insert(QString("message"), ::OpenAPI::toJsonValue(m_message));
     }
     return obj;
 }
 
 bool OAISystemPasswordResponse::isSuccessful() const {
-    return successful;
+    return m_successful;
 }
 void OAISystemPasswordResponse::setSuccessful(const bool &successful) {
 	bool v = successful;
-	this->successful = v;
+	this->m_successful = v;
     this->m_successful_isSet = true;
 }
 
@@ -97,11 +97,11 @@ bool OAISystemPasswordResponse::is_successful_Valid() const{
 
 
 QString OAISystemPasswordResponse::getMessage() const {
-    return message;
+    return m_message;
 }
 void OAISystemPasswordResponse::setMessage(const QString &message) {
 	QString v = message;
-	this->message = v;
+	this->m_message = v;
     this->m_message_isSet = true;
 }
 
@@ -137,14 +137,14 @@ bool OAISystemPasswordResponse::isValid() const {
 }
 
 bool OAISystemPasswordResponse::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_message_Set())
 	{
 		bool messageChanged = false;
 		QString v = getMessage();
-		if (messageChanged) { setMessage(v); valueChanged = true; }
+		if (messageChanged) { setMessage(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

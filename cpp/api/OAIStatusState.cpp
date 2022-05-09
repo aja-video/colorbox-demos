@@ -113,8 +113,8 @@ bool OAIStatusState::isValid() const {
 }
 
 bool OAIStatusState::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

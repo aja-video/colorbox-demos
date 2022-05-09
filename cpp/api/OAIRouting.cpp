@@ -57,16 +57,16 @@ void OAIRouting::fromJson(QString jsonString) {
 
 void OAIRouting::fromJsonObject(QJsonObject json) {
 
-    m_mode_isValid = ::OpenAPI::fromJsonValue(mode, json[QString("mode")]);
+    m_mode_isValid = ::OpenAPI::fromJsonValue(m_mode, json[QString("mode")]);
     m_mode_isSet = !json[QString("mode")].isNull() && m_mode_isValid;
 
-    m_preview_tap_isValid = ::OpenAPI::fromJsonValue(preview_tap, json[QString("previewTap")]);
+    m_preview_tap_isValid = ::OpenAPI::fromJsonValue(m_preview_tap, json[QString("previewTap")]);
     m_preview_tap_isSet = !json[QString("previewTap")].isNull() && m_preview_tap_isValid;
 
-    m_pipeline_bypass_button_isValid = ::OpenAPI::fromJsonValue(pipeline_bypass_button, json[QString("pipelineBypassButton")]);
+    m_pipeline_bypass_button_isValid = ::OpenAPI::fromJsonValue(m_pipeline_bypass_button, json[QString("pipelineBypassButton")]);
     m_pipeline_bypass_button_isSet = !json[QString("pipelineBypassButton")].isNull() && m_pipeline_bypass_button_isValid;
 
-    m_pipeline_bypass_user_isValid = ::OpenAPI::fromJsonValue(pipeline_bypass_user, json[QString("pipelineBypassUser")]);
+    m_pipeline_bypass_user_isValid = ::OpenAPI::fromJsonValue(m_pipeline_bypass_user, json[QString("pipelineBypassUser")]);
     m_pipeline_bypass_user_isSet = !json[QString("pipelineBypassUser")].isNull() && m_pipeline_bypass_user_isValid;
 
     applyMinMaxConstraints();
@@ -81,27 +81,27 @@ QString OAIRouting::asJson() const {
 
 QJsonObject OAIRouting::asJsonObject() const {
     QJsonObject obj;
-    if (mode.isSet()) {
-        obj.insert(QString("mode"), ::OpenAPI::toJsonValue(mode));
+    if (m_mode.isSet()) {
+        obj.insert(QString("mode"), ::OpenAPI::toJsonValue(m_mode));
     }
-    if (preview_tap.isSet()) {
-        obj.insert(QString("previewTap"), ::OpenAPI::toJsonValue(preview_tap));
+    if (m_preview_tap.isSet()) {
+        obj.insert(QString("previewTap"), ::OpenAPI::toJsonValue(m_preview_tap));
     }
     if (m_pipeline_bypass_button_isSet) {
-        obj.insert(QString("pipelineBypassButton"), ::OpenAPI::toJsonValue(pipeline_bypass_button));
+        obj.insert(QString("pipelineBypassButton"), ::OpenAPI::toJsonValue(m_pipeline_bypass_button));
     }
     if (m_pipeline_bypass_user_isSet) {
-        obj.insert(QString("pipelineBypassUser"), ::OpenAPI::toJsonValue(pipeline_bypass_user));
+        obj.insert(QString("pipelineBypassUser"), ::OpenAPI::toJsonValue(m_pipeline_bypass_user));
     }
     return obj;
 }
 
 OAIMode OAIRouting::getMode() const {
-    return mode;
+    return m_mode;
 }
 void OAIRouting::setMode(const OAIMode &mode) {
 	OAIMode v = mode;
-	this->mode = v;
+	this->m_mode = v;
     this->m_mode_isSet = true;
 }
 
@@ -115,11 +115,11 @@ bool OAIRouting::is_mode_Valid() const{
 
 
 OAIPreviewTap OAIRouting::getPreviewTap() const {
-    return preview_tap;
+    return m_preview_tap;
 }
 void OAIRouting::setPreviewTap(const OAIPreviewTap &preview_tap) {
 	OAIPreviewTap v = preview_tap;
-	this->preview_tap = v;
+	this->m_preview_tap = v;
     this->m_preview_tap_isSet = true;
 }
 
@@ -133,11 +133,11 @@ bool OAIRouting::is_preview_tap_Valid() const{
 
 
 bool OAIRouting::isPipelineBypassButton() const {
-    return pipeline_bypass_button;
+    return m_pipeline_bypass_button;
 }
 void OAIRouting::setPipelineBypassButton(const bool &pipeline_bypass_button) {
 	bool v = pipeline_bypass_button;
-	this->pipeline_bypass_button = v;
+	this->m_pipeline_bypass_button = v;
     this->m_pipeline_bypass_button_isSet = true;
 }
 
@@ -151,11 +151,11 @@ bool OAIRouting::is_pipeline_bypass_button_Valid() const{
 
 
 bool OAIRouting::isPipelineBypassUser() const {
-    return pipeline_bypass_user;
+    return m_pipeline_bypass_user;
 }
 void OAIRouting::setPipelineBypassUser(const bool &pipeline_bypass_user) {
 	bool v = pipeline_bypass_user;
-	this->pipeline_bypass_user = v;
+	this->m_pipeline_bypass_user = v;
     this->m_pipeline_bypass_user_isSet = true;
 }
 
@@ -171,12 +171,12 @@ bool OAIRouting::is_pipeline_bypass_user_Valid() const{
 bool OAIRouting::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (mode.isSet()) {
+        if (m_mode.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (preview_tap.isSet()) {
+        if (m_preview_tap.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -200,8 +200,8 @@ bool OAIRouting::isValid() const {
 }
 
 bool OAIRouting::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

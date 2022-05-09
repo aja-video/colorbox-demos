@@ -69,27 +69,27 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QByteArray image;
+    QByteArray m_image;
     bool m_image_isSet;
     bool m_image_isValid;
 
-    QString image_type;
+    QString m_image_type;
     bool m_image_type_isSet;
     bool m_image_type_isValid;
 
-    QByteArray anc_data;
+    QByteArray m_anc_data;
     bool m_anc_data_isSet;
     bool m_anc_data_isValid;
 
-    QString user_data1;
+    QString m_user_data1;
     bool m_user_data1_isSet;
     bool m_user_data1_isValid;
 
-    QString user_data2;
+    QString m_user_data2;
     bool m_user_data2_isSet;
     bool m_user_data2_isValid;
 };

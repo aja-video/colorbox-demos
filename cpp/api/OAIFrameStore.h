@@ -91,43 +91,43 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    bool enabled;
+    bool m_enabled;
     bool m_enabled_isSet;
     bool m_enabled_isValid;
 
-    bool dynamic;
+    bool m_dynamic;
     bool m_dynamic_isSet;
     bool m_dynamic_isValid;
 
-    QString image_name;
+    QString m_image_name;
     bool m_image_name_isSet;
     bool m_image_name_isValid;
 
-    bool clip_name_appended;
+    bool m_clip_name_appended;
     bool m_clip_name_appended_isSet;
     bool m_clip_name_appended_isValid;
 
-    bool timecode_appended;
+    bool m_timecode_appended;
     bool m_timecode_appended_isSet;
     bool m_timecode_appended_isValid;
 
-    qint32 library_entry;
+    qint32 m_library_entry;
     bool m_library_entry_isSet;
     bool m_library_entry_isValid;
 
-    OAIVideoFormat format;
+    OAIVideoFormat m_format;
     bool m_format_isSet;
     bool m_format_isValid;
 
-    OAIVideoConvertChoice convert;
+    OAIVideoConvertChoice m_convert;
     bool m_convert_isSet;
     bool m_convert_isValid;
 
-    OAIRgbRange rgb_range;
+    OAIRgbRange m_rgb_range;
     bool m_rgb_range_isSet;
     bool m_rgb_range_isValid;
 };

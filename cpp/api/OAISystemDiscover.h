@@ -98,51 +98,51 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QString service_description;
+    QString m_service_description;
     bool m_service_description_isSet;
     bool m_service_description_isValid;
 
-    QString service_type;
+    QString m_service_type;
     bool m_service_type_isSet;
     bool m_service_type_isValid;
 
-    QString service_domain;
+    QString m_service_domain;
     bool m_service_domain_isSet;
     bool m_service_domain_isValid;
 
-    QString host_name;
+    QString m_host_name;
     bool m_host_name_isSet;
     bool m_host_name_isValid;
 
-    QString ip_address;
+    QString m_ip_address;
     bool m_ip_address_isSet;
     bool m_ip_address_isValid;
 
-    double port;
+    double m_port;
     bool m_port_isSet;
     bool m_port_isValid;
 
-    QString device_name;
+    QString m_device_name;
     bool m_device_name_isSet;
     bool m_device_name_isValid;
 
-    QString description;
+    QString m_description;
     bool m_description_isSet;
     bool m_description_isValid;
 
-    QString board_type;
+    QString m_board_type;
     bool m_board_type_isSet;
     bool m_board_type_isValid;
 
-    QString board_number;
+    QString m_board_number;
     bool m_board_number_isSet;
     bool m_board_number_isValid;
 
-    QString board_id;
+    QString m_board_id;
     bool m_board_id_isSet;
     bool m_board_id_isValid;
 };

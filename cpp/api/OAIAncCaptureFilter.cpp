@@ -51,10 +51,10 @@ void OAIAncCaptureFilter::fromJson(QString jsonString) {
 
 void OAIAncCaptureFilter::fromJsonObject(QJsonObject json) {
 
-    m_enable_isValid = ::OpenAPI::fromJsonValue(enable, json[QString("enable")]);
+    m_enable_isValid = ::OpenAPI::fromJsonValue(m_enable, json[QString("enable")]);
     m_enable_isSet = !json[QString("enable")].isNull() && m_enable_isValid;
 
-    m_dids_isValid = ::OpenAPI::fromJsonValue(dids, json[QString("dids")]);
+    m_dids_isValid = ::OpenAPI::fromJsonValue(m_dids, json[QString("dids")]);
     m_dids_isSet = !json[QString("dids")].isNull() && m_dids_isValid;
 
     applyMinMaxConstraints();
@@ -70,20 +70,20 @@ QString OAIAncCaptureFilter::asJson() const {
 QJsonObject OAIAncCaptureFilter::asJsonObject() const {
     QJsonObject obj;
     if (m_enable_isSet) {
-        obj.insert(QString("enable"), ::OpenAPI::toJsonValue(enable));
+        obj.insert(QString("enable"), ::OpenAPI::toJsonValue(m_enable));
     }
-    if (dids.size() > 0) {
-        obj.insert(QString("dids"), ::OpenAPI::toJsonValue(dids));
+    if (m_dids.size() > 0) {
+        obj.insert(QString("dids"), ::OpenAPI::toJsonValue(m_dids));
     }
     return obj;
 }
 
 bool OAIAncCaptureFilter::isEnable() const {
-    return enable;
+    return m_enable;
 }
 void OAIAncCaptureFilter::setEnable(const bool &enable) {
 	bool v = enable;
-	this->enable = v;
+	this->m_enable = v;
     this->m_enable_isSet = true;
 }
 
@@ -97,11 +97,11 @@ bool OAIAncCaptureFilter::is_enable_Valid() const{
 
 
 QList<double> OAIAncCaptureFilter::getDids() const {
-    return dids;
+    return m_dids;
 }
 void OAIAncCaptureFilter::setDids(const QList<double> &dids) {
 	QList<double> v = dids;
-	this->dids = v;
+	this->m_dids = v;
     this->m_dids_isSet = true;
 }
 
@@ -122,7 +122,7 @@ bool OAIAncCaptureFilter::isSet() const {
             break;
         }
 
-        if (dids.size() > 0) {
+        if (m_dids.size() > 0) {
             isObjectUpdated = true;
             break;
         }
@@ -136,8 +136,8 @@ bool OAIAncCaptureFilter::isValid() const {
 }
 
 bool OAIAncCaptureFilter::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

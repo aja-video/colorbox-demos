@@ -113,8 +113,8 @@ bool OAITransfer::isValid() const {
 }
 
 bool OAITransfer::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -81,40 +81,40 @@ void OAISystemConfig::fromJson(QString jsonString) {
 
 void OAISystemConfig::fromJsonObject(QJsonObject json) {
 
-    m_host_name_isValid = ::OpenAPI::fromJsonValue(host_name, json[QString("hostName")]);
+    m_host_name_isValid = ::OpenAPI::fromJsonValue(m_host_name, json[QString("hostName")]);
     m_host_name_isSet = !json[QString("hostName")].isNull() && m_host_name_isValid;
 
-    m_system_organization_name_isValid = ::OpenAPI::fromJsonValue(system_organization_name, json[QString("systemOrganizationName")]);
+    m_system_organization_name_isValid = ::OpenAPI::fromJsonValue(m_system_organization_name, json[QString("systemOrganizationName")]);
     m_system_organization_name_isSet = !json[QString("systemOrganizationName")].isNull() && m_system_organization_name_isValid;
 
-    m_ssdp_enable_isValid = ::OpenAPI::fromJsonValue(ssdp_enable, json[QString("ssdpEnable")]);
+    m_ssdp_enable_isValid = ::OpenAPI::fromJsonValue(m_ssdp_enable, json[QString("ssdpEnable")]);
     m_ssdp_enable_isSet = !json[QString("ssdpEnable")].isNull() && m_ssdp_enable_isValid;
 
-    m_identify_isValid = ::OpenAPI::fromJsonValue(identify, json[QString("identify")]);
+    m_identify_isValid = ::OpenAPI::fromJsonValue(m_identify, json[QString("identify")]);
     m_identify_isSet = !json[QString("identify")].isNull() && m_identify_isValid;
 
-    m_update_request_isValid = ::OpenAPI::fromJsonValue(update_request, json[QString("updateRequest")]);
+    m_update_request_isValid = ::OpenAPI::fromJsonValue(m_update_request, json[QString("updateRequest")]);
     m_update_request_isSet = !json[QString("updateRequest")].isNull() && m_update_request_isValid;
 
-    m_reboot_isValid = ::OpenAPI::fromJsonValue(reboot, json[QString("reboot")]);
+    m_reboot_isValid = ::OpenAPI::fromJsonValue(m_reboot, json[QString("reboot")]);
     m_reboot_isSet = !json[QString("reboot")].isNull() && m_reboot_isValid;
 
-    m_factory_preset_isValid = ::OpenAPI::fromJsonValue(factory_preset, json[QString("factoryPreset")]);
+    m_factory_preset_isValid = ::OpenAPI::fromJsonValue(m_factory_preset, json[QString("factoryPreset")]);
     m_factory_preset_isSet = !json[QString("factoryPreset")].isNull() && m_factory_preset_isValid;
 
-    m_factory_reset_isValid = ::OpenAPI::fromJsonValue(factory_reset, json[QString("factoryReset")]);
+    m_factory_reset_isValid = ::OpenAPI::fromJsonValue(m_factory_reset, json[QString("factoryReset")]);
     m_factory_reset_isSet = !json[QString("factoryReset")].isNull() && m_factory_reset_isValid;
 
-    m_transform_mode_isValid = ::OpenAPI::fromJsonValue(transform_mode, json[QString("transformMode")]);
+    m_transform_mode_isValid = ::OpenAPI::fromJsonValue(m_transform_mode, json[QString("transformMode")]);
     m_transform_mode_isSet = !json[QString("transformMode")].isNull() && m_transform_mode_isValid;
 
-    m_preview_anc_enable_isValid = ::OpenAPI::fromJsonValue(preview_anc_enable, json[QString("previewAncEnable")]);
+    m_preview_anc_enable_isValid = ::OpenAPI::fromJsonValue(m_preview_anc_enable, json[QString("previewAncEnable")]);
     m_preview_anc_enable_isSet = !json[QString("previewAncEnable")].isNull() && m_preview_anc_enable_isValid;
 
-    m_authentication_enable_isValid = ::OpenAPI::fromJsonValue(authentication_enable, json[QString("authenticationEnable")]);
+    m_authentication_enable_isValid = ::OpenAPI::fromJsonValue(m_authentication_enable, json[QString("authenticationEnable")]);
     m_authentication_enable_isSet = !json[QString("authenticationEnable")].isNull() && m_authentication_enable_isValid;
 
-    m_fan_speed_isValid = ::OpenAPI::fromJsonValue(fan_speed, json[QString("fanSpeed")]);
+    m_fan_speed_isValid = ::OpenAPI::fromJsonValue(m_fan_speed, json[QString("fanSpeed")]);
     m_fan_speed_isSet = !json[QString("fanSpeed")].isNull() && m_fan_speed_isValid;
 
     applyMinMaxConstraints();
@@ -130,50 +130,50 @@ QString OAISystemConfig::asJson() const {
 QJsonObject OAISystemConfig::asJsonObject() const {
     QJsonObject obj;
     if (m_host_name_isSet) {
-        obj.insert(QString("hostName"), ::OpenAPI::toJsonValue(host_name));
+        obj.insert(QString("hostName"), ::OpenAPI::toJsonValue(m_host_name));
     }
     if (m_system_organization_name_isSet) {
-        obj.insert(QString("systemOrganizationName"), ::OpenAPI::toJsonValue(system_organization_name));
+        obj.insert(QString("systemOrganizationName"), ::OpenAPI::toJsonValue(m_system_organization_name));
     }
     if (m_ssdp_enable_isSet) {
-        obj.insert(QString("ssdpEnable"), ::OpenAPI::toJsonValue(ssdp_enable));
+        obj.insert(QString("ssdpEnable"), ::OpenAPI::toJsonValue(m_ssdp_enable));
     }
     if (m_identify_isSet) {
-        obj.insert(QString("identify"), ::OpenAPI::toJsonValue(identify));
+        obj.insert(QString("identify"), ::OpenAPI::toJsonValue(m_identify));
     }
     if (m_update_request_isSet) {
-        obj.insert(QString("updateRequest"), ::OpenAPI::toJsonValue(update_request));
+        obj.insert(QString("updateRequest"), ::OpenAPI::toJsonValue(m_update_request));
     }
     if (m_reboot_isSet) {
-        obj.insert(QString("reboot"), ::OpenAPI::toJsonValue(reboot));
+        obj.insert(QString("reboot"), ::OpenAPI::toJsonValue(m_reboot));
     }
     if (m_factory_preset_isSet) {
-        obj.insert(QString("factoryPreset"), ::OpenAPI::toJsonValue(factory_preset));
+        obj.insert(QString("factoryPreset"), ::OpenAPI::toJsonValue(m_factory_preset));
     }
     if (m_factory_reset_isSet) {
-        obj.insert(QString("factoryReset"), ::OpenAPI::toJsonValue(factory_reset));
+        obj.insert(QString("factoryReset"), ::OpenAPI::toJsonValue(m_factory_reset));
     }
-    if (transform_mode.isSet()) {
-        obj.insert(QString("transformMode"), ::OpenAPI::toJsonValue(transform_mode));
+    if (m_transform_mode.isSet()) {
+        obj.insert(QString("transformMode"), ::OpenAPI::toJsonValue(m_transform_mode));
     }
     if (m_preview_anc_enable_isSet) {
-        obj.insert(QString("previewAncEnable"), ::OpenAPI::toJsonValue(preview_anc_enable));
+        obj.insert(QString("previewAncEnable"), ::OpenAPI::toJsonValue(m_preview_anc_enable));
     }
     if (m_authentication_enable_isSet) {
-        obj.insert(QString("authenticationEnable"), ::OpenAPI::toJsonValue(authentication_enable));
+        obj.insert(QString("authenticationEnable"), ::OpenAPI::toJsonValue(m_authentication_enable));
     }
     if (m_fan_speed_isSet) {
-        obj.insert(QString("fanSpeed"), ::OpenAPI::toJsonValue(fan_speed));
+        obj.insert(QString("fanSpeed"), ::OpenAPI::toJsonValue(m_fan_speed));
     }
     return obj;
 }
 
 QString OAISystemConfig::getHostName() const {
-    return host_name;
+    return m_host_name;
 }
 void OAISystemConfig::setHostName(const QString &host_name) {
 	QString v = host_name;
-	this->host_name = v;
+	this->m_host_name = v;
     this->m_host_name_isSet = true;
 }
 
@@ -188,11 +188,11 @@ bool OAISystemConfig::is_host_name_Valid() const{
 
 
 QString OAISystemConfig::getSystemOrganizationName() const {
-    return system_organization_name;
+    return m_system_organization_name;
 }
 void OAISystemConfig::setSystemOrganizationName(const QString &system_organization_name) {
 	QString v = system_organization_name;
-	this->system_organization_name = v;
+	this->m_system_organization_name = v;
     this->m_system_organization_name_isSet = true;
 }
 
@@ -207,11 +207,11 @@ bool OAISystemConfig::is_system_organization_name_Valid() const{
 
 
 bool OAISystemConfig::isSsdpEnable() const {
-    return ssdp_enable;
+    return m_ssdp_enable;
 }
 void OAISystemConfig::setSsdpEnable(const bool &ssdp_enable) {
 	bool v = ssdp_enable;
-	this->ssdp_enable = v;
+	this->m_ssdp_enable = v;
     this->m_ssdp_enable_isSet = true;
 }
 
@@ -225,11 +225,11 @@ bool OAISystemConfig::is_ssdp_enable_Valid() const{
 
 
 bool OAISystemConfig::isIdentify() const {
-    return identify;
+    return m_identify;
 }
 void OAISystemConfig::setIdentify(const bool &identify) {
 	bool v = identify;
-	this->identify = v;
+	this->m_identify = v;
     this->m_identify_isSet = true;
 }
 
@@ -243,11 +243,11 @@ bool OAISystemConfig::is_identify_Valid() const{
 
 
 bool OAISystemConfig::isUpdateRequest() const {
-    return update_request;
+    return m_update_request;
 }
 void OAISystemConfig::setUpdateRequest(const bool &update_request) {
 	bool v = update_request;
-	this->update_request = v;
+	this->m_update_request = v;
     this->m_update_request_isSet = true;
 }
 
@@ -261,11 +261,11 @@ bool OAISystemConfig::is_update_request_Valid() const{
 
 
 bool OAISystemConfig::isReboot() const {
-    return reboot;
+    return m_reboot;
 }
 void OAISystemConfig::setReboot(const bool &reboot) {
 	bool v = reboot;
-	this->reboot = v;
+	this->m_reboot = v;
     this->m_reboot_isSet = true;
 }
 
@@ -279,11 +279,11 @@ bool OAISystemConfig::is_reboot_Valid() const{
 
 
 bool OAISystemConfig::isFactoryPreset() const {
-    return factory_preset;
+    return m_factory_preset;
 }
 void OAISystemConfig::setFactoryPreset(const bool &factory_preset) {
 	bool v = factory_preset;
-	this->factory_preset = v;
+	this->m_factory_preset = v;
     this->m_factory_preset_isSet = true;
 }
 
@@ -297,11 +297,11 @@ bool OAISystemConfig::is_factory_preset_Valid() const{
 
 
 bool OAISystemConfig::isFactoryReset() const {
-    return factory_reset;
+    return m_factory_reset;
 }
 void OAISystemConfig::setFactoryReset(const bool &factory_reset) {
 	bool v = factory_reset;
-	this->factory_reset = v;
+	this->m_factory_reset = v;
     this->m_factory_reset_isSet = true;
 }
 
@@ -315,11 +315,11 @@ bool OAISystemConfig::is_factory_reset_Valid() const{
 
 
 OAITransformMode OAISystemConfig::getTransformMode() const {
-    return transform_mode;
+    return m_transform_mode;
 }
 void OAISystemConfig::setTransformMode(const OAITransformMode &transform_mode) {
 	OAITransformMode v = transform_mode;
-	this->transform_mode = v;
+	this->m_transform_mode = v;
     this->m_transform_mode_isSet = true;
 }
 
@@ -333,11 +333,11 @@ bool OAISystemConfig::is_transform_mode_Valid() const{
 
 
 bool OAISystemConfig::isPreviewAncEnable() const {
-    return preview_anc_enable;
+    return m_preview_anc_enable;
 }
 void OAISystemConfig::setPreviewAncEnable(const bool &preview_anc_enable) {
 	bool v = preview_anc_enable;
-	this->preview_anc_enable = v;
+	this->m_preview_anc_enable = v;
     this->m_preview_anc_enable_isSet = true;
 }
 
@@ -351,11 +351,11 @@ bool OAISystemConfig::is_preview_anc_enable_Valid() const{
 
 
 bool OAISystemConfig::isAuthenticationEnable() const {
-    return authentication_enable;
+    return m_authentication_enable;
 }
 void OAISystemConfig::setAuthenticationEnable(const bool &authentication_enable) {
 	bool v = authentication_enable;
-	this->authentication_enable = v;
+	this->m_authentication_enable = v;
     this->m_authentication_enable_isSet = true;
 }
 
@@ -369,7 +369,7 @@ bool OAISystemConfig::is_authentication_enable_Valid() const{
 
 
 double OAISystemConfig::getFanSpeed() const {
-    return fan_speed;
+    return m_fan_speed;
 }
 void OAISystemConfig::setFanSpeed(const double &fan_speed) {
 	double v = fan_speed;
@@ -377,7 +377,7 @@ void OAISystemConfig::setFanSpeed(const double &fan_speed) {
 	double max = fanSpeedMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->fan_speed = v;
+	this->m_fan_speed = v;
     this->m_fan_speed_isSet = true;
 }
 
@@ -440,7 +440,7 @@ bool OAISystemConfig::isSet() const {
             break;
         }
 
-        if (transform_mode.isSet()) {
+        if (m_transform_mode.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -469,18 +469,18 @@ bool OAISystemConfig::isValid() const {
 }
 
 bool OAISystemConfig::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_host_name_Set())
 	{
 		bool hostNameChanged = false;
 		QString v = getHostName();
-		if (hostNameChanged) { setHostName(v); valueChanged = true; }
+		if (hostNameChanged) { setHostName(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_system_organization_name_Set())
 	{
 		bool systemOrganizationNameChanged = false;
 		QString v = getSystemOrganizationName();
-		if (systemOrganizationNameChanged) { setSystemOrganizationName(v); valueChanged = true; }
+		if (systemOrganizationNameChanged) { setSystemOrganizationName(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_fan_speed_Set())
 	{
@@ -490,9 +490,9 @@ bool OAISystemConfig::applyMinMaxConstraints() {
 		double max = fanSpeedMax();
 		if (v < min) { v = min; fanSpeedChanged = true; }
 		if (v > max) { v = max; fanSpeedChanged = true; }
-		if (fanSpeedChanged) { setFanSpeed(v); valueChanged = true; }
+		if (fanSpeedChanged) { setFanSpeed(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

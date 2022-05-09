@@ -69,28 +69,28 @@ void OAISDI::fromJson(QString jsonString) {
 
 void OAISDI::fromJsonObject(QJsonObject json) {
 
-    m_color_space_isValid = ::OpenAPI::fromJsonValue(color_space, json[QString("colorSpace")]);
+    m_color_space_isValid = ::OpenAPI::fromJsonValue(m_color_space, json[QString("colorSpace")]);
     m_color_space_isSet = !json[QString("colorSpace")].isNull() && m_color_space_isValid;
 
-    m_rgb_range_isValid = ::OpenAPI::fromJsonValue(rgb_range, json[QString("rgbRange")]);
+    m_rgb_range_isValid = ::OpenAPI::fromJsonValue(m_rgb_range, json[QString("rgbRange")]);
     m_rgb_range_isSet = !json[QString("rgbRange")].isNull() && m_rgb_range_isValid;
 
-    m_bit_depth_isValid = ::OpenAPI::fromJsonValue(bit_depth, json[QString("bitDepth")]);
+    m_bit_depth_isValid = ::OpenAPI::fromJsonValue(m_bit_depth, json[QString("bitDepth")]);
     m_bit_depth_isSet = !json[QString("bitDepth")].isNull() && m_bit_depth_isValid;
 
-    m_scan_mode_isValid = ::OpenAPI::fromJsonValue(scan_mode, json[QString("scanMode")]);
+    m_scan_mode_isValid = ::OpenAPI::fromJsonValue(m_scan_mode, json[QString("scanMode")]);
     m_scan_mode_isSet = !json[QString("scanMode")].isNull() && m_scan_mode_isValid;
 
-    m_sdi_mode3g_isValid = ::OpenAPI::fromJsonValue(sdi_mode3g, json[QString("sdiMode3g")]);
+    m_sdi_mode3g_isValid = ::OpenAPI::fromJsonValue(m_sdi_mode3g, json[QString("sdiMode3g")]);
     m_sdi_mode3g_isSet = !json[QString("sdiMode3g")].isNull() && m_sdi_mode3g_isValid;
 
-    m_colorimetry_isValid = ::OpenAPI::fromJsonValue(colorimetry, json[QString("colorimetry")]);
+    m_colorimetry_isValid = ::OpenAPI::fromJsonValue(m_colorimetry, json[QString("colorimetry")]);
     m_colorimetry_isSet = !json[QString("colorimetry")].isNull() && m_colorimetry_isValid;
 
-    m_transfer_isValid = ::OpenAPI::fromJsonValue(transfer, json[QString("transfer")]);
+    m_transfer_isValid = ::OpenAPI::fromJsonValue(m_transfer, json[QString("transfer")]);
     m_transfer_isSet = !json[QString("transfer")].isNull() && m_transfer_isValid;
 
-    m_format_isValid = ::OpenAPI::fromJsonValue(format, json[QString("format")]);
+    m_format_isValid = ::OpenAPI::fromJsonValue(m_format, json[QString("format")]);
     m_format_isSet = !json[QString("format")].isNull() && m_format_isValid;
 
     applyMinMaxConstraints();
@@ -105,39 +105,39 @@ QString OAISDI::asJson() const {
 
 QJsonObject OAISDI::asJsonObject() const {
     QJsonObject obj;
-    if (color_space.isSet()) {
-        obj.insert(QString("colorSpace"), ::OpenAPI::toJsonValue(color_space));
+    if (m_color_space.isSet()) {
+        obj.insert(QString("colorSpace"), ::OpenAPI::toJsonValue(m_color_space));
     }
-    if (rgb_range.isSet()) {
-        obj.insert(QString("rgbRange"), ::OpenAPI::toJsonValue(rgb_range));
+    if (m_rgb_range.isSet()) {
+        obj.insert(QString("rgbRange"), ::OpenAPI::toJsonValue(m_rgb_range));
     }
-    if (bit_depth.isSet()) {
-        obj.insert(QString("bitDepth"), ::OpenAPI::toJsonValue(bit_depth));
+    if (m_bit_depth.isSet()) {
+        obj.insert(QString("bitDepth"), ::OpenAPI::toJsonValue(m_bit_depth));
     }
-    if (scan_mode.isSet()) {
-        obj.insert(QString("scanMode"), ::OpenAPI::toJsonValue(scan_mode));
+    if (m_scan_mode.isSet()) {
+        obj.insert(QString("scanMode"), ::OpenAPI::toJsonValue(m_scan_mode));
     }
-    if (sdi_mode3g.isSet()) {
-        obj.insert(QString("sdiMode3g"), ::OpenAPI::toJsonValue(sdi_mode3g));
+    if (m_sdi_mode3g.isSet()) {
+        obj.insert(QString("sdiMode3g"), ::OpenAPI::toJsonValue(m_sdi_mode3g));
     }
-    if (colorimetry.isSet()) {
-        obj.insert(QString("colorimetry"), ::OpenAPI::toJsonValue(colorimetry));
+    if (m_colorimetry.isSet()) {
+        obj.insert(QString("colorimetry"), ::OpenAPI::toJsonValue(m_colorimetry));
     }
-    if (transfer.isSet()) {
-        obj.insert(QString("transfer"), ::OpenAPI::toJsonValue(transfer));
+    if (m_transfer.isSet()) {
+        obj.insert(QString("transfer"), ::OpenAPI::toJsonValue(m_transfer));
     }
-    if (format.isSet()) {
-        obj.insert(QString("format"), ::OpenAPI::toJsonValue(format));
+    if (m_format.isSet()) {
+        obj.insert(QString("format"), ::OpenAPI::toJsonValue(m_format));
     }
     return obj;
 }
 
 OAIColorSpace OAISDI::getColorSpace() const {
-    return color_space;
+    return m_color_space;
 }
 void OAISDI::setColorSpace(const OAIColorSpace &color_space) {
 	OAIColorSpace v = color_space;
-	this->color_space = v;
+	this->m_color_space = v;
     this->m_color_space_isSet = true;
 }
 
@@ -151,11 +151,11 @@ bool OAISDI::is_color_space_Valid() const{
 
 
 OAIRgbRange OAISDI::getRgbRange() const {
-    return rgb_range;
+    return m_rgb_range;
 }
 void OAISDI::setRgbRange(const OAIRgbRange &rgb_range) {
 	OAIRgbRange v = rgb_range;
-	this->rgb_range = v;
+	this->m_rgb_range = v;
     this->m_rgb_range_isSet = true;
 }
 
@@ -169,11 +169,11 @@ bool OAISDI::is_rgb_range_Valid() const{
 
 
 OAIBitDepth OAISDI::getBitDepth() const {
-    return bit_depth;
+    return m_bit_depth;
 }
 void OAISDI::setBitDepth(const OAIBitDepth &bit_depth) {
 	OAIBitDepth v = bit_depth;
-	this->bit_depth = v;
+	this->m_bit_depth = v;
     this->m_bit_depth_isSet = true;
 }
 
@@ -187,11 +187,11 @@ bool OAISDI::is_bit_depth_Valid() const{
 
 
 OAIScanMode OAISDI::getScanMode() const {
-    return scan_mode;
+    return m_scan_mode;
 }
 void OAISDI::setScanMode(const OAIScanMode &scan_mode) {
 	OAIScanMode v = scan_mode;
-	this->scan_mode = v;
+	this->m_scan_mode = v;
     this->m_scan_mode_isSet = true;
 }
 
@@ -205,11 +205,11 @@ bool OAISDI::is_scan_mode_Valid() const{
 
 
 OAISdiMode3g OAISDI::getSdiMode3g() const {
-    return sdi_mode3g;
+    return m_sdi_mode3g;
 }
 void OAISDI::setSdiMode3g(const OAISdiMode3g &sdi_mode3g) {
 	OAISdiMode3g v = sdi_mode3g;
-	this->sdi_mode3g = v;
+	this->m_sdi_mode3g = v;
     this->m_sdi_mode3g_isSet = true;
 }
 
@@ -223,11 +223,11 @@ bool OAISDI::is_sdi_mode3g_Valid() const{
 
 
 OAIColorimetry OAISDI::getColorimetry() const {
-    return colorimetry;
+    return m_colorimetry;
 }
 void OAISDI::setColorimetry(const OAIColorimetry &colorimetry) {
 	OAIColorimetry v = colorimetry;
-	this->colorimetry = v;
+	this->m_colorimetry = v;
     this->m_colorimetry_isSet = true;
 }
 
@@ -241,11 +241,11 @@ bool OAISDI::is_colorimetry_Valid() const{
 
 
 OAITransfer OAISDI::getTransfer() const {
-    return transfer;
+    return m_transfer;
 }
 void OAISDI::setTransfer(const OAITransfer &transfer) {
 	OAITransfer v = transfer;
-	this->transfer = v;
+	this->m_transfer = v;
     this->m_transfer_isSet = true;
 }
 
@@ -259,11 +259,11 @@ bool OAISDI::is_transfer_Valid() const{
 
 
 OAIVideoFormat OAISDI::getFormat() const {
-    return format;
+    return m_format;
 }
 void OAISDI::setFormat(const OAIVideoFormat &format) {
 	OAIVideoFormat v = format;
-	this->format = v;
+	this->m_format = v;
     this->m_format_isSet = true;
 }
 
@@ -279,42 +279,42 @@ bool OAISDI::is_format_Valid() const{
 bool OAISDI::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (color_space.isSet()) {
+        if (m_color_space.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (rgb_range.isSet()) {
+        if (m_rgb_range.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (bit_depth.isSet()) {
+        if (m_bit_depth.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (scan_mode.isSet()) {
+        if (m_scan_mode.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (sdi_mode3g.isSet()) {
+        if (m_sdi_mode3g.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (colorimetry.isSet()) {
+        if (m_colorimetry.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (transfer.isSet()) {
+        if (m_transfer.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (format.isSet()) {
+        if (m_format.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -328,8 +328,8 @@ bool OAISDI::isValid() const {
 }
 
 bool OAISDI::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

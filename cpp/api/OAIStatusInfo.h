@@ -79,35 +79,35 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    double upper_bound_good;
+    double m_upper_bound_good;
     bool m_upper_bound_good_isSet;
     bool m_upper_bound_good_isValid;
 
-    double upper_bound_maybe;
+    double m_upper_bound_maybe;
     bool m_upper_bound_maybe_isSet;
     bool m_upper_bound_maybe_isValid;
 
-    QString value;
+    QString m_value;
     bool m_value_isSet;
     bool m_value_isValid;
 
-    QString label;
+    QString m_label;
     bool m_label_isSet;
     bool m_label_isValid;
 
-    QString extra_value;
+    QString m_extra_value;
     bool m_extra_value_isSet;
     bool m_extra_value_isValid;
 
-    QString extra_label;
+    QString m_extra_label;
     bool m_extra_label_isSet;
     bool m_extra_label_isValid;
 
-    OAIStatusState state;
+    OAIStatusState m_state;
     bool m_state_isSet;
     bool m_state_isValid;
 };

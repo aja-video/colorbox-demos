@@ -78,37 +78,37 @@ void OAIOverlay::fromJson(QString jsonString) {
 
 void OAIOverlay::fromJsonObject(QJsonObject json) {
 
-    m_enabled_isValid = ::OpenAPI::fromJsonValue(enabled, json[QString("enabled")]);
+    m_enabled_isValid = ::OpenAPI::fromJsonValue(m_enabled, json[QString("enabled")]);
     m_enabled_isSet = !json[QString("enabled")].isNull() && m_enabled_isValid;
 
-    m_vpid_format_isValid = ::OpenAPI::fromJsonValue(vpid_format, json[QString("vpidFormat")]);
+    m_vpid_format_isValid = ::OpenAPI::fromJsonValue(m_vpid_format, json[QString("vpidFormat")]);
     m_vpid_format_isSet = !json[QString("vpidFormat")].isNull() && m_vpid_format_isValid;
 
-    m_vpid_range_isValid = ::OpenAPI::fromJsonValue(vpid_range, json[QString("vpidRange")]);
+    m_vpid_range_isValid = ::OpenAPI::fromJsonValue(m_vpid_range, json[QString("vpidRange")]);
     m_vpid_range_isSet = !json[QString("vpidRange")].isNull() && m_vpid_range_isValid;
 
-    m_vpid_hdr_isValid = ::OpenAPI::fromJsonValue(vpid_hdr, json[QString("vpidHdr")]);
+    m_vpid_hdr_isValid = ::OpenAPI::fromJsonValue(m_vpid_hdr, json[QString("vpidHdr")]);
     m_vpid_hdr_isSet = !json[QString("vpidHdr")].isNull() && m_vpid_hdr_isValid;
 
-    m_vpid_bit_depth_isValid = ::OpenAPI::fromJsonValue(vpid_bit_depth, json[QString("vpidBitDepth")]);
+    m_vpid_bit_depth_isValid = ::OpenAPI::fromJsonValue(m_vpid_bit_depth, json[QString("vpidBitDepth")]);
     m_vpid_bit_depth_isSet = !json[QString("vpidBitDepth")].isNull() && m_vpid_bit_depth_isValid;
 
-    m_time_code_isValid = ::OpenAPI::fromJsonValue(time_code, json[QString("timeCode")]);
+    m_time_code_isValid = ::OpenAPI::fromJsonValue(m_time_code, json[QString("timeCode")]);
     m_time_code_isSet = !json[QString("timeCode")].isNull() && m_time_code_isValid;
 
-    m_closed_caption_isValid = ::OpenAPI::fromJsonValue(closed_caption, json[QString("closedCaption")]);
+    m_closed_caption_isValid = ::OpenAPI::fromJsonValue(m_closed_caption, json[QString("closedCaption")]);
     m_closed_caption_isSet = !json[QString("closedCaption")].isNull() && m_closed_caption_isValid;
 
-    m_user_text_enabled_isValid = ::OpenAPI::fromJsonValue(user_text_enabled, json[QString("userTextEnabled")]);
+    m_user_text_enabled_isValid = ::OpenAPI::fromJsonValue(m_user_text_enabled, json[QString("userTextEnabled")]);
     m_user_text_enabled_isSet = !json[QString("userTextEnabled")].isNull() && m_user_text_enabled_isValid;
 
-    m_user_text_line1_isValid = ::OpenAPI::fromJsonValue(user_text_line1, json[QString("userTextLine1")]);
+    m_user_text_line1_isValid = ::OpenAPI::fromJsonValue(m_user_text_line1, json[QString("userTextLine1")]);
     m_user_text_line1_isSet = !json[QString("userTextLine1")].isNull() && m_user_text_line1_isValid;
 
-    m_user_text_line2_isValid = ::OpenAPI::fromJsonValue(user_text_line2, json[QString("userTextLine2")]);
+    m_user_text_line2_isValid = ::OpenAPI::fromJsonValue(m_user_text_line2, json[QString("userTextLine2")]);
     m_user_text_line2_isSet = !json[QString("userTextLine2")].isNull() && m_user_text_line2_isValid;
 
-    m_location_isValid = ::OpenAPI::fromJsonValue(location, json[QString("location")]);
+    m_location_isValid = ::OpenAPI::fromJsonValue(m_location, json[QString("location")]);
     m_location_isSet = !json[QString("location")].isNull() && m_location_isValid;
 
     applyMinMaxConstraints();
@@ -124,47 +124,47 @@ QString OAIOverlay::asJson() const {
 QJsonObject OAIOverlay::asJsonObject() const {
     QJsonObject obj;
     if (m_enabled_isSet) {
-        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(enabled));
+        obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(m_enabled));
     }
     if (m_vpid_format_isSet) {
-        obj.insert(QString("vpidFormat"), ::OpenAPI::toJsonValue(vpid_format));
+        obj.insert(QString("vpidFormat"), ::OpenAPI::toJsonValue(m_vpid_format));
     }
     if (m_vpid_range_isSet) {
-        obj.insert(QString("vpidRange"), ::OpenAPI::toJsonValue(vpid_range));
+        obj.insert(QString("vpidRange"), ::OpenAPI::toJsonValue(m_vpid_range));
     }
     if (m_vpid_hdr_isSet) {
-        obj.insert(QString("vpidHdr"), ::OpenAPI::toJsonValue(vpid_hdr));
+        obj.insert(QString("vpidHdr"), ::OpenAPI::toJsonValue(m_vpid_hdr));
     }
     if (m_vpid_bit_depth_isSet) {
-        obj.insert(QString("vpidBitDepth"), ::OpenAPI::toJsonValue(vpid_bit_depth));
+        obj.insert(QString("vpidBitDepth"), ::OpenAPI::toJsonValue(m_vpid_bit_depth));
     }
     if (m_time_code_isSet) {
-        obj.insert(QString("timeCode"), ::OpenAPI::toJsonValue(time_code));
+        obj.insert(QString("timeCode"), ::OpenAPI::toJsonValue(m_time_code));
     }
     if (m_closed_caption_isSet) {
-        obj.insert(QString("closedCaption"), ::OpenAPI::toJsonValue(closed_caption));
+        obj.insert(QString("closedCaption"), ::OpenAPI::toJsonValue(m_closed_caption));
     }
     if (m_user_text_enabled_isSet) {
-        obj.insert(QString("userTextEnabled"), ::OpenAPI::toJsonValue(user_text_enabled));
+        obj.insert(QString("userTextEnabled"), ::OpenAPI::toJsonValue(m_user_text_enabled));
     }
     if (m_user_text_line1_isSet) {
-        obj.insert(QString("userTextLine1"), ::OpenAPI::toJsonValue(user_text_line1));
+        obj.insert(QString("userTextLine1"), ::OpenAPI::toJsonValue(m_user_text_line1));
     }
     if (m_user_text_line2_isSet) {
-        obj.insert(QString("userTextLine2"), ::OpenAPI::toJsonValue(user_text_line2));
+        obj.insert(QString("userTextLine2"), ::OpenAPI::toJsonValue(m_user_text_line2));
     }
-    if (location.isSet()) {
-        obj.insert(QString("location"), ::OpenAPI::toJsonValue(location));
+    if (m_location.isSet()) {
+        obj.insert(QString("location"), ::OpenAPI::toJsonValue(m_location));
     }
     return obj;
 }
 
 bool OAIOverlay::isEnabled() const {
-    return enabled;
+    return m_enabled;
 }
 void OAIOverlay::setEnabled(const bool &enabled) {
 	bool v = enabled;
-	this->enabled = v;
+	this->m_enabled = v;
     this->m_enabled_isSet = true;
 }
 
@@ -178,11 +178,11 @@ bool OAIOverlay::is_enabled_Valid() const{
 
 
 bool OAIOverlay::isVpidFormat() const {
-    return vpid_format;
+    return m_vpid_format;
 }
 void OAIOverlay::setVpidFormat(const bool &vpid_format) {
 	bool v = vpid_format;
-	this->vpid_format = v;
+	this->m_vpid_format = v;
     this->m_vpid_format_isSet = true;
 }
 
@@ -196,11 +196,11 @@ bool OAIOverlay::is_vpid_format_Valid() const{
 
 
 bool OAIOverlay::isVpidRange() const {
-    return vpid_range;
+    return m_vpid_range;
 }
 void OAIOverlay::setVpidRange(const bool &vpid_range) {
 	bool v = vpid_range;
-	this->vpid_range = v;
+	this->m_vpid_range = v;
     this->m_vpid_range_isSet = true;
 }
 
@@ -214,11 +214,11 @@ bool OAIOverlay::is_vpid_range_Valid() const{
 
 
 bool OAIOverlay::isVpidHdr() const {
-    return vpid_hdr;
+    return m_vpid_hdr;
 }
 void OAIOverlay::setVpidHdr(const bool &vpid_hdr) {
 	bool v = vpid_hdr;
-	this->vpid_hdr = v;
+	this->m_vpid_hdr = v;
     this->m_vpid_hdr_isSet = true;
 }
 
@@ -232,11 +232,11 @@ bool OAIOverlay::is_vpid_hdr_Valid() const{
 
 
 bool OAIOverlay::isVpidBitDepth() const {
-    return vpid_bit_depth;
+    return m_vpid_bit_depth;
 }
 void OAIOverlay::setVpidBitDepth(const bool &vpid_bit_depth) {
 	bool v = vpid_bit_depth;
-	this->vpid_bit_depth = v;
+	this->m_vpid_bit_depth = v;
     this->m_vpid_bit_depth_isSet = true;
 }
 
@@ -250,11 +250,11 @@ bool OAIOverlay::is_vpid_bit_depth_Valid() const{
 
 
 bool OAIOverlay::isTimeCode() const {
-    return time_code;
+    return m_time_code;
 }
 void OAIOverlay::setTimeCode(const bool &time_code) {
 	bool v = time_code;
-	this->time_code = v;
+	this->m_time_code = v;
     this->m_time_code_isSet = true;
 }
 
@@ -268,11 +268,11 @@ bool OAIOverlay::is_time_code_Valid() const{
 
 
 bool OAIOverlay::isClosedCaption() const {
-    return closed_caption;
+    return m_closed_caption;
 }
 void OAIOverlay::setClosedCaption(const bool &closed_caption) {
 	bool v = closed_caption;
-	this->closed_caption = v;
+	this->m_closed_caption = v;
     this->m_closed_caption_isSet = true;
 }
 
@@ -286,11 +286,11 @@ bool OAIOverlay::is_closed_caption_Valid() const{
 
 
 bool OAIOverlay::isUserTextEnabled() const {
-    return user_text_enabled;
+    return m_user_text_enabled;
 }
 void OAIOverlay::setUserTextEnabled(const bool &user_text_enabled) {
 	bool v = user_text_enabled;
-	this->user_text_enabled = v;
+	this->m_user_text_enabled = v;
     this->m_user_text_enabled_isSet = true;
 }
 
@@ -304,7 +304,7 @@ bool OAIOverlay::is_user_text_enabled_Valid() const{
 
 
 QString OAIOverlay::getUserTextLine1() const {
-    return user_text_line1;
+    return m_user_text_line1;
 }
 void OAIOverlay::setUserTextLine1(const QString &user_text_line1) {
 	QString v = user_text_line1;
@@ -312,7 +312,7 @@ void OAIOverlay::setUserTextLine1(const QString &user_text_line1) {
 	int max = userTextLine1Max();
 	if (v.length() < min) { v.resize(min); }
 	if (v.length() > max) { v.resize(max); }
-	this->user_text_line1 = v;
+	this->m_user_text_line1 = v;
     this->m_user_text_line1_isSet = true;
 }
 
@@ -333,7 +333,7 @@ int OAIOverlay::userTextLine1Max() const {
 }
 
 QString OAIOverlay::getUserTextLine2() const {
-    return user_text_line2;
+    return m_user_text_line2;
 }
 void OAIOverlay::setUserTextLine2(const QString &user_text_line2) {
 	QString v = user_text_line2;
@@ -341,7 +341,7 @@ void OAIOverlay::setUserTextLine2(const QString &user_text_line2) {
 	int max = userTextLine2Max();
 	if (v.length() < min) { v.resize(min); }
 	if (v.length() > max) { v.resize(max); }
-	this->user_text_line2 = v;
+	this->m_user_text_line2 = v;
     this->m_user_text_line2_isSet = true;
 }
 
@@ -362,11 +362,11 @@ int OAIOverlay::userTextLine2Max() const {
 }
 
 OAILocations OAIOverlay::getLocation() const {
-    return location;
+    return m_location;
 }
 void OAIOverlay::setLocation(const OAILocations &location) {
 	OAILocations v = location;
-	this->location = v;
+	this->m_location = v;
     this->m_location_isSet = true;
 }
 
@@ -432,7 +432,7 @@ bool OAIOverlay::isSet() const {
             break;
         }
 
-        if (location.isSet()) {
+        if (m_location.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -446,7 +446,7 @@ bool OAIOverlay::isValid() const {
 }
 
 bool OAIOverlay::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_user_text_line1_Set())
 	{
 		bool userTextLine1Changed = false;
@@ -455,7 +455,7 @@ bool OAIOverlay::applyMinMaxConstraints() {
 		int max = userTextLine1Max();
 		if (v.length() < min) { v.resize(min); userTextLine1Changed = true; }
 		if (v.length() > max) { v.resize(max); userTextLine1Changed = true; }
-		if (userTextLine1Changed) { setUserTextLine1(v); valueChanged = true; }
+		if (userTextLine1Changed) { setUserTextLine1(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_user_text_line2_Set())
 	{
@@ -465,9 +465,9 @@ bool OAIOverlay::applyMinMaxConstraints() {
 		int max = userTextLine2Max();
 		if (v.length() < min) { v.resize(min); userTextLine2Changed = true; }
 		if (v.length() > max) { v.resize(max); userTextLine2Changed = true; }
-		if (userTextLine2Changed) { setUserTextLine2(v); valueChanged = true; }
+		if (userTextLine2Changed) { setUserTextLine2(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

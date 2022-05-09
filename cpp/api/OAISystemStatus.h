@@ -69,27 +69,27 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QString safeboot_version;
+    QString m_safeboot_version;
     bool m_safeboot_version_isSet;
     bool m_safeboot_version_isValid;
 
-    QString mainboot_version;
+    QString m_mainboot_version;
     bool m_mainboot_version_isSet;
     bool m_mainboot_version_isValid;
 
-    QString running_version;
+    QString m_running_version;
     bool m_running_version_isSet;
     bool m_running_version_isValid;
 
-    bool safeboot;
+    bool m_safeboot;
     bool m_safeboot_isSet;
     bool m_safeboot_isValid;
 
-    QList<QString> update_msg;
+    QList<QString> m_update_msg;
     bool m_update_msg_isSet;
     bool m_update_msg_isValid;
 };

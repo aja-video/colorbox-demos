@@ -58,19 +58,19 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    bool enabled;
+    bool m_enabled;
     bool m_enabled_isSet;
     bool m_enabled_isValid;
 
-    OAIColorfrontColorspace in_colorspace;
+    OAIColorfrontColorspace m_in_colorspace;
     bool m_in_colorspace_isSet;
     bool m_in_colorspace_isValid;
 
-    OAIColorfrontColorspace out_colorspace;
+    OAIColorfrontColorspace m_out_colorspace;
     bool m_out_colorspace_isSet;
     bool m_out_colorspace_isValid;
 };

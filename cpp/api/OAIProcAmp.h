@@ -91,39 +91,39 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    double black;
+    double m_black;
     bool m_black_isSet;
     bool m_black_isValid;
 
-    double gain;
+    double m_gain;
     bool m_gain_isSet;
     bool m_gain_isValid;
 
-    double hue;
+    double m_hue;
     bool m_hue_isSet;
     bool m_hue_isValid;
 
-    double sat;
+    double m_sat;
     bool m_sat_isSet;
     bool m_sat_isValid;
 
-    QString units_black;
+    QString m_units_black;
     bool m_units_black_isSet;
     bool m_units_black_isValid;
 
-    QString units_gain;
+    QString m_units_gain;
     bool m_units_gain_isSet;
     bool m_units_gain_isValid;
 
-    QString units_hue;
+    QString m_units_hue;
     bool m_units_hue_isSet;
     bool m_units_hue_isValid;
 
-    QString units_sat;
+    QString m_units_sat;
     bool m_units_sat_isSet;
     bool m_units_sat_isValid;
 };

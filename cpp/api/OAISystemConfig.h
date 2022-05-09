@@ -106,55 +106,55 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QString host_name;
+    QString m_host_name;
     bool m_host_name_isSet;
     bool m_host_name_isValid;
 
-    QString system_organization_name;
+    QString m_system_organization_name;
     bool m_system_organization_name_isSet;
     bool m_system_organization_name_isValid;
 
-    bool ssdp_enable;
+    bool m_ssdp_enable;
     bool m_ssdp_enable_isSet;
     bool m_ssdp_enable_isValid;
 
-    bool identify;
+    bool m_identify;
     bool m_identify_isSet;
     bool m_identify_isValid;
 
-    bool update_request;
+    bool m_update_request;
     bool m_update_request_isSet;
     bool m_update_request_isValid;
 
-    bool reboot;
+    bool m_reboot;
     bool m_reboot_isSet;
     bool m_reboot_isValid;
 
-    bool factory_preset;
+    bool m_factory_preset;
     bool m_factory_preset_isSet;
     bool m_factory_preset_isValid;
 
-    bool factory_reset;
+    bool m_factory_reset;
     bool m_factory_reset_isSet;
     bool m_factory_reset_isValid;
 
-    OAITransformMode transform_mode;
+    OAITransformMode m_transform_mode;
     bool m_transform_mode_isSet;
     bool m_transform_mode_isValid;
 
-    bool preview_anc_enable;
+    bool m_preview_anc_enable;
     bool m_preview_anc_enable_isSet;
     bool m_preview_anc_enable_isValid;
 
-    bool authentication_enable;
+    bool m_authentication_enable;
     bool m_authentication_enable_isSet;
     bool m_authentication_enable_isValid;
 
-    double fan_speed;
+    double m_fan_speed;
     bool m_fan_speed_isSet;
     bool m_fan_speed_isValid;
 };

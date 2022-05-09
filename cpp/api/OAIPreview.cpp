@@ -60,19 +60,19 @@ void OAIPreview::fromJson(QString jsonString) {
 
 void OAIPreview::fromJsonObject(QJsonObject json) {
 
-    m_image_isValid = ::OpenAPI::fromJsonValue(image, json[QString("image")]);
+    m_image_isValid = ::OpenAPI::fromJsonValue(m_image, json[QString("image")]);
     m_image_isSet = !json[QString("image")].isNull() && m_image_isValid;
 
-    m_image_type_isValid = ::OpenAPI::fromJsonValue(image_type, json[QString("imageType")]);
+    m_image_type_isValid = ::OpenAPI::fromJsonValue(m_image_type, json[QString("imageType")]);
     m_image_type_isSet = !json[QString("imageType")].isNull() && m_image_type_isValid;
 
-    m_anc_data_isValid = ::OpenAPI::fromJsonValue(anc_data, json[QString("ancData")]);
+    m_anc_data_isValid = ::OpenAPI::fromJsonValue(m_anc_data, json[QString("ancData")]);
     m_anc_data_isSet = !json[QString("ancData")].isNull() && m_anc_data_isValid;
 
-    m_user_data1_isValid = ::OpenAPI::fromJsonValue(user_data1, json[QString("userData1")]);
+    m_user_data1_isValid = ::OpenAPI::fromJsonValue(m_user_data1, json[QString("userData1")]);
     m_user_data1_isSet = !json[QString("userData1")].isNull() && m_user_data1_isValid;
 
-    m_user_data2_isValid = ::OpenAPI::fromJsonValue(user_data2, json[QString("userData2")]);
+    m_user_data2_isValid = ::OpenAPI::fromJsonValue(m_user_data2, json[QString("userData2")]);
     m_user_data2_isSet = !json[QString("userData2")].isNull() && m_user_data2_isValid;
 
     applyMinMaxConstraints();
@@ -88,29 +88,29 @@ QString OAIPreview::asJson() const {
 QJsonObject OAIPreview::asJsonObject() const {
     QJsonObject obj;
     if (m_image_isSet) {
-        obj.insert(QString("image"), ::OpenAPI::toJsonValue(image));
+        obj.insert(QString("image"), ::OpenAPI::toJsonValue(m_image));
     }
     if (m_image_type_isSet) {
-        obj.insert(QString("imageType"), ::OpenAPI::toJsonValue(image_type));
+        obj.insert(QString("imageType"), ::OpenAPI::toJsonValue(m_image_type));
     }
     if (m_anc_data_isSet) {
-        obj.insert(QString("ancData"), ::OpenAPI::toJsonValue(anc_data));
+        obj.insert(QString("ancData"), ::OpenAPI::toJsonValue(m_anc_data));
     }
     if (m_user_data1_isSet) {
-        obj.insert(QString("userData1"), ::OpenAPI::toJsonValue(user_data1));
+        obj.insert(QString("userData1"), ::OpenAPI::toJsonValue(m_user_data1));
     }
     if (m_user_data2_isSet) {
-        obj.insert(QString("userData2"), ::OpenAPI::toJsonValue(user_data2));
+        obj.insert(QString("userData2"), ::OpenAPI::toJsonValue(m_user_data2));
     }
     return obj;
 }
 
 QByteArray OAIPreview::getImage() const {
-    return image;
+    return m_image;
 }
 void OAIPreview::setImage(const QByteArray &image) {
 	QByteArray v = image;
-	this->image = v;
+	this->m_image = v;
     this->m_image_isSet = true;
 }
 
@@ -124,11 +124,11 @@ bool OAIPreview::is_image_Valid() const{
 
 
 QString OAIPreview::getImageType() const {
-    return image_type;
+    return m_image_type;
 }
 void OAIPreview::setImageType(const QString &image_type) {
 	QString v = image_type;
-	this->image_type = v;
+	this->m_image_type = v;
     this->m_image_type_isSet = true;
 }
 
@@ -143,11 +143,11 @@ bool OAIPreview::is_image_type_Valid() const{
 
 
 QByteArray OAIPreview::getAncData() const {
-    return anc_data;
+    return m_anc_data;
 }
 void OAIPreview::setAncData(const QByteArray &anc_data) {
 	QByteArray v = anc_data;
-	this->anc_data = v;
+	this->m_anc_data = v;
     this->m_anc_data_isSet = true;
 }
 
@@ -161,11 +161,11 @@ bool OAIPreview::is_anc_data_Valid() const{
 
 
 QString OAIPreview::getUserData1() const {
-    return user_data1;
+    return m_user_data1;
 }
 void OAIPreview::setUserData1(const QString &user_data1) {
 	QString v = user_data1;
-	this->user_data1 = v;
+	this->m_user_data1 = v;
     this->m_user_data1_isSet = true;
 }
 
@@ -180,11 +180,11 @@ bool OAIPreview::is_user_data1_Valid() const{
 
 
 QString OAIPreview::getUserData2() const {
-    return user_data2;
+    return m_user_data2;
 }
 void OAIPreview::setUserData2(const QString &user_data2) {
 	QString v = user_data2;
-	this->user_data2 = v;
+	this->m_user_data2 = v;
     this->m_user_data2_isSet = true;
 }
 
@@ -235,26 +235,26 @@ bool OAIPreview::isValid() const {
 }
 
 bool OAIPreview::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_image_type_Set())
 	{
 		bool imageTypeChanged = false;
 		QString v = getImageType();
-		if (imageTypeChanged) { setImageType(v); valueChanged = true; }
+		if (imageTypeChanged) { setImageType(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_user_data1_Set())
 	{
 		bool userData1Changed = false;
 		QString v = getUserData1();
-		if (userData1Changed) { setUserData1(v); valueChanged = true; }
+		if (userData1Changed) { setUserData1(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_user_data2_Set())
 	{
 		bool userData2Changed = false;
 		QString v = getUserData2();
-		if (userData2Changed) { setUserData2(v); valueChanged = true; }
+		if (userData2Changed) { setUserData2(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

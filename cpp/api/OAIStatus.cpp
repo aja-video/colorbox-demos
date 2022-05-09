@@ -108,67 +108,67 @@ void OAIStatus::fromJson(QString jsonString) {
 
 void OAIStatus::fromJsonObject(QJsonObject json) {
 
-    m_device_die_temp_isValid = ::OpenAPI::fromJsonValue(device_die_temp, json[QString("deviceDieTemp")]);
+    m_device_die_temp_isValid = ::OpenAPI::fromJsonValue(m_device_die_temp, json[QString("deviceDieTemp")]);
     m_device_die_temp_isSet = !json[QString("deviceDieTemp")].isNull() && m_device_die_temp_isValid;
 
-    m_system_date_isValid = ::OpenAPI::fromJsonValue(system_date, json[QString("systemDate")]);
+    m_system_date_isValid = ::OpenAPI::fromJsonValue(m_system_date, json[QString("systemDate")]);
     m_system_date_isSet = !json[QString("systemDate")].isNull() && m_system_date_isValid;
 
-    m_system_time_isValid = ::OpenAPI::fromJsonValue(system_time, json[QString("systemTime")]);
+    m_system_time_isValid = ::OpenAPI::fromJsonValue(m_system_time, json[QString("systemTime")]);
     m_system_time_isSet = !json[QString("systemTime")].isNull() && m_system_time_isValid;
 
-    m_system_uptime_isValid = ::OpenAPI::fromJsonValue(system_uptime, json[QString("systemUptime")]);
+    m_system_uptime_isValid = ::OpenAPI::fromJsonValue(m_system_uptime, json[QString("systemUptime")]);
     m_system_uptime_isSet = !json[QString("systemUptime")].isNull() && m_system_uptime_isValid;
 
-    m_system_os_name_isValid = ::OpenAPI::fromJsonValue(system_os_name, json[QString("systemOsName")]);
+    m_system_os_name_isValid = ::OpenAPI::fromJsonValue(m_system_os_name, json[QString("systemOsName")]);
     m_system_os_name_isSet = !json[QString("systemOsName")].isNull() && m_system_os_name_isValid;
 
-    m_system_serial_number_isValid = ::OpenAPI::fromJsonValue(system_serial_number, json[QString("systemSerialNumber")]);
+    m_system_serial_number_isValid = ::OpenAPI::fromJsonValue(m_system_serial_number, json[QString("systemSerialNumber")]);
     m_system_serial_number_isSet = !json[QString("systemSerialNumber")].isNull() && m_system_serial_number_isValid;
 
-    m_system_catalog_number_isValid = ::OpenAPI::fromJsonValue(system_catalog_number, json[QString("systemCatalogNumber")]);
+    m_system_catalog_number_isValid = ::OpenAPI::fromJsonValue(m_system_catalog_number, json[QString("systemCatalogNumber")]);
     m_system_catalog_number_isSet = !json[QString("systemCatalogNumber")].isNull() && m_system_catalog_number_isValid;
 
-    m_system_app_sw_version_isValid = ::OpenAPI::fromJsonValue(system_app_sw_version, json[QString("systemAppSwVersion")]);
+    m_system_app_sw_version_isValid = ::OpenAPI::fromJsonValue(m_system_app_sw_version, json[QString("systemAppSwVersion")]);
     m_system_app_sw_version_isSet = !json[QString("systemAppSwVersion")].isNull() && m_system_app_sw_version_isValid;
 
-    m_system_support_info_isValid = ::OpenAPI::fromJsonValue(system_support_info, json[QString("systemSupportInfo")]);
+    m_system_support_info_isValid = ::OpenAPI::fromJsonValue(m_system_support_info, json[QString("systemSupportInfo")]);
     m_system_support_info_isSet = !json[QString("systemSupportInfo")].isNull() && m_system_support_info_isValid;
 
-    m_eula_accepted_isValid = ::OpenAPI::fromJsonValue(eula_accepted, json[QString("eulaAccepted")]);
+    m_eula_accepted_isValid = ::OpenAPI::fromJsonValue(m_eula_accepted, json[QString("eulaAccepted")]);
     m_eula_accepted_isSet = !json[QString("eulaAccepted")].isNull() && m_eula_accepted_isValid;
 
-    m_license_active_isValid = ::OpenAPI::fromJsonValue(license_active, json[QString("licenseActive")]);
+    m_license_active_isValid = ::OpenAPI::fromJsonValue(m_license_active, json[QString("licenseActive")]);
     m_license_active_isSet = !json[QString("licenseActive")].isNull() && m_license_active_isValid;
 
-    m_bbc_luts_licensed_isValid = ::OpenAPI::fromJsonValue(bbc_luts_licensed, json[QString("bbcLutsLicensed")]);
+    m_bbc_luts_licensed_isValid = ::OpenAPI::fromJsonValue(m_bbc_luts_licensed, json[QString("bbcLutsLicensed")]);
     m_bbc_luts_licensed_isSet = !json[QString("bbcLutsLicensed")].isNull() && m_bbc_luts_licensed_isValid;
 
-    m_orion_engine_licensed_isValid = ::OpenAPI::fromJsonValue(orion_engine_licensed, json[QString("orionEngineLicensed")]);
+    m_orion_engine_licensed_isValid = ::OpenAPI::fromJsonValue(m_orion_engine_licensed, json[QString("orionEngineLicensed")]);
     m_orion_engine_licensed_isSet = !json[QString("orionEngineLicensed")].isNull() && m_orion_engine_licensed_isValid;
 
-    m_colorfront_engine_licensed_isValid = ::OpenAPI::fromJsonValue(colorfront_engine_licensed, json[QString("colorfrontEngineLicensed")]);
+    m_colorfront_engine_licensed_isValid = ::OpenAPI::fromJsonValue(m_colorfront_engine_licensed, json[QString("colorfrontEngineLicensed")]);
     m_colorfront_engine_licensed_isSet = !json[QString("colorfrontEngineLicensed")].isNull() && m_colorfront_engine_licensed_isValid;
 
-    m_shutdown_time_isValid = ::OpenAPI::fromJsonValue(shutdown_time, json[QString("shutdownTime")]);
+    m_shutdown_time_isValid = ::OpenAPI::fromJsonValue(m_shutdown_time, json[QString("shutdownTime")]);
     m_shutdown_time_isSet = !json[QString("shutdownTime")].isNull() && m_shutdown_time_isValid;
 
-    m_colorfront_transform_version_isValid = ::OpenAPI::fromJsonValue(colorfront_transform_version, json[QString("colorfrontTransformVersion")]);
+    m_colorfront_transform_version_isValid = ::OpenAPI::fromJsonValue(m_colorfront_transform_version, json[QString("colorfrontTransformVersion")]);
     m_colorfront_transform_version_isSet = !json[QString("colorfrontTransformVersion")].isNull() && m_colorfront_transform_version_isValid;
 
-    m_colorfront_engine_version_isValid = ::OpenAPI::fromJsonValue(colorfront_engine_version, json[QString("colorfrontEngineVersion")]);
+    m_colorfront_engine_version_isValid = ::OpenAPI::fromJsonValue(m_colorfront_engine_version, json[QString("colorfrontEngineVersion")]);
     m_colorfront_engine_version_isSet = !json[QString("colorfrontEngineVersion")].isNull() && m_colorfront_engine_version_isValid;
 
-    m_orion_version_isValid = ::OpenAPI::fromJsonValue(orion_version, json[QString("orionVersion")]);
+    m_orion_version_isValid = ::OpenAPI::fromJsonValue(m_orion_version, json[QString("orionVersion")]);
     m_orion_version_isSet = !json[QString("orionVersion")].isNull() && m_orion_version_isValid;
 
-    m_bbc_lut_version_isValid = ::OpenAPI::fromJsonValue(bbc_lut_version, json[QString("bbcLutVersion")]);
+    m_bbc_lut_version_isValid = ::OpenAPI::fromJsonValue(m_bbc_lut_version, json[QString("bbcLutVersion")]);
     m_bbc_lut_version_isSet = !json[QString("bbcLutVersion")].isNull() && m_bbc_lut_version_isValid;
 
-    m_nbcu_lut_version_isValid = ::OpenAPI::fromJsonValue(nbcu_lut_version, json[QString("nbcuLutVersion")]);
+    m_nbcu_lut_version_isValid = ::OpenAPI::fromJsonValue(m_nbcu_lut_version, json[QString("nbcuLutVersion")]);
     m_nbcu_lut_version_isSet = !json[QString("nbcuLutVersion")].isNull() && m_nbcu_lut_version_isValid;
 
-    m_cpu_busy_isValid = ::OpenAPI::fromJsonValue(cpu_busy, json[QString("cpuBusy")]);
+    m_cpu_busy_isValid = ::OpenAPI::fromJsonValue(m_cpu_busy, json[QString("cpuBusy")]);
     m_cpu_busy_isSet = !json[QString("cpuBusy")].isNull() && m_cpu_busy_isValid;
 
     applyMinMaxConstraints();
@@ -183,78 +183,78 @@ QString OAIStatus::asJson() const {
 
 QJsonObject OAIStatus::asJsonObject() const {
     QJsonObject obj;
-    if (device_die_temp.isSet()) {
-        obj.insert(QString("deviceDieTemp"), ::OpenAPI::toJsonValue(device_die_temp));
+    if (m_device_die_temp.isSet()) {
+        obj.insert(QString("deviceDieTemp"), ::OpenAPI::toJsonValue(m_device_die_temp));
     }
     if (m_system_date_isSet) {
-        obj.insert(QString("systemDate"), ::OpenAPI::toJsonValue(system_date));
+        obj.insert(QString("systemDate"), ::OpenAPI::toJsonValue(m_system_date));
     }
     if (m_system_time_isSet) {
-        obj.insert(QString("systemTime"), ::OpenAPI::toJsonValue(system_time));
+        obj.insert(QString("systemTime"), ::OpenAPI::toJsonValue(m_system_time));
     }
     if (m_system_uptime_isSet) {
-        obj.insert(QString("systemUptime"), ::OpenAPI::toJsonValue(system_uptime));
+        obj.insert(QString("systemUptime"), ::OpenAPI::toJsonValue(m_system_uptime));
     }
     if (m_system_os_name_isSet) {
-        obj.insert(QString("systemOsName"), ::OpenAPI::toJsonValue(system_os_name));
+        obj.insert(QString("systemOsName"), ::OpenAPI::toJsonValue(m_system_os_name));
     }
     if (m_system_serial_number_isSet) {
-        obj.insert(QString("systemSerialNumber"), ::OpenAPI::toJsonValue(system_serial_number));
+        obj.insert(QString("systemSerialNumber"), ::OpenAPI::toJsonValue(m_system_serial_number));
     }
     if (m_system_catalog_number_isSet) {
-        obj.insert(QString("systemCatalogNumber"), ::OpenAPI::toJsonValue(system_catalog_number));
+        obj.insert(QString("systemCatalogNumber"), ::OpenAPI::toJsonValue(m_system_catalog_number));
     }
     if (m_system_app_sw_version_isSet) {
-        obj.insert(QString("systemAppSwVersion"), ::OpenAPI::toJsonValue(system_app_sw_version));
+        obj.insert(QString("systemAppSwVersion"), ::OpenAPI::toJsonValue(m_system_app_sw_version));
     }
     if (m_system_support_info_isSet) {
-        obj.insert(QString("systemSupportInfo"), ::OpenAPI::toJsonValue(system_support_info));
+        obj.insert(QString("systemSupportInfo"), ::OpenAPI::toJsonValue(m_system_support_info));
     }
     if (m_eula_accepted_isSet) {
-        obj.insert(QString("eulaAccepted"), ::OpenAPI::toJsonValue(eula_accepted));
+        obj.insert(QString("eulaAccepted"), ::OpenAPI::toJsonValue(m_eula_accepted));
     }
     if (m_license_active_isSet) {
-        obj.insert(QString("licenseActive"), ::OpenAPI::toJsonValue(license_active));
+        obj.insert(QString("licenseActive"), ::OpenAPI::toJsonValue(m_license_active));
     }
     if (m_bbc_luts_licensed_isSet) {
-        obj.insert(QString("bbcLutsLicensed"), ::OpenAPI::toJsonValue(bbc_luts_licensed));
+        obj.insert(QString("bbcLutsLicensed"), ::OpenAPI::toJsonValue(m_bbc_luts_licensed));
     }
     if (m_orion_engine_licensed_isSet) {
-        obj.insert(QString("orionEngineLicensed"), ::OpenAPI::toJsonValue(orion_engine_licensed));
+        obj.insert(QString("orionEngineLicensed"), ::OpenAPI::toJsonValue(m_orion_engine_licensed));
     }
     if (m_colorfront_engine_licensed_isSet) {
-        obj.insert(QString("colorfrontEngineLicensed"), ::OpenAPI::toJsonValue(colorfront_engine_licensed));
+        obj.insert(QString("colorfrontEngineLicensed"), ::OpenAPI::toJsonValue(m_colorfront_engine_licensed));
     }
     if (m_shutdown_time_isSet) {
-        obj.insert(QString("shutdownTime"), ::OpenAPI::toJsonValue(shutdown_time));
+        obj.insert(QString("shutdownTime"), ::OpenAPI::toJsonValue(m_shutdown_time));
     }
     if (m_colorfront_transform_version_isSet) {
-        obj.insert(QString("colorfrontTransformVersion"), ::OpenAPI::toJsonValue(colorfront_transform_version));
+        obj.insert(QString("colorfrontTransformVersion"), ::OpenAPI::toJsonValue(m_colorfront_transform_version));
     }
     if (m_colorfront_engine_version_isSet) {
-        obj.insert(QString("colorfrontEngineVersion"), ::OpenAPI::toJsonValue(colorfront_engine_version));
+        obj.insert(QString("colorfrontEngineVersion"), ::OpenAPI::toJsonValue(m_colorfront_engine_version));
     }
     if (m_orion_version_isSet) {
-        obj.insert(QString("orionVersion"), ::OpenAPI::toJsonValue(orion_version));
+        obj.insert(QString("orionVersion"), ::OpenAPI::toJsonValue(m_orion_version));
     }
     if (m_bbc_lut_version_isSet) {
-        obj.insert(QString("bbcLutVersion"), ::OpenAPI::toJsonValue(bbc_lut_version));
+        obj.insert(QString("bbcLutVersion"), ::OpenAPI::toJsonValue(m_bbc_lut_version));
     }
     if (m_nbcu_lut_version_isSet) {
-        obj.insert(QString("nbcuLutVersion"), ::OpenAPI::toJsonValue(nbcu_lut_version));
+        obj.insert(QString("nbcuLutVersion"), ::OpenAPI::toJsonValue(m_nbcu_lut_version));
     }
     if (m_cpu_busy_isSet) {
-        obj.insert(QString("cpuBusy"), ::OpenAPI::toJsonValue(cpu_busy));
+        obj.insert(QString("cpuBusy"), ::OpenAPI::toJsonValue(m_cpu_busy));
     }
     return obj;
 }
 
 OAIStatusInfo OAIStatus::getDeviceDieTemp() const {
-    return device_die_temp;
+    return m_device_die_temp;
 }
 void OAIStatus::setDeviceDieTemp(const OAIStatusInfo &device_die_temp) {
 	OAIStatusInfo v = device_die_temp;
-	this->device_die_temp = v;
+	this->m_device_die_temp = v;
     this->m_device_die_temp_isSet = true;
 }
 
@@ -268,11 +268,11 @@ bool OAIStatus::is_device_die_temp_Valid() const{
 
 
 QString OAIStatus::getSystemDate() const {
-    return system_date;
+    return m_system_date;
 }
 void OAIStatus::setSystemDate(const QString &system_date) {
 	QString v = system_date;
-	this->system_date = v;
+	this->m_system_date = v;
     this->m_system_date_isSet = true;
 }
 
@@ -287,11 +287,11 @@ bool OAIStatus::is_system_date_Valid() const{
 
 
 QString OAIStatus::getSystemTime() const {
-    return system_time;
+    return m_system_time;
 }
 void OAIStatus::setSystemTime(const QString &system_time) {
 	QString v = system_time;
-	this->system_time = v;
+	this->m_system_time = v;
     this->m_system_time_isSet = true;
 }
 
@@ -306,11 +306,11 @@ bool OAIStatus::is_system_time_Valid() const{
 
 
 QString OAIStatus::getSystemUptime() const {
-    return system_uptime;
+    return m_system_uptime;
 }
 void OAIStatus::setSystemUptime(const QString &system_uptime) {
 	QString v = system_uptime;
-	this->system_uptime = v;
+	this->m_system_uptime = v;
     this->m_system_uptime_isSet = true;
 }
 
@@ -325,11 +325,11 @@ bool OAIStatus::is_system_uptime_Valid() const{
 
 
 QString OAIStatus::getSystemOsName() const {
-    return system_os_name;
+    return m_system_os_name;
 }
 void OAIStatus::setSystemOsName(const QString &system_os_name) {
 	QString v = system_os_name;
-	this->system_os_name = v;
+	this->m_system_os_name = v;
     this->m_system_os_name_isSet = true;
 }
 
@@ -344,11 +344,11 @@ bool OAIStatus::is_system_os_name_Valid() const{
 
 
 QString OAIStatus::getSystemSerialNumber() const {
-    return system_serial_number;
+    return m_system_serial_number;
 }
 void OAIStatus::setSystemSerialNumber(const QString &system_serial_number) {
 	QString v = system_serial_number;
-	this->system_serial_number = v;
+	this->m_system_serial_number = v;
     this->m_system_serial_number_isSet = true;
 }
 
@@ -363,11 +363,11 @@ bool OAIStatus::is_system_serial_number_Valid() const{
 
 
 QString OAIStatus::getSystemCatalogNumber() const {
-    return system_catalog_number;
+    return m_system_catalog_number;
 }
 void OAIStatus::setSystemCatalogNumber(const QString &system_catalog_number) {
 	QString v = system_catalog_number;
-	this->system_catalog_number = v;
+	this->m_system_catalog_number = v;
     this->m_system_catalog_number_isSet = true;
 }
 
@@ -382,11 +382,11 @@ bool OAIStatus::is_system_catalog_number_Valid() const{
 
 
 QString OAIStatus::getSystemAppSwVersion() const {
-    return system_app_sw_version;
+    return m_system_app_sw_version;
 }
 void OAIStatus::setSystemAppSwVersion(const QString &system_app_sw_version) {
 	QString v = system_app_sw_version;
-	this->system_app_sw_version = v;
+	this->m_system_app_sw_version = v;
     this->m_system_app_sw_version_isSet = true;
 }
 
@@ -401,11 +401,11 @@ bool OAIStatus::is_system_app_sw_version_Valid() const{
 
 
 QString OAIStatus::getSystemSupportInfo() const {
-    return system_support_info;
+    return m_system_support_info;
 }
 void OAIStatus::setSystemSupportInfo(const QString &system_support_info) {
 	QString v = system_support_info;
-	this->system_support_info = v;
+	this->m_system_support_info = v;
     this->m_system_support_info_isSet = true;
 }
 
@@ -420,11 +420,11 @@ bool OAIStatus::is_system_support_info_Valid() const{
 
 
 bool OAIStatus::isEulaAccepted() const {
-    return eula_accepted;
+    return m_eula_accepted;
 }
 void OAIStatus::setEulaAccepted(const bool &eula_accepted) {
 	bool v = eula_accepted;
-	this->eula_accepted = v;
+	this->m_eula_accepted = v;
     this->m_eula_accepted_isSet = true;
 }
 
@@ -438,11 +438,11 @@ bool OAIStatus::is_eula_accepted_Valid() const{
 
 
 bool OAIStatus::isLicenseActive() const {
-    return license_active;
+    return m_license_active;
 }
 void OAIStatus::setLicenseActive(const bool &license_active) {
 	bool v = license_active;
-	this->license_active = v;
+	this->m_license_active = v;
     this->m_license_active_isSet = true;
 }
 
@@ -456,11 +456,11 @@ bool OAIStatus::is_license_active_Valid() const{
 
 
 bool OAIStatus::isBbcLutsLicensed() const {
-    return bbc_luts_licensed;
+    return m_bbc_luts_licensed;
 }
 void OAIStatus::setBbcLutsLicensed(const bool &bbc_luts_licensed) {
 	bool v = bbc_luts_licensed;
-	this->bbc_luts_licensed = v;
+	this->m_bbc_luts_licensed = v;
     this->m_bbc_luts_licensed_isSet = true;
 }
 
@@ -474,11 +474,11 @@ bool OAIStatus::is_bbc_luts_licensed_Valid() const{
 
 
 bool OAIStatus::isOrionEngineLicensed() const {
-    return orion_engine_licensed;
+    return m_orion_engine_licensed;
 }
 void OAIStatus::setOrionEngineLicensed(const bool &orion_engine_licensed) {
 	bool v = orion_engine_licensed;
-	this->orion_engine_licensed = v;
+	this->m_orion_engine_licensed = v;
     this->m_orion_engine_licensed_isSet = true;
 }
 
@@ -492,11 +492,11 @@ bool OAIStatus::is_orion_engine_licensed_Valid() const{
 
 
 bool OAIStatus::isColorfrontEngineLicensed() const {
-    return colorfront_engine_licensed;
+    return m_colorfront_engine_licensed;
 }
 void OAIStatus::setColorfrontEngineLicensed(const bool &colorfront_engine_licensed) {
 	bool v = colorfront_engine_licensed;
-	this->colorfront_engine_licensed = v;
+	this->m_colorfront_engine_licensed = v;
     this->m_colorfront_engine_licensed_isSet = true;
 }
 
@@ -510,11 +510,11 @@ bool OAIStatus::is_colorfront_engine_licensed_Valid() const{
 
 
 qint32 OAIStatus::getShutdownTime() const {
-    return shutdown_time;
+    return m_shutdown_time;
 }
 void OAIStatus::setShutdownTime(const qint32 &shutdown_time) {
 	qint32 v = shutdown_time;
-	this->shutdown_time = v;
+	this->m_shutdown_time = v;
     this->m_shutdown_time_isSet = true;
 }
 
@@ -529,11 +529,11 @@ bool OAIStatus::is_shutdown_time_Valid() const{
 
 
 QString OAIStatus::getColorfrontTransformVersion() const {
-    return colorfront_transform_version;
+    return m_colorfront_transform_version;
 }
 void OAIStatus::setColorfrontTransformVersion(const QString &colorfront_transform_version) {
 	QString v = colorfront_transform_version;
-	this->colorfront_transform_version = v;
+	this->m_colorfront_transform_version = v;
     this->m_colorfront_transform_version_isSet = true;
 }
 
@@ -548,11 +548,11 @@ bool OAIStatus::is_colorfront_transform_version_Valid() const{
 
 
 QString OAIStatus::getColorfrontEngineVersion() const {
-    return colorfront_engine_version;
+    return m_colorfront_engine_version;
 }
 void OAIStatus::setColorfrontEngineVersion(const QString &colorfront_engine_version) {
 	QString v = colorfront_engine_version;
-	this->colorfront_engine_version = v;
+	this->m_colorfront_engine_version = v;
     this->m_colorfront_engine_version_isSet = true;
 }
 
@@ -567,11 +567,11 @@ bool OAIStatus::is_colorfront_engine_version_Valid() const{
 
 
 QString OAIStatus::getOrionVersion() const {
-    return orion_version;
+    return m_orion_version;
 }
 void OAIStatus::setOrionVersion(const QString &orion_version) {
 	QString v = orion_version;
-	this->orion_version = v;
+	this->m_orion_version = v;
     this->m_orion_version_isSet = true;
 }
 
@@ -586,11 +586,11 @@ bool OAIStatus::is_orion_version_Valid() const{
 
 
 QString OAIStatus::getBbcLutVersion() const {
-    return bbc_lut_version;
+    return m_bbc_lut_version;
 }
 void OAIStatus::setBbcLutVersion(const QString &bbc_lut_version) {
 	QString v = bbc_lut_version;
-	this->bbc_lut_version = v;
+	this->m_bbc_lut_version = v;
     this->m_bbc_lut_version_isSet = true;
 }
 
@@ -605,11 +605,11 @@ bool OAIStatus::is_bbc_lut_version_Valid() const{
 
 
 QString OAIStatus::getNbcuLutVersion() const {
-    return nbcu_lut_version;
+    return m_nbcu_lut_version;
 }
 void OAIStatus::setNbcuLutVersion(const QString &nbcu_lut_version) {
 	QString v = nbcu_lut_version;
-	this->nbcu_lut_version = v;
+	this->m_nbcu_lut_version = v;
     this->m_nbcu_lut_version_isSet = true;
 }
 
@@ -624,11 +624,11 @@ bool OAIStatus::is_nbcu_lut_version_Valid() const{
 
 
 bool OAIStatus::isCpuBusy() const {
-    return cpu_busy;
+    return m_cpu_busy;
 }
 void OAIStatus::setCpuBusy(const bool &cpu_busy) {
 	bool v = cpu_busy;
-	this->cpu_busy = v;
+	this->m_cpu_busy = v;
     this->m_cpu_busy_isSet = true;
 }
 
@@ -644,7 +644,7 @@ bool OAIStatus::is_cpu_busy_Valid() const{
 bool OAIStatus::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (device_die_temp.isSet()) {
+        if (m_device_die_temp.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -758,92 +758,92 @@ bool OAIStatus::isValid() const {
 }
 
 bool OAIStatus::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_system_date_Set())
 	{
 		bool systemDateChanged = false;
 		QString v = getSystemDate();
-		if (systemDateChanged) { setSystemDate(v); valueChanged = true; }
+		if (systemDateChanged) { setSystemDate(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_system_time_Set())
 	{
 		bool systemTimeChanged = false;
 		QString v = getSystemTime();
-		if (systemTimeChanged) { setSystemTime(v); valueChanged = true; }
+		if (systemTimeChanged) { setSystemTime(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_system_uptime_Set())
 	{
 		bool systemUptimeChanged = false;
 		QString v = getSystemUptime();
-		if (systemUptimeChanged) { setSystemUptime(v); valueChanged = true; }
+		if (systemUptimeChanged) { setSystemUptime(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_system_os_name_Set())
 	{
 		bool systemOsNameChanged = false;
 		QString v = getSystemOsName();
-		if (systemOsNameChanged) { setSystemOsName(v); valueChanged = true; }
+		if (systemOsNameChanged) { setSystemOsName(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_system_serial_number_Set())
 	{
 		bool systemSerialNumberChanged = false;
 		QString v = getSystemSerialNumber();
-		if (systemSerialNumberChanged) { setSystemSerialNumber(v); valueChanged = true; }
+		if (systemSerialNumberChanged) { setSystemSerialNumber(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_system_catalog_number_Set())
 	{
 		bool systemCatalogNumberChanged = false;
 		QString v = getSystemCatalogNumber();
-		if (systemCatalogNumberChanged) { setSystemCatalogNumber(v); valueChanged = true; }
+		if (systemCatalogNumberChanged) { setSystemCatalogNumber(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_system_app_sw_version_Set())
 	{
 		bool systemAppSwVersionChanged = false;
 		QString v = getSystemAppSwVersion();
-		if (systemAppSwVersionChanged) { setSystemAppSwVersion(v); valueChanged = true; }
+		if (systemAppSwVersionChanged) { setSystemAppSwVersion(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_system_support_info_Set())
 	{
 		bool systemSupportInfoChanged = false;
 		QString v = getSystemSupportInfo();
-		if (systemSupportInfoChanged) { setSystemSupportInfo(v); valueChanged = true; }
+		if (systemSupportInfoChanged) { setSystemSupportInfo(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_shutdown_time_Set())
 	{
 		bool shutdownTimeChanged = false;
 		qint32 v = getShutdownTime();
-		if (shutdownTimeChanged) { setShutdownTime(v); valueChanged = true; }
+		if (shutdownTimeChanged) { setShutdownTime(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_colorfront_transform_version_Set())
 	{
 		bool colorfrontTransformVersionChanged = false;
 		QString v = getColorfrontTransformVersion();
-		if (colorfrontTransformVersionChanged) { setColorfrontTransformVersion(v); valueChanged = true; }
+		if (colorfrontTransformVersionChanged) { setColorfrontTransformVersion(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_colorfront_engine_version_Set())
 	{
 		bool colorfrontEngineVersionChanged = false;
 		QString v = getColorfrontEngineVersion();
-		if (colorfrontEngineVersionChanged) { setColorfrontEngineVersion(v); valueChanged = true; }
+		if (colorfrontEngineVersionChanged) { setColorfrontEngineVersion(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_orion_version_Set())
 	{
 		bool orionVersionChanged = false;
 		QString v = getOrionVersion();
-		if (orionVersionChanged) { setOrionVersion(v); valueChanged = true; }
+		if (orionVersionChanged) { setOrionVersion(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_bbc_lut_version_Set())
 	{
 		bool bbcLutVersionChanged = false;
 		QString v = getBbcLutVersion();
-		if (bbcLutVersionChanged) { setBbcLutVersion(v); valueChanged = true; }
+		if (bbcLutVersionChanged) { setBbcLutVersion(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_nbcu_lut_version_Set())
 	{
 		bool nbcuLutVersionChanged = false;
 		QString v = getNbcuLutVersion();
-		if (nbcuLutVersionChanged) { setNbcuLutVersion(v); valueChanged = true; }
+		if (nbcuLutVersionChanged) { setNbcuLutVersion(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

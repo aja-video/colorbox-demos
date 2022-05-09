@@ -99,8 +99,8 @@ bool OAIOrionSourceRange::isValid() const {
 }
 
 bool OAIOrionSourceRange::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

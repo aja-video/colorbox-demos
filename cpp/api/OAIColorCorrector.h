@@ -121,55 +121,55 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    double black_red;
+    double m_black_red;
     bool m_black_red_isSet;
     bool m_black_red_isValid;
 
-    double black_green;
+    double m_black_green;
     bool m_black_green_isSet;
     bool m_black_green_isValid;
 
-    double black_blue;
+    double m_black_blue;
     bool m_black_blue_isSet;
     bool m_black_blue_isValid;
 
-    double gain_red;
+    double m_gain_red;
     bool m_gain_red_isSet;
     bool m_gain_red_isValid;
 
-    double gain_green;
+    double m_gain_green;
     bool m_gain_green_isSet;
     bool m_gain_green_isValid;
 
-    double gain_blue;
+    double m_gain_blue;
     bool m_gain_blue_isSet;
     bool m_gain_blue_isValid;
 
-    double gamma_red;
+    double m_gamma_red;
     bool m_gamma_red_isSet;
     bool m_gamma_red_isValid;
 
-    double gamma_green;
+    double m_gamma_green;
     bool m_gamma_green_isSet;
     bool m_gamma_green_isValid;
 
-    double gamma_blue;
+    double m_gamma_blue;
     bool m_gamma_blue_isSet;
     bool m_gamma_blue_isValid;
 
-    QString units_black;
+    QString m_units_black;
     bool m_units_black_isSet;
     bool m_units_black_isValid;
 
-    QString units_gain;
+    QString m_units_gain;
     bool m_units_gain_isSet;
     bool m_units_gain_isValid;
 
-    QString units_gamma;
+    QString m_units_gamma;
     bool m_units_gamma_isSet;
     bool m_units_gamma_isValid;
 };

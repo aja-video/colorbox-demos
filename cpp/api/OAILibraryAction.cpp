@@ -134,8 +134,8 @@ bool OAILibraryAction::isValid() const {
 }
 
 bool OAILibraryAction::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

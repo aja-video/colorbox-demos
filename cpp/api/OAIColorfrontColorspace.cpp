@@ -106,8 +106,8 @@ bool OAIColorfrontColorspace::isValid() const {
 }
 
 bool OAIColorfrontColorspace::applyMinMaxConstraints() {
-	bool valueChanged = false;
-	return valueChanged;
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

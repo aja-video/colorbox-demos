@@ -78,37 +78,37 @@ void OAINetStatus::fromJson(QString jsonString) {
 
 void OAINetStatus::fromJsonObject(QJsonObject json) {
 
-    m_name_isValid = ::OpenAPI::fromJsonValue(name, json[QString("name")]);
+    m_name_isValid = ::OpenAPI::fromJsonValue(m_name, json[QString("name")]);
     m_name_isSet = !json[QString("name")].isNull() && m_name_isValid;
 
-    m_mac_isValid = ::OpenAPI::fromJsonValue(mac, json[QString("mac")]);
+    m_mac_isValid = ::OpenAPI::fromJsonValue(m_mac, json[QString("mac")]);
     m_mac_isSet = !json[QString("mac")].isNull() && m_mac_isValid;
 
-    m_connected_isValid = ::OpenAPI::fromJsonValue(connected, json[QString("connected")]);
+    m_connected_isValid = ::OpenAPI::fromJsonValue(m_connected, json[QString("connected")]);
     m_connected_isSet = !json[QString("connected")].isNull() && m_connected_isValid;
 
-    m_dhcp_state_isValid = ::OpenAPI::fromJsonValue(dhcp_state, json[QString("dhcpState")]);
+    m_dhcp_state_isValid = ::OpenAPI::fromJsonValue(m_dhcp_state, json[QString("dhcpState")]);
     m_dhcp_state_isSet = !json[QString("dhcpState")].isNull() && m_dhcp_state_isValid;
 
-    m_interface_setup_state_isValid = ::OpenAPI::fromJsonValue(interface_setup_state, json[QString("interfaceSetupState")]);
+    m_interface_setup_state_isValid = ::OpenAPI::fromJsonValue(m_interface_setup_state, json[QString("interfaceSetupState")]);
     m_interface_setup_state_isSet = !json[QString("interfaceSetupState")].isNull() && m_interface_setup_state_isValid;
 
-    m_ip_address_offered_isValid = ::OpenAPI::fromJsonValue(ip_address_offered, json[QString("ipAddressOffered")]);
+    m_ip_address_offered_isValid = ::OpenAPI::fromJsonValue(m_ip_address_offered, json[QString("ipAddressOffered")]);
     m_ip_address_offered_isSet = !json[QString("ipAddressOffered")].isNull() && m_ip_address_offered_isValid;
 
-    m_link_errors_isValid = ::OpenAPI::fromJsonValue(link_errors, json[QString("linkErrors")]);
+    m_link_errors_isValid = ::OpenAPI::fromJsonValue(m_link_errors, json[QString("linkErrors")]);
     m_link_errors_isSet = !json[QString("linkErrors")].isNull() && m_link_errors_isValid;
 
-    m_link_state_isValid = ::OpenAPI::fromJsonValue(link_state, json[QString("linkState")]);
+    m_link_state_isValid = ::OpenAPI::fromJsonValue(m_link_state, json[QString("linkState")]);
     m_link_state_isSet = !json[QString("linkState")].isNull() && m_link_state_isValid;
 
-    m_lldp_chassis_id_isValid = ::OpenAPI::fromJsonValue(lldp_chassis_id, json[QString("lldpChassisId")]);
+    m_lldp_chassis_id_isValid = ::OpenAPI::fromJsonValue(m_lldp_chassis_id, json[QString("lldpChassisId")]);
     m_lldp_chassis_id_isSet = !json[QString("lldpChassisId")].isNull() && m_lldp_chassis_id_isValid;
 
-    m_lldp_port_id_isValid = ::OpenAPI::fromJsonValue(lldp_port_id, json[QString("lldpPortId")]);
+    m_lldp_port_id_isValid = ::OpenAPI::fromJsonValue(m_lldp_port_id, json[QString("lldpPortId")]);
     m_lldp_port_id_isSet = !json[QString("lldpPortId")].isNull() && m_lldp_port_id_isValid;
 
-    m_lldp_name_isValid = ::OpenAPI::fromJsonValue(lldp_name, json[QString("lldpName")]);
+    m_lldp_name_isValid = ::OpenAPI::fromJsonValue(m_lldp_name, json[QString("lldpName")]);
     m_lldp_name_isSet = !json[QString("lldpName")].isNull() && m_lldp_name_isValid;
 
     applyMinMaxConstraints();
@@ -124,47 +124,47 @@ QString OAINetStatus::asJson() const {
 QJsonObject OAINetStatus::asJsonObject() const {
     QJsonObject obj;
     if (m_name_isSet) {
-        obj.insert(QString("name"), ::OpenAPI::toJsonValue(name));
+        obj.insert(QString("name"), ::OpenAPI::toJsonValue(m_name));
     }
     if (m_mac_isSet) {
-        obj.insert(QString("mac"), ::OpenAPI::toJsonValue(mac));
+        obj.insert(QString("mac"), ::OpenAPI::toJsonValue(m_mac));
     }
     if (m_connected_isSet) {
-        obj.insert(QString("connected"), ::OpenAPI::toJsonValue(connected));
+        obj.insert(QString("connected"), ::OpenAPI::toJsonValue(m_connected));
     }
-    if (dhcp_state.isSet()) {
-        obj.insert(QString("dhcpState"), ::OpenAPI::toJsonValue(dhcp_state));
+    if (m_dhcp_state.isSet()) {
+        obj.insert(QString("dhcpState"), ::OpenAPI::toJsonValue(m_dhcp_state));
     }
-    if (interface_setup_state.isSet()) {
-        obj.insert(QString("interfaceSetupState"), ::OpenAPI::toJsonValue(interface_setup_state));
+    if (m_interface_setup_state.isSet()) {
+        obj.insert(QString("interfaceSetupState"), ::OpenAPI::toJsonValue(m_interface_setup_state));
     }
     if (m_ip_address_offered_isSet) {
-        obj.insert(QString("ipAddressOffered"), ::OpenAPI::toJsonValue(ip_address_offered));
+        obj.insert(QString("ipAddressOffered"), ::OpenAPI::toJsonValue(m_ip_address_offered));
     }
     if (m_link_errors_isSet) {
-        obj.insert(QString("linkErrors"), ::OpenAPI::toJsonValue(link_errors));
+        obj.insert(QString("linkErrors"), ::OpenAPI::toJsonValue(m_link_errors));
     }
     if (m_link_state_isSet) {
-        obj.insert(QString("linkState"), ::OpenAPI::toJsonValue(link_state));
+        obj.insert(QString("linkState"), ::OpenAPI::toJsonValue(m_link_state));
     }
     if (m_lldp_chassis_id_isSet) {
-        obj.insert(QString("lldpChassisId"), ::OpenAPI::toJsonValue(lldp_chassis_id));
+        obj.insert(QString("lldpChassisId"), ::OpenAPI::toJsonValue(m_lldp_chassis_id));
     }
     if (m_lldp_port_id_isSet) {
-        obj.insert(QString("lldpPortId"), ::OpenAPI::toJsonValue(lldp_port_id));
+        obj.insert(QString("lldpPortId"), ::OpenAPI::toJsonValue(m_lldp_port_id));
     }
     if (m_lldp_name_isSet) {
-        obj.insert(QString("lldpName"), ::OpenAPI::toJsonValue(lldp_name));
+        obj.insert(QString("lldpName"), ::OpenAPI::toJsonValue(m_lldp_name));
     }
     return obj;
 }
 
 QString OAINetStatus::getName() const {
-    return name;
+    return m_name;
 }
 void OAINetStatus::setName(const QString &name) {
 	QString v = name;
-	this->name = v;
+	this->m_name = v;
     this->m_name_isSet = true;
 }
 
@@ -179,11 +179,11 @@ bool OAINetStatus::is_name_Valid() const{
 
 
 QString OAINetStatus::getMac() const {
-    return mac;
+    return m_mac;
 }
 void OAINetStatus::setMac(const QString &mac) {
 	QString v = mac;
-	this->mac = v;
+	this->m_mac = v;
     this->m_mac_isSet = true;
 }
 
@@ -198,11 +198,11 @@ bool OAINetStatus::is_mac_Valid() const{
 
 
 bool OAINetStatus::isConnected() const {
-    return connected;
+    return m_connected;
 }
 void OAINetStatus::setConnected(const bool &connected) {
 	bool v = connected;
-	this->connected = v;
+	this->m_connected = v;
     this->m_connected_isSet = true;
 }
 
@@ -216,11 +216,11 @@ bool OAINetStatus::is_connected_Valid() const{
 
 
 OAIDHCPState OAINetStatus::getDhcpState() const {
-    return dhcp_state;
+    return m_dhcp_state;
 }
 void OAINetStatus::setDhcpState(const OAIDHCPState &dhcp_state) {
 	OAIDHCPState v = dhcp_state;
-	this->dhcp_state = v;
+	this->m_dhcp_state = v;
     this->m_dhcp_state_isSet = true;
 }
 
@@ -234,11 +234,11 @@ bool OAINetStatus::is_dhcp_state_Valid() const{
 
 
 OAIInterfaceSetupState OAINetStatus::getInterfaceSetupState() const {
-    return interface_setup_state;
+    return m_interface_setup_state;
 }
 void OAINetStatus::setInterfaceSetupState(const OAIInterfaceSetupState &interface_setup_state) {
 	OAIInterfaceSetupState v = interface_setup_state;
-	this->interface_setup_state = v;
+	this->m_interface_setup_state = v;
     this->m_interface_setup_state_isSet = true;
 }
 
@@ -252,11 +252,11 @@ bool OAINetStatus::is_interface_setup_state_Valid() const{
 
 
 QString OAINetStatus::getIpAddressOffered() const {
-    return ip_address_offered;
+    return m_ip_address_offered;
 }
 void OAINetStatus::setIpAddressOffered(const QString &ip_address_offered) {
 	QString v = ip_address_offered;
-	this->ip_address_offered = v;
+	this->m_ip_address_offered = v;
     this->m_ip_address_offered_isSet = true;
 }
 
@@ -271,11 +271,11 @@ bool OAINetStatus::is_ip_address_offered_Valid() const{
 
 
 qint32 OAINetStatus::getLinkErrors() const {
-    return link_errors;
+    return m_link_errors;
 }
 void OAINetStatus::setLinkErrors(const qint32 &link_errors) {
 	qint32 v = link_errors;
-	this->link_errors = v;
+	this->m_link_errors = v;
     this->m_link_errors_isSet = true;
 }
 
@@ -290,11 +290,11 @@ bool OAINetStatus::is_link_errors_Valid() const{
 
 
 QString OAINetStatus::getLinkState() const {
-    return link_state;
+    return m_link_state;
 }
 void OAINetStatus::setLinkState(const QString &link_state) {
 	QString v = link_state;
-	this->link_state = v;
+	this->m_link_state = v;
     this->m_link_state_isSet = true;
 }
 
@@ -309,11 +309,11 @@ bool OAINetStatus::is_link_state_Valid() const{
 
 
 QString OAINetStatus::getLldpChassisId() const {
-    return lldp_chassis_id;
+    return m_lldp_chassis_id;
 }
 void OAINetStatus::setLldpChassisId(const QString &lldp_chassis_id) {
 	QString v = lldp_chassis_id;
-	this->lldp_chassis_id = v;
+	this->m_lldp_chassis_id = v;
     this->m_lldp_chassis_id_isSet = true;
 }
 
@@ -328,11 +328,11 @@ bool OAINetStatus::is_lldp_chassis_id_Valid() const{
 
 
 QString OAINetStatus::getLldpPortId() const {
-    return lldp_port_id;
+    return m_lldp_port_id;
 }
 void OAINetStatus::setLldpPortId(const QString &lldp_port_id) {
 	QString v = lldp_port_id;
-	this->lldp_port_id = v;
+	this->m_lldp_port_id = v;
     this->m_lldp_port_id_isSet = true;
 }
 
@@ -347,11 +347,11 @@ bool OAINetStatus::is_lldp_port_id_Valid() const{
 
 
 QString OAINetStatus::getLldpName() const {
-    return lldp_name;
+    return m_lldp_name;
 }
 void OAINetStatus::setLldpName(const QString &lldp_name) {
 	QString v = lldp_name;
-	this->lldp_name = v;
+	this->m_lldp_name = v;
     this->m_lldp_name_isSet = true;
 }
 
@@ -383,12 +383,12 @@ bool OAINetStatus::isSet() const {
             break;
         }
 
-        if (dhcp_state.isSet()) {
+        if (m_dhcp_state.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (interface_setup_state.isSet()) {
+        if (m_interface_setup_state.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -432,56 +432,56 @@ bool OAINetStatus::isValid() const {
 }
 
 bool OAINetStatus::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_name_Set())
 	{
 		bool nameChanged = false;
 		QString v = getName();
-		if (nameChanged) { setName(v); valueChanged = true; }
+		if (nameChanged) { setName(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_mac_Set())
 	{
 		bool macChanged = false;
 		QString v = getMac();
-		if (macChanged) { setMac(v); valueChanged = true; }
+		if (macChanged) { setMac(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_ip_address_offered_Set())
 	{
 		bool ipAddressOfferedChanged = false;
 		QString v = getIpAddressOffered();
-		if (ipAddressOfferedChanged) { setIpAddressOffered(v); valueChanged = true; }
+		if (ipAddressOfferedChanged) { setIpAddressOffered(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_link_errors_Set())
 	{
 		bool linkErrorsChanged = false;
 		qint32 v = getLinkErrors();
-		if (linkErrorsChanged) { setLinkErrors(v); valueChanged = true; }
+		if (linkErrorsChanged) { setLinkErrors(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_link_state_Set())
 	{
 		bool linkStateChanged = false;
 		QString v = getLinkState();
-		if (linkStateChanged) { setLinkState(v); valueChanged = true; }
+		if (linkStateChanged) { setLinkState(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_lldp_chassis_id_Set())
 	{
 		bool lldpChassisIdChanged = false;
 		QString v = getLldpChassisId();
-		if (lldpChassisIdChanged) { setLldpChassisId(v); valueChanged = true; }
+		if (lldpChassisIdChanged) { setLldpChassisId(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_lldp_port_id_Set())
 	{
 		bool lldpPortIdChanged = false;
 		QString v = getLldpPortId();
-		if (lldpPortIdChanged) { setLldpPortId(v); valueChanged = true; }
+		if (lldpPortIdChanged) { setLldpPortId(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_lldp_name_Set())
 	{
 		bool lldpNameChanged = false;
 		QString v = getLldpName();
-		if (lldpNameChanged) { setLldpName(v); valueChanged = true; }
+		if (lldpNameChanged) { setLldpName(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -149,91 +149,91 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    OAIStatusInfo device_die_temp;
+    OAIStatusInfo m_device_die_temp;
     bool m_device_die_temp_isSet;
     bool m_device_die_temp_isValid;
 
-    QString system_date;
+    QString m_system_date;
     bool m_system_date_isSet;
     bool m_system_date_isValid;
 
-    QString system_time;
+    QString m_system_time;
     bool m_system_time_isSet;
     bool m_system_time_isValid;
 
-    QString system_uptime;
+    QString m_system_uptime;
     bool m_system_uptime_isSet;
     bool m_system_uptime_isValid;
 
-    QString system_os_name;
+    QString m_system_os_name;
     bool m_system_os_name_isSet;
     bool m_system_os_name_isValid;
 
-    QString system_serial_number;
+    QString m_system_serial_number;
     bool m_system_serial_number_isSet;
     bool m_system_serial_number_isValid;
 
-    QString system_catalog_number;
+    QString m_system_catalog_number;
     bool m_system_catalog_number_isSet;
     bool m_system_catalog_number_isValid;
 
-    QString system_app_sw_version;
+    QString m_system_app_sw_version;
     bool m_system_app_sw_version_isSet;
     bool m_system_app_sw_version_isValid;
 
-    QString system_support_info;
+    QString m_system_support_info;
     bool m_system_support_info_isSet;
     bool m_system_support_info_isValid;
 
-    bool eula_accepted;
+    bool m_eula_accepted;
     bool m_eula_accepted_isSet;
     bool m_eula_accepted_isValid;
 
-    bool license_active;
+    bool m_license_active;
     bool m_license_active_isSet;
     bool m_license_active_isValid;
 
-    bool bbc_luts_licensed;
+    bool m_bbc_luts_licensed;
     bool m_bbc_luts_licensed_isSet;
     bool m_bbc_luts_licensed_isValid;
 
-    bool orion_engine_licensed;
+    bool m_orion_engine_licensed;
     bool m_orion_engine_licensed_isSet;
     bool m_orion_engine_licensed_isValid;
 
-    bool colorfront_engine_licensed;
+    bool m_colorfront_engine_licensed;
     bool m_colorfront_engine_licensed_isSet;
     bool m_colorfront_engine_licensed_isValid;
 
-    qint32 shutdown_time;
+    qint32 m_shutdown_time;
     bool m_shutdown_time_isSet;
     bool m_shutdown_time_isValid;
 
-    QString colorfront_transform_version;
+    QString m_colorfront_transform_version;
     bool m_colorfront_transform_version_isSet;
     bool m_colorfront_transform_version_isValid;
 
-    QString colorfront_engine_version;
+    QString m_colorfront_engine_version;
     bool m_colorfront_engine_version_isSet;
     bool m_colorfront_engine_version_isValid;
 
-    QString orion_version;
+    QString m_orion_version;
     bool m_orion_version_isSet;
     bool m_orion_version_isValid;
 
-    QString bbc_lut_version;
+    QString m_bbc_lut_version;
     bool m_bbc_lut_version_isSet;
     bool m_bbc_lut_version_isValid;
 
-    QString nbcu_lut_version;
+    QString m_nbcu_lut_version;
     bool m_nbcu_lut_version_isSet;
     bool m_nbcu_lut_version_isValid;
 
-    bool cpu_busy;
+    bool m_cpu_busy;
     bool m_cpu_busy_isSet;
     bool m_cpu_busy_isValid;
 };

@@ -69,27 +69,27 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    bool enabled;
+    bool m_enabled;
     bool m_enabled_isSet;
     bool m_enabled_isValid;
 
-    bool dynamic;
+    bool m_dynamic;
     bool m_dynamic_isSet;
     bool m_dynamic_isValid;
 
-    qint32 library_entry;
+    qint32 m_library_entry;
     bool m_library_entry_isSet;
     bool m_library_entry_isValid;
 
-    OAIColorCorrector color_corrector;
+    OAIColorCorrector m_color_corrector;
     bool m_color_corrector_isSet;
     bool m_color_corrector_isValid;
 
-    OAIProcAmp proc_amp;
+    OAIProcAmp m_proc_amp;
     bool m_proc_amp_isSet;
     bool m_proc_amp_isValid;
 };

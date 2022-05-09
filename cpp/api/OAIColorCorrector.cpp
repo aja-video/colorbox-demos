@@ -81,40 +81,40 @@ void OAIColorCorrector::fromJson(QString jsonString) {
 
 void OAIColorCorrector::fromJsonObject(QJsonObject json) {
 
-    m_black_red_isValid = ::OpenAPI::fromJsonValue(black_red, json[QString("blackRed")]);
+    m_black_red_isValid = ::OpenAPI::fromJsonValue(m_black_red, json[QString("blackRed")]);
     m_black_red_isSet = !json[QString("blackRed")].isNull() && m_black_red_isValid;
 
-    m_black_green_isValid = ::OpenAPI::fromJsonValue(black_green, json[QString("blackGreen")]);
+    m_black_green_isValid = ::OpenAPI::fromJsonValue(m_black_green, json[QString("blackGreen")]);
     m_black_green_isSet = !json[QString("blackGreen")].isNull() && m_black_green_isValid;
 
-    m_black_blue_isValid = ::OpenAPI::fromJsonValue(black_blue, json[QString("blackBlue")]);
+    m_black_blue_isValid = ::OpenAPI::fromJsonValue(m_black_blue, json[QString("blackBlue")]);
     m_black_blue_isSet = !json[QString("blackBlue")].isNull() && m_black_blue_isValid;
 
-    m_gain_red_isValid = ::OpenAPI::fromJsonValue(gain_red, json[QString("gainRed")]);
+    m_gain_red_isValid = ::OpenAPI::fromJsonValue(m_gain_red, json[QString("gainRed")]);
     m_gain_red_isSet = !json[QString("gainRed")].isNull() && m_gain_red_isValid;
 
-    m_gain_green_isValid = ::OpenAPI::fromJsonValue(gain_green, json[QString("gainGreen")]);
+    m_gain_green_isValid = ::OpenAPI::fromJsonValue(m_gain_green, json[QString("gainGreen")]);
     m_gain_green_isSet = !json[QString("gainGreen")].isNull() && m_gain_green_isValid;
 
-    m_gain_blue_isValid = ::OpenAPI::fromJsonValue(gain_blue, json[QString("gainBlue")]);
+    m_gain_blue_isValid = ::OpenAPI::fromJsonValue(m_gain_blue, json[QString("gainBlue")]);
     m_gain_blue_isSet = !json[QString("gainBlue")].isNull() && m_gain_blue_isValid;
 
-    m_gamma_red_isValid = ::OpenAPI::fromJsonValue(gamma_red, json[QString("gammaRed")]);
+    m_gamma_red_isValid = ::OpenAPI::fromJsonValue(m_gamma_red, json[QString("gammaRed")]);
     m_gamma_red_isSet = !json[QString("gammaRed")].isNull() && m_gamma_red_isValid;
 
-    m_gamma_green_isValid = ::OpenAPI::fromJsonValue(gamma_green, json[QString("gammaGreen")]);
+    m_gamma_green_isValid = ::OpenAPI::fromJsonValue(m_gamma_green, json[QString("gammaGreen")]);
     m_gamma_green_isSet = !json[QString("gammaGreen")].isNull() && m_gamma_green_isValid;
 
-    m_gamma_blue_isValid = ::OpenAPI::fromJsonValue(gamma_blue, json[QString("gammaBlue")]);
+    m_gamma_blue_isValid = ::OpenAPI::fromJsonValue(m_gamma_blue, json[QString("gammaBlue")]);
     m_gamma_blue_isSet = !json[QString("gammaBlue")].isNull() && m_gamma_blue_isValid;
 
-    m_units_black_isValid = ::OpenAPI::fromJsonValue(units_black, json[QString("unitsBlack")]);
+    m_units_black_isValid = ::OpenAPI::fromJsonValue(m_units_black, json[QString("unitsBlack")]);
     m_units_black_isSet = !json[QString("unitsBlack")].isNull() && m_units_black_isValid;
 
-    m_units_gain_isValid = ::OpenAPI::fromJsonValue(units_gain, json[QString("unitsGain")]);
+    m_units_gain_isValid = ::OpenAPI::fromJsonValue(m_units_gain, json[QString("unitsGain")]);
     m_units_gain_isSet = !json[QString("unitsGain")].isNull() && m_units_gain_isValid;
 
-    m_units_gamma_isValid = ::OpenAPI::fromJsonValue(units_gamma, json[QString("unitsGamma")]);
+    m_units_gamma_isValid = ::OpenAPI::fromJsonValue(m_units_gamma, json[QString("unitsGamma")]);
     m_units_gamma_isSet = !json[QString("unitsGamma")].isNull() && m_units_gamma_isValid;
 
     applyMinMaxConstraints();
@@ -130,46 +130,46 @@ QString OAIColorCorrector::asJson() const {
 QJsonObject OAIColorCorrector::asJsonObject() const {
     QJsonObject obj;
     if (m_black_red_isSet) {
-        obj.insert(QString("blackRed"), ::OpenAPI::toJsonValue(black_red));
+        obj.insert(QString("blackRed"), ::OpenAPI::toJsonValue(m_black_red));
     }
     if (m_black_green_isSet) {
-        obj.insert(QString("blackGreen"), ::OpenAPI::toJsonValue(black_green));
+        obj.insert(QString("blackGreen"), ::OpenAPI::toJsonValue(m_black_green));
     }
     if (m_black_blue_isSet) {
-        obj.insert(QString("blackBlue"), ::OpenAPI::toJsonValue(black_blue));
+        obj.insert(QString("blackBlue"), ::OpenAPI::toJsonValue(m_black_blue));
     }
     if (m_gain_red_isSet) {
-        obj.insert(QString("gainRed"), ::OpenAPI::toJsonValue(gain_red));
+        obj.insert(QString("gainRed"), ::OpenAPI::toJsonValue(m_gain_red));
     }
     if (m_gain_green_isSet) {
-        obj.insert(QString("gainGreen"), ::OpenAPI::toJsonValue(gain_green));
+        obj.insert(QString("gainGreen"), ::OpenAPI::toJsonValue(m_gain_green));
     }
     if (m_gain_blue_isSet) {
-        obj.insert(QString("gainBlue"), ::OpenAPI::toJsonValue(gain_blue));
+        obj.insert(QString("gainBlue"), ::OpenAPI::toJsonValue(m_gain_blue));
     }
     if (m_gamma_red_isSet) {
-        obj.insert(QString("gammaRed"), ::OpenAPI::toJsonValue(gamma_red));
+        obj.insert(QString("gammaRed"), ::OpenAPI::toJsonValue(m_gamma_red));
     }
     if (m_gamma_green_isSet) {
-        obj.insert(QString("gammaGreen"), ::OpenAPI::toJsonValue(gamma_green));
+        obj.insert(QString("gammaGreen"), ::OpenAPI::toJsonValue(m_gamma_green));
     }
     if (m_gamma_blue_isSet) {
-        obj.insert(QString("gammaBlue"), ::OpenAPI::toJsonValue(gamma_blue));
+        obj.insert(QString("gammaBlue"), ::OpenAPI::toJsonValue(m_gamma_blue));
     }
     if (m_units_black_isSet) {
-        obj.insert(QString("unitsBlack"), ::OpenAPI::toJsonValue(units_black));
+        obj.insert(QString("unitsBlack"), ::OpenAPI::toJsonValue(m_units_black));
     }
     if (m_units_gain_isSet) {
-        obj.insert(QString("unitsGain"), ::OpenAPI::toJsonValue(units_gain));
+        obj.insert(QString("unitsGain"), ::OpenAPI::toJsonValue(m_units_gain));
     }
     if (m_units_gamma_isSet) {
-        obj.insert(QString("unitsGamma"), ::OpenAPI::toJsonValue(units_gamma));
+        obj.insert(QString("unitsGamma"), ::OpenAPI::toJsonValue(m_units_gamma));
     }
     return obj;
 }
 
 double OAIColorCorrector::getBlackRed() const {
-    return black_red;
+    return m_black_red;
 }
 void OAIColorCorrector::setBlackRed(const double &black_red) {
 	double v = black_red;
@@ -177,7 +177,7 @@ void OAIColorCorrector::setBlackRed(const double &black_red) {
 	double max = blackRedMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->black_red = v;
+	this->m_black_red = v;
     this->m_black_red_isSet = true;
 }
 
@@ -198,7 +198,7 @@ double OAIColorCorrector::blackRedMax() const {
 }
 
 double OAIColorCorrector::getBlackGreen() const {
-    return black_green;
+    return m_black_green;
 }
 void OAIColorCorrector::setBlackGreen(const double &black_green) {
 	double v = black_green;
@@ -206,7 +206,7 @@ void OAIColorCorrector::setBlackGreen(const double &black_green) {
 	double max = blackGreenMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->black_green = v;
+	this->m_black_green = v;
     this->m_black_green_isSet = true;
 }
 
@@ -227,7 +227,7 @@ double OAIColorCorrector::blackGreenMax() const {
 }
 
 double OAIColorCorrector::getBlackBlue() const {
-    return black_blue;
+    return m_black_blue;
 }
 void OAIColorCorrector::setBlackBlue(const double &black_blue) {
 	double v = black_blue;
@@ -235,7 +235,7 @@ void OAIColorCorrector::setBlackBlue(const double &black_blue) {
 	double max = blackBlueMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->black_blue = v;
+	this->m_black_blue = v;
     this->m_black_blue_isSet = true;
 }
 
@@ -256,7 +256,7 @@ double OAIColorCorrector::blackBlueMax() const {
 }
 
 double OAIColorCorrector::getGainRed() const {
-    return gain_red;
+    return m_gain_red;
 }
 void OAIColorCorrector::setGainRed(const double &gain_red) {
 	double v = gain_red;
@@ -264,7 +264,7 @@ void OAIColorCorrector::setGainRed(const double &gain_red) {
 	double max = gainRedMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->gain_red = v;
+	this->m_gain_red = v;
     this->m_gain_red_isSet = true;
 }
 
@@ -285,7 +285,7 @@ double OAIColorCorrector::gainRedMax() const {
 }
 
 double OAIColorCorrector::getGainGreen() const {
-    return gain_green;
+    return m_gain_green;
 }
 void OAIColorCorrector::setGainGreen(const double &gain_green) {
 	double v = gain_green;
@@ -293,7 +293,7 @@ void OAIColorCorrector::setGainGreen(const double &gain_green) {
 	double max = gainGreenMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->gain_green = v;
+	this->m_gain_green = v;
     this->m_gain_green_isSet = true;
 }
 
@@ -314,7 +314,7 @@ double OAIColorCorrector::gainGreenMax() const {
 }
 
 double OAIColorCorrector::getGainBlue() const {
-    return gain_blue;
+    return m_gain_blue;
 }
 void OAIColorCorrector::setGainBlue(const double &gain_blue) {
 	double v = gain_blue;
@@ -322,7 +322,7 @@ void OAIColorCorrector::setGainBlue(const double &gain_blue) {
 	double max = gainBlueMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->gain_blue = v;
+	this->m_gain_blue = v;
     this->m_gain_blue_isSet = true;
 }
 
@@ -343,7 +343,7 @@ double OAIColorCorrector::gainBlueMax() const {
 }
 
 double OAIColorCorrector::getGammaRed() const {
-    return gamma_red;
+    return m_gamma_red;
 }
 void OAIColorCorrector::setGammaRed(const double &gamma_red) {
 	double v = gamma_red;
@@ -351,7 +351,7 @@ void OAIColorCorrector::setGammaRed(const double &gamma_red) {
 	double max = gammaRedMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->gamma_red = v;
+	this->m_gamma_red = v;
     this->m_gamma_red_isSet = true;
 }
 
@@ -372,7 +372,7 @@ double OAIColorCorrector::gammaRedMax() const {
 }
 
 double OAIColorCorrector::getGammaGreen() const {
-    return gamma_green;
+    return m_gamma_green;
 }
 void OAIColorCorrector::setGammaGreen(const double &gamma_green) {
 	double v = gamma_green;
@@ -380,7 +380,7 @@ void OAIColorCorrector::setGammaGreen(const double &gamma_green) {
 	double max = gammaGreenMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->gamma_green = v;
+	this->m_gamma_green = v;
     this->m_gamma_green_isSet = true;
 }
 
@@ -401,7 +401,7 @@ double OAIColorCorrector::gammaGreenMax() const {
 }
 
 double OAIColorCorrector::getGammaBlue() const {
-    return gamma_blue;
+    return m_gamma_blue;
 }
 void OAIColorCorrector::setGammaBlue(const double &gamma_blue) {
 	double v = gamma_blue;
@@ -409,7 +409,7 @@ void OAIColorCorrector::setGammaBlue(const double &gamma_blue) {
 	double max = gammaBlueMax();
 	if (v < min) { v = min; }
 	if (v > max) { v = max; }
-	this->gamma_blue = v;
+	this->m_gamma_blue = v;
     this->m_gamma_blue_isSet = true;
 }
 
@@ -430,11 +430,11 @@ double OAIColorCorrector::gammaBlueMax() const {
 }
 
 QString OAIColorCorrector::getUnitsBlack() const {
-    return units_black;
+    return m_units_black;
 }
 void OAIColorCorrector::setUnitsBlack(const QString &units_black) {
 	QString v = units_black;
-	this->units_black = v;
+	this->m_units_black = v;
     this->m_units_black_isSet = true;
 }
 
@@ -449,11 +449,11 @@ bool OAIColorCorrector::is_units_black_Valid() const{
 
 
 QString OAIColorCorrector::getUnitsGain() const {
-    return units_gain;
+    return m_units_gain;
 }
 void OAIColorCorrector::setUnitsGain(const QString &units_gain) {
 	QString v = units_gain;
-	this->units_gain = v;
+	this->m_units_gain = v;
     this->m_units_gain_isSet = true;
 }
 
@@ -468,11 +468,11 @@ bool OAIColorCorrector::is_units_gain_Valid() const{
 
 
 QString OAIColorCorrector::getUnitsGamma() const {
-    return units_gamma;
+    return m_units_gamma;
 }
 void OAIColorCorrector::setUnitsGamma(const QString &units_gamma) {
 	QString v = units_gamma;
-	this->units_gamma = v;
+	this->m_units_gamma = v;
     this->m_units_gamma_isSet = true;
 }
 
@@ -558,7 +558,7 @@ bool OAIColorCorrector::isValid() const {
 }
 
 bool OAIColorCorrector::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_black_red_Set())
 	{
 		bool blackRedChanged = false;
@@ -567,7 +567,7 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = blackRedMax();
 		if (v < min) { v = min; blackRedChanged = true; }
 		if (v > max) { v = max; blackRedChanged = true; }
-		if (blackRedChanged) { setBlackRed(v); valueChanged = true; }
+		if (blackRedChanged) { setBlackRed(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_black_green_Set())
 	{
@@ -577,7 +577,7 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = blackGreenMax();
 		if (v < min) { v = min; blackGreenChanged = true; }
 		if (v > max) { v = max; blackGreenChanged = true; }
-		if (blackGreenChanged) { setBlackGreen(v); valueChanged = true; }
+		if (blackGreenChanged) { setBlackGreen(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_black_blue_Set())
 	{
@@ -587,7 +587,7 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = blackBlueMax();
 		if (v < min) { v = min; blackBlueChanged = true; }
 		if (v > max) { v = max; blackBlueChanged = true; }
-		if (blackBlueChanged) { setBlackBlue(v); valueChanged = true; }
+		if (blackBlueChanged) { setBlackBlue(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gain_red_Set())
 	{
@@ -597,7 +597,7 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = gainRedMax();
 		if (v < min) { v = min; gainRedChanged = true; }
 		if (v > max) { v = max; gainRedChanged = true; }
-		if (gainRedChanged) { setGainRed(v); valueChanged = true; }
+		if (gainRedChanged) { setGainRed(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gain_green_Set())
 	{
@@ -607,7 +607,7 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = gainGreenMax();
 		if (v < min) { v = min; gainGreenChanged = true; }
 		if (v > max) { v = max; gainGreenChanged = true; }
-		if (gainGreenChanged) { setGainGreen(v); valueChanged = true; }
+		if (gainGreenChanged) { setGainGreen(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gain_blue_Set())
 	{
@@ -617,7 +617,7 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = gainBlueMax();
 		if (v < min) { v = min; gainBlueChanged = true; }
 		if (v > max) { v = max; gainBlueChanged = true; }
-		if (gainBlueChanged) { setGainBlue(v); valueChanged = true; }
+		if (gainBlueChanged) { setGainBlue(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gamma_red_Set())
 	{
@@ -627,7 +627,7 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = gammaRedMax();
 		if (v < min) { v = min; gammaRedChanged = true; }
 		if (v > max) { v = max; gammaRedChanged = true; }
-		if (gammaRedChanged) { setGammaRed(v); valueChanged = true; }
+		if (gammaRedChanged) { setGammaRed(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gamma_green_Set())
 	{
@@ -637,7 +637,7 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = gammaGreenMax();
 		if (v < min) { v = min; gammaGreenChanged = true; }
 		if (v > max) { v = max; gammaGreenChanged = true; }
-		if (gammaGreenChanged) { setGammaGreen(v); valueChanged = true; }
+		if (gammaGreenChanged) { setGammaGreen(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gamma_blue_Set())
 	{
@@ -647,27 +647,27 @@ bool OAIColorCorrector::applyMinMaxConstraints() {
 		double max = gammaBlueMax();
 		if (v < min) { v = min; gammaBlueChanged = true; }
 		if (v > max) { v = max; gammaBlueChanged = true; }
-		if (gammaBlueChanged) { setGammaBlue(v); valueChanged = true; }
+		if (gammaBlueChanged) { setGammaBlue(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_units_black_Set())
 	{
 		bool unitsBlackChanged = false;
 		QString v = getUnitsBlack();
-		if (unitsBlackChanged) { setUnitsBlack(v); valueChanged = true; }
+		if (unitsBlackChanged) { setUnitsBlack(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_units_gain_Set())
 	{
 		bool unitsGainChanged = false;
 		QString v = getUnitsGain();
-		if (unitsGainChanged) { setUnitsGain(v); valueChanged = true; }
+		if (unitsGainChanged) { setUnitsGain(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_units_gamma_Set())
 	{
 		bool unitsGammaChanged = false;
 		QString v = getUnitsGamma();
-		if (unitsGammaChanged) { setUnitsGamma(v); valueChanged = true; }
+		if (unitsGammaChanged) { setUnitsGamma(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

@@ -53,15 +53,15 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    QString current_password;
+    QString m_current_password;
     bool m_current_password_isSet;
     bool m_current_password_isValid;
 
-    QString new_password;
+    QString m_new_password;
     bool m_new_password_isSet;
     bool m_new_password_isValid;
 };

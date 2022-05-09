@@ -63,22 +63,22 @@ void OAINetParams::fromJson(QString jsonString) {
 
 void OAINetParams::fromJsonObject(QJsonObject json) {
 
-    m_address_isValid = ::OpenAPI::fromJsonValue(address, json[QString("address")]);
+    m_address_isValid = ::OpenAPI::fromJsonValue(m_address, json[QString("address")]);
     m_address_isSet = !json[QString("address")].isNull() && m_address_isValid;
 
-    m_subnet_isValid = ::OpenAPI::fromJsonValue(subnet, json[QString("subnet")]);
+    m_subnet_isValid = ::OpenAPI::fromJsonValue(m_subnet, json[QString("subnet")]);
     m_subnet_isSet = !json[QString("subnet")].isNull() && m_subnet_isValid;
 
-    m_gateway_isValid = ::OpenAPI::fromJsonValue(gateway, json[QString("gateway")]);
+    m_gateway_isValid = ::OpenAPI::fromJsonValue(m_gateway, json[QString("gateway")]);
     m_gateway_isSet = !json[QString("gateway")].isNull() && m_gateway_isValid;
 
-    m_dns_server1_isValid = ::OpenAPI::fromJsonValue(dns_server1, json[QString("dnsServer1")]);
+    m_dns_server1_isValid = ::OpenAPI::fromJsonValue(m_dns_server1, json[QString("dnsServer1")]);
     m_dns_server1_isSet = !json[QString("dnsServer1")].isNull() && m_dns_server1_isValid;
 
-    m_dns_server2_isValid = ::OpenAPI::fromJsonValue(dns_server2, json[QString("dnsServer2")]);
+    m_dns_server2_isValid = ::OpenAPI::fromJsonValue(m_dns_server2, json[QString("dnsServer2")]);
     m_dns_server2_isSet = !json[QString("dnsServer2")].isNull() && m_dns_server2_isValid;
 
-    m_dns_search_isValid = ::OpenAPI::fromJsonValue(dns_search, json[QString("dnsSearch")]);
+    m_dns_search_isValid = ::OpenAPI::fromJsonValue(m_dns_search, json[QString("dnsSearch")]);
     m_dns_search_isSet = !json[QString("dnsSearch")].isNull() && m_dns_search_isValid;
 
     applyMinMaxConstraints();
@@ -94,32 +94,32 @@ QString OAINetParams::asJson() const {
 QJsonObject OAINetParams::asJsonObject() const {
     QJsonObject obj;
     if (m_address_isSet) {
-        obj.insert(QString("address"), ::OpenAPI::toJsonValue(address));
+        obj.insert(QString("address"), ::OpenAPI::toJsonValue(m_address));
     }
     if (m_subnet_isSet) {
-        obj.insert(QString("subnet"), ::OpenAPI::toJsonValue(subnet));
+        obj.insert(QString("subnet"), ::OpenAPI::toJsonValue(m_subnet));
     }
     if (m_gateway_isSet) {
-        obj.insert(QString("gateway"), ::OpenAPI::toJsonValue(gateway));
+        obj.insert(QString("gateway"), ::OpenAPI::toJsonValue(m_gateway));
     }
     if (m_dns_server1_isSet) {
-        obj.insert(QString("dnsServer1"), ::OpenAPI::toJsonValue(dns_server1));
+        obj.insert(QString("dnsServer1"), ::OpenAPI::toJsonValue(m_dns_server1));
     }
     if (m_dns_server2_isSet) {
-        obj.insert(QString("dnsServer2"), ::OpenAPI::toJsonValue(dns_server2));
+        obj.insert(QString("dnsServer2"), ::OpenAPI::toJsonValue(m_dns_server2));
     }
     if (m_dns_search_isSet) {
-        obj.insert(QString("dnsSearch"), ::OpenAPI::toJsonValue(dns_search));
+        obj.insert(QString("dnsSearch"), ::OpenAPI::toJsonValue(m_dns_search));
     }
     return obj;
 }
 
 QString OAINetParams::getAddress() const {
-    return address;
+    return m_address;
 }
 void OAINetParams::setAddress(const QString &address) {
 	QString v = address;
-	this->address = v;
+	this->m_address = v;
     this->m_address_isSet = true;
 }
 
@@ -134,11 +134,11 @@ bool OAINetParams::is_address_Valid() const{
 
 
 QString OAINetParams::getSubnet() const {
-    return subnet;
+    return m_subnet;
 }
 void OAINetParams::setSubnet(const QString &subnet) {
 	QString v = subnet;
-	this->subnet = v;
+	this->m_subnet = v;
     this->m_subnet_isSet = true;
 }
 
@@ -153,11 +153,11 @@ bool OAINetParams::is_subnet_Valid() const{
 
 
 QString OAINetParams::getGateway() const {
-    return gateway;
+    return m_gateway;
 }
 void OAINetParams::setGateway(const QString &gateway) {
 	QString v = gateway;
-	this->gateway = v;
+	this->m_gateway = v;
     this->m_gateway_isSet = true;
 }
 
@@ -172,11 +172,11 @@ bool OAINetParams::is_gateway_Valid() const{
 
 
 QString OAINetParams::getDnsServer1() const {
-    return dns_server1;
+    return m_dns_server1;
 }
 void OAINetParams::setDnsServer1(const QString &dns_server1) {
 	QString v = dns_server1;
-	this->dns_server1 = v;
+	this->m_dns_server1 = v;
     this->m_dns_server1_isSet = true;
 }
 
@@ -191,11 +191,11 @@ bool OAINetParams::is_dns_server1_Valid() const{
 
 
 QString OAINetParams::getDnsServer2() const {
-    return dns_server2;
+    return m_dns_server2;
 }
 void OAINetParams::setDnsServer2(const QString &dns_server2) {
 	QString v = dns_server2;
-	this->dns_server2 = v;
+	this->m_dns_server2 = v;
     this->m_dns_server2_isSet = true;
 }
 
@@ -210,11 +210,11 @@ bool OAINetParams::is_dns_server2_Valid() const{
 
 
 QString OAINetParams::getDnsSearch() const {
-    return dns_search;
+    return m_dns_search;
 }
 void OAINetParams::setDnsSearch(const QString &dns_search) {
 	QString v = dns_search;
-	this->dns_search = v;
+	this->m_dns_search = v;
     this->m_dns_search_isSet = true;
 }
 
@@ -270,44 +270,44 @@ bool OAINetParams::isValid() const {
 }
 
 bool OAINetParams::applyMinMaxConstraints() {
-	bool valueChanged = false;
+	bool anyMinMaxValueChanged = false;
 	if (is_address_Set())
 	{
 		bool addressChanged = false;
 		QString v = getAddress();
-		if (addressChanged) { setAddress(v); valueChanged = true; }
+		if (addressChanged) { setAddress(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_subnet_Set())
 	{
 		bool subnetChanged = false;
 		QString v = getSubnet();
-		if (subnetChanged) { setSubnet(v); valueChanged = true; }
+		if (subnetChanged) { setSubnet(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_gateway_Set())
 	{
 		bool gatewayChanged = false;
 		QString v = getGateway();
-		if (gatewayChanged) { setGateway(v); valueChanged = true; }
+		if (gatewayChanged) { setGateway(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_dns_server1_Set())
 	{
 		bool dnsServer1Changed = false;
 		QString v = getDnsServer1();
-		if (dnsServer1Changed) { setDnsServer1(v); valueChanged = true; }
+		if (dnsServer1Changed) { setDnsServer1(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_dns_server2_Set())
 	{
 		bool dnsServer2Changed = false;
 		QString v = getDnsServer2();
-		if (dnsServer2Changed) { setDnsServer2(v); valueChanged = true; }
+		if (dnsServer2Changed) { setDnsServer2(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_dns_search_Set())
 	{
 		bool dnsSearchChanged = false;
 		QString v = getDnsSearch();
-		if (dnsSearchChanged) { setDnsSearch(v); valueChanged = true; }
+		if (dnsSearchChanged) { setDnsSearch(v); anyMinMaxValueChanged = true; }
 	}
-	return valueChanged;
+	return anyMinMaxValueChanged;
 }
 
 } // namespace OpenAPI

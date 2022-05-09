@@ -53,15 +53,15 @@ public:
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
-    virtual bool applyMinMaxConstraints();
+    bool applyMinMaxConstraints();
 private:
     void initializeModel();
 
-    OAIIpConfig ip_config;
+    OAIIpConfig m_ip_config;
     bool m_ip_config_isSet;
     bool m_ip_config_isValid;
 
-    qint32 ip_change_commit;
+    qint32 m_ip_change_commit;
     bool m_ip_change_commit_isSet;
     bool m_ip_change_commit_isValid;
 };
