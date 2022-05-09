@@ -99,7 +99,7 @@ void Dialog::handleGetSDIStatus(OpenAPI::OAISDI status)
     _ui->connectLabel->setText("CONNECTED");
 
     // Get Web Socket Going.
-    connectSojiWebSocket(_currentIPAddress);
+	emit connectSojiWebSocket(_currentIPAddress);
 
     qDebug() << status.getFormat().asJson();
 
