@@ -1,3 +1,5 @@
+option(AJA_SOJI_DEMOS_COPY_INTO_BIN "Copy the built demos into the cpp/bin directory?" On)
+
 if(CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DAJA_DEBUG -D_DEBUG)
 elseif(CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
