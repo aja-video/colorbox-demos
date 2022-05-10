@@ -2,6 +2,7 @@
 ```
 cd api
 go build
+cd -
 ```
 
 ## Build get_temp

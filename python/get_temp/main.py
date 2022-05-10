@@ -1,4 +1,5 @@
 """Simple example script that will get the colorbox die temp every second."""
+import argparse
 import os
 import sys
 import time
@@ -19,8 +20,15 @@ import openapi_client
 from openapi_client.api import default_api
 from openapi_client.rest import ApiException
 
-# Chnage to IP Address of desired Color Box
-configuration = openapi_client.Configuration(host="http://192.168.10.206/v2")
+parser = argparse.ArgumentParser(description="")
+parser.add_argument("--host", default="127.0.0.1", help="the hostname or ip of device")
+parser.add_argument("--port", default=80, help="the port number to use")
+
+args = parser.parse_args()
+hostAndPort = f"{args.host}:{args.port}/v2"
+
+# Create a configuration that points to the IP Address of desired Color Box
+configuration = openapi_client.Configuration(host=hostAndPort)
 
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
