@@ -13,6 +13,16 @@
 
 using namespace OpenAPI;
 
+// This is needed to compile with older Qt versions like Qt 5.13.2
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+namespace Qt {
+	QTextStream &endl(QTextStream &s)
+	{
+		return ::endl(s);
+	}
+}
+#endif
+
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent),
       _sojiConnected(false),
@@ -20,10 +30,7 @@ Dialog::Dialog(QWidget *parent)
 {
     _ui->setupUi(this);
 
-    Qt::WindowFlags flags = nullptr;
-    flags |= Qt::WindowMinMaxButtonsHint;
-    flags |= Qt::WindowCloseButtonHint;
-    setWindowFlags( flags );
+	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
     recallSettings();
     ipAddressEdited();
@@ -105,11 +112,11 @@ void Dialog::updateUIPreview()
                 // Information Window
                 QString metaDataString;
                 QTextStream ts(&metaDataString);
-                ts << "Video Format: " << _status.getFormat().asJson() << endl;
-                ts << "User Data String1: " << endl;
-                ts << " " << _preview.getUserData1() << endl;
-                ts << "User Data String2: " << endl;
-                ts << " " << _preview.getUserData2() << endl;
+				ts << "Video Format: " << _status.getFormat().asJson() << Qt::endl;
+				ts << "User Data String1: " << Qt::endl;
+				ts << " " << _preview.getUserData1() << Qt::endl;
+				ts << "User Data String2: " << Qt::endl;
+				ts << " " << _preview.getUserData2() << Qt::endl;
 
 #ifdef SUPPORT_ANC
                 QByteArray ancBA = _preview.getAncData();

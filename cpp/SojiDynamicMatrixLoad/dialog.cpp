@@ -29,7 +29,6 @@ namespace Qt {
 }
 #endif
 
-
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent),
       _sojiConnected(false),
