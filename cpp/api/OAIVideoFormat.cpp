@@ -62,36 +62,36 @@ void OAIVideoFormat::fromJson(QString jsonString) {
         m_value = eOAIVideoFormat::_720P60;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("1080i25", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_1080I25;
+    else if ( jsonString.compare("1080i50", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_1080I50;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("1080i29.97", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_1080I29_97;
+    else if ( jsonString.compare("1080i59.94", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_1080I59_94;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("1080i30", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_1080I30;
+    else if ( jsonString.compare("1080i60", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_1080I60;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("1080sf23.98", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_1080SF23_98;
+    else if ( jsonString.compare("1080PsF23.98", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_1080PSF23_98;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("1080sf24", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_1080SF24;
+    else if ( jsonString.compare("1080PsF24", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_1080PSF24;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("1080sf25", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_1080SF25;
+    else if ( jsonString.compare("1080PsF25", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_1080PSF25;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("1080sf29.97", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_1080SF29_97;
+    else if ( jsonString.compare("1080PsF29.97", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_1080PSF29_97;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("1080sf30", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_1080SF30;
+    else if ( jsonString.compare("1080PsF30", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_1080PSF30;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("1080p23.98", Qt::CaseInsensitive) == 0) {
@@ -166,16 +166,16 @@ void OAIVideoFormat::fromJson(QString jsonString) {
         m_value = eOAIVideoFormat::_2KP60;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("2Ksf23.98", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_2KSF23_98;
+    else if ( jsonString.compare("2KPsF23.98", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_2KPSF23_98;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("2Ksf24", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_2KSF24;
+    else if ( jsonString.compare("2KPsF24", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_2KPSF24;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("2Ksf25", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_2KSF25;
+    else if ( jsonString.compare("2KPsF25", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_2KPSF25;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("UHDp23.98", Qt::CaseInsensitive) == 0) {
@@ -269,29 +269,29 @@ QString OAIVideoFormat::asJson() const {
         case eOAIVideoFormat::_720P60:
             val = "720p60";
             break;
-        case eOAIVideoFormat::_1080I25:
-            val = "1080i25";
+        case eOAIVideoFormat::_1080I50:
+            val = "1080i50";
             break;
-        case eOAIVideoFormat::_1080I29_97:
-            val = "1080i29.97";
+        case eOAIVideoFormat::_1080I59_94:
+            val = "1080i59.94";
             break;
-        case eOAIVideoFormat::_1080I30:
-            val = "1080i30";
+        case eOAIVideoFormat::_1080I60:
+            val = "1080i60";
             break;
-        case eOAIVideoFormat::_1080SF23_98:
-            val = "1080sf23.98";
+        case eOAIVideoFormat::_1080PSF23_98:
+            val = "1080PsF23.98";
             break;
-        case eOAIVideoFormat::_1080SF24:
-            val = "1080sf24";
+        case eOAIVideoFormat::_1080PSF24:
+            val = "1080PsF24";
             break;
-        case eOAIVideoFormat::_1080SF25:
-            val = "1080sf25";
+        case eOAIVideoFormat::_1080PSF25:
+            val = "1080PsF25";
             break;
-        case eOAIVideoFormat::_1080SF29_97:
-            val = "1080sf29.97";
+        case eOAIVideoFormat::_1080PSF29_97:
+            val = "1080PsF29.97";
             break;
-        case eOAIVideoFormat::_1080SF30:
-            val = "1080sf30";
+        case eOAIVideoFormat::_1080PSF30:
+            val = "1080PsF30";
             break;
         case eOAIVideoFormat::_1080P23_98:
             val = "1080p23.98";
@@ -347,14 +347,14 @@ QString OAIVideoFormat::asJson() const {
         case eOAIVideoFormat::_2KP60:
             val = "2Kp60";
             break;
-        case eOAIVideoFormat::_2KSF23_98:
-            val = "2Ksf23.98";
+        case eOAIVideoFormat::_2KPSF23_98:
+            val = "2KPsF23.98";
             break;
-        case eOAIVideoFormat::_2KSF24:
-            val = "2Ksf24";
+        case eOAIVideoFormat::_2KPSF24:
+            val = "2KPsF24";
             break;
-        case eOAIVideoFormat::_2KSF25:
-            val = "2Ksf25";
+        case eOAIVideoFormat::_2KPSF25:
+            val = "2KPsF25";
             break;
         case eOAIVideoFormat::UHDP23_98:
             val = "UHDp23.98";

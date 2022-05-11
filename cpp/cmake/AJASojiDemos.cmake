@@ -1,5 +1,7 @@
 option(AJA_SOJI_DEMOS_COPY_INTO_BIN "Copy the built demos into the cpp/bin directory?" On)
 
+set(COLORBOX_CLIENT_API_TARGET cpp-qt-client-colorbox)
+
 if(CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DAJA_DEBUG -D_DEBUG)
 elseif(CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
@@ -63,7 +65,7 @@ endfunction()
 function(add_sdk_subdirectory target_dir)
 	set(target "")
 	if (${target_dir} STREQUAL "api")
-		set(target "cpp-qt-client")
+		set(target "${COLORBOX_CLIENT_API_TARGET}")
 	elseif(${target_dir} STREQUAL "ntv2sdk")
 		set(target "ajantv2")
 	endif()

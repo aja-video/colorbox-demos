@@ -13,6 +13,7 @@ HEADERS += \
     $${PWD}/OAIConnection.h \
     $${PWD}/OAICrop4k2k.h \
     $${PWD}/OAIDHCPState.h \
+    $${PWD}/OAIFileTypeChoice.h \
     $${PWD}/OAIFrame.h \
     $${PWD}/OAIFrameStore.h \
     $${PWD}/OAIInterfaceSetupState.h \
@@ -87,6 +88,7 @@ SOURCES += \
     $${PWD}/OAIConnection.cpp \
     $${PWD}/OAICrop4k2k.cpp \
     $${PWD}/OAIDHCPState.cpp \
+    $${PWD}/OAIFileTypeChoice.cpp \
     $${PWD}/OAIFrame.cpp \
     $${PWD}/OAIFrameStore.cpp \
     $${PWD}/OAIInterfaceSetupState.cpp \

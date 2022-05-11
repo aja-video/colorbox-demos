@@ -22,6 +22,7 @@
 
 #include <QJsonObject>
 
+#include "OAIFileTypeChoice.h"
 #include "OAIRgbRange.h"
 #include "OAIVideoConvertChoice.h"
 #include "OAIVideoFormat.h"
@@ -58,15 +59,15 @@ public:
     bool is_image_name_Set() const;
     bool is_image_name_Valid() const;
 
-    bool isClipNameAppended() const;
-    void setClipNameAppended(const bool &clip_name_appended);
-    bool is_clip_name_appended_Set() const;
-    bool is_clip_name_appended_Valid() const;
-
     bool isTimecodeAppended() const;
     void setTimecodeAppended(const bool &timecode_appended);
     bool is_timecode_appended_Set() const;
     bool is_timecode_appended_Valid() const;
+
+    OAIFileTypeChoice getFileType() const;
+    void setFileType(const OAIFileTypeChoice &file_type);
+    bool is_file_type_Set() const;
+    bool is_file_type_Valid() const;
 
     qint32 getLibraryEntry() const;
     void setLibraryEntry(const qint32 &library_entry);
@@ -107,13 +108,13 @@ private:
     bool m_image_name_isSet;
     bool m_image_name_isValid;
 
-    bool m_clip_name_appended;
-    bool m_clip_name_appended_isSet;
-    bool m_clip_name_appended_isValid;
-
     bool m_timecode_appended;
     bool m_timecode_appended_isSet;
     bool m_timecode_appended_isValid;
+
+    OAIFileTypeChoice m_file_type;
+    bool m_file_type_isSet;
+    bool m_file_type_isValid;
 
     qint32 m_library_entry;
     bool m_library_entry_isSet;

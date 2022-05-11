@@ -44,11 +44,11 @@ void OAIFrameStore::initializeModel() {
     m_image_name_isSet = false;
     m_image_name_isValid = false;
 
-    m_clip_name_appended_isSet = false;
-    m_clip_name_appended_isValid = false;
-
     m_timecode_appended_isSet = false;
     m_timecode_appended_isValid = false;
+
+    m_file_type_isSet = false;
+    m_file_type_isValid = false;
 
     m_library_entry_isSet = false;
     m_library_entry_isValid = false;
@@ -81,11 +81,11 @@ void OAIFrameStore::fromJsonObject(QJsonObject json) {
     m_image_name_isValid = ::OpenAPI::fromJsonValue(m_image_name, json[QString("imageName")]);
     m_image_name_isSet = !json[QString("imageName")].isNull() && m_image_name_isValid;
 
-    m_clip_name_appended_isValid = ::OpenAPI::fromJsonValue(m_clip_name_appended, json[QString("clipNameAppended")]);
-    m_clip_name_appended_isSet = !json[QString("clipNameAppended")].isNull() && m_clip_name_appended_isValid;
-
     m_timecode_appended_isValid = ::OpenAPI::fromJsonValue(m_timecode_appended, json[QString("timecodeAppended")]);
     m_timecode_appended_isSet = !json[QString("timecodeAppended")].isNull() && m_timecode_appended_isValid;
+
+    m_file_type_isValid = ::OpenAPI::fromJsonValue(m_file_type, json[QString("fileType")]);
+    m_file_type_isSet = !json[QString("fileType")].isNull() && m_file_type_isValid;
 
     m_library_entry_isValid = ::OpenAPI::fromJsonValue(m_library_entry, json[QString("libraryEntry")]);
     m_library_entry_isSet = !json[QString("libraryEntry")].isNull() && m_library_entry_isValid;
@@ -120,11 +120,11 @@ QJsonObject OAIFrameStore::asJsonObject() const {
     if (m_image_name_isSet) {
         obj.insert(QString("imageName"), ::OpenAPI::toJsonValue(m_image_name));
     }
-    if (m_clip_name_appended_isSet) {
-        obj.insert(QString("clipNameAppended"), ::OpenAPI::toJsonValue(m_clip_name_appended));
-    }
     if (m_timecode_appended_isSet) {
         obj.insert(QString("timecodeAppended"), ::OpenAPI::toJsonValue(m_timecode_appended));
+    }
+    if (m_file_type.isSet()) {
+        obj.insert(QString("fileType"), ::OpenAPI::toJsonValue(m_file_type));
     }
     if (m_library_entry_isSet) {
         obj.insert(QString("libraryEntry"), ::OpenAPI::toJsonValue(m_library_entry));
@@ -196,24 +196,6 @@ bool OAIFrameStore::is_image_name_Valid() const{
 
 
 
-bool OAIFrameStore::isClipNameAppended() const {
-    return m_clip_name_appended;
-}
-void OAIFrameStore::setClipNameAppended(const bool &clip_name_appended) {
-	bool v = clip_name_appended;
-	this->m_clip_name_appended = v;
-    this->m_clip_name_appended_isSet = true;
-}
-
-bool OAIFrameStore::is_clip_name_appended_Set() const{
-    return m_clip_name_appended_isSet;
-}
-
-bool OAIFrameStore::is_clip_name_appended_Valid() const{
-    return m_clip_name_appended_isValid;
-}
-
-
 bool OAIFrameStore::isTimecodeAppended() const {
     return m_timecode_appended;
 }
@@ -229,6 +211,24 @@ bool OAIFrameStore::is_timecode_appended_Set() const{
 
 bool OAIFrameStore::is_timecode_appended_Valid() const{
     return m_timecode_appended_isValid;
+}
+
+
+OAIFileTypeChoice OAIFrameStore::getFileType() const {
+    return m_file_type;
+}
+void OAIFrameStore::setFileType(const OAIFileTypeChoice &file_type) {
+	OAIFileTypeChoice v = file_type;
+	this->m_file_type = v;
+    this->m_file_type_isSet = true;
+}
+
+bool OAIFrameStore::is_file_type_Set() const{
+    return m_file_type_isSet;
+}
+
+bool OAIFrameStore::is_file_type_Valid() const{
+    return m_file_type_isValid;
 }
 
 
@@ -323,12 +323,12 @@ bool OAIFrameStore::isSet() const {
             break;
         }
 
-        if (m_clip_name_appended_isSet) {
+        if (m_timecode_appended_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_timecode_appended_isSet) {
+        if (m_file_type.isSet()) {
             isObjectUpdated = true;
             break;
         }

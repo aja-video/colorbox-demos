@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(cpp-qt-client)
+project(cpp-qt-client-colorbox)
+
 set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -30,6 +31,7 @@ add_library(${PROJECT_NAME}
     OAIConnection.cpp
     OAICrop4k2k.cpp
     OAIDHCPState.cpp
+    OAIFileTypeChoice.cpp
     OAIFrame.cpp
     OAIFrameStore.cpp
     OAIInterfaceSetupState.cpp
