@@ -20,7 +20,7 @@ set(CPP_COMMON_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../common)
 if (EXISTS ${AJA_NTV2_ROOT})
 	set(NTV2SDK_COMMON_ROOT ${AJA_NTV2_ROOT})
 else()
-	cmake_path(SET NTV2SDK_COMMON_ROOT NORMALIZE "${CMAKE_CURRENT_SOURCE_DIR}/../ntv2sdk")
+	set(NTV2SDK_COMMON_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../ntv2sdk")
 endif()
 
 # To support NTV2 ANC related routines
