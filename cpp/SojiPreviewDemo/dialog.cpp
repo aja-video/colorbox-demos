@@ -20,6 +20,10 @@ namespace Qt {
 	{
 		return ::endl(s);
 	}
+	QTextStream &hex(QTextStream &s)
+	{
+		return ::hex(s);
+	}
 }
 #endif
 
@@ -138,7 +142,7 @@ void Dialog::updateUIPreview()
 				for ( uint32_t ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
                 {
                     AJAAncillaryData *ancData =  _ancDataList.GetAncillaryDataAtIndex (ancCount);
-                    ts << hex << "DID/SID: " <<  "0x" << ancData->GetDID() << "/" <<  "0x" << ancData->GetSID() << endl;
+					ts << Qt::hex << "DID/SID: " <<  "0x" << ancData->GetDID() << "/" <<  "0x" << ancData->GetSID() << Qt::endl;
                     if ((ancData->GetDID() == 0x41) &&
                             (ancData->GetSID() == 0x01) &&
                             (ancData->GetLocationDataChannel() == AJAAncillaryDataChannel_Y))

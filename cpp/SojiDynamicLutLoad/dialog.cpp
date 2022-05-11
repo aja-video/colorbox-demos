@@ -35,8 +35,8 @@ using namespace OpenAPI;
 
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent),
-      _ui(new Ui::Dialog),
-      _sojiConnected(false)
+	  _sojiConnected(false),
+	  _ui(new Ui::Dialog)
 {
     _ui->setupUi(this);
 

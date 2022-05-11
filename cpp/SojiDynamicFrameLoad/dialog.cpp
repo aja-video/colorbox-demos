@@ -386,7 +386,7 @@ void Dialog::updatePreview()
     // convert to 8 bit RGB for preview
     uint8_t* previewBuffer = new uint8_t[_height*_width*3];
     uint8_t* destBuffer = previewBuffer;
-    if ( _frameBuffer.size() == _height*_width*6)
+	if ( _frameBuffer.size() == (int)(_height*_width*6))
     {
         // Image
         uint16_t* sourceBuffer = reinterpret_cast<uint16_t*>(_frameBuffer.data());
@@ -397,7 +397,7 @@ void Dialog::updatePreview()
             *destBuffer++ = *sourceBuffer++>>8;
         }
     }
-    else if ( _frameBuffer.size() == _height*_width*4)
+	else if ( _frameBuffer.size() == (int)(_height*_width*4))
     {
         // Overlay
         qDebug() << "Overlay";

@@ -49,7 +49,6 @@ protected:
     OpenAPI::OAIDefaultApi _api;
     QString _currentIPAddress;
 
-
 private:
     Ui::Dialog *_ui;
 };
