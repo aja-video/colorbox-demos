@@ -22,8 +22,10 @@
 
 #include <QJsonObject>
 
+#include "OAIColorimetry.h"
 #include "OAIPipelineRange.h"
 #include "OAIStage.h"
+#include "OAITransfer.h"
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
@@ -76,10 +78,30 @@ public:
     bool is_lut1d_4_Set() const;
     bool is_lut1d_4_Valid() const;
 
-    OAIPipelineRange getPipelineRange() const;
-    void setPipelineRange(const OAIPipelineRange &pipeline_range);
-    bool is_pipeline_range_Set() const;
-    bool is_pipeline_range_Valid() const;
+    OAIColorimetry getInColorimetry() const;
+    void setInColorimetry(const OAIColorimetry &in_colorimetry);
+    bool is_in_colorimetry_Set() const;
+    bool is_in_colorimetry_Valid() const;
+
+    OAIPipelineRange getInRange() const;
+    void setInRange(const OAIPipelineRange &in_range);
+    bool is_in_range_Set() const;
+    bool is_in_range_Valid() const;
+
+    OAIColorimetry getOutColorimetry() const;
+    void setOutColorimetry(const OAIColorimetry &out_colorimetry);
+    bool is_out_colorimetry_Set() const;
+    bool is_out_colorimetry_Valid() const;
+
+    OAIPipelineRange getOutRange() const;
+    void setOutRange(const OAIPipelineRange &out_range);
+    bool is_out_range_Set() const;
+    bool is_out_range_Valid() const;
+
+    OAITransfer getTransferCharacteristic() const;
+    void setTransferCharacteristic(const OAITransfer &transfer_characteristic);
+    bool is_transfer_characteristic_Set() const;
+    bool is_transfer_characteristic_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -116,9 +138,25 @@ private:
     bool m_lut1d_4_isSet;
     bool m_lut1d_4_isValid;
 
-    OAIPipelineRange m_pipeline_range;
-    bool m_pipeline_range_isSet;
-    bool m_pipeline_range_isValid;
+    OAIColorimetry m_in_colorimetry;
+    bool m_in_colorimetry_isSet;
+    bool m_in_colorimetry_isValid;
+
+    OAIPipelineRange m_in_range;
+    bool m_in_range_isSet;
+    bool m_in_range_isValid;
+
+    OAIColorimetry m_out_colorimetry;
+    bool m_out_colorimetry_isSet;
+    bool m_out_colorimetry_isValid;
+
+    OAIPipelineRange m_out_range;
+    bool m_out_range_isSet;
+    bool m_out_range_isValid;
+
+    OAITransfer m_transfer_characteristic;
+    bool m_transfer_characteristic_isSet;
+    bool m_transfer_characteristic_isValid;
 };
 
 } // namespace OpenAPI

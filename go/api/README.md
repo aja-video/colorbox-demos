@@ -153,6 +153,7 @@ Class | Method | HTTP request | Description
  - [Connection](docs/Connection.md)
  - [Crop4k2k](docs/Crop4k2k.md)
  - [DHCPState](docs/DHCPState.md)
+ - [FileTypeChoice](docs/FileTypeChoice.md)
  - [Frame](docs/Frame.md)
  - [FrameStore](docs/FrameStore.md)
  - [InterfaceSetupState](docs/InterfaceSetupState.md)

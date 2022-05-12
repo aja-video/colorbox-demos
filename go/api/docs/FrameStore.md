@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Enabled** | Pointer to **bool** | true if frame store is enabled else disabled | [optional] 
 **Dynamic** | Pointer to **bool** | true if frame store can be dynamically adjusted | [optional] 
 **ImageName** | Pointer to **string** | The custom name for the captured image | [optional] 
-**ClipNameAppended** | Pointer to **bool** | Flag to append the clip name of the captured image onto the filename | [optional] 
 **TimecodeAppended** | Pointer to **bool** | Flag to append the timecode of the captured image onto the filename | [optional] 
+**FileType** | Pointer to [**FileTypeChoice**](FileTypeChoice.md) |  | [optional] 
 **LibraryEntry** | Pointer to **int32** | library entry number, zero is black | [optional] 
 **Format** | Pointer to [**VideoFormat**](VideoFormat.md) |  | [optional] 
 **Convert** | Pointer to [**VideoConvertChoice**](VideoConvertChoice.md) |  | [optional] [default to VIDEOCONVERTCHOICE_VIDEO_CONVERT_ACTUAL]
@@ -108,31 +108,6 @@ SetImageName sets ImageName field to given value.
 
 HasImageName returns a boolean if a field has been set.
 
-### GetClipNameAppended
-
-`func (o *FrameStore) GetClipNameAppended() bool`
-
-GetClipNameAppended returns the ClipNameAppended field if non-nil, zero value otherwise.
-
-### GetClipNameAppendedOk
-
-`func (o *FrameStore) GetClipNameAppendedOk() (*bool, bool)`
-
-GetClipNameAppendedOk returns a tuple with the ClipNameAppended field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClipNameAppended
-
-`func (o *FrameStore) SetClipNameAppended(v bool)`
-
-SetClipNameAppended sets ClipNameAppended field to given value.
-
-### HasClipNameAppended
-
-`func (o *FrameStore) HasClipNameAppended() bool`
-
-HasClipNameAppended returns a boolean if a field has been set.
-
 ### GetTimecodeAppended
 
 `func (o *FrameStore) GetTimecodeAppended() bool`
@@ -157,6 +132,31 @@ SetTimecodeAppended sets TimecodeAppended field to given value.
 `func (o *FrameStore) HasTimecodeAppended() bool`
 
 HasTimecodeAppended returns a boolean if a field has been set.
+
+### GetFileType
+
+`func (o *FrameStore) GetFileType() FileTypeChoice`
+
+GetFileType returns the FileType field if non-nil, zero value otherwise.
+
+### GetFileTypeOk
+
+`func (o *FrameStore) GetFileTypeOk() (*FileTypeChoice, bool)`
+
+GetFileTypeOk returns a tuple with the FileType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFileType
+
+`func (o *FrameStore) SetFileType(v FileTypeChoice)`
+
+SetFileType sets FileType field to given value.
+
+### HasFileType
+
+`func (o *FrameStore) HasFileType() bool`
+
+HasFileType returns a boolean if a field has been set.
 
 ### GetLibraryEntry
 

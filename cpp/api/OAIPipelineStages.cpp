@@ -56,8 +56,20 @@ void OAIPipelineStages::initializeModel() {
     m_lut1d_4_isSet = false;
     m_lut1d_4_isValid = false;
 
-    m_pipeline_range_isSet = false;
-    m_pipeline_range_isValid = false;
+    m_in_colorimetry_isSet = false;
+    m_in_colorimetry_isValid = false;
+
+    m_in_range_isSet = false;
+    m_in_range_isValid = false;
+
+    m_out_colorimetry_isSet = false;
+    m_out_colorimetry_isValid = false;
+
+    m_out_range_isSet = false;
+    m_out_range_isValid = false;
+
+    m_transfer_characteristic_isSet = false;
+    m_transfer_characteristic_isValid = false;
 }
 
 void OAIPipelineStages::fromJson(QString jsonString) {
@@ -90,8 +102,20 @@ void OAIPipelineStages::fromJsonObject(QJsonObject json) {
     m_lut1d_4_isValid = ::OpenAPI::fromJsonValue(m_lut1d_4, json[QString("lut1d_4")]);
     m_lut1d_4_isSet = !json[QString("lut1d_4")].isNull() && m_lut1d_4_isValid;
 
-    m_pipeline_range_isValid = ::OpenAPI::fromJsonValue(m_pipeline_range, json[QString("pipelineRange")]);
-    m_pipeline_range_isSet = !json[QString("pipelineRange")].isNull() && m_pipeline_range_isValid;
+    m_in_colorimetry_isValid = ::OpenAPI::fromJsonValue(m_in_colorimetry, json[QString("inColorimetry")]);
+    m_in_colorimetry_isSet = !json[QString("inColorimetry")].isNull() && m_in_colorimetry_isValid;
+
+    m_in_range_isValid = ::OpenAPI::fromJsonValue(m_in_range, json[QString("inRange")]);
+    m_in_range_isSet = !json[QString("inRange")].isNull() && m_in_range_isValid;
+
+    m_out_colorimetry_isValid = ::OpenAPI::fromJsonValue(m_out_colorimetry, json[QString("outColorimetry")]);
+    m_out_colorimetry_isSet = !json[QString("outColorimetry")].isNull() && m_out_colorimetry_isValid;
+
+    m_out_range_isValid = ::OpenAPI::fromJsonValue(m_out_range, json[QString("outRange")]);
+    m_out_range_isSet = !json[QString("outRange")].isNull() && m_out_range_isValid;
+
+    m_transfer_characteristic_isValid = ::OpenAPI::fromJsonValue(m_transfer_characteristic, json[QString("transferCharacteristic")]);
+    m_transfer_characteristic_isSet = !json[QString("transferCharacteristic")].isNull() && m_transfer_characteristic_isValid;
 
     applyMinMaxConstraints();
 }
@@ -126,8 +150,20 @@ QJsonObject OAIPipelineStages::asJsonObject() const {
     if (m_lut1d_4.isSet()) {
         obj.insert(QString("lut1d_4"), ::OpenAPI::toJsonValue(m_lut1d_4));
     }
-    if (m_pipeline_range.isSet()) {
-        obj.insert(QString("pipelineRange"), ::OpenAPI::toJsonValue(m_pipeline_range));
+    if (m_in_colorimetry.isSet()) {
+        obj.insert(QString("inColorimetry"), ::OpenAPI::toJsonValue(m_in_colorimetry));
+    }
+    if (m_in_range.isSet()) {
+        obj.insert(QString("inRange"), ::OpenAPI::toJsonValue(m_in_range));
+    }
+    if (m_out_colorimetry.isSet()) {
+        obj.insert(QString("outColorimetry"), ::OpenAPI::toJsonValue(m_out_colorimetry));
+    }
+    if (m_out_range.isSet()) {
+        obj.insert(QString("outRange"), ::OpenAPI::toJsonValue(m_out_range));
+    }
+    if (m_transfer_characteristic.isSet()) {
+        obj.insert(QString("transferCharacteristic"), ::OpenAPI::toJsonValue(m_transfer_characteristic));
     }
     return obj;
 }
@@ -258,21 +294,93 @@ bool OAIPipelineStages::is_lut1d_4_Valid() const{
 }
 
 
-OAIPipelineRange OAIPipelineStages::getPipelineRange() const {
-    return m_pipeline_range;
+OAIColorimetry OAIPipelineStages::getInColorimetry() const {
+    return m_in_colorimetry;
 }
-void OAIPipelineStages::setPipelineRange(const OAIPipelineRange &pipeline_range) {
-	OAIPipelineRange v = pipeline_range;
-	this->m_pipeline_range = v;
-    this->m_pipeline_range_isSet = true;
-}
-
-bool OAIPipelineStages::is_pipeline_range_Set() const{
-    return m_pipeline_range_isSet;
+void OAIPipelineStages::setInColorimetry(const OAIColorimetry &in_colorimetry) {
+	OAIColorimetry v = in_colorimetry;
+	this->m_in_colorimetry = v;
+    this->m_in_colorimetry_isSet = true;
 }
 
-bool OAIPipelineStages::is_pipeline_range_Valid() const{
-    return m_pipeline_range_isValid;
+bool OAIPipelineStages::is_in_colorimetry_Set() const{
+    return m_in_colorimetry_isSet;
+}
+
+bool OAIPipelineStages::is_in_colorimetry_Valid() const{
+    return m_in_colorimetry_isValid;
+}
+
+
+OAIPipelineRange OAIPipelineStages::getInRange() const {
+    return m_in_range;
+}
+void OAIPipelineStages::setInRange(const OAIPipelineRange &in_range) {
+	OAIPipelineRange v = in_range;
+	this->m_in_range = v;
+    this->m_in_range_isSet = true;
+}
+
+bool OAIPipelineStages::is_in_range_Set() const{
+    return m_in_range_isSet;
+}
+
+bool OAIPipelineStages::is_in_range_Valid() const{
+    return m_in_range_isValid;
+}
+
+
+OAIColorimetry OAIPipelineStages::getOutColorimetry() const {
+    return m_out_colorimetry;
+}
+void OAIPipelineStages::setOutColorimetry(const OAIColorimetry &out_colorimetry) {
+	OAIColorimetry v = out_colorimetry;
+	this->m_out_colorimetry = v;
+    this->m_out_colorimetry_isSet = true;
+}
+
+bool OAIPipelineStages::is_out_colorimetry_Set() const{
+    return m_out_colorimetry_isSet;
+}
+
+bool OAIPipelineStages::is_out_colorimetry_Valid() const{
+    return m_out_colorimetry_isValid;
+}
+
+
+OAIPipelineRange OAIPipelineStages::getOutRange() const {
+    return m_out_range;
+}
+void OAIPipelineStages::setOutRange(const OAIPipelineRange &out_range) {
+	OAIPipelineRange v = out_range;
+	this->m_out_range = v;
+    this->m_out_range_isSet = true;
+}
+
+bool OAIPipelineStages::is_out_range_Set() const{
+    return m_out_range_isSet;
+}
+
+bool OAIPipelineStages::is_out_range_Valid() const{
+    return m_out_range_isValid;
+}
+
+
+OAITransfer OAIPipelineStages::getTransferCharacteristic() const {
+    return m_transfer_characteristic;
+}
+void OAIPipelineStages::setTransferCharacteristic(const OAITransfer &transfer_characteristic) {
+	OAITransfer v = transfer_characteristic;
+	this->m_transfer_characteristic = v;
+    this->m_transfer_characteristic_isSet = true;
+}
+
+bool OAIPipelineStages::is_transfer_characteristic_Set() const{
+    return m_transfer_characteristic_isSet;
+}
+
+bool OAIPipelineStages::is_transfer_characteristic_Valid() const{
+    return m_transfer_characteristic_isValid;
 }
 
 
@@ -314,7 +422,27 @@ bool OAIPipelineStages::isSet() const {
             break;
         }
 
-        if (m_pipeline_range.isSet()) {
+        if (m_in_colorimetry.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_in_range.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_out_colorimetry.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_out_range.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_transfer_characteristic.isSet()) {
             isObjectUpdated = true;
             break;
         }

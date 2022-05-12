@@ -95,9 +95,8 @@ class Routing(ModelNormal):
         return {
             'mode': (Mode,),  # noqa: E501
             'preview_tap': (PreviewTap,),  # noqa: E501
-            'sdi_bypass': (bool,),  # noqa: E501
-            'hdmi_bypass': (bool,),  # noqa: E501
-            'pipeline_bypass': (bool,),  # noqa: E501
+            'pipeline_bypass_button': (bool,),  # noqa: E501
+            'pipeline_bypass_user': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -108,9 +107,8 @@ class Routing(ModelNormal):
     attribute_map = {
         'mode': 'mode',  # noqa: E501
         'preview_tap': 'previewTap',  # noqa: E501
-        'sdi_bypass': 'sdiBypass',  # noqa: E501
-        'hdmi_bypass': 'hdmiBypass',  # noqa: E501
-        'pipeline_bypass': 'pipelineBypass',  # noqa: E501
+        'pipeline_bypass_button': 'pipelineBypassButton',  # noqa: E501
+        'pipeline_bypass_user': 'pipelineBypassUser',  # noqa: E501
     }
 
     read_only_vars = {
@@ -156,9 +154,8 @@ class Routing(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             mode (Mode): [optional]  # noqa: E501
             preview_tap (PreviewTap): [optional]  # noqa: E501
-            sdi_bypass (bool): [optional]  # noqa: E501
-            hdmi_bypass (bool): [optional]  # noqa: E501
-            pipeline_bypass (bool): [optional]  # noqa: E501
+            pipeline_bypass_button (bool): This is the bypass state due to the button on the device being pressed. [optional]  # noqa: E501
+            pipeline_bypass_user (bool): This is the bypass state set by the user in the UI. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,9 +239,8 @@ class Routing(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             mode (Mode): [optional]  # noqa: E501
             preview_tap (PreviewTap): [optional]  # noqa: E501
-            sdi_bypass (bool): [optional]  # noqa: E501
-            hdmi_bypass (bool): [optional]  # noqa: E501
-            pipeline_bypass (bool): [optional]  # noqa: E501
+            pipeline_bypass_button (bool): This is the bypass state due to the button on the device being pressed. [optional]  # noqa: E501
+            pipeline_bypass_user (bool): This is the bypass state set by the user in the UI. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -66,6 +66,14 @@ class Overlay(ModelNormal):
     }
 
     validations = {
+        ('user_text_line1',): {
+            'max_length': 110,
+            'min_length': 0,
+        },
+        ('user_text_line2',): {
+            'max_length': 110,
+            'min_length': 0,
+        },
     }
 
     @cached_property

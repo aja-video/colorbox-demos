@@ -1138,8 +1138,16 @@ components:
           $ref: '#/components/schemas/Stage'
         lut1d_4:
           $ref: '#/components/schemas/Stage'
-        pipelineRange:
+        inColorimetry:
+          $ref: '#/components/schemas/Colorimetry'
+        inRange:
           $ref: '#/components/schemas/PipelineRange'
+        outColorimetry:
+          $ref: '#/components/schemas/Colorimetry'
+        outRange:
+          $ref: '#/components/schemas/PipelineRange'
+        transferCharacteristic:
+          $ref: '#/components/schemas/Transfer'
       type: object
     Stage:
       example:
@@ -1290,14 +1298,14 @@ components:
       - 720p50
       - 720p59.94
       - 720p60
-      - 1080i25
-      - 1080i29.97
-      - 1080i30
-      - 1080sf23.98
-      - 1080sf24
-      - 1080sf25
-      - 1080sf29.97
-      - 1080sf30
+      - 1080i50
+      - 1080i59.94
+      - 1080i60
+      - 1080PsF23.98
+      - 1080PsF24
+      - 1080PsF25
+      - 1080PsF29.97
+      - 1080PsF30
       - 1080p23.98
       - 1080p24
       - 1080p25
@@ -1316,9 +1324,9 @@ components:
       - 2Kp50
       - 2Kp59.94
       - 2Kp60
-      - 2Ksf23.98
-      - 2Ksf24
-      - 2Ksf25
+      - 2KPsF23.98
+      - 2KPsF24
+      - 2KPsF25
       - UHDp23.98
       - UHDp24
       - UHDp25
@@ -1342,12 +1350,17 @@ components:
       - VideoConvertActual
       - VideoConvertScale
       type: string
+    FileTypeChoice:
+      enum:
+      - TIFF
+      - PNG
+      - JPEG
+      type: string
     FrameStore:
       example:
         imageName: imageName
         timecodeAppended: true
         dynamic: true
-        clipNameAppended: true
         enabled: true
         libraryEntry: 0
       properties:
@@ -1360,14 +1373,12 @@ components:
         imageName:
           description: The custom name for the captured image
           type: string
-        clipNameAppended:
-          description: Flag to append the clip name of the captured image onto the
-            filename
-          type: boolean
         timecodeAppended:
           description: Flag to append the timecode of the captured image onto the
             filename
           type: boolean
+        fileType:
+          $ref: '#/components/schemas/FileTypeChoice'
         libraryEntry:
           description: library entry number, zero is black
           type: integer
