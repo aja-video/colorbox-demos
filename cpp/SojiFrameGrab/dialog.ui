@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Soji Frame Grab Demo</string>
   </property>
   <widget class="QLabel" name="originalPreview">
    <property name="geometry">
@@ -48,7 +48,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -72,7 +71,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -93,7 +91,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -126,7 +123,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -150,7 +146,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -171,7 +166,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -192,7 +186,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
