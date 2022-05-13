@@ -11,6 +11,8 @@
 
 using namespace OpenAPI;
 
+static bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format);
+
 // This is needed to compile with older Qt versions like Qt 5.13.2
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
 namespace Qt {
@@ -112,6 +114,7 @@ void Dialog::handleGetSDIStatus(OpenAPI::OAISDI status)
     // Get Web Socket Going.
 	emit connectSojiWebSocket(_currentIPAddress);
 
+    _status = status;
     qDebug() << status.getFormat().asJson();
 
 }
@@ -277,10 +280,10 @@ void Dialog::updatePreview()
     std::string msgVPIDFormat("No");
 
     uint32_t numAncDataPkts =  _ancDataList.CountAncillaryData();
-	for ( uint32_t ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
+    for ( uint32_t ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
     {
         AJAAncillaryData *ancData =  _ancDataList.GetAncillaryDataAtIndex (ancCount);
-		ts << Qt::hex << "DID/SID: " <<  "0x" << ancData->GetDID() << "/" <<  "0x" << ancData->GetSID() << Qt::endl;
+        ts << Qt::hex << "DID/SID: " <<  "0x" << ancData->GetDID() << "/" <<  "0x" << ancData->GetSID() << Qt::endl;
         if ((ancData->GetDID() == 0x41) &&
                 (ancData->GetSID() == 0x01) &&
                 (ancData->GetLocationDataChannel() == AJAAncillaryDataChannel_Y))
@@ -296,11 +299,44 @@ void Dialog::updatePreview()
             std::string vf = NTV2VideoFormatToString(vpid.GetVideoFormat());
             msgVPIDFormat = ::NTV2VideoFormatToString(vpid.GetVideoFormat()) ;
             ts << "VPID Format: " <<  msgVPIDFormat.c_str() << "\n";
+
         }
+        if( (ancData->GetDID() == 0x60) && (ancData->GetSID() == 0x60))
+        {
+            AJAAncillaryData_Timecode_ATC ancTime(ancData);
+            AJATimeCode ajaTime;
+            AJATimeBase ajaBase;
+            std::string stdTime;
+            AJAAncillaryData_Timecode_ATC_DBB1PayloadType tcType;
+
+            ancTime.ParsePayloadData();
+            ancTime.GetDBB1PayloadType(tcType);
+            ancTime.GetTimecode(ajaTime, ajaBase);
+
+            bool timecodePres(false);
+           if (isDropFrame(_status.getFormat().getValue()))
+                ajaTime.QueryString(stdTime, ajaBase, true);
+            else
+                ajaTime.QueryString(stdTime, ajaBase, false);
+
+            if (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_LTC)
+            {
+                 ts << "LTC: " <<  stdTime.c_str() << "\n";
+                timecodePres = true;
+            }
+            else if ((tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC1) ||
+                    (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC2))
+            {
+                ts << "VITC: " <<  stdTime.c_str() << "\n";
+                timecodePres = true;
+            }
+
+        }
+        ts <<  "\n";
 
     }
-
 #endif
+
     _ui->metaDataWindow->setText(metaDataString);
 
 }
@@ -358,3 +394,32 @@ void Dialog::writeTIFFFile()
 
     TIFFClose(tif);
 }
+
+bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format)
+{
+    switch( format )
+    {
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_720P59_94:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080I59_94:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080PSF23_98:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080PSF29_97:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P23_98:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P29_97:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P59_94:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP29_97:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP47_98:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP59_94:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KPSF23_98:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::UHDP23_98:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::UHDP29_97:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::UHDP59_94:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_4KP23_98:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_4KP29_97:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_4KP59_94:
+        return true;
+
+    default:
+        return false;
+    }
+}
+

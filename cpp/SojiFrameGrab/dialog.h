@@ -67,6 +67,7 @@ protected:
 
    OpenAPI::OAIDefaultApi _api;
    QString _currentIPAddress;
+   OpenAPI::OAISDI _status;
 
  #ifdef SUPPORT_ANC
     AJAAncillaryList _ancDataList;
