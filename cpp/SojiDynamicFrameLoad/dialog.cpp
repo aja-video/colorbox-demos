@@ -14,7 +14,7 @@
  * The method updateFrameToSoji shows the basic code needed to transfer a frame.
  *
  *
- * Once the WebSocket is open frames can be continually transferred to the Soji. You cannot updates frames faster than the
+ * Once the WebSocket is open frames can be continually transferred to the Soji. You cannot update frames faster than the
  * current framerate.
  */
 
@@ -161,7 +161,7 @@ void Dialog::updateFrameToSoji()
         OAIFrameStore frameStore;
 
         QByteArray ba(reinterpret_cast<const char*>(_frameBuffer.data()),_frameBuffer.size());
-        if (_alphaMode )
+        if (_alphaMode ) /// This will be used for overlays.
         {
             ////////////////////Currently not working
             OAIVideoFormat format;
@@ -177,7 +177,7 @@ void Dialog::updateFrameToSoji()
         }
         else
         {
-
+            // Full Image
             frameStore.setEnabled(true);
             frameStore.setDynamic(true);
 

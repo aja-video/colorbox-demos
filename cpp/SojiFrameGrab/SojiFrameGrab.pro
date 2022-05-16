@@ -47,23 +47,32 @@ INCLUDEPATH += $$NTV2_ROOT/ajalibraries/ajantv2/includes
 
 # To support NTV2 ANC related routines
 # Need to install NTV2 sdk to cpp/ntv2sdk
+# For example
+# https://github.com/aja-video/ntv2/releases/tag/v16.2-bugfix5
+# From the Source code zip or tar.gz file copy contents to cpp/ntv2sdk
+#  so you have cpp/ntv2sdk/ajalibraries
 exists ($$NTV2_ROOT) {
 DEFINES += SUPPORT_ANC
+INCLUDEPATH += $$NTV2_ROOT/ajalibraries
+INCLUDEPATH += $$NTV2_ROOT/ajalibraries/ajantv2/includes
+
 #For Windows
-#copy .lib and .dll from ntv2sdk\bin\libajantv2dll_16\x64\Release_MD to cpp/bin directory
-win32:LIBS += -L$$DESTDIR/ -llibajantv2dll
-#win32:debug:LIBS += -L$$DESTDIR/ -llibajantv2dlld
+#https://github.com/aja-video/ntv2/releases/download/v16.2-bugfix5/ntv2_16_2_b3_libs_windows_x64.zip
+#copy Debug and Release .lib and .dll from zip file demos/cpp/bin
+win32:debug:LIBS += -L$$DESTDIR/ -lajantv2_16d
+win32:release:LIBS += -L$$DESTDIR/ -lajantv2_16
 
 
 #For Linux
-#copy .so from ntv2sdk/lib/gcc_5_1_and_after/libajantv2_16.so to cpp/bin directory and rename libajantv2.so
+#https://github.com/aja-video/ntv2/releases/download/v16.2-bugfix5/ntv2_16_2_b3_libs_linux_x64.tar.gz
+#copy Debug and Release .so from  cpp/bin directory
 #and need to add '.' to LD_LIBRARY_PATH
-unix:!macx::LIBS += -L$$DESTDIR/ -lajantv2
+unix:!macx:debug:LIBS += -L$$DESTDIR/ -lajantv2_16d
+unix:!macx:release:LIBS += -L$$DESTDIR/ -lajantv2_16
 
 #todo Mac
 #macx::LIBS += -L$$DESTDIR/ -lajantv2
 }
-
 win32:INCLUDEPATH += $$PWD/../common/tiff
 macx:INCLUDEPATH += /usr/local/include
 
