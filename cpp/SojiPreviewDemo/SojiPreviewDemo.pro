@@ -65,8 +65,8 @@ win32:release:LIBS += -L$$DESTDIR/ -lajantv2_16
 #https://github.com/aja-video/ntv2/releases/download/v16.2-bugfix5/ntv2_16_2_b3_libs_linux_x64.tar.gz
 #copy Debug and Release .so from  cpp/bin directory
 #and need to add '.' to LD_LIBRARY_PATH
-unix:!macx:debug:LIBS += -L$$DESTDIR/ -lajantv2d
-unix:!macx:release:LIBS += -L$$DESTDIR/ -lajantv2
+unix:!macx:debug:LIBS += -L$$DESTDIR/ -lajantv2_16d
+unix:!macx:release:LIBS += -L$$DESTDIR/ -lajantv2_16
 
 #todo Mac
 #macx::LIBS += -L$$DESTDIR/ -lajantv2
