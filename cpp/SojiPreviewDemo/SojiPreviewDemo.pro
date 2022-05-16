@@ -68,8 +68,11 @@ win32:release:LIBS += -L$$DESTDIR/ -lajantv2_16
 unix:!macx:debug:LIBS += -L$$DESTDIR/ -lajantv2_16d
 unix:!macx:release:LIBS += -L$$DESTDIR/ -lajantv2_16
 
-#todo Mac
-#macx::LIBS += -L$$DESTDIR/ -lajantv2
+#Mac
+#https://github.com/aja-video/ntv2/releases/download/v16.2-bugfix5/ntv2_16_2_b3_libs_mac_arm64_x64.tar.gz
+#copy correct Debug and Release .dylib from  cpp/bin directory
+macx:debug:LIBS += -L$$DESTDIR/ -lajantv2_16d
+macx:release:LIBS += -L$$DESTDIR/ -lajantv2_16
 }
 win32:INCLUDEPATH += $$PWD/../common/tiff
 
