@@ -71,6 +71,8 @@ const (
 	VIDEOFORMAT__4_KP25 VideoFormat = "4Kp25"
 	VIDEOFORMAT__4_KP29_97 VideoFormat = "4Kp29.97"
 	VIDEOFORMAT__4_KP30 VideoFormat = "4Kp30"
+	VIDEOFORMAT__4_KP47_95 VideoFormat = "4Kp47.95"
+	VIDEOFORMAT__4_KP48 VideoFormat = "4Kp48"
 	VIDEOFORMAT__4_KP50 VideoFormat = "4Kp50"
 	VIDEOFORMAT__4_KP59_94 VideoFormat = "4Kp59.94"
 	VIDEOFORMAT__4_KP60 VideoFormat = "4Kp60"
@@ -125,6 +127,8 @@ var AllowedVideoFormatEnumValues = []VideoFormat{
 	"4Kp25",
 	"4Kp29.97",
 	"4Kp30",
+	"4Kp47.95",
+	"4Kp48",
 	"4Kp50",
 	"4Kp59.94",
 	"4Kp60",
