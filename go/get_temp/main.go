@@ -9,6 +9,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"os"
 	"time"
 )
 
@@ -37,7 +38,8 @@ func main() {
 	for {
 		resp, r, err := client.DefaultApi.GetAllStatus(ctx).Execute()
 		if err != nil {
-			fmt.Printf("[%v] error accessing Status via API\n", hostAndPort)
+			fmt.Printf("[%v] error accessing Status via API, err = '%v'\n", hostAndPort, err)
+			os.Exit(1)
 		} else if r.StatusCode != 200 {
 			fmt.Printf("[%v] error with Status request, got code %v\n", hostAndPort, r.StatusCode)
 		} else {

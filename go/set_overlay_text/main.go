@@ -15,6 +15,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"os"
 	"time"
 )
 
@@ -44,7 +45,8 @@ func main() {
 	// disable frame store if needed
 	fs, r, err := client.DefaultApi.GetFrameStore(ctx).Execute()
 	if err != nil {
-		fmt.Printf("[%v] error accessing FrameStore via API\n", hostAndPort)
+		fmt.Printf("[%v] error accessing FrameStore via API, err = '%v'\n", hostAndPort, err)
+		os.Exit(1)
 	}
 	if r.StatusCode != 200 {
 		fmt.Printf("[%v] error with GetFrameStore request, got code %v\n", hostAndPort, r.StatusCode)
@@ -55,7 +57,8 @@ func main() {
 	// enable the overlay stage
 	ol, r, err := client.DefaultApi.GetOverlay(ctx).Execute()
 	if err != nil {
-		fmt.Printf("[%v] error accessing Overlay via API\n", hostAndPort)
+		fmt.Printf("[%v] error accessing Overlay via API, err = '%v'\n", hostAndPort, err)
+		os.Exit(1)
 	}
 	if r.StatusCode != 200 {
 		fmt.Printf("[%v] error with GetOverlay request, got code %v\n", hostAndPort, r.StatusCode)
@@ -73,7 +76,7 @@ func main() {
 		ol, r, err := client.DefaultApi.GetOverlay(ctx).Execute()
 
 		if err != nil {
-			fmt.Printf("[%v] error accessing Overlay via API\n", hostAndPort)
+			fmt.Printf("[%v] error accessing Overlay via API, err = '%v'\n", hostAndPort, err)
 		} else if r.StatusCode != 200 {
 			fmt.Printf("[%v] error with GetOverlay request, got code %v\n", hostAndPort, r.StatusCode)
 		} else {
