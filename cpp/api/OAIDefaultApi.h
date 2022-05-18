@@ -71,8 +71,7 @@ public:
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
     void setPassword(const QString &password);
-    void enableBasicAuth(const QString &username = "", const QString &password = "");
-    void disableBasicAuth();
+    void useBasicAuth(const QString &username = "", const QString &password = "");
     void setTimeOut(const int timeOut);
     void setWorkingDirectory(const QString &path);
     void setNetworkAccessManager(QNetworkAccessManager* manager);
