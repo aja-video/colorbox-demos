@@ -207,6 +207,18 @@ void OAIDefaultApi::setPassword(const QString &password) {
     _password = password;
 }
 
+void OAIDefaultApi::enableBasicAuth(const QString &username, const QString &password) {
+	if (!username.isEmpty()) { setUsername(username); }
+	if (!password.isEmpty()) { setPassword(password); }
+
+	QString nameAndPass = QString("%1:%2").arg(_username, _password);
+	QString val = QString("Basic ") + nameAndPass.toUtf8().toBase64();
+	addHeaders("Authorization", val);
+}
+
+void OAIDefaultApi::disableBasicAuth() {
+	_defaultHeaders.remove("Authorization");
+}
 
 void OAIDefaultApi::setTimeOut(const int timeOut) {
     _timeOut = timeOut;
