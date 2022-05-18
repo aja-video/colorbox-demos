@@ -240,7 +240,28 @@ void Dialog::dynmicLutChoiceChanged(int index)
         break;
     }
 
-   _api.setPipelineStages(stages);
+    // Handle Input and Output CSC Settings and output Transfer Characteristic.
+    OAIColorimetry inColorimetry;
+    inColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_709);
+    stages.setInColorimetry(inColorimetry);
+
+    OAIPipelineRange inRange;
+    inRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTEFULL);
+    stages.setInRange(inRange);
+
+    OAIColorimetry outColorimetry;
+    outColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_2020);
+    stages.setOutColorimetry(outColorimetry);
+
+    OAIPipelineRange outRange;
+    outRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTEFULL);
+    stages.setInRange(outRange);
+
+    OAITransfer outputTransferCharacteristics;
+    outputTransferCharacteristics.setValue(OAITransfer::eOAITransfer::PQ);
+    stages.setTransferCharacteristic(outputTransferCharacteristics);
+
+    _api.setPipelineStages(stages);
 
     this->setFocus();
 }
