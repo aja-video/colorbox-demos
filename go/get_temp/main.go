@@ -15,6 +15,8 @@ import (
 func main() {
 	host := flag.String("host", "127.0.0.1", "the hostname or ip of device")
 	port := flag.Int("port", 80, "the port number to use")
+	user := flag.String("username", "", "username to use if authentication required")
+	pass := flag.String("password", "", "password to use if authentication required")
 	flag.Parse()
 	hostAndPort := fmt.Sprintf("%v:%v", *host, *port)
 
@@ -23,10 +25,17 @@ func main() {
 	cfg.Scheme = "http"
 	var client *sw.APIClient = sw.NewAPIClient(cfg)
 
+	var ctx = context.Background()
+	if *user != "" {
+		ctx = context.WithValue(context.Background(), sw.ContextBasicAuth, sw.BasicAuth{
+			UserName: *user,
+			Password: *pass,
+		})
+	}
 	fmt.Printf("Requesting from [%v]\n", hostAndPort)
 
 	for {
-		resp, r, err := client.DefaultApi.GetAllStatus(context.Background()).Execute()
+		resp, r, err := client.DefaultApi.GetAllStatus(ctx).Execute()
 		if err != nil {
 			fmt.Printf("[%v] error accessing Status via API\n", hostAndPort)
 		} else if r.StatusCode != 200 {
