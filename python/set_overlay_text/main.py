@@ -28,17 +28,33 @@ from openapi_client.rest import ApiException
 parser = argparse.ArgumentParser(description="")
 parser.add_argument("--host", default="127.0.0.1", help="the hostname or ip of device")
 parser.add_argument("--port", default=80, help="the port number to use")
+parser.add_argument(
+    "--username", default=None, help="username to use if authentication required"
+)
+parser.add_argument(
+    "--password", default=None, help="password to use if authentication required"
+)
 
 args = parser.parse_args()
 hostAndPort = f"{args.host}:{args.port}/v2"
 
 # Create a configuration that points to the IP Address of desired Color Box
-configuration = openapi_client.Configuration(host=hostAndPort)
+configuration = openapi_client.Configuration(
+    host=hostAndPort, username=args.username, password=args.password
+)
+
+headername = None
+headervalue = None
+if args.username != None:
+    headername = "Authorization"
+    headervalue = configuration.get_basic_auth_token()
 
 print(f"Controlling [{hostAndPort}]")
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(
+    configuration, header_name=headername, header_value=headervalue
+) as api_client:
     # Create an instance of the API class
     client = default_api.DefaultApi(api_client)
 
