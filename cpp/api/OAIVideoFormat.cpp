@@ -146,8 +146,8 @@ void OAIVideoFormat::fromJson(QString jsonString) {
         m_value = eOAIVideoFormat::_2KP30;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("2Kp47.98", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIVideoFormat::_2KP47_98;
+    else if ( jsonString.compare("2Kp47.95", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIVideoFormat::_2KP47_95;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("2Kp48", Qt::CaseInsensitive) == 0) {
@@ -340,8 +340,8 @@ QString OAIVideoFormat::asJson() const {
         case eOAIVideoFormat::_2KP30:
             val = "2Kp30";
             break;
-        case eOAIVideoFormat::_2KP47_98:
-            val = "2Kp47.98";
+        case eOAIVideoFormat::_2KP47_95:
+            val = "2Kp47.95";
             break;
         case eOAIVideoFormat::_2KP48:
             val = "2Kp48";

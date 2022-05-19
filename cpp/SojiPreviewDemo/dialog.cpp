@@ -258,7 +258,7 @@ bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format)
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P29_97:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P59_94:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP29_97:
-    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP47_98:
+	case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP47_95:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP59_94:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KPSF23_98:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::UHDP23_98:

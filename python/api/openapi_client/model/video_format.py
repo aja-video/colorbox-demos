@@ -82,7 +82,7 @@ class VideoFormat(ModelSimple):
             '2KP25': "2Kp25",
             '2KP29.97': "2Kp29.97",
             '2KP30': "2Kp30",
-            '2KP47.98': "2Kp47.98",
+            '2KP47.95': "2Kp47.95",
             '2KP48': "2Kp48",
             '2KP50': "2Kp50",
             '2KP59.94': "2Kp59.94",
@@ -159,10 +159,10 @@ class VideoFormat(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.98", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
+            args[0] (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.95", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
 
         Keyword Args:
-            value (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.98", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
+            value (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.95", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -249,10 +249,10 @@ class VideoFormat(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.98", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
+            args[0] (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.95", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
 
         Keyword Args:
-            value (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.98", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
+            value (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.95", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

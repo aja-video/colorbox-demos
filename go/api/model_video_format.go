@@ -50,7 +50,7 @@ const (
 	VIDEOFORMAT__2_KP25 VideoFormat = "2Kp25"
 	VIDEOFORMAT__2_KP29_97 VideoFormat = "2Kp29.97"
 	VIDEOFORMAT__2_KP30 VideoFormat = "2Kp30"
-	VIDEOFORMAT__2_KP47_98 VideoFormat = "2Kp47.98"
+	VIDEOFORMAT__2_KP47_95 VideoFormat = "2Kp47.95"
 	VIDEOFORMAT__2_KP48 VideoFormat = "2Kp48"
 	VIDEOFORMAT__2_KP50 VideoFormat = "2Kp50"
 	VIDEOFORMAT__2_KP59_94 VideoFormat = "2Kp59.94"
@@ -106,7 +106,7 @@ var AllowedVideoFormatEnumValues = []VideoFormat{
 	"2Kp25",
 	"2Kp29.97",
 	"2Kp30",
-	"2Kp47.98",
+	"2Kp47.95",
 	"2Kp48",
 	"2Kp50",
 	"2Kp59.94",
