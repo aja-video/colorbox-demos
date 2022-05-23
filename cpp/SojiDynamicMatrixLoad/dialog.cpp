@@ -190,6 +190,32 @@ void Dialog::mtxChoiceChanged(int index)
         break;
     }
 
+    // Handle Input and Output CSC Settings and output Transfer Characteristic.
+    // inColorimetry and InRange choose the correct input CSC.
+    // OutColorimetry and OutRange choose the correct ouput CSC.
+    // If it is an RGB workflow only the Range parameter is used.
+    // If it is an RGB workflow only the Range parameter is used.
+    // Range basically controls whether the pipeline uses 0-4095(SMPTEFULL) as 0-1 or 256-3760(SMPTENARROW) as 0-1.
+    OAIColorimetry inColorimetry;
+    inColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_709);
+    stages.setInColorimetry(inColorimetry);
+
+    OAIPipelineRange inRange;
+    inRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTEFULL);
+    stages.setInRange(inRange);
+
+    OAIColorimetry outColorimetry;
+    outColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_2020);
+    stages.setOutColorimetry(outColorimetry);
+
+    OAIPipelineRange outRange;
+    outRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTEFULL);
+    stages.setInRange(outRange);
+
+    OAITransfer outputTransferCharacteristics;
+    outputTransferCharacteristics.setValue(OAITransfer::eOAITransfer::PQ);
+    stages.setTransferCharacteristic(outputTransferCharacteristics);
+
     _api.setPipelineStages(stages);
 
     //Actually update the Soji with current settings.

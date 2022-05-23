@@ -241,6 +241,10 @@ void Dialog::dynmicLutChoiceChanged(int index)
     }
 
     // Handle Input and Output CSC Settings and output Transfer Characteristic.
+    // inColorimetry and InRange choose the correct input CSC.
+    // OutColorimetry and OutRange choose the correct ouput CSC.
+    // If it is an RGB workflow only the Range parameter is used.
+    // Range basically controls whether the pipeline uses 0-4095(SMPTEFULL) as 0-1 or 256-3760(SMPTENARROW) as 0-1.
     OAIColorimetry inColorimetry;
     inColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_709);
     stages.setInColorimetry(inColorimetry);
