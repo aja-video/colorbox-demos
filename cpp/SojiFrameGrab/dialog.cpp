@@ -1,5 +1,8 @@
 /*!
  * SojiDynamicFrameGrab
+ *
+ * This uses a websocket to grab an uncompressed image from Soji.
+ *  It can also use the NTV2 SDK to parse the metadata for the grabbed image. See "SUPPORT_ANC" define
  */
 
 #include "dialog.h"

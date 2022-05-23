@@ -5,7 +5,7 @@
  *
  * The basic idea is to load _frameBuffer with 1920x1080 RGB16BitUIntValues and send that to Soji over a WebSocket.
  * The buffer if prepended with "FS02" so Soji recognizes this as a frame to put in the frame store.
- * The REST API is used set Soji into Dynamic Output Mode.
+ * The REST API is used to set Soji into Dynamic Output Mode.
  *
  * There are two ways to preload a frame in the code below
  * 1) handleSetFrameBufferValueButton - takes the 12 bit values in the QSpinBoxes and makes 16 bit values for the buffer.

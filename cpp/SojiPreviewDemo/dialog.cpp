@@ -1,7 +1,9 @@
 /*!
  * SojiPreviewDemoOpenAPI
  * This demo shows how to interface with a ColorBox device via the C++ OpenAPI.
- * It will get a preview image from the ColorBox and display in a dialog.
+ * It will get a preview image(jpeg compressed) from the ColorBox and display in a dialog.
+ *
+ * It can also use the NTV2 SDK to parse the metadata for the preview image. See "SUPPORT_ANC" define
  *
  */
 
