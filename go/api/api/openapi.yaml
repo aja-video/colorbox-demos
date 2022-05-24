@@ -4,11 +4,11 @@ info:
     email: support@aja.com
     name: AJA API Support
     url: http://www.aja.com/support
-  description: This is a REST API for the AJA Soji product.
+  description: This is a REST API for the AJA ColorBox product.
   license:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: OpenAPI Soji
+  title: OpenAPI ColorBox
   version: 1.0.0
 servers:
 - url: /v2
@@ -222,9 +222,13 @@ paths:
                   type: string
                 kind:
                   default: ""
+                  description: 'The kind of file being uploaded valid kinds are: **lut_1d**,
+                    **lut_3d**, **matrix**, **image**, **preset**, **license**, **update**'
                   type: string
                 entry:
                   default: -1
+                  description: 'The entry number to upload the file to, **not** used
+                    with kinds: **license** and **update**'
                   type: integer
               type: object
       responses:
@@ -2392,9 +2396,13 @@ components:
           type: string
         kind:
           default: ""
+          description: 'The kind of file being uploaded valid kinds are: **lut_1d**,
+            **lut_3d**, **matrix**, **image**, **preset**, **license**, **update**'
           type: string
         entry:
           default: -1
+          description: 'The entry number to upload the file to, **not** used with
+            kinds: **license** and **update**'
           type: integer
       type: object
   securitySchemes:

@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -7193,8 +7193,8 @@ class DefaultApi(object):
 
         Keyword Args:
             file (file_type): [optional]
-            kind (str): [optional] if omitted the server will use the default value of ""
-            entry (int): [optional] if omitted the server will use the default value of -1
+            kind (str): The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update**. [optional] if omitted the server will use the default value of ""
+            entry (int): The entry number to upload the file to, **not** used with kinds: **license** and **update**. [optional] if omitted the server will use the default value of -1
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

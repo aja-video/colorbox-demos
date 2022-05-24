@@ -4484,8 +4484,8 @@ with openapi_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     file = open('/path/to/file', 'rb') # file_type |  (optional)
-    kind = "" # str |  (optional) if omitted the server will use the default value of ""
-    entry = -1 # int |  (optional) if omitted the server will use the default value of -1
+    kind = "" # str | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** (optional) if omitted the server will use the default value of ""
+    entry = -1 # int | The entry number to upload the file to, **not** used with kinds: **license** and **update** (optional) if omitted the server will use the default value of -1
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -4501,8 +4501,8 @@ with openapi_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **file_type**|  | [optional]
- **kind** | **str**|  | [optional] if omitted the server will use the default value of ""
- **entry** | **int**|  | [optional] if omitted the server will use the default value of -1
+ **kind** | **str**| The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** | [optional] if omitted the server will use the default value of ""
+ **entry** | **int**| The entry number to upload the file to, **not** used with kinds: **license** and **update** | [optional] if omitted the server will use the default value of -1
 
 ### Return type
 
