@@ -326,8 +326,10 @@ public:
 
     /**
     * @param[in]  file OAIHttpFileElement [optional]
+    * @param[in]  kind QString [optional]
+    * @param[in]  entry qint32 [optional]
     */
-    void uploadFile(const ::OpenAPI::OptionalParam<OAIHttpFileElement> &file = ::OpenAPI::OptionalParam<OAIHttpFileElement>());
+    void uploadFile(const ::OpenAPI::OptionalParam<OAIHttpFileElement> &file = ::OpenAPI::OptionalParam<OAIHttpFileElement>(), const ::OpenAPI::OptionalParam<QString> &kind = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &entry = ::OpenAPI::OptionalParam<qint32>());
 
 
     void setUrlForServers(const QString &host, int port = -1, const QString &protocol = "http", const QString &endPoint = "/v2");

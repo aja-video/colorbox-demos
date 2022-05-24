@@ -3744,7 +3744,7 @@ Name | Type | Description  | Notes
 
 ## UploadFile
 
-> UploadFile(ctx).File(file).Execute()
+> UploadFile(ctx).File(file).Kind(kind).Entry(entry).Execute()
 
 
 
@@ -3764,10 +3764,12 @@ import (
 
 func main() {
     file := os.NewFile(1234, "some_file") // *os.File |  (optional)
+    kind := "kind_example" // string |  (optional) (default to "")
+    entry := int32(56) // int32 |  (optional) (default to -1)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.UploadFile(context.Background()).File(file).Execute()
+    resp, r, err := apiClient.DefaultApi.UploadFile(context.Background()).File(file).Kind(kind).Entry(entry).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UploadFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3787,6 +3789,8 @@ Other parameters are passed through a pointer to a apiUploadFileRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | ***os.File** |  | 
+ **kind** | **string** |  | [default to &quot;&quot;]
+ **entry** | **int32** |  | [default to -1]
 
 ### Return type
 

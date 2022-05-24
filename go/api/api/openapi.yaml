@@ -220,6 +220,12 @@ paths:
                 file:
                   format: binary
                   type: string
+                kind:
+                  default: ""
+                  type: string
+                entry:
+                  default: -1
+                  type: integer
               type: object
       responses:
         "200":
@@ -2384,6 +2390,12 @@ components:
         file:
           format: binary
           type: string
+        kind:
+          default: ""
+          type: string
+        entry:
+          default: -1
+          type: integer
       type: object
   securitySchemes:
     app_id:

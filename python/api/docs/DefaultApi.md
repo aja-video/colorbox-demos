@@ -4484,11 +4484,13 @@ with openapi_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     file = open('/path/to/file', 'rb') # file_type |  (optional)
+    kind = "" # str |  (optional) if omitted the server will use the default value of ""
+    entry = -1 # int |  (optional) if omitted the server will use the default value of -1
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_instance.upload_file(file=file)
+        api_instance.upload_file(file=file, kind=kind, entry=entry)
     except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->upload_file: %s\n" % e)
 ```
@@ -4499,6 +4501,8 @@ with openapi_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **file_type**|  | [optional]
+ **kind** | **str**|  | [optional] if omitted the server will use the default value of ""
+ **entry** | **int**|  | [optional] if omitted the server will use the default value of -1
 
 ### Return type
 

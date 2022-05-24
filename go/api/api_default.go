@@ -6139,10 +6139,20 @@ type ApiUploadFileRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
 	file **os.File
+	kind *string
+	entry *int32
 }
 
 func (r ApiUploadFileRequest) File(file *os.File) ApiUploadFileRequest {
 	r.file = &file
+	return r
+}
+func (r ApiUploadFileRequest) Kind(kind string) ApiUploadFileRequest {
+	r.kind = &kind
+	return r
+}
+func (r ApiUploadFileRequest) Entry(entry int32) ApiUploadFileRequest {
+	r.entry = &entry
 	return r
 }
 
@@ -6218,6 +6228,12 @@ func (a *DefaultApiService) UploadFileExecute(r ApiUploadFileRequest) (*http.Res
 		fileLocalVarFile.Close()
 	}
 	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	if r.kind != nil {
+		localVarFormParams.Add("kind", parameterToString(*r.kind, ""))
+	}
+	if r.entry != nil {
+		localVarFormParams.Add("entry", parameterToString(*r.entry, ""))
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

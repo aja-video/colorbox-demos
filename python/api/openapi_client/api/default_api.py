@@ -2733,6 +2733,8 @@ class DefaultApi(object):
             params_map={
                 'all': [
                     'file',
+                    'kind',
+                    'entry',
                 ],
                 'required': [],
                 'nullable': [
@@ -2750,12 +2752,20 @@ class DefaultApi(object):
                 'openapi_types': {
                     'file':
                         (file_type,),
+                    'kind':
+                        (str,),
+                    'entry':
+                        (int,),
                 },
                 'attribute_map': {
                     'file': 'file',
+                    'kind': 'kind',
+                    'entry': 'entry',
                 },
                 'location_map': {
                     'file': 'form',
+                    'kind': 'form',
+                    'entry': 'form',
                 },
                 'collection_format_map': {
                 }
@@ -7183,6 +7193,8 @@ class DefaultApi(object):
 
         Keyword Args:
             file (file_type): [optional]
+            kind (str): [optional] if omitted the server will use the default value of ""
+            entry (int): [optional] if omitted the server will use the default value of -1
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

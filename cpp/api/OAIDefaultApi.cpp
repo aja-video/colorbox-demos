@@ -3478,7 +3478,7 @@ void OAIDefaultApi::setWiFiStatusCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::uploadFile(const ::OpenAPI::OptionalParam<OAIHttpFileElement> &file) {
+void OAIDefaultApi::uploadFile(const ::OpenAPI::OptionalParam<OAIHttpFileElement> &file, const ::OpenAPI::OptionalParam<QString> &kind, const ::OpenAPI::OptionalParam<qint32> &entry) {
     QString fullPath = QString(_serverConfigs["uploadFile"][_serverIndices.value("uploadFile")].URL()+"/upload");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
@@ -3489,6 +3489,14 @@ void OAIDefaultApi::uploadFile(const ::OpenAPI::OptionalParam<OAIHttpFileElement
     if (file.hasValue())
     {
         input.add_file("file", file.value().local_filename, file.value().request_filename, file.value().mime_type);
+    }
+    if (kind.hasValue())
+    {
+        input.add_var("kind", ::OpenAPI::toStringValue(kind.value()));
+    }
+    if (entry.hasValue())
+    {
+        input.add_var("entry", ::OpenAPI::toStringValue(entry.value()));
     }
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
