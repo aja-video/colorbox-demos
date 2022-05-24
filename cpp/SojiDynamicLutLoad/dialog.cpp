@@ -63,9 +63,7 @@ Dialog::Dialog(QWidget *parent)
     connect(&_api, &OAIDefaultApi::getPipelineStagesSignalE, this, &Dialog::handleGetStagesError);
 
     connect(_ui->lutChoiceComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(dynmicLutChoiceChanged(int)));
-    connect(_ui->liftSlider,SIGNAL(valueChanged(int)),this,SLOT(updateSoji(int)));
-    connect(_ui->gammaSlider,SIGNAL(valueChanged(int)),this,SLOT(updateSoji(int)));
-    connect(_ui->gainSlider,SIGNAL(valueChanged(int)),this,SLOT(updateSoji(int)));
+
     connect(_ui->rCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateSoji(int)));
     connect(_ui->gCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateSoji(int)));
     connect(_ui->bCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateSoji(int)));
@@ -74,6 +72,10 @@ Dialog::Dialog(QWidget *parent)
 
     recallSettings();
     ipAddressEdited();
+
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &Dialog::updateTimer);
+    timer->start(50);
 
     this->setWindowTitle("Soji Dynamic LUT Load Demo");
     this->setFocus();
@@ -98,6 +100,11 @@ void Dialog::saveSettings()
     QSettings settings(QSettings::UserScope, "aja" , "SojiDynamicLUTDemo");
     settings.setValue("IPAddress",_ui->ipAddressLineEdit->text());
 
+}
+
+void Dialog::updateTimer()
+{
+    updateSoji(0);
 }
 
 void Dialog::ipAddressEdited()

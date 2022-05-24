@@ -21,6 +21,7 @@ public:
 
 public slots:
    void updateSoji(int value);
+   void updateTimer();
     void ipAddressEdited();
     void dynmicLutChoiceChanged(int index);
     void resetParameters();

@@ -21,6 +21,7 @@ public:
 public slots:
     void ipAddressEdited();
     void updateProcAmp(int value);
+    void updateTimer();
     void mtxChoiceChanged(int index);
 
     // LUTLoader slots
@@ -56,7 +57,6 @@ protected:
 
     bool _printLoopTime;
     bool _printMatrix;
-
 
 private:
     Ui::Dialog *_ui;

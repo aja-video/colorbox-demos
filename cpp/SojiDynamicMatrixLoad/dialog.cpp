@@ -55,10 +55,6 @@ Dialog::Dialog(QWidget *parent)
     connect(_ui->resetPushButton,&QPushButton::pressed,this,&Dialog::resetParameters);
 
     connect(_ui->mtxChoiceComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(mtxChoiceChanged(int)));
-    connect(_ui->procAmpHueSlider,SIGNAL(valueChanged(int)),this,SLOT(updateProcAmp(int)));
-    connect(_ui->procAmpBlackSlider,SIGNAL(valueChanged(int)),this,SLOT(updateProcAmp(int)));
-    connect(_ui->procAmpGainSlider,SIGNAL(valueChanged(int)),this,SLOT(updateProcAmp(int)));
-    connect(_ui->procAmpSaturationSlider,SIGNAL(valueChanged(int)),this,SLOT(updateProcAmp(int)));
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getPipelineStagesSignal, this, &Dialog::handleGetStages);
@@ -68,6 +64,10 @@ Dialog::Dialog(QWidget *parent)
 
     recallSettings();
     ipAddressEdited();
+
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &Dialog::updateTimer);
+    timer->start(50);
 
     this->setWindowTitle("Soji Dynamic Matrix Load Demo");
     this->setFocus();
@@ -84,6 +84,11 @@ void Dialog::recallSettings()
     QSettings settings(QSettings::UserScope, "aja" , "SojiProcAmpMatrix");
     _ui->ipAddressLineEdit->setText(settings.value("IPAddress").toString());
 
+}
+
+void Dialog::updateTimer()
+{
+    updateProcAmp(0);
 }
 
 void Dialog::saveSettings()
