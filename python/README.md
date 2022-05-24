@@ -18,3 +18,10 @@ cd set_overlay_text
 python3 main.py --host 192.168.1.100
 cd -
 ```
+
+# Run lib_load example on IP 192.168.1.100
+```
+cd lib_load
+python3 main.py --host 192.168.1.100 --kind lut_1d --file path_to_local_lut --entry 0
+cd -
+```
