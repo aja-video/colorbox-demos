@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>481</width>
     <height>285</height>
    </rect>
   </property>
@@ -38,7 +38,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -59,7 +58,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -92,7 +90,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -113,7 +110,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -134,7 +130,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -155,7 +150,6 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -205,7 +199,6 @@
        <font>
         <family>Lucida Console</family>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -233,12 +226,11 @@
        <font>
         <family>Lucida Console</family>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
       <property name="text">
-       <string>1.000</string>
+       <string> 1.000</string>
       </property>
      </widget>
     </item>
@@ -248,7 +240,6 @@
        <font>
         <family>Lucida Console</family>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -279,12 +270,11 @@
        <font>
         <family>Lucida Console</family>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
       <property name="text">
-       <string>1.000</string>
+       <string> 1.000</string>
       </property>
      </widget>
     </item>
@@ -294,7 +284,6 @@
        <font>
         <family>Lucida Console</family>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -325,12 +314,11 @@
        <font>
         <family>Lucida Console</family>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
       <property name="text">
-       <string>1.000</string>
+       <string> 1.000</string>
       </property>
      </widget>
     </item>
@@ -340,7 +328,6 @@
        <font>
         <family>Lucida Console</family>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -371,12 +358,11 @@
        <font>
         <family>Lucida Console</family>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
       <property name="text">
-       <string>1.000</string>
+       <string> 1.000</string>
       </property>
      </widget>
     </item>

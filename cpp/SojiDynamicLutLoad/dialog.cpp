@@ -311,9 +311,13 @@ void Dialog::updateSoji(int value)
     gamma = .5 + 2.0*static_cast<double>(gammaSlider)/1000.0;
     gain =  4.0*static_cast<double>(gainSlider)/1000.0;
 
-    _ui->label_Lift->setText(QString::number(lift,'f',3));
-    _ui->label_Gamma->setText(QString::number(gamma,'f',3));
-    _ui->label_Gain->setText(QString::number(gain,'f',3));
+    QString liftString = QString::number(lift,'f',3);
+    QString gammaString = QString::number(gamma,'f',3);
+    QString gainString = QString::number(gain,'f',3);
+
+    _ui->label_Lift->setText(liftString.rightJustified(7));
+    _ui->label_Gamma->setText(gammaString.rightJustified(7));
+    _ui->label_Gain->setText(gainString.rightJustified(7));
 
     bool rChecked = _ui->rCheckBox->checkState();
     bool gChecked = _ui->gCheckBox->checkState();

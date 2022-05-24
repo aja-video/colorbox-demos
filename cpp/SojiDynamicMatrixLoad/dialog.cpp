@@ -249,14 +249,8 @@ void Dialog::resetParameters()
     _ui->procAmpBlackSlider->setValue(0);
     _ui->procAmpGainSlider->setValue(100);
     _ui->procAmpSaturationSlider->setValue(100);
-    double ycBlack = (double) _ui->procAmpBlackSlider->value()/10.0;;
-    double ycGain = (double) _ui->procAmpGainSlider->value()/100.0;
-    double satGain = (double) _ui->procAmpSaturationSlider->value()/100.0;
+    updateProcAmp(0);
 
-    _ui->procAmpGainValue->setText(QString::number(ycGain,'f',3));
-    _ui->procAmpBlackValue->setText(QString::number(ycBlack,'f',3));
-    _ui->procAmpHueValue->setText(QString::number(rotAngle,'f',3));
-    _ui->procAmpSatValue->setText(QString::number(satGain,'f',3));
 }
 
 void Dialog::mousePressEvent(QMouseEvent *event)
@@ -321,10 +315,15 @@ void Dialog::doProcAmp()
     double rotAngle = (float) _ui->procAmpHueSlider->value();
     double satGain = (double) _ui->procAmpSaturationSlider->value()/100.0;
 
-    _ui->procAmpGainValue->setText(QString::number(ycGain,'f',3));
-    _ui->procAmpBlackValue->setText(QString::number(ycBlack,'f',3));
-    _ui->procAmpHueValue->setText(QString::number(rotAngle,'f',3));
-    _ui->procAmpSatValue->setText(QString::number(satGain,'f',3));
+    QString ycGainString = QString::number(ycGain,'f',3);
+    QString ycBlackString = QString::number(ycBlack,'f',3);
+    QString rotAngleString = QString::number(rotAngle,'f',3);
+    QString satGainString = QString::number(satGain,'f',3);
+
+    _ui->procAmpGainValue->setText(ycGainString.rightJustified(8));
+    _ui->procAmpBlackValue->setText(ycBlackString.rightJustified(8));
+    _ui->procAmpHueValue->setText(rotAngleString.rightJustified(8));
+    _ui->procAmpSatValue->setText(satGainString.rightJustified(8));
 
     QMatrix4x4 rotateMatrix;
     rotateMatrix.setToIdentity();
