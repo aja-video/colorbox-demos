@@ -320,6 +320,7 @@ void OAIHttpRequestWorker::execute(OAIHttpRequestInput *input) {
         request_content.append(boundary_delimiter.toUtf8());
         request_content.append(boundary.toUtf8());
         request_content.append(boundary_delimiter.toUtf8());
+        request_content.append(new_line.toUtf8());
     }
 
     if (input->request_body.size() > 0) {
