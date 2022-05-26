@@ -36,6 +36,7 @@ parser.add_argument("--file", default="", help="the file to upload to library")
 parser.add_argument(
     "--entry",
     default=0,
+    type=int,
     help="the library entry to upload to, 1 - 16, a value of 0 will find first open entry and use it",
 )
 
