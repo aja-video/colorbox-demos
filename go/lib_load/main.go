@@ -82,7 +82,7 @@ func main() {
 		}
 
 		if err != nil {
-			fmt.Printf("[%v] error accessing 1d Lut Library via API, err = '%v'\n", hostAndPort, err)
+			fmt.Printf("[%v] error accessing %v Library via API, err = '%v'\n", hostAndPort, *kind, err)
 			os.Exit(1)
 		} else if r.StatusCode != 200 {
 			fmt.Printf("[%v] error with Status request, got code %v\n", hostAndPort, r.StatusCode)
@@ -113,7 +113,7 @@ func main() {
 	r, err2 := upReq.Execute()
 
 	if err2 != nil {
-		fmt.Printf("[%v] error uploading 1d Lut to Library via API, err = '%v'\n", hostAndPort, err2)
+		fmt.Printf("[%v] error uploading %v to Library via API, err = '%v'\n", hostAndPort, *kind, err2)
 	} else if r.StatusCode != 200 {
 		fmt.Printf("[%v] error with Upload request, got code %v\n", hostAndPort, r.StatusCode)
 	}
