@@ -12,13 +12,13 @@
  */
 
 /*
- * OAIColorfrontColorspace.h
+ * OAIColorfrontDynRangeGamut.h
  *
  * 
  */
 
-#ifndef OAIColorfrontColorspace_H
-#define OAIColorfrontColorspace_H
+#ifndef OAIColorfrontDynRangeGamut_H
+#define OAIColorfrontDynRangeGamut_H
 
 #include <QJsonObject>
 
@@ -28,25 +28,25 @@
 
 namespace OpenAPI {
 
-class OAIColorfrontColorspace : public OAIEnum {
+class OAIColorfrontDynRangeGamut : public OAIEnum {
 public:
-    OAIColorfrontColorspace();
-    OAIColorfrontColorspace(QString json);
-    ~OAIColorfrontColorspace() override;
+    OAIColorfrontDynRangeGamut();
+    OAIColorfrontDynRangeGamut(QString json);
+    ~OAIColorfrontDynRangeGamut() override;
 
     QString asJson() const override;
     QJsonValue asJsonValue() const override;
     void fromJsonValue(QJsonValue json) override;
     void fromJson(QString jsonString) override;
 
-    enum class eOAIColorfrontColorspace {
+    enum class eOAIColorfrontDynRangeGamut {
         INVALID_VALUE_OPENAPI_GENERATED = 0,
-        BT709, 
-        PQ_BT2020, 
-        HLG_BT2020
+        SDR_BT_709, 
+        PQ_BT_2020, 
+        HLG_BT_2020
     };
-    OAIColorfrontColorspace::eOAIColorfrontColorspace getValue() const;
-    void setValue(const OAIColorfrontColorspace::eOAIColorfrontColorspace& value);
+    OAIColorfrontDynRangeGamut::eOAIColorfrontDynRangeGamut getValue() const;
+    void setValue(const OAIColorfrontDynRangeGamut::eOAIColorfrontDynRangeGamut& value);
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -54,13 +54,13 @@ public:
 private:
     void initializeModel();
 
-    eOAIColorfrontColorspace m_value;
+    eOAIColorfrontDynRangeGamut m_value;
     bool m_value_isSet;
     bool m_value_isValid;
 };
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIColorfrontColorspace)
+Q_DECLARE_METATYPE(OpenAPI::OAIColorfrontDynRangeGamut)
 
-#endif // OAIColorfrontColorspace_H
+#endif // OAIColorfrontDynRangeGamut_H

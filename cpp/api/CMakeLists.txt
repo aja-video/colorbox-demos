@@ -25,8 +25,8 @@ add_library(${PROJECT_NAME}
     OAIBitDepth.cpp
     OAIColorCorrector.cpp
     OAIColorSpace.cpp
-    OAIColorfrontColorspace.cpp
     OAIColorfrontConfig.cpp
+    OAIColorfrontDynRangeGamut.cpp
     OAIColorimetry.cpp
     OAIConnection.cpp
     OAICrop4k2k.cpp

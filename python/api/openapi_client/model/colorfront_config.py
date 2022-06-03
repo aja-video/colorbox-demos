@@ -34,8 +34,8 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.colorfront_colorspace import ColorfrontColorspace
-    globals()['ColorfrontColorspace'] = ColorfrontColorspace
+    from openapi_client.model.colorfront_dyn_range_gamut import ColorfrontDynRangeGamut
+    globals()['ColorfrontDynRangeGamut'] = ColorfrontDynRangeGamut
 
 
 class ColorfrontConfig(ModelNormal):
@@ -92,8 +92,8 @@ class ColorfrontConfig(ModelNormal):
         lazy_import()
         return {
             'enabled': (bool,),  # noqa: E501
-            'in_colorspace': (ColorfrontColorspace,),  # noqa: E501
-            'out_colorspace': (ColorfrontColorspace,),  # noqa: E501
+            'in_dyn_range_gamut': (ColorfrontDynRangeGamut,),  # noqa: E501
+            'out_dyn_range_gamut': (ColorfrontDynRangeGamut,),  # noqa: E501
         }
 
     @cached_property
@@ -103,8 +103,8 @@ class ColorfrontConfig(ModelNormal):
 
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
-        'in_colorspace': 'inColorspace',  # noqa: E501
-        'out_colorspace': 'outColorspace',  # noqa: E501
+        'in_dyn_range_gamut': 'inDynRangeGamut',  # noqa: E501
+        'out_dyn_range_gamut': 'outDynRangeGamut',  # noqa: E501
     }
 
     read_only_vars = {
@@ -149,8 +149,8 @@ class ColorfrontConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
-            in_colorspace (ColorfrontColorspace): [optional]  # noqa: E501
-            out_colorspace (ColorfrontColorspace): [optional]  # noqa: E501
+            in_dyn_range_gamut (ColorfrontDynRangeGamut): [optional]  # noqa: E501
+            out_dyn_range_gamut (ColorfrontDynRangeGamut): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -233,8 +233,8 @@ class ColorfrontConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
-            in_colorspace (ColorfrontColorspace): [optional]  # noqa: E501
-            out_colorspace (ColorfrontColorspace): [optional]  # noqa: E501
+            in_dyn_range_gamut (ColorfrontDynRangeGamut): [optional]  # noqa: E501
+            out_dyn_range_gamut (ColorfrontDynRangeGamut): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

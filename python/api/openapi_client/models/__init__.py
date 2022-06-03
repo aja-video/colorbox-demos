@@ -14,8 +14,8 @@ from openapi_client.model.bbc_config import BbcConfig
 from openapi_client.model.bit_depth import BitDepth
 from openapi_client.model.color_corrector import ColorCorrector
 from openapi_client.model.color_space import ColorSpace
-from openapi_client.model.colorfront_colorspace import ColorfrontColorspace
 from openapi_client.model.colorfront_config import ColorfrontConfig
+from openapi_client.model.colorfront_dyn_range_gamut import ColorfrontDynRangeGamut
 from openapi_client.model.colorimetry import Colorimetry
 from openapi_client.model.connection import Connection
 from openapi_client.model.crop4k2k import Crop4k2k

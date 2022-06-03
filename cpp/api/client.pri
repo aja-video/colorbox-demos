@@ -7,8 +7,8 @@ HEADERS += \
     $${PWD}/OAIBitDepth.h \
     $${PWD}/OAIColorCorrector.h \
     $${PWD}/OAIColorSpace.h \
-    $${PWD}/OAIColorfrontColorspace.h \
     $${PWD}/OAIColorfrontConfig.h \
+    $${PWD}/OAIColorfrontDynRangeGamut.h \
     $${PWD}/OAIColorimetry.h \
     $${PWD}/OAIConnection.h \
     $${PWD}/OAICrop4k2k.h \
@@ -82,8 +82,8 @@ SOURCES += \
     $${PWD}/OAIBitDepth.cpp \
     $${PWD}/OAIColorCorrector.cpp \
     $${PWD}/OAIColorSpace.cpp \
-    $${PWD}/OAIColorfrontColorspace.cpp \
     $${PWD}/OAIColorfrontConfig.cpp \
+    $${PWD}/OAIColorfrontDynRangeGamut.cpp \
     $${PWD}/OAIColorimetry.cpp \
     $${PWD}/OAIConnection.cpp \
     $${PWD}/OAICrop4k2k.cpp \

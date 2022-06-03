@@ -22,7 +22,7 @@
 
 #include <QJsonObject>
 
-#include "OAIColorfrontColorspace.h"
+#include "OAIColorfrontDynRangeGamut.h"
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
@@ -45,15 +45,15 @@ public:
     bool is_enabled_Set() const;
     bool is_enabled_Valid() const;
 
-    OAIColorfrontColorspace getInColorspace() const;
-    void setInColorspace(const OAIColorfrontColorspace &in_colorspace);
-    bool is_in_colorspace_Set() const;
-    bool is_in_colorspace_Valid() const;
+    OAIColorfrontDynRangeGamut getInDynRangeGamut() const;
+    void setInDynRangeGamut(const OAIColorfrontDynRangeGamut &in_dyn_range_gamut);
+    bool is_in_dyn_range_gamut_Set() const;
+    bool is_in_dyn_range_gamut_Valid() const;
 
-    OAIColorfrontColorspace getOutColorspace() const;
-    void setOutColorspace(const OAIColorfrontColorspace &out_colorspace);
-    bool is_out_colorspace_Set() const;
-    bool is_out_colorspace_Valid() const;
+    OAIColorfrontDynRangeGamut getOutDynRangeGamut() const;
+    void setOutDynRangeGamut(const OAIColorfrontDynRangeGamut &out_dyn_range_gamut);
+    bool is_out_dyn_range_gamut_Set() const;
+    bool is_out_dyn_range_gamut_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -66,13 +66,13 @@ private:
     bool m_enabled_isSet;
     bool m_enabled_isValid;
 
-    OAIColorfrontColorspace m_in_colorspace;
-    bool m_in_colorspace_isSet;
-    bool m_in_colorspace_isValid;
+    OAIColorfrontDynRangeGamut m_in_dyn_range_gamut;
+    bool m_in_dyn_range_gamut_isSet;
+    bool m_in_dyn_range_gamut_isValid;
 
-    OAIColorfrontColorspace m_out_colorspace;
-    bool m_out_colorspace_isSet;
-    bool m_out_colorspace_isValid;
+    OAIColorfrontDynRangeGamut m_out_dyn_range_gamut;
+    bool m_out_dyn_range_gamut_isSet;
+    bool m_out_dyn_range_gamut_isValid;
 };
 
 } // namespace OpenAPI

@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -16,10 +16,14 @@ import sys
 import unittest
 
 import openapi_client
+from openapi_client.model.colorimetry import Colorimetry
 from openapi_client.model.pipeline_range import PipelineRange
 from openapi_client.model.stage import Stage
+from openapi_client.model.transfer import Transfer
+globals()['Colorimetry'] = Colorimetry
 globals()['PipelineRange'] = PipelineRange
 globals()['Stage'] = Stage
+globals()['Transfer'] = Transfer
 from openapi_client.model.pipeline_stages import PipelineStages
 
 

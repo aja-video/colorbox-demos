@@ -2539,8 +2539,8 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     colorfront_config = ColorfrontConfig(
         enabled=True,
-        in_colorspace=ColorfrontColorspace("BT709"),
-        out_colorspace=ColorfrontColorspace("BT709"),
+        in_dyn_range_gamut=ColorfrontDynRangeGamut("SDR BT.709"),
+        out_dyn_range_gamut=ColorfrontDynRangeGamut("SDR BT.709"),
     ) # ColorfrontConfig | ColorfrontConfig object
 
     # example passing only required values which don't have defaults set

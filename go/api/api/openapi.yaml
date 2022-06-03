@@ -1957,17 +1957,17 @@ components:
         enabled:
           description: true if stage is enabled else disabled (unity passthru)
           type: boolean
-        inColorspace:
-          $ref: '#/components/schemas/ColorfrontColorspace'
-        outColorspace:
-          $ref: '#/components/schemas/ColorfrontColorspace'
+        inDynRangeGamut:
+          $ref: '#/components/schemas/ColorfrontDynRangeGamut'
+        outDynRangeGamut:
+          $ref: '#/components/schemas/ColorfrontDynRangeGamut'
       type: object
-    ColorfrontColorspace:
-      default: BT709
+    ColorfrontDynRangeGamut:
+      default: SDR BT.709
       enum:
-      - BT709
-      - PQ BT2020
-      - HLG BT2020
+      - SDR BT.709
+      - PQ BT.2020
+      - HLG BT.2020
       type: string
     BbcConfig:
       example:

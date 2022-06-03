@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com

@@ -38,11 +38,11 @@ void OAIColorfrontConfig::initializeModel() {
     m_enabled_isSet = false;
     m_enabled_isValid = false;
 
-    m_in_colorspace_isSet = false;
-    m_in_colorspace_isValid = false;
+    m_in_dyn_range_gamut_isSet = false;
+    m_in_dyn_range_gamut_isValid = false;
 
-    m_out_colorspace_isSet = false;
-    m_out_colorspace_isValid = false;
+    m_out_dyn_range_gamut_isSet = false;
+    m_out_dyn_range_gamut_isValid = false;
 }
 
 void OAIColorfrontConfig::fromJson(QString jsonString) {
@@ -57,11 +57,11 @@ void OAIColorfrontConfig::fromJsonObject(QJsonObject json) {
     m_enabled_isValid = ::OpenAPI::fromJsonValue(m_enabled, json[QString("enabled")]);
     m_enabled_isSet = !json[QString("enabled")].isNull() && m_enabled_isValid;
 
-    m_in_colorspace_isValid = ::OpenAPI::fromJsonValue(m_in_colorspace, json[QString("inColorspace")]);
-    m_in_colorspace_isSet = !json[QString("inColorspace")].isNull() && m_in_colorspace_isValid;
+    m_in_dyn_range_gamut_isValid = ::OpenAPI::fromJsonValue(m_in_dyn_range_gamut, json[QString("inDynRangeGamut")]);
+    m_in_dyn_range_gamut_isSet = !json[QString("inDynRangeGamut")].isNull() && m_in_dyn_range_gamut_isValid;
 
-    m_out_colorspace_isValid = ::OpenAPI::fromJsonValue(m_out_colorspace, json[QString("outColorspace")]);
-    m_out_colorspace_isSet = !json[QString("outColorspace")].isNull() && m_out_colorspace_isValid;
+    m_out_dyn_range_gamut_isValid = ::OpenAPI::fromJsonValue(m_out_dyn_range_gamut, json[QString("outDynRangeGamut")]);
+    m_out_dyn_range_gamut_isSet = !json[QString("outDynRangeGamut")].isNull() && m_out_dyn_range_gamut_isValid;
 
     applyMinMaxConstraints();
 }
@@ -78,11 +78,11 @@ QJsonObject OAIColorfrontConfig::asJsonObject() const {
     if (m_enabled_isSet) {
         obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(m_enabled));
     }
-    if (m_in_colorspace.isSet()) {
-        obj.insert(QString("inColorspace"), ::OpenAPI::toJsonValue(m_in_colorspace));
+    if (m_in_dyn_range_gamut.isSet()) {
+        obj.insert(QString("inDynRangeGamut"), ::OpenAPI::toJsonValue(m_in_dyn_range_gamut));
     }
-    if (m_out_colorspace.isSet()) {
-        obj.insert(QString("outColorspace"), ::OpenAPI::toJsonValue(m_out_colorspace));
+    if (m_out_dyn_range_gamut.isSet()) {
+        obj.insert(QString("outDynRangeGamut"), ::OpenAPI::toJsonValue(m_out_dyn_range_gamut));
     }
     return obj;
 }
@@ -105,39 +105,39 @@ bool OAIColorfrontConfig::is_enabled_Valid() const{
 }
 
 
-OAIColorfrontColorspace OAIColorfrontConfig::getInColorspace() const {
-    return m_in_colorspace;
+OAIColorfrontDynRangeGamut OAIColorfrontConfig::getInDynRangeGamut() const {
+    return m_in_dyn_range_gamut;
 }
-void OAIColorfrontConfig::setInColorspace(const OAIColorfrontColorspace &in_colorspace) {
-	OAIColorfrontColorspace v = in_colorspace;
-	this->m_in_colorspace = v;
-    this->m_in_colorspace_isSet = true;
-}
-
-bool OAIColorfrontConfig::is_in_colorspace_Set() const{
-    return m_in_colorspace_isSet;
+void OAIColorfrontConfig::setInDynRangeGamut(const OAIColorfrontDynRangeGamut &in_dyn_range_gamut) {
+	OAIColorfrontDynRangeGamut v = in_dyn_range_gamut;
+	this->m_in_dyn_range_gamut = v;
+    this->m_in_dyn_range_gamut_isSet = true;
 }
 
-bool OAIColorfrontConfig::is_in_colorspace_Valid() const{
-    return m_in_colorspace_isValid;
+bool OAIColorfrontConfig::is_in_dyn_range_gamut_Set() const{
+    return m_in_dyn_range_gamut_isSet;
+}
+
+bool OAIColorfrontConfig::is_in_dyn_range_gamut_Valid() const{
+    return m_in_dyn_range_gamut_isValid;
 }
 
 
-OAIColorfrontColorspace OAIColorfrontConfig::getOutColorspace() const {
-    return m_out_colorspace;
+OAIColorfrontDynRangeGamut OAIColorfrontConfig::getOutDynRangeGamut() const {
+    return m_out_dyn_range_gamut;
 }
-void OAIColorfrontConfig::setOutColorspace(const OAIColorfrontColorspace &out_colorspace) {
-	OAIColorfrontColorspace v = out_colorspace;
-	this->m_out_colorspace = v;
-    this->m_out_colorspace_isSet = true;
-}
-
-bool OAIColorfrontConfig::is_out_colorspace_Set() const{
-    return m_out_colorspace_isSet;
+void OAIColorfrontConfig::setOutDynRangeGamut(const OAIColorfrontDynRangeGamut &out_dyn_range_gamut) {
+	OAIColorfrontDynRangeGamut v = out_dyn_range_gamut;
+	this->m_out_dyn_range_gamut = v;
+    this->m_out_dyn_range_gamut_isSet = true;
 }
 
-bool OAIColorfrontConfig::is_out_colorspace_Valid() const{
-    return m_out_colorspace_isValid;
+bool OAIColorfrontConfig::is_out_dyn_range_gamut_Set() const{
+    return m_out_dyn_range_gamut_isSet;
+}
+
+bool OAIColorfrontConfig::is_out_dyn_range_gamut_Valid() const{
+    return m_out_dyn_range_gamut_isValid;
 }
 
 
@@ -149,12 +149,12 @@ bool OAIColorfrontConfig::isSet() const {
             break;
         }
 
-        if (m_in_colorspace.isSet()) {
+        if (m_in_dyn_range_gamut.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_out_colorspace.isSet()) {
+        if (m_out_dyn_range_gamut.isSet()) {
             isObjectUpdated = true;
             break;
         }
