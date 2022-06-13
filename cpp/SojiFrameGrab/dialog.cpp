@@ -115,7 +115,9 @@ void Dialog::handleGetSDIStatus(OpenAPI::OAISDI status)
     _ui->connectLabel->setText("CONNECTED");
 
     // Get Web Socket Going.
-	emit connectSojiWebSocket(_currentIPAddress);
+	// don't want any port number from URL
+	QString webSocketIP = _currentIPAddress.split(":").at(0);
+	emit connectSojiWebSocket(webSocketIP);
 
     _status = status;
     qDebug() << status.getFormat().asJson();
