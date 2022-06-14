@@ -165,7 +165,10 @@ void Dialog::updateGrabBinary(const QByteArray &data)
 
 	if (_sojiConnected)
 	{
-        OAIFrame frame(QString::fromUtf8(data));
+		QJsonDocument doc = QJsonDocument::fromJson(data);
+		OAIFrame frame;
+		frame.fromJsonObject(doc.object());
+
 		QByteArray frameBA = frame.getImage();
 		uint32_t frameSize = frameBA.size();
 		switch ( frameSize )
@@ -211,7 +214,7 @@ void Dialog::updateGrabBinary(const QByteArray &data)
             _userData1 =  frame.getUserData1();
             _userData2 = frame.getUserData2();
 
-            _frameBuffer.resize(_width*_height*6);
+			_frameBuffer.resize(_width*_height*6);
 			memcpy(_frameBuffer.data(),frameBA.data(),frameSize);
 			updatePreview();
 		}
