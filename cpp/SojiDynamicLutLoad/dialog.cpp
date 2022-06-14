@@ -131,7 +131,9 @@ void Dialog::handleGetStages(OpenAPI::OAIPipelineStages stages)
     _ui->connectLabel->setText("CONNECTED");
 
     // Get Web Socket Going.
-    connectSojiWebSocket(_currentIPAddress);
+	// don't want any port number from URL
+	QString webSocketIP = _currentIPAddress.split(":").at(0);
+	connectSojiWebSocket(webSocketIP);
     dynmicLutChoiceChanged(_ui->lutChoiceComboBox->currentIndex());
 }
 

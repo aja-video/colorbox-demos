@@ -85,7 +85,9 @@ void Dialog::handleGetFrameStore(OpenAPI::OAIFrameStore frameStore)
     _api.setFrameStore(frameStore);
 
     // Get Web Socket Going.
-    connectSojiWebSocket(_currentIPAddress);
+	// don't want any port number from URL
+	QString webSocketIP = _currentIPAddress.split(":").at(0);
+	connectSojiWebSocket(webSocketIP);
 
 }
 
