@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **upper_bound_good** | **float** | The upper bound for the state to be considered StatusStateGood | [optional] 
 **upper_bound_maybe** | **float** | The upper bound for the state to be considered StatusStateMaybe | [optional] 
 **value** | **str** | The instantaneous value for this status object | [optional] 
+**value_int** | **float** | The instantaneous value for this status object | [optional] 
 **label** | **str** | A descriptive label of what this status object represents | [optional] 
 **extra_value** | **str** | A second value that is optional | [optional] 
 **extra_label** | **str** | A second descriptive label for the extraValue | [optional] 

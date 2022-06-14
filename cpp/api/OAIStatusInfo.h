@@ -56,6 +56,11 @@ public:
     bool is_value_Set() const;
     bool is_value_Valid() const;
 
+    double getValueInt() const;
+    void setValueInt(const double &value_int);
+    bool is_value_int_Set() const;
+    bool is_value_int_Valid() const;
+
     QString getLabel() const;
     void setLabel(const QString &label);
     bool is_label_Set() const;
@@ -94,6 +99,10 @@ private:
     QString m_value;
     bool m_value_isSet;
     bool m_value_isValid;
+
+    double m_value_int;
+    bool m_value_int_isSet;
+    bool m_value_int_isValid;
 
     QString m_label;
     bool m_label_isSet;

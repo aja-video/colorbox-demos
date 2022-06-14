@@ -2136,6 +2136,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             upper_bound_good=3.14,
             upper_bound_maybe=3.14,
             value="value_example",
+            value_int=3.14,
             label="label_example",
             extra_value="extra_value_example",
             extra_label="extra_label_example",

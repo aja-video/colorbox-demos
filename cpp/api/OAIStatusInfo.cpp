@@ -44,6 +44,9 @@ void OAIStatusInfo::initializeModel() {
     m_value_isSet = false;
     m_value_isValid = false;
 
+    m_value_int_isSet = false;
+    m_value_int_isValid = false;
+
     m_label_isSet = false;
     m_label_isValid = false;
 
@@ -74,6 +77,9 @@ void OAIStatusInfo::fromJsonObject(QJsonObject json) {
 
     m_value_isValid = ::OpenAPI::fromJsonValue(m_value, json[QString("value")]);
     m_value_isSet = !json[QString("value")].isNull() && m_value_isValid;
+
+    m_value_int_isValid = ::OpenAPI::fromJsonValue(m_value_int, json[QString("valueInt")]);
+    m_value_int_isSet = !json[QString("valueInt")].isNull() && m_value_int_isValid;
 
     m_label_isValid = ::OpenAPI::fromJsonValue(m_label, json[QString("label")]);
     m_label_isSet = !json[QString("label")].isNull() && m_label_isValid;
@@ -107,6 +113,9 @@ QJsonObject OAIStatusInfo::asJsonObject() const {
     }
     if (m_value_isSet) {
         obj.insert(QString("value"), ::OpenAPI::toJsonValue(m_value));
+    }
+    if (m_value_int_isSet) {
+        obj.insert(QString("valueInt"), ::OpenAPI::toJsonValue(m_value_int));
     }
     if (m_label_isSet) {
         obj.insert(QString("label"), ::OpenAPI::toJsonValue(m_label));
@@ -176,6 +185,25 @@ bool OAIStatusInfo::is_value_Set() const{
 
 bool OAIStatusInfo::is_value_Valid() const{
     return m_value_isValid;
+}
+
+
+
+double OAIStatusInfo::getValueInt() const {
+    return m_value_int;
+}
+void OAIStatusInfo::setValueInt(const double &value_int) {
+	double v = value_int;
+	this->m_value_int = v;
+    this->m_value_int_isSet = true;
+}
+
+bool OAIStatusInfo::is_value_int_Set() const{
+    return m_value_int_isSet;
+}
+
+bool OAIStatusInfo::is_value_int_Valid() const{
+    return m_value_int_isValid;
 }
 
 
@@ -273,6 +301,11 @@ bool OAIStatusInfo::isSet() const {
             break;
         }
 
+        if (m_value_int_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (m_label_isSet) {
             isObjectUpdated = true;
             break;
@@ -320,6 +353,12 @@ bool OAIStatusInfo::applyMinMaxConstraints() {
 		bool valueChanged = false;
 		QString v = getValue();
 		if (valueChanged) { setValue(v); anyMinMaxValueChanged = true; }
+	}
+	if (is_value_int_Set())
+	{
+		bool valueIntChanged = false;
+		double v = getValueInt();
+		if (valueIntChanged) { setValueInt(v); anyMinMaxValueChanged = true; }
 	}
 	if (is_label_Set())
 	{

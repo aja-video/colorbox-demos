@@ -2159,6 +2159,7 @@ components:
         upperBoundGood: 0.8008281904610115
         label: label
         extraLabel: extraLabel
+        valueInt: 1.4658129805029452
         value: value
         extraValue: extraValue
         upperBoundMaybe: 6.027456183070403
@@ -2172,6 +2173,9 @@ components:
         value:
           description: The instantaneous value for this status object
           type: string
+        valueInt:
+          description: The instantaneous value for this status object
+          type: number
         label:
           description: A descriptive label of what this status object represents
           type: string
@@ -2206,11 +2210,12 @@ components:
           upperBoundGood: 0.8008281904610115
           label: label
           extraLabel: extraLabel
+          valueInt: 1.4658129805029452
           value: value
           extraValue: extraValue
           upperBoundMaybe: 6.027456183070403
         cpuBusy: true
-        shutdownTime: 1
+        shutdownTime: 5
         systemSupportInfo: systemSupportInfo
         bbcLutsLicensed: true
       properties:
