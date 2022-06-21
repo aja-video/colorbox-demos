@@ -38,17 +38,29 @@ void OAIOverlay::initializeModel() {
     m_enabled_isSet = false;
     m_enabled_isValid = false;
 
-    m_vpid_format_isSet = false;
-    m_vpid_format_isValid = false;
+    m_in_vpid_format_isSet = false;
+    m_in_vpid_format_isValid = false;
 
-    m_vpid_range_isSet = false;
-    m_vpid_range_isValid = false;
+    m_in_vpid_range_isSet = false;
+    m_in_vpid_range_isValid = false;
 
-    m_vpid_hdr_isSet = false;
-    m_vpid_hdr_isValid = false;
+    m_in_vpid_hdr_isSet = false;
+    m_in_vpid_hdr_isValid = false;
 
-    m_vpid_bit_depth_isSet = false;
-    m_vpid_bit_depth_isValid = false;
+    m_in_vpid_bit_depth_isSet = false;
+    m_in_vpid_bit_depth_isValid = false;
+
+    m_out_vpid_format_isSet = false;
+    m_out_vpid_format_isValid = false;
+
+    m_out_vpid_range_isSet = false;
+    m_out_vpid_range_isValid = false;
+
+    m_out_vpid_hdr_isSet = false;
+    m_out_vpid_hdr_isValid = false;
+
+    m_out_vpid_bit_depth_isSet = false;
+    m_out_vpid_bit_depth_isValid = false;
 
     m_time_code_isSet = false;
     m_time_code_isValid = false;
@@ -81,17 +93,29 @@ void OAIOverlay::fromJsonObject(QJsonObject json) {
     m_enabled_isValid = ::OpenAPI::fromJsonValue(m_enabled, json[QString("enabled")]);
     m_enabled_isSet = !json[QString("enabled")].isNull() && m_enabled_isValid;
 
-    m_vpid_format_isValid = ::OpenAPI::fromJsonValue(m_vpid_format, json[QString("vpidFormat")]);
-    m_vpid_format_isSet = !json[QString("vpidFormat")].isNull() && m_vpid_format_isValid;
+    m_in_vpid_format_isValid = ::OpenAPI::fromJsonValue(m_in_vpid_format, json[QString("inVpidFormat")]);
+    m_in_vpid_format_isSet = !json[QString("inVpidFormat")].isNull() && m_in_vpid_format_isValid;
 
-    m_vpid_range_isValid = ::OpenAPI::fromJsonValue(m_vpid_range, json[QString("vpidRange")]);
-    m_vpid_range_isSet = !json[QString("vpidRange")].isNull() && m_vpid_range_isValid;
+    m_in_vpid_range_isValid = ::OpenAPI::fromJsonValue(m_in_vpid_range, json[QString("inVpidRange")]);
+    m_in_vpid_range_isSet = !json[QString("inVpidRange")].isNull() && m_in_vpid_range_isValid;
 
-    m_vpid_hdr_isValid = ::OpenAPI::fromJsonValue(m_vpid_hdr, json[QString("vpidHdr")]);
-    m_vpid_hdr_isSet = !json[QString("vpidHdr")].isNull() && m_vpid_hdr_isValid;
+    m_in_vpid_hdr_isValid = ::OpenAPI::fromJsonValue(m_in_vpid_hdr, json[QString("inVpidHdr")]);
+    m_in_vpid_hdr_isSet = !json[QString("inVpidHdr")].isNull() && m_in_vpid_hdr_isValid;
 
-    m_vpid_bit_depth_isValid = ::OpenAPI::fromJsonValue(m_vpid_bit_depth, json[QString("vpidBitDepth")]);
-    m_vpid_bit_depth_isSet = !json[QString("vpidBitDepth")].isNull() && m_vpid_bit_depth_isValid;
+    m_in_vpid_bit_depth_isValid = ::OpenAPI::fromJsonValue(m_in_vpid_bit_depth, json[QString("inVpidBitDepth")]);
+    m_in_vpid_bit_depth_isSet = !json[QString("inVpidBitDepth")].isNull() && m_in_vpid_bit_depth_isValid;
+
+    m_out_vpid_format_isValid = ::OpenAPI::fromJsonValue(m_out_vpid_format, json[QString("outVpidFormat")]);
+    m_out_vpid_format_isSet = !json[QString("outVpidFormat")].isNull() && m_out_vpid_format_isValid;
+
+    m_out_vpid_range_isValid = ::OpenAPI::fromJsonValue(m_out_vpid_range, json[QString("outVpidRange")]);
+    m_out_vpid_range_isSet = !json[QString("outVpidRange")].isNull() && m_out_vpid_range_isValid;
+
+    m_out_vpid_hdr_isValid = ::OpenAPI::fromJsonValue(m_out_vpid_hdr, json[QString("outVpidHdr")]);
+    m_out_vpid_hdr_isSet = !json[QString("outVpidHdr")].isNull() && m_out_vpid_hdr_isValid;
+
+    m_out_vpid_bit_depth_isValid = ::OpenAPI::fromJsonValue(m_out_vpid_bit_depth, json[QString("outVpidBitDepth")]);
+    m_out_vpid_bit_depth_isSet = !json[QString("outVpidBitDepth")].isNull() && m_out_vpid_bit_depth_isValid;
 
     m_time_code_isValid = ::OpenAPI::fromJsonValue(m_time_code, json[QString("timeCode")]);
     m_time_code_isSet = !json[QString("timeCode")].isNull() && m_time_code_isValid;
@@ -126,17 +150,29 @@ QJsonObject OAIOverlay::asJsonObject() const {
     if (m_enabled_isSet) {
         obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(m_enabled));
     }
-    if (m_vpid_format_isSet) {
-        obj.insert(QString("vpidFormat"), ::OpenAPI::toJsonValue(m_vpid_format));
+    if (m_in_vpid_format_isSet) {
+        obj.insert(QString("inVpidFormat"), ::OpenAPI::toJsonValue(m_in_vpid_format));
     }
-    if (m_vpid_range_isSet) {
-        obj.insert(QString("vpidRange"), ::OpenAPI::toJsonValue(m_vpid_range));
+    if (m_in_vpid_range_isSet) {
+        obj.insert(QString("inVpidRange"), ::OpenAPI::toJsonValue(m_in_vpid_range));
     }
-    if (m_vpid_hdr_isSet) {
-        obj.insert(QString("vpidHdr"), ::OpenAPI::toJsonValue(m_vpid_hdr));
+    if (m_in_vpid_hdr_isSet) {
+        obj.insert(QString("inVpidHdr"), ::OpenAPI::toJsonValue(m_in_vpid_hdr));
     }
-    if (m_vpid_bit_depth_isSet) {
-        obj.insert(QString("vpidBitDepth"), ::OpenAPI::toJsonValue(m_vpid_bit_depth));
+    if (m_in_vpid_bit_depth_isSet) {
+        obj.insert(QString("inVpidBitDepth"), ::OpenAPI::toJsonValue(m_in_vpid_bit_depth));
+    }
+    if (m_out_vpid_format_isSet) {
+        obj.insert(QString("outVpidFormat"), ::OpenAPI::toJsonValue(m_out_vpid_format));
+    }
+    if (m_out_vpid_range_isSet) {
+        obj.insert(QString("outVpidRange"), ::OpenAPI::toJsonValue(m_out_vpid_range));
+    }
+    if (m_out_vpid_hdr_isSet) {
+        obj.insert(QString("outVpidHdr"), ::OpenAPI::toJsonValue(m_out_vpid_hdr));
+    }
+    if (m_out_vpid_bit_depth_isSet) {
+        obj.insert(QString("outVpidBitDepth"), ::OpenAPI::toJsonValue(m_out_vpid_bit_depth));
     }
     if (m_time_code_isSet) {
         obj.insert(QString("timeCode"), ::OpenAPI::toJsonValue(m_time_code));
@@ -177,75 +213,147 @@ bool OAIOverlay::is_enabled_Valid() const{
 }
 
 
-bool OAIOverlay::isVpidFormat() const {
-    return m_vpid_format;
+bool OAIOverlay::isInVpidFormat() const {
+    return m_in_vpid_format;
 }
-void OAIOverlay::setVpidFormat(const bool &vpid_format) {
-	bool v = vpid_format;
-	this->m_vpid_format = v;
-    this->m_vpid_format_isSet = true;
-}
-
-bool OAIOverlay::is_vpid_format_Set() const{
-    return m_vpid_format_isSet;
+void OAIOverlay::setInVpidFormat(const bool &in_vpid_format) {
+	bool v = in_vpid_format;
+	this->m_in_vpid_format = v;
+    this->m_in_vpid_format_isSet = true;
 }
 
-bool OAIOverlay::is_vpid_format_Valid() const{
-    return m_vpid_format_isValid;
+bool OAIOverlay::is_in_vpid_format_Set() const{
+    return m_in_vpid_format_isSet;
 }
 
-
-bool OAIOverlay::isVpidRange() const {
-    return m_vpid_range;
-}
-void OAIOverlay::setVpidRange(const bool &vpid_range) {
-	bool v = vpid_range;
-	this->m_vpid_range = v;
-    this->m_vpid_range_isSet = true;
-}
-
-bool OAIOverlay::is_vpid_range_Set() const{
-    return m_vpid_range_isSet;
-}
-
-bool OAIOverlay::is_vpid_range_Valid() const{
-    return m_vpid_range_isValid;
+bool OAIOverlay::is_in_vpid_format_Valid() const{
+    return m_in_vpid_format_isValid;
 }
 
 
-bool OAIOverlay::isVpidHdr() const {
-    return m_vpid_hdr;
+bool OAIOverlay::isInVpidRange() const {
+    return m_in_vpid_range;
 }
-void OAIOverlay::setVpidHdr(const bool &vpid_hdr) {
-	bool v = vpid_hdr;
-	this->m_vpid_hdr = v;
-    this->m_vpid_hdr_isSet = true;
-}
-
-bool OAIOverlay::is_vpid_hdr_Set() const{
-    return m_vpid_hdr_isSet;
+void OAIOverlay::setInVpidRange(const bool &in_vpid_range) {
+	bool v = in_vpid_range;
+	this->m_in_vpid_range = v;
+    this->m_in_vpid_range_isSet = true;
 }
 
-bool OAIOverlay::is_vpid_hdr_Valid() const{
-    return m_vpid_hdr_isValid;
+bool OAIOverlay::is_in_vpid_range_Set() const{
+    return m_in_vpid_range_isSet;
+}
+
+bool OAIOverlay::is_in_vpid_range_Valid() const{
+    return m_in_vpid_range_isValid;
 }
 
 
-bool OAIOverlay::isVpidBitDepth() const {
-    return m_vpid_bit_depth;
+bool OAIOverlay::isInVpidHdr() const {
+    return m_in_vpid_hdr;
 }
-void OAIOverlay::setVpidBitDepth(const bool &vpid_bit_depth) {
-	bool v = vpid_bit_depth;
-	this->m_vpid_bit_depth = v;
-    this->m_vpid_bit_depth_isSet = true;
-}
-
-bool OAIOverlay::is_vpid_bit_depth_Set() const{
-    return m_vpid_bit_depth_isSet;
+void OAIOverlay::setInVpidHdr(const bool &in_vpid_hdr) {
+	bool v = in_vpid_hdr;
+	this->m_in_vpid_hdr = v;
+    this->m_in_vpid_hdr_isSet = true;
 }
 
-bool OAIOverlay::is_vpid_bit_depth_Valid() const{
-    return m_vpid_bit_depth_isValid;
+bool OAIOverlay::is_in_vpid_hdr_Set() const{
+    return m_in_vpid_hdr_isSet;
+}
+
+bool OAIOverlay::is_in_vpid_hdr_Valid() const{
+    return m_in_vpid_hdr_isValid;
+}
+
+
+bool OAIOverlay::isInVpidBitDepth() const {
+    return m_in_vpid_bit_depth;
+}
+void OAIOverlay::setInVpidBitDepth(const bool &in_vpid_bit_depth) {
+	bool v = in_vpid_bit_depth;
+	this->m_in_vpid_bit_depth = v;
+    this->m_in_vpid_bit_depth_isSet = true;
+}
+
+bool OAIOverlay::is_in_vpid_bit_depth_Set() const{
+    return m_in_vpid_bit_depth_isSet;
+}
+
+bool OAIOverlay::is_in_vpid_bit_depth_Valid() const{
+    return m_in_vpid_bit_depth_isValid;
+}
+
+
+bool OAIOverlay::isOutVpidFormat() const {
+    return m_out_vpid_format;
+}
+void OAIOverlay::setOutVpidFormat(const bool &out_vpid_format) {
+	bool v = out_vpid_format;
+	this->m_out_vpid_format = v;
+    this->m_out_vpid_format_isSet = true;
+}
+
+bool OAIOverlay::is_out_vpid_format_Set() const{
+    return m_out_vpid_format_isSet;
+}
+
+bool OAIOverlay::is_out_vpid_format_Valid() const{
+    return m_out_vpid_format_isValid;
+}
+
+
+bool OAIOverlay::isOutVpidRange() const {
+    return m_out_vpid_range;
+}
+void OAIOverlay::setOutVpidRange(const bool &out_vpid_range) {
+	bool v = out_vpid_range;
+	this->m_out_vpid_range = v;
+    this->m_out_vpid_range_isSet = true;
+}
+
+bool OAIOverlay::is_out_vpid_range_Set() const{
+    return m_out_vpid_range_isSet;
+}
+
+bool OAIOverlay::is_out_vpid_range_Valid() const{
+    return m_out_vpid_range_isValid;
+}
+
+
+bool OAIOverlay::isOutVpidHdr() const {
+    return m_out_vpid_hdr;
+}
+void OAIOverlay::setOutVpidHdr(const bool &out_vpid_hdr) {
+	bool v = out_vpid_hdr;
+	this->m_out_vpid_hdr = v;
+    this->m_out_vpid_hdr_isSet = true;
+}
+
+bool OAIOverlay::is_out_vpid_hdr_Set() const{
+    return m_out_vpid_hdr_isSet;
+}
+
+bool OAIOverlay::is_out_vpid_hdr_Valid() const{
+    return m_out_vpid_hdr_isValid;
+}
+
+
+bool OAIOverlay::isOutVpidBitDepth() const {
+    return m_out_vpid_bit_depth;
+}
+void OAIOverlay::setOutVpidBitDepth(const bool &out_vpid_bit_depth) {
+	bool v = out_vpid_bit_depth;
+	this->m_out_vpid_bit_depth = v;
+    this->m_out_vpid_bit_depth_isSet = true;
+}
+
+bool OAIOverlay::is_out_vpid_bit_depth_Set() const{
+    return m_out_vpid_bit_depth_isSet;
+}
+
+bool OAIOverlay::is_out_vpid_bit_depth_Valid() const{
+    return m_out_vpid_bit_depth_isValid;
 }
 
 
@@ -387,22 +495,42 @@ bool OAIOverlay::isSet() const {
             break;
         }
 
-        if (m_vpid_format_isSet) {
+        if (m_in_vpid_format_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_vpid_range_isSet) {
+        if (m_in_vpid_range_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_vpid_hdr_isSet) {
+        if (m_in_vpid_hdr_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_vpid_bit_depth_isSet) {
+        if (m_in_vpid_bit_depth_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_out_vpid_format_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_out_vpid_range_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_out_vpid_hdr_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_out_vpid_bit_depth_isSet) {
             isObjectUpdated = true;
             break;
         }

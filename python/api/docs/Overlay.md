@@ -5,10 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enabled** | **bool** | true if overlay is enabled else disabled | [optional] 
-**vpid_format** | **bool** |  | [optional] 
-**vpid_range** | **bool** |  | [optional] 
-**vpid_hdr** | **bool** |  | [optional] 
-**vpid_bit_depth** | **bool** |  | [optional] 
+**in_vpid_format** | **bool** |  | [optional] 
+**in_vpid_range** | **bool** |  | [optional] 
+**in_vpid_hdr** | **bool** |  | [optional] 
+**in_vpid_bit_depth** | **bool** |  | [optional] 
+**out_vpid_format** | **bool** |  | [optional] 
+**out_vpid_range** | **bool** |  | [optional] 
+**out_vpid_hdr** | **bool** |  | [optional] 
+**out_vpid_bit_depth** | **bool** |  | [optional] 
 **time_code** | **bool** |  | [optional] 
 **closed_caption** | **bool** |  | [optional] 
 **user_text_enabled** | **bool** |  | [optional] 

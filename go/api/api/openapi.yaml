@@ -1423,27 +1423,39 @@ components:
       type: object
     Overlay:
       example:
+        outVpidHdr: true
         userTextLine2: userTextLine2
+        inVpidRange: true
+        outVpidRange: true
         userTextLine1: userTextLine1
-        vpidHdr: true
-        vpidFormat: true
-        userTextEnabled: true
-        closedCaption: true
-        vpidRange: true
-        vpidBitDepth: true
-        timeCode: true
+        inVpidHdr: true
+        inVpidBitDepth: true
+        outVpidBitDepth: true
         enabled: true
+        userTextEnabled: true
+        outVpidFormat: true
+        closedCaption: true
+        inVpidFormat: true
+        timeCode: true
       properties:
         enabled:
           description: true if overlay is enabled else disabled
           type: boolean
-        vpidFormat:
+        inVpidFormat:
           type: boolean
-        vpidRange:
+        inVpidRange:
           type: boolean
-        vpidHdr:
+        inVpidHdr:
           type: boolean
-        vpidBitDepth:
+        inVpidBitDepth:
+          type: boolean
+        outVpidFormat:
+          type: boolean
+        outVpidRange:
+          type: boolean
+        outVpidHdr:
+          type: boolean
+        outVpidBitDepth:
           type: boolean
         timeCode:
           type: boolean

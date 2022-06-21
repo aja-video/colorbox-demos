@@ -46,25 +46,45 @@ public:
     bool is_enabled_Set() const;
     bool is_enabled_Valid() const;
 
-    bool isVpidFormat() const;
-    void setVpidFormat(const bool &vpid_format);
-    bool is_vpid_format_Set() const;
-    bool is_vpid_format_Valid() const;
+    bool isInVpidFormat() const;
+    void setInVpidFormat(const bool &in_vpid_format);
+    bool is_in_vpid_format_Set() const;
+    bool is_in_vpid_format_Valid() const;
 
-    bool isVpidRange() const;
-    void setVpidRange(const bool &vpid_range);
-    bool is_vpid_range_Set() const;
-    bool is_vpid_range_Valid() const;
+    bool isInVpidRange() const;
+    void setInVpidRange(const bool &in_vpid_range);
+    bool is_in_vpid_range_Set() const;
+    bool is_in_vpid_range_Valid() const;
 
-    bool isVpidHdr() const;
-    void setVpidHdr(const bool &vpid_hdr);
-    bool is_vpid_hdr_Set() const;
-    bool is_vpid_hdr_Valid() const;
+    bool isInVpidHdr() const;
+    void setInVpidHdr(const bool &in_vpid_hdr);
+    bool is_in_vpid_hdr_Set() const;
+    bool is_in_vpid_hdr_Valid() const;
 
-    bool isVpidBitDepth() const;
-    void setVpidBitDepth(const bool &vpid_bit_depth);
-    bool is_vpid_bit_depth_Set() const;
-    bool is_vpid_bit_depth_Valid() const;
+    bool isInVpidBitDepth() const;
+    void setInVpidBitDepth(const bool &in_vpid_bit_depth);
+    bool is_in_vpid_bit_depth_Set() const;
+    bool is_in_vpid_bit_depth_Valid() const;
+
+    bool isOutVpidFormat() const;
+    void setOutVpidFormat(const bool &out_vpid_format);
+    bool is_out_vpid_format_Set() const;
+    bool is_out_vpid_format_Valid() const;
+
+    bool isOutVpidRange() const;
+    void setOutVpidRange(const bool &out_vpid_range);
+    bool is_out_vpid_range_Set() const;
+    bool is_out_vpid_range_Valid() const;
+
+    bool isOutVpidHdr() const;
+    void setOutVpidHdr(const bool &out_vpid_hdr);
+    bool is_out_vpid_hdr_Set() const;
+    bool is_out_vpid_hdr_Valid() const;
+
+    bool isOutVpidBitDepth() const;
+    void setOutVpidBitDepth(const bool &out_vpid_bit_depth);
+    bool is_out_vpid_bit_depth_Set() const;
+    bool is_out_vpid_bit_depth_Valid() const;
 
     bool isTimeCode() const;
     void setTimeCode(const bool &time_code);
@@ -111,21 +131,37 @@ private:
     bool m_enabled_isSet;
     bool m_enabled_isValid;
 
-    bool m_vpid_format;
-    bool m_vpid_format_isSet;
-    bool m_vpid_format_isValid;
+    bool m_in_vpid_format;
+    bool m_in_vpid_format_isSet;
+    bool m_in_vpid_format_isValid;
 
-    bool m_vpid_range;
-    bool m_vpid_range_isSet;
-    bool m_vpid_range_isValid;
+    bool m_in_vpid_range;
+    bool m_in_vpid_range_isSet;
+    bool m_in_vpid_range_isValid;
 
-    bool m_vpid_hdr;
-    bool m_vpid_hdr_isSet;
-    bool m_vpid_hdr_isValid;
+    bool m_in_vpid_hdr;
+    bool m_in_vpid_hdr_isSet;
+    bool m_in_vpid_hdr_isValid;
 
-    bool m_vpid_bit_depth;
-    bool m_vpid_bit_depth_isSet;
-    bool m_vpid_bit_depth_isValid;
+    bool m_in_vpid_bit_depth;
+    bool m_in_vpid_bit_depth_isSet;
+    bool m_in_vpid_bit_depth_isValid;
+
+    bool m_out_vpid_format;
+    bool m_out_vpid_format_isSet;
+    bool m_out_vpid_format_isValid;
+
+    bool m_out_vpid_range;
+    bool m_out_vpid_range_isSet;
+    bool m_out_vpid_range_isValid;
+
+    bool m_out_vpid_hdr;
+    bool m_out_vpid_hdr_isSet;
+    bool m_out_vpid_hdr_isValid;
+
+    bool m_out_vpid_bit_depth;
+    bool m_out_vpid_bit_depth_isSet;
+    bool m_out_vpid_bit_depth_isValid;
 
     bool m_time_code;
     bool m_time_code_isSet;
