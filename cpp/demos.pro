@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
-SUBDIRS = SojiDynamicFrameLoad SojiDynamicLutLoad SojiDynamicMatrixLoad \
-          SojiPreviewDemo \
-		  SojiFrameGrab SojiRGBTriplet
+SUBDIRS = DynamicFrameLoad DynamicLutLoad DynamicMatrixLoad \
+          PreviewDemo \
+		  FrameGrab RGBTriplet
 

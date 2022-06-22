@@ -1,10 +1,10 @@
 #include "ajawebsocketinterface.h"
 
-void AJAWebSocketInterface::connectSojiWebSocket(QString urlString)
+void AJAWebSocketInterface::connectColorBoxWebSocket(QString urlString)
 {
     if ( _webSocket )
         disconnect();
-    qDebug() << "connectSojiWebSocket" << urlString;
+    qDebug() << "connectColorBoxWebSocket" << urlString;
 
     if ( urlString.startsWith("127.0.0.1"))
          qDebug() << urlString;

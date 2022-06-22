@@ -13,7 +13,7 @@ public:
     virtual ~AJAWebSocketInterface() {}
     
 public slots:
-	void connectSojiWebSocket(QString urlString);
+	void connectColorBoxWebSocket(QString urlString);
 	void disconnect();
 	void sendBinaryMessage(const QByteArray &message);
 	void sendTextMessage(const QString &message);
