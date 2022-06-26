@@ -133,8 +133,15 @@ void Dialog::handleGetStages(OpenAPI::OAIPipelineStages stages)
     // Get Web Socket Going.
 	// don't want any port number from URL
 	QString webSocketIP = _currentIPAddress.split(":").at(0);
-	connectColorBoxWebSocket(webSocketIP);
+    emit connectColorBoxWebSocket(webSocketIP);
     dynmicLutChoiceChanged(_ui->lutChoiceComboBox->currentIndex());
+
+    // Now put the ColorBox in LUT mode. Note: if it was in Orion Mode it will be ~2 seconds before LUT mode is ready as it needs to change firmware.
+    OAITransformMode transformMode;
+    transformMode.setValue(OAITransformMode::eOAITransformMode::LUT);
+    OAISystemConfig systemConfig;
+    systemConfig.setTransformMode(transformMode);
+    _api.setSystemConfig(systemConfig);
 }
 
 
