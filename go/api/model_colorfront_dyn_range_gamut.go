@@ -25,15 +25,15 @@ type ColorfrontDynRangeGamut string
 // List of ColorfrontDynRangeGamut
 const (
 	COLORFRONTDYNRANGEGAMUT_SDR_BT_709 ColorfrontDynRangeGamut = "SDR BT.709"
+	COLORFRONTDYNRANGEGAMUT_HLG_BT_2100 ColorfrontDynRangeGamut = "HLG BT.2100"
 	COLORFRONTDYNRANGEGAMUT_PQ_BT_2020 ColorfrontDynRangeGamut = "PQ BT.2020"
-	COLORFRONTDYNRANGEGAMUT_HLG_BT_2020 ColorfrontDynRangeGamut = "HLG BT.2020"
 )
 
 // All allowed values of ColorfrontDynRangeGamut enum
 var AllowedColorfrontDynRangeGamutEnumValues = []ColorfrontDynRangeGamut{
 	"SDR BT.709",
+	"HLG BT.2100",
 	"PQ BT.2020",
-	"HLG BT.2020",
 }
 
 func (v *ColorfrontDynRangeGamut) UnmarshalJSON(src []byte) error {

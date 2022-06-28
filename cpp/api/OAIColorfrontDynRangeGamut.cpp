@@ -46,12 +46,12 @@ void OAIColorfrontDynRangeGamut::fromJson(QString jsonString) {
         m_value = eOAIColorfrontDynRangeGamut::SDR_BT_709;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("PQ BT.2020", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIColorfrontDynRangeGamut::PQ_BT_2020;
+    else if ( jsonString.compare("HLG BT.2100", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIColorfrontDynRangeGamut::HLG_BT_2100;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("HLG BT.2020", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIColorfrontDynRangeGamut::HLG_BT_2020;
+    else if ( jsonString.compare("PQ BT.2020", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIColorfrontDynRangeGamut::PQ_BT_2020;
         m_value_isSet = m_value_isValid = true;
     }
 }
@@ -69,11 +69,11 @@ QString OAIColorfrontDynRangeGamut::asJson() const {
         case eOAIColorfrontDynRangeGamut::SDR_BT_709:
             val = "SDR BT.709";
             break;
+        case eOAIColorfrontDynRangeGamut::HLG_BT_2100:
+            val = "HLG BT.2100";
+            break;
         case eOAIColorfrontDynRangeGamut::PQ_BT_2020:
             val = "PQ BT.2020";
-            break;
-        case eOAIColorfrontDynRangeGamut::HLG_BT_2020:
-            val = "HLG BT.2020";
             break;
         default:
             break;

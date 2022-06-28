@@ -42,8 +42,8 @@ public:
     enum class eOAIColorfrontDynRangeGamut {
         INVALID_VALUE_OPENAPI_GENERATED = 0,
         SDR_BT_709, 
-        PQ_BT_2020, 
-        HLG_BT_2020
+        HLG_BT_2100, 
+        PQ_BT_2020
     };
     OAIColorfrontDynRangeGamut::eOAIColorfrontDynRangeGamut getValue() const;
     void setValue(const OAIColorfrontDynRangeGamut::eOAIColorfrontDynRangeGamut& value);

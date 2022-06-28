@@ -1978,8 +1978,8 @@ components:
       default: SDR BT.709
       enum:
       - SDR BT.709
+      - HLG BT.2100
       - PQ BT.2020
-      - HLG BT.2020
       type: string
     BbcConfig:
       example:
