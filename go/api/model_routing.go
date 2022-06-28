@@ -36,7 +36,7 @@ func NewRouting() *Routing {
 	this := Routing{}
 	var mode Mode = MODE_INPUT
 	this.Mode = &mode
-	var previewTap PreviewTap = PREVIEWTAP_OVERLAY
+	var previewTap PreviewTap = PREVIEWTAP_OUTPUT
 	this.PreviewTap = &previewTap
 	return &this
 }
@@ -48,7 +48,7 @@ func NewRoutingWithDefaults() *Routing {
 	this := Routing{}
 	var mode Mode = MODE_INPUT
 	this.Mode = &mode
-	var previewTap PreviewTap = PREVIEWTAP_OVERLAY
+	var previewTap PreviewTap = PREVIEWTAP_OUTPUT
 	this.PreviewTap = &previewTap
 	return &this
 }

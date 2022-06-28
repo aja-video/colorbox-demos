@@ -41,15 +41,8 @@ public:
 
     enum class eOAIPreviewTap {
         INVALID_VALUE_OPENAPI_GENERATED = 0,
-        CSC1, 
-        LUT1, 
-        CSC2, 
-        LUT2, 
-        _3DLUT, 
-        LUT3, 
-        CSC3, 
-        LUT4, 
-        OVERLAY
+        INPUT, 
+        OUTPUT
     };
     OAIPreviewTap::eOAIPreviewTap getValue() const;
     void setValue(const OAIPreviewTap::eOAIPreviewTap& value);

@@ -937,17 +937,10 @@ components:
       - Output
       type: string
     PreviewTap:
-      default: OVERLAY
+      default: OUTPUT
       enum:
-      - CSC1
-      - LUT1
-      - CSC2
-      - LUT2
-      - 3DLUT
-      - LUT3
-      - CSC3
-      - LUT4
-      - OVERLAY
+      - INPUT
+      - OUTPUT
       type: string
     PipelineStages:
       example:

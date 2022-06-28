@@ -24,28 +24,14 @@ type PreviewTap string
 
 // List of PreviewTap
 const (
-	PREVIEWTAP_CSC1 PreviewTap = "CSC1"
-	PREVIEWTAP_LUT1 PreviewTap = "LUT1"
-	PREVIEWTAP_CSC2 PreviewTap = "CSC2"
-	PREVIEWTAP_LUT2 PreviewTap = "LUT2"
-	PREVIEWTAP__3_DLUT PreviewTap = "3DLUT"
-	PREVIEWTAP_LUT3 PreviewTap = "LUT3"
-	PREVIEWTAP_CSC3 PreviewTap = "CSC3"
-	PREVIEWTAP_LUT4 PreviewTap = "LUT4"
-	PREVIEWTAP_OVERLAY PreviewTap = "OVERLAY"
+	PREVIEWTAP_INPUT PreviewTap = "INPUT"
+	PREVIEWTAP_OUTPUT PreviewTap = "OUTPUT"
 )
 
 // All allowed values of PreviewTap enum
 var AllowedPreviewTapEnumValues = []PreviewTap{
-	"CSC1",
-	"LUT1",
-	"CSC2",
-	"LUT2",
-	"3DLUT",
-	"LUT3",
-	"CSC3",
-	"LUT4",
-	"OVERLAY",
+	"INPUT",
+	"OUTPUT",
 }
 
 func (v *PreviewTap) UnmarshalJSON(src []byte) error {

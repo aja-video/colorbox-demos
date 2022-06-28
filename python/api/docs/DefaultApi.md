@@ -3699,7 +3699,7 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     routing = Routing(
         mode=Mode("Input"),
-        preview_tap=PreviewTap("OVERLAY"),
+        preview_tap=PreviewTap("OUTPUT"),
         pipeline_bypass_button=True,
         pipeline_bypass_user=True,
     ) # Routing | Routing object

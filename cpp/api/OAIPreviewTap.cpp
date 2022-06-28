@@ -42,40 +42,12 @@ void OAIPreviewTap::initializeModel() {
 
 void OAIPreviewTap::fromJson(QString jsonString) {
     
-    if ( jsonString.compare("CSC1", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::CSC1;
+    if ( jsonString.compare("INPUT", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIPreviewTap::INPUT;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("LUT1", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::LUT1;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("CSC2", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::CSC2;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("LUT2", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::LUT2;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("3DLUT", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::_3DLUT;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("LUT3", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::LUT3;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("CSC3", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::CSC3;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("LUT4", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::LUT4;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("OVERLAY", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIPreviewTap::OVERLAY;
+    else if ( jsonString.compare("OUTPUT", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIPreviewTap::OUTPUT;
         m_value_isSet = m_value_isValid = true;
     }
 }
@@ -90,32 +62,11 @@ QString OAIPreviewTap::asJson() const {
     
     QString val;
     switch (m_value){
-        case eOAIPreviewTap::CSC1:
-            val = "CSC1";
+        case eOAIPreviewTap::INPUT:
+            val = "INPUT";
             break;
-        case eOAIPreviewTap::LUT1:
-            val = "LUT1";
-            break;
-        case eOAIPreviewTap::CSC2:
-            val = "CSC2";
-            break;
-        case eOAIPreviewTap::LUT2:
-            val = "LUT2";
-            break;
-        case eOAIPreviewTap::_3DLUT:
-            val = "3DLUT";
-            break;
-        case eOAIPreviewTap::LUT3:
-            val = "LUT3";
-            break;
-        case eOAIPreviewTap::CSC3:
-            val = "CSC3";
-            break;
-        case eOAIPreviewTap::LUT4:
-            val = "LUT4";
-            break;
-        case eOAIPreviewTap::OVERLAY:
-            val = "OVERLAY";
+        case eOAIPreviewTap::OUTPUT:
+            val = "OUTPUT";
             break;
         default:
             break;

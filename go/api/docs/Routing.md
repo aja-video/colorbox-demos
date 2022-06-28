@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Mode** | Pointer to [**Mode**](Mode.md) |  | [optional] [default to MODE_INPUT]
-**PreviewTap** | Pointer to [**PreviewTap**](PreviewTap.md) |  | [optional] [default to PREVIEWTAP_OVERLAY]
+**PreviewTap** | Pointer to [**PreviewTap**](PreviewTap.md) |  | [optional] [default to PREVIEWTAP_OUTPUT]
 **PipelineBypassButton** | Pointer to **bool** | This is the bypass state due to the button on the device being pressed | [optional] 
 **PipelineBypassUser** | Pointer to **bool** | This is the bypass state set by the user in the UI | [optional] 
 
