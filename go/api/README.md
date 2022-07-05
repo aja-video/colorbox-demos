@@ -145,6 +145,7 @@ Class | Method | HTTP request | Description
  - [AncCaptureFilter](docs/AncCaptureFilter.md)
  - [BbcConfig](docs/BbcConfig.md)
  - [BitDepth](docs/BitDepth.md)
+ - [CSCFilter](docs/CSCFilter.md)
  - [ColorCorrector](docs/ColorCorrector.md)
  - [ColorSpace](docs/ColorSpace.md)
  - [ColorfrontConfig](docs/ColorfrontConfig.md)

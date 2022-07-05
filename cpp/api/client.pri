@@ -5,6 +5,7 @@ HEADERS += \
     $${PWD}/OAIAncCaptureFilter.h \
     $${PWD}/OAIBbcConfig.h \
     $${PWD}/OAIBitDepth.h \
+    $${PWD}/OAICSCFilter.h \
     $${PWD}/OAIColorCorrector.h \
     $${PWD}/OAIColorSpace.h \
     $${PWD}/OAIColorfrontConfig.h \
@@ -80,6 +81,7 @@ SOURCES += \
     $${PWD}/OAIAncCaptureFilter.cpp \
     $${PWD}/OAIBbcConfig.cpp \
     $${PWD}/OAIBitDepth.cpp \
+    $${PWD}/OAICSCFilter.cpp \
     $${PWD}/OAIColorCorrector.cpp \
     $${PWD}/OAIColorSpace.cpp \
     $${PWD}/OAIColorfrontConfig.cpp \

@@ -888,10 +888,12 @@ components:
         safebootVersion: 1.0.0.1d
         mainbootVersion: 1.0.0.2d
         runningVersion: 1.0.0.3d
+        transformModeTimestamp: 2000-01-23T04:56:07.000+00:00
         updateMsg:
         - str1
         - str2
         - str3
+        transformModeChanging: false
       properties:
         safebootVersion:
           example: 1.0.0.1d
@@ -912,6 +914,12 @@ components:
           items:
             type: string
           type: array
+        transformModeChanging:
+          default: false
+          type: boolean
+        transformModeTimestamp:
+          format: date-time
+          type: string
       type: object
     Routing:
       example:
@@ -944,6 +952,32 @@ components:
       type: string
     PipelineStages:
       example:
+        lut3d_1:
+          procAmp:
+            unitsGain: unitsGain
+            unitsHue: degrees
+            sat: 0.15369685502162367
+            black: -3.4175678804642544
+            unitsBlack: IRE
+            hue: -134.78866402969652
+            unitsSat: unitsSat
+            gain: 1.1079422922578828
+          colorCorrector:
+            gainRed: 0.8456064984949992
+            unitsGain: unitsGain
+            unitsGamma: unitsGamma
+            blackBlue: 3.8485356667327295
+            unitsBlack: IRE
+            gainBlue: 1.0592101862254664
+            gammaRed: 0.8602888487865152
+            gammaGreen: -0.27678465014961784
+            gammaBlue: -0.5945753953995356
+            blackRed: 4.109824732281613
+            blackGreen: -14.13674807798822
+            gainGreen: 0.3453203830402148
+          dynamic: true
+          enabled: true
+          libraryEntry: 0
         lut1d_3:
           procAmp:
             unitsGain: unitsGain
@@ -1075,32 +1109,6 @@ components:
           enabled: true
           libraryEntry: 0
         m3x3_3:
-          procAmp:
-            unitsGain: unitsGain
-            unitsHue: degrees
-            sat: 0.15369685502162367
-            black: -3.4175678804642544
-            unitsBlack: IRE
-            hue: -134.78866402969652
-            unitsSat: unitsSat
-            gain: 1.1079422922578828
-          colorCorrector:
-            gainRed: 0.8456064984949992
-            unitsGain: unitsGain
-            unitsGamma: unitsGamma
-            blackBlue: 3.8485356667327295
-            unitsBlack: IRE
-            gainBlue: 1.0592101862254664
-            gammaRed: 0.8602888487865152
-            gammaGreen: -0.27678465014961784
-            gammaBlue: -0.5945753953995356
-            blackRed: 4.109824732281613
-            blackGreen: -14.13674807798822
-            gainGreen: 0.3453203830402148
-          dynamic: true
-          enabled: true
-          libraryEntry: 0
-        lut3d_1:
           procAmp:
             unitsGain: unitsGain
             unitsHue: degrees
@@ -1151,6 +1159,8 @@ components:
           $ref: '#/components/schemas/PipelineRange'
         transferCharacteristic:
           $ref: '#/components/schemas/Transfer'
+        cscFilter:
+          $ref: '#/components/schemas/CSCFilter'
       type: object
     Stage:
       example:
@@ -1293,6 +1303,12 @@ components:
       - SDR
       - HLG
       - PQ
+      type: string
+    CSCFilter:
+      default: Full
+      enum:
+      - Full
+      - Light
       type: string
     VideoFormat:
       enum:

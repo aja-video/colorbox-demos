@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **OutColorimetry** | Pointer to [**Colorimetry**](Colorimetry.md) |  | [optional] 
 **OutRange** | Pointer to [**PipelineRange**](PipelineRange.md) |  | [optional] [default to PIPELINERANGE_SMPTE_FULL]
 **TransferCharacteristic** | Pointer to [**Transfer**](Transfer.md) |  | [optional] 
+**CscFilter** | Pointer to [**CSCFilter**](CSCFilter.md) |  | [optional] [default to CSCFILTER_FULL]
 
 ## Methods
 
@@ -335,6 +336,31 @@ SetTransferCharacteristic sets TransferCharacteristic field to given value.
 `func (o *PipelineStages) HasTransferCharacteristic() bool`
 
 HasTransferCharacteristic returns a boolean if a field has been set.
+
+### GetCscFilter
+
+`func (o *PipelineStages) GetCscFilter() CSCFilter`
+
+GetCscFilter returns the CscFilter field if non-nil, zero value otherwise.
+
+### GetCscFilterOk
+
+`func (o *PipelineStages) GetCscFilterOk() (*CSCFilter, bool)`
+
+GetCscFilterOk returns a tuple with the CscFilter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCscFilter
+
+`func (o *PipelineStages) SetCscFilter(v CSCFilter)`
+
+SetCscFilter sets CscFilter field to given value.
+
+### HasCscFilter
+
+`func (o *PipelineStages) HasCscFilter() bool`
+
+HasCscFilter returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -32,6 +32,7 @@ type PipelineStages struct {
 	OutColorimetry *Colorimetry `json:"outColorimetry,omitempty"`
 	OutRange *PipelineRange `json:"outRange,omitempty"`
 	TransferCharacteristic *Transfer `json:"transferCharacteristic,omitempty"`
+	CscFilter *CSCFilter `json:"cscFilter,omitempty"`
 }
 
 // NewPipelineStages instantiates a new PipelineStages object
@@ -44,6 +45,8 @@ func NewPipelineStages() *PipelineStages {
 	this.InRange = &inRange
 	var outRange PipelineRange = PIPELINERANGE_SMPTE_FULL
 	this.OutRange = &outRange
+	var cscFilter CSCFilter = CSCFILTER_FULL
+	this.CscFilter = &cscFilter
 	return &this
 }
 
@@ -56,6 +59,8 @@ func NewPipelineStagesWithDefaults() *PipelineStages {
 	this.InRange = &inRange
 	var outRange PipelineRange = PIPELINERANGE_SMPTE_FULL
 	this.OutRange = &outRange
+	var cscFilter CSCFilter = CSCFILTER_FULL
+	this.CscFilter = &cscFilter
 	return &this
 }
 
@@ -479,6 +484,41 @@ func (o *PipelineStages) SetTransferCharacteristic(v Transfer) {
 	o.TransferCharacteristic = &tmp
 }
 
+// GetCscFilter returns the CscFilter field value if set, zero value otherwise.
+func (o *PipelineStages) GetCscFilter() CSCFilter {
+	if o == nil || o.CscFilter == nil {
+		var ret CSCFilter
+		return ret
+	}
+	return *o.CscFilter
+}
+
+// GetCscFilterOk returns a tuple with the CscFilter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PipelineStages) GetCscFilterOk() (*CSCFilter, bool) {
+	if o == nil || o.CscFilter == nil {
+		return nil, false
+	}
+	return o.CscFilter, true
+}
+
+
+
+// HasCscFilter returns a boolean if a field has been set.
+func (o *PipelineStages) HasCscFilter() bool {
+	if o != nil && o.CscFilter != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCscFilter gets a reference to the given CSCFilter and assigns it to the CscFilter field.
+func (o *PipelineStages) SetCscFilter(v CSCFilter) {
+	tmp := v
+	o.CscFilter = &tmp
+}
+
 func (o PipelineStages) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Lut1d1 != nil {
@@ -516,6 +556,9 @@ func (o PipelineStages) MarshalJSON() ([]byte, error) {
 	}
 	if o.TransferCharacteristic != nil {
 		toSerialize["transferCharacteristic"] = o.TransferCharacteristic
+	}
+	if o.CscFilter != nil {
+		toSerialize["cscFilter"] = o.CscFilter
 	}
 	return json.Marshal(toSerialize)
 }

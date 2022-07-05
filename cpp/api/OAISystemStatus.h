@@ -22,6 +22,7 @@
 
 #include <QJsonObject>
 
+#include <QDateTime>
 #include <QList>
 #include <QString>
 
@@ -66,6 +67,16 @@ public:
     bool is_update_msg_Set() const;
     bool is_update_msg_Valid() const;
 
+    bool isTransformModeChanging() const;
+    void setTransformModeChanging(const bool &transform_mode_changing);
+    bool is_transform_mode_changing_Set() const;
+    bool is_transform_mode_changing_Valid() const;
+
+    QDateTime getTransformModeTimestamp() const;
+    void setTransformModeTimestamp(const QDateTime &transform_mode_timestamp);
+    bool is_transform_mode_timestamp_Set() const;
+    bool is_transform_mode_timestamp_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -92,6 +103,14 @@ private:
     QList<QString> m_update_msg;
     bool m_update_msg_isSet;
     bool m_update_msg_isValid;
+
+    bool m_transform_mode_changing;
+    bool m_transform_mode_changing_isSet;
+    bool m_transform_mode_changing_isValid;
+
+    QDateTime m_transform_mode_timestamp;
+    bool m_transform_mode_timestamp_isSet;
+    bool m_transform_mode_timestamp_isValid;
 };
 
 } // namespace OpenAPI

@@ -49,6 +49,12 @@ void OAISystemStatus::initializeModel() {
 
     m_update_msg_isSet = false;
     m_update_msg_isValid = false;
+
+    m_transform_mode_changing_isSet = false;
+    m_transform_mode_changing_isValid = false;
+
+    m_transform_mode_timestamp_isSet = false;
+    m_transform_mode_timestamp_isValid = false;
 }
 
 void OAISystemStatus::fromJson(QString jsonString) {
@@ -74,6 +80,12 @@ void OAISystemStatus::fromJsonObject(QJsonObject json) {
 
     m_update_msg_isValid = ::OpenAPI::fromJsonValue(m_update_msg, json[QString("updateMsg")]);
     m_update_msg_isSet = !json[QString("updateMsg")].isNull() && m_update_msg_isValid;
+
+    m_transform_mode_changing_isValid = ::OpenAPI::fromJsonValue(m_transform_mode_changing, json[QString("transformModeChanging")]);
+    m_transform_mode_changing_isSet = !json[QString("transformModeChanging")].isNull() && m_transform_mode_changing_isValid;
+
+    m_transform_mode_timestamp_isValid = ::OpenAPI::fromJsonValue(m_transform_mode_timestamp, json[QString("transformModeTimestamp")]);
+    m_transform_mode_timestamp_isSet = !json[QString("transformModeTimestamp")].isNull() && m_transform_mode_timestamp_isValid;
 
     applyMinMaxConstraints();
 }
@@ -101,6 +113,12 @@ QJsonObject OAISystemStatus::asJsonObject() const {
     }
     if (m_update_msg.size() > 0) {
         obj.insert(QString("updateMsg"), ::OpenAPI::toJsonValue(m_update_msg));
+    }
+    if (m_transform_mode_changing_isSet) {
+        obj.insert(QString("transformModeChanging"), ::OpenAPI::toJsonValue(m_transform_mode_changing));
+    }
+    if (m_transform_mode_timestamp_isSet) {
+        obj.insert(QString("transformModeTimestamp"), ::OpenAPI::toJsonValue(m_transform_mode_timestamp));
     }
     return obj;
 }
@@ -198,6 +216,42 @@ bool OAISystemStatus::is_update_msg_Valid() const{
 }
 
 
+bool OAISystemStatus::isTransformModeChanging() const {
+    return m_transform_mode_changing;
+}
+void OAISystemStatus::setTransformModeChanging(const bool &transform_mode_changing) {
+	bool v = transform_mode_changing;
+	this->m_transform_mode_changing = v;
+    this->m_transform_mode_changing_isSet = true;
+}
+
+bool OAISystemStatus::is_transform_mode_changing_Set() const{
+    return m_transform_mode_changing_isSet;
+}
+
+bool OAISystemStatus::is_transform_mode_changing_Valid() const{
+    return m_transform_mode_changing_isValid;
+}
+
+
+QDateTime OAISystemStatus::getTransformModeTimestamp() const {
+    return m_transform_mode_timestamp;
+}
+void OAISystemStatus::setTransformModeTimestamp(const QDateTime &transform_mode_timestamp) {
+	QDateTime v = transform_mode_timestamp;
+	this->m_transform_mode_timestamp = v;
+    this->m_transform_mode_timestamp_isSet = true;
+}
+
+bool OAISystemStatus::is_transform_mode_timestamp_Set() const{
+    return m_transform_mode_timestamp_isSet;
+}
+
+bool OAISystemStatus::is_transform_mode_timestamp_Valid() const{
+    return m_transform_mode_timestamp_isValid;
+}
+
+
 bool OAISystemStatus::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -222,6 +276,16 @@ bool OAISystemStatus::isSet() const {
         }
 
         if (m_update_msg.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_transform_mode_changing_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_transform_mode_timestamp_isSet) {
             isObjectUpdated = true;
             break;
         }

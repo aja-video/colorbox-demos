@@ -22,6 +22,7 @@
 
 #include <QJsonObject>
 
+#include "OAICSCFilter.h"
 #include "OAIColorimetry.h"
 #include "OAIPipelineRange.h"
 #include "OAIStage.h"
@@ -103,6 +104,11 @@ public:
     bool is_transfer_characteristic_Set() const;
     bool is_transfer_characteristic_Valid() const;
 
+    OAICSCFilter getCscFilter() const;
+    void setCscFilter(const OAICSCFilter &csc_filter);
+    bool is_csc_filter_Set() const;
+    bool is_csc_filter_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -157,6 +163,10 @@ private:
     OAITransfer m_transfer_characteristic;
     bool m_transfer_characteristic_isSet;
     bool m_transfer_characteristic_isValid;
+
+    OAICSCFilter m_csc_filter;
+    bool m_csc_filter_isSet;
+    bool m_csc_filter_isValid;
 };
 
 } // namespace OpenAPI

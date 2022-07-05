@@ -3560,6 +3560,7 @@ with openapi_client.ApiClient() as api_client:
         out_colorimetry=Colorimetry("Auto"),
         out_range=PipelineRange("SMPTEFull"),
         transfer_characteristic=Transfer("Auto"),
+        csc_filter=CSCFilter("Full"),
     ) # PipelineStages | Stages object
 
     # example passing only required values which don't have defaults set
@@ -4246,6 +4247,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         running_version="1.0.0.3d",
         safeboot=True,
         update_msg=["str1","str2","str3"],
+        transform_mode_changing=False,
+        transform_mode_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
     ) # SystemStatus | System status object
 
     # example passing only required values which don't have defaults set

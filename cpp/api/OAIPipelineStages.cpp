@@ -70,6 +70,9 @@ void OAIPipelineStages::initializeModel() {
 
     m_transfer_characteristic_isSet = false;
     m_transfer_characteristic_isValid = false;
+
+    m_csc_filter_isSet = false;
+    m_csc_filter_isValid = false;
 }
 
 void OAIPipelineStages::fromJson(QString jsonString) {
@@ -116,6 +119,9 @@ void OAIPipelineStages::fromJsonObject(QJsonObject json) {
 
     m_transfer_characteristic_isValid = ::OpenAPI::fromJsonValue(m_transfer_characteristic, json[QString("transferCharacteristic")]);
     m_transfer_characteristic_isSet = !json[QString("transferCharacteristic")].isNull() && m_transfer_characteristic_isValid;
+
+    m_csc_filter_isValid = ::OpenAPI::fromJsonValue(m_csc_filter, json[QString("cscFilter")]);
+    m_csc_filter_isSet = !json[QString("cscFilter")].isNull() && m_csc_filter_isValid;
 
     applyMinMaxConstraints();
 }
@@ -164,6 +170,9 @@ QJsonObject OAIPipelineStages::asJsonObject() const {
     }
     if (m_transfer_characteristic.isSet()) {
         obj.insert(QString("transferCharacteristic"), ::OpenAPI::toJsonValue(m_transfer_characteristic));
+    }
+    if (m_csc_filter.isSet()) {
+        obj.insert(QString("cscFilter"), ::OpenAPI::toJsonValue(m_csc_filter));
     }
     return obj;
 }
@@ -384,6 +393,24 @@ bool OAIPipelineStages::is_transfer_characteristic_Valid() const{
 }
 
 
+OAICSCFilter OAIPipelineStages::getCscFilter() const {
+    return m_csc_filter;
+}
+void OAIPipelineStages::setCscFilter(const OAICSCFilter &csc_filter) {
+	OAICSCFilter v = csc_filter;
+	this->m_csc_filter = v;
+    this->m_csc_filter_isSet = true;
+}
+
+bool OAIPipelineStages::is_csc_filter_Set() const{
+    return m_csc_filter_isSet;
+}
+
+bool OAIPipelineStages::is_csc_filter_Valid() const{
+    return m_csc_filter_isValid;
+}
+
+
 bool OAIPipelineStages::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -443,6 +470,11 @@ bool OAIPipelineStages::isSet() const {
         }
 
         if (m_transfer_characteristic.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_csc_filter.isSet()) {
             isObjectUpdated = true;
             break;
         }

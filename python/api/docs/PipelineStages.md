@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **out_colorimetry** | [**Colorimetry**](Colorimetry.md) |  | [optional] 
 **out_range** | [**PipelineRange**](PipelineRange.md) |  | [optional] 
 **transfer_characteristic** | [**Transfer**](Transfer.md) |  | [optional] 
+**csc_filter** | [**CSCFilter**](CSCFilter.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
