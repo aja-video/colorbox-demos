@@ -27,7 +27,7 @@ set(APP_HEADERS
 set(APP_SOURCES
 	main.cpp)
 
-list(APPEND TARGET_LINK_LIBS CppRestOpenAPIClient)
+list(APPEND TARGET_LINK_LIBS cpp-restsdk-client-colorbox)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	#
@@ -45,7 +45,7 @@ set(APP_TARGET_SOURCES
 
 add_executable(${PROJECT_NAME} ${APP_TARGET_SOURCES})
 
-add_dependencies(${PROJECT_NAME} CppRestOpenAPIClient)
+add_dependencies(${PROJECT_NAME} cpp-restsdk-client-colorbox)
 
 if (EXISTS ${NTV2SDK_COMMON_ROOT})
 	list(APPEND TARGET_COMPILE_DEFS -DSUPPORT_ANC)

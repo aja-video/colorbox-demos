@@ -21,7 +21,8 @@ Install [cpprestsdk](https://github.com/Microsoft/cpprestsdk).
 
 - Windows: `vcpkg install cpprestsdk cpprestsdk:x64-windows boost-uuid boost-uuid:x64-windows`
 - Mac: `brew install cpprestsdk`
-- Linux: `sudo apt-get install libcpprest-dev`
+- Linux (Debian/Ubuntu): `sudo apt-get install libcpprest-dev`
+- Linux (Fedora): `sudo dnf install cpprest-devel`
 
 ### Build
 

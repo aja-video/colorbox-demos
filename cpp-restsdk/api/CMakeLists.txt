@@ -10,7 +10,7 @@
 
 cmake_minimum_required (VERSION 3.1)
 
-project(CppRestOpenAPIClient)
+project(cpp-restsdk-client-colorbox)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CXX_STANDARD_REQUIRED ON)

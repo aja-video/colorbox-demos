@@ -35,20 +35,20 @@ void parse_args(int argc, char *argv[],
 	user = "";
 	pass = "";
 
-	int index = 1;
-	while (index < argc) {
-		std::string cmd = argv[index++];
+	int i = 1;
+	while (i < argc) {
+		std::string cmd = argv[i++];
 		if (cmd == "--host") {
-			host = argv[index++];
+			host = argv[i++];
 		}
 		else if (cmd == "--port") {
-			port = argv[index++];
+			port = argv[i++];
 		}
 		else if (cmd == "--username") {
-			user = argv[index++];
+			user = argv[i++];
 		}
 		else if (cmd == "--password") {
-			pass = argv[index++];
+			pass = argv[i++];
 		}
 		else {
 			usage();
