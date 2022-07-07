@@ -1,4 +1,4 @@
-option(AJA_COLORBOX_DEMOS_COPY_INTO_BIN "Copy the built demos into the cpp/bin directory?" On)
+option(AJA_COLORBOX_QT_DEMOS_COPY_INTO_BIN "Copy the built demos into the cpp-qt/bin directory?" On)
 
 set(COLORBOX_CLIENT_API_TARGET cpp-qt-client-colorbox)
 

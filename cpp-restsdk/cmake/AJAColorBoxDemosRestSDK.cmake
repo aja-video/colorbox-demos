@@ -1,4 +1,4 @@
-option(AJA_COLORBOX_DEMOS_COPY_INTO_BIN "Copy the built demos into the c/bin directory?" On)
+option(AJA_COLORBOX_RESTSDK_DEMOS_COPY_INTO_BIN "Copy the built demos into the cpp-restsdk/bin directory?" On)
 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DAJA_DEBUG -D_DEBUG)

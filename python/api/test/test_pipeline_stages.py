@@ -17,9 +17,11 @@ import unittest
 
 import openapi_client
 from openapi_client.model.colorimetry import Colorimetry
+from openapi_client.model.csc_filter import CSCFilter
 from openapi_client.model.pipeline_range import PipelineRange
 from openapi_client.model.stage import Stage
 from openapi_client.model.transfer import Transfer
+globals()['CSCFilter'] = CSCFilter
 globals()['Colorimetry'] = Colorimetry
 globals()['PipelineRange'] = PipelineRange
 globals()['Stage'] = Stage

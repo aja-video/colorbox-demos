@@ -1,10 +1,22 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(get_temp)
+project(RGBTriplet)
 
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Widgets Network WebSockets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets Network WebSockets)
+set(QT_LIBRARIES
+	Qt${QT_VERSION_MAJOR}::Core
+	Qt${QT_VERSION_MAJOR}::Widgets
+	Qt${QT_VERSION_MAJOR}::Network
+	Qt${QT_VERSION_MAJOR}::WebSockets)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(API_COMMON_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../api)
+set(CPP_COMMON_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../common)
 if (EXISTS ${AJA_NTV2_ROOT})
 	set(NTV2SDK_COMMON_ROOT ${AJA_NTV2_ROOT})
 else()
@@ -18,16 +30,25 @@ endif()
 
 set(TARGET_INCLUDE_DIRS
 	${API_COMMON_ROOT}
+	${CPP_COMMON_ROOT}
 	${NTV2SDK_COMMON_ROOT}/ajalibraries
 	${NTV2SDK_COMMON_ROOT}/ajalibraries/ajantv2/includes)
 
 set(APP_HEADERS
-    )
+	dialog.h
+	${CPP_COMMON_ROOT}/ajawebsocketinterface.h)
 
 set(APP_SOURCES
-	main.cpp)
+	dialog.cpp
+	main.cpp
+	${CPP_COMMON_ROOT}/ajawebsocketinterface.cpp)
 
-list(APPEND TARGET_LINK_LIBS cpp-restsdk-client-colorbox)
+qt_wrap_ui(QT_UI_HEADERS dialog.ui)
+
+list(APPEND TARGET_COMPILE_DEFS
+	-DQT_DEPRECATED_WARNINGS)
+
+list(APPEND TARGET_LINK_LIBS ${COLORBOX_CLIENT_API_TARGET})
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	#
@@ -41,11 +62,12 @@ endif()
 
 set(APP_TARGET_SOURCES
 	${APP_HEADERS}
-	${APP_SOURCES})
+	${APP_SOURCES}
+	${QT_UI_HEADERS})
 
 add_executable(${PROJECT_NAME} ${APP_TARGET_SOURCES})
 
-add_dependencies(${PROJECT_NAME} cpp-restsdk-client-colorbox)
+add_dependencies(${PROJECT_NAME} ${COLORBOX_CLIENT_API_TARGET})
 
 if (EXISTS ${NTV2SDK_COMMON_ROOT})
 	list(APPEND TARGET_COMPILE_DEFS -DSUPPORT_ANC)
@@ -58,14 +80,14 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 
-if (AJA_COLORBOX_RESTSDK_DEMOS_COPY_INTO_BIN)
+if (AJA_COLORBOX_QT_DEMOS_COPY_INTO_BIN)
 	set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
 endif()
 
 target_link_directories(${PROJECT_NAME} PUBLIC ${TARGET_LINK_DIRS})
 target_include_directories(${PROJECT_NAME} PUBLIC ${TARGET_INCLUDE_DIRS})
 target_compile_definitions(${PROJECT_NAME} PUBLIC ${TARGET_COMPILE_DEFS})
-target_link_libraries(${PROJECT_NAME} PUBLIC ${TARGET_LINK_LIBS})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${TARGET_LINK_LIBS} ${QT_LIBRARIES})
 
 if (CMAKE_INSTALL_BINDIR)
 	install(TARGETS ${PROJECT_NAME}
