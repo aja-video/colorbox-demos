@@ -1,0 +1,262 @@
+/*
+This example uses a websocket to send an rgb triplet to the ColorBox
+*/
+
+#include <chrono>
+#include <string>
+#include <thread>
+
+#include "ApiClient.h"
+#include "ApiConfiguration.h"
+#include "api/DefaultApi.h"
+
+#include <cpprest/ws_client.h>
+
+using namespace web;
+using namespace web::websockets::client;
+
+using namespace org::openapitools::client::api;
+
+void usage()
+{
+std::cout << std::endl
+<< "usage: rgb_triplet [-h] [--host HOST] [--port PORT] [--username USERNAME] [--password PASSWORD]" << std::endl
+<< "                   [--x XCOORD] [--y YCOORD] [--r RCOLOR] [--g GCOLOR] [--b BCOLOR] [--cookie COOKIE]" << std::endl
+<< "" << std::endl
+<< "options:" << std::endl
+<< "  -h, --help           show this help message and exit" << std::endl
+<< "  --host HOST          the hostname or ip of device" << std::endl
+<< "  --port PORT          the port number to use" << std::endl
+<< "  --username USERNAME  username to use if authentication required" << std::endl
+<< "  --password PASSWORD  password to use if authentication required" << std::endl
+<< "  --x XCOORD           x coordinate to grab from" << std::endl
+<< "  --y YCOORD           y coordinate to grab from" << std::endl
+<< "  --r RCOLOR           r color component to send" << std::endl
+<< "  --g GCOLOR           g color component to send" << std::endl
+<< "  --b GCOLOR           b color component to send" << std::endl
+<< "  --cookie COOKIE      cookie string to send along for tracking" << std::endl
+<< std::endl;
+}
+
+void parse_args(int argc, char *argv[],
+				std::string &host, std::string &port, std::string &user, std::string &pass,
+				int &x, int &y, int &r, int &g, int &b, std::string &cookie)
+{
+	//defaults
+	host = "127.0.0.1";
+	port = "80";
+	user = "";
+	pass = "";
+	x = 0;
+	y = 0;
+	r = 1000;
+	g = 2000;
+	b = 3000;
+	cookie = "cookie";
+
+	int i = 1;
+	while (i < argc) {
+		std::string cmd = argv[i++];
+		if (cmd == "--host") {
+			host = argv[i++];
+		}
+		else if (cmd == "--port") {
+			port = argv[i++];
+		}
+		else if (cmd == "--username") {
+			user = argv[i++];
+		}
+		else if (cmd == "--password") {
+			pass = argv[i++];
+		}
+		else if (cmd == "--x") {
+			x = std::stoi(argv[i++]);
+		}
+		else if (cmd == "--y") {
+			y = std::stoi(argv[i++]);
+		}
+		else if (cmd == "--r") {
+			r = std::stoi(argv[i++]);
+		}
+		else if (cmd == "--g") {
+			g = std::stoi(argv[i++]);
+		}
+		else if (cmd == "--b") {
+			b = std::stoi(argv[i++]);
+		}
+		else if (cmd == "--cookie") {
+			cookie = argv[i++];
+		}
+		else {
+			usage();
+			exit(1);
+		}
+	}
+}
+
+int main(int argc, char *argv[])
+{
+	std::string host;
+	std::string port;
+	std::string user;
+	std::string pass;
+	int x = 0;
+	int y = 0;
+	int r = 0;
+	int g = 0;
+	int b = 0;
+	std::string cookie;
+	parse_args(argc, argv, host, port, user, pass, x, y, r, g, b, cookie);
+
+	std::shared_ptr<ApiConfiguration> apiconfiguration = std::make_shared<ApiConfiguration>();
+	std::string url = "http://" + host + ":" + port + "/v2";
+	apiconfiguration->setBaseUrl(url);
+
+	if (user != "") {
+		// handle basic auth
+		auto cfg = apiconfiguration->getHttpConfig();
+		web::http::client::credentials credentials(user, pass);
+		cfg.set_credentials(credentials);
+		apiconfiguration->setHttpConfig(cfg);
+	}
+
+	// OpenAPI client
+	std::shared_ptr<ApiClient> apiclient = std::make_shared<ApiClient>(apiconfiguration);
+	std::shared_ptr<DefaultApi> api = std::make_shared<DefaultApi>(apiclient);
+
+	// For this to work need to use the OpenAPI client to enable the FrameStore
+	bool frameStoreChanged = false;
+	auto getTask = api->getFrameStore().then([&](std::shared_ptr<FrameStore> p) {
+		if (p->isEnabled() == false || p->isDynamic() == true) {
+			p->setEnabled(true);
+			p->setDynamic(false);
+			auto setTask = api->setFrameStore(p).then([]() {
+				//std::cout << "frame store enabled" << std::endl;
+			});
+			try {
+				setTask.wait();
+			}
+			catch(const ApiException& ex) {
+				std::cout << ex.what() << std::endl << std::flush;
+				std::string err(ex.what());
+			}
+			catch(const std::exception &ex) {
+				std::cout << ex.what() << std::endl << std::flush;
+				std::string err(ex.what());
+			}
+			frameStoreChanged = true;
+		}
+	});
+	try {
+		getTask.wait();
+	}
+	catch(const ApiException& ex) {
+		std::cout << ex.what() << std::endl << std::flush;
+		std::string err(ex.what());
+	}
+	catch(const std::exception &ex) {
+		std::cout << ex.what() << std::endl << std::flush;
+		std::string err(ex.what());
+	}
+
+	if (frameStoreChanged) {
+		std::cout << "frame store needs to be put in the correct state, waiting 2 seconds..." << std::flush;
+		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+		std::cout << "ok." << std::endl;
+	}
+
+	// WS client (ColorBox uses port 5000 for WebSockets)
+	std::string wsurl = "ws://" + host + ":5000";
+	websocket_client wsclient;
+	{
+		auto wsTask = wsclient.connect(wsurl).then([&]() {
+			std::cout << "ws: connected to server [" << wsurl << "]" << std::endl << std::endl;
+		});
+		try {
+			wsTask.wait();
+		}
+		catch(const ApiException& ex) {
+			std::cout << ex.what() << std::endl << std::flush;
+			std::string err(ex.what());
+		}
+		catch(const std::exception &ex) {
+			std::cout << ex.what() << std::endl << std::flush;
+			std::string err(ex.what());
+		}
+	}
+
+	auto msgTxt = json::value::object();
+	msgTxt["type"] = json::value("rgbtriplet");
+	msgTxt["cookie"] = json::value(cookie);
+	msgTxt["x"] = json::value(x);
+	msgTxt["y"] = json::value(y);
+	msgTxt["r"] = json::value(r);
+	msgTxt["g"] = json::value(g);
+	msgTxt["b"] = json::value(b);
+
+	websocket_outgoing_message msg;
+	msg.set_binary_message(concurrency::streams::bytestream::open_istream(msgTxt.serialize()));
+
+	static std::chrono::time_point<std::chrono::high_resolution_clock> sendT = std::chrono::high_resolution_clock::now();
+	auto sendTask = wsclient.send(msg).then([]() {
+		std::cout << "ws: message sent" << std::endl;
+	});
+	auto recvTask = wsclient.receive().then([&](websocket_incoming_message msg) {
+		auto recvT = std::chrono::high_resolution_clock::now();
+
+		std::cout << "ws: message recv" << std::endl;
+
+		std::vector<uint8_t> buf;
+		buf.resize(msg.length());
+		msg.body().streambuf().getn(&buf[0], msg.length());
+
+		auto o = json::value::parse((char*)&buf[0]);
+
+		auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(recvT - sendT);
+		std::cout << "round trip took: " << delta.count() << " ms" << std::endl;
+
+		if (o.is_object()) {
+			auto rCookie = o.at("cookie").as_string();
+			auto rX = o.at("x");
+			auto rY = o.at("y");
+			auto rR = o.at("r");
+			auto rG = o.at("g");
+			auto rB = o.at("b");
+			auto rExpectedR = o.at("expectedR");
+			auto rExpectedG = o.at("expectedG");
+			auto rExpectedB = o.at("expectedB");
+			auto rActualR = o.at("actualR");
+			auto rActualG = o.at("actualG");
+			auto rActualB = o.at("actualB");
+
+			auto now = std::chrono::system_clock::now();
+			auto t = std::chrono::system_clock::to_time_t(now);
+			char timeBuf[64];
+			std::strftime(timeBuf, sizeof(timeBuf), "%FT%T", std::localtime(&t));
+
+			std::cout << std::endl << "results:" << std::endl;
+			std::cout << timeBuf << ": " << "for cookie '" << rCookie << "' "
+									   << "with coords(" << rX << "," << rY << ") "
+									   << "sent rgb(" << rR << "," << rG << "," << rB << "), "
+									   << "expect rgb(" << rExpectedR << "," << rExpectedG << "," << rExpectedB << ") "
+									   << "and got rgb(" << rActualR << "," << rActualG << "," << rActualB << ") "
+									   << std::endl;
+		}
+	});
+	sendTask.wait();
+	try{
+		recvTask.wait();
+	}
+	catch(const ApiException& ex) {
+		std::cout << ex.what() << std::endl << std::flush;
+		std::string err(ex.what());
+	}
+	catch(const std::exception &ex) {
+		std::cout << ex.what() << std::endl << std::flush;
+		std::string err(ex.what());
+	}
+
+	wsclient.close().then([&]() { std::cout << std::endl << "ws: disconnected from server [" << wsurl << "]" << std::endl; });
+
+	return 0;
+}

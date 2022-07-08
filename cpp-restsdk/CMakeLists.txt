@@ -12,4 +12,5 @@ endif()
 add_api_subdirectory(api)
 
 add_demo_subdirectory(get_temp)
+add_demo_subdirectory(rgb_triplet)
 add_demo_subdirectory(set_overlay_text)
