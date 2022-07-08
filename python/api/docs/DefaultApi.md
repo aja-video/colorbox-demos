@@ -3560,7 +3560,7 @@ with openapi_client.ApiClient() as api_client:
         out_colorimetry=Colorimetry("Auto"),
         out_range=PipelineRange("SMPTEFull"),
         transfer_characteristic=Transfer("Auto"),
-        csc_filter=CSCFilter("Full"),
+        csc_filter=CSCFilter("None"),
     ) # PipelineStages | Stages object
 
     # example passing only required values which don't have defaults set

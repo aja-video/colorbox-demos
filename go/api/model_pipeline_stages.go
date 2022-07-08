@@ -45,7 +45,7 @@ func NewPipelineStages() *PipelineStages {
 	this.InRange = &inRange
 	var outRange PipelineRange = PIPELINERANGE_SMPTE_FULL
 	this.OutRange = &outRange
-	var cscFilter CSCFilter = CSCFILTER_FULL
+	var cscFilter CSCFilter = CSCFILTER_NONE
 	this.CscFilter = &cscFilter
 	return &this
 }
@@ -59,7 +59,7 @@ func NewPipelineStagesWithDefaults() *PipelineStages {
 	this.InRange = &inRange
 	var outRange PipelineRange = PIPELINERANGE_SMPTE_FULL
 	this.OutRange = &outRange
-	var cscFilter CSCFilter = CSCFILTER_FULL
+	var cscFilter CSCFilter = CSCFILTER_NONE
 	this.CscFilter = &cscFilter
 	return &this
 }

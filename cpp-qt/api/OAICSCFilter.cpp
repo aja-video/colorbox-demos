@@ -42,7 +42,15 @@ void OAICSCFilter::initializeModel() {
 
 void OAICSCFilter::fromJson(QString jsonString) {
     
-    if ( jsonString.compare("Full", Qt::CaseInsensitive) == 0) {
+    if ( jsonString.compare("None", Qt::CaseInsensitive) == 0) {
+        m_value = eOAICSCFilter::NONE;
+        m_value_isSet = m_value_isValid = true;
+    }
+    else if ( jsonString.compare("Auto", Qt::CaseInsensitive) == 0) {
+        m_value = eOAICSCFilter::AUTO;
+        m_value_isSet = m_value_isValid = true;
+    }
+    else if ( jsonString.compare("Full", Qt::CaseInsensitive) == 0) {
         m_value = eOAICSCFilter::FULL;
         m_value_isSet = m_value_isValid = true;
     }
@@ -62,6 +70,12 @@ QString OAICSCFilter::asJson() const {
     
     QString val;
     switch (m_value){
+        case eOAICSCFilter::NONE:
+            val = "None";
+            break;
+        case eOAICSCFilter::AUTO:
+            val = "Auto";
+            break;
         case eOAICSCFilter::FULL:
             val = "Full";
             break;

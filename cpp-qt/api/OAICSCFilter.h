@@ -41,6 +41,8 @@ public:
 
     enum class eOAICSCFilter {
         INVALID_VALUE_OPENAPI_GENERATED = 0,
+        NONE, 
+        AUTO, 
         FULL, 
         LIGHT
     };

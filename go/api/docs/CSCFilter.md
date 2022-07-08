@@ -3,6 +3,10 @@
 ## Enum
 
 
+* `NONE` (value: `"None"`)
+
+* `AUTO` (value: `"Auto"`)
+
 * `FULL` (value: `"Full"`)
 
 * `LIGHT` (value: `"Light"`)

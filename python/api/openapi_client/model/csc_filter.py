@@ -56,6 +56,8 @@ class CSCFilter(ModelSimple):
 
     allowed_values = {
         ('value',): {
+            'NONE': "None",
+            'AUTO': "Auto",
             'FULL': "Full",
             'LIGHT': "Light",
         },
@@ -109,10 +111,10 @@ class CSCFilter(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "Full", must be one of ["Full", "Light", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "None", must be one of ["None", "Auto", "Full", "Light", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "Full", must be one of ["Full", "Light", ]  # noqa: E501
+            value (str): if omitted defaults to "None", must be one of ["None", "Auto", "Full", "Light", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -153,7 +155,7 @@ class CSCFilter(ModelSimple):
             args = list(args)
             value = args.pop(0)
         else:
-            value = "Full"
+            value = "None"
 
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
@@ -195,10 +197,10 @@ class CSCFilter(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "Full", must be one of ["Full", "Light", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "None", must be one of ["None", "Auto", "Full", "Light", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "Full", must be one of ["Full", "Light", ]  # noqa: E501
+            value (str): if omitted defaults to "None", must be one of ["None", "Auto", "Full", "Light", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -241,7 +243,7 @@ class CSCFilter(ModelSimple):
             args = list(args)
             value = args.pop(0)
         else:
-            value = "Full"
+            value = "None"
 
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)

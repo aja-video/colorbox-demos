@@ -29,6 +29,10 @@ using EnumUnderlyingType = utility::string_t;
 
 CSCFilter::eCSCFilter toEnum(const EnumUnderlyingType& val)
 {
+    if (val == utility::conversions::to_string_t(U("None")))
+        return CSCFilter::eCSCFilter::CSCFilter_NONE;
+    if (val == utility::conversions::to_string_t(U("Auto")))
+        return CSCFilter::eCSCFilter::CSCFilter_AUTO;
     if (val == utility::conversions::to_string_t(U("Full")))
         return CSCFilter::eCSCFilter::CSCFilter_FULL;
     if (val == utility::conversions::to_string_t(U("Light")))
@@ -40,6 +44,10 @@ EnumUnderlyingType fromEnum(CSCFilter::eCSCFilter e)
 {
     switch (e)
     {
+    case CSCFilter::eCSCFilter::CSCFilter_NONE:
+        return U("None");
+    case CSCFilter::eCSCFilter::CSCFilter_AUTO:
+        return U("Auto");
     case CSCFilter::eCSCFilter::CSCFilter_FULL:
         return U("Full");
     case CSCFilter::eCSCFilter::CSCFilter_LIGHT:

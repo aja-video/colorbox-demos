@@ -1305,8 +1305,10 @@ components:
       - PQ
       type: string
     CSCFilter:
-      default: Full
+      default: None
       enum:
+      - None
+      - Auto
       - Full
       - Light
       type: string

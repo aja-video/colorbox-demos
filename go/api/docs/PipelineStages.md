@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **OutColorimetry** | Pointer to [**Colorimetry**](Colorimetry.md) |  | [optional] 
 **OutRange** | Pointer to [**PipelineRange**](PipelineRange.md) |  | [optional] [default to PIPELINERANGE_SMPTE_FULL]
 **TransferCharacteristic** | Pointer to [**Transfer**](Transfer.md) |  | [optional] 
-**CscFilter** | Pointer to [**CSCFilter**](CSCFilter.md) |  | [optional] [default to CSCFILTER_FULL]
+**CscFilter** | Pointer to [**CSCFilter**](CSCFilter.md) |  | [optional] [default to CSCFILTER_NONE]
 
 ## Methods
 

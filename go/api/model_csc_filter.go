@@ -24,12 +24,16 @@ type CSCFilter string
 
 // List of CSCFilter
 const (
+	CSCFILTER_NONE CSCFilter = "None"
+	CSCFILTER_AUTO CSCFilter = "Auto"
 	CSCFILTER_FULL CSCFilter = "Full"
 	CSCFILTER_LIGHT CSCFilter = "Light"
 )
 
 // All allowed values of CSCFilter enum
 var AllowedCSCFilterEnumValues = []CSCFilter{
+	"None",
+	"Auto",
 	"Full",
 	"Light",
 }

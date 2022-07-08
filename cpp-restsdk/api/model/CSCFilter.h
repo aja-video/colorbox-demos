@@ -50,6 +50,8 @@ public:
 
     enum class eCSCFilter
     {
+        CSCFilter_NONE,
+        CSCFilter_AUTO,
         CSCFilter_FULL,
         CSCFilter_LIGHT,
     };
