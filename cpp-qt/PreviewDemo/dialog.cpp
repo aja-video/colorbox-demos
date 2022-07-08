@@ -47,12 +47,18 @@ Dialog::Dialog(QWidget *parent)
     QTimer::singleShot(200, this, &Dialog::updateUIPreview);
 
     // UI related slots
-    connect(_ui->ipAddressLineEdit, SIGNAL(editingFinished()), this, SLOT(ipAddressEdited()));
+    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished, this, &Dialog::ipAddressEdited);
+    connect(_ui->previewComboBox,&QComboBox::currentTextChanged,this,&Dialog::handlePreviewTapChoice);
+    connect(_ui->overlayCheckBox,&QCheckBox::pressed,this,&Dialog::handleEnableOverlay);
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getPreviewImageSignal, this, &Dialog::handlePreview);
     connect(&_api, &OAIDefaultApi::getPreviewImageSignalE, this, &Dialog::handlePreviewError);
     connect(&_api, &OAIDefaultApi::getSdiInputStatusSignal, this, &Dialog::handleInputStatus);
+
+    connect(&_api,&OAIDefaultApi::getOverlaySignal,this,&Dialog::getOverlayFromColorbox);
+    connect(&_api,&OAIDefaultApi::getRoutingSignal,this,&Dialog::getRoutingFromColorbox);
+
 }
 
 Dialog::~Dialog()
@@ -79,6 +85,10 @@ void Dialog::handlePreview(OAIPreview preview)
 
     _cbConnected = true;
     _preview = preview;
+
+    // Start off by syncing to colorbox settings....
+    _api.getOverlay();
+    _api.getRouting();
 }
 
 void Dialog::handlePreviewError(OAIPreview summary, QNetworkReply::NetworkError error_type, QString error_str)
@@ -93,6 +103,63 @@ void Dialog::handlePreviewError(OAIPreview summary, QNetworkReply::NetworkError 
     _ui->connectLabel->setText("NOT CONNECTED");
 
 }
+
+void Dialog::handlePreviewTapChoice(const QString newTextString)
+{
+    if ( !_cbConnected )
+        return;
+
+    OAIRouting routing;
+    OAIPreviewTap previewTap;
+    if ( newTextString == "Input" )
+        previewTap.setValue(OAIPreviewTap::eOAIPreviewTap::INPUT);
+    else
+        previewTap.setValue(OAIPreviewTap::eOAIPreviewTap::OUTPUT);
+
+    routing.setPreviewTap(previewTap);
+    _api.setRouting(routing);
+
+}
+
+void Dialog::handleEnableOverlay()
+{
+    if ( !_cbConnected )
+        return;
+
+    OAIOverlay overlay;
+    bool enable = true;
+    if ( _ui->overlayCheckBox->isChecked() )
+        enable = false;
+
+    qDebug() << enable;
+
+    overlay.setEnabled(enable);
+    _api.setOverlay(overlay);
+}
+
+void Dialog::getOverlayFromColorbox(OAIOverlay overlay)
+{
+    if ( overlay.isEnabled() )
+        _ui->overlayCheckBox->setCheckState(Qt::Checked);
+    else
+        _ui->overlayCheckBox->setCheckState(Qt::Unchecked);
+
+}
+
+void Dialog::getRoutingFromColorbox(OAIRouting routing)
+{
+    disconnect(_ui->previewComboBox,&QComboBox::currentTextChanged,this,&Dialog::handlePreviewTapChoice);
+
+    OAIPreviewTap::eOAIPreviewTap previewTapChoice = routing.getPreviewTap().getValue();
+    if ( previewTapChoice == OAIPreviewTap::eOAIPreviewTap::INPUT )
+        _ui->previewComboBox->setCurrentIndex(0);
+    else
+        _ui->previewComboBox->setCurrentIndex(1);
+
+    connect(_ui->previewComboBox,&QComboBox::currentTextChanged,this,&Dialog::handlePreviewTapChoice);
+
+}
+
 void Dialog::updateUIPreview()
 {
     QElapsedTimer timer;
@@ -210,13 +277,17 @@ void Dialog::updateUIPreview()
         // trigger the api to get status and preview ready for next loop
         _api.getSdiInputStatus();
         _api.getPreviewImage();
+
+        _ui->transferTimeLabel->setText(QString("%1 ms").arg(timer.elapsed()));
+
     }
     else
     {
+        _ui->transferTimeLabel->setText("");
         _ui->connectLabel->setText("DISCONNECTED");
     }
 
-    _ui->transferTimeLabel->setText(QString("%1 ms").arg(timer.elapsed()));
+
 
     // trigger this method again in 16ms
     QTimer::singleShot(16, this, &Dialog::updateUIPreview);

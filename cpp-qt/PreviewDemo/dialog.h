@@ -28,10 +28,16 @@ public:
 
 public slots:
     void ipAddressEdited();
+    void handlePreviewTapChoice(const QString newTexString);
+    void handleEnableOverlay();
     void updateUIPreview();
     void handleInputStatus(OpenAPI::OAISDI status);
     void handlePreview(OpenAPI::OAIPreview preview);
     void handlePreviewError(OpenAPI::OAIPreview summary, QNetworkReply::NetworkError error_type, QString error_str);
+
+    void getOverlayFromColorbox(OpenAPI::OAIOverlay overlay);
+    void getRoutingFromColorbox(OpenAPI::OAIRouting routing);
+
 signals:
 
 protected:
