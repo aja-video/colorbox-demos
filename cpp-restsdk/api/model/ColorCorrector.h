@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,9 @@ public:
 
     void setBlackRed(double value);
 
+    double blackRedMin() const;
+    double blackRedMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -73,6 +77,9 @@ public:
     void unsetBlackGreen();
 
     void setBlackGreen(double value);
+
+    double blackGreenMin() const;
+    double blackGreenMax() const;
 
     /// <summary>
     /// 
@@ -83,6 +90,9 @@ public:
 
     void setBlackBlue(double value);
 
+    double blackBlueMin() const;
+    double blackBlueMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -91,6 +101,9 @@ public:
     void unsetGainRed();
 
     void setGainRed(double value);
+
+    double gainRedMin() const;
+    double gainRedMax() const;
 
     /// <summary>
     /// 
@@ -101,6 +114,9 @@ public:
 
     void setGainGreen(double value);
 
+    double gainGreenMin() const;
+    double gainGreenMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -109,6 +125,9 @@ public:
     void unsetGainBlue();
 
     void setGainBlue(double value);
+
+    double gainBlueMin() const;
+    double gainBlueMax() const;
 
     /// <summary>
     /// 
@@ -119,6 +138,9 @@ public:
 
     void setGammaRed(double value);
 
+    double gammaRedMin() const;
+    double gammaRedMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -127,6 +149,9 @@ public:
     void unsetGammaGreen();
 
     void setGammaGreen(double value);
+
+    double gammaGreenMin() const;
+    double gammaGreenMax() const;
 
     /// <summary>
     /// 
@@ -137,6 +162,9 @@ public:
 
     void setGammaBlue(double value);
 
+    double gammaBlueMin() const;
+    double gammaBlueMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -145,6 +173,7 @@ public:
     void unsetUnitsBlack();
 
     void setUnitsBlack(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -155,6 +184,7 @@ public:
 
     void setUnitsGain(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -163,6 +193,7 @@ public:
     void unsetUnitsGamma();
 
     void setUnitsGamma(const utility::string_t& value);
+
 
 
 protected:

@@ -55,6 +55,66 @@ void WiFiDeviceConfig::validate()
     // TODO: implement validation
 }
 
+bool WiFiDeviceConfig::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (wifiControlIsSet())
+	{
+		bool wifiControlChanged = false;
+		utility::string_t v = getWifiControl();
+		if (wifiControlChanged) { setWifiControl(v); anyMinMaxValueChanged = true; }
+	}
+	if (wifiNetworkIsSet())
+	{
+		bool wifiNetworkChanged = false;
+		utility::string_t v = getWifiNetwork();
+		if (wifiNetworkChanged) { setWifiNetwork(v); anyMinMaxValueChanged = true; }
+	}
+	if (wifiPasswordIsSet())
+	{
+		bool wifiPasswordChanged = false;
+		utility::string_t v = getWifiPassword();
+		if (wifiPasswordChanged) { setWifiPassword(v); anyMinMaxValueChanged = true; }
+	}
+	if (wifiSecurityIsSet())
+	{
+		bool wifiSecurityChanged = false;
+		utility::string_t v = getWifiSecurity();
+		if (wifiSecurityChanged) { setWifiSecurity(v); anyMinMaxValueChanged = true; }
+	}
+	if (wifiIpConfigIsSet())
+	{
+		bool wifiIpConfigChanged = false;
+		utility::string_t v = getWifiIpConfig();
+		if (wifiIpConfigChanged) { setWifiIpConfig(v); anyMinMaxValueChanged = true; }
+	}
+	if (addressIsSet())
+	{
+		bool addressChanged = false;
+		utility::string_t v = getAddress();
+		if (addressChanged) { setAddress(v); anyMinMaxValueChanged = true; }
+	}
+	if (subnetIsSet())
+	{
+		bool subnetChanged = false;
+		utility::string_t v = getSubnet();
+		if (subnetChanged) { setSubnet(v); anyMinMaxValueChanged = true; }
+	}
+	if (gatewayIsSet())
+	{
+		bool gatewayChanged = false;
+		utility::string_t v = getGateway();
+		if (gatewayChanged) { setGateway(v); anyMinMaxValueChanged = true; }
+	}
+	if (wifiIpChangeCommitIsSet())
+	{
+		bool wifiIpChangeCommitChanged = false;
+		int32_t v = getWifiIpChangeCommit();
+		if (wifiIpChangeCommitChanged) { setWifiIpChangeCommit(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value WiFiDeviceConfig::toJson() const
 {
 
@@ -194,6 +254,8 @@ bool WiFiDeviceConfig::fromJson(const web::json::value& val)
             setWifiIpChangeCommit(refVal_wifiIpChangeCommit);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -305,6 +367,8 @@ bool WiFiDeviceConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("wifiIpChangeCommit"))), refVal_wifiIpChangeCommit );
         setWifiIpChangeCommit(refVal_wifiIpChangeCommit);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -315,7 +379,8 @@ utility::string_t WiFiDeviceConfig::getWifiControl() const
 
 void WiFiDeviceConfig::setWifiControl(const utility::string_t& value)
 {
-    m_WifiControl = value;
+	utility::string_t v = value;
+    m_WifiControl = v;
     m_WifiControlIsSet = true;
 }
 
@@ -328,6 +393,9 @@ void WiFiDeviceConfig::unsetWifiControl()
 {
     m_WifiControlIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceConfig::getWifiNetwork() const
 {
     return m_WifiNetwork;
@@ -335,7 +403,8 @@ utility::string_t WiFiDeviceConfig::getWifiNetwork() const
 
 void WiFiDeviceConfig::setWifiNetwork(const utility::string_t& value)
 {
-    m_WifiNetwork = value;
+	utility::string_t v = value;
+    m_WifiNetwork = v;
     m_WifiNetworkIsSet = true;
 }
 
@@ -348,6 +417,9 @@ void WiFiDeviceConfig::unsetWifiNetwork()
 {
     m_WifiNetworkIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceConfig::getWifiPassword() const
 {
     return m_WifiPassword;
@@ -355,7 +427,8 @@ utility::string_t WiFiDeviceConfig::getWifiPassword() const
 
 void WiFiDeviceConfig::setWifiPassword(const utility::string_t& value)
 {
-    m_WifiPassword = value;
+	utility::string_t v = value;
+    m_WifiPassword = v;
     m_WifiPasswordIsSet = true;
 }
 
@@ -368,6 +441,9 @@ void WiFiDeviceConfig::unsetWifiPassword()
 {
     m_WifiPasswordIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceConfig::getWifiSecurity() const
 {
     return m_WifiSecurity;
@@ -375,7 +451,8 @@ utility::string_t WiFiDeviceConfig::getWifiSecurity() const
 
 void WiFiDeviceConfig::setWifiSecurity(const utility::string_t& value)
 {
-    m_WifiSecurity = value;
+	utility::string_t v = value;
+    m_WifiSecurity = v;
     m_WifiSecurityIsSet = true;
 }
 
@@ -388,6 +465,9 @@ void WiFiDeviceConfig::unsetWifiSecurity()
 {
     m_WifiSecurityIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceConfig::getWifiIpConfig() const
 {
     return m_WifiIpConfig;
@@ -395,7 +475,8 @@ utility::string_t WiFiDeviceConfig::getWifiIpConfig() const
 
 void WiFiDeviceConfig::setWifiIpConfig(const utility::string_t& value)
 {
-    m_WifiIpConfig = value;
+	utility::string_t v = value;
+    m_WifiIpConfig = v;
     m_WifiIpConfigIsSet = true;
 }
 
@@ -408,6 +489,9 @@ void WiFiDeviceConfig::unsetWifiIpConfig()
 {
     m_WifiIpConfigIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceConfig::getAddress() const
 {
     return m_Address;
@@ -415,7 +499,8 @@ utility::string_t WiFiDeviceConfig::getAddress() const
 
 void WiFiDeviceConfig::setAddress(const utility::string_t& value)
 {
-    m_Address = value;
+	utility::string_t v = value;
+    m_Address = v;
     m_AddressIsSet = true;
 }
 
@@ -428,6 +513,9 @@ void WiFiDeviceConfig::unsetAddress()
 {
     m_AddressIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceConfig::getSubnet() const
 {
     return m_Subnet;
@@ -435,7 +523,8 @@ utility::string_t WiFiDeviceConfig::getSubnet() const
 
 void WiFiDeviceConfig::setSubnet(const utility::string_t& value)
 {
-    m_Subnet = value;
+	utility::string_t v = value;
+    m_Subnet = v;
     m_SubnetIsSet = true;
 }
 
@@ -448,6 +537,9 @@ void WiFiDeviceConfig::unsetSubnet()
 {
     m_SubnetIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceConfig::getGateway() const
 {
     return m_Gateway;
@@ -455,7 +547,8 @@ utility::string_t WiFiDeviceConfig::getGateway() const
 
 void WiFiDeviceConfig::setGateway(const utility::string_t& value)
 {
-    m_Gateway = value;
+	utility::string_t v = value;
+    m_Gateway = v;
     m_GatewayIsSet = true;
 }
 
@@ -468,6 +561,9 @@ void WiFiDeviceConfig::unsetGateway()
 {
     m_GatewayIsSet = false;
 }
+
+
+
 int32_t WiFiDeviceConfig::getWifiIpChangeCommit() const
 {
     return m_WifiIpChangeCommit;
@@ -475,7 +571,8 @@ int32_t WiFiDeviceConfig::getWifiIpChangeCommit() const
 
 void WiFiDeviceConfig::setWifiIpChangeCommit(int32_t value)
 {
-    m_WifiIpChangeCommit = value;
+	int32_t v = value;
+    m_WifiIpChangeCommit = v;
     m_WifiIpChangeCommitIsSet = true;
 }
 
@@ -488,6 +585,9 @@ void WiFiDeviceConfig::unsetWifiIpChangeCommit()
 {
     m_WifiIpChangeCommitIsSet = false;
 }
+
+
+
 }
 }
 }

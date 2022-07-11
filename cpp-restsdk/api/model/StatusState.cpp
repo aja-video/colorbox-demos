@@ -72,6 +72,12 @@ void StatusState::validate()
     // TODO: implement validation
 }
 
+bool StatusState::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value StatusState::toJson() const
 {
     auto val = fromEnum(m_value);

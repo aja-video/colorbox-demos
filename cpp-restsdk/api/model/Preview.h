@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,7 @@ public:
 
     void setImage(const utility::string_t& value);
 
+
     /// <summary>
     /// Type of image data i.e. \&quot;jpg\&quot;
     /// </summary>
@@ -73,6 +75,7 @@ public:
     void unsetImageType();
 
     void setImageType(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -83,6 +86,7 @@ public:
 
     void setAncData(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -92,6 +96,7 @@ public:
 
     void setUserData1(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -100,6 +105,7 @@ public:
     void unsetUserData2();
 
     void setUserData2(const utility::string_t& value);
+
 
 
 protected:

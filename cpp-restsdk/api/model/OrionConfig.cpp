@@ -60,6 +60,82 @@ void OrionConfig::validate()
     // TODO: implement validation
 }
 
+bool OrionConfig::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (hdrRefIsSet())
+	{
+		bool hdrRefChanged = false;
+		double v = getHdrRef();
+		double min = hdrRefMin();
+		double max = hdrRefMax();
+		if (v < min) { v = min; hdrRefChanged = true; }
+		if (v > max) { v = max; hdrRefChanged = true; }
+		if (hdrRefChanged) { setHdrRef(v); anyMinMaxValueChanged = true; }
+	}
+	if (sdrRefIsSet())
+	{
+		bool sdrRefChanged = false;
+		double v = getSdrRef();
+		double min = sdrRefMin();
+		double max = sdrRefMax();
+		if (v < min) { v = min; sdrRefChanged = true; }
+		if (v > max) { v = max; sdrRefChanged = true; }
+		if (sdrRefChanged) { setSdrRef(v); anyMinMaxValueChanged = true; }
+	}
+	if (hdrPeakIsSet())
+	{
+		bool hdrPeakChanged = false;
+		int32_t v = getHdrPeak();
+		int32_t min = hdrPeakMin();
+		int32_t max = hdrPeakMax();
+		if (v < min) { v = min; hdrPeakChanged = true; }
+		if (v > max) { v = max; hdrPeakChanged = true; }
+		if (hdrPeakChanged) { setHdrPeak(v); anyMinMaxValueChanged = true; }
+	}
+	if (preKneeIsSet())
+	{
+		bool preKneeChanged = false;
+		double v = getPreKnee();
+		double min = preKneeMin();
+		double max = preKneeMax();
+		if (v < min) { v = min; preKneeChanged = true; }
+		if (v > max) { v = max; preKneeChanged = true; }
+		if (preKneeChanged) { setPreKnee(v); anyMinMaxValueChanged = true; }
+	}
+	if (preAmountIsSet())
+	{
+		bool preAmountChanged = false;
+		double v = getPreAmount();
+		double min = preAmountMin();
+		double max = preAmountMax();
+		if (v < min) { v = min; preAmountChanged = true; }
+		if (v > max) { v = max; preAmountChanged = true; }
+		if (preAmountChanged) { setPreAmount(v); anyMinMaxValueChanged = true; }
+	}
+	if (postKneeIsSet())
+	{
+		bool postKneeChanged = false;
+		double v = getPostKnee();
+		double min = postKneeMin();
+		double max = postKneeMax();
+		if (v < min) { v = min; postKneeChanged = true; }
+		if (v > max) { v = max; postKneeChanged = true; }
+		if (postKneeChanged) { setPostKnee(v); anyMinMaxValueChanged = true; }
+	}
+	if (postAmountIsSet())
+	{
+		bool postAmountChanged = false;
+		double v = getPostAmount();
+		double min = postAmountMin();
+		double max = postAmountMax();
+		if (v < min) { v = min; postAmountChanged = true; }
+		if (v > max) { v = max; postAmountChanged = true; }
+		if (postAmountChanged) { setPostAmount(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value OrionConfig::toJson() const
 {
 
@@ -283,6 +359,8 @@ bool OrionConfig::fromJson(const web::json::value& val)
             setImplementation(refVal_implementation);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -454,6 +532,8 @@ bool OrionConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("implementation"))), refVal_implementation );
         setImplementation(refVal_implementation);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -464,7 +544,8 @@ bool OrionConfig::isEnabled() const
 
 void OrionConfig::setEnabled(bool value)
 {
-    m_Enabled = value;
+	bool v = value;
+    m_Enabled = v;
     m_EnabledIsSet = true;
 }
 
@@ -477,6 +558,8 @@ void OrionConfig::unsetEnabled()
 {
     m_EnabledIsSet = false;
 }
+
+
 std::shared_ptr<OrionConversion> OrionConfig::getConversion() const
 {
     return m_Conversion;
@@ -484,7 +567,8 @@ std::shared_ptr<OrionConversion> OrionConfig::getConversion() const
 
 void OrionConfig::setConversion(const std::shared_ptr<OrionConversion>& value)
 {
-    m_Conversion = value;
+	std::shared_ptr<OrionConversion> v = value;
+    m_Conversion = v;
     m_ConversionIsSet = true;
 }
 
@@ -497,6 +581,8 @@ void OrionConfig::unsetConversion()
 {
     m_ConversionIsSet = false;
 }
+
+
 std::shared_ptr<OrionMode> OrionConfig::getMode() const
 {
     return m_Mode;
@@ -504,7 +590,8 @@ std::shared_ptr<OrionMode> OrionConfig::getMode() const
 
 void OrionConfig::setMode(const std::shared_ptr<OrionMode>& value)
 {
-    m_Mode = value;
+	std::shared_ptr<OrionMode> v = value;
+    m_Mode = v;
     m_ModeIsSet = true;
 }
 
@@ -517,6 +604,8 @@ void OrionConfig::unsetMode()
 {
     m_ModeIsSet = false;
 }
+
+
 std::shared_ptr<OrionMethod> OrionConfig::getMethod() const
 {
     return m_Method;
@@ -524,7 +613,8 @@ std::shared_ptr<OrionMethod> OrionConfig::getMethod() const
 
 void OrionConfig::setMethod(const std::shared_ptr<OrionMethod>& value)
 {
-    m_Method = value;
+	std::shared_ptr<OrionMethod> v = value;
+    m_Method = v;
     m_MethodIsSet = true;
 }
 
@@ -537,6 +627,8 @@ void OrionConfig::unsetMethod()
 {
     m_MethodIsSet = false;
 }
+
+
 std::shared_ptr<OrionSourceRange> OrionConfig::getSourceRange() const
 {
     return m_SourceRange;
@@ -544,7 +636,8 @@ std::shared_ptr<OrionSourceRange> OrionConfig::getSourceRange() const
 
 void OrionConfig::setSourceRange(const std::shared_ptr<OrionSourceRange>& value)
 {
-    m_SourceRange = value;
+	std::shared_ptr<OrionSourceRange> v = value;
+    m_SourceRange = v;
     m_SourceRangeIsSet = true;
 }
 
@@ -557,6 +650,8 @@ void OrionConfig::unsetSourceRange()
 {
     m_SourceRangeIsSet = false;
 }
+
+
 double OrionConfig::getHdrRef() const
 {
     return m_HdrRef;
@@ -564,7 +659,12 @@ double OrionConfig::getHdrRef() const
 
 void OrionConfig::setHdrRef(double value)
 {
-    m_HdrRef = value;
+	double v = value;
+	double min = hdrRefMin();
+	double max = hdrRefMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_HdrRef = v;
     m_HdrRefIsSet = true;
 }
 
@@ -577,6 +677,15 @@ void OrionConfig::unsetHdrRef()
 {
     m_HdrRefIsSet = false;
 }
+
+double OrionConfig::hdrRefMin() const {
+	return 1.0;
+}
+
+double OrionConfig::hdrRefMax() const {
+	return 109.0;
+}
+
 double OrionConfig::getSdrRef() const
 {
     return m_SdrRef;
@@ -584,7 +693,12 @@ double OrionConfig::getSdrRef() const
 
 void OrionConfig::setSdrRef(double value)
 {
-    m_SdrRef = value;
+	double v = value;
+	double min = sdrRefMin();
+	double max = sdrRefMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_SdrRef = v;
     m_SdrRefIsSet = true;
 }
 
@@ -597,6 +711,15 @@ void OrionConfig::unsetSdrRef()
 {
     m_SdrRefIsSet = false;
 }
+
+double OrionConfig::sdrRefMin() const {
+	return 1.0;
+}
+
+double OrionConfig::sdrRefMax() const {
+	return 109.0;
+}
+
 int32_t OrionConfig::getHdrPeak() const
 {
     return m_HdrPeak;
@@ -604,7 +727,12 @@ int32_t OrionConfig::getHdrPeak() const
 
 void OrionConfig::setHdrPeak(int32_t value)
 {
-    m_HdrPeak = value;
+	int32_t v = value;
+	int32_t min = hdrPeakMin();
+	int32_t max = hdrPeakMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_HdrPeak = v;
     m_HdrPeakIsSet = true;
 }
 
@@ -617,6 +745,15 @@ void OrionConfig::unsetHdrPeak()
 {
     m_HdrPeakIsSet = false;
 }
+
+int32_t OrionConfig::hdrPeakMin() const {
+	return 100;
+}
+
+int32_t OrionConfig::hdrPeakMax() const {
+	return 4000;
+}
+
 std::shared_ptr<OrionSdrEotf> OrionConfig::getSdrEotf() const
 {
     return m_SdrEotf;
@@ -624,7 +761,8 @@ std::shared_ptr<OrionSdrEotf> OrionConfig::getSdrEotf() const
 
 void OrionConfig::setSdrEotf(const std::shared_ptr<OrionSdrEotf>& value)
 {
-    m_SdrEotf = value;
+	std::shared_ptr<OrionSdrEotf> v = value;
+    m_SdrEotf = v;
     m_SdrEotfIsSet = true;
 }
 
@@ -637,6 +775,8 @@ void OrionConfig::unsetSdrEotf()
 {
     m_SdrEotfIsSet = false;
 }
+
+
 double OrionConfig::getPreKnee() const
 {
     return m_PreKnee;
@@ -644,7 +784,12 @@ double OrionConfig::getPreKnee() const
 
 void OrionConfig::setPreKnee(double value)
 {
-    m_PreKnee = value;
+	double v = value;
+	double min = preKneeMin();
+	double max = preKneeMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_PreKnee = v;
     m_PreKneeIsSet = true;
 }
 
@@ -657,6 +802,15 @@ void OrionConfig::unsetPreKnee()
 {
     m_PreKneeIsSet = false;
 }
+
+double OrionConfig::preKneeMin() const {
+	return 0.0;
+}
+
+double OrionConfig::preKneeMax() const {
+	return 100.0;
+}
+
 double OrionConfig::getPreAmount() const
 {
     return m_PreAmount;
@@ -664,7 +818,12 @@ double OrionConfig::getPreAmount() const
 
 void OrionConfig::setPreAmount(double value)
 {
-    m_PreAmount = value;
+	double v = value;
+	double min = preAmountMin();
+	double max = preAmountMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_PreAmount = v;
     m_PreAmountIsSet = true;
 }
 
@@ -677,6 +836,15 @@ void OrionConfig::unsetPreAmount()
 {
     m_PreAmountIsSet = false;
 }
+
+double OrionConfig::preAmountMin() const {
+	return 0.0;
+}
+
+double OrionConfig::preAmountMax() const {
+	return 1.0;
+}
+
 double OrionConfig::getPostKnee() const
 {
     return m_PostKnee;
@@ -684,7 +852,12 @@ double OrionConfig::getPostKnee() const
 
 void OrionConfig::setPostKnee(double value)
 {
-    m_PostKnee = value;
+	double v = value;
+	double min = postKneeMin();
+	double max = postKneeMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_PostKnee = v;
     m_PostKneeIsSet = true;
 }
 
@@ -697,6 +870,15 @@ void OrionConfig::unsetPostKnee()
 {
     m_PostKneeIsSet = false;
 }
+
+double OrionConfig::postKneeMin() const {
+	return 0.0;
+}
+
+double OrionConfig::postKneeMax() const {
+	return 100.0;
+}
+
 double OrionConfig::getPostAmount() const
 {
     return m_PostAmount;
@@ -704,7 +886,12 @@ double OrionConfig::getPostAmount() const
 
 void OrionConfig::setPostAmount(double value)
 {
-    m_PostAmount = value;
+	double v = value;
+	double min = postAmountMin();
+	double max = postAmountMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_PostAmount = v;
     m_PostAmountIsSet = true;
 }
 
@@ -717,6 +904,15 @@ void OrionConfig::unsetPostAmount()
 {
     m_PostAmountIsSet = false;
 }
+
+double OrionConfig::postAmountMin() const {
+	return 0.0;
+}
+
+double OrionConfig::postAmountMax() const {
+	return 1.0;
+}
+
 std::shared_ptr<OrionClamping> OrionConfig::getClamping() const
 {
     return m_Clamping;
@@ -724,7 +920,8 @@ std::shared_ptr<OrionClamping> OrionConfig::getClamping() const
 
 void OrionConfig::setClamping(const std::shared_ptr<OrionClamping>& value)
 {
-    m_Clamping = value;
+	std::shared_ptr<OrionClamping> v = value;
+    m_Clamping = v;
     m_ClampingIsSet = true;
 }
 
@@ -737,6 +934,8 @@ void OrionConfig::unsetClamping()
 {
     m_ClampingIsSet = false;
 }
+
+
 std::shared_ptr<OrionImplementation> OrionConfig::getImplementation() const
 {
     return m_Implementation;
@@ -744,7 +943,8 @@ std::shared_ptr<OrionImplementation> OrionConfig::getImplementation() const
 
 void OrionConfig::setImplementation(const std::shared_ptr<OrionImplementation>& value)
 {
-    m_Implementation = value;
+	std::shared_ptr<OrionImplementation> v = value;
+    m_Implementation = v;
     m_ImplementationIsSet = true;
 }
 
@@ -757,6 +957,8 @@ void OrionConfig::unsetImplementation()
 {
     m_ImplementationIsSet = false;
 }
+
+
 }
 }
 }

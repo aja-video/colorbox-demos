@@ -41,6 +41,12 @@ void NetDevice::validate()
     // TODO: implement validation
 }
 
+bool NetDevice::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value NetDevice::toJson() const
 {
 
@@ -110,6 +116,8 @@ bool NetDevice::fromJson(const web::json::value& val)
             setStagedParams(refVal_stagedParams);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -171,6 +179,8 @@ bool NetDevice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stagedParams"))), refVal_stagedParams );
         setStagedParams(refVal_stagedParams);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -181,7 +191,8 @@ std::shared_ptr<NetConfig> NetDevice::getConfig() const
 
 void NetDevice::setConfig(const std::shared_ptr<NetConfig>& value)
 {
-    m_Config = value;
+	std::shared_ptr<NetConfig> v = value;
+    m_Config = v;
     m_ConfigIsSet = true;
 }
 
@@ -194,6 +205,8 @@ void NetDevice::unsetConfig()
 {
     m_ConfigIsSet = false;
 }
+
+
 std::shared_ptr<NetStatus> NetDevice::getStatus() const
 {
     return m_Status;
@@ -201,7 +214,8 @@ std::shared_ptr<NetStatus> NetDevice::getStatus() const
 
 void NetDevice::setStatus(const std::shared_ptr<NetStatus>& value)
 {
-    m_Status = value;
+	std::shared_ptr<NetStatus> v = value;
+    m_Status = v;
     m_StatusIsSet = true;
 }
 
@@ -214,6 +228,8 @@ void NetDevice::unsetStatus()
 {
     m_StatusIsSet = false;
 }
+
+
 std::shared_ptr<NetParams> NetDevice::getActiveParams() const
 {
     return m_ActiveParams;
@@ -221,7 +237,8 @@ std::shared_ptr<NetParams> NetDevice::getActiveParams() const
 
 void NetDevice::setActiveParams(const std::shared_ptr<NetParams>& value)
 {
-    m_ActiveParams = value;
+	std::shared_ptr<NetParams> v = value;
+    m_ActiveParams = v;
     m_ActiveParamsIsSet = true;
 }
 
@@ -234,6 +251,8 @@ void NetDevice::unsetActiveParams()
 {
     m_ActiveParamsIsSet = false;
 }
+
+
 std::shared_ptr<NetParams> NetDevice::getStagedParams() const
 {
     return m_StagedParams;
@@ -241,7 +260,8 @@ std::shared_ptr<NetParams> NetDevice::getStagedParams() const
 
 void NetDevice::setStagedParams(const std::shared_ptr<NetParams>& value)
 {
-    m_StagedParams = value;
+	std::shared_ptr<NetParams> v = value;
+    m_StagedParams = v;
     m_StagedParamsIsSet = true;
 }
 
@@ -254,6 +274,8 @@ void NetDevice::unsetStagedParams()
 {
     m_StagedParamsIsSet = false;
 }
+
+
 }
 }
 }

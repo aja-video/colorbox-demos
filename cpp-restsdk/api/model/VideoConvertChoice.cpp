@@ -64,6 +64,12 @@ void VideoConvertChoice::validate()
     // TODO: implement validation
 }
 
+bool VideoConvertChoice::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value VideoConvertChoice::toJson() const
 {
     auto val = fromEnum(m_value);

@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,7 @@ public:
 
     void setServiceDescription(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -73,6 +75,7 @@ public:
     void unsetServiceType();
 
     void setServiceType(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -83,6 +86,7 @@ public:
 
     void setServiceDomain(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -91,6 +95,7 @@ public:
     void unsetHostName();
 
     void setHostName(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -101,6 +106,7 @@ public:
 
     void setIpAddress(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -109,6 +115,7 @@ public:
     void unsetPort();
 
     void setPort(double value);
+
 
     /// <summary>
     /// 
@@ -119,6 +126,7 @@ public:
 
     void setDeviceName(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -127,6 +135,7 @@ public:
     void unsetDescription();
 
     void setDescription(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -137,6 +146,7 @@ public:
 
     void setBoardType(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -146,6 +156,7 @@ public:
 
     void setBoardNumber(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -154,6 +165,7 @@ public:
     void unsetBoardID();
 
     void setBoardID(const utility::string_t& value);
+
 
 
 protected:

@@ -68,6 +68,12 @@ void RgbRange::validate()
     // TODO: implement validation
 }
 
+bool RgbRange::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value RgbRange::toJson() const
 {
     auto val = fromEnum(m_value);

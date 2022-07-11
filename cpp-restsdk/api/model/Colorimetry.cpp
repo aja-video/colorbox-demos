@@ -68,6 +68,12 @@ void Colorimetry::validate()
     // TODO: implement validation
 }
 
+bool Colorimetry::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Colorimetry::toJson() const
 {
     auto val = fromEnum(m_value);

@@ -72,6 +72,12 @@ void DHCPState::validate()
     // TODO: implement validation
 }
 
+bool DHCPState::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value DHCPState::toJson() const
 {
     auto val = fromEnum(m_value);

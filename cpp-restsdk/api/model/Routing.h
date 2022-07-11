@@ -47,6 +47,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -66,6 +67,7 @@ public:
 
     void setMode(const std::shared_ptr<Mode>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -74,6 +76,7 @@ public:
     void unsetPreviewTap();
 
     void setPreviewTap(const std::shared_ptr<PreviewTap>& value);
+
 
     /// <summary>
     /// This is the bypass state due to the button on the device being pressed
@@ -84,6 +87,7 @@ public:
 
     void setPipelineBypassButton(bool value);
 
+
     /// <summary>
     /// This is the bypass state set by the user in the UI
     /// </summary>
@@ -92,6 +96,7 @@ public:
     void unsetPipelineBypassUser();
 
     void setPipelineBypassUser(bool value);
+
 
 
 protected:

@@ -52,6 +52,54 @@ void StatusInfo::validate()
     // TODO: implement validation
 }
 
+bool StatusInfo::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (upperBoundGoodIsSet())
+	{
+		bool upperBoundGoodChanged = false;
+		double v = getUpperBoundGood();
+		if (upperBoundGoodChanged) { setUpperBoundGood(v); anyMinMaxValueChanged = true; }
+	}
+	if (upperBoundMaybeIsSet())
+	{
+		bool upperBoundMaybeChanged = false;
+		double v = getUpperBoundMaybe();
+		if (upperBoundMaybeChanged) { setUpperBoundMaybe(v); anyMinMaxValueChanged = true; }
+	}
+	if (valueIsSet())
+	{
+		bool valueChanged = false;
+		utility::string_t v = getValue();
+		if (valueChanged) { setValue(v); anyMinMaxValueChanged = true; }
+	}
+	if (valueIntIsSet())
+	{
+		bool valueIntChanged = false;
+		double v = getValueInt();
+		if (valueIntChanged) { setValueInt(v); anyMinMaxValueChanged = true; }
+	}
+	if (labelIsSet())
+	{
+		bool labelChanged = false;
+		utility::string_t v = getLabel();
+		if (labelChanged) { setLabel(v); anyMinMaxValueChanged = true; }
+	}
+	if (extraValueIsSet())
+	{
+		bool extraValueChanged = false;
+		utility::string_t v = getExtraValue();
+		if (extraValueChanged) { setExtraValue(v); anyMinMaxValueChanged = true; }
+	}
+	if (extraLabelIsSet())
+	{
+		bool extraLabelChanged = false;
+		utility::string_t v = getExtraLabel();
+		if (extraLabelChanged) { setExtraLabel(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value StatusInfo::toJson() const
 {
 
@@ -177,6 +225,8 @@ bool StatusInfo::fromJson(const web::json::value& val)
             setState(refVal_state);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -278,6 +328,8 @@ bool StatusInfo::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("state"))), refVal_state );
         setState(refVal_state);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -288,7 +340,8 @@ double StatusInfo::getUpperBoundGood() const
 
 void StatusInfo::setUpperBoundGood(double value)
 {
-    m_UpperBoundGood = value;
+	double v = value;
+    m_UpperBoundGood = v;
     m_UpperBoundGoodIsSet = true;
 }
 
@@ -301,6 +354,9 @@ void StatusInfo::unsetUpperBoundGood()
 {
     m_UpperBoundGoodIsSet = false;
 }
+
+
+
 double StatusInfo::getUpperBoundMaybe() const
 {
     return m_UpperBoundMaybe;
@@ -308,7 +364,8 @@ double StatusInfo::getUpperBoundMaybe() const
 
 void StatusInfo::setUpperBoundMaybe(double value)
 {
-    m_UpperBoundMaybe = value;
+	double v = value;
+    m_UpperBoundMaybe = v;
     m_UpperBoundMaybeIsSet = true;
 }
 
@@ -321,6 +378,9 @@ void StatusInfo::unsetUpperBoundMaybe()
 {
     m_UpperBoundMaybeIsSet = false;
 }
+
+
+
 utility::string_t StatusInfo::getValue() const
 {
     return m_Value;
@@ -328,7 +388,8 @@ utility::string_t StatusInfo::getValue() const
 
 void StatusInfo::setValue(const utility::string_t& value)
 {
-    m_Value = value;
+	utility::string_t v = value;
+    m_Value = v;
     m_ValueIsSet = true;
 }
 
@@ -341,6 +402,9 @@ void StatusInfo::unsetValue()
 {
     m_ValueIsSet = false;
 }
+
+
+
 double StatusInfo::getValueInt() const
 {
     return m_ValueInt;
@@ -348,7 +412,8 @@ double StatusInfo::getValueInt() const
 
 void StatusInfo::setValueInt(double value)
 {
-    m_ValueInt = value;
+	double v = value;
+    m_ValueInt = v;
     m_ValueIntIsSet = true;
 }
 
@@ -361,6 +426,9 @@ void StatusInfo::unsetValueInt()
 {
     m_ValueIntIsSet = false;
 }
+
+
+
 utility::string_t StatusInfo::getLabel() const
 {
     return m_Label;
@@ -368,7 +436,8 @@ utility::string_t StatusInfo::getLabel() const
 
 void StatusInfo::setLabel(const utility::string_t& value)
 {
-    m_Label = value;
+	utility::string_t v = value;
+    m_Label = v;
     m_LabelIsSet = true;
 }
 
@@ -381,6 +450,9 @@ void StatusInfo::unsetLabel()
 {
     m_LabelIsSet = false;
 }
+
+
+
 utility::string_t StatusInfo::getExtraValue() const
 {
     return m_ExtraValue;
@@ -388,7 +460,8 @@ utility::string_t StatusInfo::getExtraValue() const
 
 void StatusInfo::setExtraValue(const utility::string_t& value)
 {
-    m_ExtraValue = value;
+	utility::string_t v = value;
+    m_ExtraValue = v;
     m_ExtraValueIsSet = true;
 }
 
@@ -401,6 +474,9 @@ void StatusInfo::unsetExtraValue()
 {
     m_ExtraValueIsSet = false;
 }
+
+
+
 utility::string_t StatusInfo::getExtraLabel() const
 {
     return m_ExtraLabel;
@@ -408,7 +484,8 @@ utility::string_t StatusInfo::getExtraLabel() const
 
 void StatusInfo::setExtraLabel(const utility::string_t& value)
 {
-    m_ExtraLabel = value;
+	utility::string_t v = value;
+    m_ExtraLabel = v;
     m_ExtraLabelIsSet = true;
 }
 
@@ -421,6 +498,9 @@ void StatusInfo::unsetExtraLabel()
 {
     m_ExtraLabelIsSet = false;
 }
+
+
+
 std::shared_ptr<StatusState> StatusInfo::getState() const
 {
     return m_State;
@@ -428,7 +508,8 @@ std::shared_ptr<StatusState> StatusInfo::getState() const
 
 void StatusInfo::setState(const std::shared_ptr<StatusState>& value)
 {
-    m_State = value;
+	std::shared_ptr<StatusState> v = value;
+    m_State = v;
     m_StateIsSet = true;
 }
 
@@ -441,6 +522,8 @@ void StatusInfo::unsetState()
 {
     m_StateIsSet = false;
 }
+
+
 }
 }
 }

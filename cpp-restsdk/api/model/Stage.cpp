@@ -45,6 +45,18 @@ void Stage::validate()
     // TODO: implement validation
 }
 
+bool Stage::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (libraryEntryIsSet())
+	{
+		bool libraryEntryChanged = false;
+		int32_t v = getLibraryEntry();
+		if (libraryEntryChanged) { setLibraryEntry(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Stage::toJson() const
 {
 
@@ -128,6 +140,8 @@ bool Stage::fromJson(const web::json::value& val)
             setProcAmp(refVal_procAmp);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -199,6 +213,8 @@ bool Stage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("procAmp"))), refVal_procAmp );
         setProcAmp(refVal_procAmp);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -209,7 +225,8 @@ bool Stage::isEnabled() const
 
 void Stage::setEnabled(bool value)
 {
-    m_Enabled = value;
+	bool v = value;
+    m_Enabled = v;
     m_EnabledIsSet = true;
 }
 
@@ -222,6 +239,8 @@ void Stage::unsetEnabled()
 {
     m_EnabledIsSet = false;
 }
+
+
 bool Stage::isDynamic() const
 {
     return m_Dynamic;
@@ -229,7 +248,8 @@ bool Stage::isDynamic() const
 
 void Stage::setDynamic(bool value)
 {
-    m_Dynamic = value;
+	bool v = value;
+    m_Dynamic = v;
     m_DynamicIsSet = true;
 }
 
@@ -242,6 +262,8 @@ void Stage::unsetDynamic()
 {
     m_DynamicIsSet = false;
 }
+
+
 int32_t Stage::getLibraryEntry() const
 {
     return m_LibraryEntry;
@@ -249,7 +271,8 @@ int32_t Stage::getLibraryEntry() const
 
 void Stage::setLibraryEntry(int32_t value)
 {
-    m_LibraryEntry = value;
+	int32_t v = value;
+    m_LibraryEntry = v;
     m_LibraryEntryIsSet = true;
 }
 
@@ -262,6 +285,9 @@ void Stage::unsetLibraryEntry()
 {
     m_LibraryEntryIsSet = false;
 }
+
+
+
 std::shared_ptr<ColorCorrector> Stage::getColorCorrector() const
 {
     return m_ColorCorrector;
@@ -269,7 +295,8 @@ std::shared_ptr<ColorCorrector> Stage::getColorCorrector() const
 
 void Stage::setColorCorrector(const std::shared_ptr<ColorCorrector>& value)
 {
-    m_ColorCorrector = value;
+	std::shared_ptr<ColorCorrector> v = value;
+    m_ColorCorrector = v;
     m_ColorCorrectorIsSet = true;
 }
 
@@ -282,6 +309,8 @@ void Stage::unsetColorCorrector()
 {
     m_ColorCorrectorIsSet = false;
 }
+
+
 std::shared_ptr<ProcAmp> Stage::getProcAmp() const
 {
     return m_ProcAmp;
@@ -289,7 +318,8 @@ std::shared_ptr<ProcAmp> Stage::getProcAmp() const
 
 void Stage::setProcAmp(const std::shared_ptr<ProcAmp>& value)
 {
-    m_ProcAmp = value;
+	std::shared_ptr<ProcAmp> v = value;
+    m_ProcAmp = v;
     m_ProcAmpIsSet = true;
 }
 
@@ -302,6 +332,8 @@ void Stage::unsetProcAmp()
 {
     m_ProcAmpIsSet = false;
 }
+
+
 }
 }
 }

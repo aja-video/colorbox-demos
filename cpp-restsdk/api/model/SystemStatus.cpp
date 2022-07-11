@@ -50,6 +50,30 @@ void SystemStatus::validate()
     // TODO: implement validation
 }
 
+bool SystemStatus::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (safebootVersionIsSet())
+	{
+		bool safebootVersionChanged = false;
+		utility::string_t v = getSafebootVersion();
+		if (safebootVersionChanged) { setSafebootVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (mainbootVersionIsSet())
+	{
+		bool mainbootVersionChanged = false;
+		utility::string_t v = getMainbootVersion();
+		if (mainbootVersionChanged) { setMainbootVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (runningVersionIsSet())
+	{
+		bool runningVersionChanged = false;
+		utility::string_t v = getRunningVersion();
+		if (runningVersionChanged) { setRunningVersion(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value SystemStatus::toJson() const
 {
 
@@ -161,6 +185,8 @@ bool SystemStatus::fromJson(const web::json::value& val)
             setTransformModeTimestamp(refVal_transformModeTimestamp);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -252,6 +278,8 @@ bool SystemStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("transformModeTimestamp"))), refVal_transformModeTimestamp );
         setTransformModeTimestamp(refVal_transformModeTimestamp);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -262,7 +290,8 @@ utility::string_t SystemStatus::getSafebootVersion() const
 
 void SystemStatus::setSafebootVersion(const utility::string_t& value)
 {
-    m_SafebootVersion = value;
+	utility::string_t v = value;
+    m_SafebootVersion = v;
     m_SafebootVersionIsSet = true;
 }
 
@@ -275,6 +304,9 @@ void SystemStatus::unsetSafebootVersion()
 {
     m_SafebootVersionIsSet = false;
 }
+
+
+
 utility::string_t SystemStatus::getMainbootVersion() const
 {
     return m_MainbootVersion;
@@ -282,7 +314,8 @@ utility::string_t SystemStatus::getMainbootVersion() const
 
 void SystemStatus::setMainbootVersion(const utility::string_t& value)
 {
-    m_MainbootVersion = value;
+	utility::string_t v = value;
+    m_MainbootVersion = v;
     m_MainbootVersionIsSet = true;
 }
 
@@ -295,6 +328,9 @@ void SystemStatus::unsetMainbootVersion()
 {
     m_MainbootVersionIsSet = false;
 }
+
+
+
 utility::string_t SystemStatus::getRunningVersion() const
 {
     return m_RunningVersion;
@@ -302,7 +338,8 @@ utility::string_t SystemStatus::getRunningVersion() const
 
 void SystemStatus::setRunningVersion(const utility::string_t& value)
 {
-    m_RunningVersion = value;
+	utility::string_t v = value;
+    m_RunningVersion = v;
     m_RunningVersionIsSet = true;
 }
 
@@ -315,6 +352,9 @@ void SystemStatus::unsetRunningVersion()
 {
     m_RunningVersionIsSet = false;
 }
+
+
+
 bool SystemStatus::isSafeboot() const
 {
     return m_Safeboot;
@@ -322,7 +362,8 @@ bool SystemStatus::isSafeboot() const
 
 void SystemStatus::setSafeboot(bool value)
 {
-    m_Safeboot = value;
+	bool v = value;
+    m_Safeboot = v;
     m_SafebootIsSet = true;
 }
 
@@ -335,6 +376,8 @@ void SystemStatus::unsetSafeboot()
 {
     m_SafebootIsSet = false;
 }
+
+
 std::vector<utility::string_t>& SystemStatus::getUpdateMsg()
 {
     return m_UpdateMsg;
@@ -342,7 +385,8 @@ std::vector<utility::string_t>& SystemStatus::getUpdateMsg()
 
 void SystemStatus::setUpdateMsg(const std::vector<utility::string_t>& value)
 {
-    m_UpdateMsg = value;
+	std::vector<utility::string_t> v = value;
+    m_UpdateMsg = v;
     m_UpdateMsgIsSet = true;
 }
 
@@ -355,6 +399,8 @@ void SystemStatus::unsetUpdateMsg()
 {
     m_UpdateMsgIsSet = false;
 }
+
+
 bool SystemStatus::isTransformModeChanging() const
 {
     return m_TransformModeChanging;
@@ -362,7 +408,8 @@ bool SystemStatus::isTransformModeChanging() const
 
 void SystemStatus::setTransformModeChanging(bool value)
 {
-    m_TransformModeChanging = value;
+	bool v = value;
+    m_TransformModeChanging = v;
     m_TransformModeChangingIsSet = true;
 }
 
@@ -375,6 +422,8 @@ void SystemStatus::unsetTransformModeChanging()
 {
     m_TransformModeChangingIsSet = false;
 }
+
+
 utility::datetime SystemStatus::getTransformModeTimestamp() const
 {
     return m_TransformModeTimestamp;
@@ -382,7 +431,8 @@ utility::datetime SystemStatus::getTransformModeTimestamp() const
 
 void SystemStatus::setTransformModeTimestamp(const utility::datetime& value)
 {
-    m_TransformModeTimestamp = value;
+	utility::datetime v = value;
+    m_TransformModeTimestamp = v;
     m_TransformModeTimestampIsSet = true;
 }
 
@@ -395,6 +445,8 @@ void SystemStatus::unsetTransformModeTimestamp()
 {
     m_TransformModeTimestampIsSet = false;
 }
+
+
 }
 }
 }

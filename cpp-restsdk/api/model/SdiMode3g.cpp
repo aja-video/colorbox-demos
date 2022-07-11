@@ -68,6 +68,12 @@ void SdiMode3g::validate()
     // TODO: implement validation
 }
 
+bool SdiMode3g::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value SdiMode3g::toJson() const
 {
     auto val = fromEnum(m_value);

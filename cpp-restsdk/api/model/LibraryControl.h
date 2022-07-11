@@ -48,6 +48,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -67,6 +68,7 @@ public:
 
     void setLibrary(const std::shared_ptr<Library>& value);
 
+
     /// <summary>
     /// The library entry to act on(starting at 1)
     /// </summary>
@@ -75,6 +77,7 @@ public:
     void unsetEntry();
 
     void setEntry(int32_t value);
+
 
     /// <summary>
     /// 
@@ -85,6 +88,7 @@ public:
 
     void setAction(const std::shared_ptr<LibraryAction>& value);
 
+
     /// <summary>
     /// Data to be used with action
     /// </summary>
@@ -94,6 +98,7 @@ public:
 
     void setData(const utility::string_t& value);
 
+
     /// <summary>
     /// Message to alert when things go wrong
     /// </summary>
@@ -102,6 +107,7 @@ public:
     void unsetErrorMsg();
 
     void setErrorMsg(const utility::string_t& value);
+
 
 
 protected:

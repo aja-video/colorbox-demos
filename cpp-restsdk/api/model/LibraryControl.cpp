@@ -45,6 +45,30 @@ void LibraryControl::validate()
     // TODO: implement validation
 }
 
+bool LibraryControl::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (entryIsSet())
+	{
+		bool entryChanged = false;
+		int32_t v = getEntry();
+		if (entryChanged) { setEntry(v); anyMinMaxValueChanged = true; }
+	}
+	if (dataIsSet())
+	{
+		bool dataChanged = false;
+		utility::string_t v = getData();
+		if (dataChanged) { setData(v); anyMinMaxValueChanged = true; }
+	}
+	if (errorMsgIsSet())
+	{
+		bool errorMsgChanged = false;
+		utility::string_t v = getErrorMsg();
+		if (errorMsgChanged) { setErrorMsg(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value LibraryControl::toJson() const
 {
 
@@ -128,6 +152,8 @@ bool LibraryControl::fromJson(const web::json::value& val)
             setErrorMsg(refVal_errorMsg);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -199,6 +225,8 @@ bool LibraryControl::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("errorMsg"))), refVal_errorMsg );
         setErrorMsg(refVal_errorMsg);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -209,7 +237,8 @@ std::shared_ptr<Library> LibraryControl::getLibrary() const
 
 void LibraryControl::setLibrary(const std::shared_ptr<Library>& value)
 {
-    m_Library = value;
+	std::shared_ptr<Library> v = value;
+    m_Library = v;
     m_LibraryIsSet = true;
 }
 
@@ -222,6 +251,8 @@ void LibraryControl::unsetLibrary()
 {
     m_LibraryIsSet = false;
 }
+
+
 int32_t LibraryControl::getEntry() const
 {
     return m_Entry;
@@ -229,7 +260,8 @@ int32_t LibraryControl::getEntry() const
 
 void LibraryControl::setEntry(int32_t value)
 {
-    m_Entry = value;
+	int32_t v = value;
+    m_Entry = v;
     m_EntryIsSet = true;
 }
 
@@ -242,6 +274,9 @@ void LibraryControl::unsetEntry()
 {
     m_EntryIsSet = false;
 }
+
+
+
 std::shared_ptr<LibraryAction> LibraryControl::getAction() const
 {
     return m_Action;
@@ -249,7 +284,8 @@ std::shared_ptr<LibraryAction> LibraryControl::getAction() const
 
 void LibraryControl::setAction(const std::shared_ptr<LibraryAction>& value)
 {
-    m_Action = value;
+	std::shared_ptr<LibraryAction> v = value;
+    m_Action = v;
     m_ActionIsSet = true;
 }
 
@@ -262,6 +298,8 @@ void LibraryControl::unsetAction()
 {
     m_ActionIsSet = false;
 }
+
+
 utility::string_t LibraryControl::getData() const
 {
     return m_Data;
@@ -269,7 +307,8 @@ utility::string_t LibraryControl::getData() const
 
 void LibraryControl::setData(const utility::string_t& value)
 {
-    m_Data = value;
+	utility::string_t v = value;
+    m_Data = v;
     m_DataIsSet = true;
 }
 
@@ -282,6 +321,9 @@ void LibraryControl::unsetData()
 {
     m_DataIsSet = false;
 }
+
+
+
 utility::string_t LibraryControl::getErrorMsg() const
 {
     return m_ErrorMsg;
@@ -289,7 +331,8 @@ utility::string_t LibraryControl::getErrorMsg() const
 
 void LibraryControl::setErrorMsg(const utility::string_t& value)
 {
-    m_ErrorMsg = value;
+	utility::string_t v = value;
+    m_ErrorMsg = v;
     m_ErrorMsgIsSet = true;
 }
 
@@ -302,6 +345,9 @@ void LibraryControl::unsetErrorMsg()
 {
     m_ErrorMsgIsSet = false;
 }
+
+
+
 }
 }
 }

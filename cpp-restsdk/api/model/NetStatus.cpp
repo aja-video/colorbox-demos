@@ -57,6 +57,60 @@ void NetStatus::validate()
     // TODO: implement validation
 }
 
+bool NetStatus::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (nameIsSet())
+	{
+		bool nameChanged = false;
+		utility::string_t v = getName();
+		if (nameChanged) { setName(v); anyMinMaxValueChanged = true; }
+	}
+	if (macIsSet())
+	{
+		bool macChanged = false;
+		utility::string_t v = getMac();
+		if (macChanged) { setMac(v); anyMinMaxValueChanged = true; }
+	}
+	if (ipAddressOfferedIsSet())
+	{
+		bool ipAddressOfferedChanged = false;
+		utility::string_t v = getIpAddressOffered();
+		if (ipAddressOfferedChanged) { setIpAddressOffered(v); anyMinMaxValueChanged = true; }
+	}
+	if (linkErrorsIsSet())
+	{
+		bool linkErrorsChanged = false;
+		int32_t v = getLinkErrors();
+		if (linkErrorsChanged) { setLinkErrors(v); anyMinMaxValueChanged = true; }
+	}
+	if (linkStateIsSet())
+	{
+		bool linkStateChanged = false;
+		utility::string_t v = getLinkState();
+		if (linkStateChanged) { setLinkState(v); anyMinMaxValueChanged = true; }
+	}
+	if (lldpChassisIdIsSet())
+	{
+		bool lldpChassisIdChanged = false;
+		utility::string_t v = getLldpChassisId();
+		if (lldpChassisIdChanged) { setLldpChassisId(v); anyMinMaxValueChanged = true; }
+	}
+	if (lldpPortIdIsSet())
+	{
+		bool lldpPortIdChanged = false;
+		utility::string_t v = getLldpPortId();
+		if (lldpPortIdChanged) { setLldpPortId(v); anyMinMaxValueChanged = true; }
+	}
+	if (lldpNameIsSet())
+	{
+		bool lldpNameChanged = false;
+		utility::string_t v = getLldpName();
+		if (lldpNameChanged) { setLldpName(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value NetStatus::toJson() const
 {
 
@@ -224,6 +278,8 @@ bool NetStatus::fromJson(const web::json::value& val)
             setLldpName(refVal_lldpName);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -355,6 +411,8 @@ bool NetStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("lldpName"))), refVal_lldpName );
         setLldpName(refVal_lldpName);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -365,7 +423,8 @@ utility::string_t NetStatus::getName() const
 
 void NetStatus::setName(const utility::string_t& value)
 {
-    m_Name = value;
+	utility::string_t v = value;
+    m_Name = v;
     m_NameIsSet = true;
 }
 
@@ -378,6 +437,9 @@ void NetStatus::unsetName()
 {
     m_NameIsSet = false;
 }
+
+
+
 utility::string_t NetStatus::getMac() const
 {
     return m_Mac;
@@ -385,7 +447,8 @@ utility::string_t NetStatus::getMac() const
 
 void NetStatus::setMac(const utility::string_t& value)
 {
-    m_Mac = value;
+	utility::string_t v = value;
+    m_Mac = v;
     m_MacIsSet = true;
 }
 
@@ -398,6 +461,9 @@ void NetStatus::unsetMac()
 {
     m_MacIsSet = false;
 }
+
+
+
 bool NetStatus::isConnected() const
 {
     return m_Connected;
@@ -405,7 +471,8 @@ bool NetStatus::isConnected() const
 
 void NetStatus::setConnected(bool value)
 {
-    m_Connected = value;
+	bool v = value;
+    m_Connected = v;
     m_ConnectedIsSet = true;
 }
 
@@ -418,6 +485,8 @@ void NetStatus::unsetConnected()
 {
     m_ConnectedIsSet = false;
 }
+
+
 std::shared_ptr<DHCPState> NetStatus::getDhcpState() const
 {
     return m_DhcpState;
@@ -425,7 +494,8 @@ std::shared_ptr<DHCPState> NetStatus::getDhcpState() const
 
 void NetStatus::setDhcpState(const std::shared_ptr<DHCPState>& value)
 {
-    m_DhcpState = value;
+	std::shared_ptr<DHCPState> v = value;
+    m_DhcpState = v;
     m_DhcpStateIsSet = true;
 }
 
@@ -438,6 +508,8 @@ void NetStatus::unsetDhcpState()
 {
     m_DhcpStateIsSet = false;
 }
+
+
 std::shared_ptr<InterfaceSetupState> NetStatus::getInterfaceSetupState() const
 {
     return m_InterfaceSetupState;
@@ -445,7 +517,8 @@ std::shared_ptr<InterfaceSetupState> NetStatus::getInterfaceSetupState() const
 
 void NetStatus::setInterfaceSetupState(const std::shared_ptr<InterfaceSetupState>& value)
 {
-    m_InterfaceSetupState = value;
+	std::shared_ptr<InterfaceSetupState> v = value;
+    m_InterfaceSetupState = v;
     m_InterfaceSetupStateIsSet = true;
 }
 
@@ -458,6 +531,8 @@ void NetStatus::unsetInterfaceSetupState()
 {
     m_InterfaceSetupStateIsSet = false;
 }
+
+
 utility::string_t NetStatus::getIpAddressOffered() const
 {
     return m_IpAddressOffered;
@@ -465,7 +540,8 @@ utility::string_t NetStatus::getIpAddressOffered() const
 
 void NetStatus::setIpAddressOffered(const utility::string_t& value)
 {
-    m_IpAddressOffered = value;
+	utility::string_t v = value;
+    m_IpAddressOffered = v;
     m_IpAddressOfferedIsSet = true;
 }
 
@@ -478,6 +554,9 @@ void NetStatus::unsetIpAddressOffered()
 {
     m_IpAddressOfferedIsSet = false;
 }
+
+
+
 int32_t NetStatus::getLinkErrors() const
 {
     return m_LinkErrors;
@@ -485,7 +564,8 @@ int32_t NetStatus::getLinkErrors() const
 
 void NetStatus::setLinkErrors(int32_t value)
 {
-    m_LinkErrors = value;
+	int32_t v = value;
+    m_LinkErrors = v;
     m_LinkErrorsIsSet = true;
 }
 
@@ -498,6 +578,9 @@ void NetStatus::unsetLinkErrors()
 {
     m_LinkErrorsIsSet = false;
 }
+
+
+
 utility::string_t NetStatus::getLinkState() const
 {
     return m_LinkState;
@@ -505,7 +588,8 @@ utility::string_t NetStatus::getLinkState() const
 
 void NetStatus::setLinkState(const utility::string_t& value)
 {
-    m_LinkState = value;
+	utility::string_t v = value;
+    m_LinkState = v;
     m_LinkStateIsSet = true;
 }
 
@@ -518,6 +602,9 @@ void NetStatus::unsetLinkState()
 {
     m_LinkStateIsSet = false;
 }
+
+
+
 utility::string_t NetStatus::getLldpChassisId() const
 {
     return m_LldpChassisId;
@@ -525,7 +612,8 @@ utility::string_t NetStatus::getLldpChassisId() const
 
 void NetStatus::setLldpChassisId(const utility::string_t& value)
 {
-    m_LldpChassisId = value;
+	utility::string_t v = value;
+    m_LldpChassisId = v;
     m_LldpChassisIdIsSet = true;
 }
 
@@ -538,6 +626,9 @@ void NetStatus::unsetLldpChassisId()
 {
     m_LldpChassisIdIsSet = false;
 }
+
+
+
 utility::string_t NetStatus::getLldpPortId() const
 {
     return m_LldpPortId;
@@ -545,7 +636,8 @@ utility::string_t NetStatus::getLldpPortId() const
 
 void NetStatus::setLldpPortId(const utility::string_t& value)
 {
-    m_LldpPortId = value;
+	utility::string_t v = value;
+    m_LldpPortId = v;
     m_LldpPortIdIsSet = true;
 }
 
@@ -558,6 +650,9 @@ void NetStatus::unsetLldpPortId()
 {
     m_LldpPortIdIsSet = false;
 }
+
+
+
 utility::string_t NetStatus::getLldpName() const
 {
     return m_LldpName;
@@ -565,7 +660,8 @@ utility::string_t NetStatus::getLldpName() const
 
 void NetStatus::setLldpName(const utility::string_t& value)
 {
-    m_LldpName = value;
+	utility::string_t v = value;
+    m_LldpName = v;
     m_LldpNameIsSet = true;
 }
 
@@ -578,6 +674,9 @@ void NetStatus::unsetLldpName()
 {
     m_LldpNameIsSet = false;
 }
+
+
+
 }
 }
 }

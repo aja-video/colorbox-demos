@@ -64,6 +64,12 @@ void PreviewTap::validate()
     // TODO: implement validation
 }
 
+bool PreviewTap::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value PreviewTap::toJson() const
 {
     auto val = fromEnum(m_value);

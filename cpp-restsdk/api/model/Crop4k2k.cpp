@@ -68,6 +68,12 @@ void Crop4k2k::validate()
     // TODO: implement validation
 }
 
+bool Crop4k2k::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Crop4k2k::toJson() const
 {
     auto val = fromEnum(m_value);

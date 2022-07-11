@@ -61,6 +61,120 @@ void ColorCorrector::validate()
     // TODO: implement validation
 }
 
+bool ColorCorrector::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (blackRedIsSet())
+	{
+		bool blackRedChanged = false;
+		double v = getBlackRed();
+		double min = blackRedMin();
+		double max = blackRedMax();
+		if (v < min) { v = min; blackRedChanged = true; }
+		if (v > max) { v = max; blackRedChanged = true; }
+		if (blackRedChanged) { setBlackRed(v); anyMinMaxValueChanged = true; }
+	}
+	if (blackGreenIsSet())
+	{
+		bool blackGreenChanged = false;
+		double v = getBlackGreen();
+		double min = blackGreenMin();
+		double max = blackGreenMax();
+		if (v < min) { v = min; blackGreenChanged = true; }
+		if (v > max) { v = max; blackGreenChanged = true; }
+		if (blackGreenChanged) { setBlackGreen(v); anyMinMaxValueChanged = true; }
+	}
+	if (blackBlueIsSet())
+	{
+		bool blackBlueChanged = false;
+		double v = getBlackBlue();
+		double min = blackBlueMin();
+		double max = blackBlueMax();
+		if (v < min) { v = min; blackBlueChanged = true; }
+		if (v > max) { v = max; blackBlueChanged = true; }
+		if (blackBlueChanged) { setBlackBlue(v); anyMinMaxValueChanged = true; }
+	}
+	if (gainRedIsSet())
+	{
+		bool gainRedChanged = false;
+		double v = getGainRed();
+		double min = gainRedMin();
+		double max = gainRedMax();
+		if (v < min) { v = min; gainRedChanged = true; }
+		if (v > max) { v = max; gainRedChanged = true; }
+		if (gainRedChanged) { setGainRed(v); anyMinMaxValueChanged = true; }
+	}
+	if (gainGreenIsSet())
+	{
+		bool gainGreenChanged = false;
+		double v = getGainGreen();
+		double min = gainGreenMin();
+		double max = gainGreenMax();
+		if (v < min) { v = min; gainGreenChanged = true; }
+		if (v > max) { v = max; gainGreenChanged = true; }
+		if (gainGreenChanged) { setGainGreen(v); anyMinMaxValueChanged = true; }
+	}
+	if (gainBlueIsSet())
+	{
+		bool gainBlueChanged = false;
+		double v = getGainBlue();
+		double min = gainBlueMin();
+		double max = gainBlueMax();
+		if (v < min) { v = min; gainBlueChanged = true; }
+		if (v > max) { v = max; gainBlueChanged = true; }
+		if (gainBlueChanged) { setGainBlue(v); anyMinMaxValueChanged = true; }
+	}
+	if (gammaRedIsSet())
+	{
+		bool gammaRedChanged = false;
+		double v = getGammaRed();
+		double min = gammaRedMin();
+		double max = gammaRedMax();
+		if (v < min) { v = min; gammaRedChanged = true; }
+		if (v > max) { v = max; gammaRedChanged = true; }
+		if (gammaRedChanged) { setGammaRed(v); anyMinMaxValueChanged = true; }
+	}
+	if (gammaGreenIsSet())
+	{
+		bool gammaGreenChanged = false;
+		double v = getGammaGreen();
+		double min = gammaGreenMin();
+		double max = gammaGreenMax();
+		if (v < min) { v = min; gammaGreenChanged = true; }
+		if (v > max) { v = max; gammaGreenChanged = true; }
+		if (gammaGreenChanged) { setGammaGreen(v); anyMinMaxValueChanged = true; }
+	}
+	if (gammaBlueIsSet())
+	{
+		bool gammaBlueChanged = false;
+		double v = getGammaBlue();
+		double min = gammaBlueMin();
+		double max = gammaBlueMax();
+		if (v < min) { v = min; gammaBlueChanged = true; }
+		if (v > max) { v = max; gammaBlueChanged = true; }
+		if (gammaBlueChanged) { setGammaBlue(v); anyMinMaxValueChanged = true; }
+	}
+	if (unitsBlackIsSet())
+	{
+		bool unitsBlackChanged = false;
+		utility::string_t v = getUnitsBlack();
+		if (unitsBlackChanged) { setUnitsBlack(v); anyMinMaxValueChanged = true; }
+	}
+	if (unitsGainIsSet())
+	{
+		bool unitsGainChanged = false;
+		utility::string_t v = getUnitsGain();
+		if (unitsGainChanged) { setUnitsGain(v); anyMinMaxValueChanged = true; }
+	}
+	if (unitsGammaIsSet())
+	{
+		bool unitsGammaChanged = false;
+		utility::string_t v = getUnitsGamma();
+		if (unitsGammaChanged) { setUnitsGamma(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value ColorCorrector::toJson() const
 {
 
@@ -242,6 +356,8 @@ bool ColorCorrector::fromJson(const web::json::value& val)
             setUnitsGamma(refVal_unitsGamma);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -383,6 +499,8 @@ bool ColorCorrector::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("unitsGamma"))), refVal_unitsGamma );
         setUnitsGamma(refVal_unitsGamma);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -393,7 +511,12 @@ double ColorCorrector::getBlackRed() const
 
 void ColorCorrector::setBlackRed(double value)
 {
-    m_BlackRed = value;
+	double v = value;
+	double min = blackRedMin();
+	double max = blackRedMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_BlackRed = v;
     m_BlackRedIsSet = true;
 }
 
@@ -406,6 +529,15 @@ void ColorCorrector::unsetBlackRed()
 {
     m_BlackRedIsSet = false;
 }
+
+double ColorCorrector::blackRedMin() const {
+	return -20.0;
+}
+
+double ColorCorrector::blackRedMax() const {
+	return 20.0;
+}
+
 double ColorCorrector::getBlackGreen() const
 {
     return m_BlackGreen;
@@ -413,7 +545,12 @@ double ColorCorrector::getBlackGreen() const
 
 void ColorCorrector::setBlackGreen(double value)
 {
-    m_BlackGreen = value;
+	double v = value;
+	double min = blackGreenMin();
+	double max = blackGreenMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_BlackGreen = v;
     m_BlackGreenIsSet = true;
 }
 
@@ -426,6 +563,15 @@ void ColorCorrector::unsetBlackGreen()
 {
     m_BlackGreenIsSet = false;
 }
+
+double ColorCorrector::blackGreenMin() const {
+	return -20.0;
+}
+
+double ColorCorrector::blackGreenMax() const {
+	return 20.0;
+}
+
 double ColorCorrector::getBlackBlue() const
 {
     return m_BlackBlue;
@@ -433,7 +579,12 @@ double ColorCorrector::getBlackBlue() const
 
 void ColorCorrector::setBlackBlue(double value)
 {
-    m_BlackBlue = value;
+	double v = value;
+	double min = blackBlueMin();
+	double max = blackBlueMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_BlackBlue = v;
     m_BlackBlueIsSet = true;
 }
 
@@ -446,6 +597,15 @@ void ColorCorrector::unsetBlackBlue()
 {
     m_BlackBlueIsSet = false;
 }
+
+double ColorCorrector::blackBlueMin() const {
+	return -20.0;
+}
+
+double ColorCorrector::blackBlueMax() const {
+	return 20.0;
+}
+
 double ColorCorrector::getGainRed() const
 {
     return m_GainRed;
@@ -453,7 +613,12 @@ double ColorCorrector::getGainRed() const
 
 void ColorCorrector::setGainRed(double value)
 {
-    m_GainRed = value;
+	double v = value;
+	double min = gainRedMin();
+	double max = gainRedMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_GainRed = v;
     m_GainRedIsSet = true;
 }
 
@@ -466,6 +631,15 @@ void ColorCorrector::unsetGainRed()
 {
     m_GainRedIsSet = false;
 }
+
+double ColorCorrector::gainRedMin() const {
+	return 0;
+}
+
+double ColorCorrector::gainRedMax() const {
+	return 1.5;
+}
+
 double ColorCorrector::getGainGreen() const
 {
     return m_GainGreen;
@@ -473,7 +647,12 @@ double ColorCorrector::getGainGreen() const
 
 void ColorCorrector::setGainGreen(double value)
 {
-    m_GainGreen = value;
+	double v = value;
+	double min = gainGreenMin();
+	double max = gainGreenMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_GainGreen = v;
     m_GainGreenIsSet = true;
 }
 
@@ -486,6 +665,15 @@ void ColorCorrector::unsetGainGreen()
 {
     m_GainGreenIsSet = false;
 }
+
+double ColorCorrector::gainGreenMin() const {
+	return 0;
+}
+
+double ColorCorrector::gainGreenMax() const {
+	return 1.5;
+}
+
 double ColorCorrector::getGainBlue() const
 {
     return m_GainBlue;
@@ -493,7 +681,12 @@ double ColorCorrector::getGainBlue() const
 
 void ColorCorrector::setGainBlue(double value)
 {
-    m_GainBlue = value;
+	double v = value;
+	double min = gainBlueMin();
+	double max = gainBlueMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_GainBlue = v;
     m_GainBlueIsSet = true;
 }
 
@@ -506,6 +699,15 @@ void ColorCorrector::unsetGainBlue()
 {
     m_GainBlueIsSet = false;
 }
+
+double ColorCorrector::gainBlueMin() const {
+	return 0;
+}
+
+double ColorCorrector::gainBlueMax() const {
+	return 1.5;
+}
+
 double ColorCorrector::getGammaRed() const
 {
     return m_GammaRed;
@@ -513,7 +715,12 @@ double ColorCorrector::getGammaRed() const
 
 void ColorCorrector::setGammaRed(double value)
 {
-    m_GammaRed = value;
+	double v = value;
+	double min = gammaRedMin();
+	double max = gammaRedMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_GammaRed = v;
     m_GammaRedIsSet = true;
 }
 
@@ -526,6 +733,15 @@ void ColorCorrector::unsetGammaRed()
 {
     m_GammaRedIsSet = false;
 }
+
+double ColorCorrector::gammaRedMin() const {
+	return -1.0;
+}
+
+double ColorCorrector::gammaRedMax() const {
+	return 1.0;
+}
+
 double ColorCorrector::getGammaGreen() const
 {
     return m_GammaGreen;
@@ -533,7 +749,12 @@ double ColorCorrector::getGammaGreen() const
 
 void ColorCorrector::setGammaGreen(double value)
 {
-    m_GammaGreen = value;
+	double v = value;
+	double min = gammaGreenMin();
+	double max = gammaGreenMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_GammaGreen = v;
     m_GammaGreenIsSet = true;
 }
 
@@ -546,6 +767,15 @@ void ColorCorrector::unsetGammaGreen()
 {
     m_GammaGreenIsSet = false;
 }
+
+double ColorCorrector::gammaGreenMin() const {
+	return -1.0;
+}
+
+double ColorCorrector::gammaGreenMax() const {
+	return 1.0;
+}
+
 double ColorCorrector::getGammaBlue() const
 {
     return m_GammaBlue;
@@ -553,7 +783,12 @@ double ColorCorrector::getGammaBlue() const
 
 void ColorCorrector::setGammaBlue(double value)
 {
-    m_GammaBlue = value;
+	double v = value;
+	double min = gammaBlueMin();
+	double max = gammaBlueMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_GammaBlue = v;
     m_GammaBlueIsSet = true;
 }
 
@@ -566,6 +801,15 @@ void ColorCorrector::unsetGammaBlue()
 {
     m_GammaBlueIsSet = false;
 }
+
+double ColorCorrector::gammaBlueMin() const {
+	return -1.0;
+}
+
+double ColorCorrector::gammaBlueMax() const {
+	return 1.0;
+}
+
 utility::string_t ColorCorrector::getUnitsBlack() const
 {
     return m_UnitsBlack;
@@ -573,7 +817,8 @@ utility::string_t ColorCorrector::getUnitsBlack() const
 
 void ColorCorrector::setUnitsBlack(const utility::string_t& value)
 {
-    m_UnitsBlack = value;
+	utility::string_t v = value;
+    m_UnitsBlack = v;
     m_UnitsBlackIsSet = true;
 }
 
@@ -586,6 +831,9 @@ void ColorCorrector::unsetUnitsBlack()
 {
     m_UnitsBlackIsSet = false;
 }
+
+
+
 utility::string_t ColorCorrector::getUnitsGain() const
 {
     return m_UnitsGain;
@@ -593,7 +841,8 @@ utility::string_t ColorCorrector::getUnitsGain() const
 
 void ColorCorrector::setUnitsGain(const utility::string_t& value)
 {
-    m_UnitsGain = value;
+	utility::string_t v = value;
+    m_UnitsGain = v;
     m_UnitsGainIsSet = true;
 }
 
@@ -606,6 +855,9 @@ void ColorCorrector::unsetUnitsGain()
 {
     m_UnitsGainIsSet = false;
 }
+
+
+
 utility::string_t ColorCorrector::getUnitsGamma() const
 {
     return m_UnitsGamma;
@@ -613,7 +865,8 @@ utility::string_t ColorCorrector::getUnitsGamma() const
 
 void ColorCorrector::setUnitsGamma(const utility::string_t& value)
 {
-    m_UnitsGamma = value;
+	utility::string_t v = value;
+    m_UnitsGamma = v;
     m_UnitsGammaIsSet = true;
 }
 
@@ -626,6 +879,9 @@ void ColorCorrector::unsetUnitsGamma()
 {
     m_UnitsGammaIsSet = false;
 }
+
+
+
 }
 }
 }

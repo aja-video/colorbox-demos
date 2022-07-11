@@ -45,6 +45,30 @@ void Preview::validate()
     // TODO: implement validation
 }
 
+bool Preview::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (imageTypeIsSet())
+	{
+		bool imageTypeChanged = false;
+		utility::string_t v = getImageType();
+		if (imageTypeChanged) { setImageType(v); anyMinMaxValueChanged = true; }
+	}
+	if (userData1IsSet())
+	{
+		bool userData1Changed = false;
+		utility::string_t v = getUserData1();
+		if (userData1Changed) { setUserData1(v); anyMinMaxValueChanged = true; }
+	}
+	if (userData2IsSet())
+	{
+		bool userData2Changed = false;
+		utility::string_t v = getUserData2();
+		if (userData2Changed) { setUserData2(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Preview::toJson() const
 {
 
@@ -128,6 +152,8 @@ bool Preview::fromJson(const web::json::value& val)
             setUserData2(refVal_userData2);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -199,6 +225,8 @@ bool Preview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("userData2"))), refVal_userData2 );
         setUserData2(refVal_userData2);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -209,7 +237,8 @@ utility::string_t Preview::getImage() const
 
 void Preview::setImage(const utility::string_t& value)
 {
-    m_Image = value;
+	utility::string_t v = value;
+    m_Image = v;
     m_ImageIsSet = true;
 }
 
@@ -222,6 +251,8 @@ void Preview::unsetImage()
 {
     m_ImageIsSet = false;
 }
+
+
 utility::string_t Preview::getImageType() const
 {
     return m_ImageType;
@@ -229,7 +260,8 @@ utility::string_t Preview::getImageType() const
 
 void Preview::setImageType(const utility::string_t& value)
 {
-    m_ImageType = value;
+	utility::string_t v = value;
+    m_ImageType = v;
     m_ImageTypeIsSet = true;
 }
 
@@ -242,6 +274,9 @@ void Preview::unsetImageType()
 {
     m_ImageTypeIsSet = false;
 }
+
+
+
 utility::string_t Preview::getAncData() const
 {
     return m_AncData;
@@ -249,7 +284,8 @@ utility::string_t Preview::getAncData() const
 
 void Preview::setAncData(const utility::string_t& value)
 {
-    m_AncData = value;
+	utility::string_t v = value;
+    m_AncData = v;
     m_AncDataIsSet = true;
 }
 
@@ -262,6 +298,8 @@ void Preview::unsetAncData()
 {
     m_AncDataIsSet = false;
 }
+
+
 utility::string_t Preview::getUserData1() const
 {
     return m_UserData1;
@@ -269,7 +307,8 @@ utility::string_t Preview::getUserData1() const
 
 void Preview::setUserData1(const utility::string_t& value)
 {
-    m_UserData1 = value;
+	utility::string_t v = value;
+    m_UserData1 = v;
     m_UserData1IsSet = true;
 }
 
@@ -282,6 +321,9 @@ void Preview::unsetUserData1()
 {
     m_UserData1IsSet = false;
 }
+
+
+
 utility::string_t Preview::getUserData2() const
 {
     return m_UserData2;
@@ -289,7 +331,8 @@ utility::string_t Preview::getUserData2() const
 
 void Preview::setUserData2(const utility::string_t& value)
 {
-    m_UserData2 = value;
+	utility::string_t v = value;
+    m_UserData2 = v;
     m_UserData2IsSet = true;
 }
 
@@ -302,6 +345,9 @@ void Preview::unsetUserData2()
 {
     m_UserData2IsSet = false;
 }
+
+
+
 }
 }
 }

@@ -43,6 +43,24 @@ void Frame::validate()
     // TODO: implement validation
 }
 
+bool Frame::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (userData1IsSet())
+	{
+		bool userData1Changed = false;
+		utility::string_t v = getUserData1();
+		if (userData1Changed) { setUserData1(v); anyMinMaxValueChanged = true; }
+	}
+	if (userData2IsSet())
+	{
+		bool userData2Changed = false;
+		utility::string_t v = getUserData2();
+		if (userData2Changed) { setUserData2(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Frame::toJson() const
 {
 
@@ -112,6 +130,8 @@ bool Frame::fromJson(const web::json::value& val)
             setUserData2(refVal_userData2);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -173,6 +193,8 @@ bool Frame::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("userData2"))), refVal_userData2 );
         setUserData2(refVal_userData2);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -183,7 +205,8 @@ utility::string_t Frame::getImage() const
 
 void Frame::setImage(const utility::string_t& value)
 {
-    m_Image = value;
+	utility::string_t v = value;
+    m_Image = v;
     m_ImageIsSet = true;
 }
 
@@ -196,6 +219,8 @@ void Frame::unsetImage()
 {
     m_ImageIsSet = false;
 }
+
+
 utility::string_t Frame::getAncData() const
 {
     return m_AncData;
@@ -203,7 +228,8 @@ utility::string_t Frame::getAncData() const
 
 void Frame::setAncData(const utility::string_t& value)
 {
-    m_AncData = value;
+	utility::string_t v = value;
+    m_AncData = v;
     m_AncDataIsSet = true;
 }
 
@@ -216,6 +242,8 @@ void Frame::unsetAncData()
 {
     m_AncDataIsSet = false;
 }
+
+
 utility::string_t Frame::getUserData1() const
 {
     return m_UserData1;
@@ -223,7 +251,8 @@ utility::string_t Frame::getUserData1() const
 
 void Frame::setUserData1(const utility::string_t& value)
 {
-    m_UserData1 = value;
+	utility::string_t v = value;
+    m_UserData1 = v;
     m_UserData1IsSet = true;
 }
 
@@ -236,6 +265,9 @@ void Frame::unsetUserData1()
 {
     m_UserData1IsSet = false;
 }
+
+
+
 utility::string_t Frame::getUserData2() const
 {
     return m_UserData2;
@@ -243,7 +275,8 @@ utility::string_t Frame::getUserData2() const
 
 void Frame::setUserData2(const utility::string_t& value)
 {
-    m_UserData2 = value;
+	utility::string_t v = value;
+    m_UserData2 = v;
     m_UserData2IsSet = true;
 }
 
@@ -256,6 +289,9 @@ void Frame::unsetUserData2()
 {
     m_UserData2IsSet = false;
 }
+
+
+
 }
 }
 }

@@ -47,6 +47,12 @@ void OutputConfig::validate()
     // TODO: implement validation
 }
 
+bool OutputConfig::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value OutputConfig::toJson() const
 {
 
@@ -200,6 +206,8 @@ bool OutputConfig::fromJson(const web::json::value& val)
             setHdmiConnection(refVal_hdmiConnection);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -321,6 +329,8 @@ bool OutputConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hdmiConnection"))), refVal_hdmiConnection );
         setHdmiConnection(refVal_hdmiConnection);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -331,7 +341,8 @@ std::shared_ptr<ColorSpace> OutputConfig::getColorSpace() const
 
 void OutputConfig::setColorSpace(const std::shared_ptr<ColorSpace>& value)
 {
-    m_ColorSpace = value;
+	std::shared_ptr<ColorSpace> v = value;
+    m_ColorSpace = v;
     m_ColorSpaceIsSet = true;
 }
 
@@ -344,6 +355,8 @@ void OutputConfig::unsetColorSpace()
 {
     m_ColorSpaceIsSet = false;
 }
+
+
 std::shared_ptr<RgbRange> OutputConfig::getRgbRange() const
 {
     return m_RgbRange;
@@ -351,7 +364,8 @@ std::shared_ptr<RgbRange> OutputConfig::getRgbRange() const
 
 void OutputConfig::setRgbRange(const std::shared_ptr<RgbRange>& value)
 {
-    m_RgbRange = value;
+	std::shared_ptr<RgbRange> v = value;
+    m_RgbRange = v;
     m_RgbRangeIsSet = true;
 }
 
@@ -364,6 +378,8 @@ void OutputConfig::unsetRgbRange()
 {
     m_RgbRangeIsSet = false;
 }
+
+
 std::shared_ptr<BitDepth> OutputConfig::getBitDepth() const
 {
     return m_BitDepth;
@@ -371,7 +387,8 @@ std::shared_ptr<BitDepth> OutputConfig::getBitDepth() const
 
 void OutputConfig::setBitDepth(const std::shared_ptr<BitDepth>& value)
 {
-    m_BitDepth = value;
+	std::shared_ptr<BitDepth> v = value;
+    m_BitDepth = v;
     m_BitDepthIsSet = true;
 }
 
@@ -384,6 +401,8 @@ void OutputConfig::unsetBitDepth()
 {
     m_BitDepthIsSet = false;
 }
+
+
 std::shared_ptr<ScanMode> OutputConfig::getScanMode() const
 {
     return m_ScanMode;
@@ -391,7 +410,8 @@ std::shared_ptr<ScanMode> OutputConfig::getScanMode() const
 
 void OutputConfig::setScanMode(const std::shared_ptr<ScanMode>& value)
 {
-    m_ScanMode = value;
+	std::shared_ptr<ScanMode> v = value;
+    m_ScanMode = v;
     m_ScanModeIsSet = true;
 }
 
@@ -404,6 +424,8 @@ void OutputConfig::unsetScanMode()
 {
     m_ScanModeIsSet = false;
 }
+
+
 std::shared_ptr<Colorimetry> OutputConfig::getColorimetry() const
 {
     return m_Colorimetry;
@@ -411,7 +433,8 @@ std::shared_ptr<Colorimetry> OutputConfig::getColorimetry() const
 
 void OutputConfig::setColorimetry(const std::shared_ptr<Colorimetry>& value)
 {
-    m_Colorimetry = value;
+	std::shared_ptr<Colorimetry> v = value;
+    m_Colorimetry = v;
     m_ColorimetryIsSet = true;
 }
 
@@ -424,6 +447,8 @@ void OutputConfig::unsetColorimetry()
 {
     m_ColorimetryIsSet = false;
 }
+
+
 std::shared_ptr<Transfer> OutputConfig::getTransfer() const
 {
     return m_Transfer;
@@ -431,7 +456,8 @@ std::shared_ptr<Transfer> OutputConfig::getTransfer() const
 
 void OutputConfig::setTransfer(const std::shared_ptr<Transfer>& value)
 {
-    m_Transfer = value;
+	std::shared_ptr<Transfer> v = value;
+    m_Transfer = v;
     m_TransferIsSet = true;
 }
 
@@ -444,6 +470,8 @@ void OutputConfig::unsetTransfer()
 {
     m_TransferIsSet = false;
 }
+
+
 std::shared_ptr<VideoFormat> OutputConfig::getFormat() const
 {
     return m_Format;
@@ -451,7 +479,8 @@ std::shared_ptr<VideoFormat> OutputConfig::getFormat() const
 
 void OutputConfig::setFormat(const std::shared_ptr<VideoFormat>& value)
 {
-    m_Format = value;
+	std::shared_ptr<VideoFormat> v = value;
+    m_Format = v;
     m_FormatIsSet = true;
 }
 
@@ -464,6 +493,8 @@ void OutputConfig::unsetFormat()
 {
     m_FormatIsSet = false;
 }
+
+
 std::shared_ptr<SdiMode3g> OutputConfig::getSdiMode3g() const
 {
     return m_SdiMode3g;
@@ -471,7 +502,8 @@ std::shared_ptr<SdiMode3g> OutputConfig::getSdiMode3g() const
 
 void OutputConfig::setSdiMode3g(const std::shared_ptr<SdiMode3g>& value)
 {
-    m_SdiMode3g = value;
+	std::shared_ptr<SdiMode3g> v = value;
+    m_SdiMode3g = v;
     m_SdiMode3gIsSet = true;
 }
 
@@ -484,6 +516,8 @@ void OutputConfig::unsetSdiMode3g()
 {
     m_SdiMode3gIsSet = false;
 }
+
+
 std::shared_ptr<Crop4k2k> OutputConfig::getHdmiCrop4k2k() const
 {
     return m_HdmiCrop4k2k;
@@ -491,7 +525,8 @@ std::shared_ptr<Crop4k2k> OutputConfig::getHdmiCrop4k2k() const
 
 void OutputConfig::setHdmiCrop4k2k(const std::shared_ptr<Crop4k2k>& value)
 {
-    m_HdmiCrop4k2k = value;
+	std::shared_ptr<Crop4k2k> v = value;
+    m_HdmiCrop4k2k = v;
     m_HdmiCrop4k2kIsSet = true;
 }
 
@@ -504,6 +539,8 @@ void OutputConfig::unsetHdmiCrop4k2k()
 {
     m_HdmiCrop4k2kIsSet = false;
 }
+
+
 std::shared_ptr<Connection> OutputConfig::getHdmiConnection() const
 {
     return m_HdmiConnection;
@@ -511,7 +548,8 @@ std::shared_ptr<Connection> OutputConfig::getHdmiConnection() const
 
 void OutputConfig::setHdmiConnection(const std::shared_ptr<Connection>& value)
 {
-    m_HdmiConnection = value;
+	std::shared_ptr<Connection> v = value;
+    m_HdmiConnection = v;
     m_HdmiConnectionIsSet = true;
 }
 
@@ -524,6 +562,8 @@ void OutputConfig::unsetHdmiConnection()
 {
     m_HdmiConnectionIsSet = false;
 }
+
+
 }
 }
 }

@@ -55,6 +55,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -74,6 +75,7 @@ public:
 
     void setColorSpace(const std::shared_ptr<ColorSpace>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -82,6 +84,7 @@ public:
     void unsetRgbRange();
 
     void setRgbRange(const std::shared_ptr<RgbRange>& value);
+
 
     /// <summary>
     /// 
@@ -92,6 +95,7 @@ public:
 
     void setBitDepth(const std::shared_ptr<BitDepth>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -100,6 +104,7 @@ public:
     void unsetScanMode();
 
     void setScanMode(const std::shared_ptr<ScanMode>& value);
+
 
     /// <summary>
     /// 
@@ -110,6 +115,7 @@ public:
 
     void setColorimetry(const std::shared_ptr<Colorimetry>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -118,6 +124,7 @@ public:
     void unsetTransfer();
 
     void setTransfer(const std::shared_ptr<Transfer>& value);
+
 
     /// <summary>
     /// 
@@ -128,6 +135,7 @@ public:
 
     void setFormat(const std::shared_ptr<VideoFormat>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -136,6 +144,7 @@ public:
     void unsetSdiMode3g();
 
     void setSdiMode3g(const std::shared_ptr<SdiMode3g>& value);
+
 
     /// <summary>
     /// 
@@ -146,6 +155,7 @@ public:
 
     void setHdmiCrop4k2k(const std::shared_ptr<Crop4k2k>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -154,6 +164,7 @@ public:
     void unsetHdmiConnection();
 
     void setHdmiConnection(const std::shared_ptr<Connection>& value);
+
 
 
 protected:

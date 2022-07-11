@@ -41,6 +41,12 @@ void ColorfrontConfig::validate()
     // TODO: implement validation
 }
 
+bool ColorfrontConfig::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value ColorfrontConfig::toJson() const
 {
 
@@ -96,6 +102,8 @@ bool ColorfrontConfig::fromJson(const web::json::value& val)
             setOutDynRangeGamut(refVal_outDynRangeGamut);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -147,6 +155,8 @@ bool ColorfrontConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("outDynRangeGamut"))), refVal_outDynRangeGamut );
         setOutDynRangeGamut(refVal_outDynRangeGamut);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -157,7 +167,8 @@ bool ColorfrontConfig::isEnabled() const
 
 void ColorfrontConfig::setEnabled(bool value)
 {
-    m_Enabled = value;
+	bool v = value;
+    m_Enabled = v;
     m_EnabledIsSet = true;
 }
 
@@ -170,6 +181,8 @@ void ColorfrontConfig::unsetEnabled()
 {
     m_EnabledIsSet = false;
 }
+
+
 std::shared_ptr<ColorfrontDynRangeGamut> ColorfrontConfig::getInDynRangeGamut() const
 {
     return m_InDynRangeGamut;
@@ -177,7 +190,8 @@ std::shared_ptr<ColorfrontDynRangeGamut> ColorfrontConfig::getInDynRangeGamut() 
 
 void ColorfrontConfig::setInDynRangeGamut(const std::shared_ptr<ColorfrontDynRangeGamut>& value)
 {
-    m_InDynRangeGamut = value;
+	std::shared_ptr<ColorfrontDynRangeGamut> v = value;
+    m_InDynRangeGamut = v;
     m_InDynRangeGamutIsSet = true;
 }
 
@@ -190,6 +204,8 @@ void ColorfrontConfig::unsetInDynRangeGamut()
 {
     m_InDynRangeGamutIsSet = false;
 }
+
+
 std::shared_ptr<ColorfrontDynRangeGamut> ColorfrontConfig::getOutDynRangeGamut() const
 {
     return m_OutDynRangeGamut;
@@ -197,7 +213,8 @@ std::shared_ptr<ColorfrontDynRangeGamut> ColorfrontConfig::getOutDynRangeGamut()
 
 void ColorfrontConfig::setOutDynRangeGamut(const std::shared_ptr<ColorfrontDynRangeGamut>& value)
 {
-    m_OutDynRangeGamut = value;
+	std::shared_ptr<ColorfrontDynRangeGamut> v = value;
+    m_OutDynRangeGamut = v;
     m_OutDynRangeGamutIsSet = true;
 }
 
@@ -210,6 +227,8 @@ void ColorfrontConfig::unsetOutDynRangeGamut()
 {
     m_OutDynRangeGamutIsSet = false;
 }
+
+
 }
 }
 }

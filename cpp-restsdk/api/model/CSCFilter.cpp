@@ -72,6 +72,12 @@ void CSCFilter::validate()
     // TODO: implement validation
 }
 
+bool CSCFilter::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value CSCFilter::toJson() const
 {
     auto val = fromEnum(m_value);

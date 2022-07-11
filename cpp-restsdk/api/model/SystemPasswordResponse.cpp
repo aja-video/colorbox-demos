@@ -41,6 +41,18 @@ void SystemPasswordResponse::validate()
     // TODO: implement validation
 }
 
+bool SystemPasswordResponse::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (messageIsSet())
+	{
+		bool messageChanged = false;
+		utility::string_t v = getMessage();
+		if (messageChanged) { setMessage(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value SystemPasswordResponse::toJson() const
 {
 
@@ -82,6 +94,8 @@ bool SystemPasswordResponse::fromJson(const web::json::value& val)
             setMessage(refVal_message);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -123,6 +137,8 @@ bool SystemPasswordResponse::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("message"))), refVal_message );
         setMessage(refVal_message);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -133,7 +149,8 @@ bool SystemPasswordResponse::isSuccessful() const
 
 void SystemPasswordResponse::setSuccessful(bool value)
 {
-    m_Successful = value;
+	bool v = value;
+    m_Successful = v;
     m_SuccessfulIsSet = true;
 }
 
@@ -146,6 +163,8 @@ void SystemPasswordResponse::unsetSuccessful()
 {
     m_SuccessfulIsSet = false;
 }
+
+
 utility::string_t SystemPasswordResponse::getMessage() const
 {
     return m_Message;
@@ -153,7 +172,8 @@ utility::string_t SystemPasswordResponse::getMessage() const
 
 void SystemPasswordResponse::setMessage(const utility::string_t& value)
 {
-    m_Message = value;
+	utility::string_t v = value;
+    m_Message = v;
     m_MessageIsSet = true;
 }
 
@@ -166,6 +186,9 @@ void SystemPasswordResponse::unsetMessage()
 {
     m_MessageIsSet = false;
 }
+
+
+
 }
 }
 }

@@ -76,6 +76,12 @@ void OrionClamping::validate()
     // TODO: implement validation
 }
 
+bool OrionClamping::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value OrionClamping::toJson() const
 {
     auto val = fromEnum(m_value);

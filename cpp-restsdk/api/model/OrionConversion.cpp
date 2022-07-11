@@ -88,6 +88,12 @@ void OrionConversion::validate()
     // TODO: implement validation
 }
 
+bool OrionConversion::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value OrionConversion::toJson() const
 {
     auto val = fromEnum(m_value);

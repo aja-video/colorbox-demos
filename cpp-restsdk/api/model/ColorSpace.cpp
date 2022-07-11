@@ -68,6 +68,12 @@ void ColorSpace::validate()
     // TODO: implement validation
 }
 
+bool ColorSpace::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value ColorSpace::toJson() const
 {
     auto val = fromEnum(m_value);

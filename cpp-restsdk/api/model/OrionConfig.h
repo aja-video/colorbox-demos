@@ -52,6 +52,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -71,6 +72,7 @@ public:
 
     void setEnabled(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -79,6 +81,7 @@ public:
     void unsetConversion();
 
     void setConversion(const std::shared_ptr<OrionConversion>& value);
+
 
     /// <summary>
     /// 
@@ -89,6 +92,7 @@ public:
 
     void setMode(const std::shared_ptr<OrionMode>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -97,6 +101,7 @@ public:
     void unsetMethod();
 
     void setMethod(const std::shared_ptr<OrionMethod>& value);
+
 
     /// <summary>
     /// 
@@ -107,6 +112,7 @@ public:
 
     void setSourceRange(const std::shared_ptr<OrionSourceRange>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -115,6 +121,9 @@ public:
     void unsetHdrRef();
 
     void setHdrRef(double value);
+
+    double hdrRefMin() const;
+    double hdrRefMax() const;
 
     /// <summary>
     /// 
@@ -125,6 +134,9 @@ public:
 
     void setSdrRef(double value);
 
+    double sdrRefMin() const;
+    double sdrRefMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -133,6 +145,9 @@ public:
     void unsetHdrPeak();
 
     void setHdrPeak(int32_t value);
+
+    int32_t hdrPeakMin() const;
+    int32_t hdrPeakMax() const;
 
     /// <summary>
     /// 
@@ -143,6 +158,7 @@ public:
 
     void setSdrEotf(const std::shared_ptr<OrionSdrEotf>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -151,6 +167,9 @@ public:
     void unsetPreKnee();
 
     void setPreKnee(double value);
+
+    double preKneeMin() const;
+    double preKneeMax() const;
 
     /// <summary>
     /// 
@@ -161,6 +180,9 @@ public:
 
     void setPreAmount(double value);
 
+    double preAmountMin() const;
+    double preAmountMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -169,6 +191,9 @@ public:
     void unsetPostKnee();
 
     void setPostKnee(double value);
+
+    double postKneeMin() const;
+    double postKneeMax() const;
 
     /// <summary>
     /// 
@@ -179,6 +204,9 @@ public:
 
     void setPostAmount(double value);
 
+    double postAmountMin() const;
+    double postAmountMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -188,6 +216,7 @@ public:
 
     void setClamping(const std::shared_ptr<OrionClamping>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -196,6 +225,7 @@ public:
     void unsetImplementation();
 
     void setImplementation(const std::shared_ptr<OrionImplementation>& value);
+
 
 
 protected:

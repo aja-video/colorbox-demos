@@ -68,6 +68,12 @@ void InterfaceSetupState::validate()
     // TODO: implement validation
 }
 
+bool InterfaceSetupState::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value InterfaceSetupState::toJson() const
 {
     auto val = fromEnum(m_value);

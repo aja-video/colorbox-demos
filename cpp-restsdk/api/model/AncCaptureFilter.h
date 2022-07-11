@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,7 @@ public:
 
     void setEnable(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -73,6 +75,7 @@ public:
     void unsetDids();
 
     void setDids(std::vector<double> value);
+
 
 
 protected:

@@ -47,6 +47,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -66,6 +67,7 @@ public:
 
     void setDeviceDieTemp(const std::shared_ptr<StatusInfo>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -74,6 +76,7 @@ public:
     void unsetSystemDate();
 
     void setSystemDate(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -84,6 +87,7 @@ public:
 
     void setSystemTime(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -92,6 +96,7 @@ public:
     void unsetSystemUptime();
 
     void setSystemUptime(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -102,6 +107,7 @@ public:
 
     void setSystemOsName(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -110,6 +116,7 @@ public:
     void unsetSystemSerialNumber();
 
     void setSystemSerialNumber(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -120,6 +127,7 @@ public:
 
     void setSystemCatalogNumber(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -128,6 +136,7 @@ public:
     void unsetSystemAppSwVersion();
 
     void setSystemAppSwVersion(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -138,6 +147,7 @@ public:
 
     void setSystemSupportInfo(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -146,6 +156,7 @@ public:
     void unsetEulaAccepted();
 
     void setEulaAccepted(bool value);
+
 
     /// <summary>
     /// 
@@ -156,6 +167,7 @@ public:
 
     void setLicenseActive(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -164,6 +176,7 @@ public:
     void unsetBbcLutsLicensed();
 
     void setBbcLutsLicensed(bool value);
+
 
     /// <summary>
     /// 
@@ -174,6 +187,7 @@ public:
 
     void setOrionEngineLicensed(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -182,6 +196,7 @@ public:
     void unsetColorfrontEngineLicensed();
 
     void setColorfrontEngineLicensed(bool value);
+
 
     /// <summary>
     /// 
@@ -192,6 +207,7 @@ public:
 
     void setShutdownTime(int32_t value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -200,6 +216,7 @@ public:
     void unsetColorfrontTransformVersion();
 
     void setColorfrontTransformVersion(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -210,6 +227,7 @@ public:
 
     void setColorfrontEngineVersion(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -218,6 +236,7 @@ public:
     void unsetOrionVersion();
 
     void setOrionVersion(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -228,6 +247,7 @@ public:
 
     void setBbcLutVersion(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -237,6 +257,7 @@ public:
 
     void setNbcuLutVersion(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -245,6 +266,7 @@ public:
     void unsetCpuBusy();
 
     void setCpuBusy(bool value);
+
 
 
 protected:

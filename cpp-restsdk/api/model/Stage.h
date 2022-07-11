@@ -47,6 +47,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -66,6 +67,7 @@ public:
 
     void setEnabled(bool value);
 
+
     /// <summary>
     /// true if stage can be dynamically adjusted
     /// </summary>
@@ -74,6 +76,7 @@ public:
     void unsetDynamic();
 
     void setDynamic(bool value);
+
 
     /// <summary>
     /// library entry number, zero is unity bypass
@@ -84,6 +87,7 @@ public:
 
     void setLibraryEntry(int32_t value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -93,6 +97,7 @@ public:
 
     void setColorCorrector(const std::shared_ptr<ColorCorrector>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -101,6 +106,7 @@ public:
     void unsetProcAmp();
 
     void setProcAmp(const std::shared_ptr<ProcAmp>& value);
+
 
 
 protected:

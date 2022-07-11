@@ -40,6 +40,18 @@ void NetConfig::validate()
     // TODO: implement validation
 }
 
+bool NetConfig::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (ipChangeCommitIsSet())
+	{
+		bool ipChangeCommitChanged = false;
+		int32_t v = getIpChangeCommit();
+		if (ipChangeCommitChanged) { setIpChangeCommit(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value NetConfig::toJson() const
 {
 
@@ -81,6 +93,8 @@ bool NetConfig::fromJson(const web::json::value& val)
             setIpChangeCommit(refVal_ipChangeCommit);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -122,6 +136,8 @@ bool NetConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("ipChangeCommit"))), refVal_ipChangeCommit );
         setIpChangeCommit(refVal_ipChangeCommit);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -132,7 +148,8 @@ std::shared_ptr<IpConfig> NetConfig::getIpConfig() const
 
 void NetConfig::setIpConfig(const std::shared_ptr<IpConfig>& value)
 {
-    m_IpConfig = value;
+	std::shared_ptr<IpConfig> v = value;
+    m_IpConfig = v;
     m_IpConfigIsSet = true;
 }
 
@@ -145,6 +162,8 @@ void NetConfig::unsetIpConfig()
 {
     m_IpConfigIsSet = false;
 }
+
+
 int32_t NetConfig::getIpChangeCommit() const
 {
     return m_IpChangeCommit;
@@ -152,7 +171,8 @@ int32_t NetConfig::getIpChangeCommit() const
 
 void NetConfig::setIpChangeCommit(int32_t value)
 {
-    m_IpChangeCommit = value;
+	int32_t v = value;
+    m_IpChangeCommit = v;
     m_IpChangeCommitIsSet = true;
 }
 
@@ -165,6 +185,9 @@ void NetConfig::unsetIpChangeCommit()
 {
     m_IpChangeCommitIsSet = false;
 }
+
+
+
 }
 }
 }

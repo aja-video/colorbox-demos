@@ -80,6 +80,12 @@ void Locations::validate()
     // TODO: implement validation
 }
 
+bool Locations::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Locations::toJson() const
 {
     auto val = fromEnum(m_value);

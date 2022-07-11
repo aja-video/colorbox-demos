@@ -40,6 +40,12 @@ void BbcConfig::validate()
     // TODO: implement validation
 }
 
+bool BbcConfig::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value BbcConfig::toJson() const
 {
 
@@ -95,6 +101,8 @@ bool BbcConfig::fromJson(const web::json::value& val)
             setLut3d1(refVal_lut3d_1);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -146,6 +154,8 @@ bool BbcConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("lut3d_1"))), refVal_lut3d_1 );
         setLut3d1(refVal_lut3d_1);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -156,7 +166,8 @@ std::shared_ptr<Stage> BbcConfig::getLut1d1() const
 
 void BbcConfig::setLut1d1(const std::shared_ptr<Stage>& value)
 {
-    m_Lut1d_1 = value;
+	std::shared_ptr<Stage> v = value;
+    m_Lut1d_1 = v;
     m_Lut1d_1IsSet = true;
 }
 
@@ -169,6 +180,8 @@ void BbcConfig::unsetLut1d_1()
 {
     m_Lut1d_1IsSet = false;
 }
+
+
 std::shared_ptr<Stage> BbcConfig::getM3x32() const
 {
     return m_M3x3_2;
@@ -176,7 +189,8 @@ std::shared_ptr<Stage> BbcConfig::getM3x32() const
 
 void BbcConfig::setM3x32(const std::shared_ptr<Stage>& value)
 {
-    m_M3x3_2 = value;
+	std::shared_ptr<Stage> v = value;
+    m_M3x3_2 = v;
     m_M3x3_2IsSet = true;
 }
 
@@ -189,6 +203,8 @@ void BbcConfig::unsetM3x3_2()
 {
     m_M3x3_2IsSet = false;
 }
+
+
 std::shared_ptr<Stage> BbcConfig::getLut3d1() const
 {
     return m_Lut3d_1;
@@ -196,7 +212,8 @@ std::shared_ptr<Stage> BbcConfig::getLut3d1() const
 
 void BbcConfig::setLut3d1(const std::shared_ptr<Stage>& value)
 {
-    m_Lut3d_1 = value;
+	std::shared_ptr<Stage> v = value;
+    m_Lut3d_1 = v;
     m_Lut3d_1IsSet = true;
 }
 
@@ -209,6 +226,8 @@ void BbcConfig::unsetLut3d_1()
 {
     m_Lut3d_1IsSet = false;
 }
+
+
 }
 }
 }

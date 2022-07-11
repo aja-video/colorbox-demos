@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,7 @@ public:
 
     void setWifiControl(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -73,6 +75,7 @@ public:
     void unsetWifiNetwork();
 
     void setWifiNetwork(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -83,6 +86,7 @@ public:
 
     void setWifiPassword(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -91,6 +95,7 @@ public:
     void unsetWifiSecurity();
 
     void setWifiSecurity(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -101,6 +106,7 @@ public:
 
     void setWifiIpConfig(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -109,6 +115,7 @@ public:
     void unsetAddress();
 
     void setAddress(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -119,6 +126,7 @@ public:
 
     void setSubnet(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -128,6 +136,7 @@ public:
 
     void setGateway(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -136,6 +145,7 @@ public:
     void unsetWifiIpChangeCommit();
 
     void setWifiIpChangeCommit(int32_t value);
+
 
 
 protected:

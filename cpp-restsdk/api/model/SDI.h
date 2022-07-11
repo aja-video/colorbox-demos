@@ -53,6 +53,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -72,6 +73,7 @@ public:
 
     void setColorSpace(const std::shared_ptr<ColorSpace>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -80,6 +82,7 @@ public:
     void unsetRgbRange();
 
     void setRgbRange(const std::shared_ptr<RgbRange>& value);
+
 
     /// <summary>
     /// 
@@ -90,6 +93,7 @@ public:
 
     void setBitDepth(const std::shared_ptr<BitDepth>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -98,6 +102,7 @@ public:
     void unsetScanMode();
 
     void setScanMode(const std::shared_ptr<ScanMode>& value);
+
 
     /// <summary>
     /// 
@@ -108,6 +113,7 @@ public:
 
     void setSdiMode3g(const std::shared_ptr<SdiMode3g>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -116,6 +122,7 @@ public:
     void unsetColorimetry();
 
     void setColorimetry(const std::shared_ptr<Colorimetry>& value);
+
 
     /// <summary>
     /// 
@@ -126,6 +133,7 @@ public:
 
     void setTransfer(const std::shared_ptr<Transfer>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -134,6 +142,7 @@ public:
     void unsetFormat();
 
     void setFormat(const std::shared_ptr<VideoFormat>& value);
+
 
 
 protected:

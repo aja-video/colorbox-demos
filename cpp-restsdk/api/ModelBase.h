@@ -43,6 +43,7 @@ public:
     virtual ~ModelBase();
 
     virtual void validate() = 0;
+    virtual bool applyMinMaxConstraints() = 0;
 
     virtual web::json::value toJson() const = 0;
     virtual bool fromJson( const web::json::value& json ) = 0;

@@ -84,6 +84,12 @@ void LibraryAction::validate()
     // TODO: implement validation
 }
 
+bool LibraryAction::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value LibraryAction::toJson() const
 {
     auto val = fromEnum(m_value);

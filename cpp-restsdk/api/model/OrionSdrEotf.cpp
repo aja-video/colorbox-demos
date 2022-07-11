@@ -72,6 +72,12 @@ void OrionSdrEotf::validate()
     // TODO: implement validation
 }
 
+bool OrionSdrEotf::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value OrionSdrEotf::toJson() const
 {
     auto val = fromEnum(m_value);

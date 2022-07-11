@@ -72,6 +72,12 @@ void ScanMode::validate()
     // TODO: implement validation
 }
 
+bool ScanMode::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value ScanMode::toJson() const
 {
     auto val = fromEnum(m_value);

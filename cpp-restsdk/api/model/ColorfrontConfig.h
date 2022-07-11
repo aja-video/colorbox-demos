@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,7 @@ public:
 
     void setEnabled(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -74,6 +76,7 @@ public:
 
     void setInDynRangeGamut(const std::shared_ptr<ColorfrontDynRangeGamut>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -82,6 +85,7 @@ public:
     void unsetOutDynRangeGamut();
 
     void setOutDynRangeGamut(const std::shared_ptr<ColorfrontDynRangeGamut>& value);
+
 
 
 protected:

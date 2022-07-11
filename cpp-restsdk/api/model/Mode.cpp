@@ -64,6 +64,12 @@ void Mode::validate()
     // TODO: implement validation
 }
 
+bool Mode::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Mode::toJson() const
 {
     auto val = fromEnum(m_value);

@@ -53,6 +53,76 @@ void ProcAmp::validate()
     // TODO: implement validation
 }
 
+bool ProcAmp::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (blackIsSet())
+	{
+		bool blackChanged = false;
+		double v = getBlack();
+		double min = blackMin();
+		double max = blackMax();
+		if (v < min) { v = min; blackChanged = true; }
+		if (v > max) { v = max; blackChanged = true; }
+		if (blackChanged) { setBlack(v); anyMinMaxValueChanged = true; }
+	}
+	if (gainIsSet())
+	{
+		bool gainChanged = false;
+		double v = getGain();
+		double min = gainMin();
+		double max = gainMax();
+		if (v < min) { v = min; gainChanged = true; }
+		if (v > max) { v = max; gainChanged = true; }
+		if (gainChanged) { setGain(v); anyMinMaxValueChanged = true; }
+	}
+	if (hueIsSet())
+	{
+		bool hueChanged = false;
+		double v = getHue();
+		double min = hueMin();
+		double max = hueMax();
+		if (v < min) { v = min; hueChanged = true; }
+		if (v > max) { v = max; hueChanged = true; }
+		if (hueChanged) { setHue(v); anyMinMaxValueChanged = true; }
+	}
+	if (satIsSet())
+	{
+		bool satChanged = false;
+		double v = getSat();
+		double min = satMin();
+		double max = satMax();
+		if (v < min) { v = min; satChanged = true; }
+		if (v > max) { v = max; satChanged = true; }
+		if (satChanged) { setSat(v); anyMinMaxValueChanged = true; }
+	}
+	if (unitsBlackIsSet())
+	{
+		bool unitsBlackChanged = false;
+		utility::string_t v = getUnitsBlack();
+		if (unitsBlackChanged) { setUnitsBlack(v); anyMinMaxValueChanged = true; }
+	}
+	if (unitsGainIsSet())
+	{
+		bool unitsGainChanged = false;
+		utility::string_t v = getUnitsGain();
+		if (unitsGainChanged) { setUnitsGain(v); anyMinMaxValueChanged = true; }
+	}
+	if (unitsHueIsSet())
+	{
+		bool unitsHueChanged = false;
+		utility::string_t v = getUnitsHue();
+		if (unitsHueChanged) { setUnitsHue(v); anyMinMaxValueChanged = true; }
+	}
+	if (unitsSatIsSet())
+	{
+		bool unitsSatChanged = false;
+		utility::string_t v = getUnitsSat();
+		if (unitsSatChanged) { setUnitsSat(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value ProcAmp::toJson() const
 {
 
@@ -178,6 +248,8 @@ bool ProcAmp::fromJson(const web::json::value& val)
             setUnitsSat(refVal_unitsSat);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -279,6 +351,8 @@ bool ProcAmp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("unitsSat"))), refVal_unitsSat );
         setUnitsSat(refVal_unitsSat);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -289,7 +363,12 @@ double ProcAmp::getBlack() const
 
 void ProcAmp::setBlack(double value)
 {
-    m_Black = value;
+	double v = value;
+	double min = blackMin();
+	double max = blackMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_Black = v;
     m_BlackIsSet = true;
 }
 
@@ -302,6 +381,15 @@ void ProcAmp::unsetBlack()
 {
     m_BlackIsSet = false;
 }
+
+double ProcAmp::blackMin() const {
+	return -20.0;
+}
+
+double ProcAmp::blackMax() const {
+	return 20.0;
+}
+
 double ProcAmp::getGain() const
 {
     return m_Gain;
@@ -309,7 +397,12 @@ double ProcAmp::getGain() const
 
 void ProcAmp::setGain(double value)
 {
-    m_Gain = value;
+	double v = value;
+	double min = gainMin();
+	double max = gainMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_Gain = v;
     m_GainIsSet = true;
 }
 
@@ -322,6 +415,15 @@ void ProcAmp::unsetGain()
 {
     m_GainIsSet = false;
 }
+
+double ProcAmp::gainMin() const {
+	return 0;
+}
+
+double ProcAmp::gainMax() const {
+	return 1.5;
+}
+
 double ProcAmp::getHue() const
 {
     return m_Hue;
@@ -329,7 +431,12 @@ double ProcAmp::getHue() const
 
 void ProcAmp::setHue(double value)
 {
-    m_Hue = value;
+	double v = value;
+	double min = hueMin();
+	double max = hueMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_Hue = v;
     m_HueIsSet = true;
 }
 
@@ -342,6 +449,15 @@ void ProcAmp::unsetHue()
 {
     m_HueIsSet = false;
 }
+
+double ProcAmp::hueMin() const {
+	return -179;
+}
+
+double ProcAmp::hueMax() const {
+	return 180;
+}
+
 double ProcAmp::getSat() const
 {
     return m_Sat;
@@ -349,7 +465,12 @@ double ProcAmp::getSat() const
 
 void ProcAmp::setSat(double value)
 {
-    m_Sat = value;
+	double v = value;
+	double min = satMin();
+	double max = satMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_Sat = v;
     m_SatIsSet = true;
 }
 
@@ -362,6 +483,15 @@ void ProcAmp::unsetSat()
 {
     m_SatIsSet = false;
 }
+
+double ProcAmp::satMin() const {
+	return 0.0;
+}
+
+double ProcAmp::satMax() const {
+	return 1.5;
+}
+
 utility::string_t ProcAmp::getUnitsBlack() const
 {
     return m_UnitsBlack;
@@ -369,7 +499,8 @@ utility::string_t ProcAmp::getUnitsBlack() const
 
 void ProcAmp::setUnitsBlack(const utility::string_t& value)
 {
-    m_UnitsBlack = value;
+	utility::string_t v = value;
+    m_UnitsBlack = v;
     m_UnitsBlackIsSet = true;
 }
 
@@ -382,6 +513,9 @@ void ProcAmp::unsetUnitsBlack()
 {
     m_UnitsBlackIsSet = false;
 }
+
+
+
 utility::string_t ProcAmp::getUnitsGain() const
 {
     return m_UnitsGain;
@@ -389,7 +523,8 @@ utility::string_t ProcAmp::getUnitsGain() const
 
 void ProcAmp::setUnitsGain(const utility::string_t& value)
 {
-    m_UnitsGain = value;
+	utility::string_t v = value;
+    m_UnitsGain = v;
     m_UnitsGainIsSet = true;
 }
 
@@ -402,6 +537,9 @@ void ProcAmp::unsetUnitsGain()
 {
     m_UnitsGainIsSet = false;
 }
+
+
+
 utility::string_t ProcAmp::getUnitsHue() const
 {
     return m_UnitsHue;
@@ -409,7 +547,8 @@ utility::string_t ProcAmp::getUnitsHue() const
 
 void ProcAmp::setUnitsHue(const utility::string_t& value)
 {
-    m_UnitsHue = value;
+	utility::string_t v = value;
+    m_UnitsHue = v;
     m_UnitsHueIsSet = true;
 }
 
@@ -422,6 +561,9 @@ void ProcAmp::unsetUnitsHue()
 {
     m_UnitsHueIsSet = false;
 }
+
+
+
 utility::string_t ProcAmp::getUnitsSat() const
 {
     return m_UnitsSat;
@@ -429,7 +571,8 @@ utility::string_t ProcAmp::getUnitsSat() const
 
 void ProcAmp::setUnitsSat(const utility::string_t& value)
 {
-    m_UnitsSat = value;
+	utility::string_t v = value;
+    m_UnitsSat = v;
     m_UnitsSatIsSet = true;
 }
 
@@ -442,6 +585,9 @@ void ProcAmp::unsetUnitsSat()
 {
     m_UnitsSatIsSet = false;
 }
+
+
+
 }
 }
 }

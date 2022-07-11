@@ -68,6 +68,12 @@ void ColorfrontDynRangeGamut::validate()
     // TODO: implement validation
 }
 
+bool ColorfrontDynRangeGamut::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value ColorfrontDynRangeGamut::toJson() const
 {
     auto val = fromEnum(m_value);

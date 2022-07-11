@@ -64,6 +64,12 @@ void OrionSourceRange::validate()
     // TODO: implement validation
 }
 
+bool OrionSourceRange::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value OrionSourceRange::toJson() const
 {
     auto val = fromEnum(m_value);

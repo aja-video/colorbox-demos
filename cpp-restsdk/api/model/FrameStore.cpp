@@ -51,6 +51,24 @@ void FrameStore::validate()
     // TODO: implement validation
 }
 
+bool FrameStore::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (imageNameIsSet())
+	{
+		bool imageNameChanged = false;
+		utility::string_t v = getImageName();
+		if (imageNameChanged) { setImageName(v); anyMinMaxValueChanged = true; }
+	}
+	if (libraryEntryIsSet())
+	{
+		bool libraryEntryChanged = false;
+		int32_t v = getLibraryEntry();
+		if (libraryEntryChanged) { setLibraryEntry(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value FrameStore::toJson() const
 {
 
@@ -190,6 +208,8 @@ bool FrameStore::fromJson(const web::json::value& val)
             setRgbRange(refVal_rgbRange);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -301,6 +321,8 @@ bool FrameStore::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("rgbRange"))), refVal_rgbRange );
         setRgbRange(refVal_rgbRange);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -311,7 +333,8 @@ bool FrameStore::isEnabled() const
 
 void FrameStore::setEnabled(bool value)
 {
-    m_Enabled = value;
+	bool v = value;
+    m_Enabled = v;
     m_EnabledIsSet = true;
 }
 
@@ -324,6 +347,8 @@ void FrameStore::unsetEnabled()
 {
     m_EnabledIsSet = false;
 }
+
+
 bool FrameStore::isDynamic() const
 {
     return m_Dynamic;
@@ -331,7 +356,8 @@ bool FrameStore::isDynamic() const
 
 void FrameStore::setDynamic(bool value)
 {
-    m_Dynamic = value;
+	bool v = value;
+    m_Dynamic = v;
     m_DynamicIsSet = true;
 }
 
@@ -344,6 +370,8 @@ void FrameStore::unsetDynamic()
 {
     m_DynamicIsSet = false;
 }
+
+
 utility::string_t FrameStore::getImageName() const
 {
     return m_ImageName;
@@ -351,7 +379,8 @@ utility::string_t FrameStore::getImageName() const
 
 void FrameStore::setImageName(const utility::string_t& value)
 {
-    m_ImageName = value;
+	utility::string_t v = value;
+    m_ImageName = v;
     m_ImageNameIsSet = true;
 }
 
@@ -364,6 +393,9 @@ void FrameStore::unsetImageName()
 {
     m_ImageNameIsSet = false;
 }
+
+
+
 bool FrameStore::isTimecodeAppended() const
 {
     return m_TimecodeAppended;
@@ -371,7 +403,8 @@ bool FrameStore::isTimecodeAppended() const
 
 void FrameStore::setTimecodeAppended(bool value)
 {
-    m_TimecodeAppended = value;
+	bool v = value;
+    m_TimecodeAppended = v;
     m_TimecodeAppendedIsSet = true;
 }
 
@@ -384,6 +417,8 @@ void FrameStore::unsetTimecodeAppended()
 {
     m_TimecodeAppendedIsSet = false;
 }
+
+
 std::shared_ptr<FileTypeChoice> FrameStore::getFileType() const
 {
     return m_FileType;
@@ -391,7 +426,8 @@ std::shared_ptr<FileTypeChoice> FrameStore::getFileType() const
 
 void FrameStore::setFileType(const std::shared_ptr<FileTypeChoice>& value)
 {
-    m_FileType = value;
+	std::shared_ptr<FileTypeChoice> v = value;
+    m_FileType = v;
     m_FileTypeIsSet = true;
 }
 
@@ -404,6 +440,8 @@ void FrameStore::unsetFileType()
 {
     m_FileTypeIsSet = false;
 }
+
+
 int32_t FrameStore::getLibraryEntry() const
 {
     return m_LibraryEntry;
@@ -411,7 +449,8 @@ int32_t FrameStore::getLibraryEntry() const
 
 void FrameStore::setLibraryEntry(int32_t value)
 {
-    m_LibraryEntry = value;
+	int32_t v = value;
+    m_LibraryEntry = v;
     m_LibraryEntryIsSet = true;
 }
 
@@ -424,6 +463,9 @@ void FrameStore::unsetLibraryEntry()
 {
     m_LibraryEntryIsSet = false;
 }
+
+
+
 std::shared_ptr<VideoFormat> FrameStore::getFormat() const
 {
     return m_Format;
@@ -431,7 +473,8 @@ std::shared_ptr<VideoFormat> FrameStore::getFormat() const
 
 void FrameStore::setFormat(const std::shared_ptr<VideoFormat>& value)
 {
-    m_Format = value;
+	std::shared_ptr<VideoFormat> v = value;
+    m_Format = v;
     m_FormatIsSet = true;
 }
 
@@ -444,6 +487,8 @@ void FrameStore::unsetFormat()
 {
     m_FormatIsSet = false;
 }
+
+
 std::shared_ptr<VideoConvertChoice> FrameStore::getConvert() const
 {
     return m_Convert;
@@ -451,7 +496,8 @@ std::shared_ptr<VideoConvertChoice> FrameStore::getConvert() const
 
 void FrameStore::setConvert(const std::shared_ptr<VideoConvertChoice>& value)
 {
-    m_Convert = value;
+	std::shared_ptr<VideoConvertChoice> v = value;
+    m_Convert = v;
     m_ConvertIsSet = true;
 }
 
@@ -464,6 +510,8 @@ void FrameStore::unsetConvert()
 {
     m_ConvertIsSet = false;
 }
+
+
 std::shared_ptr<RgbRange> FrameStore::getRgbRange() const
 {
     return m_RgbRange;
@@ -471,7 +519,8 @@ std::shared_ptr<RgbRange> FrameStore::getRgbRange() const
 
 void FrameStore::setRgbRange(const std::shared_ptr<RgbRange>& value)
 {
-    m_RgbRange = value;
+	std::shared_ptr<RgbRange> v = value;
+    m_RgbRange = v;
     m_RgbRangeIsSet = true;
 }
 
@@ -484,6 +533,8 @@ void FrameStore::unsetRgbRange()
 {
     m_RgbRangeIsSet = false;
 }
+
+
 }
 }
 }

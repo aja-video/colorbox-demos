@@ -64,6 +64,12 @@ void IpConfig::validate()
     // TODO: implement validation
 }
 
+bool IpConfig::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value IpConfig::toJson() const
 {
     auto val = fromEnum(m_value);

@@ -76,6 +76,12 @@ void TransformMode::validate()
     // TODO: implement validation
 }
 
+bool TransformMode::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value TransformMode::toJson() const
 {
     auto val = fromEnum(m_value);

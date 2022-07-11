@@ -47,6 +47,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -66,6 +67,7 @@ public:
 
     void setUpperBoundGood(double value);
 
+
     /// <summary>
     /// The upper bound for the state to be considered StatusStateMaybe
     /// </summary>
@@ -74,6 +76,7 @@ public:
     void unsetUpperBoundMaybe();
 
     void setUpperBoundMaybe(double value);
+
 
     /// <summary>
     /// The instantaneous value for this status object
@@ -84,6 +87,7 @@ public:
 
     void setValue(const utility::string_t& value);
 
+
     /// <summary>
     /// The instantaneous value for this status object
     /// </summary>
@@ -92,6 +96,7 @@ public:
     void unsetValueInt();
 
     void setValueInt(double value);
+
 
     /// <summary>
     /// A descriptive label of what this status object represents
@@ -102,6 +107,7 @@ public:
 
     void setLabel(const utility::string_t& value);
 
+
     /// <summary>
     /// A second value that is optional
     /// </summary>
@@ -110,6 +116,7 @@ public:
     void unsetExtraValue();
 
     void setExtraValue(const utility::string_t& value);
+
 
     /// <summary>
     /// A second descriptive label for the extraValue
@@ -120,6 +127,7 @@ public:
 
     void setExtraLabel(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -128,6 +136,7 @@ public:
     void unsetState();
 
     void setState(const std::shared_ptr<StatusState>& value);
+
 
 
 protected:

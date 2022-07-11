@@ -59,6 +59,78 @@ void SystemDiscover::validate()
     // TODO: implement validation
 }
 
+bool SystemDiscover::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (serviceDescriptionIsSet())
+	{
+		bool serviceDescriptionChanged = false;
+		utility::string_t v = getServiceDescription();
+		if (serviceDescriptionChanged) { setServiceDescription(v); anyMinMaxValueChanged = true; }
+	}
+	if (serviceTypeIsSet())
+	{
+		bool serviceTypeChanged = false;
+		utility::string_t v = getServiceType();
+		if (serviceTypeChanged) { setServiceType(v); anyMinMaxValueChanged = true; }
+	}
+	if (serviceDomainIsSet())
+	{
+		bool serviceDomainChanged = false;
+		utility::string_t v = getServiceDomain();
+		if (serviceDomainChanged) { setServiceDomain(v); anyMinMaxValueChanged = true; }
+	}
+	if (hostNameIsSet())
+	{
+		bool hostNameChanged = false;
+		utility::string_t v = getHostName();
+		if (hostNameChanged) { setHostName(v); anyMinMaxValueChanged = true; }
+	}
+	if (ipAddressIsSet())
+	{
+		bool ipAddressChanged = false;
+		utility::string_t v = getIpAddress();
+		if (ipAddressChanged) { setIpAddress(v); anyMinMaxValueChanged = true; }
+	}
+	if (portIsSet())
+	{
+		bool portChanged = false;
+		double v = getPort();
+		if (portChanged) { setPort(v); anyMinMaxValueChanged = true; }
+	}
+	if (deviceNameIsSet())
+	{
+		bool deviceNameChanged = false;
+		utility::string_t v = getDeviceName();
+		if (deviceNameChanged) { setDeviceName(v); anyMinMaxValueChanged = true; }
+	}
+	if (descriptionIsSet())
+	{
+		bool descriptionChanged = false;
+		utility::string_t v = getDescription();
+		if (descriptionChanged) { setDescription(v); anyMinMaxValueChanged = true; }
+	}
+	if (boardTypeIsSet())
+	{
+		bool boardTypeChanged = false;
+		utility::string_t v = getBoardType();
+		if (boardTypeChanged) { setBoardType(v); anyMinMaxValueChanged = true; }
+	}
+	if (boardNumberIsSet())
+	{
+		bool boardNumberChanged = false;
+		utility::string_t v = getBoardNumber();
+		if (boardNumberChanged) { setBoardNumber(v); anyMinMaxValueChanged = true; }
+	}
+	if (boardIDIsSet())
+	{
+		bool boardIDChanged = false;
+		utility::string_t v = getBoardID();
+		if (boardIDChanged) { setBoardID(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value SystemDiscover::toJson() const
 {
 
@@ -226,6 +298,8 @@ bool SystemDiscover::fromJson(const web::json::value& val)
             setBoardID(refVal_boardID);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -357,6 +431,8 @@ bool SystemDiscover::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("boardID"))), refVal_boardID );
         setBoardID(refVal_boardID);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -367,7 +443,8 @@ utility::string_t SystemDiscover::getServiceDescription() const
 
 void SystemDiscover::setServiceDescription(const utility::string_t& value)
 {
-    m_ServiceDescription = value;
+	utility::string_t v = value;
+    m_ServiceDescription = v;
     m_ServiceDescriptionIsSet = true;
 }
 
@@ -380,6 +457,9 @@ void SystemDiscover::unsetServiceDescription()
 {
     m_ServiceDescriptionIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getServiceType() const
 {
     return m_ServiceType;
@@ -387,7 +467,8 @@ utility::string_t SystemDiscover::getServiceType() const
 
 void SystemDiscover::setServiceType(const utility::string_t& value)
 {
-    m_ServiceType = value;
+	utility::string_t v = value;
+    m_ServiceType = v;
     m_ServiceTypeIsSet = true;
 }
 
@@ -400,6 +481,9 @@ void SystemDiscover::unsetServiceType()
 {
     m_ServiceTypeIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getServiceDomain() const
 {
     return m_ServiceDomain;
@@ -407,7 +491,8 @@ utility::string_t SystemDiscover::getServiceDomain() const
 
 void SystemDiscover::setServiceDomain(const utility::string_t& value)
 {
-    m_ServiceDomain = value;
+	utility::string_t v = value;
+    m_ServiceDomain = v;
     m_ServiceDomainIsSet = true;
 }
 
@@ -420,6 +505,9 @@ void SystemDiscover::unsetServiceDomain()
 {
     m_ServiceDomainIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getHostName() const
 {
     return m_HostName;
@@ -427,7 +515,8 @@ utility::string_t SystemDiscover::getHostName() const
 
 void SystemDiscover::setHostName(const utility::string_t& value)
 {
-    m_HostName = value;
+	utility::string_t v = value;
+    m_HostName = v;
     m_HostNameIsSet = true;
 }
 
@@ -440,6 +529,9 @@ void SystemDiscover::unsetHostName()
 {
     m_HostNameIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getIpAddress() const
 {
     return m_IpAddress;
@@ -447,7 +539,8 @@ utility::string_t SystemDiscover::getIpAddress() const
 
 void SystemDiscover::setIpAddress(const utility::string_t& value)
 {
-    m_IpAddress = value;
+	utility::string_t v = value;
+    m_IpAddress = v;
     m_IpAddressIsSet = true;
 }
 
@@ -460,6 +553,9 @@ void SystemDiscover::unsetIpAddress()
 {
     m_IpAddressIsSet = false;
 }
+
+
+
 double SystemDiscover::getPort() const
 {
     return m_Port;
@@ -467,7 +563,8 @@ double SystemDiscover::getPort() const
 
 void SystemDiscover::setPort(double value)
 {
-    m_Port = value;
+	double v = value;
+    m_Port = v;
     m_PortIsSet = true;
 }
 
@@ -480,6 +577,9 @@ void SystemDiscover::unsetPort()
 {
     m_PortIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getDeviceName() const
 {
     return m_DeviceName;
@@ -487,7 +587,8 @@ utility::string_t SystemDiscover::getDeviceName() const
 
 void SystemDiscover::setDeviceName(const utility::string_t& value)
 {
-    m_DeviceName = value;
+	utility::string_t v = value;
+    m_DeviceName = v;
     m_DeviceNameIsSet = true;
 }
 
@@ -500,6 +601,9 @@ void SystemDiscover::unsetDeviceName()
 {
     m_DeviceNameIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getDescription() const
 {
     return m_Description;
@@ -507,7 +611,8 @@ utility::string_t SystemDiscover::getDescription() const
 
 void SystemDiscover::setDescription(const utility::string_t& value)
 {
-    m_Description = value;
+	utility::string_t v = value;
+    m_Description = v;
     m_DescriptionIsSet = true;
 }
 
@@ -520,6 +625,9 @@ void SystemDiscover::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getBoardType() const
 {
     return m_BoardType;
@@ -527,7 +635,8 @@ utility::string_t SystemDiscover::getBoardType() const
 
 void SystemDiscover::setBoardType(const utility::string_t& value)
 {
-    m_BoardType = value;
+	utility::string_t v = value;
+    m_BoardType = v;
     m_BoardTypeIsSet = true;
 }
 
@@ -540,6 +649,9 @@ void SystemDiscover::unsetBoardType()
 {
     m_BoardTypeIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getBoardNumber() const
 {
     return m_BoardNumber;
@@ -547,7 +659,8 @@ utility::string_t SystemDiscover::getBoardNumber() const
 
 void SystemDiscover::setBoardNumber(const utility::string_t& value)
 {
-    m_BoardNumber = value;
+	utility::string_t v = value;
+    m_BoardNumber = v;
     m_BoardNumberIsSet = true;
 }
 
@@ -560,6 +673,9 @@ void SystemDiscover::unsetBoardNumber()
 {
     m_BoardNumberIsSet = false;
 }
+
+
+
 utility::string_t SystemDiscover::getBoardID() const
 {
     return m_BoardID;
@@ -567,7 +683,8 @@ utility::string_t SystemDiscover::getBoardID() const
 
 void SystemDiscover::setBoardID(const utility::string_t& value)
 {
-    m_BoardID = value;
+	utility::string_t v = value;
+    m_BoardID = v;
     m_BoardIDIsSet = true;
 }
 
@@ -580,6 +697,9 @@ void SystemDiscover::unsetBoardID()
 {
     m_BoardIDIsSet = false;
 }
+
+
+
 }
 }
 }

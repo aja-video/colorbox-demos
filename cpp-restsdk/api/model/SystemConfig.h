@@ -47,6 +47,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -66,6 +67,7 @@ public:
 
     void setHostName(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -74,6 +76,7 @@ public:
     void unsetSystemOrganizationName();
 
     void setSystemOrganizationName(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -84,6 +87,7 @@ public:
 
     void setSsdpEnable(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -92,6 +96,7 @@ public:
     void unsetIdentify();
 
     void setIdentify(bool value);
+
 
     /// <summary>
     /// 
@@ -102,6 +107,7 @@ public:
 
     void setUpdateRequest(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -110,6 +116,7 @@ public:
     void unsetReboot();
 
     void setReboot(bool value);
+
 
     /// <summary>
     /// 
@@ -120,6 +127,7 @@ public:
 
     void setFactoryPreset(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -128,6 +136,7 @@ public:
     void unsetFactoryReset();
 
     void setFactoryReset(bool value);
+
 
     /// <summary>
     /// 
@@ -138,6 +147,7 @@ public:
 
     void setTransformMode(const std::shared_ptr<TransformMode>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -146,6 +156,7 @@ public:
     void unsetPreviewAncEnable();
 
     void setPreviewAncEnable(bool value);
+
 
     /// <summary>
     /// 
@@ -156,6 +167,7 @@ public:
 
     void setAuthenticationEnable(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -164,6 +176,9 @@ public:
     void unsetFanSpeed();
 
     void setFanSpeed(double value);
+
+    double fanSpeedMin() const;
+    double fanSpeedMax() const;
 
 
 protected:

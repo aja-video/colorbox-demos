@@ -60,6 +60,66 @@ void WiFiDeviceStatus::validate()
     // TODO: implement validation
 }
 
+bool WiFiDeviceStatus::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (nameIsSet())
+	{
+		bool nameChanged = false;
+		utility::string_t v = getName();
+		if (nameChanged) { setName(v); anyMinMaxValueChanged = true; }
+	}
+	if (macIsSet())
+	{
+		bool macChanged = false;
+		utility::string_t v = getMac();
+		if (macChanged) { setMac(v); anyMinMaxValueChanged = true; }
+	}
+	if (addressIsSet())
+	{
+		bool addressChanged = false;
+		utility::string_t v = getAddress();
+		if (addressChanged) { setAddress(v); anyMinMaxValueChanged = true; }
+	}
+	if (subnetIsSet())
+	{
+		bool subnetChanged = false;
+		utility::string_t v = getSubnet();
+		if (subnetChanged) { setSubnet(v); anyMinMaxValueChanged = true; }
+	}
+	if (gatewayIsSet())
+	{
+		bool gatewayChanged = false;
+		utility::string_t v = getGateway();
+		if (gatewayChanged) { setGateway(v); anyMinMaxValueChanged = true; }
+	}
+	if (ipAddressOfferedIsSet())
+	{
+		bool ipAddressOfferedChanged = false;
+		utility::string_t v = getIpAddressOffered();
+		if (ipAddressOfferedChanged) { setIpAddressOffered(v); anyMinMaxValueChanged = true; }
+	}
+	if (linkStateIsSet())
+	{
+		bool linkStateChanged = false;
+		utility::string_t v = getLinkState();
+		if (linkStateChanged) { setLinkState(v); anyMinMaxValueChanged = true; }
+	}
+	if (wifiDongleStateIsSet())
+	{
+		bool wifiDongleStateChanged = false;
+		utility::string_t v = getWifiDongleState();
+		if (wifiDongleStateChanged) { setWifiDongleState(v); anyMinMaxValueChanged = true; }
+	}
+	if (authenticationStateIsSet())
+	{
+		bool authenticationStateChanged = false;
+		utility::string_t v = getAuthenticationState();
+		if (authenticationStateChanged) { setAuthenticationState(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value WiFiDeviceStatus::toJson() const
 {
 
@@ -255,6 +315,8 @@ bool WiFiDeviceStatus::fromJson(const web::json::value& val)
             setAuthenticationState(refVal_authenticationState);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -406,6 +468,8 @@ bool WiFiDeviceStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("authenticationState"))), refVal_authenticationState );
         setAuthenticationState(refVal_authenticationState);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -416,7 +480,8 @@ utility::string_t WiFiDeviceStatus::getName() const
 
 void WiFiDeviceStatus::setName(const utility::string_t& value)
 {
-    m_Name = value;
+	utility::string_t v = value;
+    m_Name = v;
     m_NameIsSet = true;
 }
 
@@ -429,6 +494,9 @@ void WiFiDeviceStatus::unsetName()
 {
     m_NameIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceStatus::getMac() const
 {
     return m_Mac;
@@ -436,7 +504,8 @@ utility::string_t WiFiDeviceStatus::getMac() const
 
 void WiFiDeviceStatus::setMac(const utility::string_t& value)
 {
-    m_Mac = value;
+	utility::string_t v = value;
+    m_Mac = v;
     m_MacIsSet = true;
 }
 
@@ -449,6 +518,9 @@ void WiFiDeviceStatus::unsetMac()
 {
     m_MacIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceStatus::getAddress() const
 {
     return m_Address;
@@ -456,7 +528,8 @@ utility::string_t WiFiDeviceStatus::getAddress() const
 
 void WiFiDeviceStatus::setAddress(const utility::string_t& value)
 {
-    m_Address = value;
+	utility::string_t v = value;
+    m_Address = v;
     m_AddressIsSet = true;
 }
 
@@ -469,6 +542,9 @@ void WiFiDeviceStatus::unsetAddress()
 {
     m_AddressIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceStatus::getSubnet() const
 {
     return m_Subnet;
@@ -476,7 +552,8 @@ utility::string_t WiFiDeviceStatus::getSubnet() const
 
 void WiFiDeviceStatus::setSubnet(const utility::string_t& value)
 {
-    m_Subnet = value;
+	utility::string_t v = value;
+    m_Subnet = v;
     m_SubnetIsSet = true;
 }
 
@@ -489,6 +566,9 @@ void WiFiDeviceStatus::unsetSubnet()
 {
     m_SubnetIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceStatus::getGateway() const
 {
     return m_Gateway;
@@ -496,7 +576,8 @@ utility::string_t WiFiDeviceStatus::getGateway() const
 
 void WiFiDeviceStatus::setGateway(const utility::string_t& value)
 {
-    m_Gateway = value;
+	utility::string_t v = value;
+    m_Gateway = v;
     m_GatewayIsSet = true;
 }
 
@@ -509,6 +590,9 @@ void WiFiDeviceStatus::unsetGateway()
 {
     m_GatewayIsSet = false;
 }
+
+
+
 std::vector<utility::string_t>& WiFiDeviceStatus::getNetworks()
 {
     return m_Networks;
@@ -516,7 +600,8 @@ std::vector<utility::string_t>& WiFiDeviceStatus::getNetworks()
 
 void WiFiDeviceStatus::setNetworks(const std::vector<utility::string_t>& value)
 {
-    m_Networks = value;
+	std::vector<utility::string_t> v = value;
+    m_Networks = v;
     m_NetworksIsSet = true;
 }
 
@@ -529,6 +614,8 @@ void WiFiDeviceStatus::unsetNetworks()
 {
     m_NetworksIsSet = false;
 }
+
+
 bool WiFiDeviceStatus::isConnected() const
 {
     return m_Connected;
@@ -536,7 +623,8 @@ bool WiFiDeviceStatus::isConnected() const
 
 void WiFiDeviceStatus::setConnected(bool value)
 {
-    m_Connected = value;
+	bool v = value;
+    m_Connected = v;
     m_ConnectedIsSet = true;
 }
 
@@ -549,6 +637,8 @@ void WiFiDeviceStatus::unsetConnected()
 {
     m_ConnectedIsSet = false;
 }
+
+
 std::shared_ptr<DHCPState> WiFiDeviceStatus::getDhcpState() const
 {
     return m_DhcpState;
@@ -556,7 +646,8 @@ std::shared_ptr<DHCPState> WiFiDeviceStatus::getDhcpState() const
 
 void WiFiDeviceStatus::setDhcpState(const std::shared_ptr<DHCPState>& value)
 {
-    m_DhcpState = value;
+	std::shared_ptr<DHCPState> v = value;
+    m_DhcpState = v;
     m_DhcpStateIsSet = true;
 }
 
@@ -569,6 +660,8 @@ void WiFiDeviceStatus::unsetDhcpState()
 {
     m_DhcpStateIsSet = false;
 }
+
+
 std::shared_ptr<InterfaceSetupState> WiFiDeviceStatus::getInterfaceSetupState() const
 {
     return m_InterfaceSetupState;
@@ -576,7 +669,8 @@ std::shared_ptr<InterfaceSetupState> WiFiDeviceStatus::getInterfaceSetupState() 
 
 void WiFiDeviceStatus::setInterfaceSetupState(const std::shared_ptr<InterfaceSetupState>& value)
 {
-    m_InterfaceSetupState = value;
+	std::shared_ptr<InterfaceSetupState> v = value;
+    m_InterfaceSetupState = v;
     m_InterfaceSetupStateIsSet = true;
 }
 
@@ -589,6 +683,8 @@ void WiFiDeviceStatus::unsetInterfaceSetupState()
 {
     m_InterfaceSetupStateIsSet = false;
 }
+
+
 utility::string_t WiFiDeviceStatus::getIpAddressOffered() const
 {
     return m_IpAddressOffered;
@@ -596,7 +692,8 @@ utility::string_t WiFiDeviceStatus::getIpAddressOffered() const
 
 void WiFiDeviceStatus::setIpAddressOffered(const utility::string_t& value)
 {
-    m_IpAddressOffered = value;
+	utility::string_t v = value;
+    m_IpAddressOffered = v;
     m_IpAddressOfferedIsSet = true;
 }
 
@@ -609,6 +706,9 @@ void WiFiDeviceStatus::unsetIpAddressOffered()
 {
     m_IpAddressOfferedIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceStatus::getLinkState() const
 {
     return m_LinkState;
@@ -616,7 +716,8 @@ utility::string_t WiFiDeviceStatus::getLinkState() const
 
 void WiFiDeviceStatus::setLinkState(const utility::string_t& value)
 {
-    m_LinkState = value;
+	utility::string_t v = value;
+    m_LinkState = v;
     m_LinkStateIsSet = true;
 }
 
@@ -629,6 +730,9 @@ void WiFiDeviceStatus::unsetLinkState()
 {
     m_LinkStateIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceStatus::getWifiDongleState() const
 {
     return m_WifiDongleState;
@@ -636,7 +740,8 @@ utility::string_t WiFiDeviceStatus::getWifiDongleState() const
 
 void WiFiDeviceStatus::setWifiDongleState(const utility::string_t& value)
 {
-    m_WifiDongleState = value;
+	utility::string_t v = value;
+    m_WifiDongleState = v;
     m_WifiDongleStateIsSet = true;
 }
 
@@ -649,6 +754,9 @@ void WiFiDeviceStatus::unsetWifiDongleState()
 {
     m_WifiDongleStateIsSet = false;
 }
+
+
+
 utility::string_t WiFiDeviceStatus::getAuthenticationState() const
 {
     return m_AuthenticationState;
@@ -656,7 +764,8 @@ utility::string_t WiFiDeviceStatus::getAuthenticationState() const
 
 void WiFiDeviceStatus::setAuthenticationState(const utility::string_t& value)
 {
-    m_AuthenticationState = value;
+	utility::string_t v = value;
+    m_AuthenticationState = v;
     m_AuthenticationStateIsSet = true;
 }
 
@@ -669,6 +778,9 @@ void WiFiDeviceStatus::unsetAuthenticationState()
 {
     m_AuthenticationStateIsSet = false;
 }
+
+
+
 }
 }
 }

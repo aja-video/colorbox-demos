@@ -47,6 +47,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -66,6 +67,7 @@ public:
 
     void setEnabled(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -74,6 +76,7 @@ public:
     void unsetInVpidFormat();
 
     void setInVpidFormat(bool value);
+
 
     /// <summary>
     /// 
@@ -84,6 +87,7 @@ public:
 
     void setInVpidRange(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -92,6 +96,7 @@ public:
     void unsetInVpidHdr();
 
     void setInVpidHdr(bool value);
+
 
     /// <summary>
     /// 
@@ -102,6 +107,7 @@ public:
 
     void setInVpidBitDepth(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -110,6 +116,7 @@ public:
     void unsetOutVpidFormat();
 
     void setOutVpidFormat(bool value);
+
 
     /// <summary>
     /// 
@@ -120,6 +127,7 @@ public:
 
     void setOutVpidRange(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -128,6 +136,7 @@ public:
     void unsetOutVpidHdr();
 
     void setOutVpidHdr(bool value);
+
 
     /// <summary>
     /// 
@@ -138,6 +147,7 @@ public:
 
     void setOutVpidBitDepth(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -146,6 +156,7 @@ public:
     void unsetTimeCode();
 
     void setTimeCode(bool value);
+
 
     /// <summary>
     /// 
@@ -156,6 +167,7 @@ public:
 
     void setClosedCaption(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -164,6 +176,7 @@ public:
     void unsetUserTextEnabled();
 
     void setUserTextEnabled(bool value);
+
 
     /// <summary>
     /// 
@@ -174,6 +187,9 @@ public:
 
     void setUserTextLine1(const utility::string_t& value);
 
+    int userTextLine1Min() const;
+    int userTextLine1Max() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -183,6 +199,9 @@ public:
 
     void setUserTextLine2(const utility::string_t& value);
 
+    int userTextLine2Min() const;
+    int userTextLine2Max() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -191,6 +210,7 @@ public:
     void unsetLocation();
 
     void setLocation(const std::shared_ptr<Locations>& value);
+
 
 
 protected:

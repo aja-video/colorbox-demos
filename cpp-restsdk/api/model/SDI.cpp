@@ -45,6 +45,12 @@ void SDI::validate()
     // TODO: implement validation
 }
 
+bool SDI::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value SDI::toJson() const
 {
 
@@ -170,6 +176,8 @@ bool SDI::fromJson(const web::json::value& val)
             setFormat(refVal_format);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -271,6 +279,8 @@ bool SDI::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("format"))), refVal_format );
         setFormat(refVal_format);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -281,7 +291,8 @@ std::shared_ptr<ColorSpace> SDI::getColorSpace() const
 
 void SDI::setColorSpace(const std::shared_ptr<ColorSpace>& value)
 {
-    m_ColorSpace = value;
+	std::shared_ptr<ColorSpace> v = value;
+    m_ColorSpace = v;
     m_ColorSpaceIsSet = true;
 }
 
@@ -294,6 +305,8 @@ void SDI::unsetColorSpace()
 {
     m_ColorSpaceIsSet = false;
 }
+
+
 std::shared_ptr<RgbRange> SDI::getRgbRange() const
 {
     return m_RgbRange;
@@ -301,7 +314,8 @@ std::shared_ptr<RgbRange> SDI::getRgbRange() const
 
 void SDI::setRgbRange(const std::shared_ptr<RgbRange>& value)
 {
-    m_RgbRange = value;
+	std::shared_ptr<RgbRange> v = value;
+    m_RgbRange = v;
     m_RgbRangeIsSet = true;
 }
 
@@ -314,6 +328,8 @@ void SDI::unsetRgbRange()
 {
     m_RgbRangeIsSet = false;
 }
+
+
 std::shared_ptr<BitDepth> SDI::getBitDepth() const
 {
     return m_BitDepth;
@@ -321,7 +337,8 @@ std::shared_ptr<BitDepth> SDI::getBitDepth() const
 
 void SDI::setBitDepth(const std::shared_ptr<BitDepth>& value)
 {
-    m_BitDepth = value;
+	std::shared_ptr<BitDepth> v = value;
+    m_BitDepth = v;
     m_BitDepthIsSet = true;
 }
 
@@ -334,6 +351,8 @@ void SDI::unsetBitDepth()
 {
     m_BitDepthIsSet = false;
 }
+
+
 std::shared_ptr<ScanMode> SDI::getScanMode() const
 {
     return m_ScanMode;
@@ -341,7 +360,8 @@ std::shared_ptr<ScanMode> SDI::getScanMode() const
 
 void SDI::setScanMode(const std::shared_ptr<ScanMode>& value)
 {
-    m_ScanMode = value;
+	std::shared_ptr<ScanMode> v = value;
+    m_ScanMode = v;
     m_ScanModeIsSet = true;
 }
 
@@ -354,6 +374,8 @@ void SDI::unsetScanMode()
 {
     m_ScanModeIsSet = false;
 }
+
+
 std::shared_ptr<SdiMode3g> SDI::getSdiMode3g() const
 {
     return m_SdiMode3g;
@@ -361,7 +383,8 @@ std::shared_ptr<SdiMode3g> SDI::getSdiMode3g() const
 
 void SDI::setSdiMode3g(const std::shared_ptr<SdiMode3g>& value)
 {
-    m_SdiMode3g = value;
+	std::shared_ptr<SdiMode3g> v = value;
+    m_SdiMode3g = v;
     m_SdiMode3gIsSet = true;
 }
 
@@ -374,6 +397,8 @@ void SDI::unsetSdiMode3g()
 {
     m_SdiMode3gIsSet = false;
 }
+
+
 std::shared_ptr<Colorimetry> SDI::getColorimetry() const
 {
     return m_Colorimetry;
@@ -381,7 +406,8 @@ std::shared_ptr<Colorimetry> SDI::getColorimetry() const
 
 void SDI::setColorimetry(const std::shared_ptr<Colorimetry>& value)
 {
-    m_Colorimetry = value;
+	std::shared_ptr<Colorimetry> v = value;
+    m_Colorimetry = v;
     m_ColorimetryIsSet = true;
 }
 
@@ -394,6 +420,8 @@ void SDI::unsetColorimetry()
 {
     m_ColorimetryIsSet = false;
 }
+
+
 std::shared_ptr<Transfer> SDI::getTransfer() const
 {
     return m_Transfer;
@@ -401,7 +429,8 @@ std::shared_ptr<Transfer> SDI::getTransfer() const
 
 void SDI::setTransfer(const std::shared_ptr<Transfer>& value)
 {
-    m_Transfer = value;
+	std::shared_ptr<Transfer> v = value;
+    m_Transfer = v;
     m_TransferIsSet = true;
 }
 
@@ -414,6 +443,8 @@ void SDI::unsetTransfer()
 {
     m_TransferIsSet = false;
 }
+
+
 std::shared_ptr<VideoFormat> SDI::getFormat() const
 {
     return m_Format;
@@ -421,7 +452,8 @@ std::shared_ptr<VideoFormat> SDI::getFormat() const
 
 void SDI::setFormat(const std::shared_ptr<VideoFormat>& value)
 {
-    m_Format = value;
+	std::shared_ptr<VideoFormat> v = value;
+    m_Format = v;
     m_FormatIsSet = true;
 }
 
@@ -434,6 +466,8 @@ void SDI::unsetFormat()
 {
     m_FormatIsSet = false;
 }
+
+
 }
 }
 }

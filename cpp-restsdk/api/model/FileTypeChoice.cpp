@@ -68,6 +68,12 @@ void FileTypeChoice::validate()
     // TODO: implement validation
 }
 
+bool FileTypeChoice::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value FileTypeChoice::toJson() const
 {
     auto val = fromEnum(m_value);

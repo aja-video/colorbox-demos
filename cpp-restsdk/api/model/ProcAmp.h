@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,9 @@ public:
 
     void setBlack(double value);
 
+    double blackMin() const;
+    double blackMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -73,6 +77,9 @@ public:
     void unsetGain();
 
     void setGain(double value);
+
+    double gainMin() const;
+    double gainMax() const;
 
     /// <summary>
     /// 
@@ -83,6 +90,9 @@ public:
 
     void setHue(double value);
 
+    double hueMin() const;
+    double hueMax() const;
+
     /// <summary>
     /// 
     /// </summary>
@@ -91,6 +101,9 @@ public:
     void unsetSat();
 
     void setSat(double value);
+
+    double satMin() const;
+    double satMax() const;
 
     /// <summary>
     /// 
@@ -101,6 +114,7 @@ public:
 
     void setUnitsBlack(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -109,6 +123,7 @@ public:
     void unsetUnitsGain();
 
     void setUnitsGain(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -119,6 +134,7 @@ public:
 
     void setUnitsHue(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -127,6 +143,7 @@ public:
     void unsetUnitsSat();
 
     void setUnitsSat(const utility::string_t& value);
+
 
 
 protected:

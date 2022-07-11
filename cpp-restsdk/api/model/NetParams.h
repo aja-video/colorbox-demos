@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,7 @@ public:
 
     void setAddress(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -73,6 +75,7 @@ public:
     void unsetSubnet();
 
     void setSubnet(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -83,6 +86,7 @@ public:
 
     void setGateway(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -91,6 +95,7 @@ public:
     void unsetDnsServer1();
 
     void setDnsServer1(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -101,6 +106,7 @@ public:
 
     void setDnsServer2(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -109,6 +115,7 @@ public:
     void unsetDnsSearch();
 
     void setDnsSearch(const utility::string_t& value);
+
 
 
 protected:

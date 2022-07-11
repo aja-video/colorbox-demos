@@ -49,6 +49,48 @@ void NetParams::validate()
     // TODO: implement validation
 }
 
+bool NetParams::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (addressIsSet())
+	{
+		bool addressChanged = false;
+		utility::string_t v = getAddress();
+		if (addressChanged) { setAddress(v); anyMinMaxValueChanged = true; }
+	}
+	if (subnetIsSet())
+	{
+		bool subnetChanged = false;
+		utility::string_t v = getSubnet();
+		if (subnetChanged) { setSubnet(v); anyMinMaxValueChanged = true; }
+	}
+	if (gatewayIsSet())
+	{
+		bool gatewayChanged = false;
+		utility::string_t v = getGateway();
+		if (gatewayChanged) { setGateway(v); anyMinMaxValueChanged = true; }
+	}
+	if (dnsServer1IsSet())
+	{
+		bool dnsServer1Changed = false;
+		utility::string_t v = getDnsServer1();
+		if (dnsServer1Changed) { setDnsServer1(v); anyMinMaxValueChanged = true; }
+	}
+	if (dnsServer2IsSet())
+	{
+		bool dnsServer2Changed = false;
+		utility::string_t v = getDnsServer2();
+		if (dnsServer2Changed) { setDnsServer2(v); anyMinMaxValueChanged = true; }
+	}
+	if (dnsSearchIsSet())
+	{
+		bool dnsSearchChanged = false;
+		utility::string_t v = getDnsSearch();
+		if (dnsSearchChanged) { setDnsSearch(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value NetParams::toJson() const
 {
 
@@ -146,6 +188,8 @@ bool NetParams::fromJson(const web::json::value& val)
             setDnsSearch(refVal_dnsSearch);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -227,6 +271,8 @@ bool NetParams::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("dnsSearch"))), refVal_dnsSearch );
         setDnsSearch(refVal_dnsSearch);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -237,7 +283,8 @@ utility::string_t NetParams::getAddress() const
 
 void NetParams::setAddress(const utility::string_t& value)
 {
-    m_Address = value;
+	utility::string_t v = value;
+    m_Address = v;
     m_AddressIsSet = true;
 }
 
@@ -250,6 +297,9 @@ void NetParams::unsetAddress()
 {
     m_AddressIsSet = false;
 }
+
+
+
 utility::string_t NetParams::getSubnet() const
 {
     return m_Subnet;
@@ -257,7 +307,8 @@ utility::string_t NetParams::getSubnet() const
 
 void NetParams::setSubnet(const utility::string_t& value)
 {
-    m_Subnet = value;
+	utility::string_t v = value;
+    m_Subnet = v;
     m_SubnetIsSet = true;
 }
 
@@ -270,6 +321,9 @@ void NetParams::unsetSubnet()
 {
     m_SubnetIsSet = false;
 }
+
+
+
 utility::string_t NetParams::getGateway() const
 {
     return m_Gateway;
@@ -277,7 +331,8 @@ utility::string_t NetParams::getGateway() const
 
 void NetParams::setGateway(const utility::string_t& value)
 {
-    m_Gateway = value;
+	utility::string_t v = value;
+    m_Gateway = v;
     m_GatewayIsSet = true;
 }
 
@@ -290,6 +345,9 @@ void NetParams::unsetGateway()
 {
     m_GatewayIsSet = false;
 }
+
+
+
 utility::string_t NetParams::getDnsServer1() const
 {
     return m_DnsServer1;
@@ -297,7 +355,8 @@ utility::string_t NetParams::getDnsServer1() const
 
 void NetParams::setDnsServer1(const utility::string_t& value)
 {
-    m_DnsServer1 = value;
+	utility::string_t v = value;
+    m_DnsServer1 = v;
     m_DnsServer1IsSet = true;
 }
 
@@ -310,6 +369,9 @@ void NetParams::unsetDnsServer1()
 {
     m_DnsServer1IsSet = false;
 }
+
+
+
 utility::string_t NetParams::getDnsServer2() const
 {
     return m_DnsServer2;
@@ -317,7 +379,8 @@ utility::string_t NetParams::getDnsServer2() const
 
 void NetParams::setDnsServer2(const utility::string_t& value)
 {
-    m_DnsServer2 = value;
+	utility::string_t v = value;
+    m_DnsServer2 = v;
     m_DnsServer2IsSet = true;
 }
 
@@ -330,6 +393,9 @@ void NetParams::unsetDnsServer2()
 {
     m_DnsServer2IsSet = false;
 }
+
+
+
 utility::string_t NetParams::getDnsSearch() const
 {
     return m_DnsSearch;
@@ -337,7 +403,8 @@ utility::string_t NetParams::getDnsSearch() const
 
 void NetParams::setDnsSearch(const utility::string_t& value)
 {
-    m_DnsSearch = value;
+	utility::string_t v = value;
+    m_DnsSearch = v;
     m_DnsSearchIsSet = true;
 }
 
@@ -350,6 +417,9 @@ void NetParams::unsetDnsSearch()
 {
     m_DnsSearchIsSet = false;
 }
+
+
+
 }
 }
 }

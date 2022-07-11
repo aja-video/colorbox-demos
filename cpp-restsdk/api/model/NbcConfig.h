@@ -46,6 +46,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -65,6 +66,7 @@ public:
 
     void setLut1d1(const std::shared_ptr<Stage>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -74,6 +76,7 @@ public:
 
     void setM3x32(const std::shared_ptr<Stage>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -82,6 +85,7 @@ public:
     void unsetLut3d_1();
 
     void setLut3d1(const std::shared_ptr<Stage>& value);
+
 
 
 protected:

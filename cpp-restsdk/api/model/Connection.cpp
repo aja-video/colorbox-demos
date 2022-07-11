@@ -68,6 +68,12 @@ void Connection::validate()
     // TODO: implement validation
 }
 
+bool Connection::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Connection::toJson() const
 {
     auto val = fromEnum(m_value);

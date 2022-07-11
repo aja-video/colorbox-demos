@@ -49,6 +49,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -68,6 +69,7 @@ public:
 
     void setName(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -76,6 +78,7 @@ public:
     void unsetMac();
 
     void setMac(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -86,6 +89,7 @@ public:
 
     void setAddress(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -94,6 +98,7 @@ public:
     void unsetSubnet();
 
     void setSubnet(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -104,6 +109,7 @@ public:
 
     void setGateway(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -112,6 +118,7 @@ public:
     void unsetNetworks();
 
     void setNetworks(const std::vector<utility::string_t>& value);
+
 
     /// <summary>
     /// 
@@ -122,6 +129,7 @@ public:
 
     void setConnected(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -130,6 +138,7 @@ public:
     void unsetDhcpState();
 
     void setDhcpState(const std::shared_ptr<DHCPState>& value);
+
 
     /// <summary>
     /// 
@@ -140,6 +149,7 @@ public:
 
     void setInterfaceSetupState(const std::shared_ptr<InterfaceSetupState>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -148,6 +158,7 @@ public:
     void unsetIpAddressOffered();
 
     void setIpAddressOffered(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -158,6 +169,7 @@ public:
 
     void setLinkState(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -167,6 +179,7 @@ public:
 
     void setWifiDongleState(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -175,6 +188,7 @@ public:
     void unsetAuthenticationState();
 
     void setAuthenticationState(const utility::string_t& value);
+
 
 
 protected:

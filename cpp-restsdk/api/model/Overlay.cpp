@@ -66,6 +66,32 @@ void Overlay::validate()
     // TODO: implement validation
 }
 
+bool Overlay::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (userTextLine1IsSet())
+	{
+		bool userTextLine1Changed = false;
+		utility::string_t v = getUserTextLine1();
+		int min = userTextLine1Min();
+		int max = userTextLine1Max();
+		if (v.length() < (size_t)min) { v.resize(min); userTextLine1Changed = true; }
+		if (v.length() > (size_t)max) { v.resize(max); userTextLine1Changed = true; }
+		if (userTextLine1Changed) { setUserTextLine1(v); anyMinMaxValueChanged = true; }
+	}
+	if (userTextLine2IsSet())
+	{
+		bool userTextLine2Changed = false;
+		utility::string_t v = getUserTextLine2();
+		int min = userTextLine2Min();
+		int max = userTextLine2Max();
+		if (v.length() < (size_t)min) { v.resize(min); userTextLine2Changed = true; }
+		if (v.length() > (size_t)max) { v.resize(max); userTextLine2Changed = true; }
+		if (userTextLine2Changed) { setUserTextLine2(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Overlay::toJson() const
 {
 
@@ -289,6 +315,8 @@ bool Overlay::fromJson(const web::json::value& val)
             setLocation(refVal_location);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -460,6 +488,8 @@ bool Overlay::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("location"))), refVal_location );
         setLocation(refVal_location);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -470,7 +500,8 @@ bool Overlay::isEnabled() const
 
 void Overlay::setEnabled(bool value)
 {
-    m_Enabled = value;
+	bool v = value;
+    m_Enabled = v;
     m_EnabledIsSet = true;
 }
 
@@ -483,6 +514,8 @@ void Overlay::unsetEnabled()
 {
     m_EnabledIsSet = false;
 }
+
+
 bool Overlay::isInVpidFormat() const
 {
     return m_InVpidFormat;
@@ -490,7 +523,8 @@ bool Overlay::isInVpidFormat() const
 
 void Overlay::setInVpidFormat(bool value)
 {
-    m_InVpidFormat = value;
+	bool v = value;
+    m_InVpidFormat = v;
     m_InVpidFormatIsSet = true;
 }
 
@@ -503,6 +537,8 @@ void Overlay::unsetInVpidFormat()
 {
     m_InVpidFormatIsSet = false;
 }
+
+
 bool Overlay::isInVpidRange() const
 {
     return m_InVpidRange;
@@ -510,7 +546,8 @@ bool Overlay::isInVpidRange() const
 
 void Overlay::setInVpidRange(bool value)
 {
-    m_InVpidRange = value;
+	bool v = value;
+    m_InVpidRange = v;
     m_InVpidRangeIsSet = true;
 }
 
@@ -523,6 +560,8 @@ void Overlay::unsetInVpidRange()
 {
     m_InVpidRangeIsSet = false;
 }
+
+
 bool Overlay::isInVpidHdr() const
 {
     return m_InVpidHdr;
@@ -530,7 +569,8 @@ bool Overlay::isInVpidHdr() const
 
 void Overlay::setInVpidHdr(bool value)
 {
-    m_InVpidHdr = value;
+	bool v = value;
+    m_InVpidHdr = v;
     m_InVpidHdrIsSet = true;
 }
 
@@ -543,6 +583,8 @@ void Overlay::unsetInVpidHdr()
 {
     m_InVpidHdrIsSet = false;
 }
+
+
 bool Overlay::isInVpidBitDepth() const
 {
     return m_InVpidBitDepth;
@@ -550,7 +592,8 @@ bool Overlay::isInVpidBitDepth() const
 
 void Overlay::setInVpidBitDepth(bool value)
 {
-    m_InVpidBitDepth = value;
+	bool v = value;
+    m_InVpidBitDepth = v;
     m_InVpidBitDepthIsSet = true;
 }
 
@@ -563,6 +606,8 @@ void Overlay::unsetInVpidBitDepth()
 {
     m_InVpidBitDepthIsSet = false;
 }
+
+
 bool Overlay::isOutVpidFormat() const
 {
     return m_OutVpidFormat;
@@ -570,7 +615,8 @@ bool Overlay::isOutVpidFormat() const
 
 void Overlay::setOutVpidFormat(bool value)
 {
-    m_OutVpidFormat = value;
+	bool v = value;
+    m_OutVpidFormat = v;
     m_OutVpidFormatIsSet = true;
 }
 
@@ -583,6 +629,8 @@ void Overlay::unsetOutVpidFormat()
 {
     m_OutVpidFormatIsSet = false;
 }
+
+
 bool Overlay::isOutVpidRange() const
 {
     return m_OutVpidRange;
@@ -590,7 +638,8 @@ bool Overlay::isOutVpidRange() const
 
 void Overlay::setOutVpidRange(bool value)
 {
-    m_OutVpidRange = value;
+	bool v = value;
+    m_OutVpidRange = v;
     m_OutVpidRangeIsSet = true;
 }
 
@@ -603,6 +652,8 @@ void Overlay::unsetOutVpidRange()
 {
     m_OutVpidRangeIsSet = false;
 }
+
+
 bool Overlay::isOutVpidHdr() const
 {
     return m_OutVpidHdr;
@@ -610,7 +661,8 @@ bool Overlay::isOutVpidHdr() const
 
 void Overlay::setOutVpidHdr(bool value)
 {
-    m_OutVpidHdr = value;
+	bool v = value;
+    m_OutVpidHdr = v;
     m_OutVpidHdrIsSet = true;
 }
 
@@ -623,6 +675,8 @@ void Overlay::unsetOutVpidHdr()
 {
     m_OutVpidHdrIsSet = false;
 }
+
+
 bool Overlay::isOutVpidBitDepth() const
 {
     return m_OutVpidBitDepth;
@@ -630,7 +684,8 @@ bool Overlay::isOutVpidBitDepth() const
 
 void Overlay::setOutVpidBitDepth(bool value)
 {
-    m_OutVpidBitDepth = value;
+	bool v = value;
+    m_OutVpidBitDepth = v;
     m_OutVpidBitDepthIsSet = true;
 }
 
@@ -643,6 +698,8 @@ void Overlay::unsetOutVpidBitDepth()
 {
     m_OutVpidBitDepthIsSet = false;
 }
+
+
 bool Overlay::isTimeCode() const
 {
     return m_TimeCode;
@@ -650,7 +707,8 @@ bool Overlay::isTimeCode() const
 
 void Overlay::setTimeCode(bool value)
 {
-    m_TimeCode = value;
+	bool v = value;
+    m_TimeCode = v;
     m_TimeCodeIsSet = true;
 }
 
@@ -663,6 +721,8 @@ void Overlay::unsetTimeCode()
 {
     m_TimeCodeIsSet = false;
 }
+
+
 bool Overlay::isClosedCaption() const
 {
     return m_ClosedCaption;
@@ -670,7 +730,8 @@ bool Overlay::isClosedCaption() const
 
 void Overlay::setClosedCaption(bool value)
 {
-    m_ClosedCaption = value;
+	bool v = value;
+    m_ClosedCaption = v;
     m_ClosedCaptionIsSet = true;
 }
 
@@ -683,6 +744,8 @@ void Overlay::unsetClosedCaption()
 {
     m_ClosedCaptionIsSet = false;
 }
+
+
 bool Overlay::isUserTextEnabled() const
 {
     return m_UserTextEnabled;
@@ -690,7 +753,8 @@ bool Overlay::isUserTextEnabled() const
 
 void Overlay::setUserTextEnabled(bool value)
 {
-    m_UserTextEnabled = value;
+	bool v = value;
+    m_UserTextEnabled = v;
     m_UserTextEnabledIsSet = true;
 }
 
@@ -703,6 +767,8 @@ void Overlay::unsetUserTextEnabled()
 {
     m_UserTextEnabledIsSet = false;
 }
+
+
 utility::string_t Overlay::getUserTextLine1() const
 {
     return m_UserTextLine1;
@@ -710,7 +776,12 @@ utility::string_t Overlay::getUserTextLine1() const
 
 void Overlay::setUserTextLine1(const utility::string_t& value)
 {
-    m_UserTextLine1 = value;
+	utility::string_t v = value;
+	int min = userTextLine1Min();
+	int max = userTextLine1Max();
+	if (v.length() < (size_t)min) { v.resize(min); }
+	if (v.length() > (size_t)max) { v.resize(max); }
+    m_UserTextLine1 = v;
     m_UserTextLine1IsSet = true;
 }
 
@@ -723,6 +794,15 @@ void Overlay::unsetUserTextLine1()
 {
     m_UserTextLine1IsSet = false;
 }
+
+int Overlay::userTextLine1Min() const {
+	return 0;
+}
+
+int Overlay::userTextLine1Max() const {
+	return 110;
+}
+
 utility::string_t Overlay::getUserTextLine2() const
 {
     return m_UserTextLine2;
@@ -730,7 +810,12 @@ utility::string_t Overlay::getUserTextLine2() const
 
 void Overlay::setUserTextLine2(const utility::string_t& value)
 {
-    m_UserTextLine2 = value;
+	utility::string_t v = value;
+	int min = userTextLine2Min();
+	int max = userTextLine2Max();
+	if (v.length() < (size_t)min) { v.resize(min); }
+	if (v.length() > (size_t)max) { v.resize(max); }
+    m_UserTextLine2 = v;
     m_UserTextLine2IsSet = true;
 }
 
@@ -743,6 +828,15 @@ void Overlay::unsetUserTextLine2()
 {
     m_UserTextLine2IsSet = false;
 }
+
+int Overlay::userTextLine2Min() const {
+	return 0;
+}
+
+int Overlay::userTextLine2Max() const {
+	return 110;
+}
+
 std::shared_ptr<Locations> Overlay::getLocation() const
 {
     return m_Location;
@@ -750,7 +844,8 @@ std::shared_ptr<Locations> Overlay::getLocation() const
 
 void Overlay::setLocation(const std::shared_ptr<Locations>& value)
 {
-    m_Location = value;
+	std::shared_ptr<Locations> v = value;
+    m_Location = v;
     m_LocationIsSet = true;
 }
 
@@ -763,6 +858,8 @@ void Overlay::unsetLocation()
 {
     m_LocationIsSet = false;
 }
+
+
 }
 }
 }

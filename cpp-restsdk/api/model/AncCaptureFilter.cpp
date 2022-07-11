@@ -40,6 +40,12 @@ void AncCaptureFilter::validate()
     // TODO: implement validation
 }
 
+bool AncCaptureFilter::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value AncCaptureFilter::toJson() const
 {
 
@@ -81,6 +87,8 @@ bool AncCaptureFilter::fromJson(const web::json::value& val)
             setDids(refVal_dids);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -122,6 +130,8 @@ bool AncCaptureFilter::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("dids"))), refVal_dids );
         setDids(refVal_dids);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -132,7 +142,8 @@ bool AncCaptureFilter::isEnable() const
 
 void AncCaptureFilter::setEnable(bool value)
 {
-    m_Enable = value;
+	bool v = value;
+    m_Enable = v;
     m_EnableIsSet = true;
 }
 
@@ -145,6 +156,8 @@ void AncCaptureFilter::unsetEnable()
 {
     m_EnableIsSet = false;
 }
+
+
 std::vector<double>& AncCaptureFilter::getDids()
 {
     return m_Dids;
@@ -152,7 +165,8 @@ std::vector<double>& AncCaptureFilter::getDids()
 
 void AncCaptureFilter::setDids(std::vector<double> value)
 {
-    m_Dids = value;
+	std::vector<double> v = value;
+    m_Dids = v;
     m_DidsIsSet = true;
 }
 
@@ -165,6 +179,8 @@ void AncCaptureFilter::unsetDids()
 {
     m_DidsIsSet = false;
 }
+
+
 }
 }
 }

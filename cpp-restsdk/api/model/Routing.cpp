@@ -43,6 +43,12 @@ void Routing::validate()
     // TODO: implement validation
 }
 
+bool Routing::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Routing::toJson() const
 {
 
@@ -112,6 +118,8 @@ bool Routing::fromJson(const web::json::value& val)
             setPipelineBypassUser(refVal_pipelineBypassUser);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -173,6 +181,8 @@ bool Routing::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("pipelineBypassUser"))), refVal_pipelineBypassUser );
         setPipelineBypassUser(refVal_pipelineBypassUser);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -183,7 +193,8 @@ std::shared_ptr<Mode> Routing::getMode() const
 
 void Routing::setMode(const std::shared_ptr<Mode>& value)
 {
-    m_Mode = value;
+	std::shared_ptr<Mode> v = value;
+    m_Mode = v;
     m_ModeIsSet = true;
 }
 
@@ -196,6 +207,8 @@ void Routing::unsetMode()
 {
     m_ModeIsSet = false;
 }
+
+
 std::shared_ptr<PreviewTap> Routing::getPreviewTap() const
 {
     return m_PreviewTap;
@@ -203,7 +216,8 @@ std::shared_ptr<PreviewTap> Routing::getPreviewTap() const
 
 void Routing::setPreviewTap(const std::shared_ptr<PreviewTap>& value)
 {
-    m_PreviewTap = value;
+	std::shared_ptr<PreviewTap> v = value;
+    m_PreviewTap = v;
     m_PreviewTapIsSet = true;
 }
 
@@ -216,6 +230,8 @@ void Routing::unsetPreviewTap()
 {
     m_PreviewTapIsSet = false;
 }
+
+
 bool Routing::isPipelineBypassButton() const
 {
     return m_PipelineBypassButton;
@@ -223,7 +239,8 @@ bool Routing::isPipelineBypassButton() const
 
 void Routing::setPipelineBypassButton(bool value)
 {
-    m_PipelineBypassButton = value;
+	bool v = value;
+    m_PipelineBypassButton = v;
     m_PipelineBypassButtonIsSet = true;
 }
 
@@ -236,6 +253,8 @@ void Routing::unsetPipelineBypassButton()
 {
     m_PipelineBypassButtonIsSet = false;
 }
+
+
 bool Routing::isPipelineBypassUser() const
 {
     return m_PipelineBypassUser;
@@ -243,7 +262,8 @@ bool Routing::isPipelineBypassUser() const
 
 void Routing::setPipelineBypassUser(bool value)
 {
-    m_PipelineBypassUser = value;
+	bool v = value;
+    m_PipelineBypassUser = v;
     m_PipelineBypassUserIsSet = true;
 }
 
@@ -256,6 +276,8 @@ void Routing::unsetPipelineBypassUser()
 {
     m_PipelineBypassUserIsSet = false;
 }
+
+
 }
 }
 }

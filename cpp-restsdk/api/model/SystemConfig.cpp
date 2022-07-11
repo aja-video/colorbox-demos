@@ -60,6 +60,34 @@ void SystemConfig::validate()
     // TODO: implement validation
 }
 
+bool SystemConfig::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (hostNameIsSet())
+	{
+		bool hostNameChanged = false;
+		utility::string_t v = getHostName();
+		if (hostNameChanged) { setHostName(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemOrganizationNameIsSet())
+	{
+		bool systemOrganizationNameChanged = false;
+		utility::string_t v = getSystemOrganizationName();
+		if (systemOrganizationNameChanged) { setSystemOrganizationName(v); anyMinMaxValueChanged = true; }
+	}
+	if (fanSpeedIsSet())
+	{
+		bool fanSpeedChanged = false;
+		double v = getFanSpeed();
+		double min = fanSpeedMin();
+		double max = fanSpeedMax();
+		if (v < min) { v = min; fanSpeedChanged = true; }
+		if (v > max) { v = max; fanSpeedChanged = true; }
+		if (fanSpeedChanged) { setFanSpeed(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value SystemConfig::toJson() const
 {
 
@@ -241,6 +269,8 @@ bool SystemConfig::fromJson(const web::json::value& val)
             setFanSpeed(refVal_fanSpeed);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -382,6 +412,8 @@ bool SystemConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fanSpeed"))), refVal_fanSpeed );
         setFanSpeed(refVal_fanSpeed);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -392,7 +424,8 @@ utility::string_t SystemConfig::getHostName() const
 
 void SystemConfig::setHostName(const utility::string_t& value)
 {
-    m_HostName = value;
+	utility::string_t v = value;
+    m_HostName = v;
     m_HostNameIsSet = true;
 }
 
@@ -405,6 +438,9 @@ void SystemConfig::unsetHostName()
 {
     m_HostNameIsSet = false;
 }
+
+
+
 utility::string_t SystemConfig::getSystemOrganizationName() const
 {
     return m_SystemOrganizationName;
@@ -412,7 +448,8 @@ utility::string_t SystemConfig::getSystemOrganizationName() const
 
 void SystemConfig::setSystemOrganizationName(const utility::string_t& value)
 {
-    m_SystemOrganizationName = value;
+	utility::string_t v = value;
+    m_SystemOrganizationName = v;
     m_SystemOrganizationNameIsSet = true;
 }
 
@@ -425,6 +462,9 @@ void SystemConfig::unsetSystemOrganizationName()
 {
     m_SystemOrganizationNameIsSet = false;
 }
+
+
+
 bool SystemConfig::isSsdpEnable() const
 {
     return m_SsdpEnable;
@@ -432,7 +472,8 @@ bool SystemConfig::isSsdpEnable() const
 
 void SystemConfig::setSsdpEnable(bool value)
 {
-    m_SsdpEnable = value;
+	bool v = value;
+    m_SsdpEnable = v;
     m_SsdpEnableIsSet = true;
 }
 
@@ -445,6 +486,8 @@ void SystemConfig::unsetSsdpEnable()
 {
     m_SsdpEnableIsSet = false;
 }
+
+
 bool SystemConfig::isIdentify() const
 {
     return m_Identify;
@@ -452,7 +495,8 @@ bool SystemConfig::isIdentify() const
 
 void SystemConfig::setIdentify(bool value)
 {
-    m_Identify = value;
+	bool v = value;
+    m_Identify = v;
     m_IdentifyIsSet = true;
 }
 
@@ -465,6 +509,8 @@ void SystemConfig::unsetIdentify()
 {
     m_IdentifyIsSet = false;
 }
+
+
 bool SystemConfig::isUpdateRequest() const
 {
     return m_UpdateRequest;
@@ -472,7 +518,8 @@ bool SystemConfig::isUpdateRequest() const
 
 void SystemConfig::setUpdateRequest(bool value)
 {
-    m_UpdateRequest = value;
+	bool v = value;
+    m_UpdateRequest = v;
     m_UpdateRequestIsSet = true;
 }
 
@@ -485,6 +532,8 @@ void SystemConfig::unsetUpdateRequest()
 {
     m_UpdateRequestIsSet = false;
 }
+
+
 bool SystemConfig::isReboot() const
 {
     return m_Reboot;
@@ -492,7 +541,8 @@ bool SystemConfig::isReboot() const
 
 void SystemConfig::setReboot(bool value)
 {
-    m_Reboot = value;
+	bool v = value;
+    m_Reboot = v;
     m_RebootIsSet = true;
 }
 
@@ -505,6 +555,8 @@ void SystemConfig::unsetReboot()
 {
     m_RebootIsSet = false;
 }
+
+
 bool SystemConfig::isFactoryPreset() const
 {
     return m_FactoryPreset;
@@ -512,7 +564,8 @@ bool SystemConfig::isFactoryPreset() const
 
 void SystemConfig::setFactoryPreset(bool value)
 {
-    m_FactoryPreset = value;
+	bool v = value;
+    m_FactoryPreset = v;
     m_FactoryPresetIsSet = true;
 }
 
@@ -525,6 +578,8 @@ void SystemConfig::unsetFactoryPreset()
 {
     m_FactoryPresetIsSet = false;
 }
+
+
 bool SystemConfig::isFactoryReset() const
 {
     return m_FactoryReset;
@@ -532,7 +587,8 @@ bool SystemConfig::isFactoryReset() const
 
 void SystemConfig::setFactoryReset(bool value)
 {
-    m_FactoryReset = value;
+	bool v = value;
+    m_FactoryReset = v;
     m_FactoryResetIsSet = true;
 }
 
@@ -545,6 +601,8 @@ void SystemConfig::unsetFactoryReset()
 {
     m_FactoryResetIsSet = false;
 }
+
+
 std::shared_ptr<TransformMode> SystemConfig::getTransformMode() const
 {
     return m_TransformMode;
@@ -552,7 +610,8 @@ std::shared_ptr<TransformMode> SystemConfig::getTransformMode() const
 
 void SystemConfig::setTransformMode(const std::shared_ptr<TransformMode>& value)
 {
-    m_TransformMode = value;
+	std::shared_ptr<TransformMode> v = value;
+    m_TransformMode = v;
     m_TransformModeIsSet = true;
 }
 
@@ -565,6 +624,8 @@ void SystemConfig::unsetTransformMode()
 {
     m_TransformModeIsSet = false;
 }
+
+
 bool SystemConfig::isPreviewAncEnable() const
 {
     return m_PreviewAncEnable;
@@ -572,7 +633,8 @@ bool SystemConfig::isPreviewAncEnable() const
 
 void SystemConfig::setPreviewAncEnable(bool value)
 {
-    m_PreviewAncEnable = value;
+	bool v = value;
+    m_PreviewAncEnable = v;
     m_PreviewAncEnableIsSet = true;
 }
 
@@ -585,6 +647,8 @@ void SystemConfig::unsetPreviewAncEnable()
 {
     m_PreviewAncEnableIsSet = false;
 }
+
+
 bool SystemConfig::isAuthenticationEnable() const
 {
     return m_AuthenticationEnable;
@@ -592,7 +656,8 @@ bool SystemConfig::isAuthenticationEnable() const
 
 void SystemConfig::setAuthenticationEnable(bool value)
 {
-    m_AuthenticationEnable = value;
+	bool v = value;
+    m_AuthenticationEnable = v;
     m_AuthenticationEnableIsSet = true;
 }
 
@@ -605,6 +670,8 @@ void SystemConfig::unsetAuthenticationEnable()
 {
     m_AuthenticationEnableIsSet = false;
 }
+
+
 double SystemConfig::getFanSpeed() const
 {
     return m_FanSpeed;
@@ -612,7 +679,12 @@ double SystemConfig::getFanSpeed() const
 
 void SystemConfig::setFanSpeed(double value)
 {
-    m_FanSpeed = value;
+	double v = value;
+	double min = fanSpeedMin();
+	double max = fanSpeedMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_FanSpeed = v;
     m_FanSpeedIsSet = true;
 }
 
@@ -625,6 +697,15 @@ void SystemConfig::unsetFanSpeed()
 {
     m_FanSpeedIsSet = false;
 }
+
+double SystemConfig::fanSpeedMin() const {
+	return 0;
+}
+
+double SystemConfig::fanSpeedMax() const {
+	return 255;
+}
+
 }
 }
 }

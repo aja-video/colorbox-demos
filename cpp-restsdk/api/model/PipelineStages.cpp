@@ -50,6 +50,12 @@ void PipelineStages::validate()
     // TODO: implement validation
 }
 
+bool PipelineStages::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value PipelineStages::toJson() const
 {
 
@@ -245,6 +251,8 @@ bool PipelineStages::fromJson(const web::json::value& val)
             setCscFilter(refVal_cscFilter);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -396,6 +404,8 @@ bool PipelineStages::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("cscFilter"))), refVal_cscFilter );
         setCscFilter(refVal_cscFilter);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -406,7 +416,8 @@ std::shared_ptr<Stage> PipelineStages::getLut1d1() const
 
 void PipelineStages::setLut1d1(const std::shared_ptr<Stage>& value)
 {
-    m_Lut1d_1 = value;
+	std::shared_ptr<Stage> v = value;
+    m_Lut1d_1 = v;
     m_Lut1d_1IsSet = true;
 }
 
@@ -419,6 +430,8 @@ void PipelineStages::unsetLut1d_1()
 {
     m_Lut1d_1IsSet = false;
 }
+
+
 std::shared_ptr<Stage> PipelineStages::getM3x32() const
 {
     return m_M3x3_2;
@@ -426,7 +439,8 @@ std::shared_ptr<Stage> PipelineStages::getM3x32() const
 
 void PipelineStages::setM3x32(const std::shared_ptr<Stage>& value)
 {
-    m_M3x3_2 = value;
+	std::shared_ptr<Stage> v = value;
+    m_M3x3_2 = v;
     m_M3x3_2IsSet = true;
 }
 
@@ -439,6 +453,8 @@ void PipelineStages::unsetM3x3_2()
 {
     m_M3x3_2IsSet = false;
 }
+
+
 std::shared_ptr<Stage> PipelineStages::getLut1d2() const
 {
     return m_Lut1d_2;
@@ -446,7 +462,8 @@ std::shared_ptr<Stage> PipelineStages::getLut1d2() const
 
 void PipelineStages::setLut1d2(const std::shared_ptr<Stage>& value)
 {
-    m_Lut1d_2 = value;
+	std::shared_ptr<Stage> v = value;
+    m_Lut1d_2 = v;
     m_Lut1d_2IsSet = true;
 }
 
@@ -459,6 +476,8 @@ void PipelineStages::unsetLut1d_2()
 {
     m_Lut1d_2IsSet = false;
 }
+
+
 std::shared_ptr<Stage> PipelineStages::getLut3d1() const
 {
     return m_Lut3d_1;
@@ -466,7 +485,8 @@ std::shared_ptr<Stage> PipelineStages::getLut3d1() const
 
 void PipelineStages::setLut3d1(const std::shared_ptr<Stage>& value)
 {
-    m_Lut3d_1 = value;
+	std::shared_ptr<Stage> v = value;
+    m_Lut3d_1 = v;
     m_Lut3d_1IsSet = true;
 }
 
@@ -479,6 +499,8 @@ void PipelineStages::unsetLut3d_1()
 {
     m_Lut3d_1IsSet = false;
 }
+
+
 std::shared_ptr<Stage> PipelineStages::getLut1d3() const
 {
     return m_Lut1d_3;
@@ -486,7 +508,8 @@ std::shared_ptr<Stage> PipelineStages::getLut1d3() const
 
 void PipelineStages::setLut1d3(const std::shared_ptr<Stage>& value)
 {
-    m_Lut1d_3 = value;
+	std::shared_ptr<Stage> v = value;
+    m_Lut1d_3 = v;
     m_Lut1d_3IsSet = true;
 }
 
@@ -499,6 +522,8 @@ void PipelineStages::unsetLut1d_3()
 {
     m_Lut1d_3IsSet = false;
 }
+
+
 std::shared_ptr<Stage> PipelineStages::getM3x33() const
 {
     return m_M3x3_3;
@@ -506,7 +531,8 @@ std::shared_ptr<Stage> PipelineStages::getM3x33() const
 
 void PipelineStages::setM3x33(const std::shared_ptr<Stage>& value)
 {
-    m_M3x3_3 = value;
+	std::shared_ptr<Stage> v = value;
+    m_M3x3_3 = v;
     m_M3x3_3IsSet = true;
 }
 
@@ -519,6 +545,8 @@ void PipelineStages::unsetM3x3_3()
 {
     m_M3x3_3IsSet = false;
 }
+
+
 std::shared_ptr<Stage> PipelineStages::getLut1d4() const
 {
     return m_Lut1d_4;
@@ -526,7 +554,8 @@ std::shared_ptr<Stage> PipelineStages::getLut1d4() const
 
 void PipelineStages::setLut1d4(const std::shared_ptr<Stage>& value)
 {
-    m_Lut1d_4 = value;
+	std::shared_ptr<Stage> v = value;
+    m_Lut1d_4 = v;
     m_Lut1d_4IsSet = true;
 }
 
@@ -539,6 +568,8 @@ void PipelineStages::unsetLut1d_4()
 {
     m_Lut1d_4IsSet = false;
 }
+
+
 std::shared_ptr<Colorimetry> PipelineStages::getInColorimetry() const
 {
     return m_InColorimetry;
@@ -546,7 +577,8 @@ std::shared_ptr<Colorimetry> PipelineStages::getInColorimetry() const
 
 void PipelineStages::setInColorimetry(const std::shared_ptr<Colorimetry>& value)
 {
-    m_InColorimetry = value;
+	std::shared_ptr<Colorimetry> v = value;
+    m_InColorimetry = v;
     m_InColorimetryIsSet = true;
 }
 
@@ -559,6 +591,8 @@ void PipelineStages::unsetInColorimetry()
 {
     m_InColorimetryIsSet = false;
 }
+
+
 std::shared_ptr<PipelineRange> PipelineStages::getInRange() const
 {
     return m_InRange;
@@ -566,7 +600,8 @@ std::shared_ptr<PipelineRange> PipelineStages::getInRange() const
 
 void PipelineStages::setInRange(const std::shared_ptr<PipelineRange>& value)
 {
-    m_InRange = value;
+	std::shared_ptr<PipelineRange> v = value;
+    m_InRange = v;
     m_InRangeIsSet = true;
 }
 
@@ -579,6 +614,8 @@ void PipelineStages::unsetInRange()
 {
     m_InRangeIsSet = false;
 }
+
+
 std::shared_ptr<Colorimetry> PipelineStages::getOutColorimetry() const
 {
     return m_OutColorimetry;
@@ -586,7 +623,8 @@ std::shared_ptr<Colorimetry> PipelineStages::getOutColorimetry() const
 
 void PipelineStages::setOutColorimetry(const std::shared_ptr<Colorimetry>& value)
 {
-    m_OutColorimetry = value;
+	std::shared_ptr<Colorimetry> v = value;
+    m_OutColorimetry = v;
     m_OutColorimetryIsSet = true;
 }
 
@@ -599,6 +637,8 @@ void PipelineStages::unsetOutColorimetry()
 {
     m_OutColorimetryIsSet = false;
 }
+
+
 std::shared_ptr<PipelineRange> PipelineStages::getOutRange() const
 {
     return m_OutRange;
@@ -606,7 +646,8 @@ std::shared_ptr<PipelineRange> PipelineStages::getOutRange() const
 
 void PipelineStages::setOutRange(const std::shared_ptr<PipelineRange>& value)
 {
-    m_OutRange = value;
+	std::shared_ptr<PipelineRange> v = value;
+    m_OutRange = v;
     m_OutRangeIsSet = true;
 }
 
@@ -619,6 +660,8 @@ void PipelineStages::unsetOutRange()
 {
     m_OutRangeIsSet = false;
 }
+
+
 std::shared_ptr<Transfer> PipelineStages::getTransferCharacteristic() const
 {
     return m_TransferCharacteristic;
@@ -626,7 +669,8 @@ std::shared_ptr<Transfer> PipelineStages::getTransferCharacteristic() const
 
 void PipelineStages::setTransferCharacteristic(const std::shared_ptr<Transfer>& value)
 {
-    m_TransferCharacteristic = value;
+	std::shared_ptr<Transfer> v = value;
+    m_TransferCharacteristic = v;
     m_TransferCharacteristicIsSet = true;
 }
 
@@ -639,6 +683,8 @@ void PipelineStages::unsetTransferCharacteristic()
 {
     m_TransferCharacteristicIsSet = false;
 }
+
+
 std::shared_ptr<CSCFilter> PipelineStages::getCscFilter() const
 {
     return m_CscFilter;
@@ -646,7 +692,8 @@ std::shared_ptr<CSCFilter> PipelineStages::getCscFilter() const
 
 void PipelineStages::setCscFilter(const std::shared_ptr<CSCFilter>& value)
 {
-    m_CscFilter = value;
+	std::shared_ptr<CSCFilter> v = value;
+    m_CscFilter = v;
     m_CscFilterIsSet = true;
 }
 
@@ -659,6 +706,8 @@ void PipelineStages::unsetCscFilter()
 {
     m_CscFilterIsSet = false;
 }
+
+
 }
 }
 }

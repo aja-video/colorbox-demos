@@ -41,6 +41,24 @@ void LibraryEntry::validate()
     // TODO: implement validation
 }
 
+bool LibraryEntry::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (userNameIsSet())
+	{
+		bool userNameChanged = false;
+		utility::string_t v = getUserName();
+		if (userNameChanged) { setUserName(v); anyMinMaxValueChanged = true; }
+	}
+	if (fileNameIsSet())
+	{
+		bool fileNameChanged = false;
+		utility::string_t v = getFileName();
+		if (fileNameChanged) { setFileName(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value LibraryEntry::toJson() const
 {
 
@@ -82,6 +100,8 @@ bool LibraryEntry::fromJson(const web::json::value& val)
             setFileName(refVal_fileName);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -123,6 +143,8 @@ bool LibraryEntry::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fileName"))), refVal_fileName );
         setFileName(refVal_fileName);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -133,7 +155,8 @@ utility::string_t LibraryEntry::getUserName() const
 
 void LibraryEntry::setUserName(const utility::string_t& value)
 {
-    m_UserName = value;
+	utility::string_t v = value;
+    m_UserName = v;
     m_UserNameIsSet = true;
 }
 
@@ -146,6 +169,9 @@ void LibraryEntry::unsetUserName()
 {
     m_UserNameIsSet = false;
 }
+
+
+
 utility::string_t LibraryEntry::getFileName() const
 {
     return m_FileName;
@@ -153,7 +179,8 @@ utility::string_t LibraryEntry::getFileName() const
 
 void LibraryEntry::setFileName(const utility::string_t& value)
 {
-    m_FileName = value;
+	utility::string_t v = value;
+    m_FileName = v;
     m_FileNameIsSet = true;
 }
 
@@ -166,6 +193,9 @@ void LibraryEntry::unsetFileName()
 {
     m_FileNameIsSet = false;
 }
+
+
+
 }
 }
 }

@@ -50,6 +50,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -69,6 +70,7 @@ public:
 
     void setEnabled(bool value);
 
+
     /// <summary>
     /// true if frame store can be dynamically adjusted
     /// </summary>
@@ -77,6 +79,7 @@ public:
     void unsetDynamic();
 
     void setDynamic(bool value);
+
 
     /// <summary>
     /// The custom name for the captured image
@@ -87,6 +90,7 @@ public:
 
     void setImageName(const utility::string_t& value);
 
+
     /// <summary>
     /// Flag to append the timecode of the captured image onto the filename
     /// </summary>
@@ -95,6 +99,7 @@ public:
     void unsetTimecodeAppended();
 
     void setTimecodeAppended(bool value);
+
 
     /// <summary>
     /// 
@@ -105,6 +110,7 @@ public:
 
     void setFileType(const std::shared_ptr<FileTypeChoice>& value);
 
+
     /// <summary>
     /// library entry number, zero is black
     /// </summary>
@@ -113,6 +119,7 @@ public:
     void unsetLibraryEntry();
 
     void setLibraryEntry(int32_t value);
+
 
     /// <summary>
     /// 
@@ -123,6 +130,7 @@ public:
 
     void setFormat(const std::shared_ptr<VideoFormat>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -132,6 +140,7 @@ public:
 
     void setConvert(const std::shared_ptr<VideoConvertChoice>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -140,6 +149,7 @@ public:
     void unsetRgbRange();
 
     void setRgbRange(const std::shared_ptr<RgbRange>& value);
+
 
 
 protected:

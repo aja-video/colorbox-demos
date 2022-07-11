@@ -72,6 +72,12 @@ void Transfer::validate()
     // TODO: implement validation
 }
 
+bool Transfer::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Transfer::toJson() const
 {
     auto val = fromEnum(m_value);

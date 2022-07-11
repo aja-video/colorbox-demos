@@ -78,6 +78,96 @@ void Status::validate()
     // TODO: implement validation
 }
 
+bool Status::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (systemDateIsSet())
+	{
+		bool systemDateChanged = false;
+		utility::string_t v = getSystemDate();
+		if (systemDateChanged) { setSystemDate(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemTimeIsSet())
+	{
+		bool systemTimeChanged = false;
+		utility::string_t v = getSystemTime();
+		if (systemTimeChanged) { setSystemTime(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemUptimeIsSet())
+	{
+		bool systemUptimeChanged = false;
+		utility::string_t v = getSystemUptime();
+		if (systemUptimeChanged) { setSystemUptime(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemOsNameIsSet())
+	{
+		bool systemOsNameChanged = false;
+		utility::string_t v = getSystemOsName();
+		if (systemOsNameChanged) { setSystemOsName(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemSerialNumberIsSet())
+	{
+		bool systemSerialNumberChanged = false;
+		utility::string_t v = getSystemSerialNumber();
+		if (systemSerialNumberChanged) { setSystemSerialNumber(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemCatalogNumberIsSet())
+	{
+		bool systemCatalogNumberChanged = false;
+		utility::string_t v = getSystemCatalogNumber();
+		if (systemCatalogNumberChanged) { setSystemCatalogNumber(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemAppSwVersionIsSet())
+	{
+		bool systemAppSwVersionChanged = false;
+		utility::string_t v = getSystemAppSwVersion();
+		if (systemAppSwVersionChanged) { setSystemAppSwVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemSupportInfoIsSet())
+	{
+		bool systemSupportInfoChanged = false;
+		utility::string_t v = getSystemSupportInfo();
+		if (systemSupportInfoChanged) { setSystemSupportInfo(v); anyMinMaxValueChanged = true; }
+	}
+	if (shutdownTimeIsSet())
+	{
+		bool shutdownTimeChanged = false;
+		int32_t v = getShutdownTime();
+		if (shutdownTimeChanged) { setShutdownTime(v); anyMinMaxValueChanged = true; }
+	}
+	if (colorfrontTransformVersionIsSet())
+	{
+		bool colorfrontTransformVersionChanged = false;
+		utility::string_t v = getColorfrontTransformVersion();
+		if (colorfrontTransformVersionChanged) { setColorfrontTransformVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (colorfrontEngineVersionIsSet())
+	{
+		bool colorfrontEngineVersionChanged = false;
+		utility::string_t v = getColorfrontEngineVersion();
+		if (colorfrontEngineVersionChanged) { setColorfrontEngineVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (orionVersionIsSet())
+	{
+		bool orionVersionChanged = false;
+		utility::string_t v = getOrionVersion();
+		if (orionVersionChanged) { setOrionVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (bbcLutVersionIsSet())
+	{
+		bool bbcLutVersionChanged = false;
+		utility::string_t v = getBbcLutVersion();
+		if (bbcLutVersionChanged) { setBbcLutVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (nbcuLutVersionIsSet())
+	{
+		bool nbcuLutVersionChanged = false;
+		utility::string_t v = getNbcuLutVersion();
+		if (nbcuLutVersionChanged) { setNbcuLutVersion(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value Status::toJson() const
 {
 
@@ -385,6 +475,8 @@ bool Status::fromJson(const web::json::value& val)
             setCpuBusy(refVal_cpuBusy);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -616,6 +708,8 @@ bool Status::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("cpuBusy"))), refVal_cpuBusy );
         setCpuBusy(refVal_cpuBusy);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -626,7 +720,8 @@ std::shared_ptr<StatusInfo> Status::getDeviceDieTemp() const
 
 void Status::setDeviceDieTemp(const std::shared_ptr<StatusInfo>& value)
 {
-    m_DeviceDieTemp = value;
+	std::shared_ptr<StatusInfo> v = value;
+    m_DeviceDieTemp = v;
     m_DeviceDieTempIsSet = true;
 }
 
@@ -639,6 +734,8 @@ void Status::unsetDeviceDieTemp()
 {
     m_DeviceDieTempIsSet = false;
 }
+
+
 utility::string_t Status::getSystemDate() const
 {
     return m_SystemDate;
@@ -646,7 +743,8 @@ utility::string_t Status::getSystemDate() const
 
 void Status::setSystemDate(const utility::string_t& value)
 {
-    m_SystemDate = value;
+	utility::string_t v = value;
+    m_SystemDate = v;
     m_SystemDateIsSet = true;
 }
 
@@ -659,6 +757,9 @@ void Status::unsetSystemDate()
 {
     m_SystemDateIsSet = false;
 }
+
+
+
 utility::string_t Status::getSystemTime() const
 {
     return m_SystemTime;
@@ -666,7 +767,8 @@ utility::string_t Status::getSystemTime() const
 
 void Status::setSystemTime(const utility::string_t& value)
 {
-    m_SystemTime = value;
+	utility::string_t v = value;
+    m_SystemTime = v;
     m_SystemTimeIsSet = true;
 }
 
@@ -679,6 +781,9 @@ void Status::unsetSystemTime()
 {
     m_SystemTimeIsSet = false;
 }
+
+
+
 utility::string_t Status::getSystemUptime() const
 {
     return m_SystemUptime;
@@ -686,7 +791,8 @@ utility::string_t Status::getSystemUptime() const
 
 void Status::setSystemUptime(const utility::string_t& value)
 {
-    m_SystemUptime = value;
+	utility::string_t v = value;
+    m_SystemUptime = v;
     m_SystemUptimeIsSet = true;
 }
 
@@ -699,6 +805,9 @@ void Status::unsetSystemUptime()
 {
     m_SystemUptimeIsSet = false;
 }
+
+
+
 utility::string_t Status::getSystemOsName() const
 {
     return m_SystemOsName;
@@ -706,7 +815,8 @@ utility::string_t Status::getSystemOsName() const
 
 void Status::setSystemOsName(const utility::string_t& value)
 {
-    m_SystemOsName = value;
+	utility::string_t v = value;
+    m_SystemOsName = v;
     m_SystemOsNameIsSet = true;
 }
 
@@ -719,6 +829,9 @@ void Status::unsetSystemOsName()
 {
     m_SystemOsNameIsSet = false;
 }
+
+
+
 utility::string_t Status::getSystemSerialNumber() const
 {
     return m_SystemSerialNumber;
@@ -726,7 +839,8 @@ utility::string_t Status::getSystemSerialNumber() const
 
 void Status::setSystemSerialNumber(const utility::string_t& value)
 {
-    m_SystemSerialNumber = value;
+	utility::string_t v = value;
+    m_SystemSerialNumber = v;
     m_SystemSerialNumberIsSet = true;
 }
 
@@ -739,6 +853,9 @@ void Status::unsetSystemSerialNumber()
 {
     m_SystemSerialNumberIsSet = false;
 }
+
+
+
 utility::string_t Status::getSystemCatalogNumber() const
 {
     return m_SystemCatalogNumber;
@@ -746,7 +863,8 @@ utility::string_t Status::getSystemCatalogNumber() const
 
 void Status::setSystemCatalogNumber(const utility::string_t& value)
 {
-    m_SystemCatalogNumber = value;
+	utility::string_t v = value;
+    m_SystemCatalogNumber = v;
     m_SystemCatalogNumberIsSet = true;
 }
 
@@ -759,6 +877,9 @@ void Status::unsetSystemCatalogNumber()
 {
     m_SystemCatalogNumberIsSet = false;
 }
+
+
+
 utility::string_t Status::getSystemAppSwVersion() const
 {
     return m_SystemAppSwVersion;
@@ -766,7 +887,8 @@ utility::string_t Status::getSystemAppSwVersion() const
 
 void Status::setSystemAppSwVersion(const utility::string_t& value)
 {
-    m_SystemAppSwVersion = value;
+	utility::string_t v = value;
+    m_SystemAppSwVersion = v;
     m_SystemAppSwVersionIsSet = true;
 }
 
@@ -779,6 +901,9 @@ void Status::unsetSystemAppSwVersion()
 {
     m_SystemAppSwVersionIsSet = false;
 }
+
+
+
 utility::string_t Status::getSystemSupportInfo() const
 {
     return m_SystemSupportInfo;
@@ -786,7 +911,8 @@ utility::string_t Status::getSystemSupportInfo() const
 
 void Status::setSystemSupportInfo(const utility::string_t& value)
 {
-    m_SystemSupportInfo = value;
+	utility::string_t v = value;
+    m_SystemSupportInfo = v;
     m_SystemSupportInfoIsSet = true;
 }
 
@@ -799,6 +925,9 @@ void Status::unsetSystemSupportInfo()
 {
     m_SystemSupportInfoIsSet = false;
 }
+
+
+
 bool Status::isEulaAccepted() const
 {
     return m_EulaAccepted;
@@ -806,7 +935,8 @@ bool Status::isEulaAccepted() const
 
 void Status::setEulaAccepted(bool value)
 {
-    m_EulaAccepted = value;
+	bool v = value;
+    m_EulaAccepted = v;
     m_EulaAcceptedIsSet = true;
 }
 
@@ -819,6 +949,8 @@ void Status::unsetEulaAccepted()
 {
     m_EulaAcceptedIsSet = false;
 }
+
+
 bool Status::isLicenseActive() const
 {
     return m_LicenseActive;
@@ -826,7 +958,8 @@ bool Status::isLicenseActive() const
 
 void Status::setLicenseActive(bool value)
 {
-    m_LicenseActive = value;
+	bool v = value;
+    m_LicenseActive = v;
     m_LicenseActiveIsSet = true;
 }
 
@@ -839,6 +972,8 @@ void Status::unsetLicenseActive()
 {
     m_LicenseActiveIsSet = false;
 }
+
+
 bool Status::isBbcLutsLicensed() const
 {
     return m_BbcLutsLicensed;
@@ -846,7 +981,8 @@ bool Status::isBbcLutsLicensed() const
 
 void Status::setBbcLutsLicensed(bool value)
 {
-    m_BbcLutsLicensed = value;
+	bool v = value;
+    m_BbcLutsLicensed = v;
     m_BbcLutsLicensedIsSet = true;
 }
 
@@ -859,6 +995,8 @@ void Status::unsetBbcLutsLicensed()
 {
     m_BbcLutsLicensedIsSet = false;
 }
+
+
 bool Status::isOrionEngineLicensed() const
 {
     return m_OrionEngineLicensed;
@@ -866,7 +1004,8 @@ bool Status::isOrionEngineLicensed() const
 
 void Status::setOrionEngineLicensed(bool value)
 {
-    m_OrionEngineLicensed = value;
+	bool v = value;
+    m_OrionEngineLicensed = v;
     m_OrionEngineLicensedIsSet = true;
 }
 
@@ -879,6 +1018,8 @@ void Status::unsetOrionEngineLicensed()
 {
     m_OrionEngineLicensedIsSet = false;
 }
+
+
 bool Status::isColorfrontEngineLicensed() const
 {
     return m_ColorfrontEngineLicensed;
@@ -886,7 +1027,8 @@ bool Status::isColorfrontEngineLicensed() const
 
 void Status::setColorfrontEngineLicensed(bool value)
 {
-    m_ColorfrontEngineLicensed = value;
+	bool v = value;
+    m_ColorfrontEngineLicensed = v;
     m_ColorfrontEngineLicensedIsSet = true;
 }
 
@@ -899,6 +1041,8 @@ void Status::unsetColorfrontEngineLicensed()
 {
     m_ColorfrontEngineLicensedIsSet = false;
 }
+
+
 int32_t Status::getShutdownTime() const
 {
     return m_ShutdownTime;
@@ -906,7 +1050,8 @@ int32_t Status::getShutdownTime() const
 
 void Status::setShutdownTime(int32_t value)
 {
-    m_ShutdownTime = value;
+	int32_t v = value;
+    m_ShutdownTime = v;
     m_ShutdownTimeIsSet = true;
 }
 
@@ -919,6 +1064,9 @@ void Status::unsetShutdownTime()
 {
     m_ShutdownTimeIsSet = false;
 }
+
+
+
 utility::string_t Status::getColorfrontTransformVersion() const
 {
     return m_ColorfrontTransformVersion;
@@ -926,7 +1074,8 @@ utility::string_t Status::getColorfrontTransformVersion() const
 
 void Status::setColorfrontTransformVersion(const utility::string_t& value)
 {
-    m_ColorfrontTransformVersion = value;
+	utility::string_t v = value;
+    m_ColorfrontTransformVersion = v;
     m_ColorfrontTransformVersionIsSet = true;
 }
 
@@ -939,6 +1088,9 @@ void Status::unsetColorfrontTransformVersion()
 {
     m_ColorfrontTransformVersionIsSet = false;
 }
+
+
+
 utility::string_t Status::getColorfrontEngineVersion() const
 {
     return m_ColorfrontEngineVersion;
@@ -946,7 +1098,8 @@ utility::string_t Status::getColorfrontEngineVersion() const
 
 void Status::setColorfrontEngineVersion(const utility::string_t& value)
 {
-    m_ColorfrontEngineVersion = value;
+	utility::string_t v = value;
+    m_ColorfrontEngineVersion = v;
     m_ColorfrontEngineVersionIsSet = true;
 }
 
@@ -959,6 +1112,9 @@ void Status::unsetColorfrontEngineVersion()
 {
     m_ColorfrontEngineVersionIsSet = false;
 }
+
+
+
 utility::string_t Status::getOrionVersion() const
 {
     return m_OrionVersion;
@@ -966,7 +1122,8 @@ utility::string_t Status::getOrionVersion() const
 
 void Status::setOrionVersion(const utility::string_t& value)
 {
-    m_OrionVersion = value;
+	utility::string_t v = value;
+    m_OrionVersion = v;
     m_OrionVersionIsSet = true;
 }
 
@@ -979,6 +1136,9 @@ void Status::unsetOrionVersion()
 {
     m_OrionVersionIsSet = false;
 }
+
+
+
 utility::string_t Status::getBbcLutVersion() const
 {
     return m_BbcLutVersion;
@@ -986,7 +1146,8 @@ utility::string_t Status::getBbcLutVersion() const
 
 void Status::setBbcLutVersion(const utility::string_t& value)
 {
-    m_BbcLutVersion = value;
+	utility::string_t v = value;
+    m_BbcLutVersion = v;
     m_BbcLutVersionIsSet = true;
 }
 
@@ -999,6 +1160,9 @@ void Status::unsetBbcLutVersion()
 {
     m_BbcLutVersionIsSet = false;
 }
+
+
+
 utility::string_t Status::getNbcuLutVersion() const
 {
     return m_NbcuLutVersion;
@@ -1006,7 +1170,8 @@ utility::string_t Status::getNbcuLutVersion() const
 
 void Status::setNbcuLutVersion(const utility::string_t& value)
 {
-    m_NbcuLutVersion = value;
+	utility::string_t v = value;
+    m_NbcuLutVersion = v;
     m_NbcuLutVersionIsSet = true;
 }
 
@@ -1019,6 +1184,9 @@ void Status::unsetNbcuLutVersion()
 {
     m_NbcuLutVersionIsSet = false;
 }
+
+
+
 bool Status::isCpuBusy() const
 {
     return m_CpuBusy;
@@ -1026,7 +1194,8 @@ bool Status::isCpuBusy() const
 
 void Status::setCpuBusy(bool value)
 {
-    m_CpuBusy = value;
+	bool v = value;
+    m_CpuBusy = v;
     m_CpuBusyIsSet = true;
 }
 
@@ -1039,6 +1208,8 @@ void Status::unsetCpuBusy()
 {
     m_CpuBusyIsSet = false;
 }
+
+
 }
 }
 }

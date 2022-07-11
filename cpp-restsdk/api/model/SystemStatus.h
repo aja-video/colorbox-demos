@@ -47,6 +47,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -66,6 +67,7 @@ public:
 
     void setSafebootVersion(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -74,6 +76,7 @@ public:
     void unsetMainbootVersion();
 
     void setMainbootVersion(const utility::string_t& value);
+
 
     /// <summary>
     /// 
@@ -84,6 +87,7 @@ public:
 
     void setRunningVersion(const utility::string_t& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -92,6 +96,7 @@ public:
     void unsetSafeboot();
 
     void setSafeboot(bool value);
+
 
     /// <summary>
     /// 
@@ -102,6 +107,7 @@ public:
 
     void setUpdateMsg(const std::vector<utility::string_t>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -111,6 +117,7 @@ public:
 
     void setTransformModeChanging(bool value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -119,6 +126,7 @@ public:
     void unsetTransformModeTimestamp();
 
     void setTransformModeTimestamp(const utility::datetime& value);
+
 
 
 protected:

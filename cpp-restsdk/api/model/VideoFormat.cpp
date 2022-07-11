@@ -264,6 +264,12 @@ void VideoFormat::validate()
     // TODO: implement validation
 }
 
+bool VideoFormat::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	return anyMinMaxValueChanged;
+}
+
 web::json::value VideoFormat::toJson() const
 {
     auto val = fromEnum(m_value);

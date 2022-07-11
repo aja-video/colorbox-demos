@@ -41,6 +41,24 @@ void SystemPassword::validate()
     // TODO: implement validation
 }
 
+bool SystemPassword::applyMinMaxConstraints()
+{
+	bool anyMinMaxValueChanged = false;
+	if (currentPasswordIsSet())
+	{
+		bool currentPasswordChanged = false;
+		utility::string_t v = getCurrentPassword();
+		if (currentPasswordChanged) { setCurrentPassword(v); anyMinMaxValueChanged = true; }
+	}
+	if (newPasswordIsSet())
+	{
+		bool newPasswordChanged = false;
+		utility::string_t v = getNewPassword();
+		if (newPasswordChanged) { setNewPassword(v); anyMinMaxValueChanged = true; }
+	}
+	return anyMinMaxValueChanged;
+}
+
 web::json::value SystemPassword::toJson() const
 {
 
@@ -82,6 +100,8 @@ bool SystemPassword::fromJson(const web::json::value& val)
             setNewPassword(refVal_newPassword);
         }
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -123,6 +143,8 @@ bool SystemPassword::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("newPassword"))), refVal_newPassword );
         setNewPassword(refVal_newPassword);
     }
+    
+    applyMinMaxConstraints();
     return ok;
 }
 
@@ -133,7 +155,8 @@ utility::string_t SystemPassword::getCurrentPassword() const
 
 void SystemPassword::setCurrentPassword(const utility::string_t& value)
 {
-    m_CurrentPassword = value;
+	utility::string_t v = value;
+    m_CurrentPassword = v;
     m_CurrentPasswordIsSet = true;
 }
 
@@ -146,6 +169,9 @@ void SystemPassword::unsetCurrentPassword()
 {
     m_CurrentPasswordIsSet = false;
 }
+
+
+
 utility::string_t SystemPassword::getNewPassword() const
 {
     return m_NewPassword;
@@ -153,7 +179,8 @@ utility::string_t SystemPassword::getNewPassword() const
 
 void SystemPassword::setNewPassword(const utility::string_t& value)
 {
-    m_NewPassword = value;
+	utility::string_t v = value;
+    m_NewPassword = v;
     m_NewPasswordIsSet = true;
 }
 
@@ -166,6 +193,9 @@ void SystemPassword::unsetNewPassword()
 {
     m_NewPasswordIsSet = false;
 }
+
+
+
 }
 }
 }

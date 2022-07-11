@@ -48,6 +48,7 @@ public:
     /// ModelBase overrides
 
     void validate() override;
+    bool applyMinMaxConstraints() override;
 
     web::json::value toJson() const override;
     bool fromJson(const web::json::value& json) override;
@@ -67,6 +68,7 @@ public:
 
     void setConfig(const std::shared_ptr<NetConfig>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -75,6 +77,7 @@ public:
     void unsetStatus();
 
     void setStatus(const std::shared_ptr<NetStatus>& value);
+
 
     /// <summary>
     /// 
@@ -85,6 +88,7 @@ public:
 
     void setActiveParams(const std::shared_ptr<NetParams>& value);
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -93,6 +97,7 @@ public:
     void unsetStagedParams();
 
     void setStagedParams(const std::shared_ptr<NetParams>& value);
+
 
 
 protected:
