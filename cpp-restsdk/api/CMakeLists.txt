@@ -34,6 +34,19 @@ file(GLOB_RECURSE SOURCE_FILES "*.cpp")
 
 add_library(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
+if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+	# assuming the use of homebrew on the Mac
+	# may need to pass the following to the cmake command:
+	#	-DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@1.1
+
+	set(EXTRA_INCLUDE_DIRS
+		/opt/homebrew/opt/cpprestsdk/include
+		${OPENSSL_INCLUDE_DIR})
+	set(EXTRA_LIB_DIRS
+		/opt/homebrew/opt/cpprestsdk/lib
+		${OPENSSL_ROOT_DIR}/lib)
+endif()
+
 target_compile_options(${PROJECT_NAME}
     PRIVATE
         $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
@@ -44,11 +57,18 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>  
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+        ${Boost_INCLUDE_DIR}
+        ${EXTRA_INCLUDE_DIRS}
 )
 
 target_link_directories(${PROJECT_NAME}
     PRIVATE
         ${Boost_LIBRARY_DIRS}
+)
+
+target_link_directories(${PROJECT_NAME}
+	PUBLIC
+		${EXTRA_LIB_DIRS}
 )
 
 if (UNIX)

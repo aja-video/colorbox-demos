@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 
 project(set_overlay_text)
 
+# cpp-restsdk-client-colorbox requires c++ 14 or higher
+if (NOT CMAKE_CXX_STANDARD)
+	set(CMAKE_CXX_STANDARD 14)
+endif()
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(API_COMMON_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../api)
