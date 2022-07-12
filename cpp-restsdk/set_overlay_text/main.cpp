@@ -17,6 +17,7 @@ This example will:
 #include "ApiConfiguration.h"
 #include "api/DefaultApi.h"
 
+using namespace utility::conversions;
 using namespace org::openapitools::client::api;
 
 void usage()
@@ -64,6 +65,14 @@ void parse_args(int argc, char *argv[],
 	}
 }
 
+utility::string_t makeUrl(const std::string& host, const std::string& port)
+{
+	utility::string_t url = to_string_t("http://") + to_string_t(host) +
+							to_string_t(":") + to_string_t(port.c_str()) +
+							to_string_t("/v2");
+	return url;
+}
+
 int main(int argc, char *argv[])
 {
 	std::string host;
@@ -73,13 +82,13 @@ int main(int argc, char *argv[])
 	parse_args(argc, argv, host, port, user, pass);
 
 	std::shared_ptr<ApiConfiguration> apiconfiguration = std::make_shared<ApiConfiguration>();
-	std::string url = "http://" + host + ":" + port + "/v2";
+	utility::string_t url = makeUrl(host, port);
 	apiconfiguration->setBaseUrl(url);
 
 	if (user != "") {
 		// handle basic auth
 		auto cfg = apiconfiguration->getHttpConfig();
-		web::http::client::credentials credentials(user, pass);
+		web::http::client::credentials credentials(to_string_t(user), to_string_t(pass));
 		cfg.set_credentials(credentials);
 		apiconfiguration->setHttpConfig(cfg);
 	}
@@ -87,7 +96,7 @@ int main(int argc, char *argv[])
 	std::shared_ptr<ApiClient> apiclient = std::make_shared<ApiClient>(apiconfiguration);
 	std::shared_ptr<DefaultApi> api = std::make_shared<DefaultApi>(apiclient);
 
-	std::cout << "Controlling [" << url << "]" << std::endl << std::flush;
+	std::cout << "Controlling [" << to_utf8string(url) << "]" << std::endl << std::flush;
 
 	// disable frame store if needed
 	{
@@ -175,8 +184,8 @@ int main(int argc, char *argv[])
 		auto t = std::chrono::system_clock::to_time_t(now);
 		std::strftime(timeBuf, sizeof(timeBuf), "%FT%T", std::localtime(&t));
 
-		o->setUserTextLine1(timeBuf);
-		o->setUserTextLine2(runes.at(loop));
+		o->setUserTextLine1(to_string_t(timeBuf));
+		o->setUserTextLine2(to_string_t(runes.at(loop)));
 
 		auto setTask = api->setOverlay(o).then([]() {
 			//std::cout << "overlay updated" << std::endl;

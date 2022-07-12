@@ -10,6 +10,7 @@ This example will get the current device die temperature every second.
 #include "ApiConfiguration.h"
 #include "api/DefaultApi.h"
 
+using namespace utility::conversions;
 using namespace org::openapitools::client::api;
 
 void usage()
@@ -57,6 +58,14 @@ void parse_args(int argc, char *argv[],
 	}
 }
 
+utility::string_t makeUrl(const std::string& host, const std::string& port)
+{
+	utility::string_t url = to_string_t("http://") + to_string_t(host) +
+							to_string_t(":") + to_string_t(port.c_str()) +
+							to_string_t("/v2");
+	return url;
+}
+
 int main(int argc, char *argv[])
 {
 	std::string host;
@@ -66,13 +75,13 @@ int main(int argc, char *argv[])
 	parse_args(argc, argv, host, port, user, pass);
 
 	std::shared_ptr<ApiConfiguration> apiconfiguration = std::make_shared<ApiConfiguration>();
-	std::string url = "http://" + host + ":" + port + "/v2";
+	utility::string_t url = makeUrl(host, port);
 	apiconfiguration->setBaseUrl(url);
 
 	if (user != "") {
 		// handle basic auth
 		auto cfg = apiconfiguration->getHttpConfig();
-		web::http::client::credentials credentials(user, pass);
+		web::http::client::credentials credentials(to_string_t(user), to_string_t(pass));
 		cfg.set_credentials(credentials);
 		apiconfiguration->setHttpConfig(cfg);
 	}
@@ -82,7 +91,7 @@ int main(int argc, char *argv[])
 
 	while(1) {
 		auto reqTask = api->getAllStatus().then([=](std::shared_ptr<Status> status) {
-			std::cout << "\rdie temp: " << status->getDeviceDieTemp()->getValue() << std::flush;
+			std::cout << "\rdie temp: " << to_utf8string(status->getDeviceDieTemp()->getValue()) << std::flush;
 		});
 
 		try{

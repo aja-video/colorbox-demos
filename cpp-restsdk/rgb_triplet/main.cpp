@@ -12,10 +12,12 @@ This example uses a websocket to send an rgb triplet to the ColorBox
 
 #include <cpprest/ws_client.h>
 
+using namespace utility::conversions;
 using namespace web;
 using namespace web::websockets::client;
 
 using namespace org::openapitools::client::api;
+
 
 void usage()
 {
@@ -94,6 +96,21 @@ void parse_args(int argc, char *argv[],
 	}
 }
 
+utility::string_t makeUrl(const std::string& host, const std::string& port)
+{
+	utility::string_t url = to_string_t("http://") + to_string_t(host) +
+							to_string_t(":") + to_string_t(port.c_str()) +
+							to_string_t("/v2");
+	return url;
+}
+
+utility::string_t makeWebsocketUrl(const std::string& host)
+{
+	// ColorBox uses port 5000 for WebSockets
+	utility::string_t url = to_string_t("ws://") + to_string_t(host) + to_string_t(":5000");
+	return url;
+}
+
 int main(int argc, char *argv[])
 {
 	std::string host;
@@ -109,13 +126,13 @@ int main(int argc, char *argv[])
 	parse_args(argc, argv, host, port, user, pass, x, y, r, g, b, cookie);
 
 	std::shared_ptr<ApiConfiguration> apiconfiguration = std::make_shared<ApiConfiguration>();
-	std::string url = "http://" + host + ":" + port + "/v2";
+	utility::string_t url = makeUrl(host, port);
 	apiconfiguration->setBaseUrl(url);
 
 	if (user != "") {
 		// handle basic auth
 		auto cfg = apiconfiguration->getHttpConfig();
-		web::http::client::credentials credentials(user, pass);
+		web::http::client::credentials credentials(to_string_t(user), to_string_t(pass));
 		cfg.set_credentials(credentials);
 		apiconfiguration->setHttpConfig(cfg);
 	}
@@ -165,12 +182,12 @@ int main(int argc, char *argv[])
 		std::cout << "ok." << std::endl;
 	}
 
-	// WS client (ColorBox uses port 5000 for WebSockets)
-	std::string wsurl = "ws://" + host + ":5000";
+	// WS client
+	utility::string_t wsurl = makeWebsocketUrl(host);
 	websocket_client wsclient;
 	{
 		auto wsTask = wsclient.connect(wsurl).then([&]() {
-			std::cout << "ws: connected to server [" << wsurl << "]" << std::endl << std::endl;
+			std::cout << "ws: connected to server [" << to_utf8string(wsurl) << "]" << std::endl << std::endl;
 		});
 		try {
 			wsTask.wait();
@@ -186,13 +203,13 @@ int main(int argc, char *argv[])
 	}
 
 	auto msgTxt = json::value::object();
-	msgTxt["type"] = json::value("rgbtriplet");
-	msgTxt["cookie"] = json::value(cookie);
-	msgTxt["x"] = json::value(x);
-	msgTxt["y"] = json::value(y);
-	msgTxt["r"] = json::value(r);
-	msgTxt["g"] = json::value(g);
-	msgTxt["b"] = json::value(b);
+	msgTxt[U"type"] = json::value("rgbtriplet");
+	msgTxt[U"cookie"] = json::value(to_string_t(cookie));
+	msgTxt[U"x"] = json::value(x);
+	msgTxt[U"y"] = json::value(y);
+	msgTxt[U"r"] = json::value(r);
+	msgTxt[U"g"] = json::value(g);
+	msgTxt[U"b"] = json::value(b);
 
 	websocket_outgoing_message msg;
 	msg.set_binary_message(concurrency::streams::bytestream::open_istream(msgTxt.serialize()));
@@ -216,18 +233,18 @@ int main(int argc, char *argv[])
 		std::cout << "round trip took: " << delta.count() << " ms" << std::endl;
 
 		if (o.is_object()) {
-			auto rCookie = o.at("cookie").as_string();
-			auto rX = o.at("x");
-			auto rY = o.at("y");
-			auto rR = o.at("r");
-			auto rG = o.at("g");
-			auto rB = o.at("b");
-			auto rExpectedR = o.at("expectedR");
-			auto rExpectedG = o.at("expectedG");
-			auto rExpectedB = o.at("expectedB");
-			auto rActualR = o.at("actualR");
-			auto rActualG = o.at("actualG");
-			auto rActualB = o.at("actualB");
+			auto rCookie = o.at(to_string_t("cookie")).as_string();
+			auto rX = o.at(to_string_t("x"));
+			auto rY = o.at(to_string_t("y"));
+			auto rR = o.at(to_string_t("r"));
+			auto rG = o.at(to_string_t("g"));
+			auto rB = o.at(to_string_t("b"));
+			auto rExpectedR = o.at(to_string_t("expectedR"));
+			auto rExpectedG = o.at(to_string_t("expectedG"));
+			auto rExpectedB = o.at(to_string_t("expectedB"));
+			auto rActualR = o.at(to_string_t("actualR"));
+			auto rActualG = o.at(to_string_t("actualG"));
+			auto rActualB = o.at(to_string_t("actualB"));
 
 			auto now = std::chrono::system_clock::now();
 			auto t = std::chrono::system_clock::to_time_t(now);
@@ -235,8 +252,8 @@ int main(int argc, char *argv[])
 			std::strftime(timeBuf, sizeof(timeBuf), "%FT%T", std::localtime(&t));
 
 			std::cout << std::endl << "results:" << std::endl;
-			std::cout << timeBuf << ": " << "for cookie '" << rCookie << "' "
-									   << "with coords(" << rX << "," << rY << ") "
+			std::cout << timeBuf << ": " << "for cookie '" << to_utf8string(rCookie) << "' "
+									   << "with coords(" << rX. << "," << rY << ") "
 									   << "sent rgb(" << rR << "," << rG << "," << rB << "), "
 									   << "expect rgb(" << rExpectedR << "," << rExpectedG << "," << rExpectedB << ") "
 									   << "and got rgb(" << rActualR << "," << rActualG << "," << rActualB << ") "
@@ -256,7 +273,7 @@ int main(int argc, char *argv[])
 		std::string err(ex.what());
 	}
 
-	wsclient.close().then([&]() { std::cout << std::endl << "ws: disconnected from server [" << wsurl << "]" << std::endl; });
+	wsclient.close().then([&]() { std::cout << std::endl << "ws: disconnected from server [" << to_utf8string(wsurl) << "]" << std::endl; });
 
 	return 0;
 }

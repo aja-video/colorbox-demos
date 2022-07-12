@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/AJAColorBoxDemosRestSDK.cmake)
 
+#if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+#    set(CPPREST_EXCLUDE_WEBSOCKETS OFF)
+#    find_package(WEBSOCKETPP REQUIRED)
+#endif()
+
 find_package(cpprestsdk)
 if (NOT cpprestsdk_FOUND)
 	message("skipping cpp-restsdk and examples (cpprestsdk not found)")
