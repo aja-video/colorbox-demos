@@ -3285,6 +3285,7 @@ with openapi_client.ApiClient() as api_client:
         user_text_enabled=True,
         user_text_line1="user_text_line1_example",
         user_text_line2="user_text_line2_example",
+        pipeline_config=True,
         location=Locations("Bottom Center"),
     ) # Overlay | Overlay object
 

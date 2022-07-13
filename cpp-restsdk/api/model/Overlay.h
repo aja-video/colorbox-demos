@@ -205,6 +205,16 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    bool isPipelineConfig() const;
+    bool pipelineConfigIsSet() const;
+    void unsetPipelineConfig();
+
+    void setPipelineConfig(bool value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
     std::shared_ptr<Locations> getLocation() const;
     bool locationIsSet() const;
     void unsetLocation();
@@ -242,6 +252,8 @@ protected:
     bool m_UserTextLine1IsSet;
     utility::string_t m_UserTextLine2;
     bool m_UserTextLine2IsSet;
+    bool m_PipelineConfig;
+    bool m_PipelineConfigIsSet;
     std::shared_ptr<Locations> m_Location;
     bool m_LocationIsSet;
 };

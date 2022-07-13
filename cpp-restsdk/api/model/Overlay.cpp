@@ -54,6 +54,8 @@ Overlay::Overlay()
     m_UserTextLine1IsSet = false;
     m_UserTextLine2 = utility::conversions::to_string_t("");
     m_UserTextLine2IsSet = false;
+    m_PipelineConfig = false;
+    m_PipelineConfigIsSet = false;
     m_LocationIsSet = false;
 }
 
@@ -152,6 +154,10 @@ web::json::value Overlay::toJson() const
     if(m_UserTextLine2IsSet)
     {
         val[utility::conversions::to_string_t(U("userTextLine2"))] = ModelBase::toJson(m_UserTextLine2);
+    }
+    if(m_PipelineConfigIsSet)
+    {
+        val[utility::conversions::to_string_t(U("pipelineConfig"))] = ModelBase::toJson(m_PipelineConfig);
     }
     if(m_LocationIsSet)
     {
@@ -305,6 +311,16 @@ bool Overlay::fromJson(const web::json::value& val)
             setUserTextLine2(refVal_userTextLine2);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("pipelineConfig"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("pipelineConfig")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_pipelineConfig;
+            ok &= ModelBase::fromJson(fieldValue, refVal_pipelineConfig);
+            setPipelineConfig(refVal_pipelineConfig);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("location"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("location")));
@@ -382,6 +398,10 @@ void Overlay::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     if(m_UserTextLine2IsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("userTextLine2")), m_UserTextLine2));
+    }
+    if(m_PipelineConfigIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("pipelineConfig")), m_PipelineConfig));
     }
     if(m_LocationIsSet)
     {
@@ -481,6 +501,12 @@ bool Overlay::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         utility::string_t refVal_userTextLine2;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("userTextLine2"))), refVal_userTextLine2 );
         setUserTextLine2(refVal_userTextLine2);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("pipelineConfig"))))
+    {
+        bool refVal_pipelineConfig;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("pipelineConfig"))), refVal_pipelineConfig );
+        setPipelineConfig(refVal_pipelineConfig);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("location"))))
     {
@@ -836,6 +862,29 @@ int Overlay::userTextLine2Min() const {
 int Overlay::userTextLine2Max() const {
 	return 110;
 }
+
+bool Overlay::isPipelineConfig() const
+{
+    return m_PipelineConfig;
+}
+
+void Overlay::setPipelineConfig(bool value)
+{
+	bool v = value;
+    m_PipelineConfig = v;
+    m_PipelineConfigIsSet = true;
+}
+
+bool Overlay::pipelineConfigIsSet() const
+{
+    return m_PipelineConfigIsSet;
+}
+
+void Overlay::unsetPipelineConfig()
+{
+    m_PipelineConfigIsSet = false;
+}
+
 
 std::shared_ptr<Locations> Overlay::getLocation() const
 {

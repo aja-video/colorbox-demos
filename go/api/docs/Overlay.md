@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **UserTextEnabled** | Pointer to **bool** |  | [optional] 
 **UserTextLine1** | Pointer to **string** |  | [optional] 
 **UserTextLine2** | Pointer to **string** |  | [optional] 
+**PipelineConfig** | Pointer to **bool** |  | [optional] 
 **Location** | Pointer to [**Locations**](Locations.md) |  | [optional] [default to LOCATIONS_BOTTOM_CENTER]
 
 ## Methods
@@ -388,6 +389,31 @@ SetUserTextLine2 sets UserTextLine2 field to given value.
 `func (o *Overlay) HasUserTextLine2() bool`
 
 HasUserTextLine2 returns a boolean if a field has been set.
+
+### GetPipelineConfig
+
+`func (o *Overlay) GetPipelineConfig() bool`
+
+GetPipelineConfig returns the PipelineConfig field if non-nil, zero value otherwise.
+
+### GetPipelineConfigOk
+
+`func (o *Overlay) GetPipelineConfigOk() (*bool, bool)`
+
+GetPipelineConfigOk returns a tuple with the PipelineConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPipelineConfig
+
+`func (o *Overlay) SetPipelineConfig(v bool)`
+
+SetPipelineConfig sets PipelineConfig field to given value.
+
+### HasPipelineConfig
+
+`func (o *Overlay) HasPipelineConfig() bool`
+
+HasPipelineConfig returns a boolean if a field has been set.
 
 ### GetLocation
 

@@ -77,6 +77,9 @@ void OAIOverlay::initializeModel() {
     m_user_text_line2_isSet = false;
     m_user_text_line2_isValid = false;
 
+    m_pipeline_config_isSet = false;
+    m_pipeline_config_isValid = false;
+
     m_location_isSet = false;
     m_location_isValid = false;
 }
@@ -131,6 +134,9 @@ void OAIOverlay::fromJsonObject(QJsonObject json) {
 
     m_user_text_line2_isValid = ::OpenAPI::fromJsonValue(m_user_text_line2, json[QString("userTextLine2")]);
     m_user_text_line2_isSet = !json[QString("userTextLine2")].isNull() && m_user_text_line2_isValid;
+
+    m_pipeline_config_isValid = ::OpenAPI::fromJsonValue(m_pipeline_config, json[QString("pipelineConfig")]);
+    m_pipeline_config_isSet = !json[QString("pipelineConfig")].isNull() && m_pipeline_config_isValid;
 
     m_location_isValid = ::OpenAPI::fromJsonValue(m_location, json[QString("location")]);
     m_location_isSet = !json[QString("location")].isNull() && m_location_isValid;
@@ -188,6 +194,9 @@ QJsonObject OAIOverlay::asJsonObject() const {
     }
     if (m_user_text_line2_isSet) {
         obj.insert(QString("userTextLine2"), ::OpenAPI::toJsonValue(m_user_text_line2));
+    }
+    if (m_pipeline_config_isSet) {
+        obj.insert(QString("pipelineConfig"), ::OpenAPI::toJsonValue(m_pipeline_config));
     }
     if (m_location.isSet()) {
         obj.insert(QString("location"), ::OpenAPI::toJsonValue(m_location));
@@ -469,6 +478,24 @@ int OAIOverlay::userTextLine2Max() const {
 	return 110;
 }
 
+bool OAIOverlay::isPipelineConfig() const {
+    return m_pipeline_config;
+}
+void OAIOverlay::setPipelineConfig(const bool &pipeline_config) {
+	bool v = pipeline_config;
+	this->m_pipeline_config = v;
+    this->m_pipeline_config_isSet = true;
+}
+
+bool OAIOverlay::is_pipeline_config_Set() const{
+    return m_pipeline_config_isSet;
+}
+
+bool OAIOverlay::is_pipeline_config_Valid() const{
+    return m_pipeline_config_isValid;
+}
+
+
 OAILocations OAIOverlay::getLocation() const {
     return m_location;
 }
@@ -556,6 +583,11 @@ bool OAIOverlay::isSet() const {
         }
 
         if (m_user_text_line2_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_pipeline_config_isSet) {
             isObjectUpdated = true;
             break;
         }

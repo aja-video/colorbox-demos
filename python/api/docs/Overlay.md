@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **user_text_enabled** | **bool** |  | [optional] 
 **user_text_line1** | **str** |  | [optional] 
 **user_text_line2** | **str** |  | [optional] 
+**pipeline_config** | **bool** |  | [optional] 
 **location** | [**Locations**](Locations.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

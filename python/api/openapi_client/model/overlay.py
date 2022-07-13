@@ -113,6 +113,7 @@ class Overlay(ModelNormal):
             'user_text_enabled': (bool,),  # noqa: E501
             'user_text_line1': (str,),  # noqa: E501
             'user_text_line2': (str,),  # noqa: E501
+            'pipeline_config': (bool,),  # noqa: E501
             'location': (Locations,),  # noqa: E501
         }
 
@@ -136,6 +137,7 @@ class Overlay(ModelNormal):
         'user_text_enabled': 'userTextEnabled',  # noqa: E501
         'user_text_line1': 'userTextLine1',  # noqa: E501
         'user_text_line2': 'userTextLine2',  # noqa: E501
+        'pipeline_config': 'pipelineConfig',  # noqa: E501
         'location': 'location',  # noqa: E501
     }
 
@@ -194,6 +196,7 @@ class Overlay(ModelNormal):
             user_text_enabled (bool): [optional]  # noqa: E501
             user_text_line1 (str): [optional]  # noqa: E501
             user_text_line2 (str): [optional]  # noqa: E501
+            pipeline_config (bool): [optional]  # noqa: E501
             location (Locations): [optional]  # noqa: E501
         """
 
@@ -290,6 +293,7 @@ class Overlay(ModelNormal):
             user_text_enabled (bool): [optional]  # noqa: E501
             user_text_line1 (str): [optional]  # noqa: E501
             user_text_line2 (str): [optional]  # noqa: E501
+            pipeline_config (bool): [optional]  # noqa: E501
             location (Locations): [optional]  # noqa: E501
         """
 

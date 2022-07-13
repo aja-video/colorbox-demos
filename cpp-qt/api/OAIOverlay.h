@@ -115,6 +115,11 @@ public:
     int userTextLine2Min() const;
     int userTextLine2Max() const;
 
+    bool isPipelineConfig() const;
+    void setPipelineConfig(const bool &pipeline_config);
+    bool is_pipeline_config_Set() const;
+    bool is_pipeline_config_Valid() const;
+
     OAILocations getLocation() const;
     void setLocation(const OAILocations &location);
     bool is_location_Set() const;
@@ -182,6 +187,10 @@ private:
     QString m_user_text_line2;
     bool m_user_text_line2_isSet;
     bool m_user_text_line2_isValid;
+
+    bool m_pipeline_config;
+    bool m_pipeline_config_isSet;
+    bool m_pipeline_config_isValid;
 
     OAILocations m_location;
     bool m_location_isSet;

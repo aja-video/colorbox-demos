@@ -35,6 +35,7 @@ type Overlay struct {
 	UserTextEnabled *bool `json:"userTextEnabled,omitempty"`
 	UserTextLine1 *string `json:"userTextLine1,omitempty"`
 	UserTextLine2 *string `json:"userTextLine2,omitempty"`
+	PipelineConfig *bool `json:"pipelineConfig,omitempty"`
 	Location *Locations `json:"location,omitempty"`
 }
 
@@ -575,6 +576,41 @@ func (o *Overlay) SetUserTextLine2(v string) {
 	o.UserTextLine2 = &tmp
 }
 
+// GetPipelineConfig returns the PipelineConfig field value if set, zero value otherwise.
+func (o *Overlay) GetPipelineConfig() bool {
+	if o == nil || o.PipelineConfig == nil {
+		var ret bool
+		return ret
+	}
+	return *o.PipelineConfig
+}
+
+// GetPipelineConfigOk returns a tuple with the PipelineConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Overlay) GetPipelineConfigOk() (*bool, bool) {
+	if o == nil || o.PipelineConfig == nil {
+		return nil, false
+	}
+	return o.PipelineConfig, true
+}
+
+
+
+// HasPipelineConfig returns a boolean if a field has been set.
+func (o *Overlay) HasPipelineConfig() bool {
+	if o != nil && o.PipelineConfig != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPipelineConfig gets a reference to the given bool and assigns it to the PipelineConfig field.
+func (o *Overlay) SetPipelineConfig(v bool) {
+	tmp := v
+	o.PipelineConfig = &tmp
+}
+
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *Overlay) GetLocation() Locations {
 	if o == nil || o.Location == nil {
@@ -653,6 +689,9 @@ func (o Overlay) MarshalJSON() ([]byte, error) {
 	}
 	if o.UserTextLine2 != nil {
 		toSerialize["userTextLine2"] = o.UserTextLine2
+	}
+	if o.PipelineConfig != nil {
+		toSerialize["pipelineConfig"] = o.PipelineConfig
 	}
 	if o.Location != nil {
 		toSerialize["location"] = o.Location

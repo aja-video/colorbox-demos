@@ -1440,6 +1440,7 @@ components:
         outVpidRange: true
         userTextLine1: userTextLine1
         inVpidHdr: true
+        pipelineConfig: true
         inVpidBitDepth: true
         outVpidBitDepth: true
         enabled: true
@@ -1482,6 +1483,8 @@ components:
           maxLength: 110
           minLength: 0
           type: string
+        pipelineConfig:
+          type: boolean
         location:
           $ref: '#/components/schemas/Locations'
       type: object
