@@ -239,9 +239,11 @@ void Dialog::updateFrameFromColorBox()
 	if ( _cbConnected)
 	{
 		_timer.start();
-		QString msg("FRAMEGRAB");
-		emit triggerGrab(msg);
-	}
+        QString msg("FRAMEGRAB_OUTPUT");
+        if ( _ui->previewComboBox->currentText() == "Input" )
+            msg = "FRAMEGRAB_INPUT";
+        emit triggerGrab(msg);
+    }
 }
 
 void Dialog::updatePreview()
