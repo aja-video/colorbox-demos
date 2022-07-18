@@ -195,6 +195,7 @@ void Dialog::dynmicLutChoiceChanged(int index)
         lutStage.setEnabled(true);
         stages.setLut1d1(lutStage);
         lutStage.setEnabled(false);
+        lutStage.setDynamic(false);
         stages.setLut1d2(lutStage);
         stages.setLut3d1(lutStage);
         stages.setLut1d3(lutStage);
@@ -206,6 +207,7 @@ void Dialog::dynmicLutChoiceChanged(int index)
         lutStage.setEnabled(true);
         stages.setLut1d2(lutStage);
         lutStage.setEnabled(false);
+        lutStage.setDynamic(false);
         stages.setLut1d1(lutStage);
         stages.setLut3d1(lutStage);
         stages.setLut1d3(lutStage);
@@ -217,6 +219,7 @@ void Dialog::dynmicLutChoiceChanged(int index)
         lutStage.setEnabled(true);
         stages.setLut3d1(lutStage);
         lutStage.setEnabled(false);
+        lutStage.setDynamic(false);
         stages.setLut1d1(lutStage);
         stages.setLut1d2(lutStage);
         stages.setLut1d3(lutStage);
@@ -228,6 +231,7 @@ void Dialog::dynmicLutChoiceChanged(int index)
         lutStage.setEnabled(true);
         stages.setLut1d3(lutStage);
         lutStage.setEnabled(false);
+        lutStage.setDynamic(false);
         stages.setLut1d1(lutStage);
         stages.setLut1d2(lutStage);
         stages.setLut3d1(lutStage);
@@ -239,6 +243,7 @@ void Dialog::dynmicLutChoiceChanged(int index)
         lutStage.setEnabled(true);
         stages.setLut1d4(lutStage);
         lutStage.setEnabled(false);
+        lutStage.setDynamic(false);
         stages.setLut1d1(lutStage);
         stages.setLut1d2(lutStage);
         stages.setLut3d1(lutStage);
@@ -248,6 +253,7 @@ void Dialog::dynmicLutChoiceChanged(int index)
     case 0:  //NONE - Turn LUT Pipeline to passthru
 
         lutStage.setEnabled(false);
+        lutStage.setDynamic(false);
         stages.setLut1d1(lutStage);
         stages.setLut1d2(lutStage);
         stages.setLut3d1(lutStage);
@@ -266,15 +272,15 @@ void Dialog::dynmicLutChoiceChanged(int index)
     stages.setInColorimetry(inColorimetry);
 
     OAIPipelineRange inRange;
-    inRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTEFULL);
+    inRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTENARROW);
     stages.setInRange(inRange);
 
     OAIColorimetry outColorimetry;
-    outColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_2020);
+    outColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_709);
     stages.setOutColorimetry(outColorimetry);
 
     OAIPipelineRange outRange;
-    outRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTEFULL);
+    outRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTENARROW);
     stages.setInRange(outRange);
 
     OAITransfer outputTransferCharacteristics;
