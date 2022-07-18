@@ -103,6 +103,13 @@ public:
     double fanSpeedMin() const;
     double fanSpeedMax() const;
 
+    qint32 getStartupPreset() const;
+    void setStartupPreset(const qint32 &startup_preset);
+    bool is_startup_preset_Set() const;
+    bool is_startup_preset_Valid() const;
+    qint32 startupPresetMin() const;
+    qint32 startupPresetMax() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -157,6 +164,10 @@ private:
     double m_fan_speed;
     bool m_fan_speed_isSet;
     bool m_fan_speed_isValid;
+
+    qint32 m_startup_preset;
+    bool m_startup_preset_isSet;
+    bool m_startup_preset_isValid;
 };
 
 } // namespace OpenAPI

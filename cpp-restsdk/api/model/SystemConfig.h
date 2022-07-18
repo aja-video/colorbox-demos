@@ -180,6 +180,18 @@ public:
     double fanSpeedMin() const;
     double fanSpeedMax() const;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    int32_t getStartupPreset() const;
+    bool startupPresetIsSet() const;
+    void unsetStartupPreset();
+
+    void setStartupPreset(int32_t value);
+
+    int32_t startupPresetMin() const;
+    int32_t startupPresetMax() const;
+
 
 protected:
     utility::string_t m_HostName;
@@ -206,6 +218,8 @@ protected:
     bool m_AuthenticationEnableIsSet;
     double m_FanSpeed;
     bool m_FanSpeedIsSet;
+    int32_t m_StartupPreset;
+    bool m_StartupPresetIsSet;
 };
 
 

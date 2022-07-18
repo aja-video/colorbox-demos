@@ -4095,7 +4095,8 @@ with openapi_client.ApiClient() as api_client:
         transform_mode=TransformMode("LUT"),
         preview_anc_enable=False,
         authentication_enable=False,
-        fan_speed=0,
+        fan_speed=170,
+        startup_preset=0,
     ) # SystemConfig | System config object
 
     # example passing only required values which don't have defaults set
