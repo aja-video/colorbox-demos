@@ -284,7 +284,7 @@ void Dialog::dynmicLutChoiceChanged(int index)
     stages.setInRange(outRange);
 
     OAITransfer outputTransferCharacteristics;
-    outputTransferCharacteristics.setValue(OAITransfer::eOAITransfer::PQ);
+    outputTransferCharacteristics.setValue(OAITransfer::eOAITransfer::SDR);
     stages.setTransferCharacteristic(outputTransferCharacteristics);
 
     _api.setPipelineStages(stages);
