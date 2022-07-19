@@ -843,13 +843,14 @@ components:
         reboot: true
         hostName: hostName
         updateRequest: true
-        factoryPreset: true
         identify: true
         authenticationEnable: false
         ssdpEnable: true
         factoryReset: true
-        previewAncEnable: false
+        startupPreset: 6
         systemOrganizationName: systemOrganizationName
+        factoryPreset: true
+        previewAncEnable: false
         fanSpeed: 20.421118856755793
       properties:
         hostName:
@@ -877,10 +878,15 @@ components:
           default: false
           type: boolean
         fanSpeed:
-          default: 0
+          default: 170
           maximum: 255
           minimum: 0
           type: number
+        startupPreset:
+          default: 0
+          maximum: 10
+          minimum: 0
+          type: integer
       type: object
     SystemStatus:
       example:

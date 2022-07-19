@@ -70,6 +70,10 @@ class SystemConfig(ModelNormal):
             'inclusive_maximum': 255,
             'inclusive_minimum': 0,
         },
+        ('startup_preset',): {
+            'inclusive_maximum': 10,
+            'inclusive_minimum': 0,
+        },
     }
 
     @cached_property
@@ -107,6 +111,7 @@ class SystemConfig(ModelNormal):
             'preview_anc_enable': (bool,),  # noqa: E501
             'authentication_enable': (bool,),  # noqa: E501
             'fan_speed': (float,),  # noqa: E501
+            'startup_preset': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -127,6 +132,7 @@ class SystemConfig(ModelNormal):
         'preview_anc_enable': 'previewAncEnable',  # noqa: E501
         'authentication_enable': 'authenticationEnable',  # noqa: E501
         'fan_speed': 'fanSpeed',  # noqa: E501
+        'startup_preset': 'startupPreset',  # noqa: E501
     }
 
     read_only_vars = {
@@ -181,7 +187,8 @@ class SystemConfig(ModelNormal):
             transform_mode (TransformMode): [optional]  # noqa: E501
             preview_anc_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             authentication_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
-            fan_speed (float): [optional] if omitted the server will use the default value of 0  # noqa: E501
+            fan_speed (float): [optional] if omitted the server will use the default value of 170  # noqa: E501
+            startup_preset (int): [optional] if omitted the server will use the default value of 0  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -274,7 +281,8 @@ class SystemConfig(ModelNormal):
             transform_mode (TransformMode): [optional]  # noqa: E501
             preview_anc_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             authentication_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
-            fan_speed (float): [optional] if omitted the server will use the default value of 0  # noqa: E501
+            fan_speed (float): [optional] if omitted the server will use the default value of 170  # noqa: E501
+            startup_preset (int): [optional] if omitted the server will use the default value of 0  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

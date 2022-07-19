@@ -70,6 +70,9 @@ void OAISystemConfig::initializeModel() {
 
     m_fan_speed_isSet = false;
     m_fan_speed_isValid = false;
+
+    m_startup_preset_isSet = false;
+    m_startup_preset_isValid = false;
 }
 
 void OAISystemConfig::fromJson(QString jsonString) {
@@ -116,6 +119,9 @@ void OAISystemConfig::fromJsonObject(QJsonObject json) {
 
     m_fan_speed_isValid = ::OpenAPI::fromJsonValue(m_fan_speed, json[QString("fanSpeed")]);
     m_fan_speed_isSet = !json[QString("fanSpeed")].isNull() && m_fan_speed_isValid;
+
+    m_startup_preset_isValid = ::OpenAPI::fromJsonValue(m_startup_preset, json[QString("startupPreset")]);
+    m_startup_preset_isSet = !json[QString("startupPreset")].isNull() && m_startup_preset_isValid;
 
     applyMinMaxConstraints();
 }
@@ -164,6 +170,9 @@ QJsonObject OAISystemConfig::asJsonObject() const {
     }
     if (m_fan_speed_isSet) {
         obj.insert(QString("fanSpeed"), ::OpenAPI::toJsonValue(m_fan_speed));
+    }
+    if (m_startup_preset_isSet) {
+        obj.insert(QString("startupPreset"), ::OpenAPI::toJsonValue(m_startup_preset));
     }
     return obj;
 }
@@ -397,6 +406,35 @@ double OAISystemConfig::fanSpeedMax() const {
 	return 255;
 }
 
+qint32 OAISystemConfig::getStartupPreset() const {
+    return m_startup_preset;
+}
+void OAISystemConfig::setStartupPreset(const qint32 &startup_preset) {
+	qint32 v = startup_preset;
+	qint32 min = startupPresetMin();
+	qint32 max = startupPresetMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+	this->m_startup_preset = v;
+    this->m_startup_preset_isSet = true;
+}
+
+bool OAISystemConfig::is_startup_preset_Set() const{
+    return m_startup_preset_isSet;
+}
+
+bool OAISystemConfig::is_startup_preset_Valid() const{
+    return m_startup_preset_isValid;
+}
+
+qint32 OAISystemConfig::startupPresetMin() const {
+	return 0;
+}
+
+qint32 OAISystemConfig::startupPresetMax() const {
+	return 10;
+}
+
 bool OAISystemConfig::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -459,6 +497,11 @@ bool OAISystemConfig::isSet() const {
             isObjectUpdated = true;
             break;
         }
+
+        if (m_startup_preset_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
@@ -491,6 +534,16 @@ bool OAISystemConfig::applyMinMaxConstraints() {
 		if (v < min) { v = min; fanSpeedChanged = true; }
 		if (v > max) { v = max; fanSpeedChanged = true; }
 		if (fanSpeedChanged) { setFanSpeed(v); anyMinMaxValueChanged = true; }
+	}
+	if (is_startup_preset_Set())
+	{
+		bool startupPresetChanged = false;
+		qint32 v = getStartupPreset();
+		qint32 min = startupPresetMin();
+		qint32 max = startupPresetMax();
+		if (v < min) { v = min; startupPresetChanged = true; }
+		if (v > max) { v = max; startupPresetChanged = true; }
+		if (startupPresetChanged) { setStartupPreset(v); anyMinMaxValueChanged = true; }
 	}
 	return anyMinMaxValueChanged;
 }

@@ -49,6 +49,8 @@ SystemConfig::SystemConfig()
     m_AuthenticationEnableIsSet = false;
     m_FanSpeed = 0.0;
     m_FanSpeedIsSet = false;
+    m_StartupPreset = 0;
+    m_StartupPresetIsSet = false;
 }
 
 SystemConfig::~SystemConfig()
@@ -84,6 +86,16 @@ bool SystemConfig::applyMinMaxConstraints()
 		if (v < min) { v = min; fanSpeedChanged = true; }
 		if (v > max) { v = max; fanSpeedChanged = true; }
 		if (fanSpeedChanged) { setFanSpeed(v); anyMinMaxValueChanged = true; }
+	}
+	if (startupPresetIsSet())
+	{
+		bool startupPresetChanged = false;
+		int32_t v = getStartupPreset();
+		int32_t min = startupPresetMin();
+		int32_t max = startupPresetMax();
+		if (v < min) { v = min; startupPresetChanged = true; }
+		if (v > max) { v = max; startupPresetChanged = true; }
+		if (startupPresetChanged) { setStartupPreset(v); anyMinMaxValueChanged = true; }
 	}
 	return anyMinMaxValueChanged;
 }
@@ -140,6 +152,10 @@ web::json::value SystemConfig::toJson() const
     if(m_FanSpeedIsSet)
     {
         val[utility::conversions::to_string_t(U("fanSpeed"))] = ModelBase::toJson(m_FanSpeed);
+    }
+    if(m_StartupPresetIsSet)
+    {
+        val[utility::conversions::to_string_t(U("startupPreset"))] = ModelBase::toJson(m_StartupPreset);
     }
 
     return val;
@@ -269,6 +285,16 @@ bool SystemConfig::fromJson(const web::json::value& val)
             setFanSpeed(refVal_fanSpeed);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("startupPreset"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("startupPreset")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_startupPreset;
+            ok &= ModelBase::fromJson(fieldValue, refVal_startupPreset);
+            setStartupPreset(refVal_startupPreset);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -328,6 +354,10 @@ void SystemConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     if(m_FanSpeedIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fanSpeed")), m_FanSpeed));
+    }
+    if(m_StartupPresetIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("startupPreset")), m_StartupPreset));
     }
 }
 
@@ -411,6 +441,12 @@ bool SystemConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         double refVal_fanSpeed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fanSpeed"))), refVal_fanSpeed );
         setFanSpeed(refVal_fanSpeed);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("startupPreset"))))
+    {
+        int32_t refVal_startupPreset;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("startupPreset"))), refVal_startupPreset );
+        setStartupPreset(refVal_startupPreset);
     }
     
     applyMinMaxConstraints();
@@ -704,6 +740,40 @@ double SystemConfig::fanSpeedMin() const {
 
 double SystemConfig::fanSpeedMax() const {
 	return 255;
+}
+
+int32_t SystemConfig::getStartupPreset() const
+{
+    return m_StartupPreset;
+}
+
+void SystemConfig::setStartupPreset(int32_t value)
+{
+	int32_t v = value;
+	int32_t min = startupPresetMin();
+	int32_t max = startupPresetMax();
+	if (v < min) { v = min; }
+	if (v > max) { v = max; }
+    m_StartupPreset = v;
+    m_StartupPresetIsSet = true;
+}
+
+bool SystemConfig::startupPresetIsSet() const
+{
+    return m_StartupPresetIsSet;
+}
+
+void SystemConfig::unsetStartupPreset()
+{
+    m_StartupPresetIsSet = false;
+}
+
+int32_t SystemConfig::startupPresetMin() const {
+	return 0;
+}
+
+int32_t SystemConfig::startupPresetMax() const {
+	return 10;
 }
 
 }
