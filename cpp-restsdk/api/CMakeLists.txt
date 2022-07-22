@@ -32,6 +32,7 @@ include(CMakePackageConfigHelpers)
 file(GLOB_RECURSE HEADER_FILES "*.h")
 file(GLOB_RECURSE SOURCE_FILES "*.cpp")
 
+add_library(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 	# assuming the use of homebrew on the Mac
@@ -44,16 +45,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 	set(EXTRA_LIB_DIRS
 		/opt/homebrew/opt/cpprestsdk/lib
 		${OPENSSL_ROOT_DIR}/lib)
-elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    find_package(OpenSSL REQUIRED)
-    set(EXTRA_INCLUDE_DIRS
-        ${OPENSSL_INCLUDE_DIR})
-    set(EXTRA_LIB_DIRS
-        ${Z_VCPKG_ROOT_DIR}/installed/${VCPKG_TARGET_TRIPLET}/lib
-        ${OPENSSL_ROOT_DIR}/lib)
 endif()
-
-add_library(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
 target_compile_options(${PROJECT_NAME}
     PRIVATE
@@ -86,7 +78,7 @@ if (UNIX)
 else()
     message(STATUS "Building client library for Windows")
 
-    target_link_libraries(${PROJECT_NAME} PUBLIC cpprestsdk::cpprest ${Boost_LIBRARIES} bcrypt ${OPENSSL_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PUBLIC cpprestsdk::cpprest ${Boost_LIBRARIES} bcrypt)
 endif()
 
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in

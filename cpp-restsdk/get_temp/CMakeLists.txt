@@ -7,6 +7,8 @@ if (NOT CMAKE_CXX_STANDARD)
 	set(CMAKE_CXX_STANDARD 14)
 endif()
 
+find_package(OpenSSL REQUIRED)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(API_COMMON_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../api)
@@ -32,7 +34,7 @@ set(APP_HEADERS
 set(APP_SOURCES
 	main.cpp)
 
-list(APPEND TARGET_LINK_LIBS cpp-restsdk-client-colorbox)
+list(APPEND TARGET_LINK_LIBS cpp-restsdk-client-colorbox ${OPENSSL_LIBRARIES})
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:Console")
@@ -59,9 +61,6 @@ endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
-    set(OPENSSL_USE_STATIC_LIBS TRUE)
-    find_package(OpenSSL REQUIRED)
-    target_link_libraries(${PROJECT_NAME} PUBLIC ${OPENSSL_LIBRARIES})
 endif()
 
 if (AJA_COLORBOX_RESTSDK_DEMOS_COPY_INTO_BIN)
