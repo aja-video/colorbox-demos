@@ -37,9 +37,7 @@ list(APPEND TARGET_LINK_LIBS cpp-restsdk-client-colorbox)
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:Console")
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-	set(TARGET_LINK_LIBS
-		${TARGET_LINK_LIBS}
-		dl pthread rt)
+	set(TARGET_LINK_LIBS ${TARGET_LINK_LIBS} dl pthread rt)
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(CMAKE_MACOSX_BUNDLE ON)
 endif()
@@ -61,6 +59,8 @@ endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+    find_package(OpenSSL REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${OPENSSL_LIBRARIES})
 endif()
 
 if (AJA_COLORBOX_RESTSDK_DEMOS_COPY_INTO_BIN)

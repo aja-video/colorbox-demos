@@ -203,16 +203,19 @@ int main(int argc, char *argv[])
 	}
 
 	auto msgTxt = json::value::object();
-	msgTxt[U"type"] = json::value("rgbtriplet");
-	msgTxt[U"cookie"] = json::value(to_string_t(cookie));
-	msgTxt[U"x"] = json::value(x);
-	msgTxt[U"y"] = json::value(y);
-	msgTxt[U"r"] = json::value(r);
-	msgTxt[U"g"] = json::value(g);
-	msgTxt[U"b"] = json::value(b);
+	msgTxt[to_string_t("type")] = json::value("rgbtriplet");
+	msgTxt[to_string_t("cookie")] = json::value(to_string_t(cookie));
+	msgTxt[to_string_t("x")] = json::value(x);
+	msgTxt[to_string_t("y")] = json::value(y);
+	msgTxt[to_string_t("r")] = json::value(r);
+	msgTxt[to_string_t("g")] = json::value(g);
+	msgTxt[to_string_t("b")] = json::value(b);
 
 	websocket_outgoing_message msg;
-	msg.set_binary_message(concurrency::streams::bytestream::open_istream(msgTxt.serialize()));
+
+	auto msgTextUtf8 = to_utf8string(msgTxt.serialize());
+	auto msgBuf = concurrency::streams::container_buffer<std::string>(msgTextUtf8);
+	msg.set_binary_message(msgBuf);
 
 	static std::chrono::time_point<std::chrono::high_resolution_clock> sendT = std::chrono::high_resolution_clock::now();
 	auto sendTask = wsclient.send(msg).then([]() {
@@ -233,18 +236,18 @@ int main(int argc, char *argv[])
 		std::cout << "round trip took: " << delta.count() << " ms" << std::endl;
 
 		if (o.is_object()) {
-			auto rCookie = o.at(to_string_t("cookie")).as_string();
-			auto rX = o.at(to_string_t("x"));
-			auto rY = o.at(to_string_t("y"));
-			auto rR = o.at(to_string_t("r"));
-			auto rG = o.at(to_string_t("g"));
-			auto rB = o.at(to_string_t("b"));
-			auto rExpectedR = o.at(to_string_t("expectedR"));
-			auto rExpectedG = o.at(to_string_t("expectedG"));
-			auto rExpectedB = o.at(to_string_t("expectedB"));
-			auto rActualR = o.at(to_string_t("actualR"));
-			auto rActualG = o.at(to_string_t("actualG"));
-			auto rActualB = o.at(to_string_t("actualB"));
+			auto rCookie = to_utf8string(o.at(to_string_t("cookie")).serialize());
+			auto rX = to_utf8string(o.at(to_string_t("x")).serialize());
+			auto rY = to_utf8string(o.at(to_string_t("y")).serialize());
+			auto rR = to_utf8string(o.at(to_string_t("r")).serialize());
+			auto rG = to_utf8string(o.at(to_string_t("g")).serialize());
+			auto rB = to_utf8string(o.at(to_string_t("b")).serialize());
+			auto rExpectedR = to_utf8string(o.at(to_string_t("expectedR")).serialize());
+			auto rExpectedG = to_utf8string(o.at(to_string_t("expectedG")).serialize());
+			auto rExpectedB = to_utf8string(o.at(to_string_t("expectedB")).serialize());
+			auto rActualR = to_utf8string(o.at(to_string_t("actualR")).serialize());
+			auto rActualG = to_utf8string(o.at(to_string_t("actualG")).serialize());
+			auto rActualB = to_utf8string(o.at(to_string_t("actualB")).serialize());
 
 			auto now = std::chrono::system_clock::now();
 			auto t = std::chrono::system_clock::to_time_t(now);
@@ -252,8 +255,8 @@ int main(int argc, char *argv[])
 			std::strftime(timeBuf, sizeof(timeBuf), "%FT%T", std::localtime(&t));
 
 			std::cout << std::endl << "results:" << std::endl;
-			std::cout << timeBuf << ": " << "for cookie '" << to_utf8string(rCookie) << "' "
-									   << "with coords(" << rX. << "," << rY << ") "
+			std::cout << timeBuf << ": " << "for cookie '" << rCookie << "' "
+									   << "with coords(" << rX << "," << rY << ") "
 									   << "sent rgb(" << rR << "," << rG << "," << rB << "), "
 									   << "expect rgb(" << rExpectedR << "," << rExpectedG << "," << rExpectedB << ") "
 									   << "and got rgb(" << rActualR << "," << rActualG << "," << rActualB << ") "
