@@ -72,7 +72,7 @@ go to dir where **cpp-restsdk** was unzipped, using `~/demos/cpp-restsdk` for th
 cd ~/demos/cpp-restsdk
 mkdir build
 cd build
-cmake ../
+cmake -DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@1.1 ../
 make
 ```
 
