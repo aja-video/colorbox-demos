@@ -1,8 +1,8 @@
-# Building on Windows (VS 2019 and x64)
+# Building on Windows (VS 2019 x64)
 
-intall vcpkg, see [getting started](https://vcpkg.io/en/getting-started.html) for additional details
+## intall cpprestsdk (using [vcpkg](https://vcpkg.io))
 
-using c:\dev as the place to install vcpkg
+using `c:\dev` as the place to install vcpkg
 
 Open a VS 2019 x64 Native Tools Command Prompt
 ```
@@ -15,7 +15,7 @@ c:\dev\vcpkg\vcpkg install --triplet=x64-windows --recurse boost-system boost-uu
 c:\dev\vcpkg\vcpkg integrate install
 ```
 
-Need to modify c:\dev\vcpkg\installed\x64-windows\share\cpprestsdk\cpprestsdk-targets.cmake, open in a txt editor
+Need to modify `c:\dev\vcpkg\installed\x64-windows\share\cpprestsdk\cpprestsdk-targets.cmake`, open in a txt editor
 comment out the following (use # to make a comment line in CMake)
 ```
 set_target_properties(cpprestsdk::cpprestsdk_openssl_internal PROPERTIES
@@ -24,25 +24,59 @@ set_target_properties(cpprestsdk::cpprestsdk_openssl_internal PROPERTIES
 )
 ```
 
-still in the Command Prompt got to dir where cpp-restsdk was unzipped, using c:\demos\cpp-restsdk for this document
+## build demos (using the Command Prompt)
+go to dir where **cpp-restsdk** was unzipped, using `c:\demos\cpp-restsdk` for this document
 ```
 cd c:\demos\cpp-restsdk
 mkdir build
 cd build
 cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:\dev\vcpkg\scripts\buildsystems\vcpkg.cmake ../
 ```
-Open the the generated Project.sln to view/run the demos
+Open the generated Project.sln to view/run the demos
 
 
 # Building on Linux
 
- * TBD
+## install cpprestsdk (using system package manager)
+### Fedora
+```
+sudo dnf install cpprest-devel
+```
+
+### Debian/Ubuntu
+```
+sudo apt-get install libcpprest-dev
+```
+
+## build demos (using a terminal)
+go to dir where **cpp-restsdk** was unzipped, using `~/demos/cpp-restsdk` for this document
+```
+cd ~/demos/cpp-restsdk
+mkdir build
+cd build
+cmake ../
+make
+```
+
 
 # Building on Mac
 
- * TBD
+## install cpprestsdk (using [homebrew](https://brew.sh/))
+```
+brew install cpprestsdk
+```
 
-# Running
+## build demos (using a terminal)
+go to dir where **cpp-restsdk** was unzipped, using `~/demos/cpp-restsdk` for this document
+```
+cd ~/demos/cpp-restsdk
+mkdir build
+cd build
+cmake ../
+make
+```
+
+# Running (you can pass --help to the demos to get more options)
 
 ## Run get_temp example on IP 192.168.1.100 (use control-c to terminate)
 ```
