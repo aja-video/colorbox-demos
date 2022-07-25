@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
 	}
 
 	auto msgTxt = json::value::object();
-	msgTxt[to_string_t("type")] = json::value("rgbtriplet");
+	msgTxt[to_string_t("type")] = json::value(to_string_t("rgbtriplet"));
 	msgTxt[to_string_t("cookie")] = json::value(to_string_t(cookie));
 	msgTxt[to_string_t("x")] = json::value(x);
 	msgTxt[to_string_t("y")] = json::value(y);
@@ -226,11 +226,10 @@ int main(int argc, char *argv[])
 
 		std::cout << "ws: message recv" << std::endl;
 
-		std::vector<uint8_t> buf;
+		std::string buf;
 		buf.resize(msg.length());
-		msg.body().streambuf().getn(&buf[0], msg.length());
-
-		auto o = json::value::parse((char*)&buf[0]);
+		msg.body().streambuf().getn((uint8_t*)&buf[0], buf.length());
+		auto o = json::value::parse(buf);
 
 		auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(recvT - sendT);
 		std::cout << "round trip took: " << delta.count() << " ms" << std::endl;
