@@ -112,7 +112,7 @@ void parse_args(int argc, char *argv[],
 		}
 		else if (cmd == "--target") {
 			target = argv[i++];
-			std::transform(target.begin(), target.end(), target.begin(), std::toupper);
+//			std::transform(target.begin(), target.end(), target.begin(), std::toupper);
 			if (std::find(legalTargets.begin(), legalTargets.end(), target) == legalTargets.end())
 			{
 				target = "3DL1";
