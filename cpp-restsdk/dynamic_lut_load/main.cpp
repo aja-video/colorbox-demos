@@ -11,7 +11,7 @@ This example uses a websocket to send an dynamic lut to AJA ColorBox using the c
 #include <string>
 #include <thread>
 #include <math.h>
-
+#include <algorithm>
 #include "ApiClient.h"
 #include "ApiConfiguration.h"
 #include "api/DefaultApi.h"
@@ -112,7 +112,7 @@ void parse_args(int argc, char *argv[],
         }
         else if (cmd == "--target") {
             target = argv[i++];
-            //			std::transform(target.begin(), target.end(), target.begin(), std::toupper);
+            std::transform(target.begin(), target.end(), target.begin(), ::toupper);
             if (std::find(legalTargets.begin(), legalTargets.end(), target) == legalTargets.end())
             {
                 target = "3DL1";
