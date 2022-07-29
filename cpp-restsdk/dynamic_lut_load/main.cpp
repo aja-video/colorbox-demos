@@ -57,7 +57,7 @@ void usage()
               << "  --port PORT          the port number to use" << std::endl
               << "  --username USERNAME  username to use if authentication required" << std::endl
               << "  --password PASSWORD  password to use if authentication required" << std::endl
-              << "  --lift liftValue     lift of LGG(-1.0 - 1.0" << std::endl
+			  << "  --lift liftValue     lift of LGG(-1.0 - 1.0)" << std::endl
               << "  --gamma gammaValue   gamma of LGG(0.5 - 2.5)" << std::endl
               << "  --gain gainValue     gain of LGG(0.0 - 4.0)" << std::endl
               << "  --target targetNode  target Node 1DL1,1DL2,3DL1,1DL3,1DL4,NONE" << std::endl
@@ -233,11 +233,11 @@ bool setDynamicChoice(std::shared_ptr<DefaultApi> api, std::string target)
 
     std::shared_ptr<Colorimetry> outColorimetry = std::make_shared<Colorimetry>();
     outColorimetry->setValue(Colorimetry::eColorimetry::Colorimetry_BT_709);
-    stages->setInColorimetry(outColorimetry);
+	stages->setOutColorimetry(outColorimetry);
 
     std::shared_ptr<PipelineRange> outRange = std::make_shared<PipelineRange>();
     outRange->setValue(PipelineRange::ePipelineRange::PipelineRange_SMPTENARROW);
-    stages->setInRange(outRange);
+	stages->setOutRange(outRange);
 
     std::shared_ptr<Transfer> outputTransferCharacteristics = std::make_shared<Transfer>();
     outputTransferCharacteristics->setValue(Transfer::eTransfer::Transfer_SDR);
