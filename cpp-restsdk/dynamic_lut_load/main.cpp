@@ -413,6 +413,7 @@ int main(int argc, char *argv[])
         auto sendTask = wsclient.send(msg).then([]() {
             std::cout << "ws: message sent" << std::endl;
         });
+		sendTask.wait();
 
         wsclient.close().then([&]() { std::cout << std::endl << "ws: disconnected from server [" << to_utf8string(wsurl) << "]" << std::endl; });
     }
