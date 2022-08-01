@@ -62,7 +62,7 @@ void usage()
 
 void parse_args(int argc, char *argv[],
                 std::string &host, std::string &port, std::string &user, std::string &pass,
-                int &red, int &blue, int  &green, int &bits, int &pixels)
+				int &red, int &green, int &blue, int &bits, int &pixels)
 {
     //defaults
     host = "127.0.0.1";
