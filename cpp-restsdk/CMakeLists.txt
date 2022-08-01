@@ -16,6 +16,7 @@ endif()
 
 add_api_subdirectory(api)
 
+add_demo_subdirectory(dynamic_frame_load)
 add_demo_subdirectory(dynamic_lut_load)
 add_demo_subdirectory(get_temp)
 add_demo_subdirectory(rgb_triplet)
