@@ -1,8 +1,3 @@
-# Building on Windows (VS 2019 x64)
-
-## intall cpprestsdk (using [vcpkg](https://vcpkg.io))
-
-using `c:\dev` as the place to install vcpkg
 
 Open a VS 2019 x64 Native Tools Command Prompt
 ```
@@ -91,4 +86,12 @@ set_overlay_text --host 192.168.1.100
 ## Run rgb_triplet example on IP 192.168.1.100
 ```
 rgb_triplet --host 192.168.1.100
+```
+## Run dynamic_lut_load example on IP 192.168.1.100
+```
+dynamic_lut_load --host 192.168.1.100
+```
+## Run dynamic_frame_load example on IP 192.168.1.100
+```
+dynamic_frame_load --host 192.168.1.100
 ```
