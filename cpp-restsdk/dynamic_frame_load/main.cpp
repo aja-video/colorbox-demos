@@ -1,5 +1,5 @@
 /*
-* This example uses a websocket to send an image to AJA ColorBox using the cpprestsdk and its websocket implementation.
+* This example uses a websocket to send an frame of video to AJA ColorBox using the cpprestsdk and its websocket implementation.
 * The image is always sent via the websocket as a 16 bit RGB image(48 bits per pixel).
 * Example Usage: .\dynamic_frame_load.exe --host 192.168.1.140 --bits 12 --pixels 1920 --red 3760--green 256 --blue 256
 *
@@ -41,8 +41,8 @@ static RGB16BitUIntBufferValues frameBuffer;             // Image Frame
 void usage()
 {
     std::cout << std::endl
-              << "usage: dynamic_lut_load [-h] [--host HOST] [--port PORT] [--username USERNAME] [--password PASSWORD]" << std::endl
-              << "                   [--lift liftValue ] [--gamma gammaValue] [--gain gainValue] [--target targetNode]" << std::endl
+              << "usage: dynamic_frame_load [-h] [--host HOST] [--port PORT] [--username USERNAME] [--password PASSWORD]" << std::endl
+              << "                   [--red redValue ] [--green greenValue] [--blue blueValue] [--bits bitsPerComponent] [--pixels pixelsPerLine]" << std::endl
               << "" << std::endl
               << "options:" << std::endl
               << "  -h, --help           show this help message and exit" << std::endl
@@ -50,11 +50,11 @@ void usage()
               << "  --port PORT          the port number to use" << std::endl
               << "  --username USERNAME  username to use if authentication required" << std::endl
               << "  --password PASSWORD  password to use if authentication required" << std::endl
+              << "  --pixels numPixels   number of pixels in a frame line(1280,1920,2048,3840,4096, defaults to 1920)" << std::endl
               << "  --bits bitsPerComp   bits per component(defaults to 12)" << std::endl
-              << "  --pixels numPixels   number of pixels in frame(1280,1920,2048,3840,4096)" << std::endl
-              << "  --red redValue       red Value (defaults to 0)" << std::endl
-              << "  --green greenValue   green Value (defaults to 0)" << std::endl
-              << "  --blue BlueValue     blue Value (defaults to 0)" << std::endl
+              << "  --red redValue       red Value (defaults to 0, note bitsPerComponenet)" << std::endl
+              << "  --green greenValue   green Value (defaults to 0, note bitsPerComponenet)" << std::endl
+              << "  --blue BlueValue     blue Value (defaults to 0, note bitsPerComponenet)" << std::endl
               << std::endl;
 }
 
@@ -103,7 +103,7 @@ void parse_args(int argc, char *argv[],
             }
         }
         else if (cmd == "--pixels") {
-            bits = std::stoi(argv[i++]);
+            pixels = std::stoi(argv[i++]);
             switch (pixels)
             {
             case 1280:
@@ -191,6 +191,30 @@ int getLinesFromPixels(int pixels)
     return lines;
 }
 
+VideoFormat::eVideoFormat getCompatibleFormat(int pixels)
+{
+    VideoFormat::eVideoFormat videoFormat = VideoFormat::eVideoFormat::VideoFormat_AUTO;
+    switch (pixels)
+    {
+    case 1280:
+        videoFormat = VideoFormat::eVideoFormat::VideoFormat__720P59_94;
+        break;
+    case 1920:
+        videoFormat = VideoFormat::eVideoFormat::VideoFormat__1080P23_98;
+        break;
+    case 2048:
+        videoFormat = VideoFormat::eVideoFormat::VideoFormat__2KP23_98;
+        break;
+    case 3840:
+        videoFormat = VideoFormat::eVideoFormat::VideoFormat_UHDP23_98;
+        break;
+    case 4096:
+        videoFormat = VideoFormat::eVideoFormat::VideoFormat__4KP23_98;
+        break;
+    }
+    return videoFormat;
+}
+
 int main(int argc, char *argv[])
 {
     std::string host;
@@ -222,12 +246,18 @@ int main(int argc, char *argv[])
     std::shared_ptr<ApiClient> apiclient = std::make_shared<ApiClient>(apiconfiguration);
     std::shared_ptr<DefaultApi> api = std::make_shared<DefaultApi>(apiclient);
 
-    // For this to work need to use the OpenAPI client to enable the FrameStore and put it in Dynamic Mode
+    // For this to work need to use the OpenAPI client to enable the FrameStore and put it in Dynamic Mode. Also set the Pipeline Video to a compatible Video Format.
+
+    std::shared_ptr<VideoFormat> videoFormat = std::make_shared<VideoFormat>();
+    VideoFormat::eVideoFormat desiredVideoFormat = getCompatibleFormat(pixels);
     bool frameStoreChanged = false;
+    videoFormat->setValue(desiredVideoFormat);
     auto getTask = api->getFrameStore().then([&](std::shared_ptr<FrameStore> p) {
-            if (p->isEnabled() == false || p->isDynamic() == false) {
+            if (p->isEnabled() == false || p->isDynamic() == false || p->getFormat()->getValue() != desiredVideoFormat) {
             p->setEnabled(true);
             p->setDynamic(true);
+            p->setFormat(videoFormat);
+
             auto setTask = api->setFrameStore(p).then([]() {
         //std::cout << "frame store enabled" << std::endl;
     });
