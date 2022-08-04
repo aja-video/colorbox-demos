@@ -64,7 +64,7 @@ Dialog::Dialog(QWidget *parent)
 
     _ui->uploadImageButton->setToolTip("Select Image to upload to ColorBox");
     _ui->downloadImageButton->setToolTip("Download Image from ColorBox to demos bin directory");
-    _ui->downloadImageButton->setToolTip("Select Image on ColorBox for FrameStore");
+    _ui->selectImageButton->setToolTip("Select Image on ColorBox for FrameStore");
 
     recallSettings();
     ipAddressEdited();
