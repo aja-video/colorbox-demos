@@ -1,5 +1,17 @@
 /*!
  * ColorBoxRGBTriplet
+ *
+ *This demo shows how to download a 16 bit RGB Triplet to the ColorBox to a
+ *particular pixel location and then read back that pixel location having
+ *applied the current transforms. For instance, if Color Box is in LUT mode
+ *the API will place the RGB triplet in the frame store and the ColorBox Software
+ *will calculate the expected results of that RGB triplet running through the pipeline
+ *     1DLUT -> 3x3 Matrix -> 3DLUT -> 1DLUT ->  3x3 Matrix-> 1DLUT
+ *and report back both the expected and actual results. For this to work the Pipeline needs to be in “Frame Store” mode and not being updated with Input Video. This will also work with the Orion and Colorfront engine.
+ *
+ * It uses WebSocket messages
+ * see generateRequestAndSend() and receivedResponse() for implementation details.
+ *
  */
 
 #include "dialog.h"

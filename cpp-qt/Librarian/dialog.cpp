@@ -4,8 +4,8 @@
  * uses the framestore library but the same basic technique can be used for the
  * 1DLUT,3DLUT and Matrix library
  *
- * To get the ColorBox library call _api.getImageLibrary();
- * or _api.get1dLutLibrary(), _api.get3dLutLibrary() or _api.getMatrixLibrary(),
+ * To get the ColorBox Image library call _api.getImageLibrary();
+ * or _api.get1dLutLibrary(), _api.get3dLutLibrary() or _api.getMatrixLibrary() for other libraries.
  * This will generate a signal where you can capture the library items(see Dialog::handleGetImageLibrary)
  *
  * To upload an image to the library(tiff,png,jpg) see Dialog::handleUploadImageButton()
@@ -14,6 +14,11 @@
  * This will download the selected image to the local bin directory for the demos.
  * This just uses http download based on the file location on the colorbox library.
  * For example, http://192.168.1.140/library/im/05/image.jpg
+ * or http://192.168.1.140/library/3d/01/ACESConfig1_2_SLog3to709.cube
+ * /1d/ 1DLUT
+ * /3d/ 3DLUT
+ * /mx/ Matrix
+ * /im/ Image
  *
  * To select a library element to update the ColorBox Framestore see Dialog::handleSelectImageButton().
  * When you select this button, the selected image file will be recalled to the Framestore.
@@ -23,7 +28,7 @@
  * In the demo's UI, a blank line in the list represents an empty slot in the libary
  *
  * This demo does not constantly update the library so if it is modified somewhere
- * else it will only get updated when and image is uploaded.
+ * else it will only get updated when an image is uploaded.
  *
  */
 

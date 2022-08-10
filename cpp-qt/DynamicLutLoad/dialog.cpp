@@ -17,6 +17,12 @@
  * -Use WebSocket to send lutValues3D. To direct Websocket data to correct LUT
  *   prepend the lutValues3D with "3DL1"(see updateColorBox())
  *
+ * see dynmicLutChoiceChanged() for details on using OpenAPI for the REST interface.
+ *
+ * handleGetStages() shows how to put the box in LUT("AJA Color") mode which is needed for
+ * dynamic LUT loading. If the ColorBox is not already in that mode it takes a few seconds
+ * for the mode change.
+ *
  */
 
 #include "dialog.h"
@@ -112,7 +118,7 @@ void Dialog::ipAddressEdited()
     qDebug() << "IP Address" << _ui->ipAddressLineEdit->displayText().simplified();
 
     if ( _currentIPAddress == _ui->ipAddressLineEdit->displayText().simplified())
-        return;
+        return; // unchanged
 
 	_cbConnected = false;
 

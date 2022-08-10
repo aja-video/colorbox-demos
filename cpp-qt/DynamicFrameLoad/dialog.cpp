@@ -7,12 +7,11 @@
  * The buffer if prepended with "FS02" so ColorBox recognizes this as a frame to put in the frame store.
  * The REST API is used to set ColorBox into Dynamic Output Mode.
  *
- * There are two ways to preload a frame in the code below
+ * There are two ways to preload a _frameBuffer in the code below
  * 1) handleSetFrameBufferValueButton - takes the 12 bit values in the QSpinBoxes and makes 16 bit values for the buffer.
- * 2) load a 16 bit TIFF file.
+ * 2)handleLoadImageButton( can load a .tif or .png file)
  *
  * The method updateFrameToColorBox shows the basic code needed to transfer a frame.
- *
  *
  * Once the WebSocket is open frames can be continually transferred to the ColorBox. You cannot update frames faster than the
  * current framerate.

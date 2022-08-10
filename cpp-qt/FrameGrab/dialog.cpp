@@ -1,8 +1,15 @@
 /*!
- * DynamicFrameGrab
+ * FrameGrab
  *
  * This uses a websocket to grab an uncompressed image from ColorBox.
- *  It can also use the NTV2 SDK to parse the metadata for the grabbed image. See "SUPPORT_ANC" define
+ *
+ *  It can also use the NTV2 SDK to parse the metadata for the grabbed image. See "SUPPORT_ANC" define.
+ *  see updatePreview() for how the ANC is parsed.
+ *
+ *  The unprocessed input or the processed output can be captured. See updateFrameFromColorBox() for the
+ *  Websocket Messages used. If the processed output is chosen then the overlay will also be captured if the
+ *  Overlay widget is On. See PreviewDemo for controlling overlay on/off.
+ *
  */
 
 #include "dialog.h"

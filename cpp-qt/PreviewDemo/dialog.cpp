@@ -1,9 +1,16 @@
 /*!
  * PreviewDemoOpenAPI
- * This demo shows how to interface with a ColorBox device via the C++ OpenAPI.
+ * This demo shows how to interface with a ColorBox device via the Qt C++OpenAPI.
  * It will get a preview image(jpeg compressed) from the ColorBox and display in a dialog.
+ * The preview is jpg compressed and does not get each frame but updates at about 7 frames/second depending on
+ * the network connection.
  *
- * It can also use the NTV2 SDK to parse the metadata for the preview image. See "SUPPORT_ANC" define
+ *The preview can be of the unprocessed input or the processed output. The processed output can
+ *have an overlay or not depending on the Overlay setting.
+ *
+ *
+ * It can also use the NTV2 SDK to parse the metadata for the preview image. See "SUPPORT_ANC" define.
+ * see updateUIPreview() for usage.
  *
  */
 
