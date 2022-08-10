@@ -1,78 +1,66 @@
 /*!
- * DynamicLutLoadDemo
- * The demo demostrates how to interface to a ColorBox device via the REST API and WebSockets to upload 1D and 3D Luts to ColorBox.
+ * DynamicMatrixLoad
+ * The demo demostrates how to interface to a ColorBox device via the REST API and WebSockets to upload a matrix to ColorBox.
  *
- * The demo builds up a RGB 12 bit 1DLUT based on the UI lift/gamma/gain parameters...If the desired upload is a 3DLUT the 1DLUT gets converted
- * just for the demonstartions sake.
+ * mtxChoiceChanged() shows how to use the OpenAPI to control the ColorBox for dynamic matrix loading.
  *
- * To build and upload 12 bit 1D LUT:
- * -Use REST API to enable the chosen LUT and set it to Dynamic Mode(see dynmicLutChoiceChanged()).
- * -Fill in lutValues1D
- * -Use WebSocket to send lutValues1D. To direct Websocket data to correct LUT
- *   prepend the 1D lutValues1D with "1DL1", "1DL2","1DL3","1DL3" to data sent(see updateColorBox())
- *
- * To build and upload 3D LUT:
- * -Use REST API to enable the 3D LUT and set it to Dynamic Mode(see dynmicLutChoiceChanged()).
- * -Fill in lutValues3D
- * -Use WebSocket to send lutValues3D. To direct Websocket data to correct LUT
- *   prepend the lutValues3D with "3DL1"(see updateColorBox())
- *
- * see dynmicLutChoiceChanged() for details on using OpenAPI for the REST interface.
- *
- * handleGetStages() shows how to put the box in LUT("AJA Color") mode which is needed for
- * dynamic LUT loading. If the ColorBox is not already in that mode it takes a few seconds
- * for the mode change.
- *
+ * This demo builds a Qt QMatrix4x4 and then uses QMatrix4x4::copyDataTo to put it in row-major order to send
+ * a ColorBoxDynamicMatrix to ColorBox.
  */
 
 #include "dialog.h"
 #include "ui_dialog.h"
 #include <QFileDialog>
+#include <QKeyEvent>
 #include <QDebug>
 #include <QTimer>
-#include <QElapsedTimer>
-#include <QKeyEvent>
-#include "colorboxdemocommon.h"
+#include <QMatrix4x4>
+#include <QVector4D>
 
-static RGB12BitIntLutValues lutValues1D;             // 1DLUT
-static RGB16BitIntCoefs lutValues3D[33][33][33]; // 3DLUT in [B][G][R]
+#include <QElapsedTimer>
 
 using namespace OpenAPI;
+
+// This is needed to compile with older Qt versions like Qt 5.13.2
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+namespace Qt {
+	QTextStream &endl(QTextStream &s)
+	{
+		return ::endl(s);
+	}
+}
+#endif
 
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent),
 	  _cbConnected(false),
-	  _ui(new Ui::Dialog)
+      _printLoopTime(false),
+      _printMatrix(false),
+      _ui(new Ui::Dialog)
 {
     _ui->setupUi(this);
 
 	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
     _webSocketThread = new QThread;
-    _webSocktLoader = new AJAWebSocketInterface();
-    _webSocktLoader->moveToThread(_webSocketThread);
+    _webSocketLoad = new AJAWebSocketInterface();
+    _webSocketLoad->moveToThread(_webSocketThread);
 
-    // Web Socket Boiler Plate Signals/Slots
-    connect(_webSocketThread, &QThread::finished, _webSocktLoader, &QObject::deleteLater);
-    connect(_webSocktLoader, &AJAWebSocketInterface::connected, this, &Dialog::onConnected);
-    connect(_webSocktLoader, &AJAWebSocketInterface::disconnected, this, &Dialog::onDisconnected);
-    connect(_webSocktLoader, &AJAWebSocketInterface::error, this, &Dialog::onError);
-	connect(this, &Dialog::load, _webSocktLoader, &AJAWebSocketInterface::sendBinaryMessage);
-	connect(this, &Dialog::connectColorBoxWebSocket, _webSocktLoader, &AJAWebSocketInterface::connectColorBoxWebSocket);
+    connect(_webSocketThread, &QThread::finished, _webSocketLoad, &QObject::deleteLater);
+    connect(_webSocketLoad, &AJAWebSocketInterface::connected, this, &Dialog::onConnected);
+    connect(_webSocketLoad, &AJAWebSocketInterface::disconnected, this, &Dialog::onDisconnected);
+    connect(_webSocketLoad, &AJAWebSocketInterface::error, this, &Dialog::onError);
+	connect(this, &Dialog::load, _webSocketLoad, &AJAWebSocketInterface::sendBinaryMessage);
+	connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
 
-    // UI related Signals/Slots
     connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this, &Dialog::ipAddressEdited);
     connect(_ui->resetPushButton,&QPushButton::pressed,this,&Dialog::resetParameters);
+
+    connect(_ui->mtxChoiceComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(mtxChoiceChanged(int)));
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getPipelineStagesSignal, this, &Dialog::handleGetStages);
     connect(&_api, &OAIDefaultApi::getPipelineStagesSignalE, this, &Dialog::handleGetStagesError);
-
-    connect(_ui->lutChoiceComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(dynmicLutChoiceChanged(int)));
-
-	connect(_ui->rCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateColorBox(int)));
-	connect(_ui->gCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateColorBox(int)));
-	connect(_ui->bCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateColorBox(int)));
 
     _webSocketThread->start();
 
@@ -83,7 +71,7 @@ Dialog::Dialog(QWidget *parent)
     connect(timer, &QTimer::timeout, this, &Dialog::updateTimer);
     timer->start(50);
 
-	this->setWindowTitle("ColorBox Dynamic LUT Load Demo");
+	this->setWindowTitle("ColorBox Dynamic Matrix Load Demo");
     this->setFocus();
 }
 
@@ -93,24 +81,23 @@ Dialog::~Dialog()
     delete _ui;
 }
 
-
 void Dialog::recallSettings()
 {
-	QSettings settings(QSettings::UserScope, "aja", "ColorBoxDynamicLutLoad");
+	QSettings settings(QSettings::UserScope, "aja", "ColorBoxDynamicMatrixLoad");
     _ui->ipAddressLineEdit->setText(settings.value("IPAddress").toString());
-
-}
-
-void Dialog::saveSettings()
-{
-	QSettings settings(QSettings::UserScope, "aja", "ColorBoxDynamicLutLoad");
-    settings.setValue("IPAddress",_ui->ipAddressLineEdit->text());
 
 }
 
 void Dialog::updateTimer()
 {
-	updateColorBox(0);
+    updateProcAmp(0);
+}
+
+void Dialog::saveSettings()
+{
+	QSettings settings(QSettings::UserScope, "aja", "ColorBoxDynamicMatrixLoad");
+    settings.setValue("IPAddress",_ui->ipAddressLineEdit->text());
+
 }
 
 void Dialog::ipAddressEdited()
@@ -118,7 +105,7 @@ void Dialog::ipAddressEdited()
     qDebug() << "IP Address" << _ui->ipAddressLineEdit->displayText().simplified();
 
     if ( _currentIPAddress == _ui->ipAddressLineEdit->displayText().simplified())
-        return; // unchanged
+        return;
 
 	_cbConnected = false;
 
@@ -139,15 +126,8 @@ void Dialog::handleGetStages(OpenAPI::OAIPipelineStages stages)
     // Get Web Socket Going.
 	// don't want any port number from URL
 	QString webSocketIP = _currentIPAddress.split(":").at(0);
-    emit connectColorBoxWebSocket(webSocketIP);
-    dynmicLutChoiceChanged(_ui->lutChoiceComboBox->currentIndex());
-
-    // Now put the ColorBox in LUT mode. Note: if it was in Orion Mode it will be ~2 seconds before LUT mode is ready as it needs to change firmware.
-    OAITransformMode transformMode;
-    transformMode.setValue(OAITransformMode::eOAITransformMode::LUT);
-    OAISystemConfig systemConfig;
-    systemConfig.setTransformMode(transformMode);
-    _api.setSystemConfig(systemConfig);
+	connectColorBoxWebSocket(webSocketIP);
+    mtxChoiceChanged(_ui->mtxChoiceComboBox->currentIndex());
 }
 
 
@@ -177,7 +157,7 @@ void Dialog::onError(QString msg)
     qDebug() << msg;
 }
 
-void Dialog::dynmicLutChoiceChanged(int index)
+void Dialog::mtxChoiceChanged(int index)
 {
 	if ( !_cbConnected )
     {
@@ -188,83 +168,34 @@ void Dialog::dynmicLutChoiceChanged(int index)
     // For demo put the box in "Live" mode by disabling FrameStore...
     OAIFrameStore frameStore;
     frameStore.setEnabled(false);
-   // _api.setFrameStore(frameStore);
+    _api.setFrameStore(frameStore);
 
-    // Enable current Choice and disable all others.
+    // Setup Correct Stage for Dynamic Update, or disable all matrices.
     OAIPipelineStages stages;
     OAIStage lutStage;
     switch ( index )
     {
-    case 1: // "1DL1"
-
-        lutStage.setDynamic(true);
+    case 1: // "MTX2"
         lutStage.setEnabled(true);
-        stages.setLut1d1(lutStage);
-        lutStage.setEnabled(false);
-        lutStage.setDynamic(false);
-        stages.setLut1d2(lutStage);
-        stages.setLut3d1(lutStage);
-        stages.setLut1d3(lutStage);
-        stages.setLut1d4(lutStage);
-        break;
-    case 2: // "1DL2"
-
         lutStage.setDynamic(true);
-        lutStage.setEnabled(true);
-        stages.setLut1d2(lutStage);
+        stages.setM3x32(lutStage);
         lutStage.setEnabled(false);
-        lutStage.setDynamic(false);
-        stages.setLut1d1(lutStage);
-        stages.setLut3d1(lutStage);
-        stages.setLut1d3(lutStage);
-        stages.setLut1d4(lutStage);
+        stages.setM3x33(lutStage);
         break;
-    case 3: // "3DL1"
-
+    case 2: // "MTX3"
+        lutStage.setEnabled(true);
         lutStage.setDynamic(true);
-        lutStage.setEnabled(true);
-        stages.setLut3d1(lutStage);
+        stages.setM3x33(lutStage);
         lutStage.setEnabled(false);
-        lutStage.setDynamic(false);
-        stages.setLut1d1(lutStage);
-        stages.setLut1d2(lutStage);
-        stages.setLut1d3(lutStage);
-        stages.setLut1d4(lutStage);
+        stages.setM3x32(lutStage);
         break;
-    case 4: // "1DL3"
 
-        lutStage.setDynamic(true);
-        lutStage.setEnabled(true);
-        stages.setLut1d3(lutStage);
-        lutStage.setEnabled(false);
-        lutStage.setDynamic(false);
-        stages.setLut1d1(lutStage);
-        stages.setLut1d2(lutStage);
-        stages.setLut3d1(lutStage);
-        stages.setLut1d4(lutStage);
-        break;
-    case 5:// "1DL4"
-
-        lutStage.setDynamic(true);
-        lutStage.setEnabled(true);
-        stages.setLut1d4(lutStage);
-        lutStage.setEnabled(false);
-        lutStage.setDynamic(false);
-        stages.setLut1d1(lutStage);
-        stages.setLut1d2(lutStage);
-        stages.setLut3d1(lutStage);
-        stages.setLut1d3(lutStage);
-        break;
     default:
-    case 0:  //NONE - Turn LUT Pipeline to passthru
-
+    case 0:  //NONE - Turn both MTX to passthru
         lutStage.setEnabled(false);
-        lutStage.setDynamic(false);
-        stages.setLut1d1(lutStage);
-        stages.setLut1d2(lutStage);
-        stages.setLut3d1(lutStage);
-        stages.setLut1d3(lutStage);
-        stages.setLut1d4(lutStage);
+        stages.setM3x32(lutStage);
+        stages.setM3x33(lutStage);
+
         break;
     }
 
@@ -278,135 +209,200 @@ void Dialog::dynmicLutChoiceChanged(int index)
     stages.setInColorimetry(inColorimetry);
 
     OAIPipelineRange inRange;
-    inRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTENARROW);
+    inRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTEFULL);
     stages.setInRange(inRange);
 
     OAIColorimetry outColorimetry;
-    outColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_709);
+    outColorimetry.setValue(OAIColorimetry::eOAIColorimetry::BT_2020);
     stages.setOutColorimetry(outColorimetry);
 
     OAIPipelineRange outRange;
-    outRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTENARROW);
+    outRange.setValue(OAIPipelineRange::eOAIPipelineRange::SMPTEFULL);
     stages.setInRange(outRange);
 
     OAITransfer outputTransferCharacteristics;
-    outputTransferCharacteristics.setValue(OAITransfer::eOAITransfer::SDR);
+    outputTransferCharacteristics.setValue(OAITransfer::eOAITransfer::PQ);
     stages.setTransferCharacteristic(outputTransferCharacteristics);
 
     _api.setPipelineStages(stages);
 
-    this->setFocus();
+	//Actually update the ColorBox with current settings.
+    updateProcAmp(0);
+
 }
-
-
-void Dialog::resetParameters()
+void Dialog::updateProcAmp(int value)
 {
-    qDebug() << " resetting Parameters";
-    _ui->liftSlider->setValue(0) ;
-    _ui->gammaSlider->setValue(250);
-    _ui->gainSlider->setValue(250);
-    _ui->rCheckBox->setCheckState(Qt::Checked);
-    _ui->gCheckBox->setCheckState(Qt::Checked);
-    _ui->bCheckBox->setCheckState(Qt::Checked);
-	updateColorBox(0);
-}
-
-void Dialog::updateColorBox(int value)
-{
-    // value not used
+    QElapsedTimer timer;
+    timer.start();
 
 	if ( !_cbConnected )
     {
-        qDebug() << "Waiting to Connect";
+        qDebug() << "Not Connected";
         return;
     }
 
-    QString lutChoiceString = _ui->lutChoiceComboBox->currentText();
-    if ( lutChoiceString.startsWith("NONE") )
+    doProcAmp();
+
+    if ( _printLoopTime )
+    {
+        qDebug() << timer.elapsed();
+        _printLoopTime = false;
+    }
+
+}
+
+void Dialog::resetParameters()
+{
+    double rotAngle = 0;
+    _ui->procAmpHueSlider->setValue(0);
+    _ui->procAmpBlackSlider->setValue(0);
+    _ui->procAmpGainSlider->setValue(100);
+    _ui->procAmpSaturationSlider->setValue(100);
+    updateProcAmp(0);
+
+}
+
+void Dialog::mousePressEvent(QMouseEvent *event)
+{
+    QPoint mouseLocation(event->x(),event->y());
+
+    setFocus();
+}
+
+void Dialog::keyPressEvent(QKeyEvent *event)
+{
+    // Press p to write matrix file.
+    if(event->key() == Qt::Key_P )
+    {
+        _printMatrix = true;
+        updateProcAmp(0);
+    }
+ 
+}
+
+
+// Just come canned matrices to demostrate how to update matrix on ColorBox
+static QMatrix4x4 qRGBSMPTEBlackNegativeOffsets(
+            1,                             0,                           0,                -256 ,
+            0,                             1,                           0,                -256 ,
+            0,                             0,                           1,               -256 ,
+            0,                             0,                           0,                1);
+
+//NTV2_GBRSMPTE_to_YCbCr_Rec2020_Matrix
+static QMatrix4x4 qRGBtoYCbCr2020SMPTENoOffset(
+            .26270,   .67800,        .05930,   0 ,
+            -0.142822,    -0.368591,      0.511414, 0,
+             0.511414,   -0.470276,       -0.041138,      0 ,
+            0,             0,                          0,                      1);
+
+//NTV2_YCbCr_to_GBRSMPTE_Rec2020_Matrix:
+static QMatrix4x4 qYCbCrtoRGB2020SMPTE(
+           1,                              0,                            1.441681,              0 ,
+            1,                         -0.160889,        -0.558594,    0 ,
+            1,                          1.839386,                  0 ,               0 ,
+            0,                        0,                                0,                1);
+
+static QMatrix4x4 qRGBSMPTEBlackPositiveOffsets(
+            1,                             0,                           0,               256 ,
+            0,                             1,                           0,               256 ,
+            0,                             0,                           1,               256 ,
+            0,                             0,                           0,                1);
+
+// ma2,ma0,ma1
+// mb2,mb0,mb1
+// mc2,mc0,mc1
+//
+
+void Dialog::doProcAmp()
+{
+    QString matrixChoiceString = _ui->mtxChoiceComboBox->currentText();
+    if ( matrixChoiceString.startsWith("NONE") )
         return;
 
-    double lift = 0.0;
-    double gamma = 1.0;
-    double gain = 1.0;
+    double ycGain = (double) _ui->procAmpGainSlider->value()/100.0;
+    double ycBlack = (double) _ui->procAmpBlackSlider->value()/10.0;;
+    double rotAngle = (float) _ui->procAmpHueSlider->value();
+    double satGain = (double) _ui->procAmpSaturationSlider->value()/100.0;
 
-    // All sliders just 0-1000 for simplicity
-    int liftSlider = _ui->liftSlider->value();
-    int gammaSlider = _ui->gammaSlider->value();
-    int gainSlider = _ui->gainSlider->value();
+    QString ycGainString = QString::number(ycGain,'f',3);
+    QString ycBlackString = QString::number(ycBlack,'f',3);
+    QString rotAngleString = QString::number(rotAngle,'f',3);
+    QString satGainString = QString::number(satGain,'f',3);
 
-    // Convert slider values to  LGG ranges
-    lift = static_cast<double>(liftSlider)/1000.0;
-    gamma = .5 + 2.0*static_cast<double>(gammaSlider)/1000.0;
-    gain =  4.0*static_cast<double>(gainSlider)/1000.0;
+    _ui->procAmpGainValue->setText(ycGainString.rightJustified(8));
+    _ui->procAmpBlackValue->setText(ycBlackString.rightJustified(8));
+    _ui->procAmpHueValue->setText(rotAngleString.rightJustified(8));
+    _ui->procAmpSatValue->setText(satGainString.rightJustified(8));
 
-    QString liftString = QString::number(lift,'f',3);
-    QString gammaString = QString::number(gamma,'f',3);
-    QString gainString = QString::number(gain,'f',3);
+    QMatrix4x4 rotateMatrix;
+    rotateMatrix.setToIdentity();
+    rotateMatrix.rotate(-rotAngle,QVector3D(1,0,0));
 
-    _ui->label_Lift->setText(liftString.rightJustified(7));
-    _ui->label_Gamma->setText(gammaString.rightJustified(7));
-    _ui->label_Gain->setText(gainString.rightJustified(7));
+    QMatrix4x4 procAmpMatrix;
+    procAmpMatrix.setToIdentity();
+    procAmpMatrix.scale(QVector3D(ycGain,ycGain*satGain,ycGain*satGain));
+    ycBlack*=((3760.0-256.0)/100.0);
+    procAmpMatrix.translate(QVector3D(ycBlack,0,0));
 
-    bool rChecked = _ui->rCheckBox->checkState();
-    bool gChecked = _ui->gCheckBox->checkState();
-    bool bChecked = _ui->bCheckBox->checkState();
+    // Combine Matrices
+    QMatrix4x4 inverse_qRGBtoYCbCr2020SMPTENoOffset = qRGBtoYCbCr2020SMPTENoOffset.inverted();
+    QMatrix4x4 finalMatrix = qRGBSMPTEBlackPositiveOffsets*inverse_qRGBtoYCbCr2020SMPTENoOffset*procAmpMatrix*rotateMatrix*qRGBtoYCbCr2020SMPTENoOffset*qRGBSMPTEBlackNegativeOffsets;
 
-    lutValues1D.resize(4096);
-    for ( uint16_t i=0;i<4096;i++)
+	ColorBoxDynamicMatrix cbMatrix;
+	finalMatrix.copyDataTo(cbMatrix.matrix4x4);
+
+    if ( _printMatrix )
     {
-        double currentInput = static_cast<double>(i)/4095.0;
-        //output = (gain * (x + lift * (1-x)))^(1/gamma).
-        // NOTE: only intended to show how to use our Dynamic LUT feature.
-		// Best seen on ColorBox if the input to ColorBox is a Full Luma Ramp
-        int16_t currentOutput = static_cast<int16_t>(4095.0*pow(currentInput*(gain-lift)+lift,(1.0/gamma)));
-        if ( currentOutput > 4095 ) currentOutput = 4095;
-        if ( currentOutput <  0 ) currentOutput = 0;
+		qDebug().noquote() << "Qt Matrix" << Qt::endl << finalMatrix;
 
-        RGB12BitIntValues  lutValue;
-        lutValue.rValue = (rChecked)  ? currentOutput  : i;
-        lutValue.gValue = (gChecked) ?  currentOutput : i;
-        lutValue.bValue = (bChecked)  ? currentOutput : i;
-
-        lutValues1D[i] = lutValue;
-
-     }
-
-    if ( lutChoiceString.startsWith("3DL1") )
-    {
-        // Build 3DLUT from 3x1DLUTs
-
-        for ( int blue = 0; blue < 33; blue++)
-            for ( int green = 0; green < 33; green++ )
-                for ( int red = 0; red < 33; red++ )
-                {
-                    int index = red<<7;
-                    if ( index > 4095 ) index = 4095;
-                    lutValues3D[blue][green][red].rValue =  lutValues1D[index].rValue<<4;
-                    index = green<<7;
-                    if ( index > 4095 ) index = 4095;
-                    lutValues3D[blue][green][red].gValue =  lutValues1D[index].gValue<<4;
-                    index = blue<<7;
-                    if ( index > 4095 ) index = 4095;
-                    lutValues3D[blue][green][red].bValue =   lutValues1D[index].bValue<<4;
-
-                }
-
-        QByteArray ba(reinterpret_cast<const char*>(&lutValues3D[0][0][0]),33*33*33*6);
-        ba.prepend("3DL1");
-        emit load(ba);
+		writeMatrixFile(cbMatrix);
+        _printMatrix =false;
     }
-    else
+
+	if ( _cbConnected   )
     {
-        QByteArray ba(reinterpret_cast<const char*>(&lutValues1D[0]),lutValues1D.size()*sizeof(RGB12BitIntValues));
-        // Prepend ""1DL1" etc depending on UI choice
-        ba.prepend(lutChoiceString.toUtf8());
+		QByteArray ba(reinterpret_cast<const char*>(&cbMatrix),sizeof(ColorBoxDynamicMatrix));
+        ba.prepend(matrixChoiceString.toUtf8());
         emit load(ba);
     }
 
 }
 
+/*
+ * Write Matrix File for ColorBox. This can be upldated to ColorBox Library.
+ *
+ */
+void  Dialog::writeMatrixFile(ColorBoxDynamicMatrix m)
+{
 
+    QDateTime t = QDateTime::currentDateTime ();
+    QString s = t.toString("yy.MM.dd.hh.mm.ss.zzz");
 
+    s += ".ajamtx";
+    qDebug() << "Writing File" << s;
 
+    QFile outMTXFile(s);
+    outMTXFile.open(QIODevice::WriteOnly);
+    QTextStream out(&outMTXFile);   // we will serialize the data into the file
+	out << "# Setup 3x3 Matrix applied to 12 bit components." << Qt::endl;
+	out << "# Preoffset is a floating point offset applied. 256.0 is 12 bit black offset. " << Qt::endl;
+	out << "# in R G B order. The Next two lines need to be contiguous" << Qt::endl;
+	out << "3X3_PRE_OFFSET " << Qt::endl;
+	out << 0.0 << " "<< 0.0 << " "<< 0.0 << Qt::endl;
 
+	out << "# in R G B order. The Next two lines need to be contiguous" << Qt::endl;
+	out << "3X3_POST_OFFSET " << Qt::endl;
+	out << m.matrix4x4[3] << " " << m.matrix4x4[7] << "  " << m.matrix4x4[11] << Qt::endl;
+
+	out << "# Rout = ((Rin-PRE_OFFSET_R)*r11+(Gin-PRE_OFFSET_G)*r12+(Bin-PRE_OFFSET_B)*r13)+POST_OFFSET_R;" << Qt::endl;
+	out << "# Gout = ((Rin-PRE_OFFSET_R)*g21+(Gin-PRE_OFFSET_G)*g22+(Bin-PRE_OFFSET_B)*g23)+POST_OFFSET_G;" << Qt::endl;
+	out << "# Bout = ((Rin-PRE_OFFSET_R)*b31+(Gin-PRE_OFFSET_G)*b32+(Bin-PRE_OFFSET_B)*b33)+POST_OFFSET_B;" << Qt::endl;
+	out << "# Next 4 lines need to be contiguous and correspond to above coefs." << Qt::endl;
+	out << "3X3_SIZE 3" << Qt::endl;
+	out << m.matrix4x4[0] << " "<< m.matrix4x4[1] << " "<< m.matrix4x4[2] << Qt::endl;
+	out << m.matrix4x4[4] << " "<< m.matrix4x4[5] << " "<< m.matrix4x4[6] << Qt::endl;
+	out << m.matrix4x4[8] << " "<< m.matrix4x4[9] << " "<< m.matrix4x4[10] << Qt::endl;
+
+    outMTXFile.close();
+ }
 
