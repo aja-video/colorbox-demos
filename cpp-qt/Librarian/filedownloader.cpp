@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
 #include "filedownloader.h"
 
 FileDownloader::FileDownloader(QUrl imageUrl, QString fileName, QObject *parent) :

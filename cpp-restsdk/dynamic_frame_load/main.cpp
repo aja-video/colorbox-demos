@@ -1,4 +1,8 @@
 /*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
+/*
 * This example uses a websocket to send an frame of video to AJA ColorBox using the cpprestsdk and its websocket implementation.
 * The image is always sent via the websocket as a 16 bit RGB image(48 bits per pixel).
 * Example Usage: .\dynamic_frame_load.exe --host 192.168.1.140 --bits 12 --pixels 1920 --red 3760--green 256 --blue 256

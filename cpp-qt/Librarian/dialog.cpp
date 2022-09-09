@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
 /*!
  * Librarian
  * The demo demostrates how to interface to a ColorBox Library. This example

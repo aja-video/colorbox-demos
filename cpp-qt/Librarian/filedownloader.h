@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
 #ifndef FILEDOWNLOADER_H
 #define FILEDOWNLOADER_H
 

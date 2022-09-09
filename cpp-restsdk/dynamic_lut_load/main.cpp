@@ -1,4 +1,8 @@
 /*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
+/*
 This example uses a websocket to send an dynamic lut to AJA ColorBox using the cpprestsdk and its websocket implementation when ColorBox is in LUT Mode
 * 
 * Example Usage: .\dynamic_lut_load.exe --host 192.168.1.140 --target 1DL2 --lift 0 --gamma 2.4 --gain 1

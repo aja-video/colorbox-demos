@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
+
 #include "ajawebsocketinterface.h"
 
 void AJAWebSocketInterface::connectColorBoxWebSocket(QString urlString)

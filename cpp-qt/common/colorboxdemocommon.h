@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
+
 #ifndef _COLORBOXDEMOCOMMON_H
 #define _COLORBOXDEMOCOMMON_H
 

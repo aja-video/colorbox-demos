@@ -1,3 +1,7 @@
+"""
+ SPDX-License-Identifier: MIT
+ Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+"""
 """Simple example that will upload a 1D/3D Lut, Matrix or Image file to the ColorBox Library."""
 import argparse
 from operator import truediv

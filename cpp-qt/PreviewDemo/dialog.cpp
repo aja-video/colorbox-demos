@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
 /*!
  * PreviewDemoOpenAPI
  * This demo shows how to interface with a ColorBox device via the Qt C++OpenAPI.

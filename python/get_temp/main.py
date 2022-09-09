@@ -1,3 +1,7 @@
+"""
+ SPDX-License-Identifier: MIT
+ Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+"""
 """Simple example script that will get the colorbox die temp every second."""
 import argparse
 import os

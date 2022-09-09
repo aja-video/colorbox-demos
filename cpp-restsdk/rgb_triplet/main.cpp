@@ -1,4 +1,8 @@
 /*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
+/*
 This example uses a websocket to send an rgb triplet to the ColorBox
 */
 

@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
+ */
 /*!
  * DynamicMatrixLoad
  * The demo demostrates how to interface to a ColorBox device via the REST API and WebSockets to upload a matrix to ColorBox.
