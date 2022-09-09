@@ -32,7 +32,7 @@ This allows you not only to see the data structures for the API but also try it 
 		* [CMakeLists.txt](cpp-qt/CMakeLists.txt) - defines cmake build
 		* [demos.pro](cpp-qt/demos.pro) - defines qmake build
 		* [README.md](cpp-qt/README.md) - more details about these demos
-* **cpprestsdk demos **
+* **cpprestsdk demos**
 	* [cpp-restsdk/](cpp-restsdk)
 		* [api/](cpp-restsdk/api) - the generated OpenAPI for use with cpprestsdk (C++)
 		* [bin/](cpp-restsdk/bin) - where the built demos are placed
@@ -44,14 +44,14 @@ This allows you not only to see the data structures for the API but also try it 
 		* [set_overlay_text/](cpp-restsdk/set_overlay_text) - command line demo
 		* [CMakeLists.txt](cpp-restsdk/CMakeLists.txt) - defines cmake build
 		* [README.md](cpp-restsdk/README.md) - more details about these demos
-* **Go demos **
+* **Go demos**
 	* [go/](go)
 		* [api/](go/api) - the generated OpenAPI for use with Go
 		* [get_temp/](go/get_temp) - command line demo
 		* [lib_load/](go/lib_load) - command line demo
 		* [set_overlay_text/](go/set_overlay_text) - command line demo
 		* [README.md](go/README.md) - more details about these demos
-* **Python demos **
+* **Python demos**
 	* [python/](python)
 		* [api/](python/api) - the generated OpenAPI for use with Python
 		* [get_temp/](python/get_temp) - command line demo
