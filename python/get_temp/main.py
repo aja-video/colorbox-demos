@@ -33,7 +33,7 @@ parser.add_argument(
 args = parser.parse_args()
 hostAndPort = f"{args.host}:{args.port}/v2"
 
-# Create a configuration that points to the IP Address of desired Color Box
+# Create a configuration that points to the IP Address of desired ColorBox
 configuration = openapi_client.Configuration(
     host=hostAndPort, username=args.username, password=args.password
 )

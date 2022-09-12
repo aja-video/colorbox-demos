@@ -7,7 +7,7 @@
  *
  *This demo shows how to download a 16 bit RGB Triplet to the ColorBox to a
  *particular pixel location and then read back that pixel location having
- *applied the current transforms. For instance, if Color Box is in LUT mode
+ *applied the current transforms. For instance, if ColorBox is in LUT mode
  *the API will place the RGB triplet in the frame store and the ColorBox Software
  *will calculate the expected results of that RGB triplet running through the pipeline
  *     1DLUT -> 3x3 Matrix -> 3DLUT -> 1DLUT ->  3x3 Matrix-> 1DLUT
