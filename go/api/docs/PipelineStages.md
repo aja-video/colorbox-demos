@@ -11,7 +11,12 @@ Name | Type | Description | Notes
 **Lut1d3** | Pointer to [**Stage**](Stage.md) |  | [optional] 
 **M3x33** | Pointer to [**Stage**](Stage.md) |  | [optional] 
 **Lut1d4** | Pointer to [**Stage**](Stage.md) |  | [optional] 
-**PipelineRange** | Pointer to [**PipelineRange**](PipelineRange.md) |  | [optional] [default to PIPELINERANGE_SMPTE_FULL]
+**InColorimetry** | Pointer to [**Colorimetry**](Colorimetry.md) |  | [optional] 
+**InRange** | Pointer to [**PipelineRange**](PipelineRange.md) |  | [optional] [default to PIPELINERANGE_SMPTE_FULL]
+**OutColorimetry** | Pointer to [**Colorimetry**](Colorimetry.md) |  | [optional] 
+**OutRange** | Pointer to [**PipelineRange**](PipelineRange.md) |  | [optional] [default to PIPELINERANGE_SMPTE_FULL]
+**TransferCharacteristic** | Pointer to [**Transfer**](Transfer.md) |  | [optional] 
+**CscFilter** | Pointer to [**CSCFilter**](CSCFilter.md) |  | [optional] [default to CSCFILTER_NONE]
 
 ## Methods
 
@@ -207,30 +212,155 @@ SetLut1d4 sets Lut1d4 field to given value.
 
 HasLut1d4 returns a boolean if a field has been set.
 
-### GetPipelineRange
+### GetInColorimetry
 
-`func (o *PipelineStages) GetPipelineRange() PipelineRange`
+`func (o *PipelineStages) GetInColorimetry() Colorimetry`
 
-GetPipelineRange returns the PipelineRange field if non-nil, zero value otherwise.
+GetInColorimetry returns the InColorimetry field if non-nil, zero value otherwise.
 
-### GetPipelineRangeOk
+### GetInColorimetryOk
 
-`func (o *PipelineStages) GetPipelineRangeOk() (*PipelineRange, bool)`
+`func (o *PipelineStages) GetInColorimetryOk() (*Colorimetry, bool)`
 
-GetPipelineRangeOk returns a tuple with the PipelineRange field if it's non-nil, zero value otherwise
+GetInColorimetryOk returns a tuple with the InColorimetry field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPipelineRange
+### SetInColorimetry
 
-`func (o *PipelineStages) SetPipelineRange(v PipelineRange)`
+`func (o *PipelineStages) SetInColorimetry(v Colorimetry)`
 
-SetPipelineRange sets PipelineRange field to given value.
+SetInColorimetry sets InColorimetry field to given value.
 
-### HasPipelineRange
+### HasInColorimetry
 
-`func (o *PipelineStages) HasPipelineRange() bool`
+`func (o *PipelineStages) HasInColorimetry() bool`
 
-HasPipelineRange returns a boolean if a field has been set.
+HasInColorimetry returns a boolean if a field has been set.
+
+### GetInRange
+
+`func (o *PipelineStages) GetInRange() PipelineRange`
+
+GetInRange returns the InRange field if non-nil, zero value otherwise.
+
+### GetInRangeOk
+
+`func (o *PipelineStages) GetInRangeOk() (*PipelineRange, bool)`
+
+GetInRangeOk returns a tuple with the InRange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInRange
+
+`func (o *PipelineStages) SetInRange(v PipelineRange)`
+
+SetInRange sets InRange field to given value.
+
+### HasInRange
+
+`func (o *PipelineStages) HasInRange() bool`
+
+HasInRange returns a boolean if a field has been set.
+
+### GetOutColorimetry
+
+`func (o *PipelineStages) GetOutColorimetry() Colorimetry`
+
+GetOutColorimetry returns the OutColorimetry field if non-nil, zero value otherwise.
+
+### GetOutColorimetryOk
+
+`func (o *PipelineStages) GetOutColorimetryOk() (*Colorimetry, bool)`
+
+GetOutColorimetryOk returns a tuple with the OutColorimetry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutColorimetry
+
+`func (o *PipelineStages) SetOutColorimetry(v Colorimetry)`
+
+SetOutColorimetry sets OutColorimetry field to given value.
+
+### HasOutColorimetry
+
+`func (o *PipelineStages) HasOutColorimetry() bool`
+
+HasOutColorimetry returns a boolean if a field has been set.
+
+### GetOutRange
+
+`func (o *PipelineStages) GetOutRange() PipelineRange`
+
+GetOutRange returns the OutRange field if non-nil, zero value otherwise.
+
+### GetOutRangeOk
+
+`func (o *PipelineStages) GetOutRangeOk() (*PipelineRange, bool)`
+
+GetOutRangeOk returns a tuple with the OutRange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutRange
+
+`func (o *PipelineStages) SetOutRange(v PipelineRange)`
+
+SetOutRange sets OutRange field to given value.
+
+### HasOutRange
+
+`func (o *PipelineStages) HasOutRange() bool`
+
+HasOutRange returns a boolean if a field has been set.
+
+### GetTransferCharacteristic
+
+`func (o *PipelineStages) GetTransferCharacteristic() Transfer`
+
+GetTransferCharacteristic returns the TransferCharacteristic field if non-nil, zero value otherwise.
+
+### GetTransferCharacteristicOk
+
+`func (o *PipelineStages) GetTransferCharacteristicOk() (*Transfer, bool)`
+
+GetTransferCharacteristicOk returns a tuple with the TransferCharacteristic field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransferCharacteristic
+
+`func (o *PipelineStages) SetTransferCharacteristic(v Transfer)`
+
+SetTransferCharacteristic sets TransferCharacteristic field to given value.
+
+### HasTransferCharacteristic
+
+`func (o *PipelineStages) HasTransferCharacteristic() bool`
+
+HasTransferCharacteristic returns a boolean if a field has been set.
+
+### GetCscFilter
+
+`func (o *PipelineStages) GetCscFilter() CSCFilter`
+
+GetCscFilter returns the CscFilter field if non-nil, zero value otherwise.
+
+### GetCscFilterOk
+
+`func (o *PipelineStages) GetCscFilterOk() (*CSCFilter, bool)`
+
+GetCscFilterOk returns a tuple with the CscFilter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCscFilter
+
+`func (o *PipelineStages) SetCscFilter(v CSCFilter)`
+
+SetCscFilter sets CscFilter field to given value.
+
+### HasCscFilter
+
+`func (o *PipelineStages) HasCscFilter() bool`
+
+HasCscFilter returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

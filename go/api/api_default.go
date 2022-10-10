@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -6139,10 +6139,22 @@ type ApiUploadFileRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
 	file **os.File
+	kind *string
+	entry *int32
 }
 
 func (r ApiUploadFileRequest) File(file *os.File) ApiUploadFileRequest {
 	r.file = &file
+	return r
+}
+// The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update**
+func (r ApiUploadFileRequest) Kind(kind string) ApiUploadFileRequest {
+	r.kind = &kind
+	return r
+}
+// The entry number to upload the file to, **not** used with kinds: **license** and **update**
+func (r ApiUploadFileRequest) Entry(entry int32) ApiUploadFileRequest {
+	r.entry = &entry
 	return r
 }
 
@@ -6218,6 +6230,12 @@ func (a *DefaultApiService) UploadFileExecute(r ApiUploadFileRequest) (*http.Res
 		fileLocalVarFile.Close()
 	}
 	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	if r.kind != nil {
+		localVarFormParams.Add("kind", parameterToString(*r.kind, ""))
+	}
+	if r.entry != nil {
+		localVarFormParams.Add("entry", parameterToString(*r.entry, ""))
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

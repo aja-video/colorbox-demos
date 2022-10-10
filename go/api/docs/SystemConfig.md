@@ -15,7 +15,8 @@ Name | Type | Description | Notes
 **TransformMode** | Pointer to [**TransformMode**](TransformMode.md) |  | [optional] [default to TRANSFORMMODE_LUT]
 **PreviewAncEnable** | Pointer to **bool** |  | [optional] [default to false]
 **AuthenticationEnable** | Pointer to **bool** |  | [optional] [default to false]
-**FanSpeed** | Pointer to **float32** |  | [optional] [default to 0]
+**FanSpeed** | Pointer to **float32** |  | [optional] [default to 170]
+**StartupPreset** | Pointer to **int32** |  | [optional] [default to 0]
 
 ## Methods
 
@@ -335,6 +336,31 @@ SetFanSpeed sets FanSpeed field to given value.
 `func (o *SystemConfig) HasFanSpeed() bool`
 
 HasFanSpeed returns a boolean if a field has been set.
+
+### GetStartupPreset
+
+`func (o *SystemConfig) GetStartupPreset() int32`
+
+GetStartupPreset returns the StartupPreset field if non-nil, zero value otherwise.
+
+### GetStartupPresetOk
+
+`func (o *SystemConfig) GetStartupPresetOk() (*int32, bool)`
+
+GetStartupPresetOk returns a tuple with the StartupPreset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartupPreset
+
+`func (o *SystemConfig) SetStartupPreset(v int32)`
+
+SetStartupPreset sets StartupPreset field to given value.
+
+### HasStartupPreset
+
+`func (o *SystemConfig) HasStartupPreset() bool`
+
+HasStartupPreset returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

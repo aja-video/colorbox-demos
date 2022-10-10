@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -34,10 +34,16 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from openapi_client.model.colorimetry import Colorimetry
+    from openapi_client.model.csc_filter import CSCFilter
     from openapi_client.model.pipeline_range import PipelineRange
     from openapi_client.model.stage import Stage
+    from openapi_client.model.transfer import Transfer
+    globals()['CSCFilter'] = CSCFilter
+    globals()['Colorimetry'] = Colorimetry
     globals()['PipelineRange'] = PipelineRange
     globals()['Stage'] = Stage
+    globals()['Transfer'] = Transfer
 
 
 class PipelineStages(ModelNormal):
@@ -100,7 +106,12 @@ class PipelineStages(ModelNormal):
             'lut1d_3': (Stage,),  # noqa: E501
             'm3x3_3': (Stage,),  # noqa: E501
             'lut1d_4': (Stage,),  # noqa: E501
-            'pipeline_range': (PipelineRange,),  # noqa: E501
+            'in_colorimetry': (Colorimetry,),  # noqa: E501
+            'in_range': (PipelineRange,),  # noqa: E501
+            'out_colorimetry': (Colorimetry,),  # noqa: E501
+            'out_range': (PipelineRange,),  # noqa: E501
+            'transfer_characteristic': (Transfer,),  # noqa: E501
+            'csc_filter': (CSCFilter,),  # noqa: E501
         }
 
     @cached_property
@@ -116,7 +127,12 @@ class PipelineStages(ModelNormal):
         'lut1d_3': 'lut1d_3',  # noqa: E501
         'm3x3_3': 'm3x3_3',  # noqa: E501
         'lut1d_4': 'lut1d_4',  # noqa: E501
-        'pipeline_range': 'pipelineRange',  # noqa: E501
+        'in_colorimetry': 'inColorimetry',  # noqa: E501
+        'in_range': 'inRange',  # noqa: E501
+        'out_colorimetry': 'outColorimetry',  # noqa: E501
+        'out_range': 'outRange',  # noqa: E501
+        'transfer_characteristic': 'transferCharacteristic',  # noqa: E501
+        'csc_filter': 'cscFilter',  # noqa: E501
     }
 
     read_only_vars = {
@@ -167,7 +183,12 @@ class PipelineStages(ModelNormal):
             lut1d_3 (Stage): [optional]  # noqa: E501
             m3x3_3 (Stage): [optional]  # noqa: E501
             lut1d_4 (Stage): [optional]  # noqa: E501
-            pipeline_range (PipelineRange): [optional]  # noqa: E501
+            in_colorimetry (Colorimetry): [optional]  # noqa: E501
+            in_range (PipelineRange): [optional]  # noqa: E501
+            out_colorimetry (Colorimetry): [optional]  # noqa: E501
+            out_range (PipelineRange): [optional]  # noqa: E501
+            transfer_characteristic (Transfer): [optional]  # noqa: E501
+            csc_filter (CSCFilter): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -256,7 +277,12 @@ class PipelineStages(ModelNormal):
             lut1d_3 (Stage): [optional]  # noqa: E501
             m3x3_3 (Stage): [optional]  # noqa: E501
             lut1d_4 (Stage): [optional]  # noqa: E501
-            pipeline_range (PipelineRange): [optional]  # noqa: E501
+            in_colorimetry (Colorimetry): [optional]  # noqa: E501
+            in_range (PipelineRange): [optional]  # noqa: E501
+            out_colorimetry (Colorimetry): [optional]  # noqa: E501
+            out_range (PipelineRange): [optional]  # noqa: E501
+            transfer_characteristic (Transfer): [optional]  # noqa: E501
+            csc_filter (CSCFilter): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

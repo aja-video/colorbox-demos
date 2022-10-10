@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -36,7 +36,7 @@ func NewRouting() *Routing {
 	this := Routing{}
 	var mode Mode = MODE_INPUT
 	this.Mode = &mode
-	var previewTap PreviewTap = PREVIEWTAP_OVERLAY
+	var previewTap PreviewTap = PREVIEWTAP_OUTPUT
 	this.PreviewTap = &previewTap
 	return &this
 }
@@ -48,7 +48,7 @@ func NewRoutingWithDefaults() *Routing {
 	this := Routing{}
 	var mode Mode = MODE_INPUT
 	this.Mode = &mode
-	var previewTap PreviewTap = PREVIEWTAP_OVERLAY
+	var previewTap PreviewTap = PREVIEWTAP_OUTPUT
 	this.PreviewTap = &previewTap
 	return &this
 }

@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -106,6 +106,12 @@ class Status(ModelNormal):
             'orion_engine_licensed': (bool,),  # noqa: E501
             'colorfront_engine_licensed': (bool,),  # noqa: E501
             'shutdown_time': (int,),  # noqa: E501
+            'colorfront_transform_version': (str,),  # noqa: E501
+            'colorfront_engine_version': (str,),  # noqa: E501
+            'orion_version': (str,),  # noqa: E501
+            'bbc_lut_version': (str,),  # noqa: E501
+            'nbcu_lut_version': (str,),  # noqa: E501
+            'cpu_busy': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -129,6 +135,12 @@ class Status(ModelNormal):
         'orion_engine_licensed': 'orionEngineLicensed',  # noqa: E501
         'colorfront_engine_licensed': 'colorfrontEngineLicensed',  # noqa: E501
         'shutdown_time': 'shutdownTime',  # noqa: E501
+        'colorfront_transform_version': 'colorfrontTransformVersion',  # noqa: E501
+        'colorfront_engine_version': 'colorfrontEngineVersion',  # noqa: E501
+        'orion_version': 'orionVersion',  # noqa: E501
+        'bbc_lut_version': 'bbcLutVersion',  # noqa: E501
+        'nbcu_lut_version': 'nbcuLutVersion',  # noqa: E501
+        'cpu_busy': 'cpuBusy',  # noqa: E501
     }
 
     read_only_vars = {
@@ -187,6 +199,12 @@ class Status(ModelNormal):
             orion_engine_licensed (bool): [optional]  # noqa: E501
             colorfront_engine_licensed (bool): [optional]  # noqa: E501
             shutdown_time (int): [optional]  # noqa: E501
+            colorfront_transform_version (str): [optional]  # noqa: E501
+            colorfront_engine_version (str): [optional]  # noqa: E501
+            orion_version (str): [optional]  # noqa: E501
+            bbc_lut_version (str): [optional]  # noqa: E501
+            nbcu_lut_version (str): [optional]  # noqa: E501
+            cpu_busy (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -283,6 +301,12 @@ class Status(ModelNormal):
             orion_engine_licensed (bool): [optional]  # noqa: E501
             colorfront_engine_licensed (bool): [optional]  # noqa: E501
             shutdown_time (int): [optional]  # noqa: E501
+            colorfront_transform_version (str): [optional]  # noqa: E501
+            colorfront_engine_version (str): [optional]  # noqa: E501
+            orion_version (str): [optional]  # noqa: E501
+            bbc_lut_version (str): [optional]  # noqa: E501
+            nbcu_lut_version (str): [optional]  # noqa: E501
+            cpu_busy (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

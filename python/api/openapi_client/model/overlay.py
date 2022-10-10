@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -66,6 +66,14 @@ class Overlay(ModelNormal):
     }
 
     validations = {
+        ('user_text_line1',): {
+            'max_length': 110,
+            'min_length': 0,
+        },
+        ('user_text_line2',): {
+            'max_length': 110,
+            'min_length': 0,
+        },
     }
 
     @cached_property
@@ -92,15 +100,20 @@ class Overlay(ModelNormal):
         lazy_import()
         return {
             'enabled': (bool,),  # noqa: E501
-            'vpid_format': (bool,),  # noqa: E501
-            'vpid_range': (bool,),  # noqa: E501
-            'vpid_hdr': (bool,),  # noqa: E501
-            'vpid_bit_depth': (bool,),  # noqa: E501
+            'in_vpid_format': (bool,),  # noqa: E501
+            'in_vpid_range': (bool,),  # noqa: E501
+            'in_vpid_hdr': (bool,),  # noqa: E501
+            'in_vpid_bit_depth': (bool,),  # noqa: E501
+            'out_vpid_format': (bool,),  # noqa: E501
+            'out_vpid_range': (bool,),  # noqa: E501
+            'out_vpid_hdr': (bool,),  # noqa: E501
+            'out_vpid_bit_depth': (bool,),  # noqa: E501
             'time_code': (bool,),  # noqa: E501
             'closed_caption': (bool,),  # noqa: E501
             'user_text_enabled': (bool,),  # noqa: E501
             'user_text_line1': (str,),  # noqa: E501
             'user_text_line2': (str,),  # noqa: E501
+            'pipeline_config': (bool,),  # noqa: E501
             'location': (Locations,),  # noqa: E501
         }
 
@@ -111,15 +124,20 @@ class Overlay(ModelNormal):
 
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
-        'vpid_format': 'vpidFormat',  # noqa: E501
-        'vpid_range': 'vpidRange',  # noqa: E501
-        'vpid_hdr': 'vpidHdr',  # noqa: E501
-        'vpid_bit_depth': 'vpidBitDepth',  # noqa: E501
+        'in_vpid_format': 'inVpidFormat',  # noqa: E501
+        'in_vpid_range': 'inVpidRange',  # noqa: E501
+        'in_vpid_hdr': 'inVpidHdr',  # noqa: E501
+        'in_vpid_bit_depth': 'inVpidBitDepth',  # noqa: E501
+        'out_vpid_format': 'outVpidFormat',  # noqa: E501
+        'out_vpid_range': 'outVpidRange',  # noqa: E501
+        'out_vpid_hdr': 'outVpidHdr',  # noqa: E501
+        'out_vpid_bit_depth': 'outVpidBitDepth',  # noqa: E501
         'time_code': 'timeCode',  # noqa: E501
         'closed_caption': 'closedCaption',  # noqa: E501
         'user_text_enabled': 'userTextEnabled',  # noqa: E501
         'user_text_line1': 'userTextLine1',  # noqa: E501
         'user_text_line2': 'userTextLine2',  # noqa: E501
+        'pipeline_config': 'pipelineConfig',  # noqa: E501
         'location': 'location',  # noqa: E501
     }
 
@@ -165,15 +183,20 @@ class Overlay(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if overlay is enabled else disabled. [optional]  # noqa: E501
-            vpid_format (bool): [optional]  # noqa: E501
-            vpid_range (bool): [optional]  # noqa: E501
-            vpid_hdr (bool): [optional]  # noqa: E501
-            vpid_bit_depth (bool): [optional]  # noqa: E501
+            in_vpid_format (bool): [optional]  # noqa: E501
+            in_vpid_range (bool): [optional]  # noqa: E501
+            in_vpid_hdr (bool): [optional]  # noqa: E501
+            in_vpid_bit_depth (bool): [optional]  # noqa: E501
+            out_vpid_format (bool): [optional]  # noqa: E501
+            out_vpid_range (bool): [optional]  # noqa: E501
+            out_vpid_hdr (bool): [optional]  # noqa: E501
+            out_vpid_bit_depth (bool): [optional]  # noqa: E501
             time_code (bool): [optional]  # noqa: E501
             closed_caption (bool): [optional]  # noqa: E501
             user_text_enabled (bool): [optional]  # noqa: E501
             user_text_line1 (str): [optional]  # noqa: E501
             user_text_line2 (str): [optional]  # noqa: E501
+            pipeline_config (bool): [optional]  # noqa: E501
             location (Locations): [optional]  # noqa: E501
         """
 
@@ -257,15 +280,20 @@ class Overlay(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if overlay is enabled else disabled. [optional]  # noqa: E501
-            vpid_format (bool): [optional]  # noqa: E501
-            vpid_range (bool): [optional]  # noqa: E501
-            vpid_hdr (bool): [optional]  # noqa: E501
-            vpid_bit_depth (bool): [optional]  # noqa: E501
+            in_vpid_format (bool): [optional]  # noqa: E501
+            in_vpid_range (bool): [optional]  # noqa: E501
+            in_vpid_hdr (bool): [optional]  # noqa: E501
+            in_vpid_bit_depth (bool): [optional]  # noqa: E501
+            out_vpid_format (bool): [optional]  # noqa: E501
+            out_vpid_range (bool): [optional]  # noqa: E501
+            out_vpid_hdr (bool): [optional]  # noqa: E501
+            out_vpid_bit_depth (bool): [optional]  # noqa: E501
             time_code (bool): [optional]  # noqa: E501
             closed_caption (bool): [optional]  # noqa: E501
             user_text_enabled (bool): [optional]  # noqa: E501
             user_text_line1 (str): [optional]  # noqa: E501
             user_text_line2 (str): [optional]  # noqa: E501
+            pipeline_config (bool): [optional]  # noqa: E501
             location (Locations): [optional]  # noqa: E501
         """
 

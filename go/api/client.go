@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -45,7 +45,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the OpenAPI Soji API v1.0.0
+// APIClient manages communication with the OpenAPI ColorBox API v1.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

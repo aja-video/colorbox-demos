@@ -19,6 +19,12 @@ Name | Type | Description | Notes
 **orion_engine_licensed** | **bool** |  | [optional] 
 **colorfront_engine_licensed** | **bool** |  | [optional] 
 **shutdown_time** | **int** |  | [optional] 
+**colorfront_transform_version** | **str** |  | [optional] 
+**colorfront_engine_version** | **str** |  | [optional] 
+**orion_version** | **str** |  | [optional] 
+**bbc_lut_version** | **str** |  | [optional] 
+**nbcu_lut_version** | **str** |  | [optional] 
+**cpu_busy** | **bool** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

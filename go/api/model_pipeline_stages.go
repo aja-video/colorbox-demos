@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -27,7 +27,12 @@ type PipelineStages struct {
 	Lut1d3 *Stage `json:"lut1d_3,omitempty"`
 	M3x33 *Stage `json:"m3x3_3,omitempty"`
 	Lut1d4 *Stage `json:"lut1d_4,omitempty"`
-	PipelineRange *PipelineRange `json:"pipelineRange,omitempty"`
+	InColorimetry *Colorimetry `json:"inColorimetry,omitempty"`
+	InRange *PipelineRange `json:"inRange,omitempty"`
+	OutColorimetry *Colorimetry `json:"outColorimetry,omitempty"`
+	OutRange *PipelineRange `json:"outRange,omitempty"`
+	TransferCharacteristic *Transfer `json:"transferCharacteristic,omitempty"`
+	CscFilter *CSCFilter `json:"cscFilter,omitempty"`
 }
 
 // NewPipelineStages instantiates a new PipelineStages object
@@ -36,8 +41,12 @@ type PipelineStages struct {
 // will change when the set of required properties is changed
 func NewPipelineStages() *PipelineStages {
 	this := PipelineStages{}
-	var pipelineRange PipelineRange = PIPELINERANGE_SMPTE_FULL
-	this.PipelineRange = &pipelineRange
+	var inRange PipelineRange = PIPELINERANGE_SMPTE_FULL
+	this.InRange = &inRange
+	var outRange PipelineRange = PIPELINERANGE_SMPTE_FULL
+	this.OutRange = &outRange
+	var cscFilter CSCFilter = CSCFILTER_NONE
+	this.CscFilter = &cscFilter
 	return &this
 }
 
@@ -46,8 +55,12 @@ func NewPipelineStages() *PipelineStages {
 // but it doesn't guarantee that properties required by API are set
 func NewPipelineStagesWithDefaults() *PipelineStages {
 	this := PipelineStages{}
-	var pipelineRange PipelineRange = PIPELINERANGE_SMPTE_FULL
-	this.PipelineRange = &pipelineRange
+	var inRange PipelineRange = PIPELINERANGE_SMPTE_FULL
+	this.InRange = &inRange
+	var outRange PipelineRange = PIPELINERANGE_SMPTE_FULL
+	this.OutRange = &outRange
+	var cscFilter CSCFilter = CSCFILTER_NONE
+	this.CscFilter = &cscFilter
 	return &this
 }
 
@@ -296,39 +309,214 @@ func (o *PipelineStages) SetLut1d4(v Stage) {
 	o.Lut1d4 = &tmp
 }
 
-// GetPipelineRange returns the PipelineRange field value if set, zero value otherwise.
-func (o *PipelineStages) GetPipelineRange() PipelineRange {
-	if o == nil || o.PipelineRange == nil {
-		var ret PipelineRange
+// GetInColorimetry returns the InColorimetry field value if set, zero value otherwise.
+func (o *PipelineStages) GetInColorimetry() Colorimetry {
+	if o == nil || o.InColorimetry == nil {
+		var ret Colorimetry
 		return ret
 	}
-	return *o.PipelineRange
+	return *o.InColorimetry
 }
 
-// GetPipelineRangeOk returns a tuple with the PipelineRange field value if set, nil otherwise
+// GetInColorimetryOk returns a tuple with the InColorimetry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PipelineStages) GetPipelineRangeOk() (*PipelineRange, bool) {
-	if o == nil || o.PipelineRange == nil {
+func (o *PipelineStages) GetInColorimetryOk() (*Colorimetry, bool) {
+	if o == nil || o.InColorimetry == nil {
 		return nil, false
 	}
-	return o.PipelineRange, true
+	return o.InColorimetry, true
 }
 
 
 
-// HasPipelineRange returns a boolean if a field has been set.
-func (o *PipelineStages) HasPipelineRange() bool {
-	if o != nil && o.PipelineRange != nil {
+// HasInColorimetry returns a boolean if a field has been set.
+func (o *PipelineStages) HasInColorimetry() bool {
+	if o != nil && o.InColorimetry != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPipelineRange gets a reference to the given PipelineRange and assigns it to the PipelineRange field.
-func (o *PipelineStages) SetPipelineRange(v PipelineRange) {
+// SetInColorimetry gets a reference to the given Colorimetry and assigns it to the InColorimetry field.
+func (o *PipelineStages) SetInColorimetry(v Colorimetry) {
 	tmp := v
-	o.PipelineRange = &tmp
+	o.InColorimetry = &tmp
+}
+
+// GetInRange returns the InRange field value if set, zero value otherwise.
+func (o *PipelineStages) GetInRange() PipelineRange {
+	if o == nil || o.InRange == nil {
+		var ret PipelineRange
+		return ret
+	}
+	return *o.InRange
+}
+
+// GetInRangeOk returns a tuple with the InRange field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PipelineStages) GetInRangeOk() (*PipelineRange, bool) {
+	if o == nil || o.InRange == nil {
+		return nil, false
+	}
+	return o.InRange, true
+}
+
+
+
+// HasInRange returns a boolean if a field has been set.
+func (o *PipelineStages) HasInRange() bool {
+	if o != nil && o.InRange != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInRange gets a reference to the given PipelineRange and assigns it to the InRange field.
+func (o *PipelineStages) SetInRange(v PipelineRange) {
+	tmp := v
+	o.InRange = &tmp
+}
+
+// GetOutColorimetry returns the OutColorimetry field value if set, zero value otherwise.
+func (o *PipelineStages) GetOutColorimetry() Colorimetry {
+	if o == nil || o.OutColorimetry == nil {
+		var ret Colorimetry
+		return ret
+	}
+	return *o.OutColorimetry
+}
+
+// GetOutColorimetryOk returns a tuple with the OutColorimetry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PipelineStages) GetOutColorimetryOk() (*Colorimetry, bool) {
+	if o == nil || o.OutColorimetry == nil {
+		return nil, false
+	}
+	return o.OutColorimetry, true
+}
+
+
+
+// HasOutColorimetry returns a boolean if a field has been set.
+func (o *PipelineStages) HasOutColorimetry() bool {
+	if o != nil && o.OutColorimetry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOutColorimetry gets a reference to the given Colorimetry and assigns it to the OutColorimetry field.
+func (o *PipelineStages) SetOutColorimetry(v Colorimetry) {
+	tmp := v
+	o.OutColorimetry = &tmp
+}
+
+// GetOutRange returns the OutRange field value if set, zero value otherwise.
+func (o *PipelineStages) GetOutRange() PipelineRange {
+	if o == nil || o.OutRange == nil {
+		var ret PipelineRange
+		return ret
+	}
+	return *o.OutRange
+}
+
+// GetOutRangeOk returns a tuple with the OutRange field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PipelineStages) GetOutRangeOk() (*PipelineRange, bool) {
+	if o == nil || o.OutRange == nil {
+		return nil, false
+	}
+	return o.OutRange, true
+}
+
+
+
+// HasOutRange returns a boolean if a field has been set.
+func (o *PipelineStages) HasOutRange() bool {
+	if o != nil && o.OutRange != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOutRange gets a reference to the given PipelineRange and assigns it to the OutRange field.
+func (o *PipelineStages) SetOutRange(v PipelineRange) {
+	tmp := v
+	o.OutRange = &tmp
+}
+
+// GetTransferCharacteristic returns the TransferCharacteristic field value if set, zero value otherwise.
+func (o *PipelineStages) GetTransferCharacteristic() Transfer {
+	if o == nil || o.TransferCharacteristic == nil {
+		var ret Transfer
+		return ret
+	}
+	return *o.TransferCharacteristic
+}
+
+// GetTransferCharacteristicOk returns a tuple with the TransferCharacteristic field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PipelineStages) GetTransferCharacteristicOk() (*Transfer, bool) {
+	if o == nil || o.TransferCharacteristic == nil {
+		return nil, false
+	}
+	return o.TransferCharacteristic, true
+}
+
+
+
+// HasTransferCharacteristic returns a boolean if a field has been set.
+func (o *PipelineStages) HasTransferCharacteristic() bool {
+	if o != nil && o.TransferCharacteristic != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTransferCharacteristic gets a reference to the given Transfer and assigns it to the TransferCharacteristic field.
+func (o *PipelineStages) SetTransferCharacteristic(v Transfer) {
+	tmp := v
+	o.TransferCharacteristic = &tmp
+}
+
+// GetCscFilter returns the CscFilter field value if set, zero value otherwise.
+func (o *PipelineStages) GetCscFilter() CSCFilter {
+	if o == nil || o.CscFilter == nil {
+		var ret CSCFilter
+		return ret
+	}
+	return *o.CscFilter
+}
+
+// GetCscFilterOk returns a tuple with the CscFilter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PipelineStages) GetCscFilterOk() (*CSCFilter, bool) {
+	if o == nil || o.CscFilter == nil {
+		return nil, false
+	}
+	return o.CscFilter, true
+}
+
+
+
+// HasCscFilter returns a boolean if a field has been set.
+func (o *PipelineStages) HasCscFilter() bool {
+	if o != nil && o.CscFilter != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCscFilter gets a reference to the given CSCFilter and assigns it to the CscFilter field.
+func (o *PipelineStages) SetCscFilter(v CSCFilter) {
+	tmp := v
+	o.CscFilter = &tmp
 }
 
 func (o PipelineStages) MarshalJSON() ([]byte, error) {
@@ -354,8 +542,23 @@ func (o PipelineStages) MarshalJSON() ([]byte, error) {
 	if o.Lut1d4 != nil {
 		toSerialize["lut1d_4"] = o.Lut1d4
 	}
-	if o.PipelineRange != nil {
-		toSerialize["pipelineRange"] = o.PipelineRange
+	if o.InColorimetry != nil {
+		toSerialize["inColorimetry"] = o.InColorimetry
+	}
+	if o.InRange != nil {
+		toSerialize["inRange"] = o.InRange
+	}
+	if o.OutColorimetry != nil {
+		toSerialize["outColorimetry"] = o.OutColorimetry
+	}
+	if o.OutRange != nil {
+		toSerialize["outRange"] = o.OutRange
+	}
+	if o.TransferCharacteristic != nil {
+		toSerialize["transferCharacteristic"] = o.TransferCharacteristic
+	}
+	if o.CscFilter != nil {
+		toSerialize["cscFilter"] = o.CscFilter
 	}
 	return json.Marshal(toSerialize)
 }

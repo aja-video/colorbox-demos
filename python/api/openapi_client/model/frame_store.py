@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -34,8 +34,12 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from openapi_client.model.file_type_choice import FileTypeChoice
+    from openapi_client.model.rgb_range import RgbRange
     from openapi_client.model.video_convert_choice import VideoConvertChoice
     from openapi_client.model.video_format import VideoFormat
+    globals()['FileTypeChoice'] = FileTypeChoice
+    globals()['RgbRange'] = RgbRange
     globals()['VideoConvertChoice'] = VideoConvertChoice
     globals()['VideoFormat'] = VideoFormat
 
@@ -95,9 +99,13 @@ class FrameStore(ModelNormal):
         return {
             'enabled': (bool,),  # noqa: E501
             'dynamic': (bool,),  # noqa: E501
+            'image_name': (str,),  # noqa: E501
+            'timecode_appended': (bool,),  # noqa: E501
+            'file_type': (FileTypeChoice,),  # noqa: E501
             'library_entry': (int,),  # noqa: E501
             'format': (VideoFormat,),  # noqa: E501
             'convert': (VideoConvertChoice,),  # noqa: E501
+            'rgb_range': (RgbRange,),  # noqa: E501
         }
 
     @cached_property
@@ -108,9 +116,13 @@ class FrameStore(ModelNormal):
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
         'dynamic': 'dynamic',  # noqa: E501
+        'image_name': 'imageName',  # noqa: E501
+        'timecode_appended': 'timecodeAppended',  # noqa: E501
+        'file_type': 'fileType',  # noqa: E501
         'library_entry': 'libraryEntry',  # noqa: E501
         'format': 'format',  # noqa: E501
         'convert': 'convert',  # noqa: E501
+        'rgb_range': 'rgbRange',  # noqa: E501
     }
 
     read_only_vars = {
@@ -156,9 +168,13 @@ class FrameStore(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if frame store is enabled else disabled. [optional]  # noqa: E501
             dynamic (bool): true if frame store can be dynamically adjusted. [optional]  # noqa: E501
+            image_name (str): The custom name for the captured image. [optional]  # noqa: E501
+            timecode_appended (bool): Flag to append the timecode of the captured image onto the filename. [optional]  # noqa: E501
+            file_type (FileTypeChoice): [optional]  # noqa: E501
             library_entry (int): library entry number, zero is black. [optional]  # noqa: E501
             format (VideoFormat): [optional]  # noqa: E501
             convert (VideoConvertChoice): [optional]  # noqa: E501
+            rgb_range (RgbRange): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,9 +258,13 @@ class FrameStore(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if frame store is enabled else disabled. [optional]  # noqa: E501
             dynamic (bool): true if frame store can be dynamically adjusted. [optional]  # noqa: E501
+            image_name (str): The custom name for the captured image. [optional]  # noqa: E501
+            timecode_appended (bool): Flag to append the timecode of the captured image onto the filename. [optional]  # noqa: E501
+            file_type (FileTypeChoice): [optional]  # noqa: E501
             library_entry (int): library entry number, zero is black. [optional]  # noqa: E501
             format (VideoFormat): [optional]  # noqa: E501
             convert (VideoConvertChoice): [optional]  # noqa: E501
+            rgb_range (RgbRange): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

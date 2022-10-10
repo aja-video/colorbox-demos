@@ -5,15 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | Pointer to **bool** | true if overlay is enabled else disabled | [optional] 
-**VpidFormat** | Pointer to **bool** |  | [optional] 
-**VpidRange** | Pointer to **bool** |  | [optional] 
-**VpidHdr** | Pointer to **bool** |  | [optional] 
-**VpidBitDepth** | Pointer to **bool** |  | [optional] 
+**InVpidFormat** | Pointer to **bool** |  | [optional] 
+**InVpidRange** | Pointer to **bool** |  | [optional] 
+**InVpidHdr** | Pointer to **bool** |  | [optional] 
+**InVpidBitDepth** | Pointer to **bool** |  | [optional] 
+**OutVpidFormat** | Pointer to **bool** |  | [optional] 
+**OutVpidRange** | Pointer to **bool** |  | [optional] 
+**OutVpidHdr** | Pointer to **bool** |  | [optional] 
+**OutVpidBitDepth** | Pointer to **bool** |  | [optional] 
 **TimeCode** | Pointer to **bool** |  | [optional] 
 **ClosedCaption** | Pointer to **bool** |  | [optional] 
 **UserTextEnabled** | Pointer to **bool** |  | [optional] 
 **UserTextLine1** | Pointer to **string** |  | [optional] 
 **UserTextLine2** | Pointer to **string** |  | [optional] 
+**PipelineConfig** | Pointer to **bool** |  | [optional] 
 **Location** | Pointer to [**Locations**](Locations.md) |  | [optional] [default to LOCATIONS_BOTTOM_CENTER]
 
 ## Methods
@@ -60,105 +65,205 @@ SetEnabled sets Enabled field to given value.
 
 HasEnabled returns a boolean if a field has been set.
 
-### GetVpidFormat
+### GetInVpidFormat
 
-`func (o *Overlay) GetVpidFormat() bool`
+`func (o *Overlay) GetInVpidFormat() bool`
 
-GetVpidFormat returns the VpidFormat field if non-nil, zero value otherwise.
+GetInVpidFormat returns the InVpidFormat field if non-nil, zero value otherwise.
 
-### GetVpidFormatOk
+### GetInVpidFormatOk
 
-`func (o *Overlay) GetVpidFormatOk() (*bool, bool)`
+`func (o *Overlay) GetInVpidFormatOk() (*bool, bool)`
 
-GetVpidFormatOk returns a tuple with the VpidFormat field if it's non-nil, zero value otherwise
+GetInVpidFormatOk returns a tuple with the InVpidFormat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpidFormat
+### SetInVpidFormat
 
-`func (o *Overlay) SetVpidFormat(v bool)`
+`func (o *Overlay) SetInVpidFormat(v bool)`
 
-SetVpidFormat sets VpidFormat field to given value.
+SetInVpidFormat sets InVpidFormat field to given value.
 
-### HasVpidFormat
+### HasInVpidFormat
 
-`func (o *Overlay) HasVpidFormat() bool`
+`func (o *Overlay) HasInVpidFormat() bool`
 
-HasVpidFormat returns a boolean if a field has been set.
+HasInVpidFormat returns a boolean if a field has been set.
 
-### GetVpidRange
+### GetInVpidRange
 
-`func (o *Overlay) GetVpidRange() bool`
+`func (o *Overlay) GetInVpidRange() bool`
 
-GetVpidRange returns the VpidRange field if non-nil, zero value otherwise.
+GetInVpidRange returns the InVpidRange field if non-nil, zero value otherwise.
 
-### GetVpidRangeOk
+### GetInVpidRangeOk
 
-`func (o *Overlay) GetVpidRangeOk() (*bool, bool)`
+`func (o *Overlay) GetInVpidRangeOk() (*bool, bool)`
 
-GetVpidRangeOk returns a tuple with the VpidRange field if it's non-nil, zero value otherwise
+GetInVpidRangeOk returns a tuple with the InVpidRange field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpidRange
+### SetInVpidRange
 
-`func (o *Overlay) SetVpidRange(v bool)`
+`func (o *Overlay) SetInVpidRange(v bool)`
 
-SetVpidRange sets VpidRange field to given value.
+SetInVpidRange sets InVpidRange field to given value.
 
-### HasVpidRange
+### HasInVpidRange
 
-`func (o *Overlay) HasVpidRange() bool`
+`func (o *Overlay) HasInVpidRange() bool`
 
-HasVpidRange returns a boolean if a field has been set.
+HasInVpidRange returns a boolean if a field has been set.
 
-### GetVpidHdr
+### GetInVpidHdr
 
-`func (o *Overlay) GetVpidHdr() bool`
+`func (o *Overlay) GetInVpidHdr() bool`
 
-GetVpidHdr returns the VpidHdr field if non-nil, zero value otherwise.
+GetInVpidHdr returns the InVpidHdr field if non-nil, zero value otherwise.
 
-### GetVpidHdrOk
+### GetInVpidHdrOk
 
-`func (o *Overlay) GetVpidHdrOk() (*bool, bool)`
+`func (o *Overlay) GetInVpidHdrOk() (*bool, bool)`
 
-GetVpidHdrOk returns a tuple with the VpidHdr field if it's non-nil, zero value otherwise
+GetInVpidHdrOk returns a tuple with the InVpidHdr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpidHdr
+### SetInVpidHdr
 
-`func (o *Overlay) SetVpidHdr(v bool)`
+`func (o *Overlay) SetInVpidHdr(v bool)`
 
-SetVpidHdr sets VpidHdr field to given value.
+SetInVpidHdr sets InVpidHdr field to given value.
 
-### HasVpidHdr
+### HasInVpidHdr
 
-`func (o *Overlay) HasVpidHdr() bool`
+`func (o *Overlay) HasInVpidHdr() bool`
 
-HasVpidHdr returns a boolean if a field has been set.
+HasInVpidHdr returns a boolean if a field has been set.
 
-### GetVpidBitDepth
+### GetInVpidBitDepth
 
-`func (o *Overlay) GetVpidBitDepth() bool`
+`func (o *Overlay) GetInVpidBitDepth() bool`
 
-GetVpidBitDepth returns the VpidBitDepth field if non-nil, zero value otherwise.
+GetInVpidBitDepth returns the InVpidBitDepth field if non-nil, zero value otherwise.
 
-### GetVpidBitDepthOk
+### GetInVpidBitDepthOk
 
-`func (o *Overlay) GetVpidBitDepthOk() (*bool, bool)`
+`func (o *Overlay) GetInVpidBitDepthOk() (*bool, bool)`
 
-GetVpidBitDepthOk returns a tuple with the VpidBitDepth field if it's non-nil, zero value otherwise
+GetInVpidBitDepthOk returns a tuple with the InVpidBitDepth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpidBitDepth
+### SetInVpidBitDepth
 
-`func (o *Overlay) SetVpidBitDepth(v bool)`
+`func (o *Overlay) SetInVpidBitDepth(v bool)`
 
-SetVpidBitDepth sets VpidBitDepth field to given value.
+SetInVpidBitDepth sets InVpidBitDepth field to given value.
 
-### HasVpidBitDepth
+### HasInVpidBitDepth
 
-`func (o *Overlay) HasVpidBitDepth() bool`
+`func (o *Overlay) HasInVpidBitDepth() bool`
 
-HasVpidBitDepth returns a boolean if a field has been set.
+HasInVpidBitDepth returns a boolean if a field has been set.
+
+### GetOutVpidFormat
+
+`func (o *Overlay) GetOutVpidFormat() bool`
+
+GetOutVpidFormat returns the OutVpidFormat field if non-nil, zero value otherwise.
+
+### GetOutVpidFormatOk
+
+`func (o *Overlay) GetOutVpidFormatOk() (*bool, bool)`
+
+GetOutVpidFormatOk returns a tuple with the OutVpidFormat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutVpidFormat
+
+`func (o *Overlay) SetOutVpidFormat(v bool)`
+
+SetOutVpidFormat sets OutVpidFormat field to given value.
+
+### HasOutVpidFormat
+
+`func (o *Overlay) HasOutVpidFormat() bool`
+
+HasOutVpidFormat returns a boolean if a field has been set.
+
+### GetOutVpidRange
+
+`func (o *Overlay) GetOutVpidRange() bool`
+
+GetOutVpidRange returns the OutVpidRange field if non-nil, zero value otherwise.
+
+### GetOutVpidRangeOk
+
+`func (o *Overlay) GetOutVpidRangeOk() (*bool, bool)`
+
+GetOutVpidRangeOk returns a tuple with the OutVpidRange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutVpidRange
+
+`func (o *Overlay) SetOutVpidRange(v bool)`
+
+SetOutVpidRange sets OutVpidRange field to given value.
+
+### HasOutVpidRange
+
+`func (o *Overlay) HasOutVpidRange() bool`
+
+HasOutVpidRange returns a boolean if a field has been set.
+
+### GetOutVpidHdr
+
+`func (o *Overlay) GetOutVpidHdr() bool`
+
+GetOutVpidHdr returns the OutVpidHdr field if non-nil, zero value otherwise.
+
+### GetOutVpidHdrOk
+
+`func (o *Overlay) GetOutVpidHdrOk() (*bool, bool)`
+
+GetOutVpidHdrOk returns a tuple with the OutVpidHdr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutVpidHdr
+
+`func (o *Overlay) SetOutVpidHdr(v bool)`
+
+SetOutVpidHdr sets OutVpidHdr field to given value.
+
+### HasOutVpidHdr
+
+`func (o *Overlay) HasOutVpidHdr() bool`
+
+HasOutVpidHdr returns a boolean if a field has been set.
+
+### GetOutVpidBitDepth
+
+`func (o *Overlay) GetOutVpidBitDepth() bool`
+
+GetOutVpidBitDepth returns the OutVpidBitDepth field if non-nil, zero value otherwise.
+
+### GetOutVpidBitDepthOk
+
+`func (o *Overlay) GetOutVpidBitDepthOk() (*bool, bool)`
+
+GetOutVpidBitDepthOk returns a tuple with the OutVpidBitDepth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutVpidBitDepth
+
+`func (o *Overlay) SetOutVpidBitDepth(v bool)`
+
+SetOutVpidBitDepth sets OutVpidBitDepth field to given value.
+
+### HasOutVpidBitDepth
+
+`func (o *Overlay) HasOutVpidBitDepth() bool`
+
+HasOutVpidBitDepth returns a boolean if a field has been set.
 
 ### GetTimeCode
 
@@ -284,6 +389,31 @@ SetUserTextLine2 sets UserTextLine2 field to given value.
 `func (o *Overlay) HasUserTextLine2() bool`
 
 HasUserTextLine2 returns a boolean if a field has been set.
+
+### GetPipelineConfig
+
+`func (o *Overlay) GetPipelineConfig() bool`
+
+GetPipelineConfig returns the PipelineConfig field if non-nil, zero value otherwise.
+
+### GetPipelineConfigOk
+
+`func (o *Overlay) GetPipelineConfigOk() (*bool, bool)`
+
+GetPipelineConfigOk returns a tuple with the PipelineConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPipelineConfig
+
+`func (o *Overlay) SetPipelineConfig(v bool)`
+
+SetPipelineConfig sets PipelineConfig field to given value.
+
+### HasPipelineConfig
+
+`func (o *Overlay) HasPipelineConfig() bool`
+
+HasPipelineConfig returns a boolean if a field has been set.
 
 ### GetLocation
 

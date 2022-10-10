@@ -4,11 +4,11 @@ info:
     email: support@aja.com
     name: AJA API Support
     url: http://www.aja.com/support
-  description: This is a REST API for the AJA Soji product.
+  description: This is a REST API for the AJA ColorBox product.
   license:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: OpenAPI Soji
+  title: OpenAPI ColorBox
   version: 1.0.0
 servers:
 - url: /v2
@@ -220,6 +220,16 @@ paths:
                 file:
                   format: binary
                   type: string
+                kind:
+                  default: ""
+                  description: 'The kind of file being uploaded valid kinds are: **lut_1d**,
+                    **lut_3d**, **matrix**, **image**, **preset**, **license**, **update**'
+                  type: string
+                entry:
+                  default: -1
+                  description: 'The entry number to upload the file to, **not** used
+                    with kinds: **license** and **update**'
+                  type: integer
               type: object
       responses:
         "200":
@@ -833,13 +843,14 @@ components:
         reboot: true
         hostName: hostName
         updateRequest: true
-        factoryPreset: true
         identify: true
         authenticationEnable: false
         ssdpEnable: true
         factoryReset: true
-        previewAncEnable: false
+        startupPreset: 6
         systemOrganizationName: systemOrganizationName
+        factoryPreset: true
+        previewAncEnable: false
         fanSpeed: 20.421118856755793
       properties:
         hostName:
@@ -867,10 +878,15 @@ components:
           default: false
           type: boolean
         fanSpeed:
-          default: 0
+          default: 170
           maximum: 255
           minimum: 0
           type: number
+        startupPreset:
+          default: 0
+          maximum: 10
+          minimum: 0
+          type: integer
       type: object
     SystemStatus:
       example:
@@ -878,10 +894,12 @@ components:
         safebootVersion: 1.0.0.1d
         mainbootVersion: 1.0.0.2d
         runningVersion: 1.0.0.3d
+        transformModeTimestamp: 2000-01-23T04:56:07.000+00:00
         updateMsg:
         - str1
         - str2
         - str3
+        transformModeChanging: false
       properties:
         safebootVersion:
           example: 1.0.0.1d
@@ -902,6 +920,12 @@ components:
           items:
             type: string
           type: array
+        transformModeChanging:
+          default: false
+          type: boolean
+        transformModeTimestamp:
+          format: date-time
+          type: string
       type: object
     Routing:
       example:
@@ -927,20 +951,39 @@ components:
       - Output
       type: string
     PreviewTap:
-      default: OVERLAY
+      default: OUTPUT
       enum:
-      - CSC1
-      - LUT1
-      - CSC2
-      - LUT2
-      - 3DLUT
-      - LUT3
-      - CSC3
-      - LUT4
-      - OVERLAY
+      - INPUT
+      - OUTPUT
       type: string
     PipelineStages:
       example:
+        lut3d_1:
+          procAmp:
+            unitsGain: unitsGain
+            unitsHue: degrees
+            sat: 0.15369685502162367
+            black: -3.4175678804642544
+            unitsBlack: IRE
+            hue: -134.78866402969652
+            unitsSat: unitsSat
+            gain: 1.1079422922578828
+          colorCorrector:
+            gainRed: 0.8456064984949992
+            unitsGain: unitsGain
+            unitsGamma: unitsGamma
+            blackBlue: 3.8485356667327295
+            unitsBlack: IRE
+            gainBlue: 1.0592101862254664
+            gammaRed: 0.8602888487865152
+            gammaGreen: -0.27678465014961784
+            gammaBlue: -0.5945753953995356
+            blackRed: 4.109824732281613
+            blackGreen: -14.13674807798822
+            gainGreen: 0.3453203830402148
+          dynamic: true
+          enabled: true
+          libraryEntry: 0
         lut1d_3:
           procAmp:
             unitsGain: unitsGain
@@ -1072,32 +1115,6 @@ components:
           enabled: true
           libraryEntry: 0
         m3x3_3:
-          procAmp:
-            unitsGain: unitsGain
-            unitsHue: degrees
-            sat: 0.15369685502162367
-            black: -3.4175678804642544
-            unitsBlack: IRE
-            hue: -134.78866402969652
-            unitsSat: unitsSat
-            gain: 1.1079422922578828
-          colorCorrector:
-            gainRed: 0.8456064984949992
-            unitsGain: unitsGain
-            unitsGamma: unitsGamma
-            blackBlue: 3.8485356667327295
-            unitsBlack: IRE
-            gainBlue: 1.0592101862254664
-            gammaRed: 0.8602888487865152
-            gammaGreen: -0.27678465014961784
-            gammaBlue: -0.5945753953995356
-            blackRed: 4.109824732281613
-            blackGreen: -14.13674807798822
-            gainGreen: 0.3453203830402148
-          dynamic: true
-          enabled: true
-          libraryEntry: 0
-        lut3d_1:
           procAmp:
             unitsGain: unitsGain
             unitsHue: degrees
@@ -1138,8 +1155,18 @@ components:
           $ref: '#/components/schemas/Stage'
         lut1d_4:
           $ref: '#/components/schemas/Stage'
-        pipelineRange:
+        inColorimetry:
+          $ref: '#/components/schemas/Colorimetry'
+        inRange:
           $ref: '#/components/schemas/PipelineRange'
+        outColorimetry:
+          $ref: '#/components/schemas/Colorimetry'
+        outRange:
+          $ref: '#/components/schemas/PipelineRange'
+        transferCharacteristic:
+          $ref: '#/components/schemas/Transfer'
+        cscFilter:
+          $ref: '#/components/schemas/CSCFilter'
       type: object
     Stage:
       example:
@@ -1283,6 +1310,14 @@ components:
       - HLG
       - PQ
       type: string
+    CSCFilter:
+      default: None
+      enum:
+      - None
+      - Auto
+      - Full
+      - Light
+      type: string
     VideoFormat:
       enum:
       - Auto
@@ -1290,14 +1325,14 @@ components:
       - 720p50
       - 720p59.94
       - 720p60
-      - 1080i25
-      - 1080i29.97
-      - 1080i30
-      - 1080sf23.98
-      - 1080sf24
-      - 1080sf25
-      - 1080sf29.97
-      - 1080sf30
+      - 1080i50
+      - 1080i59.94
+      - 1080i60
+      - 1080PsF23.98
+      - 1080PsF24
+      - 1080PsF25
+      - 1080PsF29.97
+      - 1080PsF30
       - 1080p23.98
       - 1080p24
       - 1080p25
@@ -1311,14 +1346,14 @@ components:
       - 2Kp25
       - 2Kp29.97
       - 2Kp30
-      - 2Kp47.98
+      - 2Kp47.95
       - 2Kp48
       - 2Kp50
       - 2Kp59.94
       - 2Kp60
-      - 2Ksf23.98
-      - 2Ksf24
-      - 2Ksf25
+      - 2KPsF23.98
+      - 2KPsF24
+      - 2KPsF25
       - UHDp23.98
       - UHDp24
       - UHDp25
@@ -1332,6 +1367,8 @@ components:
       - 4Kp25
       - 4Kp29.97
       - 4Kp30
+      - 4Kp47.95
+      - 4Kp48
       - 4Kp50
       - 4Kp59.94
       - 4Kp60
@@ -1342,12 +1379,17 @@ components:
       - VideoConvertActual
       - VideoConvertScale
       type: string
+    FileTypeChoice:
+      enum:
+      - TIFF
+      - PNG
+      - JPEG
+      type: string
     FrameStore:
       example:
         imageName: imageName
         timecodeAppended: true
         dynamic: true
-        clipNameAppended: true
         enabled: true
         libraryEntry: 0
       properties:
@@ -1360,14 +1402,12 @@ components:
         imageName:
           description: The custom name for the captured image
           type: string
-        clipNameAppended:
-          description: Flag to append the clip name of the captured image onto the
-            filename
-          type: boolean
         timecodeAppended:
           description: Flag to append the timecode of the captured image onto the
             filename
           type: boolean
+        fileType:
+          $ref: '#/components/schemas/FileTypeChoice'
         libraryEntry:
           description: library entry number, zero is black
           type: integer
@@ -1400,27 +1440,40 @@ components:
       type: object
     Overlay:
       example:
+        outVpidHdr: true
         userTextLine2: userTextLine2
+        inVpidRange: true
+        outVpidRange: true
         userTextLine1: userTextLine1
-        vpidHdr: true
-        vpidFormat: true
-        userTextEnabled: true
-        closedCaption: true
-        vpidRange: true
-        vpidBitDepth: true
-        timeCode: true
+        inVpidHdr: true
+        pipelineConfig: true
+        inVpidBitDepth: true
+        outVpidBitDepth: true
         enabled: true
+        userTextEnabled: true
+        outVpidFormat: true
+        closedCaption: true
+        inVpidFormat: true
+        timeCode: true
       properties:
         enabled:
           description: true if overlay is enabled else disabled
           type: boolean
-        vpidFormat:
+        inVpidFormat:
           type: boolean
-        vpidRange:
+        inVpidRange:
           type: boolean
-        vpidHdr:
+        inVpidHdr:
           type: boolean
-        vpidBitDepth:
+        inVpidBitDepth:
+          type: boolean
+        outVpidFormat:
+          type: boolean
+        outVpidRange:
+          type: boolean
+        outVpidHdr:
+          type: boolean
+        outVpidBitDepth:
           type: boolean
         timeCode:
           type: boolean
@@ -1436,6 +1489,8 @@ components:
           maxLength: 110
           minLength: 0
           type: string
+        pipelineConfig:
+          type: boolean
         location:
           $ref: '#/components/schemas/Locations'
       type: object
@@ -1934,17 +1989,17 @@ components:
         enabled:
           description: true if stage is enabled else disabled (unity passthru)
           type: boolean
-        inColorspace:
-          $ref: '#/components/schemas/ColorfrontColorspace'
-        outColorspace:
-          $ref: '#/components/schemas/ColorfrontColorspace'
+        inDynRangeGamut:
+          $ref: '#/components/schemas/ColorfrontDynRangeGamut'
+        outDynRangeGamut:
+          $ref: '#/components/schemas/ColorfrontDynRangeGamut'
       type: object
-    ColorfrontColorspace:
-      default: BT709
+    ColorfrontDynRangeGamut:
+      default: SDR BT.709
       enum:
-      - BT709
-      - PQ BT2020
-      - HLG BT2020
+      - SDR BT.709
+      - HLG BT.2100
+      - PQ BT.2020
       type: string
     BbcConfig:
       example:
@@ -2136,6 +2191,7 @@ components:
         upperBoundGood: 0.8008281904610115
         label: label
         extraLabel: extraLabel
+        valueInt: 1.4658129805029452
         value: value
         extraValue: extraValue
         upperBoundMaybe: 6.027456183070403
@@ -2149,6 +2205,9 @@ components:
         value:
           description: The instantaneous value for this status object
           type: string
+        valueInt:
+          description: The instantaneous value for this status object
+          type: number
         label:
           description: A descriptive label of what this status object represents
           type: string
@@ -2183,11 +2242,12 @@ components:
           upperBoundGood: 0.8008281904610115
           label: label
           extraLabel: extraLabel
+          valueInt: 1.4658129805029452
           value: value
           extraValue: extraValue
           upperBoundMaybe: 6.027456183070403
         cpuBusy: true
-        shutdownTime: 1
+        shutdownTime: 5
         systemSupportInfo: systemSupportInfo
         bbcLutsLicensed: true
       properties:
@@ -2371,6 +2431,16 @@ components:
         file:
           format: binary
           type: string
+        kind:
+          default: ""
+          description: 'The kind of file being uploaded valid kinds are: **lut_1d**,
+            **lut_3d**, **matrix**, **image**, **preset**, **license**, **update**'
+          type: string
+        entry:
+          default: -1
+          description: 'The entry number to upload the file to, **not** used with
+            kinds: **license** and **update**'
+          type: integer
       type: object
   securitySchemes:
     app_id:

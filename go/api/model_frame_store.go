@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -26,10 +26,9 @@ type FrameStore struct {
 	Dynamic *bool `json:"dynamic,omitempty"`
 	// The custom name for the captured image
 	ImageName *string `json:"imageName,omitempty"`
-	// Flag to append the clip name of the captured image onto the filename
-	ClipNameAppended *bool `json:"clipNameAppended,omitempty"`
 	// Flag to append the timecode of the captured image onto the filename
 	TimecodeAppended *bool `json:"timecodeAppended,omitempty"`
+	FileType *FileTypeChoice `json:"fileType,omitempty"`
 	// library entry number, zero is black
 	LibraryEntry *int32 `json:"libraryEntry,omitempty"`
 	Format *VideoFormat `json:"format,omitempty"`
@@ -163,41 +162,6 @@ func (o *FrameStore) SetImageName(v string) {
 	o.ImageName = &tmp
 }
 
-// GetClipNameAppended returns the ClipNameAppended field value if set, zero value otherwise.
-func (o *FrameStore) GetClipNameAppended() bool {
-	if o == nil || o.ClipNameAppended == nil {
-		var ret bool
-		return ret
-	}
-	return *o.ClipNameAppended
-}
-
-// GetClipNameAppendedOk returns a tuple with the ClipNameAppended field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FrameStore) GetClipNameAppendedOk() (*bool, bool) {
-	if o == nil || o.ClipNameAppended == nil {
-		return nil, false
-	}
-	return o.ClipNameAppended, true
-}
-
-
-
-// HasClipNameAppended returns a boolean if a field has been set.
-func (o *FrameStore) HasClipNameAppended() bool {
-	if o != nil && o.ClipNameAppended != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetClipNameAppended gets a reference to the given bool and assigns it to the ClipNameAppended field.
-func (o *FrameStore) SetClipNameAppended(v bool) {
-	tmp := v
-	o.ClipNameAppended = &tmp
-}
-
 // GetTimecodeAppended returns the TimecodeAppended field value if set, zero value otherwise.
 func (o *FrameStore) GetTimecodeAppended() bool {
 	if o == nil || o.TimecodeAppended == nil {
@@ -231,6 +195,41 @@ func (o *FrameStore) HasTimecodeAppended() bool {
 func (o *FrameStore) SetTimecodeAppended(v bool) {
 	tmp := v
 	o.TimecodeAppended = &tmp
+}
+
+// GetFileType returns the FileType field value if set, zero value otherwise.
+func (o *FrameStore) GetFileType() FileTypeChoice {
+	if o == nil || o.FileType == nil {
+		var ret FileTypeChoice
+		return ret
+	}
+	return *o.FileType
+}
+
+// GetFileTypeOk returns a tuple with the FileType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FrameStore) GetFileTypeOk() (*FileTypeChoice, bool) {
+	if o == nil || o.FileType == nil {
+		return nil, false
+	}
+	return o.FileType, true
+}
+
+
+
+// HasFileType returns a boolean if a field has been set.
+func (o *FrameStore) HasFileType() bool {
+	if o != nil && o.FileType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFileType gets a reference to the given FileTypeChoice and assigns it to the FileType field.
+func (o *FrameStore) SetFileType(v FileTypeChoice) {
+	tmp := v
+	o.FileType = &tmp
 }
 
 // GetLibraryEntry returns the LibraryEntry field value if set, zero value otherwise.
@@ -384,11 +383,11 @@ func (o FrameStore) MarshalJSON() ([]byte, error) {
 	if o.ImageName != nil {
 		toSerialize["imageName"] = o.ImageName
 	}
-	if o.ClipNameAppended != nil {
-		toSerialize["clipNameAppended"] = o.ClipNameAppended
-	}
 	if o.TimecodeAppended != nil {
 		toSerialize["timecodeAppended"] = o.TimecodeAppended
+	}
+	if o.FileType != nil {
+		toSerialize["fileType"] = o.FileType
 	}
 	if o.LibraryEntry != nil {
 		toSerialize["libraryEntry"] = o.LibraryEntry

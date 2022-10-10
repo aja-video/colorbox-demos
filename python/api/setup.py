@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -31,17 +31,17 @@ REQUIRES = [
 setup(
     name=NAME,
     version=VERSION,
-    description="OpenAPI Soji",
+    description="OpenAPI ColorBox",
     author="AJA API Support",
     author_email="support@aja.com",
     url="",
-    keywords=["OpenAPI", "OpenAPI-Generator", "OpenAPI Soji"],
+    keywords=["OpenAPI", "OpenAPI-Generator", "OpenAPI ColorBox"],
     python_requires=">=3.6",
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     license="Apache-2.0",
     long_description="""\
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
     """
 )

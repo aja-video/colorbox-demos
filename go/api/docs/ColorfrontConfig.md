@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | Pointer to **bool** | true if stage is enabled else disabled (unity passthru) | [optional] 
-**InColorspace** | Pointer to [**ColorfrontColorspace**](ColorfrontColorspace.md) |  | [optional] [default to COLORFRONTCOLORSPACE_BT709]
-**OutColorspace** | Pointer to [**ColorfrontColorspace**](ColorfrontColorspace.md) |  | [optional] [default to COLORFRONTCOLORSPACE_BT709]
+**InDynRangeGamut** | Pointer to [**ColorfrontDynRangeGamut**](ColorfrontDynRangeGamut.md) |  | [optional] [default to COLORFRONTDYNRANGEGAMUT_SDR_BT_709]
+**OutDynRangeGamut** | Pointer to [**ColorfrontDynRangeGamut**](ColorfrontDynRangeGamut.md) |  | [optional] [default to COLORFRONTDYNRANGEGAMUT_SDR_BT_709]
 
 ## Methods
 
@@ -52,55 +52,55 @@ SetEnabled sets Enabled field to given value.
 
 HasEnabled returns a boolean if a field has been set.
 
-### GetInColorspace
+### GetInDynRangeGamut
 
-`func (o *ColorfrontConfig) GetInColorspace() ColorfrontColorspace`
+`func (o *ColorfrontConfig) GetInDynRangeGamut() ColorfrontDynRangeGamut`
 
-GetInColorspace returns the InColorspace field if non-nil, zero value otherwise.
+GetInDynRangeGamut returns the InDynRangeGamut field if non-nil, zero value otherwise.
 
-### GetInColorspaceOk
+### GetInDynRangeGamutOk
 
-`func (o *ColorfrontConfig) GetInColorspaceOk() (*ColorfrontColorspace, bool)`
+`func (o *ColorfrontConfig) GetInDynRangeGamutOk() (*ColorfrontDynRangeGamut, bool)`
 
-GetInColorspaceOk returns a tuple with the InColorspace field if it's non-nil, zero value otherwise
+GetInDynRangeGamutOk returns a tuple with the InDynRangeGamut field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInColorspace
+### SetInDynRangeGamut
 
-`func (o *ColorfrontConfig) SetInColorspace(v ColorfrontColorspace)`
+`func (o *ColorfrontConfig) SetInDynRangeGamut(v ColorfrontDynRangeGamut)`
 
-SetInColorspace sets InColorspace field to given value.
+SetInDynRangeGamut sets InDynRangeGamut field to given value.
 
-### HasInColorspace
+### HasInDynRangeGamut
 
-`func (o *ColorfrontConfig) HasInColorspace() bool`
+`func (o *ColorfrontConfig) HasInDynRangeGamut() bool`
 
-HasInColorspace returns a boolean if a field has been set.
+HasInDynRangeGamut returns a boolean if a field has been set.
 
-### GetOutColorspace
+### GetOutDynRangeGamut
 
-`func (o *ColorfrontConfig) GetOutColorspace() ColorfrontColorspace`
+`func (o *ColorfrontConfig) GetOutDynRangeGamut() ColorfrontDynRangeGamut`
 
-GetOutColorspace returns the OutColorspace field if non-nil, zero value otherwise.
+GetOutDynRangeGamut returns the OutDynRangeGamut field if non-nil, zero value otherwise.
 
-### GetOutColorspaceOk
+### GetOutDynRangeGamutOk
 
-`func (o *ColorfrontConfig) GetOutColorspaceOk() (*ColorfrontColorspace, bool)`
+`func (o *ColorfrontConfig) GetOutDynRangeGamutOk() (*ColorfrontDynRangeGamut, bool)`
 
-GetOutColorspaceOk returns a tuple with the OutColorspace field if it's non-nil, zero value otherwise
+GetOutDynRangeGamutOk returns a tuple with the OutDynRangeGamut field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOutColorspace
+### SetOutDynRangeGamut
 
-`func (o *ColorfrontConfig) SetOutColorspace(v ColorfrontColorspace)`
+`func (o *ColorfrontConfig) SetOutDynRangeGamut(v ColorfrontDynRangeGamut)`
 
-SetOutColorspace sets OutColorspace field to given value.
+SetOutDynRangeGamut sets OutDynRangeGamut field to given value.
 
-### HasOutColorspace
+### HasOutDynRangeGamut
 
-`func (o *ColorfrontConfig) HasOutColorspace() bool`
+`func (o *ColorfrontConfig) HasOutDynRangeGamut() bool`
 
-HasOutColorspace returns a boolean if a field has been set.
+HasOutDynRangeGamut returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

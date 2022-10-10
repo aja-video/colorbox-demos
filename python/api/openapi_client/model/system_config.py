@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -66,6 +66,14 @@ class SystemConfig(ModelNormal):
     }
 
     validations = {
+        ('fan_speed',): {
+            'inclusive_maximum': 255,
+            'inclusive_minimum': 0,
+        },
+        ('startup_preset',): {
+            'inclusive_maximum': 10,
+            'inclusive_minimum': 0,
+        },
     }
 
     @cached_property
@@ -92,6 +100,7 @@ class SystemConfig(ModelNormal):
         lazy_import()
         return {
             'host_name': (str,),  # noqa: E501
+            'system_organization_name': (str,),  # noqa: E501
             'ssdp_enable': (bool,),  # noqa: E501
             'identify': (bool,),  # noqa: E501
             'update_request': (bool,),  # noqa: E501
@@ -100,6 +109,9 @@ class SystemConfig(ModelNormal):
             'factory_reset': (bool,),  # noqa: E501
             'transform_mode': (TransformMode,),  # noqa: E501
             'preview_anc_enable': (bool,),  # noqa: E501
+            'authentication_enable': (bool,),  # noqa: E501
+            'fan_speed': (float,),  # noqa: E501
+            'startup_preset': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -109,6 +121,7 @@ class SystemConfig(ModelNormal):
 
     attribute_map = {
         'host_name': 'hostName',  # noqa: E501
+        'system_organization_name': 'systemOrganizationName',  # noqa: E501
         'ssdp_enable': 'ssdpEnable',  # noqa: E501
         'identify': 'identify',  # noqa: E501
         'update_request': 'updateRequest',  # noqa: E501
@@ -117,6 +130,9 @@ class SystemConfig(ModelNormal):
         'factory_reset': 'factoryReset',  # noqa: E501
         'transform_mode': 'transformMode',  # noqa: E501
         'preview_anc_enable': 'previewAncEnable',  # noqa: E501
+        'authentication_enable': 'authenticationEnable',  # noqa: E501
+        'fan_speed': 'fanSpeed',  # noqa: E501
+        'startup_preset': 'startupPreset',  # noqa: E501
     }
 
     read_only_vars = {
@@ -161,6 +177,7 @@ class SystemConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             host_name (str): [optional]  # noqa: E501
+            system_organization_name (str): [optional]  # noqa: E501
             ssdp_enable (bool): [optional]  # noqa: E501
             identify (bool): [optional]  # noqa: E501
             update_request (bool): [optional]  # noqa: E501
@@ -169,6 +186,9 @@ class SystemConfig(ModelNormal):
             factory_reset (bool): [optional]  # noqa: E501
             transform_mode (TransformMode): [optional]  # noqa: E501
             preview_anc_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            authentication_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            fan_speed (float): [optional] if omitted the server will use the default value of 170  # noqa: E501
+            startup_preset (int): [optional] if omitted the server will use the default value of 0  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -251,6 +271,7 @@ class SystemConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             host_name (str): [optional]  # noqa: E501
+            system_organization_name (str): [optional]  # noqa: E501
             ssdp_enable (bool): [optional]  # noqa: E501
             identify (bool): [optional]  # noqa: E501
             update_request (bool): [optional]  # noqa: E501
@@ -259,6 +280,9 @@ class SystemConfig(ModelNormal):
             factory_reset (bool): [optional]  # noqa: E501
             transform_mode (TransformMode): [optional]  # noqa: E501
             preview_anc_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            authentication_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            fan_speed (float): [optional] if omitted the server will use the default value of 170  # noqa: E501
+            startup_preset (int): [optional] if omitted the server will use the default value of 0  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

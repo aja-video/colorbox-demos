@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -22,8 +22,8 @@ import (
 type ColorfrontConfig struct {
 	// true if stage is enabled else disabled (unity passthru)
 	Enabled *bool `json:"enabled,omitempty"`
-	InColorspace *ColorfrontColorspace `json:"inColorspace,omitempty"`
-	OutColorspace *ColorfrontColorspace `json:"outColorspace,omitempty"`
+	InDynRangeGamut *ColorfrontDynRangeGamut `json:"inDynRangeGamut,omitempty"`
+	OutDynRangeGamut *ColorfrontDynRangeGamut `json:"outDynRangeGamut,omitempty"`
 }
 
 // NewColorfrontConfig instantiates a new ColorfrontConfig object
@@ -32,10 +32,10 @@ type ColorfrontConfig struct {
 // will change when the set of required properties is changed
 func NewColorfrontConfig() *ColorfrontConfig {
 	this := ColorfrontConfig{}
-	var inColorspace ColorfrontColorspace = COLORFRONTCOLORSPACE_BT709
-	this.InColorspace = &inColorspace
-	var outColorspace ColorfrontColorspace = COLORFRONTCOLORSPACE_BT709
-	this.OutColorspace = &outColorspace
+	var inDynRangeGamut ColorfrontDynRangeGamut = COLORFRONTDYNRANGEGAMUT_SDR_BT_709
+	this.InDynRangeGamut = &inDynRangeGamut
+	var outDynRangeGamut ColorfrontDynRangeGamut = COLORFRONTDYNRANGEGAMUT_SDR_BT_709
+	this.OutDynRangeGamut = &outDynRangeGamut
 	return &this
 }
 
@@ -44,10 +44,10 @@ func NewColorfrontConfig() *ColorfrontConfig {
 // but it doesn't guarantee that properties required by API are set
 func NewColorfrontConfigWithDefaults() *ColorfrontConfig {
 	this := ColorfrontConfig{}
-	var inColorspace ColorfrontColorspace = COLORFRONTCOLORSPACE_BT709
-	this.InColorspace = &inColorspace
-	var outColorspace ColorfrontColorspace = COLORFRONTCOLORSPACE_BT709
-	this.OutColorspace = &outColorspace
+	var inDynRangeGamut ColorfrontDynRangeGamut = COLORFRONTDYNRANGEGAMUT_SDR_BT_709
+	this.InDynRangeGamut = &inDynRangeGamut
+	var outDynRangeGamut ColorfrontDynRangeGamut = COLORFRONTDYNRANGEGAMUT_SDR_BT_709
+	this.OutDynRangeGamut = &outDynRangeGamut
 	return &this
 }
 
@@ -86,74 +86,74 @@ func (o *ColorfrontConfig) SetEnabled(v bool) {
 	o.Enabled = &tmp
 }
 
-// GetInColorspace returns the InColorspace field value if set, zero value otherwise.
-func (o *ColorfrontConfig) GetInColorspace() ColorfrontColorspace {
-	if o == nil || o.InColorspace == nil {
-		var ret ColorfrontColorspace
+// GetInDynRangeGamut returns the InDynRangeGamut field value if set, zero value otherwise.
+func (o *ColorfrontConfig) GetInDynRangeGamut() ColorfrontDynRangeGamut {
+	if o == nil || o.InDynRangeGamut == nil {
+		var ret ColorfrontDynRangeGamut
 		return ret
 	}
-	return *o.InColorspace
+	return *o.InDynRangeGamut
 }
 
-// GetInColorspaceOk returns a tuple with the InColorspace field value if set, nil otherwise
+// GetInDynRangeGamutOk returns a tuple with the InDynRangeGamut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ColorfrontConfig) GetInColorspaceOk() (*ColorfrontColorspace, bool) {
-	if o == nil || o.InColorspace == nil {
+func (o *ColorfrontConfig) GetInDynRangeGamutOk() (*ColorfrontDynRangeGamut, bool) {
+	if o == nil || o.InDynRangeGamut == nil {
 		return nil, false
 	}
-	return o.InColorspace, true
+	return o.InDynRangeGamut, true
 }
 
 
 
-// HasInColorspace returns a boolean if a field has been set.
-func (o *ColorfrontConfig) HasInColorspace() bool {
-	if o != nil && o.InColorspace != nil {
+// HasInDynRangeGamut returns a boolean if a field has been set.
+func (o *ColorfrontConfig) HasInDynRangeGamut() bool {
+	if o != nil && o.InDynRangeGamut != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetInColorspace gets a reference to the given ColorfrontColorspace and assigns it to the InColorspace field.
-func (o *ColorfrontConfig) SetInColorspace(v ColorfrontColorspace) {
+// SetInDynRangeGamut gets a reference to the given ColorfrontDynRangeGamut and assigns it to the InDynRangeGamut field.
+func (o *ColorfrontConfig) SetInDynRangeGamut(v ColorfrontDynRangeGamut) {
 	tmp := v
-	o.InColorspace = &tmp
+	o.InDynRangeGamut = &tmp
 }
 
-// GetOutColorspace returns the OutColorspace field value if set, zero value otherwise.
-func (o *ColorfrontConfig) GetOutColorspace() ColorfrontColorspace {
-	if o == nil || o.OutColorspace == nil {
-		var ret ColorfrontColorspace
+// GetOutDynRangeGamut returns the OutDynRangeGamut field value if set, zero value otherwise.
+func (o *ColorfrontConfig) GetOutDynRangeGamut() ColorfrontDynRangeGamut {
+	if o == nil || o.OutDynRangeGamut == nil {
+		var ret ColorfrontDynRangeGamut
 		return ret
 	}
-	return *o.OutColorspace
+	return *o.OutDynRangeGamut
 }
 
-// GetOutColorspaceOk returns a tuple with the OutColorspace field value if set, nil otherwise
+// GetOutDynRangeGamutOk returns a tuple with the OutDynRangeGamut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ColorfrontConfig) GetOutColorspaceOk() (*ColorfrontColorspace, bool) {
-	if o == nil || o.OutColorspace == nil {
+func (o *ColorfrontConfig) GetOutDynRangeGamutOk() (*ColorfrontDynRangeGamut, bool) {
+	if o == nil || o.OutDynRangeGamut == nil {
 		return nil, false
 	}
-	return o.OutColorspace, true
+	return o.OutDynRangeGamut, true
 }
 
 
 
-// HasOutColorspace returns a boolean if a field has been set.
-func (o *ColorfrontConfig) HasOutColorspace() bool {
-	if o != nil && o.OutColorspace != nil {
+// HasOutDynRangeGamut returns a boolean if a field has been set.
+func (o *ColorfrontConfig) HasOutDynRangeGamut() bool {
+	if o != nil && o.OutDynRangeGamut != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetOutColorspace gets a reference to the given ColorfrontColorspace and assigns it to the OutColorspace field.
-func (o *ColorfrontConfig) SetOutColorspace(v ColorfrontColorspace) {
+// SetOutDynRangeGamut gets a reference to the given ColorfrontDynRangeGamut and assigns it to the OutDynRangeGamut field.
+func (o *ColorfrontConfig) SetOutDynRangeGamut(v ColorfrontDynRangeGamut) {
 	tmp := v
-	o.OutColorspace = &tmp
+	o.OutDynRangeGamut = &tmp
 }
 
 func (o ColorfrontConfig) MarshalJSON() ([]byte, error) {
@@ -161,11 +161,11 @@ func (o ColorfrontConfig) MarshalJSON() ([]byte, error) {
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if o.InColorspace != nil {
-		toSerialize["inColorspace"] = o.InColorspace
+	if o.InDynRangeGamut != nil {
+		toSerialize["inDynRangeGamut"] = o.InDynRangeGamut
 	}
-	if o.OutColorspace != nil {
-		toSerialize["outColorspace"] = o.OutColorspace
+	if o.OutDynRangeGamut != nil {
+		toSerialize["outDynRangeGamut"] = o.OutDynRangeGamut
 	}
 	return json.Marshal(toSerialize)
 }

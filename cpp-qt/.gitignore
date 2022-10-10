@@ -1,0 +1,10 @@
+bin/*.exe
+bin/DynamicFrameLoad
+bin/DynamicLutLoad
+bin/DynamicMatrixLoad
+bin/FrameGrab
+bin/Librarian
+bin/PreviewDemo
+bin/RGBTriplet
+build*
+*.pro.user

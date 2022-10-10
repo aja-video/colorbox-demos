@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -94,6 +94,7 @@ class StatusInfo(ModelNormal):
             'upper_bound_good': (float,),  # noqa: E501
             'upper_bound_maybe': (float,),  # noqa: E501
             'value': (str,),  # noqa: E501
+            'value_int': (float,),  # noqa: E501
             'label': (str,),  # noqa: E501
             'extra_value': (str,),  # noqa: E501
             'extra_label': (str,),  # noqa: E501
@@ -109,6 +110,7 @@ class StatusInfo(ModelNormal):
         'upper_bound_good': 'upperBoundGood',  # noqa: E501
         'upper_bound_maybe': 'upperBoundMaybe',  # noqa: E501
         'value': 'value',  # noqa: E501
+        'value_int': 'valueInt',  # noqa: E501
         'label': 'label',  # noqa: E501
         'extra_value': 'extraValue',  # noqa: E501
         'extra_label': 'extraLabel',  # noqa: E501
@@ -159,6 +161,7 @@ class StatusInfo(ModelNormal):
             upper_bound_good (float): The upper bound for the state to be considered StatusStateGood. [optional]  # noqa: E501
             upper_bound_maybe (float): The upper bound for the state to be considered StatusStateMaybe. [optional]  # noqa: E501
             value (str): The instantaneous value for this status object. [optional]  # noqa: E501
+            value_int (float): The instantaneous value for this status object. [optional]  # noqa: E501
             label (str): A descriptive label of what this status object represents. [optional]  # noqa: E501
             extra_value (str): A second value that is optional. [optional]  # noqa: E501
             extra_label (str): A second descriptive label for the extraValue. [optional]  # noqa: E501
@@ -247,6 +250,7 @@ class StatusInfo(ModelNormal):
             upper_bound_good (float): The upper bound for the state to be considered StatusStateGood. [optional]  # noqa: E501
             upper_bound_maybe (float): The upper bound for the state to be considered StatusStateMaybe. [optional]  # noqa: E501
             value (str): The instantaneous value for this status object. [optional]  # noqa: E501
+            value_int (float): The instantaneous value for this status object. [optional]  # noqa: E501
             label (str): A descriptive label of what this status object represents. [optional]  # noqa: E501
             extra_value (str): A second value that is optional. [optional]  # noqa: E501
             extra_label (str): A second descriptive label for the extraValue. [optional]  # noqa: E501

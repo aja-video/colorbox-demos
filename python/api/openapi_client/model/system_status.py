@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -90,6 +90,8 @@ class SystemStatus(ModelNormal):
             'running_version': (str,),  # noqa: E501
             'safeboot': (bool,),  # noqa: E501
             'update_msg': ([str],),  # noqa: E501
+            'transform_mode_changing': (bool,),  # noqa: E501
+            'transform_mode_timestamp': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -103,6 +105,8 @@ class SystemStatus(ModelNormal):
         'running_version': 'runningVersion',  # noqa: E501
         'safeboot': 'safeboot',  # noqa: E501
         'update_msg': 'updateMsg',  # noqa: E501
+        'transform_mode_changing': 'transformModeChanging',  # noqa: E501
+        'transform_mode_timestamp': 'transformModeTimestamp',  # noqa: E501
     }
 
     read_only_vars = {
@@ -151,6 +155,8 @@ class SystemStatus(ModelNormal):
             running_version (str): [optional]  # noqa: E501
             safeboot (bool): [optional]  # noqa: E501
             update_msg ([str]): [optional]  # noqa: E501
+            transform_mode_changing (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            transform_mode_timestamp (datetime): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -237,6 +243,8 @@ class SystemStatus(ModelNormal):
             running_version (str): [optional]  # noqa: E501
             safeboot (bool): [optional]  # noqa: E501
             update_msg ([str]): [optional]  # noqa: E501
+            transform_mode_changing (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            transform_mode_timestamp (datetime): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

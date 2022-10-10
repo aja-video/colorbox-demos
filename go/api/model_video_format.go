@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -29,14 +29,14 @@ const (
 	VIDEOFORMAT__720P50 VideoFormat = "720p50"
 	VIDEOFORMAT__720P59_94 VideoFormat = "720p59.94"
 	VIDEOFORMAT__720P60 VideoFormat = "720p60"
-	VIDEOFORMAT__1080I25 VideoFormat = "1080i25"
-	VIDEOFORMAT__1080I29_97 VideoFormat = "1080i29.97"
-	VIDEOFORMAT__1080I30 VideoFormat = "1080i30"
-	VIDEOFORMAT__1080SF23_98 VideoFormat = "1080sf23.98"
-	VIDEOFORMAT__1080SF24 VideoFormat = "1080sf24"
-	VIDEOFORMAT__1080SF25 VideoFormat = "1080sf25"
-	VIDEOFORMAT__1080SF29_97 VideoFormat = "1080sf29.97"
-	VIDEOFORMAT__1080SF30 VideoFormat = "1080sf30"
+	VIDEOFORMAT__1080I50 VideoFormat = "1080i50"
+	VIDEOFORMAT__1080I59_94 VideoFormat = "1080i59.94"
+	VIDEOFORMAT__1080I60 VideoFormat = "1080i60"
+	VIDEOFORMAT__1080_PS_F23_98 VideoFormat = "1080PsF23.98"
+	VIDEOFORMAT__1080_PS_F24 VideoFormat = "1080PsF24"
+	VIDEOFORMAT__1080_PS_F25 VideoFormat = "1080PsF25"
+	VIDEOFORMAT__1080_PS_F29_97 VideoFormat = "1080PsF29.97"
+	VIDEOFORMAT__1080_PS_F30 VideoFormat = "1080PsF30"
 	VIDEOFORMAT__1080P23_98 VideoFormat = "1080p23.98"
 	VIDEOFORMAT__1080P24 VideoFormat = "1080p24"
 	VIDEOFORMAT__1080P25 VideoFormat = "1080p25"
@@ -50,14 +50,14 @@ const (
 	VIDEOFORMAT__2_KP25 VideoFormat = "2Kp25"
 	VIDEOFORMAT__2_KP29_97 VideoFormat = "2Kp29.97"
 	VIDEOFORMAT__2_KP30 VideoFormat = "2Kp30"
-	VIDEOFORMAT__2_KP47_98 VideoFormat = "2Kp47.98"
+	VIDEOFORMAT__2_KP47_95 VideoFormat = "2Kp47.95"
 	VIDEOFORMAT__2_KP48 VideoFormat = "2Kp48"
 	VIDEOFORMAT__2_KP50 VideoFormat = "2Kp50"
 	VIDEOFORMAT__2_KP59_94 VideoFormat = "2Kp59.94"
 	VIDEOFORMAT__2_KP60 VideoFormat = "2Kp60"
-	VIDEOFORMAT__2_KSF23_98 VideoFormat = "2Ksf23.98"
-	VIDEOFORMAT__2_KSF24 VideoFormat = "2Ksf24"
-	VIDEOFORMAT__2_KSF25 VideoFormat = "2Ksf25"
+	VIDEOFORMAT__2_KPS_F23_98 VideoFormat = "2KPsF23.98"
+	VIDEOFORMAT__2_KPS_F24 VideoFormat = "2KPsF24"
+	VIDEOFORMAT__2_KPS_F25 VideoFormat = "2KPsF25"
 	VIDEOFORMAT_UHDP23_98 VideoFormat = "UHDp23.98"
 	VIDEOFORMAT_UHDP24 VideoFormat = "UHDp24"
 	VIDEOFORMAT_UHDP25 VideoFormat = "UHDp25"
@@ -71,6 +71,8 @@ const (
 	VIDEOFORMAT__4_KP25 VideoFormat = "4Kp25"
 	VIDEOFORMAT__4_KP29_97 VideoFormat = "4Kp29.97"
 	VIDEOFORMAT__4_KP30 VideoFormat = "4Kp30"
+	VIDEOFORMAT__4_KP47_95 VideoFormat = "4Kp47.95"
+	VIDEOFORMAT__4_KP48 VideoFormat = "4Kp48"
 	VIDEOFORMAT__4_KP50 VideoFormat = "4Kp50"
 	VIDEOFORMAT__4_KP59_94 VideoFormat = "4Kp59.94"
 	VIDEOFORMAT__4_KP60 VideoFormat = "4Kp60"
@@ -83,14 +85,14 @@ var AllowedVideoFormatEnumValues = []VideoFormat{
 	"720p50",
 	"720p59.94",
 	"720p60",
-	"1080i25",
-	"1080i29.97",
-	"1080i30",
-	"1080sf23.98",
-	"1080sf24",
-	"1080sf25",
-	"1080sf29.97",
-	"1080sf30",
+	"1080i50",
+	"1080i59.94",
+	"1080i60",
+	"1080PsF23.98",
+	"1080PsF24",
+	"1080PsF25",
+	"1080PsF29.97",
+	"1080PsF30",
 	"1080p23.98",
 	"1080p24",
 	"1080p25",
@@ -104,14 +106,14 @@ var AllowedVideoFormatEnumValues = []VideoFormat{
 	"2Kp25",
 	"2Kp29.97",
 	"2Kp30",
-	"2Kp47.98",
+	"2Kp47.95",
 	"2Kp48",
 	"2Kp50",
 	"2Kp59.94",
 	"2Kp60",
-	"2Ksf23.98",
-	"2Ksf24",
-	"2Ksf25",
+	"2KPsF23.98",
+	"2KPsF24",
+	"2KPsF25",
 	"UHDp23.98",
 	"UHDp24",
 	"UHDp25",
@@ -125,6 +127,8 @@ var AllowedVideoFormatEnumValues = []VideoFormat{
 	"4Kp25",
 	"4Kp29.97",
 	"4Kp30",
+	"4Kp47.95",
+	"4Kp48",
 	"4Kp50",
 	"4Kp59.94",
 	"4Kp60",

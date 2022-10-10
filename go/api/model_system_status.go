@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -16,6 +16,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // SystemStatus struct for SystemStatus
@@ -25,6 +26,8 @@ type SystemStatus struct {
 	RunningVersion *string `json:"runningVersion,omitempty"`
 	Safeboot *bool `json:"safeboot,omitempty"`
 	UpdateMsg []string `json:"updateMsg,omitempty"`
+	TransformModeChanging *bool `json:"transformModeChanging,omitempty"`
+	TransformModeTimestamp *time.Time `json:"transformModeTimestamp,omitempty"`
 }
 
 // NewSystemStatus instantiates a new SystemStatus object
@@ -33,6 +36,8 @@ type SystemStatus struct {
 // will change when the set of required properties is changed
 func NewSystemStatus() *SystemStatus {
 	this := SystemStatus{}
+	var transformModeChanging bool = false
+	this.TransformModeChanging = &transformModeChanging
 	return &this
 }
 
@@ -41,6 +46,8 @@ func NewSystemStatus() *SystemStatus {
 // but it doesn't guarantee that properties required by API are set
 func NewSystemStatusWithDefaults() *SystemStatus {
 	this := SystemStatus{}
+	var transformModeChanging bool = false
+	this.TransformModeChanging = &transformModeChanging
 	return &this
 }
 
@@ -219,6 +226,76 @@ func (o *SystemStatus) SetUpdateMsg(v []string) {
 	o.UpdateMsg = tmp
 }
 
+// GetTransformModeChanging returns the TransformModeChanging field value if set, zero value otherwise.
+func (o *SystemStatus) GetTransformModeChanging() bool {
+	if o == nil || o.TransformModeChanging == nil {
+		var ret bool
+		return ret
+	}
+	return *o.TransformModeChanging
+}
+
+// GetTransformModeChangingOk returns a tuple with the TransformModeChanging field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SystemStatus) GetTransformModeChangingOk() (*bool, bool) {
+	if o == nil || o.TransformModeChanging == nil {
+		return nil, false
+	}
+	return o.TransformModeChanging, true
+}
+
+
+
+// HasTransformModeChanging returns a boolean if a field has been set.
+func (o *SystemStatus) HasTransformModeChanging() bool {
+	if o != nil && o.TransformModeChanging != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTransformModeChanging gets a reference to the given bool and assigns it to the TransformModeChanging field.
+func (o *SystemStatus) SetTransformModeChanging(v bool) {
+	tmp := v
+	o.TransformModeChanging = &tmp
+}
+
+// GetTransformModeTimestamp returns the TransformModeTimestamp field value if set, zero value otherwise.
+func (o *SystemStatus) GetTransformModeTimestamp() time.Time {
+	if o == nil || o.TransformModeTimestamp == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.TransformModeTimestamp
+}
+
+// GetTransformModeTimestampOk returns a tuple with the TransformModeTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SystemStatus) GetTransformModeTimestampOk() (*time.Time, bool) {
+	if o == nil || o.TransformModeTimestamp == nil {
+		return nil, false
+	}
+	return o.TransformModeTimestamp, true
+}
+
+
+
+// HasTransformModeTimestamp returns a boolean if a field has been set.
+func (o *SystemStatus) HasTransformModeTimestamp() bool {
+	if o != nil && o.TransformModeTimestamp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTransformModeTimestamp gets a reference to the given time.Time and assigns it to the TransformModeTimestamp field.
+func (o *SystemStatus) SetTransformModeTimestamp(v time.Time) {
+	tmp := v
+	o.TransformModeTimestamp = &tmp
+}
+
 func (o SystemStatus) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.SafebootVersion != nil {
@@ -235,6 +312,12 @@ func (o SystemStatus) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdateMsg != nil {
 		toSerialize["updateMsg"] = o.UpdateMsg
+	}
+	if o.TransformModeChanging != nil {
+		toSerialize["transformModeChanging"] = o.TransformModeChanging
+	}
+	if o.TransformModeTimestamp != nil {
+		toSerialize["transformModeTimestamp"] = o.TransformModeTimestamp
 	}
 	return json.Marshal(toSerialize)
 }

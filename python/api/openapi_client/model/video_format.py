@@ -1,7 +1,7 @@
 """
-    OpenAPI Soji
+    OpenAPI ColorBox
 
-    This is a REST API for the AJA Soji product.  # noqa: E501
+    This is a REST API for the AJA ColorBox product.  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@aja.com
@@ -61,14 +61,14 @@ class VideoFormat(ModelSimple):
             '720P50': "720p50",
             '720P59.94': "720p59.94",
             '720P60': "720p60",
-            '1080I25': "1080i25",
-            '1080I29.97': "1080i29.97",
-            '1080I30': "1080i30",
-            '1080SF23.98': "1080sf23.98",
-            '1080SF24': "1080sf24",
-            '1080SF25': "1080sf25",
-            '1080SF29.97': "1080sf29.97",
-            '1080SF30': "1080sf30",
+            '1080I50': "1080i50",
+            '1080I59.94': "1080i59.94",
+            '1080I60': "1080i60",
+            '1080PSF23.98': "1080PsF23.98",
+            '1080PSF24': "1080PsF24",
+            '1080PSF25': "1080PsF25",
+            '1080PSF29.97': "1080PsF29.97",
+            '1080PSF30': "1080PsF30",
             '1080P23.98': "1080p23.98",
             '1080P24': "1080p24",
             '1080P25': "1080p25",
@@ -82,14 +82,14 @@ class VideoFormat(ModelSimple):
             '2KP25': "2Kp25",
             '2KP29.97': "2Kp29.97",
             '2KP30': "2Kp30",
-            '2KP47.98': "2Kp47.98",
+            '2KP47.95': "2Kp47.95",
             '2KP48': "2Kp48",
             '2KP50': "2Kp50",
             '2KP59.94': "2Kp59.94",
             '2KP60': "2Kp60",
-            '2KSF23.98': "2Ksf23.98",
-            '2KSF24': "2Ksf24",
-            '2KSF25': "2Ksf25",
+            '2KPSF23.98': "2KPsF23.98",
+            '2KPSF24': "2KPsF24",
+            '2KPSF25': "2KPsF25",
             'UHDP23.98': "UHDp23.98",
             'UHDP24': "UHDp24",
             'UHDP25': "UHDp25",
@@ -103,6 +103,8 @@ class VideoFormat(ModelSimple):
             '4KP25': "4Kp25",
             '4KP29.97': "4Kp29.97",
             '4KP30': "4Kp30",
+            '4KP47.95': "4Kp47.95",
+            '4KP48': "4Kp48",
             '4KP50': "4Kp50",
             '4KP59.94': "4Kp59.94",
             '4KP60': "4Kp60",
@@ -157,10 +159,10 @@ class VideoFormat(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i25", "1080i29.97", "1080i30", "1080sf23.98", "1080sf24", "1080sf25", "1080sf29.97", "1080sf30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.98", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2Ksf23.98", "2Ksf24", "2Ksf25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
+            args[0] (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.95", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
 
         Keyword Args:
-            value (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i25", "1080i29.97", "1080i30", "1080sf23.98", "1080sf24", "1080sf25", "1080sf29.97", "1080sf30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.98", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2Ksf23.98", "2Ksf24", "2Ksf25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
+            value (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.95", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -247,10 +249,10 @@ class VideoFormat(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i25", "1080i29.97", "1080i30", "1080sf23.98", "1080sf24", "1080sf25", "1080sf29.97", "1080sf30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.98", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2Ksf23.98", "2Ksf24", "2Ksf25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
+            args[0] (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.95", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
 
         Keyword Args:
-            value (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i25", "1080i29.97", "1080i30", "1080sf23.98", "1080sf24", "1080sf25", "1080sf29.97", "1080sf30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.98", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2Ksf23.98", "2Ksf24", "2Ksf25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
+            value (str):, must be one of ["Auto", "Unknown", "720p50", "720p59.94", "720p60", "1080i50", "1080i59.94", "1080i60", "1080PsF23.98", "1080PsF24", "1080PsF25", "1080PsF29.97", "1080PsF30", "1080p23.98", "1080p24", "1080p25", "1080p29.97", "1080p30", "1080p50", "1080p59.94", "1080p60", "2Kp23.98", "2Kp24", "2Kp25", "2Kp29.97", "2Kp30", "2Kp47.95", "2Kp48", "2Kp50", "2Kp59.94", "2Kp60", "2KPsF23.98", "2KPsF24", "2KPsF25", "UHDp23.98", "UHDp24", "UHDp25", "UHDp29.97", "UHDp30", "UHDp50", "UHDp59.94", "UHDp60", "4Kp23.98", "4Kp24", "4Kp25", "4Kp29.97", "4Kp30", "4Kp47.95", "4Kp48", "4Kp50", "4Kp59.94", "4Kp60", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

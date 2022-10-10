@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -26,6 +26,8 @@ type StatusInfo struct {
 	UpperBoundMaybe *float32 `json:"upperBoundMaybe,omitempty"`
 	// The instantaneous value for this status object
 	Value *string `json:"value,omitempty"`
+	// The instantaneous value for this status object
+	ValueInt *float32 `json:"valueInt,omitempty"`
 	// A descriptive label of what this status object represents
 	Label *string `json:"label,omitempty"`
 	// A second value that is optional
@@ -159,6 +161,41 @@ func (o *StatusInfo) HasValue() bool {
 func (o *StatusInfo) SetValue(v string) {
 	tmp := v
 	o.Value = &tmp
+}
+
+// GetValueInt returns the ValueInt field value if set, zero value otherwise.
+func (o *StatusInfo) GetValueInt() float32 {
+	if o == nil || o.ValueInt == nil {
+		var ret float32
+		return ret
+	}
+	return *o.ValueInt
+}
+
+// GetValueIntOk returns a tuple with the ValueInt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StatusInfo) GetValueIntOk() (*float32, bool) {
+	if o == nil || o.ValueInt == nil {
+		return nil, false
+	}
+	return o.ValueInt, true
+}
+
+
+
+// HasValueInt returns a boolean if a field has been set.
+func (o *StatusInfo) HasValueInt() bool {
+	if o != nil && o.ValueInt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValueInt gets a reference to the given float32 and assigns it to the ValueInt field.
+func (o *StatusInfo) SetValueInt(v float32) {
+	tmp := v
+	o.ValueInt = &tmp
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
@@ -312,6 +349,9 @@ func (o StatusInfo) MarshalJSON() ([]byte, error) {
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
+	if o.ValueInt != nil {
+		toSerialize["valueInt"] = o.ValueInt
+	}
 	if o.Label != nil {
 		toSerialize["label"] = o.Label
 	}
@@ -351,6 +391,14 @@ func (o *StatusInfo) ApplyMinMaxConstraints() bool {
 		var v string = o.GetValue()
 		if fieldChanged {
 			o.SetValue(v)
+			valueChanged = true
+		}
+	}
+	if o.HasValueInt() {
+		var fieldChanged = false
+		var v float32 = o.GetValueInt()
+		if fieldChanged {
+			o.SetValueInt(v)
 			valueChanged = true
 		}
 	}

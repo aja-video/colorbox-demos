@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **UpperBoundGood** | Pointer to **float32** | The upper bound for the state to be considered StatusStateGood | [optional] 
 **UpperBoundMaybe** | Pointer to **float32** | The upper bound for the state to be considered StatusStateMaybe | [optional] 
 **Value** | Pointer to **string** | The instantaneous value for this status object | [optional] 
+**ValueInt** | Pointer to **float32** | The instantaneous value for this status object | [optional] 
 **Label** | Pointer to **string** | A descriptive label of what this status object represents | [optional] 
 **ExtraValue** | Pointer to **string** | A second value that is optional | [optional] 
 **ExtraLabel** | Pointer to **string** | A second descriptive label for the extraValue | [optional] 
@@ -105,6 +106,31 @@ SetValue sets Value field to given value.
 `func (o *StatusInfo) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
+
+### GetValueInt
+
+`func (o *StatusInfo) GetValueInt() float32`
+
+GetValueInt returns the ValueInt field if non-nil, zero value otherwise.
+
+### GetValueIntOk
+
+`func (o *StatusInfo) GetValueIntOk() (*float32, bool)`
+
+GetValueIntOk returns a tuple with the ValueInt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValueInt
+
+`func (o *StatusInfo) SetValueInt(v float32)`
+
+SetValueInt sets ValueInt field to given value.
+
+### HasValueInt
+
+`func (o *StatusInfo) HasValueInt() bool`
+
+HasValueInt returns a boolean if a field has been set.
 
 ### GetLabel
 

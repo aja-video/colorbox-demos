@@ -1,0 +1,82 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(dynamic_lut_load)
+
+# cpp-restsdk-client-colorbox requires c++ 14 or higher
+if (NOT CMAKE_CXX_STANDARD)
+	set(CMAKE_CXX_STANDARD 14)
+endif()
+
+find_package(OpenSSL REQUIRED)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(API_COMMON_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../api)
+if (EXISTS ${AJA_NTV2_ROOT})
+	set(NTV2SDK_COMMON_ROOT ${AJA_NTV2_ROOT})
+else()
+	set(NTV2SDK_COMMON_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../ntv2sdk")
+endif()
+
+# To support NTV2 ANC related routines
+if (NOT EXISTS ${NTV2SDK_COMMON_ROOT})
+	message(STATUS "For ${PROJECT_NAME} to support NTV2 ANC need to install NTV2 sdk to: ${NTV2SDK_COMMON_ROOT}"  )
+endif()
+
+set(TARGET_INCLUDE_DIRS
+	${API_COMMON_ROOT}
+	${NTV2SDK_COMMON_ROOT}/ajalibraries
+	${NTV2SDK_COMMON_ROOT}/ajalibraries/ajantv2/includes)
+
+set(APP_HEADERS
+    )
+
+set(APP_SOURCES
+	main.cpp)
+
+list(APPEND TARGET_LINK_LIBS cpp-restsdk-client-colorbox ${OPENSSL_LIBRARIES})
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:Console")
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+	set(TARGET_LINK_LIBS ${TARGET_LINK_LIBS} dl pthread rt)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+	set(CMAKE_MACOSX_BUNDLE OFF)
+endif()
+
+set(APP_TARGET_SOURCES
+	${APP_HEADERS}
+	${APP_SOURCES})
+
+add_executable(${PROJECT_NAME} ${APP_TARGET_SOURCES})
+
+add_dependencies(${PROJECT_NAME} cpp-restsdk-client-colorbox)
+
+if (EXISTS ${NTV2SDK_COMMON_ROOT})
+	list(APPEND TARGET_COMPILE_DEFS -DSUPPORT_ANC)
+	list(APPEND TARGET_LINK_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
+	list(APPEND TARGET_LINK_LIBS ajantv2)
+	add_dependencies(${PROJECT_NAME} ajantv2)
+endif()
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+	set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+endif()
+
+if (AJA_COLORBOX_RESTSDK_DEMOS_COPY_INTO_BIN)
+	set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
+endif()
+
+target_link_directories(${PROJECT_NAME} PUBLIC ${TARGET_LINK_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${TARGET_INCLUDE_DIRS})
+target_compile_definitions(${PROJECT_NAME} PUBLIC ${TARGET_COMPILE_DEFS})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${TARGET_LINK_LIBS})
+
+if (CMAKE_INSTALL_BINDIR)
+	install(TARGETS ${PROJECT_NAME}
+		ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+		FRAMEWORK DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+endif()

@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -32,6 +32,7 @@ type SystemConfig struct {
 	PreviewAncEnable *bool `json:"previewAncEnable,omitempty"`
 	AuthenticationEnable *bool `json:"authenticationEnable,omitempty"`
 	FanSpeed *float32 `json:"fanSpeed,omitempty"`
+	StartupPreset *int32 `json:"startupPreset,omitempty"`
 }
 
 // NewSystemConfig instantiates a new SystemConfig object
@@ -46,8 +47,10 @@ func NewSystemConfig() *SystemConfig {
 	this.PreviewAncEnable = &previewAncEnable
 	var authenticationEnable bool = false
 	this.AuthenticationEnable = &authenticationEnable
-	var fanSpeed float32 = 0
+	var fanSpeed float32 = 170
 	this.FanSpeed = &fanSpeed
+	var startupPreset int32 = 0
+	this.StartupPreset = &startupPreset
 	return &this
 }
 
@@ -62,8 +65,10 @@ func NewSystemConfigWithDefaults() *SystemConfig {
 	this.PreviewAncEnable = &previewAncEnable
 	var authenticationEnable bool = false
 	this.AuthenticationEnable = &authenticationEnable
-	var fanSpeed float32 = 0
+	var fanSpeed float32 = 170
 	this.FanSpeed = &fanSpeed
+	var startupPreset int32 = 0
+	this.StartupPreset = &startupPreset
 	return &this
 }
 
@@ -500,6 +505,54 @@ func (o *SystemConfig) SetFanSpeed(v float32) {
 	o.FanSpeed = &tmp
 }
 
+// GetStartupPreset returns the StartupPreset field value if set, zero value otherwise.
+func (o *SystemConfig) GetStartupPreset() int32 {
+	if o == nil || o.StartupPreset == nil {
+		var ret int32
+		return ret
+	}
+	return *o.StartupPreset
+}
+
+// GetStartupPresetOk returns a tuple with the StartupPreset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SystemConfig) GetStartupPresetOk() (*int32, bool) {
+	if o == nil || o.StartupPreset == nil {
+		return nil, false
+	}
+	return o.StartupPreset, true
+}
+
+// GetStartupPresetMin returns the minimum value for field StartupPreset.
+func (o *SystemConfig) GetStartupPresetMin() int32 {
+	return 0
+}
+
+// GetStartupPresetMax returns the maximum value for field StartupPreset.
+func (o *SystemConfig) GetStartupPresetMax() int32 {
+	return 10
+}
+
+
+// HasStartupPreset returns a boolean if a field has been set.
+func (o *SystemConfig) HasStartupPreset() bool {
+	if o != nil && o.StartupPreset != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartupPreset gets a reference to the given int32 and assigns it to the StartupPreset field.
+func (o *SystemConfig) SetStartupPreset(v int32) {
+	tmp := v
+	min := o.GetStartupPresetMin()
+	max := o.GetStartupPresetMax()
+	if tmp < min { tmp = min }
+	if tmp > max { tmp = max }
+	o.StartupPreset = &tmp
+}
+
 func (o SystemConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.HostName != nil {
@@ -538,6 +591,9 @@ func (o SystemConfig) MarshalJSON() ([]byte, error) {
 	if o.FanSpeed != nil {
 		toSerialize["fanSpeed"] = o.FanSpeed
 	}
+	if o.StartupPreset != nil {
+		toSerialize["startupPreset"] = o.StartupPreset
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -575,6 +631,24 @@ func (o *SystemConfig) ApplyMinMaxConstraints() bool {
 		}
 		if fieldChanged {
 			o.SetFanSpeed(v)
+			valueChanged = true
+		}
+	}
+	if o.HasStartupPreset() {
+		var fieldChanged = false
+		var v int32 = o.GetStartupPreset()
+		var min int32 = o.GetStartupPresetMin()
+		var max int32 = o.GetStartupPresetMax()
+		if v < min {
+			v = min
+			fieldChanged = true
+		}
+		if v > max {
+			v = max
+			fieldChanged = true
+		}
+		if fieldChanged {
+			o.SetStartupPreset(v)
 			valueChanged = true
 		}
 	}

@@ -1,7 +1,7 @@
 /*
-OpenAPI Soji
+OpenAPI ColorBox
 
-This is a REST API for the AJA Soji product.
+This is a REST API for the AJA ColorBox product.
 
 The version of the OpenAPI document: 1.0.0
 Contact: support@aja.com
@@ -22,15 +22,20 @@ import (
 type Overlay struct {
 	// true if overlay is enabled else disabled
 	Enabled *bool `json:"enabled,omitempty"`
-	VpidFormat *bool `json:"vpidFormat,omitempty"`
-	VpidRange *bool `json:"vpidRange,omitempty"`
-	VpidHdr *bool `json:"vpidHdr,omitempty"`
-	VpidBitDepth *bool `json:"vpidBitDepth,omitempty"`
+	InVpidFormat *bool `json:"inVpidFormat,omitempty"`
+	InVpidRange *bool `json:"inVpidRange,omitempty"`
+	InVpidHdr *bool `json:"inVpidHdr,omitempty"`
+	InVpidBitDepth *bool `json:"inVpidBitDepth,omitempty"`
+	OutVpidFormat *bool `json:"outVpidFormat,omitempty"`
+	OutVpidRange *bool `json:"outVpidRange,omitempty"`
+	OutVpidHdr *bool `json:"outVpidHdr,omitempty"`
+	OutVpidBitDepth *bool `json:"outVpidBitDepth,omitempty"`
 	TimeCode *bool `json:"timeCode,omitempty"`
 	ClosedCaption *bool `json:"closedCaption,omitempty"`
 	UserTextEnabled *bool `json:"userTextEnabled,omitempty"`
 	UserTextLine1 *string `json:"userTextLine1,omitempty"`
 	UserTextLine2 *string `json:"userTextLine2,omitempty"`
+	PipelineConfig *bool `json:"pipelineConfig,omitempty"`
 	Location *Locations `json:"location,omitempty"`
 }
 
@@ -90,144 +95,284 @@ func (o *Overlay) SetEnabled(v bool) {
 	o.Enabled = &tmp
 }
 
-// GetVpidFormat returns the VpidFormat field value if set, zero value otherwise.
-func (o *Overlay) GetVpidFormat() bool {
-	if o == nil || o.VpidFormat == nil {
+// GetInVpidFormat returns the InVpidFormat field value if set, zero value otherwise.
+func (o *Overlay) GetInVpidFormat() bool {
+	if o == nil || o.InVpidFormat == nil {
 		var ret bool
 		return ret
 	}
-	return *o.VpidFormat
+	return *o.InVpidFormat
 }
 
-// GetVpidFormatOk returns a tuple with the VpidFormat field value if set, nil otherwise
+// GetInVpidFormatOk returns a tuple with the InVpidFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Overlay) GetVpidFormatOk() (*bool, bool) {
-	if o == nil || o.VpidFormat == nil {
+func (o *Overlay) GetInVpidFormatOk() (*bool, bool) {
+	if o == nil || o.InVpidFormat == nil {
 		return nil, false
 	}
-	return o.VpidFormat, true
+	return o.InVpidFormat, true
 }
 
 
 
-// HasVpidFormat returns a boolean if a field has been set.
-func (o *Overlay) HasVpidFormat() bool {
-	if o != nil && o.VpidFormat != nil {
+// HasInVpidFormat returns a boolean if a field has been set.
+func (o *Overlay) HasInVpidFormat() bool {
+	if o != nil && o.InVpidFormat != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetVpidFormat gets a reference to the given bool and assigns it to the VpidFormat field.
-func (o *Overlay) SetVpidFormat(v bool) {
+// SetInVpidFormat gets a reference to the given bool and assigns it to the InVpidFormat field.
+func (o *Overlay) SetInVpidFormat(v bool) {
 	tmp := v
-	o.VpidFormat = &tmp
+	o.InVpidFormat = &tmp
 }
 
-// GetVpidRange returns the VpidRange field value if set, zero value otherwise.
-func (o *Overlay) GetVpidRange() bool {
-	if o == nil || o.VpidRange == nil {
+// GetInVpidRange returns the InVpidRange field value if set, zero value otherwise.
+func (o *Overlay) GetInVpidRange() bool {
+	if o == nil || o.InVpidRange == nil {
 		var ret bool
 		return ret
 	}
-	return *o.VpidRange
+	return *o.InVpidRange
 }
 
-// GetVpidRangeOk returns a tuple with the VpidRange field value if set, nil otherwise
+// GetInVpidRangeOk returns a tuple with the InVpidRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Overlay) GetVpidRangeOk() (*bool, bool) {
-	if o == nil || o.VpidRange == nil {
+func (o *Overlay) GetInVpidRangeOk() (*bool, bool) {
+	if o == nil || o.InVpidRange == nil {
 		return nil, false
 	}
-	return o.VpidRange, true
+	return o.InVpidRange, true
 }
 
 
 
-// HasVpidRange returns a boolean if a field has been set.
-func (o *Overlay) HasVpidRange() bool {
-	if o != nil && o.VpidRange != nil {
+// HasInVpidRange returns a boolean if a field has been set.
+func (o *Overlay) HasInVpidRange() bool {
+	if o != nil && o.InVpidRange != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetVpidRange gets a reference to the given bool and assigns it to the VpidRange field.
-func (o *Overlay) SetVpidRange(v bool) {
+// SetInVpidRange gets a reference to the given bool and assigns it to the InVpidRange field.
+func (o *Overlay) SetInVpidRange(v bool) {
 	tmp := v
-	o.VpidRange = &tmp
+	o.InVpidRange = &tmp
 }
 
-// GetVpidHdr returns the VpidHdr field value if set, zero value otherwise.
-func (o *Overlay) GetVpidHdr() bool {
-	if o == nil || o.VpidHdr == nil {
+// GetInVpidHdr returns the InVpidHdr field value if set, zero value otherwise.
+func (o *Overlay) GetInVpidHdr() bool {
+	if o == nil || o.InVpidHdr == nil {
 		var ret bool
 		return ret
 	}
-	return *o.VpidHdr
+	return *o.InVpidHdr
 }
 
-// GetVpidHdrOk returns a tuple with the VpidHdr field value if set, nil otherwise
+// GetInVpidHdrOk returns a tuple with the InVpidHdr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Overlay) GetVpidHdrOk() (*bool, bool) {
-	if o == nil || o.VpidHdr == nil {
+func (o *Overlay) GetInVpidHdrOk() (*bool, bool) {
+	if o == nil || o.InVpidHdr == nil {
 		return nil, false
 	}
-	return o.VpidHdr, true
+	return o.InVpidHdr, true
 }
 
 
 
-// HasVpidHdr returns a boolean if a field has been set.
-func (o *Overlay) HasVpidHdr() bool {
-	if o != nil && o.VpidHdr != nil {
+// HasInVpidHdr returns a boolean if a field has been set.
+func (o *Overlay) HasInVpidHdr() bool {
+	if o != nil && o.InVpidHdr != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetVpidHdr gets a reference to the given bool and assigns it to the VpidHdr field.
-func (o *Overlay) SetVpidHdr(v bool) {
+// SetInVpidHdr gets a reference to the given bool and assigns it to the InVpidHdr field.
+func (o *Overlay) SetInVpidHdr(v bool) {
 	tmp := v
-	o.VpidHdr = &tmp
+	o.InVpidHdr = &tmp
 }
 
-// GetVpidBitDepth returns the VpidBitDepth field value if set, zero value otherwise.
-func (o *Overlay) GetVpidBitDepth() bool {
-	if o == nil || o.VpidBitDepth == nil {
+// GetInVpidBitDepth returns the InVpidBitDepth field value if set, zero value otherwise.
+func (o *Overlay) GetInVpidBitDepth() bool {
+	if o == nil || o.InVpidBitDepth == nil {
 		var ret bool
 		return ret
 	}
-	return *o.VpidBitDepth
+	return *o.InVpidBitDepth
 }
 
-// GetVpidBitDepthOk returns a tuple with the VpidBitDepth field value if set, nil otherwise
+// GetInVpidBitDepthOk returns a tuple with the InVpidBitDepth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Overlay) GetVpidBitDepthOk() (*bool, bool) {
-	if o == nil || o.VpidBitDepth == nil {
+func (o *Overlay) GetInVpidBitDepthOk() (*bool, bool) {
+	if o == nil || o.InVpidBitDepth == nil {
 		return nil, false
 	}
-	return o.VpidBitDepth, true
+	return o.InVpidBitDepth, true
 }
 
 
 
-// HasVpidBitDepth returns a boolean if a field has been set.
-func (o *Overlay) HasVpidBitDepth() bool {
-	if o != nil && o.VpidBitDepth != nil {
+// HasInVpidBitDepth returns a boolean if a field has been set.
+func (o *Overlay) HasInVpidBitDepth() bool {
+	if o != nil && o.InVpidBitDepth != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetVpidBitDepth gets a reference to the given bool and assigns it to the VpidBitDepth field.
-func (o *Overlay) SetVpidBitDepth(v bool) {
+// SetInVpidBitDepth gets a reference to the given bool and assigns it to the InVpidBitDepth field.
+func (o *Overlay) SetInVpidBitDepth(v bool) {
 	tmp := v
-	o.VpidBitDepth = &tmp
+	o.InVpidBitDepth = &tmp
+}
+
+// GetOutVpidFormat returns the OutVpidFormat field value if set, zero value otherwise.
+func (o *Overlay) GetOutVpidFormat() bool {
+	if o == nil || o.OutVpidFormat == nil {
+		var ret bool
+		return ret
+	}
+	return *o.OutVpidFormat
+}
+
+// GetOutVpidFormatOk returns a tuple with the OutVpidFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Overlay) GetOutVpidFormatOk() (*bool, bool) {
+	if o == nil || o.OutVpidFormat == nil {
+		return nil, false
+	}
+	return o.OutVpidFormat, true
+}
+
+
+
+// HasOutVpidFormat returns a boolean if a field has been set.
+func (o *Overlay) HasOutVpidFormat() bool {
+	if o != nil && o.OutVpidFormat != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOutVpidFormat gets a reference to the given bool and assigns it to the OutVpidFormat field.
+func (o *Overlay) SetOutVpidFormat(v bool) {
+	tmp := v
+	o.OutVpidFormat = &tmp
+}
+
+// GetOutVpidRange returns the OutVpidRange field value if set, zero value otherwise.
+func (o *Overlay) GetOutVpidRange() bool {
+	if o == nil || o.OutVpidRange == nil {
+		var ret bool
+		return ret
+	}
+	return *o.OutVpidRange
+}
+
+// GetOutVpidRangeOk returns a tuple with the OutVpidRange field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Overlay) GetOutVpidRangeOk() (*bool, bool) {
+	if o == nil || o.OutVpidRange == nil {
+		return nil, false
+	}
+	return o.OutVpidRange, true
+}
+
+
+
+// HasOutVpidRange returns a boolean if a field has been set.
+func (o *Overlay) HasOutVpidRange() bool {
+	if o != nil && o.OutVpidRange != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOutVpidRange gets a reference to the given bool and assigns it to the OutVpidRange field.
+func (o *Overlay) SetOutVpidRange(v bool) {
+	tmp := v
+	o.OutVpidRange = &tmp
+}
+
+// GetOutVpidHdr returns the OutVpidHdr field value if set, zero value otherwise.
+func (o *Overlay) GetOutVpidHdr() bool {
+	if o == nil || o.OutVpidHdr == nil {
+		var ret bool
+		return ret
+	}
+	return *o.OutVpidHdr
+}
+
+// GetOutVpidHdrOk returns a tuple with the OutVpidHdr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Overlay) GetOutVpidHdrOk() (*bool, bool) {
+	if o == nil || o.OutVpidHdr == nil {
+		return nil, false
+	}
+	return o.OutVpidHdr, true
+}
+
+
+
+// HasOutVpidHdr returns a boolean if a field has been set.
+func (o *Overlay) HasOutVpidHdr() bool {
+	if o != nil && o.OutVpidHdr != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOutVpidHdr gets a reference to the given bool and assigns it to the OutVpidHdr field.
+func (o *Overlay) SetOutVpidHdr(v bool) {
+	tmp := v
+	o.OutVpidHdr = &tmp
+}
+
+// GetOutVpidBitDepth returns the OutVpidBitDepth field value if set, zero value otherwise.
+func (o *Overlay) GetOutVpidBitDepth() bool {
+	if o == nil || o.OutVpidBitDepth == nil {
+		var ret bool
+		return ret
+	}
+	return *o.OutVpidBitDepth
+}
+
+// GetOutVpidBitDepthOk returns a tuple with the OutVpidBitDepth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Overlay) GetOutVpidBitDepthOk() (*bool, bool) {
+	if o == nil || o.OutVpidBitDepth == nil {
+		return nil, false
+	}
+	return o.OutVpidBitDepth, true
+}
+
+
+
+// HasOutVpidBitDepth returns a boolean if a field has been set.
+func (o *Overlay) HasOutVpidBitDepth() bool {
+	if o != nil && o.OutVpidBitDepth != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOutVpidBitDepth gets a reference to the given bool and assigns it to the OutVpidBitDepth field.
+func (o *Overlay) SetOutVpidBitDepth(v bool) {
+	tmp := v
+	o.OutVpidBitDepth = &tmp
 }
 
 // GetTimeCode returns the TimeCode field value if set, zero value otherwise.
@@ -431,6 +576,41 @@ func (o *Overlay) SetUserTextLine2(v string) {
 	o.UserTextLine2 = &tmp
 }
 
+// GetPipelineConfig returns the PipelineConfig field value if set, zero value otherwise.
+func (o *Overlay) GetPipelineConfig() bool {
+	if o == nil || o.PipelineConfig == nil {
+		var ret bool
+		return ret
+	}
+	return *o.PipelineConfig
+}
+
+// GetPipelineConfigOk returns a tuple with the PipelineConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Overlay) GetPipelineConfigOk() (*bool, bool) {
+	if o == nil || o.PipelineConfig == nil {
+		return nil, false
+	}
+	return o.PipelineConfig, true
+}
+
+
+
+// HasPipelineConfig returns a boolean if a field has been set.
+func (o *Overlay) HasPipelineConfig() bool {
+	if o != nil && o.PipelineConfig != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPipelineConfig gets a reference to the given bool and assigns it to the PipelineConfig field.
+func (o *Overlay) SetPipelineConfig(v bool) {
+	tmp := v
+	o.PipelineConfig = &tmp
+}
+
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *Overlay) GetLocation() Locations {
 	if o == nil || o.Location == nil {
@@ -471,17 +651,29 @@ func (o Overlay) MarshalJSON() ([]byte, error) {
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if o.VpidFormat != nil {
-		toSerialize["vpidFormat"] = o.VpidFormat
+	if o.InVpidFormat != nil {
+		toSerialize["inVpidFormat"] = o.InVpidFormat
 	}
-	if o.VpidRange != nil {
-		toSerialize["vpidRange"] = o.VpidRange
+	if o.InVpidRange != nil {
+		toSerialize["inVpidRange"] = o.InVpidRange
 	}
-	if o.VpidHdr != nil {
-		toSerialize["vpidHdr"] = o.VpidHdr
+	if o.InVpidHdr != nil {
+		toSerialize["inVpidHdr"] = o.InVpidHdr
 	}
-	if o.VpidBitDepth != nil {
-		toSerialize["vpidBitDepth"] = o.VpidBitDepth
+	if o.InVpidBitDepth != nil {
+		toSerialize["inVpidBitDepth"] = o.InVpidBitDepth
+	}
+	if o.OutVpidFormat != nil {
+		toSerialize["outVpidFormat"] = o.OutVpidFormat
+	}
+	if o.OutVpidRange != nil {
+		toSerialize["outVpidRange"] = o.OutVpidRange
+	}
+	if o.OutVpidHdr != nil {
+		toSerialize["outVpidHdr"] = o.OutVpidHdr
+	}
+	if o.OutVpidBitDepth != nil {
+		toSerialize["outVpidBitDepth"] = o.OutVpidBitDepth
 	}
 	if o.TimeCode != nil {
 		toSerialize["timeCode"] = o.TimeCode
@@ -497,6 +689,9 @@ func (o Overlay) MarshalJSON() ([]byte, error) {
 	}
 	if o.UserTextLine2 != nil {
 		toSerialize["userTextLine2"] = o.UserTextLine2
+	}
+	if o.PipelineConfig != nil {
+		toSerialize["pipelineConfig"] = o.PipelineConfig
 	}
 	if o.Location != nil {
 		toSerialize["location"] = o.Location

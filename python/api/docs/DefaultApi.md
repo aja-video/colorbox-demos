@@ -11,22 +11,23 @@ Method | HTTP request | Description
 [**get_all_status**](DefaultApi.md#get_all_status) | **GET** /status | 
 [**get_all_system_discovers**](DefaultApi.md#get_all_system_discovers) | **GET** /discovers | 
 [**get_anc_capture_filter**](DefaultApi.md#get_anc_capture_filter) | **GET** /ancCaptureFilter | 
+[**get_bbc_config**](DefaultApi.md#get_bbc_config) | **GET** /bbcConfig | 
+[**get_colorfront_config**](DefaultApi.md#get_colorfront_config) | **GET** /colorfrontConfig | 
 [**get_config_for_given_net_device_index**](DefaultApi.md#get_config_for_given_net_device_index) | **GET** /net/device/{devIdx}/config | 
 [**get_frame_store**](DefaultApi.md#get_frame_store) | **GET** /frameStore | 
-[**get_hdmi_output_config**](DefaultApi.md#get_hdmi_output_config) | **GET** /hdmiOutputConfig | 
-[**get_hdmi_output_status**](DefaultApi.md#get_hdmi_output_status) | **GET** /hdmiOutputStatus | 
 [**get_image_library**](DefaultApi.md#get_image_library) | **GET** /imageLibrary | 
 [**get_library_control**](DefaultApi.md#get_library_control) | **GET** /libraryControl | 
 [**get_matrix_library**](DefaultApi.md#get_matrix_library) | **GET** /matrixLibrary | 
+[**get_nbc_config**](DefaultApi.md#get_nbc_config) | **GET** /nbcConfig | 
 [**get_orion_config**](DefaultApi.md#get_orion_config) | **GET** /orionConfig | 
+[**get_output_config**](DefaultApi.md#get_output_config) | **GET** /outputConfig | 
+[**get_output_status**](DefaultApi.md#get_output_status) | **GET** /outputStatus | 
 [**get_overlay**](DefaultApi.md#get_overlay) | **GET** /overlay | 
 [**get_pipeline_stages**](DefaultApi.md#get_pipeline_stages) | **GET** /pipelineStages | 
 [**get_preview_image**](DefaultApi.md#get_preview_image) | **GET** /preview | 
 [**get_routing**](DefaultApi.md#get_routing) | **GET** /routing | 
 [**get_sdi_input_config**](DefaultApi.md#get_sdi_input_config) | **GET** /sdiInputConfig | 
 [**get_sdi_input_status**](DefaultApi.md#get_sdi_input_status) | **GET** /sdiInputStatus | 
-[**get_sdi_output_config**](DefaultApi.md#get_sdi_output_config) | **GET** /sdiOutputConfig | 
-[**get_sdi_output_status**](DefaultApi.md#get_sdi_output_status) | **GET** /sdiOutputStatus | 
 [**get_staged_params_for_given_net_device_index**](DefaultApi.md#get_staged_params_for_given_net_device_index) | **GET** /net/device/{devIdx}/stagedParams | 
 [**get_status_for_given_net_device_index**](DefaultApi.md#get_status_for_given_net_device_index) | **GET** /net/device/{devIdx}/status | 
 [**get_system_config**](DefaultApi.md#get_system_config) | **GET** /system/config | 
@@ -38,24 +39,26 @@ Method | HTTP request | Description
 [**set_all_status**](DefaultApi.md#set_all_status) | **PUT** /status | 
 [**set_all_system_discovers**](DefaultApi.md#set_all_system_discovers) | **PUT** /discovers | 
 [**set_anc_capture_filter**](DefaultApi.md#set_anc_capture_filter) | **PUT** /ancCaptureFilter | 
+[**set_bbc_config**](DefaultApi.md#set_bbc_config) | **PUT** /bbcConfig | 
+[**set_colorfront_config**](DefaultApi.md#set_colorfront_config) | **PUT** /colorfrontConfig | 
 [**set_config_for_given_net_device_index**](DefaultApi.md#set_config_for_given_net_device_index) | **PUT** /net/device/{devIdx}/config | 
 [**set_frame_store**](DefaultApi.md#set_frame_store) | **PUT** /frameStore | 
-[**set_hdmi_output_config**](DefaultApi.md#set_hdmi_output_config) | **PUT** /hdmiOutputConfig | 
-[**set_hdmi_output_status**](DefaultApi.md#set_hdmi_output_status) | **PUT** /hdmiOutputStatus | 
 [**set_library_control**](DefaultApi.md#set_library_control) | **PUT** /libraryControl | 
 [**set_license_generation_request**](DefaultApi.md#set_license_generation_request) | **POST** /licenseGenerationRequest | 
+[**set_nbc_config**](DefaultApi.md#set_nbc_config) | **PUT** /nbcConfig | 
 [**set_orion_config**](DefaultApi.md#set_orion_config) | **PUT** /orionConfig | 
+[**set_output_config**](DefaultApi.md#set_output_config) | **PUT** /outputConfig | 
+[**set_output_status**](DefaultApi.md#set_output_status) | **PUT** /outputStatus | 
 [**set_overlay**](DefaultApi.md#set_overlay) | **PUT** /overlay | 
 [**set_pipeline_stages**](DefaultApi.md#set_pipeline_stages) | **PUT** /pipelineStages | 
 [**set_preview_image**](DefaultApi.md#set_preview_image) | **PUT** /preview | 
 [**set_routing**](DefaultApi.md#set_routing) | **PUT** /routing | 
 [**set_sdi_input_config**](DefaultApi.md#set_sdi_input_config) | **PUT** /sdiInputConfig | 
 [**set_sdi_input_status**](DefaultApi.md#set_sdi_input_status) | **PUT** /sdiInputStatus | 
-[**set_sdi_output_config**](DefaultApi.md#set_sdi_output_config) | **PUT** /sdiOutputConfig | 
-[**set_sdi_output_status**](DefaultApi.md#set_sdi_output_status) | **PUT** /sdiOutputStatus | 
 [**set_staged_params_for_given_net_device_index**](DefaultApi.md#set_staged_params_for_given_net_device_index) | **PUT** /net/device/{devIdx}/stagedParams | 
 [**set_status_for_given_net_device_index**](DefaultApi.md#set_status_for_given_net_device_index) | **PUT** /net/device/{devIdx}/status | 
 [**set_system_config**](DefaultApi.md#set_system_config) | **PUT** /system/config | 
+[**set_system_password**](DefaultApi.md#set_system_password) | **PUT** /system/password | 
 [**set_system_status**](DefaultApi.md#set_system_status) | **PUT** /system/status | 
 [**set_wi_fi_config**](DefaultApi.md#set_wi_fi_config) | **PUT** /wifiConfig | 
 [**set_wi_fi_status**](DefaultApi.md#set_wi_fi_status) | **PUT** /wifiStatus | 
@@ -501,6 +504,130 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_bbc_config**
+> BbcConfig get_bbc_config()
+
+
+
+Get the BbcConfig object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.bbc_config import BbcConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_bbc_config()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_bbc_config: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BbcConfig**](BbcConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_colorfront_config**
+> ColorfrontConfig get_colorfront_config()
+
+
+
+Get the ColorfrontConfig object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.colorfront_config import ColorfrontConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_colorfront_config()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_colorfront_config: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ColorfrontConfig**](ColorfrontConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_config_for_given_net_device_index**
 > NetConfig get_config_for_given_net_device_index(dev_idx)
 
@@ -611,130 +738,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**FrameStore**](FrameStore.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_hdmi_output_config**
-> HDMI get_hdmi_output_config()
-
-
-
-Get the HDMI output config
-
-### Example
-
-
-```python
-import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.hdmi import HDMI
-from pprint import pprint
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/v2"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        api_response = api_instance.get_hdmi_output_config()
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_hdmi_output_config: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HDMI**](HDMI.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_hdmi_output_status**
-> HDMI get_hdmi_output_status()
-
-
-
-Get the HDMI output status
-
-### Example
-
-
-```python
-import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.hdmi import HDMI
-from pprint import pprint
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/v2"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        api_response = api_instance.get_hdmi_output_status()
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_hdmi_output_status: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HDMI**](HDMI.md)
 
 ### Authorization
 
@@ -940,6 +943,68 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_nbc_config**
+> NbcConfig get_nbc_config()
+
+
+
+Get the NbcConfig object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.nbc_config import NbcConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_nbc_config()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_nbc_config: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**NbcConfig**](NbcConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_orion_config**
 > OrionConfig get_orion_config()
 
@@ -983,6 +1048,130 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**OrionConfig**](OrionConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_output_config**
+> OutputConfig get_output_config()
+
+
+
+Get the SDI/HDMI output config
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.output_config import OutputConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_output_config()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_output_config: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OutputConfig**](OutputConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_output_status**
+> OutputConfig get_output_status()
+
+
+
+Get the SDI/HDMI output status
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.output_config import OutputConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_output_status()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_output_status: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OutputConfig**](OutputConfig.md)
 
 ### Authorization
 
@@ -1346,130 +1535,6 @@ with openapi_client.ApiClient() as api_client:
         pprint(api_response)
     except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->get_sdi_input_status: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**SDI**](SDI.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_sdi_output_config**
-> SDI get_sdi_output_config()
-
-
-
-Get the SDI output config
-
-### Example
-
-
-```python
-import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.sdi import SDI
-from pprint import pprint
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/v2"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        api_response = api_instance.get_sdi_output_config()
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_sdi_output_config: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**SDI**](SDI.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_sdi_output_status**
-> SDI get_sdi_output_status()
-
-
-
-Get the SDI output status
-
-### Example
-
-
-```python
-import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.sdi import SDI
-from pprint import pprint
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/v2"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        api_response = api_instance.get_sdi_output_status()
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_sdi_output_status: %s\n" % e)
 ```
 
 
@@ -2071,6 +2136,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             upper_bound_good=3.14,
             upper_bound_maybe=3.14,
             value="value_example",
+            value_int=3.14,
             label="label_example",
             extra_value="extra_value_example",
             extra_label="extra_label_example",
@@ -2090,6 +2156,12 @@ with openapi_client.ApiClient(configuration) as api_client:
         orion_engine_licensed=True,
         colorfront_engine_licensed=True,
         shutdown_time=1,
+        colorfront_transform_version="colorfront_transform_version_example",
+        colorfront_engine_version="colorfront_engine_version_example",
+        orion_version="orion_version_example",
+        bbc_lut_version="bbc_lut_version_example",
+        nbcu_lut_version="nbcu_lut_version_example",
+        cpu_busy=True,
     ) # Status | Status object
 
     # example passing only required values which don't have defaults set
@@ -2286,6 +2358,228 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **set_bbc_config**
+> set_bbc_config(bbc_config)
+
+
+
+Modify the BbcConfig object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.bbc_config import BbcConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    bbc_config = BbcConfig(
+        lut1d_1=Stage(
+            enabled=True,
+            dynamic=True,
+            library_entry=1,
+            color_corrector=ColorCorrector(
+                black_red=0.0,
+                black_green=0.0,
+                black_blue=0.0,
+                gain_red=1.0,
+                gain_green=1.0,
+                gain_blue=1.0,
+                gamma_red=0.0,
+                gamma_green=0.0,
+                gamma_blue=0.0,
+                units_black="IRE",
+                units_gain="",
+                units_gamma="",
+            ),
+            proc_amp=ProcAmp(
+                black=0.0,
+                gain=1.0,
+                hue=0,
+                sat=1.0,
+                units_black="IRE",
+                units_gain="",
+                units_hue="degrees",
+                units_sat="",
+            ),
+        ),
+        m3x3_2=Stage(
+            enabled=True,
+            dynamic=True,
+            library_entry=1,
+            color_corrector=ColorCorrector(
+                black_red=0.0,
+                black_green=0.0,
+                black_blue=0.0,
+                gain_red=1.0,
+                gain_green=1.0,
+                gain_blue=1.0,
+                gamma_red=0.0,
+                gamma_green=0.0,
+                gamma_blue=0.0,
+                units_black="IRE",
+                units_gain="",
+                units_gamma="",
+            ),
+            proc_amp=ProcAmp(
+                black=0.0,
+                gain=1.0,
+                hue=0,
+                sat=1.0,
+                units_black="IRE",
+                units_gain="",
+                units_hue="degrees",
+                units_sat="",
+            ),
+        ),
+        lut3d_1=Stage(
+            enabled=True,
+            dynamic=True,
+            library_entry=1,
+            color_corrector=ColorCorrector(
+                black_red=0.0,
+                black_green=0.0,
+                black_blue=0.0,
+                gain_red=1.0,
+                gain_green=1.0,
+                gain_blue=1.0,
+                gamma_red=0.0,
+                gamma_green=0.0,
+                gamma_blue=0.0,
+                units_black="IRE",
+                units_gain="",
+                units_gamma="",
+            ),
+            proc_amp=ProcAmp(
+                black=0.0,
+                gain=1.0,
+                hue=0,
+                sat=1.0,
+                units_black="IRE",
+                units_gain="",
+                units_hue="degrees",
+                units_sat="",
+            ),
+        ),
+    ) # BbcConfig | BbcConfig object
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.set_bbc_config(bbc_config)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->set_bbc_config: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bbc_config** | [**BbcConfig**](BbcConfig.md)| BbcConfig object |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_colorfront_config**
+> set_colorfront_config(colorfront_config)
+
+
+
+Modify the ColorfrontConfig object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.colorfront_config import ColorfrontConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    colorfront_config = ColorfrontConfig(
+        enabled=True,
+        in_dyn_range_gamut=ColorfrontDynRangeGamut("SDR BT.709"),
+        out_dyn_range_gamut=ColorfrontDynRangeGamut("SDR BT.709"),
+    ) # ColorfrontConfig | ColorfrontConfig object
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.set_colorfront_config(colorfront_config)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->set_colorfront_config: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **colorfront_config** | [**ColorfrontConfig**](ColorfrontConfig.md)| ColorfrontConfig object |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **set_config_for_given_net_device_index**
 > set_config_for_given_net_device_index(dev_idx, net_config)
 
@@ -2387,9 +2681,13 @@ with openapi_client.ApiClient() as api_client:
     frame_store = FrameStore(
         enabled=True,
         dynamic=True,
+        image_name="image_name_example",
+        timecode_appended=True,
+        file_type=FileTypeChoice("TIFF"),
         library_entry=1,
         format=VideoFormat("Auto"),
         convert=VideoConvertChoice("VideoConvertActual"),
+        rgb_range=RgbRange("Auto"),
     ) # FrameStore | FrameStore object
 
     # example passing only required values which don't have defaults set
@@ -2405,154 +2703,6 @@ with openapi_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **frame_store** | [**FrameStore**](FrameStore.md)| FrameStore object |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **set_hdmi_output_config**
-> set_hdmi_output_config(hdmi)
-
-
-
-Set the HDMI output config
-
-### Example
-
-
-```python
-import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.hdmi import HDMI
-from pprint import pprint
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/v2"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    hdmi = HDMI(
-        color_space=ColorSpace("Auto"),
-        rgb_range=RgbRange("Auto"),
-        bit_depth=BitDepth("Auto"),
-        crop4k2k=Crop4k2k("Auto"),
-        connection=Connection("Auto"),
-        colorimetry=Colorimetry("Auto"),
-        transfer=Transfer("Auto"),
-        format=VideoFormat("Auto"),
-    ) # HDMI | HDMI object
-
-    # example passing only required values which don't have defaults set
-    try:
-        api_instance.set_hdmi_output_config(hdmi)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->set_hdmi_output_config: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **hdmi** | [**HDMI**](HDMI.md)| HDMI object |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **set_hdmi_output_status**
-> set_hdmi_output_status(hdmi)
-
-
-
-Set the HDMI output status
-
-### Example
-
-
-```python
-import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.hdmi import HDMI
-from pprint import pprint
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/v2"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    hdmi = HDMI(
-        color_space=ColorSpace("Auto"),
-        rgb_range=RgbRange("Auto"),
-        bit_depth=BitDepth("Auto"),
-        crop4k2k=Crop4k2k("Auto"),
-        connection=Connection("Auto"),
-        colorimetry=Colorimetry("Auto"),
-        transfer=Transfer("Auto"),
-        format=VideoFormat("Auto"),
-    ) # HDMI | HDMI object
-
-    # example passing only required values which don't have defaults set
-    try:
-        api_instance.set_hdmi_output_status(hdmi)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->set_hdmi_output_status: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **hdmi** | [**HDMI**](HDMI.md)| HDMI object |
 
 ### Return type
 
@@ -2707,6 +2857,159 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **set_nbc_config**
+> set_nbc_config(nbc_config)
+
+
+
+Modify the NbcConfig object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.nbc_config import NbcConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    nbc_config = NbcConfig(
+        lut1d_1=Stage(
+            enabled=True,
+            dynamic=True,
+            library_entry=1,
+            color_corrector=ColorCorrector(
+                black_red=0.0,
+                black_green=0.0,
+                black_blue=0.0,
+                gain_red=1.0,
+                gain_green=1.0,
+                gain_blue=1.0,
+                gamma_red=0.0,
+                gamma_green=0.0,
+                gamma_blue=0.0,
+                units_black="IRE",
+                units_gain="",
+                units_gamma="",
+            ),
+            proc_amp=ProcAmp(
+                black=0.0,
+                gain=1.0,
+                hue=0,
+                sat=1.0,
+                units_black="IRE",
+                units_gain="",
+                units_hue="degrees",
+                units_sat="",
+            ),
+        ),
+        m3x3_2=Stage(
+            enabled=True,
+            dynamic=True,
+            library_entry=1,
+            color_corrector=ColorCorrector(
+                black_red=0.0,
+                black_green=0.0,
+                black_blue=0.0,
+                gain_red=1.0,
+                gain_green=1.0,
+                gain_blue=1.0,
+                gamma_red=0.0,
+                gamma_green=0.0,
+                gamma_blue=0.0,
+                units_black="IRE",
+                units_gain="",
+                units_gamma="",
+            ),
+            proc_amp=ProcAmp(
+                black=0.0,
+                gain=1.0,
+                hue=0,
+                sat=1.0,
+                units_black="IRE",
+                units_gain="",
+                units_hue="degrees",
+                units_sat="",
+            ),
+        ),
+        lut3d_1=Stage(
+            enabled=True,
+            dynamic=True,
+            library_entry=1,
+            color_corrector=ColorCorrector(
+                black_red=0.0,
+                black_green=0.0,
+                black_blue=0.0,
+                gain_red=1.0,
+                gain_green=1.0,
+                gain_blue=1.0,
+                gamma_red=0.0,
+                gamma_green=0.0,
+                gamma_blue=0.0,
+                units_black="IRE",
+                units_gain="",
+                units_gamma="",
+            ),
+            proc_amp=ProcAmp(
+                black=0.0,
+                gain=1.0,
+                hue=0,
+                sat=1.0,
+                units_black="IRE",
+                units_gain="",
+                units_hue="degrees",
+                units_sat="",
+            ),
+        ),
+    ) # NbcConfig | NbcConfig object
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.set_nbc_config(nbc_config)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->set_nbc_config: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **nbc_config** | [**NbcConfig**](NbcConfig.md)| NbcConfig object |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **set_orion_config**
 > set_orion_config(orion_config)
 
@@ -2788,6 +3091,158 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **set_output_config**
+> set_output_config(output_config)
+
+
+
+Set the SDI/HDMI output config
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.output_config import OutputConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    output_config = OutputConfig(
+        color_space=ColorSpace("Auto"),
+        rgb_range=RgbRange("Auto"),
+        bit_depth=BitDepth("Auto"),
+        scan_mode=ScanMode("Auto"),
+        colorimetry=Colorimetry("Auto"),
+        transfer=Transfer("Auto"),
+        format=VideoFormat("Auto"),
+        sdi_mode3g=SdiMode3g("Auto"),
+        hdmi_crop4k2k=Crop4k2k("Auto"),
+        hdmi_connection=Connection("Auto"),
+    ) # OutputConfig | OutputConfig object
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.set_output_config(output_config)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->set_output_config: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **output_config** | [**OutputConfig**](OutputConfig.md)| OutputConfig object |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_output_status**
+> set_output_status(output_config)
+
+
+
+Set the SDI/HDMI output status
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.output_config import OutputConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    output_config = OutputConfig(
+        color_space=ColorSpace("Auto"),
+        rgb_range=RgbRange("Auto"),
+        bit_depth=BitDepth("Auto"),
+        scan_mode=ScanMode("Auto"),
+        colorimetry=Colorimetry("Auto"),
+        transfer=Transfer("Auto"),
+        format=VideoFormat("Auto"),
+        sdi_mode3g=SdiMode3g("Auto"),
+        hdmi_crop4k2k=Crop4k2k("Auto"),
+        hdmi_connection=Connection("Auto"),
+    ) # OutputConfig | OutputConfig object
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.set_output_status(output_config)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->set_output_status: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **output_config** | [**OutputConfig**](OutputConfig.md)| OutputConfig object |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **set_overlay**
 > set_overlay(overlay)
 
@@ -2817,15 +3272,20 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     overlay = Overlay(
         enabled=True,
-        vpid_format=True,
-        vpid_range=True,
-        vpid_hdr=True,
-        vpid_bit_depth=True,
+        in_vpid_format=True,
+        in_vpid_range=True,
+        in_vpid_hdr=True,
+        in_vpid_bit_depth=True,
+        out_vpid_format=True,
+        out_vpid_range=True,
+        out_vpid_hdr=True,
+        out_vpid_bit_depth=True,
         time_code=True,
         closed_caption=True,
         user_text_enabled=True,
         user_text_line1="user_text_line1_example",
         user_text_line2="user_text_line2_example",
+        pipeline_config=True,
         location=Locations("Bottom Center"),
     ) # Overlay | Overlay object
 
@@ -3096,7 +3556,12 @@ with openapi_client.ApiClient() as api_client:
                 units_sat="",
             ),
         ),
-        pipeline_range=PipelineRange("SMPTEFull"),
+        in_colorimetry=Colorimetry("Auto"),
+        in_range=PipelineRange("SMPTEFull"),
+        out_colorimetry=Colorimetry("Auto"),
+        out_range=PipelineRange("SMPTEFull"),
+        transfer_characteristic=Transfer("Auto"),
+        csc_filter=CSCFilter("None"),
     ) # PipelineStages | Stages object
 
     # example passing only required values which don't have defaults set
@@ -3236,10 +3701,9 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     routing = Routing(
         mode=Mode("Input"),
-        preview_tap=PreviewTap("OVERLAY"),
-        sdi_bypass=True,
-        hdmi_bypass=True,
-        pipeline_bypass=True,
+        preview_tap=PreviewTap("OUTPUT"),
+        pipeline_bypass_button=True,
+        pipeline_bypass_user=True,
     ) # Routing | Routing object
 
     # example passing only required values which don't have defaults set
@@ -3395,154 +3859,6 @@ with openapi_client.ApiClient() as api_client:
         api_instance.set_sdi_input_status(sdi)
     except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->set_sdi_input_status: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sdi** | [**SDI**](SDI.md)| SDI object |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **set_sdi_output_config**
-> set_sdi_output_config(sdi)
-
-
-
-Set the SDI output config
-
-### Example
-
-
-```python
-import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.sdi import SDI
-from pprint import pprint
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/v2"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    sdi = SDI(
-        color_space=ColorSpace("Auto"),
-        rgb_range=RgbRange("Auto"),
-        bit_depth=BitDepth("Auto"),
-        scan_mode=ScanMode("Auto"),
-        sdi_mode3g=SdiMode3g("Auto"),
-        colorimetry=Colorimetry("Auto"),
-        transfer=Transfer("Auto"),
-        format=VideoFormat("Auto"),
-    ) # SDI | SDI object
-
-    # example passing only required values which don't have defaults set
-    try:
-        api_instance.set_sdi_output_config(sdi)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->set_sdi_output_config: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sdi** | [**SDI**](SDI.md)| SDI object |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **set_sdi_output_status**
-> set_sdi_output_status(sdi)
-
-
-
-Set the SDI output status
-
-### Example
-
-
-```python
-import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.sdi import SDI
-from pprint import pprint
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/v2"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    sdi = SDI(
-        color_space=ColorSpace("Auto"),
-        rgb_range=RgbRange("Auto"),
-        bit_depth=BitDepth("Auto"),
-        scan_mode=ScanMode("Auto"),
-        sdi_mode3g=SdiMode3g("Auto"),
-        colorimetry=Colorimetry("Auto"),
-        transfer=Transfer("Auto"),
-        format=VideoFormat("Auto"),
-    ) # SDI | SDI object
-
-    # example passing only required values which don't have defaults set
-    try:
-        api_instance.set_sdi_output_status(sdi)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->set_sdi_output_status: %s\n" % e)
 ```
 
 
@@ -3769,6 +4085,7 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     system_config = SystemConfig(
         host_name="host_name_example",
+        system_organization_name="system_organization_name_example",
         ssdp_enable=True,
         identify=True,
         update_request=True,
@@ -3777,6 +4094,9 @@ with openapi_client.ApiClient() as api_client:
         factory_reset=True,
         transform_mode=TransformMode("LUT"),
         preview_anc_enable=False,
+        authentication_enable=False,
+        fan_speed=170,
+        startup_preset=0,
     ) # SystemConfig | System config object
 
     # example passing only required values which don't have defaults set
@@ -3805,6 +4125,76 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_system_password**
+> SystemPasswordResponse set_system_password(system_password)
+
+
+
+Update the system password
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.system_password import SystemPassword
+from openapi_client.model.system_password_response import SystemPasswordResponse
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    system_password = SystemPassword(
+        current_password="current_password_example",
+        new_password="new_password_example",
+    ) # SystemPassword | System password object
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.set_system_password(system_password)
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->set_system_password: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **system_password** | [**SystemPassword**](SystemPassword.md)| System password object |
+
+### Return type
+
+[**SystemPasswordResponse**](SystemPasswordResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -3859,6 +4249,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         running_version="1.0.0.3d",
         safeboot=True,
         update_msg=["str1","str2","str3"],
+        transform_mode_changing=False,
+        transform_mode_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
     ) # SystemStatus | System status object
 
     # example passing only required values which don't have defaults set
@@ -4102,11 +4494,13 @@ with openapi_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     file = open('/path/to/file', 'rb') # file_type |  (optional)
+    kind = "" # str | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** (optional) if omitted the server will use the default value of ""
+    entry = -1 # int | The entry number to upload the file to, **not** used with kinds: **license** and **update** (optional) if omitted the server will use the default value of -1
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_instance.upload_file(file=file)
+        api_instance.upload_file(file=file, kind=kind, entry=entry)
     except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->upload_file: %s\n" % e)
 ```
@@ -4117,6 +4511,8 @@ with openapi_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **file_type**|  | [optional]
+ **kind** | **str**| The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** | [optional] if omitted the server will use the default value of ""
+ **entry** | **int**| The entry number to upload the file to, **not** used with kinds: **license** and **update** | [optional] if omitted the server will use the default value of -1
 
 ### Return type
 

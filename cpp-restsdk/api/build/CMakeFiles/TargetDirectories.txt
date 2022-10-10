@@ -1,0 +1,7 @@
+/home/seanl/workspace/ntv2/ajaapps/crossplatform/soji/src/generated/api/cpprestsdk/build/CMakeFiles/CppRestOpenAPIClient.dir
+/home/seanl/workspace/ntv2/ajaapps/crossplatform/soji/src/generated/api/cpprestsdk/build/CMakeFiles/edit_cache.dir
+/home/seanl/workspace/ntv2/ajaapps/crossplatform/soji/src/generated/api/cpprestsdk/build/CMakeFiles/rebuild_cache.dir
+/home/seanl/workspace/ntv2/ajaapps/crossplatform/soji/src/generated/api/cpprestsdk/build/CMakeFiles/list_install_components.dir
+/home/seanl/workspace/ntv2/ajaapps/crossplatform/soji/src/generated/api/cpprestsdk/build/CMakeFiles/install.dir
+/home/seanl/workspace/ntv2/ajaapps/crossplatform/soji/src/generated/api/cpprestsdk/build/CMakeFiles/install/local.dir
+/home/seanl/workspace/ntv2/ajaapps/crossplatform/soji/src/generated/api/cpprestsdk/build/CMakeFiles/install/strip.dir

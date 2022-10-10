@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **RunningVersion** | Pointer to **string** |  | [optional] 
 **Safeboot** | Pointer to **bool** |  | [optional] 
 **UpdateMsg** | Pointer to **[]string** |  | [optional] 
+**TransformModeChanging** | Pointer to **bool** |  | [optional] [default to false]
+**TransformModeTimestamp** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -153,6 +155,56 @@ SetUpdateMsg sets UpdateMsg field to given value.
 `func (o *SystemStatus) HasUpdateMsg() bool`
 
 HasUpdateMsg returns a boolean if a field has been set.
+
+### GetTransformModeChanging
+
+`func (o *SystemStatus) GetTransformModeChanging() bool`
+
+GetTransformModeChanging returns the TransformModeChanging field if non-nil, zero value otherwise.
+
+### GetTransformModeChangingOk
+
+`func (o *SystemStatus) GetTransformModeChangingOk() (*bool, bool)`
+
+GetTransformModeChangingOk returns a tuple with the TransformModeChanging field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransformModeChanging
+
+`func (o *SystemStatus) SetTransformModeChanging(v bool)`
+
+SetTransformModeChanging sets TransformModeChanging field to given value.
+
+### HasTransformModeChanging
+
+`func (o *SystemStatus) HasTransformModeChanging() bool`
+
+HasTransformModeChanging returns a boolean if a field has been set.
+
+### GetTransformModeTimestamp
+
+`func (o *SystemStatus) GetTransformModeTimestamp() time.Time`
+
+GetTransformModeTimestamp returns the TransformModeTimestamp field if non-nil, zero value otherwise.
+
+### GetTransformModeTimestampOk
+
+`func (o *SystemStatus) GetTransformModeTimestampOk() (*time.Time, bool)`
+
+GetTransformModeTimestampOk returns a tuple with the TransformModeTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransformModeTimestamp
+
+`func (o *SystemStatus) SetTransformModeTimestamp(v time.Time)`
+
+SetTransformModeTimestamp sets TransformModeTimestamp field to given value.
+
+### HasTransformModeTimestamp
+
+`func (o *SystemStatus) HasTransformModeTimestamp() bool`
+
+HasTransformModeTimestamp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
