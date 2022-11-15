@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **host_name** | **str** |  | [optional] 
 **system_organization_name** | **str** |  | [optional] 
-**ssdp_enable** | **bool** |  | [optional] 
-**identify** | **bool** |  | [optional] 
-**update_request** | **bool** |  | [optional] 
-**reboot** | **bool** |  | [optional] 
-**factory_preset** | **bool** |  | [optional] 
-**factory_reset** | **bool** |  | [optional] 
+**ssdp_enable** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**identify** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**update_request** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**reboot** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**refresh** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**shutdown** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**factory_preset** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**factory_reset** | **bool** |  | [optional]  if omitted the server will use the default value of False
 **transform_mode** | [**TransformMode**](TransformMode.md) |  | [optional] 
 **preview_anc_enable** | **bool** |  | [optional]  if omitted the server will use the default value of False
 **authentication_enable** | **bool** |  | [optional]  if omitted the server will use the default value of False

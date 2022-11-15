@@ -26,6 +26,8 @@ type SystemConfig struct {
 	Identify *bool `json:"identify,omitempty"`
 	UpdateRequest *bool `json:"updateRequest,omitempty"`
 	Reboot *bool `json:"reboot,omitempty"`
+	Refresh *bool `json:"refresh,omitempty"`
+	Shutdown *bool `json:"shutdown,omitempty"`
 	FactoryPreset *bool `json:"factoryPreset,omitempty"`
 	FactoryReset *bool `json:"factoryReset,omitempty"`
 	TransformMode *TransformMode `json:"transformMode,omitempty"`
@@ -41,6 +43,22 @@ type SystemConfig struct {
 // will change when the set of required properties is changed
 func NewSystemConfig() *SystemConfig {
 	this := SystemConfig{}
+	var ssdpEnable bool = false
+	this.SsdpEnable = &ssdpEnable
+	var identify bool = false
+	this.Identify = &identify
+	var updateRequest bool = false
+	this.UpdateRequest = &updateRequest
+	var reboot bool = false
+	this.Reboot = &reboot
+	var refresh bool = false
+	this.Refresh = &refresh
+	var shutdown bool = false
+	this.Shutdown = &shutdown
+	var factoryPreset bool = false
+	this.FactoryPreset = &factoryPreset
+	var factoryReset bool = false
+	this.FactoryReset = &factoryReset
 	var transformMode TransformMode = TRANSFORMMODE_LUT
 	this.TransformMode = &transformMode
 	var previewAncEnable bool = false
@@ -59,6 +77,22 @@ func NewSystemConfig() *SystemConfig {
 // but it doesn't guarantee that properties required by API are set
 func NewSystemConfigWithDefaults() *SystemConfig {
 	this := SystemConfig{}
+	var ssdpEnable bool = false
+	this.SsdpEnable = &ssdpEnable
+	var identify bool = false
+	this.Identify = &identify
+	var updateRequest bool = false
+	this.UpdateRequest = &updateRequest
+	var reboot bool = false
+	this.Reboot = &reboot
+	var refresh bool = false
+	this.Refresh = &refresh
+	var shutdown bool = false
+	this.Shutdown = &shutdown
+	var factoryPreset bool = false
+	this.FactoryPreset = &factoryPreset
+	var factoryReset bool = false
+	this.FactoryReset = &factoryReset
 	var transformMode TransformMode = TRANSFORMMODE_LUT
 	this.TransformMode = &transformMode
 	var previewAncEnable bool = false
@@ -280,6 +314,76 @@ func (o *SystemConfig) HasReboot() bool {
 func (o *SystemConfig) SetReboot(v bool) {
 	tmp := v
 	o.Reboot = &tmp
+}
+
+// GetRefresh returns the Refresh field value if set, zero value otherwise.
+func (o *SystemConfig) GetRefresh() bool {
+	if o == nil || o.Refresh == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Refresh
+}
+
+// GetRefreshOk returns a tuple with the Refresh field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SystemConfig) GetRefreshOk() (*bool, bool) {
+	if o == nil || o.Refresh == nil {
+		return nil, false
+	}
+	return o.Refresh, true
+}
+
+
+
+// HasRefresh returns a boolean if a field has been set.
+func (o *SystemConfig) HasRefresh() bool {
+	if o != nil && o.Refresh != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRefresh gets a reference to the given bool and assigns it to the Refresh field.
+func (o *SystemConfig) SetRefresh(v bool) {
+	tmp := v
+	o.Refresh = &tmp
+}
+
+// GetShutdown returns the Shutdown field value if set, zero value otherwise.
+func (o *SystemConfig) GetShutdown() bool {
+	if o == nil || o.Shutdown == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Shutdown
+}
+
+// GetShutdownOk returns a tuple with the Shutdown field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SystemConfig) GetShutdownOk() (*bool, bool) {
+	if o == nil || o.Shutdown == nil {
+		return nil, false
+	}
+	return o.Shutdown, true
+}
+
+
+
+// HasShutdown returns a boolean if a field has been set.
+func (o *SystemConfig) HasShutdown() bool {
+	if o != nil && o.Shutdown != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShutdown gets a reference to the given bool and assigns it to the Shutdown field.
+func (o *SystemConfig) SetShutdown(v bool) {
+	tmp := v
+	o.Shutdown = &tmp
 }
 
 // GetFactoryPreset returns the FactoryPreset field value if set, zero value otherwise.
@@ -572,6 +676,12 @@ func (o SystemConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.Reboot != nil {
 		toSerialize["reboot"] = o.Reboot
+	}
+	if o.Refresh != nil {
+		toSerialize["refresh"] = o.Refresh
+	}
+	if o.Shutdown != nil {
+		toSerialize["shutdown"] = o.Shutdown
 	}
 	if o.FactoryPreset != nil {
 		toSerialize["factoryPreset"] = o.FactoryPreset

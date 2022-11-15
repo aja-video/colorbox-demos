@@ -71,6 +71,16 @@ public:
     bool is_reboot_Set() const;
     bool is_reboot_Valid() const;
 
+    bool isRefresh() const;
+    void setRefresh(const bool &refresh);
+    bool is_refresh_Set() const;
+    bool is_refresh_Valid() const;
+
+    bool isShutdown() const;
+    void setShutdown(const bool &shutdown);
+    bool is_shutdown_Set() const;
+    bool is_shutdown_Valid() const;
+
     bool isFactoryPreset() const;
     void setFactoryPreset(const bool &factory_preset);
     bool is_factory_preset_Set() const;
@@ -140,6 +150,14 @@ private:
     bool m_reboot;
     bool m_reboot_isSet;
     bool m_reboot_isValid;
+
+    bool m_refresh;
+    bool m_refresh_isSet;
+    bool m_refresh_isValid;
+
+    bool m_shutdown;
+    bool m_shutdown_isSet;
+    bool m_shutdown_isValid;
 
     bool m_factory_preset;
     bool m_factory_preset_isSet;

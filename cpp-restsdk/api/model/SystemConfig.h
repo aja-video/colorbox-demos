@@ -121,6 +121,26 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    bool isRefresh() const;
+    bool refreshIsSet() const;
+    void unsetRefresh();
+
+    void setRefresh(bool value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isShutdown() const;
+    bool shutdownIsSet() const;
+    void unsetShutdown();
+
+    void setShutdown(bool value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
     bool isFactoryPreset() const;
     bool factoryPresetIsSet() const;
     void unsetFactoryPreset();
@@ -206,6 +226,10 @@ protected:
     bool m_UpdateRequestIsSet;
     bool m_Reboot;
     bool m_RebootIsSet;
+    bool m_Refresh;
+    bool m_RefreshIsSet;
+    bool m_Shutdown;
+    bool m_ShutdownIsSet;
     bool m_FactoryPreset;
     bool m_FactoryPresetIsSet;
     bool m_FactoryReset;

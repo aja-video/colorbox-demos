@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HostName** | Pointer to **string** |  | [optional] 
 **SystemOrganizationName** | Pointer to **string** |  | [optional] 
-**SsdpEnable** | Pointer to **bool** |  | [optional] 
-**Identify** | Pointer to **bool** |  | [optional] 
-**UpdateRequest** | Pointer to **bool** |  | [optional] 
-**Reboot** | Pointer to **bool** |  | [optional] 
-**FactoryPreset** | Pointer to **bool** |  | [optional] 
-**FactoryReset** | Pointer to **bool** |  | [optional] 
+**SsdpEnable** | Pointer to **bool** |  | [optional] [default to false]
+**Identify** | Pointer to **bool** |  | [optional] [default to false]
+**UpdateRequest** | Pointer to **bool** |  | [optional] [default to false]
+**Reboot** | Pointer to **bool** |  | [optional] [default to false]
+**Refresh** | Pointer to **bool** |  | [optional] [default to false]
+**Shutdown** | Pointer to **bool** |  | [optional] [default to false]
+**FactoryPreset** | Pointer to **bool** |  | [optional] [default to false]
+**FactoryReset** | Pointer to **bool** |  | [optional] [default to false]
 **TransformMode** | Pointer to [**TransformMode**](TransformMode.md) |  | [optional] [default to TRANSFORMMODE_LUT]
 **PreviewAncEnable** | Pointer to **bool** |  | [optional] [default to false]
 **AuthenticationEnable** | Pointer to **bool** |  | [optional] [default to false]
@@ -186,6 +188,56 @@ SetReboot sets Reboot field to given value.
 `func (o *SystemConfig) HasReboot() bool`
 
 HasReboot returns a boolean if a field has been set.
+
+### GetRefresh
+
+`func (o *SystemConfig) GetRefresh() bool`
+
+GetRefresh returns the Refresh field if non-nil, zero value otherwise.
+
+### GetRefreshOk
+
+`func (o *SystemConfig) GetRefreshOk() (*bool, bool)`
+
+GetRefreshOk returns a tuple with the Refresh field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRefresh
+
+`func (o *SystemConfig) SetRefresh(v bool)`
+
+SetRefresh sets Refresh field to given value.
+
+### HasRefresh
+
+`func (o *SystemConfig) HasRefresh() bool`
+
+HasRefresh returns a boolean if a field has been set.
+
+### GetShutdown
+
+`func (o *SystemConfig) GetShutdown() bool`
+
+GetShutdown returns the Shutdown field if non-nil, zero value otherwise.
+
+### GetShutdownOk
+
+`func (o *SystemConfig) GetShutdownOk() (*bool, bool)`
+
+GetShutdownOk returns a tuple with the Shutdown field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShutdown
+
+`func (o *SystemConfig) SetShutdown(v bool)`
+
+SetShutdown sets Shutdown field to given value.
+
+### HasShutdown
+
+`func (o *SystemConfig) HasShutdown() bool`
+
+HasShutdown returns a boolean if a field has been set.
 
 ### GetFactoryPreset
 

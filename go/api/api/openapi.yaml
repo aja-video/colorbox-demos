@@ -840,34 +840,48 @@ components:
   schemas:
     SystemConfig:
       example:
-        reboot: true
+        reboot: false
         hostName: hostName
-        updateRequest: true
-        identify: true
+        updateRequest: false
+        identify: false
         authenticationEnable: false
-        ssdpEnable: true
-        factoryReset: true
+        refresh: false
+        ssdpEnable: false
+        factoryReset: false
         startupPreset: 6
         systemOrganizationName: systemOrganizationName
-        factoryPreset: true
+        factoryPreset: false
         previewAncEnable: false
         fanSpeed: 20.421118856755793
+        shutdown: false
       properties:
         hostName:
           type: string
         systemOrganizationName:
           type: string
         ssdpEnable:
+          default: false
           type: boolean
         identify:
+          default: false
           type: boolean
         updateRequest:
+          default: false
           type: boolean
         reboot:
+          default: false
+          type: boolean
+        refresh:
+          default: false
+          type: boolean
+        shutdown:
+          default: false
           type: boolean
         factoryPreset:
+          default: false
           type: boolean
         factoryReset:
+          default: false
           type: boolean
         transformMode:
           $ref: '#/components/schemas/TransformMode'

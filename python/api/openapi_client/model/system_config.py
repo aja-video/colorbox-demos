@@ -105,6 +105,8 @@ class SystemConfig(ModelNormal):
             'identify': (bool,),  # noqa: E501
             'update_request': (bool,),  # noqa: E501
             'reboot': (bool,),  # noqa: E501
+            'refresh': (bool,),  # noqa: E501
+            'shutdown': (bool,),  # noqa: E501
             'factory_preset': (bool,),  # noqa: E501
             'factory_reset': (bool,),  # noqa: E501
             'transform_mode': (TransformMode,),  # noqa: E501
@@ -126,6 +128,8 @@ class SystemConfig(ModelNormal):
         'identify': 'identify',  # noqa: E501
         'update_request': 'updateRequest',  # noqa: E501
         'reboot': 'reboot',  # noqa: E501
+        'refresh': 'refresh',  # noqa: E501
+        'shutdown': 'shutdown',  # noqa: E501
         'factory_preset': 'factoryPreset',  # noqa: E501
         'factory_reset': 'factoryReset',  # noqa: E501
         'transform_mode': 'transformMode',  # noqa: E501
@@ -178,12 +182,14 @@ class SystemConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             host_name (str): [optional]  # noqa: E501
             system_organization_name (str): [optional]  # noqa: E501
-            ssdp_enable (bool): [optional]  # noqa: E501
-            identify (bool): [optional]  # noqa: E501
-            update_request (bool): [optional]  # noqa: E501
-            reboot (bool): [optional]  # noqa: E501
-            factory_preset (bool): [optional]  # noqa: E501
-            factory_reset (bool): [optional]  # noqa: E501
+            ssdp_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            identify (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            update_request (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            reboot (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            refresh (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            shutdown (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            factory_preset (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            factory_reset (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             transform_mode (TransformMode): [optional]  # noqa: E501
             preview_anc_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             authentication_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
@@ -272,12 +278,14 @@ class SystemConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             host_name (str): [optional]  # noqa: E501
             system_organization_name (str): [optional]  # noqa: E501
-            ssdp_enable (bool): [optional]  # noqa: E501
-            identify (bool): [optional]  # noqa: E501
-            update_request (bool): [optional]  # noqa: E501
-            reboot (bool): [optional]  # noqa: E501
-            factory_preset (bool): [optional]  # noqa: E501
-            factory_reset (bool): [optional]  # noqa: E501
+            ssdp_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            identify (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            update_request (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            reboot (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            refresh (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            shutdown (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            factory_preset (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            factory_reset (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             transform_mode (TransformMode): [optional]  # noqa: E501
             preview_anc_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             authentication_enable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
