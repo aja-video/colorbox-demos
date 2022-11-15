@@ -38,6 +38,10 @@ SystemConfig::SystemConfig()
     m_UpdateRequestIsSet = false;
     m_Reboot = false;
     m_RebootIsSet = false;
+    m_Refresh = false;
+    m_RefreshIsSet = false;
+    m_Shutdown = false;
+    m_ShutdownIsSet = false;
     m_FactoryPreset = false;
     m_FactoryPresetIsSet = false;
     m_FactoryReset = false;
@@ -128,6 +132,14 @@ web::json::value SystemConfig::toJson() const
     if(m_RebootIsSet)
     {
         val[utility::conversions::to_string_t(U("reboot"))] = ModelBase::toJson(m_Reboot);
+    }
+    if(m_RefreshIsSet)
+    {
+        val[utility::conversions::to_string_t(U("refresh"))] = ModelBase::toJson(m_Refresh);
+    }
+    if(m_ShutdownIsSet)
+    {
+        val[utility::conversions::to_string_t(U("shutdown"))] = ModelBase::toJson(m_Shutdown);
     }
     if(m_FactoryPresetIsSet)
     {
@@ -223,6 +235,26 @@ bool SystemConfig::fromJson(const web::json::value& val)
             bool refVal_reboot;
             ok &= ModelBase::fromJson(fieldValue, refVal_reboot);
             setReboot(refVal_reboot);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("refresh"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("refresh")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_refresh;
+            ok &= ModelBase::fromJson(fieldValue, refVal_refresh);
+            setRefresh(refVal_refresh);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("shutdown"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("shutdown")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_shutdown;
+            ok &= ModelBase::fromJson(fieldValue, refVal_shutdown);
+            setShutdown(refVal_shutdown);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("factoryPreset"))))
@@ -331,6 +363,14 @@ void SystemConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("reboot")), m_Reboot));
     }
+    if(m_RefreshIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("refresh")), m_Refresh));
+    }
+    if(m_ShutdownIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("shutdown")), m_Shutdown));
+    }
     if(m_FactoryPresetIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("factoryPreset")), m_FactoryPreset));
@@ -405,6 +445,18 @@ bool SystemConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         bool refVal_reboot;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("reboot"))), refVal_reboot );
         setReboot(refVal_reboot);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("refresh"))))
+    {
+        bool refVal_refresh;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("refresh"))), refVal_refresh );
+        setRefresh(refVal_refresh);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("shutdown"))))
+    {
+        bool refVal_shutdown;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("shutdown"))), refVal_shutdown );
+        setShutdown(refVal_shutdown);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("factoryPreset"))))
     {
@@ -590,6 +642,52 @@ bool SystemConfig::rebootIsSet() const
 void SystemConfig::unsetReboot()
 {
     m_RebootIsSet = false;
+}
+
+
+bool SystemConfig::isRefresh() const
+{
+    return m_Refresh;
+}
+
+void SystemConfig::setRefresh(bool value)
+{
+	bool v = value;
+    m_Refresh = v;
+    m_RefreshIsSet = true;
+}
+
+bool SystemConfig::refreshIsSet() const
+{
+    return m_RefreshIsSet;
+}
+
+void SystemConfig::unsetRefresh()
+{
+    m_RefreshIsSet = false;
+}
+
+
+bool SystemConfig::isShutdown() const
+{
+    return m_Shutdown;
+}
+
+void SystemConfig::setShutdown(bool value)
+{
+	bool v = value;
+    m_Shutdown = v;
+    m_ShutdownIsSet = true;
+}
+
+bool SystemConfig::shutdownIsSet() const
+{
+    return m_ShutdownIsSet;
+}
+
+void SystemConfig::unsetShutdown()
+{
+    m_ShutdownIsSet = false;
 }
 
 

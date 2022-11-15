@@ -53,6 +53,12 @@ void OAISystemConfig::initializeModel() {
     m_reboot_isSet = false;
     m_reboot_isValid = false;
 
+    m_refresh_isSet = false;
+    m_refresh_isValid = false;
+
+    m_shutdown_isSet = false;
+    m_shutdown_isValid = false;
+
     m_factory_preset_isSet = false;
     m_factory_preset_isValid = false;
 
@@ -101,6 +107,12 @@ void OAISystemConfig::fromJsonObject(QJsonObject json) {
 
     m_reboot_isValid = ::OpenAPI::fromJsonValue(m_reboot, json[QString("reboot")]);
     m_reboot_isSet = !json[QString("reboot")].isNull() && m_reboot_isValid;
+
+    m_refresh_isValid = ::OpenAPI::fromJsonValue(m_refresh, json[QString("refresh")]);
+    m_refresh_isSet = !json[QString("refresh")].isNull() && m_refresh_isValid;
+
+    m_shutdown_isValid = ::OpenAPI::fromJsonValue(m_shutdown, json[QString("shutdown")]);
+    m_shutdown_isSet = !json[QString("shutdown")].isNull() && m_shutdown_isValid;
 
     m_factory_preset_isValid = ::OpenAPI::fromJsonValue(m_factory_preset, json[QString("factoryPreset")]);
     m_factory_preset_isSet = !json[QString("factoryPreset")].isNull() && m_factory_preset_isValid;
@@ -152,6 +164,12 @@ QJsonObject OAISystemConfig::asJsonObject() const {
     }
     if (m_reboot_isSet) {
         obj.insert(QString("reboot"), ::OpenAPI::toJsonValue(m_reboot));
+    }
+    if (m_refresh_isSet) {
+        obj.insert(QString("refresh"), ::OpenAPI::toJsonValue(m_refresh));
+    }
+    if (m_shutdown_isSet) {
+        obj.insert(QString("shutdown"), ::OpenAPI::toJsonValue(m_shutdown));
     }
     if (m_factory_preset_isSet) {
         obj.insert(QString("factoryPreset"), ::OpenAPI::toJsonValue(m_factory_preset));
@@ -284,6 +302,42 @@ bool OAISystemConfig::is_reboot_Set() const{
 
 bool OAISystemConfig::is_reboot_Valid() const{
     return m_reboot_isValid;
+}
+
+
+bool OAISystemConfig::isRefresh() const {
+    return m_refresh;
+}
+void OAISystemConfig::setRefresh(const bool &refresh) {
+	bool v = refresh;
+	this->m_refresh = v;
+    this->m_refresh_isSet = true;
+}
+
+bool OAISystemConfig::is_refresh_Set() const{
+    return m_refresh_isSet;
+}
+
+bool OAISystemConfig::is_refresh_Valid() const{
+    return m_refresh_isValid;
+}
+
+
+bool OAISystemConfig::isShutdown() const {
+    return m_shutdown;
+}
+void OAISystemConfig::setShutdown(const bool &shutdown) {
+	bool v = shutdown;
+	this->m_shutdown = v;
+    this->m_shutdown_isSet = true;
+}
+
+bool OAISystemConfig::is_shutdown_Set() const{
+    return m_shutdown_isSet;
+}
+
+bool OAISystemConfig::is_shutdown_Valid() const{
+    return m_shutdown_isValid;
 }
 
 
@@ -464,6 +518,16 @@ bool OAISystemConfig::isSet() const {
         }
 
         if (m_reboot_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_refresh_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_shutdown_isSet) {
             isObjectUpdated = true;
             break;
         }
