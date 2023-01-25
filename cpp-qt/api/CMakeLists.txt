@@ -24,6 +24,7 @@ add_library(${PROJECT_NAME}
     OAIBbcConfig.cpp
     OAIBitDepth.cpp
     OAICSCFilter.cpp
+    OAICalibrationPattern.cpp
     OAIColorCorrector.cpp
     OAIColorSpace.cpp
     OAIColorfrontConfig.cpp
@@ -58,6 +59,8 @@ add_library(${PROJECT_NAME}
     OAIOrionSourceRange.cpp
     OAIOutputConfig.cpp
     OAIOverlay.cpp
+    OAIPatternColor.cpp
+    OAIPatternRect.cpp
     OAIPipelineRange.cpp
     OAIPipelineStages.cpp
     OAIPreview.cpp

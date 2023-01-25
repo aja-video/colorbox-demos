@@ -48,6 +48,7 @@ Dialog::Dialog(QWidget *parent)
       _cbConnected(false),
 	  _ui(new Ui::Dialog)
 {
+    _api.useBasicAuth("admin","admin");
     _ui->setupUi(this);
 
 	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
@@ -65,9 +66,9 @@ Dialog::Dialog(QWidget *parent)
 	connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
 
     // UI related Code
-    connect(_ui->ipAddressLineEdit,SIGNAL(editingFinished()),this,SLOT(ipAddressEdited()));
-	connect(_ui->grabFramePushButton,SIGNAL (pressed()),this,SLOT (updateFrameFromColorBox()));
-    connect(_ui->saveAsTiffPushButton,SIGNAL (pressed()),this,SLOT (writeTIFFFile()));
+    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);
+    connect(_ui->grabFramePushButton,&QPushButton::pressed,this,&Dialog::updateFrameFromColorBox);
+    connect(_ui->saveAsTiffPushButton,&QPushButton::pressed,this,&Dialog::writeTIFFFile);
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getSdiInputStatusSignal, this, &Dialog::handleGetSDIStatus);

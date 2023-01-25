@@ -192,7 +192,7 @@
     <rect>
      <x>30</x>
      <y>10</y>
-     <width>221</width>
+     <width>451</width>
      <height>16</height>
     </rect>
    </property>
@@ -204,7 +204,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Choose a Slot</string>
+    <string>Choose a Slot(Double Click to Select Image)</string>
    </property>
   </widget>
  </widget>

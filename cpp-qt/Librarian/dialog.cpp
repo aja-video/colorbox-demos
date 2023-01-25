@@ -59,10 +59,11 @@ Dialog::Dialog(QWidget *parent)
 	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
     // UI related Code
-    connect(_ui->ipAddressLineEdit,SIGNAL(editingFinished()),this,SLOT(ipAddressEdited()));
-    connect(_ui->uploadImageButton,SIGNAL (pressed()),this,SLOT (handleUploadImageButton()));
-    connect(_ui->downloadImageButton,SIGNAL (pressed()),this,SLOT (handleDownloadImageButton()));
-    connect(_ui->selectImageButton,SIGNAL (pressed()),this,SLOT (handleSelectImageButton()));
+    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);
+    connect(_ui->uploadImageButton,&QPushButton::pressed,this,&Dialog::handleUploadImageButton);
+    connect(_ui->downloadImageButton,&QPushButton::pressed,this,&Dialog::handleDownloadImageButton);
+    connect(_ui->selectImageButton,&QPushButton::pressed,this,&Dialog::handleSelectImageButton);
+    connect(_ui->libraryList,&QListWidget::itemDoubleClicked,this,&Dialog::handleSelectImageButton);
 
     // API related slots
     connect(&_api, &OAIDefaultApi::uploadFileSignal, this, &Dialog::handleUploadFile);
@@ -86,6 +87,7 @@ Dialog::~Dialog()
     saveSettings();
     delete _ui;
 }
+
 
 void Dialog::recallSettings()
 {
@@ -284,6 +286,13 @@ void Dialog::handleSelectImageButton()
 
 }
 
+void Dialog::keyPressEvent(QKeyEvent *event)
+{
+    if(  (event->key() == Qt::Key_Return) )
+    {
+         handleSelectImageButton();
+    }
 
+}
 
 

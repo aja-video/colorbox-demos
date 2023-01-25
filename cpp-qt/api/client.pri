@@ -6,6 +6,7 @@ HEADERS += \
     $${PWD}/OAIBbcConfig.h \
     $${PWD}/OAIBitDepth.h \
     $${PWD}/OAICSCFilter.h \
+    $${PWD}/OAICalibrationPattern.h \
     $${PWD}/OAIColorCorrector.h \
     $${PWD}/OAIColorSpace.h \
     $${PWD}/OAIColorfrontConfig.h \
@@ -40,6 +41,8 @@ HEADERS += \
     $${PWD}/OAIOrionSourceRange.h \
     $${PWD}/OAIOutputConfig.h \
     $${PWD}/OAIOverlay.h \
+    $${PWD}/OAIPatternColor.h \
+    $${PWD}/OAIPatternRect.h \
     $${PWD}/OAIPipelineRange.h \
     $${PWD}/OAIPipelineStages.h \
     $${PWD}/OAIPreview.h \
@@ -82,6 +85,7 @@ SOURCES += \
     $${PWD}/OAIBbcConfig.cpp \
     $${PWD}/OAIBitDepth.cpp \
     $${PWD}/OAICSCFilter.cpp \
+    $${PWD}/OAICalibrationPattern.cpp \
     $${PWD}/OAIColorCorrector.cpp \
     $${PWD}/OAIColorSpace.cpp \
     $${PWD}/OAIColorfrontConfig.cpp \
@@ -116,6 +120,8 @@ SOURCES += \
     $${PWD}/OAIOrionSourceRange.cpp \
     $${PWD}/OAIOutputConfig.cpp \
     $${PWD}/OAIOverlay.cpp \
+    $${PWD}/OAIPatternColor.cpp \
+    $${PWD}/OAIPatternRect.cpp \
     $${PWD}/OAIPipelineRange.cpp \
     $${PWD}/OAIPipelineStages.cpp \
     $${PWD}/OAIPreview.cpp \

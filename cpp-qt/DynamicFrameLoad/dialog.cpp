@@ -54,10 +54,19 @@ Dialog::Dialog(QWidget *parent)
 	connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
 
     // UI related Code
-    connect(_ui->ipAddressLineEdit,SIGNAL(editingFinished()),this,SLOT(ipAddressEdited()));
-    connect(_ui->loadImagepushButton,SIGNAL (pressed()),this,SLOT (handleLoadImageButton()));
-    connect(_ui->setFrameBufferValueButton,SIGNAL (released()),this,SLOT (handleSetFrameBufferValueButton()));
-    connect(_ui->sendFramePushButton,SIGNAL (pressed()),this,SLOT (updateFrameToColorBox()));
+    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);
+    connect(_ui->loadImagepushButton,&QPushButton::pressed,this,&Dialog::handleLoadImageButton);
+    connect(_ui->setFrameBufferValueButton,&QPushButton::released,this,&Dialog::handleSetFrameBufferValueButton);
+    connect(_ui->sendFramePushButton,&QPushButton::pressed,this,&Dialog::updateFrameToColorBox);
+    connect(_ui->calibrationCheckBox,&QCheckBox::clicked,this,&Dialog::handleCalibrationCheckbox);
+    connect(_ui->xStartSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
+        [=](double value){ handleSpinBoxes(value); });
+    connect(_ui->yStartSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
+        [=](double value){ handleSpinBoxes(value); });
+    connect(_ui->xWidthSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
+        [=](double value){ handleSpinBoxes(value); });
+    connect(_ui->yHeightSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
+        [=](double value){ handleSpinBoxes(value); });
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getFrameStoreSignal, this, &Dialog::handleGetFrameStore);
@@ -194,6 +203,7 @@ void Dialog::updateFrameToColorBox()
 
             ba.prepend("FS02");
             emit loadFrame(ba);
+
         }
 
     }
@@ -249,6 +259,61 @@ void Dialog::handleLoadImageButton()
         qDebug() << "reading TiffFile";
         loadTIFFFile(fileName);
     }
+
+}
+
+void Dialog::handleSpinBoxes(double value)
+{
+    bool calibrationBoxChecked = _ui->calibrationCheckBox->isChecked();
+    if ( _cbConnected && calibrationBoxChecked)
+    {
+        qDebug() << "Handle Spin Box";
+        OAIFrameStore frameStore;
+        double xStart = _ui->xStartSpinBox->value();
+        double yStart = _ui->yStartSpinBox->value();
+        double xWidth = _ui->xWidthSpinBox->value();
+        double yHeight = _ui->yHeightSpinBox->value();
+        frameStore.setEnabled(true);
+        frameStore.setDynamic(true);
+
+        OAIVideoFormat format;
+        format.setValue(OAIVideoFormat::eOAIVideoFormat::_1080P23_98);
+        frameStore.setFormat(format);
+        _api.setFrameStore(frameStore);
+
+        OAICalibrationPattern calibration;
+        OAIPatternColor bgColor;
+        bgColor.setDepth(12);
+        bgColor.setRed(0);
+        bgColor.setBlue(0);
+        bgColor.setGreen(0);
+        OAIPatternColor fgColor;
+        fgColor.setDepth(12);
+        fgColor.setRed(_ui->redSpinBox->value());
+        fgColor.setBlue(_ui->greenSpinBox->value());
+        fgColor.setGreen(_ui->blueSpinBox->value());
+        OAIPatternRect rect;
+        rect.setXstart(xStart);
+        rect.setYstart(yStart);
+        rect.setWidth(xWidth);
+        rect.setHeight(yHeight);
+        calibration.setBgColor(bgColor);
+        calibration.setFgColor(fgColor);
+        calibration.setFgRect(rect);
+        _api.setCalibrationPattern(calibration);
+
+        // show same box on local preview
+        setCalibrationPattern(calibration);
+
+        this->setWindowTitle("Calibration Box");
+    }
+
+}
+
+void Dialog::handleCalibrationCheckbox(bool checked)
+{
+    if ( checked )
+        handleSpinBoxes(0);
 
 }
 
@@ -425,4 +490,81 @@ void Dialog::updatePreview()
     previewImage = previewImage.scaled(_ui->originalPreview->width(),_ui->originalPreview->height(),Qt::IgnoreAspectRatio,Qt::FastTransformation);
     QPixmap pixmap = QPixmap::fromImage(previewImage);
     _ui->originalPreview->setPixmap(pixmap);
+}
+
+void Dialog::setCalibrationPattern(const OpenAPI::OAICalibrationPattern& calibrationPattern)
+{
+    qDebug() << "setCalibrationPattern";
+
+        QElapsedTimer timer;
+        timer.start();
+
+        OpenAPI::OAIPatternColor bgColor = calibrationPattern.getBgColor();
+        OpenAPI::OAIPatternColor fgColor = calibrationPattern.getFgColor();
+        uint16_t bgRed = bgColor.getRed()<<6;
+        uint16_t bgGreen = bgColor.getGreen()<<6;
+        uint16_t bgBlue = bgColor.getBlue()<<6;
+        uint16_t boxRed = fgColor.getRed()<<6;
+        uint16_t boxGreen = fgColor.getGreen()<<6;
+        uint16_t boxBlue = fgColor.getBlue()<<6;
+
+        OpenAPI::OAIPatternRect rect = calibrationPattern.getFgRect();
+        float xStart = rect.getXstart();
+        float yStart = rect.getYstart();
+        float xSize = rect.getWidth();
+        float ySize = rect.getHeight();
+
+        _frameBuffer.resize(static_cast<int32_t>(_width*_height*6));
+
+
+        uint32_t numBoxLines;
+        uint32_t numBoxPixelsPerLine;
+        uint32_t firstBoxLine;
+        uint32_t firstBoxPixel;
+        firstBoxPixel = xStart*_width;
+        if ( firstBoxPixel >= _width)
+            firstBoxPixel = 0;
+
+        firstBoxLine = yStart*_height;
+        if ( firstBoxLine >= _height)
+            firstBoxLine = 0;
+
+        numBoxPixelsPerLine = xSize*(_width-1);
+        if ( (firstBoxPixel+numBoxPixelsPerLine) >= _width)
+            numBoxPixelsPerLine = (_width-firstBoxPixel);
+
+        numBoxLines = ySize*(_height-1);
+        if ( (firstBoxLine+numBoxLines) >= _height )
+            numBoxLines = (_height-firstBoxLine);
+
+        qDebug() << firstBoxPixel << firstBoxLine << numBoxPixelsPerLine << numBoxLines;
+
+        RGB16BitUIntValues Box{boxRed,boxGreen,boxBlue};
+        RGB16BitUIntValues Bkgd{bgRed,bgGreen,bgBlue};
+
+        RGB16BitUIntValues* buffer = _frameBuffer.data();
+        for  ( uint32_t lineCount = 0;lineCount < _height; lineCount++)
+        {
+            for  ( uint32_t pixelCount = 0;pixelCount < _width; pixelCount++)
+            {
+                if ( lineCount  < firstBoxLine || lineCount > (firstBoxLine+numBoxLines))
+                {
+                    *buffer++ = Bkgd;
+                }
+                else
+                {
+                    if ( pixelCount  < firstBoxPixel || pixelCount > (firstBoxPixel+numBoxPixelsPerLine))
+                    {
+                        *buffer++ = Bkgd;
+                    }
+                    else
+                    {
+                        *buffer++ = Box;
+                    }
+                }
+
+            }
+        }
+        updatePreview();
+
 }
