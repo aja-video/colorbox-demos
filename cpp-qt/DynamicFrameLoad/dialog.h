@@ -1,7 +1,3 @@
-/*
- * SPDX-License-Identifier: MIT
- * Copyright (C) 2021 - 2022 AJA Video Systems, Inc.
- */
 #ifndef DIALOG_H
 #define DIALOG_H
 
@@ -29,6 +25,9 @@ public slots:
     void handleSetFrameBufferValueButton();
 	void updateFrameToColorBox();
 
+    void handleSpinBoxes(double value);
+    void handleCalibrationCheckbox(bool checked);
+
     // WebSocket releated slots
     void onConnected();
     void onDisconnected();
@@ -44,6 +43,7 @@ signals:
 
 protected:
     void updatePreview();
+    void setCalibrationPattern(const OpenAPI::OAICalibrationPattern& calibrationPattern);
     void loadTIFFFile(QString fileName);
     void loadPNGFile(QString fileName);
     void recallSettings();

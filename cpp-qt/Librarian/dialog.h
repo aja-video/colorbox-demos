@@ -6,6 +6,7 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include <QMouseEvent>
 #include "colorboxdemocommon.h"
 #include "ajawebsocketinterface.h"
 #include <OAIDefaultApi.h>
@@ -47,6 +48,7 @@ protected:
 
 	bool _cbConnected;
 
+    void keyPressEvent(QKeyEvent *);
 
 	OpenAPI::OAIDefaultApi _api;
 	QString _currentIPAddress;

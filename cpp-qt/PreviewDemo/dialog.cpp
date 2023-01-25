@@ -47,6 +47,7 @@ Dialog::Dialog(QWidget *parent)
       _cbConnected(false),
       _ui(new Ui::Dialog)
 {
+    _api.useBasicAuth("admin","admin");
     _ui->setupUi(this);
 
 	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);

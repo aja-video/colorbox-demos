@@ -48,6 +48,7 @@ Dialog::Dialog(QWidget *parent)
 	  _cbConnected(false),
 	  _ui(new Ui::Dialog)
 {
+    _api.useBasicAuth("admin","admin");
     _ui->setupUi(this);
 
 	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
@@ -67,16 +68,15 @@ Dialog::Dialog(QWidget *parent)
     // UI related Signals/Slots
     connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this, &Dialog::ipAddressEdited);
     connect(_ui->resetPushButton,&QPushButton::pressed,this,&Dialog::resetParameters);
+    connect(_ui->lutChoiceComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,  &Dialog::dynmicLutChoiceChanged);
+    connect(_ui->rCheckBox,&QCheckBox::stateChanged,this,&Dialog::updateColorBox);
+    connect(_ui->gCheckBox,&QCheckBox::stateChanged,this,&Dialog::updateColorBox);
+    connect(_ui->bCheckBox,&QCheckBox::stateChanged,this,&Dialog::updateColorBox);
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getPipelineStagesSignal, this, &Dialog::handleGetStages);
     connect(&_api, &OAIDefaultApi::getPipelineStagesSignalE, this, &Dialog::handleGetStagesError);
 
-    connect(_ui->lutChoiceComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(dynmicLutChoiceChanged(int)));
-
-	connect(_ui->rCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateColorBox(int)));
-	connect(_ui->gCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateColorBox(int)));
-	connect(_ui->bCheckBox,SIGNAL(stateChanged(int)),this,SLOT(updateColorBox(int)));
 
     _webSocketThread->start();
 

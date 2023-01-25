@@ -42,14 +42,15 @@ Dialog::Dialog(QWidget *parent)
       _printMatrix(false),
       _ui(new Ui::Dialog)
 {
+    _api.useBasicAuth("admin","admin");
     _ui->setupUi(this);
 
 	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
+    // Web Socket BoilerPlate Code
     _webSocketThread = new QThread;
     _webSocketLoad = new AJAWebSocketInterface();
     _webSocketLoad->moveToThread(_webSocketThread);
-
     connect(_webSocketThread, &QThread::finished, _webSocketLoad, &QObject::deleteLater);
     connect(_webSocketLoad, &AJAWebSocketInterface::connected, this, &Dialog::onConnected);
     connect(_webSocketLoad, &AJAWebSocketInterface::disconnected, this, &Dialog::onDisconnected);
@@ -57,10 +58,10 @@ Dialog::Dialog(QWidget *parent)
 	connect(this, &Dialog::load, _webSocketLoad, &AJAWebSocketInterface::sendBinaryMessage);
 	connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
 
+    // UI related slots
     connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this, &Dialog::ipAddressEdited);
     connect(_ui->resetPushButton,&QPushButton::pressed,this,&Dialog::resetParameters);
-
-    connect(_ui->mtxChoiceComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(mtxChoiceChanged(int)));
+    connect(_ui->mtxChoiceComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,  &Dialog::mtxChoiceChanged);
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getPipelineStagesSignal, this, &Dialog::handleGetStages);

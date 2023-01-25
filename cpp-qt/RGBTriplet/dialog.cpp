@@ -34,6 +34,7 @@ Dialog::Dialog(QWidget *parent)
       _cbConnected(false),
 	  _ui(new Ui::Dialog)
 {
+    _api.useBasicAuth("admin","admin");
     _ui->setupUi(this);
 
 	setWindowTitle(kAppName);
@@ -52,18 +53,17 @@ Dialog::Dialog(QWidget *parent)
 	connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
 
     // UI related Code
-    connect(_ui->ipAddressLineEdit,SIGNAL(editingFinished()),this,SLOT(ipAddressEdited()));
-	connect(_ui->requestDataButton,SIGNAL (pressed()),this,SLOT (generateRequestAndSend()));
+    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);
+    connect(_ui->requestDataButton,&QPushButton::pressed,this,&Dialog::generateRequestAndSend);
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getFrameStoreSignal, this, &Dialog::handleGetFrameStore);
     connect(&_api, &OAIDefaultApi::getFrameStoreSignalE, this, &Dialog::handleGetFrameStoreError);
 
+    _webSocketThread->start();
+
     recallSettings();
-
-	_webSocketThread->start();
-
-	ipAddressEdited();
+    ipAddressEdited();
 
     this->setFocus();
 }
