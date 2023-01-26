@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  *
- * Copyright (C) 2020-2022 AJA Video Systems, Inc.  All rights reserved.
+ * Copyright (C) 2020-2022 AJA Video Systems Inc.  All rights reserved.
  */
 
 
@@ -37,6 +37,8 @@ Status::Status()
     m_SystemOsNameIsSet = false;
     m_SystemSerialNumber = utility::conversions::to_string_t("");
     m_SystemSerialNumberIsSet = false;
+    m_SystemBoardRevision = utility::conversions::to_string_t("");
+    m_SystemBoardRevisionIsSet = false;
     m_SystemCatalogNumber = utility::conversions::to_string_t("");
     m_SystemCatalogNumberIsSet = false;
     m_SystemAppSwVersion = utility::conversions::to_string_t("");
@@ -110,6 +112,12 @@ bool Status::applyMinMaxConstraints()
 		bool systemSerialNumberChanged = false;
 		utility::string_t v = getSystemSerialNumber();
 		if (systemSerialNumberChanged) { setSystemSerialNumber(v); anyMinMaxValueChanged = true; }
+	}
+	if (systemBoardRevisionIsSet())
+	{
+		bool systemBoardRevisionChanged = false;
+		utility::string_t v = getSystemBoardRevision();
+		if (systemBoardRevisionChanged) { setSystemBoardRevision(v); anyMinMaxValueChanged = true; }
 	}
 	if (systemCatalogNumberIsSet())
 	{
@@ -196,6 +204,10 @@ web::json::value Status::toJson() const
     if(m_SystemSerialNumberIsSet)
     {
         val[utility::conversions::to_string_t(U("systemSerialNumber"))] = ModelBase::toJson(m_SystemSerialNumber);
+    }
+    if(m_SystemBoardRevisionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("systemBoardRevision"))] = ModelBase::toJson(m_SystemBoardRevision);
     }
     if(m_SystemCatalogNumberIsSet)
     {
@@ -323,6 +335,16 @@ bool Status::fromJson(const web::json::value& val)
             utility::string_t refVal_systemSerialNumber;
             ok &= ModelBase::fromJson(fieldValue, refVal_systemSerialNumber);
             setSystemSerialNumber(refVal_systemSerialNumber);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("systemBoardRevision"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("systemBoardRevision")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_systemBoardRevision;
+            ok &= ModelBase::fromJson(fieldValue, refVal_systemBoardRevision);
+            setSystemBoardRevision(refVal_systemBoardRevision);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("systemCatalogNumber"))))
@@ -511,6 +533,10 @@ void Status::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("systemSerialNumber")), m_SystemSerialNumber));
     }
+    if(m_SystemBoardRevisionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("systemBoardRevision")), m_SystemBoardRevision));
+    }
     if(m_SystemCatalogNumberIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("systemCatalogNumber")), m_SystemCatalogNumber));
@@ -617,6 +643,12 @@ bool Status::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         utility::string_t refVal_systemSerialNumber;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("systemSerialNumber"))), refVal_systemSerialNumber );
         setSystemSerialNumber(refVal_systemSerialNumber);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("systemBoardRevision"))))
+    {
+        utility::string_t refVal_systemBoardRevision;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("systemBoardRevision"))), refVal_systemBoardRevision );
+        setSystemBoardRevision(refVal_systemBoardRevision);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("systemCatalogNumber"))))
     {
@@ -852,6 +884,30 @@ bool Status::systemSerialNumberIsSet() const
 void Status::unsetSystemSerialNumber()
 {
     m_SystemSerialNumberIsSet = false;
+}
+
+
+
+utility::string_t Status::getSystemBoardRevision() const
+{
+    return m_SystemBoardRevision;
+}
+
+void Status::setSystemBoardRevision(const utility::string_t& value)
+{
+	utility::string_t v = value;
+    m_SystemBoardRevision = v;
+    m_SystemBoardRevisionIsSet = true;
+}
+
+bool Status::systemBoardRevisionIsSet() const
+{
+    return m_SystemBoardRevisionIsSet;
+}
+
+void Status::unsetSystemBoardRevision()
+{
+    m_SystemBoardRevisionIsSet = false;
 }
 
 

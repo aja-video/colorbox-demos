@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  *
- * Copyright (C) 2020-2022 AJA Video Systems, Inc.  All rights reserved.
+ * Copyright (C) 2020-2022 AJA Video Systems Inc.  All rights reserved.
  */
 
 /*

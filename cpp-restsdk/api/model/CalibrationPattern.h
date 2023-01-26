@@ -13,18 +13,19 @@
  */
 
 /*
- * BbcConfig.h
+ * CalibrationPattern.h
  *
- * 
+ * Holds the information for a calibration pattern patch
  */
 
-#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_BbcConfig_H_
-#define ORG_OPENAPITOOLS_CLIENT_MODEL_BbcConfig_H_
+#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_CalibrationPattern_H_
+#define ORG_OPENAPITOOLS_CLIENT_MODEL_CalibrationPattern_H_
 
 
 #include "ModelBase.h"
 
-#include "model/Stage.h"
+#include "model/PatternRect.h"
+#include "model/PatternColor.h"
 
 namespace org {
 namespace openapitools {
@@ -33,14 +34,14 @@ namespace model {
 
 
 /// <summary>
-/// 
+/// Holds the information for a calibration pattern patch
 /// </summary>
-class  BbcConfig
+class  CalibrationPattern
     : public ModelBase
 {
 public:
-    BbcConfig();
-    virtual ~BbcConfig();
+    CalibrationPattern();
+    virtual ~CalibrationPattern();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -55,46 +56,46 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// BbcConfig members
+    /// CalibrationPattern members
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<Stage> getLut1d1() const;
-    bool lut1d1IsSet() const;
-    void unsetLut1d_1();
+    std::shared_ptr<PatternColor> getBgColor() const;
+    bool bgColorIsSet() const;
+    void unsetBgColor();
 
-    void setLut1d1(const std::shared_ptr<Stage>& value);
-
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::shared_ptr<Stage> getM3x32() const;
-    bool m3x32IsSet() const;
-    void unsetM3x3_2();
-
-    void setM3x32(const std::shared_ptr<Stage>& value);
+    void setBgColor(const std::shared_ptr<PatternColor>& value);
 
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<Stage> getLut3d1() const;
-    bool lut3d1IsSet() const;
-    void unsetLut3d_1();
+    std::shared_ptr<PatternColor> getFgColor() const;
+    bool fgColorIsSet() const;
+    void unsetFgColor();
 
-    void setLut3d1(const std::shared_ptr<Stage>& value);
+    void setFgColor(const std::shared_ptr<PatternColor>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<PatternRect> getFgRect() const;
+    bool fgRectIsSet() const;
+    void unsetFgRect();
+
+    void setFgRect(const std::shared_ptr<PatternRect>& value);
 
 
 
 protected:
-    std::shared_ptr<Stage> m_Lut1d_1;
-    bool m_Lut1d_1IsSet;
-    std::shared_ptr<Stage> m_M3x3_2;
-    bool m_M3x3_2IsSet;
-    std::shared_ptr<Stage> m_Lut3d_1;
-    bool m_Lut3d_1IsSet;
+    std::shared_ptr<PatternColor> m_BgColor;
+    bool m_BgColorIsSet;
+    std::shared_ptr<PatternColor> m_FgColor;
+    bool m_FgColorIsSet;
+    std::shared_ptr<PatternRect> m_FgRect;
+    bool m_FgRectIsSet;
 };
 
 
@@ -103,4 +104,4 @@ protected:
 }
 }
 
-#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_BbcConfig_H_ */
+#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_CalibrationPattern_H_ */

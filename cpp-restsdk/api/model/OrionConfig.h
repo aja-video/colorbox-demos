@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  *
- * Copyright (C) 2020-2022 AJA Video Systems, Inc.  All rights reserved.
+ * Copyright (C) 2020-2022 AJA Video Systems Inc.  All rights reserved.
  */
 
 /*
@@ -71,6 +71,16 @@ public:
     void unsetEnabled();
 
     void setEnabled(bool value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isComp100() const;
+    bool comp100IsSet() const;
+    void unsetComp100();
+
+    void setComp100(bool value);
 
 
     /// <summary>
@@ -231,6 +241,8 @@ public:
 protected:
     bool m_Enabled;
     bool m_EnabledIsSet;
+    bool m_Comp100;
+    bool m_Comp100IsSet;
     std::shared_ptr<OrionConversion> m_Conversion;
     bool m_ConversionIsSet;
     std::shared_ptr<OrionMode> m_Mode;

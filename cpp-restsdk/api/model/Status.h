@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  *
- * Copyright (C) 2020-2022 AJA Video Systems, Inc.  All rights reserved.
+ * Copyright (C) 2020-2022 AJA Video Systems Inc.  All rights reserved.
  */
 
 /*
@@ -116,6 +116,16 @@ public:
     void unsetSystemSerialNumber();
 
     void setSystemSerialNumber(const utility::string_t& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSystemBoardRevision() const;
+    bool systemBoardRevisionIsSet() const;
+    void unsetSystemBoardRevision();
+
+    void setSystemBoardRevision(const utility::string_t& value);
 
 
     /// <summary>
@@ -282,6 +292,8 @@ protected:
     bool m_SystemOsNameIsSet;
     utility::string_t m_SystemSerialNumber;
     bool m_SystemSerialNumberIsSet;
+    utility::string_t m_SystemBoardRevision;
+    bool m_SystemBoardRevisionIsSet;
     utility::string_t m_SystemCatalogNumber;
     bool m_SystemCatalogNumberIsSet;
     utility::string_t m_SystemAppSwVersion;
