@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **system_uptime** | **str** |  | [optional] 
 **system_os_name** | **str** |  | [optional] 
 **system_serial_number** | **str** |  | [optional] 
+**system_board_revision** | **str** |  | [optional] 
 **system_catalog_number** | **str** |  | [optional] 
 **system_app_sw_version** | **str** |  | [optional] 
 **system_support_info** | **str** |  | [optional] 
