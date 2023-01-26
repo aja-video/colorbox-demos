@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  *
- * Copyright (C) 2020-2022 AJA Video Systems, Inc.  All rights reserved.
+ * Copyright (C) 2020-2022 AJA Video Systems Inc.  All rights reserved.
  */
 
 /*
@@ -27,6 +27,7 @@
 
 #include "model/AncCaptureFilter.h"
 #include "model/BbcConfig.h"
+#include "model/CalibrationPattern.h"
 #include "model/ColorfrontConfig.h"
 #include "model/FrameStore.h"
 #include "HttpContent.h"
@@ -138,6 +139,14 @@ public:
     /// Get the BbcConfig object
     /// </remarks>
     pplx::task<std::shared_ptr<BbcConfig>> getBbcConfig(
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Return the calibration pattern object
+    /// </remarks>
+    pplx::task<std::shared_ptr<CalibrationPattern>> getCalibrationPattern(
     ) const;
     /// <summary>
     /// 
@@ -380,6 +389,16 @@ public:
     /// <param name="bbcConfig">BbcConfig object</param>
     pplx::task<void> setBbcConfig(
         std::shared_ptr<BbcConfig> bbcConfig
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Modify the calibration pattern object
+    /// </remarks>
+    /// <param name="calibrationPattern">CalibrationPattern object</param>
+    pplx::task<void> setCalibrationPattern(
+        std::shared_ptr<CalibrationPattern> calibrationPattern
     ) const;
     /// <summary>
     /// 

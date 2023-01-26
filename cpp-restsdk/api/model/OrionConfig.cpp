@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  *
- * Copyright (C) 2020-2022 AJA Video Systems, Inc.  All rights reserved.
+ * Copyright (C) 2020-2022 AJA Video Systems Inc.  All rights reserved.
  */
 
 
@@ -28,6 +28,8 @@ OrionConfig::OrionConfig()
 {
     m_Enabled = false;
     m_EnabledIsSet = false;
+    m_Comp100 = false;
+    m_Comp100IsSet = false;
     m_ConversionIsSet = false;
     m_ModeIsSet = false;
     m_MethodIsSet = false;
@@ -145,6 +147,10 @@ web::json::value OrionConfig::toJson() const
     {
         val[utility::conversions::to_string_t(U("enabled"))] = ModelBase::toJson(m_Enabled);
     }
+    if(m_Comp100IsSet)
+    {
+        val[utility::conversions::to_string_t(U("comp100"))] = ModelBase::toJson(m_Comp100);
+    }
     if(m_ConversionIsSet)
     {
         val[utility::conversions::to_string_t(U("conversion"))] = ModelBase::toJson(m_Conversion);
@@ -217,6 +223,16 @@ bool OrionConfig::fromJson(const web::json::value& val)
             bool refVal_enabled;
             ok &= ModelBase::fromJson(fieldValue, refVal_enabled);
             setEnabled(refVal_enabled);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("comp100"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("comp100")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_comp100;
+            ok &= ModelBase::fromJson(fieldValue, refVal_comp100);
+            setComp100(refVal_comp100);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("conversion"))))
@@ -375,6 +391,10 @@ void OrionConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enabled")), m_Enabled));
     }
+    if(m_Comp100IsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("comp100")), m_Comp100));
+    }
     if(m_ConversionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("conversion")), m_Conversion));
@@ -447,6 +467,12 @@ bool OrionConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         bool refVal_enabled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enabled"))), refVal_enabled );
         setEnabled(refVal_enabled);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("comp100"))))
+    {
+        bool refVal_comp100;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("comp100"))), refVal_comp100 );
+        setComp100(refVal_comp100);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("conversion"))))
     {
@@ -557,6 +583,29 @@ bool OrionConfig::enabledIsSet() const
 void OrionConfig::unsetEnabled()
 {
     m_EnabledIsSet = false;
+}
+
+
+bool OrionConfig::isComp100() const
+{
+    return m_Comp100;
+}
+
+void OrionConfig::setComp100(bool value)
+{
+	bool v = value;
+    m_Comp100 = v;
+    m_Comp100IsSet = true;
+}
+
+bool OrionConfig::comp100IsSet() const
+{
+    return m_Comp100IsSet;
+}
+
+void OrionConfig::unsetComp100()
+{
+    m_Comp100IsSet = false;
 }
 
 
