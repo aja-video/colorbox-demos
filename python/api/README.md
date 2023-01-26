@@ -53,6 +53,7 @@ from pprint import pprint
 from openapi_client.api import default_api
 from openapi_client.model.anc_capture_filter import AncCaptureFilter
 from openapi_client.model.bbc_config import BbcConfig
+from openapi_client.model.calibration_pattern import CalibrationPattern
 from openapi_client.model.colorfront_config import ColorfrontConfig
 from openapi_client.model.device_idx import DeviceIdx
 from openapi_client.model.frame_store import FrameStore
@@ -112,6 +113,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_all_system_discovers**](docs/DefaultApi.md#get_all_system_discovers) | **GET** /discovers | 
 *DefaultApi* | [**get_anc_capture_filter**](docs/DefaultApi.md#get_anc_capture_filter) | **GET** /ancCaptureFilter | 
 *DefaultApi* | [**get_bbc_config**](docs/DefaultApi.md#get_bbc_config) | **GET** /bbcConfig | 
+*DefaultApi* | [**get_calibration_pattern**](docs/DefaultApi.md#get_calibration_pattern) | **GET** /calibrationPattern | 
 *DefaultApi* | [**get_colorfront_config**](docs/DefaultApi.md#get_colorfront_config) | **GET** /colorfrontConfig | 
 *DefaultApi* | [**get_config_for_given_net_device_index**](docs/DefaultApi.md#get_config_for_given_net_device_index) | **GET** /net/device/{devIdx}/config | 
 *DefaultApi* | [**get_frame_store**](docs/DefaultApi.md#get_frame_store) | **GET** /frameStore | 
@@ -140,6 +142,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**set_all_system_discovers**](docs/DefaultApi.md#set_all_system_discovers) | **PUT** /discovers | 
 *DefaultApi* | [**set_anc_capture_filter**](docs/DefaultApi.md#set_anc_capture_filter) | **PUT** /ancCaptureFilter | 
 *DefaultApi* | [**set_bbc_config**](docs/DefaultApi.md#set_bbc_config) | **PUT** /bbcConfig | 
+*DefaultApi* | [**set_calibration_pattern**](docs/DefaultApi.md#set_calibration_pattern) | **PUT** /calibrationPattern | 
 *DefaultApi* | [**set_colorfront_config**](docs/DefaultApi.md#set_colorfront_config) | **PUT** /colorfrontConfig | 
 *DefaultApi* | [**set_config_for_given_net_device_index**](docs/DefaultApi.md#set_config_for_given_net_device_index) | **PUT** /net/device/{devIdx}/config | 
 *DefaultApi* | [**set_frame_store**](docs/DefaultApi.md#set_frame_store) | **PUT** /frameStore | 
@@ -171,6 +174,7 @@ Class | Method | HTTP request | Description
  - [BbcConfig](docs/BbcConfig.md)
  - [BitDepth](docs/BitDepth.md)
  - [CSCFilter](docs/CSCFilter.md)
+ - [CalibrationPattern](docs/CalibrationPattern.md)
  - [ColorCorrector](docs/ColorCorrector.md)
  - [ColorSpace](docs/ColorSpace.md)
  - [ColorfrontConfig](docs/ColorfrontConfig.md)
@@ -206,6 +210,8 @@ Class | Method | HTTP request | Description
  - [OrionSourceRange](docs/OrionSourceRange.md)
  - [OutputConfig](docs/OutputConfig.md)
  - [Overlay](docs/Overlay.md)
+ - [PatternColor](docs/PatternColor.md)
+ - [PatternRect](docs/PatternRect.md)
  - [PipelineRange](docs/PipelineRange.md)
  - [PipelineStages](docs/PipelineStages.md)
  - [Preview](docs/Preview.md)

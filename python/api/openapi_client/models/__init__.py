@@ -13,6 +13,7 @@ from openapi_client.model.anc_capture_filter import AncCaptureFilter
 from openapi_client.model.bbc_config import BbcConfig
 from openapi_client.model.bit_depth import BitDepth
 from openapi_client.model.csc_filter import CSCFilter
+from openapi_client.model.calibration_pattern import CalibrationPattern
 from openapi_client.model.color_corrector import ColorCorrector
 from openapi_client.model.color_space import ColorSpace
 from openapi_client.model.colorfront_config import ColorfrontConfig
@@ -48,6 +49,8 @@ from openapi_client.model.orion_sdr_eotf import OrionSdrEotf
 from openapi_client.model.orion_source_range import OrionSourceRange
 from openapi_client.model.output_config import OutputConfig
 from openapi_client.model.overlay import Overlay
+from openapi_client.model.pattern_color import PatternColor
+from openapi_client.model.pattern_rect import PatternRect
 from openapi_client.model.pipeline_range import PipelineRange
 from openapi_client.model.pipeline_stages import PipelineStages
 from openapi_client.model.preview import Preview

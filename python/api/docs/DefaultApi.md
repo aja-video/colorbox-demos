@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**get_all_system_discovers**](DefaultApi.md#get_all_system_discovers) | **GET** /discovers | 
 [**get_anc_capture_filter**](DefaultApi.md#get_anc_capture_filter) | **GET** /ancCaptureFilter | 
 [**get_bbc_config**](DefaultApi.md#get_bbc_config) | **GET** /bbcConfig | 
+[**get_calibration_pattern**](DefaultApi.md#get_calibration_pattern) | **GET** /calibrationPattern | 
 [**get_colorfront_config**](DefaultApi.md#get_colorfront_config) | **GET** /colorfrontConfig | 
 [**get_config_for_given_net_device_index**](DefaultApi.md#get_config_for_given_net_device_index) | **GET** /net/device/{devIdx}/config | 
 [**get_frame_store**](DefaultApi.md#get_frame_store) | **GET** /frameStore | 
@@ -40,6 +41,7 @@ Method | HTTP request | Description
 [**set_all_system_discovers**](DefaultApi.md#set_all_system_discovers) | **PUT** /discovers | 
 [**set_anc_capture_filter**](DefaultApi.md#set_anc_capture_filter) | **PUT** /ancCaptureFilter | 
 [**set_bbc_config**](DefaultApi.md#set_bbc_config) | **PUT** /bbcConfig | 
+[**set_calibration_pattern**](DefaultApi.md#set_calibration_pattern) | **PUT** /calibrationPattern | 
 [**set_colorfront_config**](DefaultApi.md#set_colorfront_config) | **PUT** /colorfrontConfig | 
 [**set_config_for_given_net_device_index**](DefaultApi.md#set_config_for_given_net_device_index) | **PUT** /net/device/{devIdx}/config | 
 [**set_frame_store**](DefaultApi.md#set_frame_store) | **PUT** /frameStore | 
@@ -547,6 +549,68 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**BbcConfig**](BbcConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_calibration_pattern**
+> CalibrationPattern get_calibration_pattern()
+
+
+
+Return the calibration pattern object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.calibration_pattern import CalibrationPattern
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_calibration_pattern()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_calibration_pattern: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CalibrationPattern**](CalibrationPattern.md)
 
 ### Authorization
 
@@ -2147,6 +2211,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         system_uptime="system_uptime_example",
         system_os_name="system_os_name_example",
         system_serial_number="system_serial_number_example",
+        system_board_revision="system_board_revision_example",
         system_catalog_number="system_catalog_number_example",
         system_app_sw_version="system_app_sw_version_example",
         system_support_info="system_support_info_example",
@@ -2488,6 +2553,90 @@ with openapi_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bbc_config** | [**BbcConfig**](BbcConfig.md)| BbcConfig object |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_calibration_pattern**
+> set_calibration_pattern(calibration_pattern)
+
+
+
+Modify the calibration pattern object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.calibration_pattern import CalibrationPattern
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    calibration_pattern = CalibrationPattern(
+        bg_color=PatternColor(
+            depth=10,
+            blue=0,
+            green=0,
+            red=0,
+        ),
+        fg_color=PatternColor(
+            depth=10,
+            blue=0,
+            green=0,
+            red=0,
+        ),
+        fg_rect=PatternRect(
+            xstart=0,
+            ystart=0,
+            width=0,
+            height=0,
+        ),
+    ) # CalibrationPattern | CalibrationPattern object
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.set_calibration_pattern(calibration_pattern)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->set_calibration_pattern: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **calibration_pattern** | [**CalibrationPattern**](CalibrationPattern.md)| CalibrationPattern object |
 
 ### Return type
 
@@ -3039,6 +3188,7 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     orion_config = OrionConfig(
         enabled=True,
+        comp100=False,
         conversion=OrionConversion("HLG to SDR"),
         mode=OrionMode("Display Light"),
         method=OrionMethod("MAX(RGB)"),
