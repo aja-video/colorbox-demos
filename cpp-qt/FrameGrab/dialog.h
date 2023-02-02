@@ -37,6 +37,7 @@ public slots:
 	void updateFrameFromColorBox();
 	void updateGrabBinary(const QByteArray &data);
     void writeTIFFFile();
+    void previewChoiceChanged(int choice);
 
 	// WebSocket releated slots
 	void onConnected();
