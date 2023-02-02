@@ -48,7 +48,6 @@ Dialog::Dialog(QWidget *parent)
       _cbConnected(false),
 	  _ui(new Ui::Dialog)
 {
-    _api.useBasicAuth("admin","admin");
     _ui->setupUi(this);
 
 	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
@@ -66,9 +65,11 @@ Dialog::Dialog(QWidget *parent)
 	connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
 
     // UI related Code
-    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);
+    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this, &Dialog::ipAddressEdited);
     connect(_ui->grabFramePushButton,&QPushButton::pressed,this,&Dialog::updateFrameFromColorBox);
     connect(_ui->saveAsTiffPushButton,&QPushButton::pressed,this,&Dialog::writeTIFFFile);
+    connect(_ui->continuousGrabCheckBox,&QCheckBox::pressed,this,&Dialog::updateFrameFromColorBox);
+    connect(_ui->previewComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(previewChoiceChanged(int)));
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getSdiInputStatusSignal, this, &Dialog::handleGetSDIStatus);
@@ -148,6 +149,10 @@ void Dialog::handleGetSDIStatusError(OpenAPI::OAISDI summary, QNetworkReply::Net
 
 }
 
+void Dialog::previewChoiceChanged(int choice)
+{
+    updateFrameFromColorBox();
+}
 void Dialog::onConnected()
 {
     qDebug() << "Connected Web Socket";
@@ -237,12 +242,14 @@ void Dialog::updateGrabBinary(const QByteArray &data)
 	_ui->transferTimeLabel->setText(QString("%1 ms").arg(_timer.elapsed()));
 
 	// test grabbing as fast as possible by triggering another grab
-#if 0
-	if (_cbConnected)
-	{
-		updateFrameFromColorBox();
-	}
-#endif
+    if (_ui->continuousGrabCheckBox->isChecked() )
+    {
+        if (_cbConnected)
+        {
+            updateFrameFromColorBox();
+        }
+    }
+
 	// end test
 }
 
@@ -252,7 +259,7 @@ void Dialog::updateFrameFromColorBox()
 	{
 		_timer.start();
         QString msg("FRAMEGRAB_OUTPUT");
-        if ( _ui->previewComboBox->currentText() == "Input" )
+        if ( _ui->previewComboBox->currentText() == "Grab Input" )
             msg = "FRAMEGRAB_INPUT";
         emit triggerGrab(msg);
     }
