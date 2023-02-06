@@ -59,6 +59,9 @@ Dialog::Dialog(QWidget *parent)
     connect(_ui->setFrameBufferValueButton,&QPushButton::released,this,&Dialog::handleSetFrameBufferValueButton);
     connect(_ui->sendFramePushButton,&QPushButton::pressed,this,&Dialog::updateFrameToColorBox);
     connect(_ui->calibrationCheckBox,&QCheckBox::clicked,this,&Dialog::handleCalibrationCheckbox);
+    connect(_ui->enableOverlaycheckBox,&QCheckBox::clicked,this,&Dialog::handleOverlayCheckbox);
+    connect(_ui->overlayTestLineEdit, &QLineEdit::textChanged,this,&Dialog::handleOverlayTextChanged);
+
     connect(_ui->xStartSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
         [=](double value){ handleSpinBoxes(value); });
     connect(_ui->yStartSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
@@ -78,12 +81,16 @@ Dialog::Dialog(QWidget *parent)
     ipAddressEdited();
 
     _frameBuffer.reserve(1920*1080*6); // Just for demo limit to 1920x1080.
+    _frameBufferWithOverlay.reserve(1920*1080*6); // Just for demo limit to 1920x1080.
 
     _width = 1920;
     _height = 1080;
 
     // Initialize to a color
-    handleSetFrameBufferValueButton();
+    loadTIFFFile("ebu_hdr-hlg_colour_bars_1920_1080_rgb444p16be_lzw.tif");
+    overLayText();
+    updatePreview();
+
 
     this->setFocus();
 }
@@ -174,9 +181,14 @@ void Dialog::updateFrameToColorBox()
     if ( _cbConnected)
     {
         OAIFrameStore frameStore;
+        QByteArray ba;
+        if ( _ui->enableOverlaycheckBox->isChecked())
+            ba.setRawData(reinterpret_cast<const char*>(_frameBufferWithOverlay.data()),_frameBufferWithOverlay.size());
+        else
+            ba.setRawData(reinterpret_cast<const char*>(_frameBuffer.data()),_frameBuffer.size());
 
-        QByteArray ba(reinterpret_cast<const char*>(_frameBuffer.data()),_frameBuffer.size());
-        if (_alphaMode ) /// This will be used for overlays.
+        //QByteArray ba(reinterpret_cast<const char*>(_frameBuffer.data()),_frameBuffer.size());
+        if (_alphaMode ) /// This will be used for overlays. NOT Functional Yet.
         {
             ////////////////////Currently not working
             OAIVideoFormat format;
@@ -218,6 +230,48 @@ void Dialog::updateFrameToColorBox()
     _ui->transferTimeLabel->setText(QString("%1 ms").arg(timer.elapsed()));
 
 }
+#include <QPainter>
+#include <QFontDatabase>
+void Dialog::overLayText()
+{
+    QImage image(QSize(_width,_height),QImage::Format_ARGB32);
+    memset(image.bits(),0,image.sizeInBytes());
+    QPainter painter(&image);
+    painter.setFont(QFont("Ubuntu Mono", 69, QFont::Bold));
+    QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+    QColor penColor ( 220, 220 , 220, 255 );
+    painter.setPen(QPen(penColor));
+    painter.drawText(QRect(100,100,1900,900),_ui->overlayTestLineEdit->text());
+
+    _frameBufferWithOverlay = _frameBuffer;
+    uint8_t* ovl = image.bits();
+    uint32_t ovlSize = image.sizeInBytes();
+    uint16_t* img = (uint16_t*)_frameBufferWithOverlay.data();
+    uint32_t b = 0;
+    uint32_t g = 0;
+    uint32_t r = 0;
+    uint32_t a = 0;
+    int size = _width * 6 * _height;
+    // Composite the watermark over the output image
+    for (uint32_t i = 0; i < size/6; i++)
+    {
+        if (i < ovlSize/4)
+        {
+            b = (*ovl++) << 8;
+            g = (*ovl++) << 8;
+            r = (*ovl++) << 8;
+            a = ((*ovl) << 8) + (*ovl);
+            ovl++;
+        }
+        *img = ((r * a) + ((uint32_t)(*img) * (0xffff - a))) / 0xffff;
+        img++;
+        *img = ((g * a) + ((uint32_t)(*img) * (0xffff - a))) / 0xffff;
+        img++;
+        *img = ((b * a) + ((uint32_t)(*img) * (0xffff - a))) / 0xffff;
+        img++;
+    }
+
+}
 
 void Dialog::handleSetFrameBufferValueButton()
 {
@@ -231,7 +285,9 @@ void Dialog::handleSetFrameBufferValueButton()
     for ( int32_t pixel = 0; pixel < static_cast<int32_t>(_width*_height); pixel++ )
         _frameBuffer[pixel] =  pixelValue ;
 
+    overLayText();
     updatePreview();
+
     _alphaMode = false;
 
     this->setWindowTitle(QString("RGB Value %1 %2 %3").arg(_ui->redSpinBox->value()).arg(_ui->greenSpinBox->value()).arg(_ui->blueSpinBox->value()));
@@ -259,6 +315,9 @@ void Dialog::handleLoadImageButton()
         qDebug() << "reading TiffFile";
         loadTIFFFile(fileName);
     }
+
+    overLayText();
+    updatePreview();
 
 }
 
@@ -316,7 +375,18 @@ void Dialog::handleCalibrationCheckbox(bool checked)
         handleSpinBoxes(0);
 
 }
+void Dialog::handleOverlayCheckbox(bool checked)
+{
+    overLayText();
+    updatePreview();
+}
 
+void Dialog::handleOverlayTextChanged(const QString &text)
+{
+    overLayText();
+    updatePreview();
+
+}
 void Dialog::loadPNGFile(QString fileName)
 {
     // For Overlay
@@ -341,8 +411,6 @@ void Dialog::loadPNGFile(QString fileName)
 
             }
         }
-
-        updatePreview();
 
         this->setWindowTitle(fileName);
     }
@@ -442,8 +510,6 @@ void Dialog::loadTIFFFile(QString fileName)
         }
         TIFFClose(tif);
 
-        updatePreview();
-
         this->setWindowTitle(fileName);
 
     }
@@ -460,7 +526,12 @@ void Dialog::updatePreview()
 	if ( _frameBuffer.size() == (int)(_height*_width*6))
     {
         // Image
-        uint16_t* sourceBuffer = reinterpret_cast<uint16_t*>(_frameBuffer.data());
+        uint16_t* sourceBuffer;
+        if ( _ui->enableOverlaycheckBox->isChecked())
+            sourceBuffer = reinterpret_cast<uint16_t*>(_frameBufferWithOverlay.data());
+        else
+            sourceBuffer = reinterpret_cast<uint16_t*>(_frameBuffer.data());
+
         for ( uint32_t i=0; i<_width*_height;i++)
         {
             *destBuffer++ = *sourceBuffer++>>8;
@@ -468,7 +539,7 @@ void Dialog::updatePreview()
             *destBuffer++ = *sourceBuffer++>>8;
         }
     }
-	else if ( _frameBuffer.size() == (int)(_height*_width*4))
+    else if ( _frameBuffer.size() == (int)(_height*_width*4)) ///NOT Functional Yet.
     {
         // Overlay
         qDebug() << "Overlay";

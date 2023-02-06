@@ -27,6 +27,8 @@ public slots:
 
     void handleSpinBoxes(double value);
     void handleCalibrationCheckbox(bool checked);
+    void handleOverlayCheckbox(bool checked);
+    void handleOverlayTextChanged(const QString &text);
 
     // WebSocket releated slots
     void onConnected();
@@ -46,6 +48,7 @@ protected:
     void setCalibrationPattern(const OpenAPI::OAICalibrationPattern& calibrationPattern);
     void loadTIFFFile(QString fileName);
     void loadPNGFile(QString fileName);
+    void overLayText();
     void recallSettings();
     void saveSettings();
 
@@ -54,6 +57,7 @@ protected:
     uint16_t _bitsPerComponent;
     uint16_t _samplesPerPixel;
     RGB16BitUIntBufferValues _frameBuffer;
+    RGB16BitUIntBufferValues _frameBufferWithOverlay;
 
 	bool _cbConnected;
 	AJAWebSocketInterface *_webSocketLoad;
