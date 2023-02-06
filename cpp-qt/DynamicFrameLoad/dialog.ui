@@ -470,6 +470,32 @@ Values</string>
     <string>y Height</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="overlayTestLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>10</y>
+     <width>271</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Welcome to SuperBowl  LVII</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="enableOverlaycheckBox">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>10</y>
+     <width>161</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Enable Text Overlay</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
