@@ -197,7 +197,7 @@ Values</string>
     <number>4095</number>
    </property>
    <property name="value">
-    <number>256</number>
+    <number>2884</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="blueSpinBox">
@@ -223,7 +223,7 @@ Values</string>
     <number>4095</number>
    </property>
    <property name="value">
-    <number>256</number>
+    <number>2884</number>
    </property>
   </widget>
   <widget class="QPushButton" name="sendFramePushButton">
@@ -480,7 +480,7 @@ Values</string>
     </rect>
    </property>
    <property name="text">
-    <string>Welcome to SuperBowl  LVII</string>
+    <string>Sample Overlay</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="enableOverlaycheckBox">
