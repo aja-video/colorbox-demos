@@ -86,7 +86,7 @@ Dialog::Dialog(QWidget *parent)
     _width = 1920;
     _height = 1080;
 
-    // Initialize to a color
+    // Initialize to a test pattern.
     loadTIFFFile("ebu_hdr-hlg_colour_bars_1920_1080_rgb444p16be_lzw.tif");
     overLayText();
     updatePreview();
