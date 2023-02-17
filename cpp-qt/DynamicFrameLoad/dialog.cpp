@@ -5,20 +5,31 @@
 /*!
  * DynamicFrameLoad
  * The demo demostrates how to interface to a ColorBox device via the REST API and WebSockets to upload a frame to ColorBox.
- * The demo limits itself to 1920x1080 frame size.
+ * The demo limits itself to 1920x1080 frame size. It also demonstrates a "Calibration API".
  *
  * The basic idea is to load _frameBuffer with 1920x1080 RGB16BitUIntValues and send that to ColorBox over a WebSocket.
  * The buffer if prepended with "FS02" so ColorBox recognizes this as a frame to put in the frame store.
- * The REST API is used to set ColorBox into Dynamic Output Mode.
+ * The REST API is used to set ColorBox into Dynamic Output Mode. You can send a frame with any valid rastersize this demo
+ * is just limted to 1920x1080. You can use OAIVideoFormat to set the Framestore to any valid video format.
  *
  * There are two ways to preload a _frameBuffer in the code below
  * 1) handleSetFrameBufferValueButton - takes the 12 bit values in the QSpinBoxes and makes 16 bit values for the buffer.
- * 2)handleLoadImageButton( can load a .tif or .png file)
+ * 2) handleLoadImageButton( can load a .tif or .png file)
  *
  * The method updateFrameToColorBox shows the basic code needed to transfer a frame.
  *
- * Once the WebSocket is open frames can be continually transferred to the ColorBox. You cannot update frames faster than the
+ * Once the WebSocket is open frames can be continually transferred to the ColorBox. However, you cannot update frames faster than the
  * current framerate.
+ *
+ * This demo also shows our "Calibraion API" whereby a userdefined box over a background can be defined and that information
+ * can be sent to the ColorBox without having to render a 16 bit RGB Frame and sending that. So no need for the Web Socket.
+ *
+ * void Dialog::handleSpinBoxes(double value)
+ *
+ * However, if the OAICalibrationPattern API can't describe the frame you need you can always fall back to rendering whatever
+ * you need and transmitting it over a websocket.
+ * In this demo the "Calibration Box" is sent to the Colorbox whenever a box spinbox parameter is changed making it dynamic.
+ *
  */
 
 #include "dialog.h"
@@ -326,19 +337,19 @@ void Dialog::handleSpinBoxes(double value)
     bool calibrationBoxChecked = _ui->calibrationCheckBox->isChecked();
     if ( _cbConnected && calibrationBoxChecked)
     {
-        qDebug() << "Handle Spin Box";
+
         OAIFrameStore frameStore;
+        frameStore.setEnabled(true);
+        frameStore.setDynamic(true);
+        OAIVideoFormat format;
+        format.setValue(OAIVideoFormat::eOAIVideoFormat::_1080P23_98); /// Optional, can also set to AUTO which means it uses the Input Video Format.
+        frameStore.setFormat(format);
+        _api.setFrameStore(frameStore);
+
         double xStart = _ui->xStartSpinBox->value();
         double yStart = _ui->yStartSpinBox->value();
         double xWidth = _ui->xWidthSpinBox->value();
         double yHeight = _ui->yHeightSpinBox->value();
-        frameStore.setEnabled(true);
-        frameStore.setDynamic(true);
-
-        OAIVideoFormat format;
-        format.setValue(OAIVideoFormat::eOAIVideoFormat::_1080P23_98);
-        frameStore.setFormat(format);
-        _api.setFrameStore(frameStore);
 
         OAICalibrationPattern calibration;
         OAIPatternColor bgColor;
