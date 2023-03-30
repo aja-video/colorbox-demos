@@ -21,15 +21,16 @@
  * Once the WebSocket is open frames can be continually transferred to the ColorBox. However, you cannot update frames faster than the
  * current framerate.
  *
- * This demo also shows our "Calibraion API" whereby a userdefined box over a background can be defined and that information
+ * This demo also shows our "Calibraion API" whereby a user-defined box over a background can be defined and that information
  * can be sent to the ColorBox without having to render a 16 bit RGB Frame and sending that. So no need for the Web Socket.
- *
+ * See:
  * void Dialog::handleSpinBoxes(double value)
  *
  * However, if the OAICalibrationPattern API can't describe the frame you need you can always fall back to rendering whatever
- * you need and transmitting it over a websocket.
+ * frame you need and transmitting it over a websocket.
  * In this demo the "Calibration Box" is sent to the Colorbox whenever a box spinbox parameter is changed making it dynamic.
  *
+ * For images and values you must press the "Send Frame" button to send the frame to the ColorBox via the WebSocket.
  */
 
 #include "dialog.h"
@@ -98,7 +99,9 @@ Dialog::Dialog(QWidget *parent)
     _height = 1080;
 
     // Initialize to a test pattern.
-    loadTIFFFile("ebu_hdr-hlg_colour_bars_1920_1080_rgb444p16be_lzw.tif");
+    if ( !loadTIFFFile("ebu_hdr-hlg_colour_bars_1920_1080_rgb444p16be_lzw.tif"))
+        handleSetFrameBufferValueButton();
+
     overLayText();
     updatePreview();
 
@@ -297,7 +300,11 @@ void Dialog::handleSetFrameBufferValueButton()
         _frameBuffer[pixel] =  pixelValue ;
 
     overLayText();
-    updatePreview();
+    if ( _ui->calibrationCheckBox->isChecked() )
+        handleSpinBoxes(0);
+    else
+        updatePreview();
+
 
     _alphaMode = false;
 
@@ -429,7 +436,7 @@ void Dialog::loadPNGFile(QString fileName)
         qDebug() << "Not a Valid Image";
 }
 
-void Dialog::loadTIFFFile(QString fileName)
+bool Dialog::loadTIFFFile(QString fileName)
 {
     TIFF* tif = TIFFOpen(fileName.toStdString().c_str(), "r");
     if (tif)
@@ -448,7 +455,7 @@ void Dialog::loadTIFFFile(QString fileName)
 
         if (  _width != 1920 || _height != 1080 )
         {
-            return;
+            return false;
         }
 
         if ( _bitsPerComponent == 16 )
@@ -522,7 +529,12 @@ void Dialog::loadTIFFFile(QString fileName)
         TIFFClose(tif);
 
         this->setWindowTitle(fileName);
+        return true;
 
+    }
+    else
+    {
+         return false;
     }
 }
 
