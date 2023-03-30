@@ -46,7 +46,7 @@ signals:
 protected:
     void updatePreview();
     void setCalibrationPattern(const OpenAPI::OAICalibrationPattern& calibrationPattern);
-    void loadTIFFFile(QString fileName);
+    bool loadTIFFFile(QString fileName);
     void loadPNGFile(QString fileName);
     void overLayText();
     void recallSettings();
