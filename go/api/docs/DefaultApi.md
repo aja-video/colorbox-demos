@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**GetAllSystemDiscovers**](DefaultApi.md#GetAllSystemDiscovers) | **Get** /discovers | 
 [**GetAncCaptureFilter**](DefaultApi.md#GetAncCaptureFilter) | **Get** /ancCaptureFilter | 
 [**GetBbcConfig**](DefaultApi.md#GetBbcConfig) | **Get** /bbcConfig | 
+[**GetCalibrationPattern**](DefaultApi.md#GetCalibrationPattern) | **Get** /calibrationPattern | 
 [**GetColorfrontConfig**](DefaultApi.md#GetColorfrontConfig) | **Get** /colorfrontConfig | 
 [**GetConfigForGivenNetDeviceIndex**](DefaultApi.md#GetConfigForGivenNetDeviceIndex) | **Get** /net/device/{devIdx}/config | 
 [**GetFrameStore**](DefaultApi.md#GetFrameStore) | **Get** /frameStore | 
@@ -20,9 +21,11 @@ Method | HTTP request | Description
 [**GetMatrixLibrary**](DefaultApi.md#GetMatrixLibrary) | **Get** /matrixLibrary | 
 [**GetNbcConfig**](DefaultApi.md#GetNbcConfig) | **Get** /nbcConfig | 
 [**GetOrionConfig**](DefaultApi.md#GetOrionConfig) | **Get** /orionConfig | 
+[**GetOrionPresetLibrary**](DefaultApi.md#GetOrionPresetLibrary) | **Get** /orionPresetLibrary | 
 [**GetOutputConfig**](DefaultApi.md#GetOutputConfig) | **Get** /outputConfig | 
 [**GetOutputStatus**](DefaultApi.md#GetOutputStatus) | **Get** /outputStatus | 
 [**GetOverlay**](DefaultApi.md#GetOverlay) | **Get** /overlay | 
+[**GetOverlayLibrary**](DefaultApi.md#GetOverlayLibrary) | **Get** /overlayLibrary | 
 [**GetPipelineStages**](DefaultApi.md#GetPipelineStages) | **Get** /pipelineStages | 
 [**GetPreviewImage**](DefaultApi.md#GetPreviewImage) | **Get** /preview | 
 [**GetRouting**](DefaultApi.md#GetRouting) | **Get** /routing | 
@@ -40,6 +43,7 @@ Method | HTTP request | Description
 [**SetAllSystemDiscovers**](DefaultApi.md#SetAllSystemDiscovers) | **Put** /discovers | 
 [**SetAncCaptureFilter**](DefaultApi.md#SetAncCaptureFilter) | **Put** /ancCaptureFilter | 
 [**SetBbcConfig**](DefaultApi.md#SetBbcConfig) | **Put** /bbcConfig | 
+[**SetCalibrationPattern**](DefaultApi.md#SetCalibrationPattern) | **Put** /calibrationPattern | 
 [**SetColorfrontConfig**](DefaultApi.md#SetColorfrontConfig) | **Put** /colorfrontConfig | 
 [**SetConfigForGivenNetDeviceIndex**](DefaultApi.md#SetConfigForGivenNetDeviceIndex) | **Put** /net/device/{devIdx}/config | 
 [**SetFrameStore**](DefaultApi.md#SetFrameStore) | **Put** /frameStore | 
@@ -563,6 +567,67 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetCalibrationPattern
+
+> CalibrationPattern GetCalibrationPattern(ctx).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetCalibrationPattern(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetCalibrationPattern``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetCalibrationPattern`: CalibrationPattern
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetCalibrationPattern`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCalibrationPatternRequest struct via the builder pattern
+
+
+### Return type
+
+[**CalibrationPattern**](CalibrationPattern.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetColorfrontConfig
 
 > ColorfrontConfig GetColorfrontConfig(ctx).Execute()
@@ -1060,6 +1125,67 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetOrionPresetLibrary
+
+> []LibraryEntry GetOrionPresetLibrary(ctx).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetOrionPresetLibrary(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetOrionPresetLibrary``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrionPresetLibrary`: []LibraryEntry
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetOrionPresetLibrary`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrionPresetLibraryRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]LibraryEntry**](LibraryEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetOutputConfig
 
 > OutputConfig GetOutputConfig(ctx).Execute()
@@ -1228,6 +1354,67 @@ Other parameters are passed through a pointer to a apiGetOverlayRequest struct v
 ### Return type
 
 [**Overlay**](Overlay.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOverlayLibrary
+
+> []LibraryEntry GetOverlayLibrary(ctx).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetOverlayLibrary(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetOverlayLibrary``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOverlayLibrary`: []LibraryEntry
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetOverlayLibrary`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOverlayLibraryRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]LibraryEntry**](LibraryEntry.md)
 
 ### Authorization
 
@@ -2300,6 +2487,70 @@ Other parameters are passed through a pointer to a apiSetBbcConfigRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bbcConfig** | [**BbcConfig**](BbcConfig.md) | BbcConfig object | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetCalibrationPattern
+
+> SetCalibrationPattern(ctx).CalibrationPattern(calibrationPattern).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    calibrationPattern := *openapiclient.NewCalibrationPattern() // CalibrationPattern | CalibrationPattern object
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.SetCalibrationPattern(context.Background()).CalibrationPattern(calibrationPattern).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SetCalibrationPattern``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetCalibrationPatternRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **calibrationPattern** | [**CalibrationPattern**](CalibrationPattern.md) | CalibrationPattern object | 
 
 ### Return type
 
@@ -3764,7 +4015,7 @@ import (
 
 func main() {
     file := os.NewFile(1234, "some_file") // *os.File |  (optional)
-    kind := "kind_example" // string | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** (optional) (default to "")
+    kind := "kind_example" // string | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**, **license**, **update** (optional) (default to "")
     entry := int32(56) // int32 | The entry number to upload the file to, **not** used with kinds: **license** and **update** (optional) (default to -1)
 
     configuration := openapiclient.NewConfiguration()
@@ -3789,7 +4040,7 @@ Other parameters are passed through a pointer to a apiUploadFileRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | ***os.File** |  | 
- **kind** | **string** | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** | [default to &quot;&quot;]
+ **kind** | **string** | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**, **license**, **update** | [default to &quot;&quot;]
  **entry** | **int32** | The entry number to upload the file to, **not** used with kinds: **license** and **update** | [default to -1]
 
 ### Return type

@@ -87,6 +87,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**GetAllSystemDiscovers**](docs/DefaultApi.md#getallsystemdiscovers) | **Get** /discovers | 
 *DefaultApi* | [**GetAncCaptureFilter**](docs/DefaultApi.md#getanccapturefilter) | **Get** /ancCaptureFilter | 
 *DefaultApi* | [**GetBbcConfig**](docs/DefaultApi.md#getbbcconfig) | **Get** /bbcConfig | 
+*DefaultApi* | [**GetCalibrationPattern**](docs/DefaultApi.md#getcalibrationpattern) | **Get** /calibrationPattern | 
 *DefaultApi* | [**GetColorfrontConfig**](docs/DefaultApi.md#getcolorfrontconfig) | **Get** /colorfrontConfig | 
 *DefaultApi* | [**GetConfigForGivenNetDeviceIndex**](docs/DefaultApi.md#getconfigforgivennetdeviceindex) | **Get** /net/device/{devIdx}/config | 
 *DefaultApi* | [**GetFrameStore**](docs/DefaultApi.md#getframestore) | **Get** /frameStore | 
@@ -95,9 +96,11 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**GetMatrixLibrary**](docs/DefaultApi.md#getmatrixlibrary) | **Get** /matrixLibrary | 
 *DefaultApi* | [**GetNbcConfig**](docs/DefaultApi.md#getnbcconfig) | **Get** /nbcConfig | 
 *DefaultApi* | [**GetOrionConfig**](docs/DefaultApi.md#getorionconfig) | **Get** /orionConfig | 
+*DefaultApi* | [**GetOrionPresetLibrary**](docs/DefaultApi.md#getorionpresetlibrary) | **Get** /orionPresetLibrary | 
 *DefaultApi* | [**GetOutputConfig**](docs/DefaultApi.md#getoutputconfig) | **Get** /outputConfig | 
 *DefaultApi* | [**GetOutputStatus**](docs/DefaultApi.md#getoutputstatus) | **Get** /outputStatus | 
 *DefaultApi* | [**GetOverlay**](docs/DefaultApi.md#getoverlay) | **Get** /overlay | 
+*DefaultApi* | [**GetOverlayLibrary**](docs/DefaultApi.md#getoverlaylibrary) | **Get** /overlayLibrary | 
 *DefaultApi* | [**GetPipelineStages**](docs/DefaultApi.md#getpipelinestages) | **Get** /pipelineStages | 
 *DefaultApi* | [**GetPreviewImage**](docs/DefaultApi.md#getpreviewimage) | **Get** /preview | 
 *DefaultApi* | [**GetRouting**](docs/DefaultApi.md#getrouting) | **Get** /routing | 
@@ -115,6 +118,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**SetAllSystemDiscovers**](docs/DefaultApi.md#setallsystemdiscovers) | **Put** /discovers | 
 *DefaultApi* | [**SetAncCaptureFilter**](docs/DefaultApi.md#setanccapturefilter) | **Put** /ancCaptureFilter | 
 *DefaultApi* | [**SetBbcConfig**](docs/DefaultApi.md#setbbcconfig) | **Put** /bbcConfig | 
+*DefaultApi* | [**SetCalibrationPattern**](docs/DefaultApi.md#setcalibrationpattern) | **Put** /calibrationPattern | 
 *DefaultApi* | [**SetColorfrontConfig**](docs/DefaultApi.md#setcolorfrontconfig) | **Put** /colorfrontConfig | 
 *DefaultApi* | [**SetConfigForGivenNetDeviceIndex**](docs/DefaultApi.md#setconfigforgivennetdeviceindex) | **Put** /net/device/{devIdx}/config | 
 *DefaultApi* | [**SetFrameStore**](docs/DefaultApi.md#setframestore) | **Put** /frameStore | 
@@ -146,10 +150,19 @@ Class | Method | HTTP request | Description
  - [BbcConfig](docs/BbcConfig.md)
  - [BitDepth](docs/BitDepth.md)
  - [CSCFilter](docs/CSCFilter.md)
+ - [CalibrationPattern](docs/CalibrationPattern.md)
  - [ColorCorrector](docs/ColorCorrector.md)
  - [ColorSpace](docs/ColorSpace.md)
  - [ColorfrontConfig](docs/ColorfrontConfig.md)
  - [ColorfrontDynRangeGamut](docs/ColorfrontDynRangeGamut.md)
+ - [ColorfrontDynRangeGamutLiveModeIn](docs/ColorfrontDynRangeGamutLiveModeIn.md)
+ - [ColorfrontDynRangeGamutLiveModeOut](docs/ColorfrontDynRangeGamutLiveModeOut.md)
+ - [ColorfrontDynRangeGamutTvModeIn](docs/ColorfrontDynRangeGamutTvModeIn.md)
+ - [ColorfrontDynRangeGamutTvModeOut](docs/ColorfrontDynRangeGamutTvModeOut.md)
+ - [ColorfrontEngine](docs/ColorfrontEngine.md)
+ - [ColorfrontLiveMode](docs/ColorfrontLiveMode.md)
+ - [ColorfrontMode](docs/ColorfrontMode.md)
+ - [ColorfrontTvMode](docs/ColorfrontTvMode.md)
  - [Colorimetry](docs/Colorimetry.md)
  - [Connection](docs/Connection.md)
  - [Crop4k2k](docs/Crop4k2k.md)
@@ -180,6 +193,8 @@ Class | Method | HTTP request | Description
  - [OrionSourceRange](docs/OrionSourceRange.md)
  - [OutputConfig](docs/OutputConfig.md)
  - [Overlay](docs/Overlay.md)
+ - [PatternColor](docs/PatternColor.md)
+ - [PatternRect](docs/PatternRect.md)
  - [PipelineRange](docs/PipelineRange.md)
  - [PipelineStages](docs/PipelineStages.md)
  - [Preview](docs/Preview.md)

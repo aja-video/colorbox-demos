@@ -7,6 +7,9 @@ Name | Type | Description | Notes
 **Enabled** | Pointer to **bool** | true if stage is enabled else disabled (unity passthru) | [optional] 
 **InDynRangeGamut** | Pointer to [**ColorfrontDynRangeGamut**](ColorfrontDynRangeGamut.md) |  | [optional] [default to COLORFRONTDYNRANGEGAMUT_SDR_BT_709]
 **OutDynRangeGamut** | Pointer to [**ColorfrontDynRangeGamut**](ColorfrontDynRangeGamut.md) |  | [optional] [default to COLORFRONTDYNRANGEGAMUT_SDR_BT_709]
+**Mode** | Pointer to [**ColorfrontMode**](ColorfrontMode.md) |  | [optional] [default to COLORFRONTMODE_TV]
+**TvMode** | Pointer to [**ColorfrontTvMode**](ColorfrontTvMode.md) |  | [optional] 
+**LiveMode** | Pointer to [**ColorfrontLiveMode**](ColorfrontLiveMode.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +104,81 @@ SetOutDynRangeGamut sets OutDynRangeGamut field to given value.
 `func (o *ColorfrontConfig) HasOutDynRangeGamut() bool`
 
 HasOutDynRangeGamut returns a boolean if a field has been set.
+
+### GetMode
+
+`func (o *ColorfrontConfig) GetMode() ColorfrontMode`
+
+GetMode returns the Mode field if non-nil, zero value otherwise.
+
+### GetModeOk
+
+`func (o *ColorfrontConfig) GetModeOk() (*ColorfrontMode, bool)`
+
+GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMode
+
+`func (o *ColorfrontConfig) SetMode(v ColorfrontMode)`
+
+SetMode sets Mode field to given value.
+
+### HasMode
+
+`func (o *ColorfrontConfig) HasMode() bool`
+
+HasMode returns a boolean if a field has been set.
+
+### GetTvMode
+
+`func (o *ColorfrontConfig) GetTvMode() ColorfrontTvMode`
+
+GetTvMode returns the TvMode field if non-nil, zero value otherwise.
+
+### GetTvModeOk
+
+`func (o *ColorfrontConfig) GetTvModeOk() (*ColorfrontTvMode, bool)`
+
+GetTvModeOk returns a tuple with the TvMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTvMode
+
+`func (o *ColorfrontConfig) SetTvMode(v ColorfrontTvMode)`
+
+SetTvMode sets TvMode field to given value.
+
+### HasTvMode
+
+`func (o *ColorfrontConfig) HasTvMode() bool`
+
+HasTvMode returns a boolean if a field has been set.
+
+### GetLiveMode
+
+`func (o *ColorfrontConfig) GetLiveMode() ColorfrontLiveMode`
+
+GetLiveMode returns the LiveMode field if non-nil, zero value otherwise.
+
+### GetLiveModeOk
+
+`func (o *ColorfrontConfig) GetLiveModeOk() (*ColorfrontLiveMode, bool)`
+
+GetLiveModeOk returns a tuple with the LiveMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLiveMode
+
+`func (o *ColorfrontConfig) SetLiveMode(v ColorfrontLiveMode)`
+
+SetLiveMode sets LiveMode field to given value.
+
+### HasLiveMode
+
+`func (o *ColorfrontConfig) HasLiveMode() bool`
+
+HasLiveMode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

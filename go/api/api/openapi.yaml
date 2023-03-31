@@ -223,7 +223,8 @@ paths:
                 kind:
                   default: ""
                   description: 'The kind of file being uploaded valid kinds are: **lut_1d**,
-                    **lut_3d**, **matrix**, **image**, **preset**, **license**, **update**'
+                    **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**,
+                    **license**, **update**'
                   type: string
                 entry:
                   default: -1
@@ -466,10 +467,36 @@ paths:
                   $ref: '#/components/schemas/LibraryEntry'
                 type: array
           description: Successful operation
+  /overlayLibrary:
+    get:
+      description: Get the overlay Library array
+      operationId: getOverlayLibrary
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LibraryEntry'
+                type: array
+          description: Successful operation
   /systemPresetLibrary:
     get:
       description: Get the System Preset Library array
       operationId: getSystemPresetLibrary
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LibraryEntry'
+                type: array
+          description: Successful operation
+  /orionPresetLibrary:
+    get:
+      description: Get the Orion Preset Library array
+      operationId: getOrionPresetLibrary
       responses:
         "200":
           content:
@@ -826,6 +853,30 @@ paths:
             schema:
               $ref: '#/components/schemas/AncCaptureFilter'
         description: AncCaptureFilter object
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+  /calibrationPattern:
+    get:
+      description: Return the calibration pattern object
+      operationId: getCalibrationPattern
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalibrationPattern'
+          description: Successful operation
+    put:
+      description: Modify the calibration pattern object
+      operationId: setCalibrationPattern
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalibrationPattern'
+        description: CalibrationPattern object
         required: true
       responses:
         "200":
@@ -1469,6 +1520,8 @@ components:
         closedCaption: true
         inVpidFormat: true
         timeCode: true
+        userOverlayEnabled: false
+        libraryEntry: 0
       properties:
         enabled:
           description: true if overlay is enabled else disabled
@@ -1507,6 +1560,13 @@ components:
           type: boolean
         location:
           $ref: '#/components/schemas/Locations'
+        userOverlayEnabled:
+          default: false
+          type: boolean
+        libraryEntry:
+          default: 1
+          description: library entry number of user overlay graphic
+          type: integer
       type: object
     Locations:
       default: Bottom Center
@@ -1555,6 +1615,8 @@ components:
       - Matrix
       - Image
       - systemPreset
+      - Overlay
+      - orionPreset
       type: string
     LibraryAction:
       enum:
@@ -1740,11 +1802,13 @@ components:
       example:
         wifiNetwork: wifiNetwork
         subnet: subnet
+        wifiRegion: wifiRegion
         address: address
         wifiControl: "Off"
         wifiSecurity: None
         wifiIpConfig: DHCP
         wifiPassword: wifiPassword
+        wifiPasswordLength: 6
         wifiIpChangeCommit: 0
         gateway: gateway
       properties:
@@ -1779,6 +1843,10 @@ components:
         wifiIpChangeCommit:
           default: 0
           type: integer
+        wifiPasswordLength:
+          type: integer
+        wifiRegion:
+          type: string
       type: object
     WiFiDeviceStatus:
       example:
@@ -1884,6 +1952,7 @@ components:
         sdrRef: 66.09652677716035
         hdrPeak: 671
         enabled: true
+        gammaComp: false
         preAmount: 0.5637376656633328
         hdrRef: 9.648944456978924
         preKnee: 59.621339166831824
@@ -1892,6 +1961,9 @@ components:
       properties:
         enabled:
           description: true if stage is enabled else disabled (unity passthru)
+          type: boolean
+        gammaComp:
+          default: false
           type: boolean
         conversion:
           $ref: '#/components/schemas/OrionConversion'
@@ -1998,6 +2070,56 @@ components:
       type: string
     ColorfrontConfig:
       example:
+        tvMode:
+          cameraCorrection: false
+          colorfulness: -0.706837403899411
+          colorTemp: -0.06956301403009135
+          liftMaster: 0.12747533132666566
+          gainBlue: 3.42342634917632
+          tint: 0.08001533286494222
+          saturation: 1.491548954736753
+          highlight: 0.20549123661408064
+          colorCorrector: false
+          gammaGreen: 0.8291216059767872
+          gainGreen: 0.7447079549270852
+          gammaMaster: 0.7232153498503822
+          liftRed: -0.539572822613047
+          gammaRed: 0.40542460460046437
+          gainRed: 0.5123228500720789
+          roundtrip: false
+          brightness: -0.8398343619077977
+          gainMaster: 0.6157567683886278
+          exposure: -3.0615405992352454
+          liftBlue: 0.8602888487865152
+          gammaBlue: 1.4772563896771769
+          superHighlight: 0.19242678333663643
+          liftGreen: 0.4122802483006218
+          clampToLegal: false
+        liveMode:
+          colorTemp: 4.117540703164712
+          hdrAmount: 0.9931562435781123
+          sdrPreview: false
+          hdrLogLook: 0.6683562403749608
+          liftMaster: 0.8036696372141565
+          gainBlue: 1.5468726313332237
+          tint: 4.861379043258822
+          saturation: 1.4287076094024613
+          pqOutputNitLevel: 88.56196063214435
+          p3ColorspaceClamp: false
+          gammaGreen: 1.3556649926096027
+          gainGreen: 1.6765966735056215
+          bt2408Mode: 0.46523964329332457
+          gammaMaster: 0.2569318012233064
+          liftRed: 0.28768471051970934
+          gammaRed: 0.576832425333756
+          gainRed: 3.352009648975018
+          gainMaster: 2.972447803807008
+          exposure: -3.291890020879068
+          liftBlue: 0.39302353952776903
+          ambLightComp: 0.8738620542821338
+          gammaBlue: 1.3756104440255752
+          sdrSoftness: 0.8762042012749002
+          liftGreen: -0.28856095458638054
         enabled: true
       properties:
         enabled:
@@ -2007,14 +2129,381 @@ components:
           $ref: '#/components/schemas/ColorfrontDynRangeGamut'
         outDynRangeGamut:
           $ref: '#/components/schemas/ColorfrontDynRangeGamut'
+        mode:
+          $ref: '#/components/schemas/ColorfrontMode'
+        tvMode:
+          $ref: '#/components/schemas/ColorfrontTvMode'
+        liveMode:
+          $ref: '#/components/schemas/ColorfrontLiveMode'
       type: object
     ColorfrontDynRangeGamut:
       default: SDR BT.709
+      description: '**NOTE** Used in ColorBox v1, left in for compatibility reasons'
       enum:
       - SDR BT.709
       - HLG BT.2100
       - PQ BT.2020
       type: string
+    ColorfrontMode:
+      default: TV
+      enum:
+      - TV
+      - Live
+      type: string
+    ColorfrontEngine:
+      default: Default
+      enum:
+      - Default
+      - Adjust
+      type: string
+    ColorfrontDynRangeGamutTvModeIn:
+      default: SDR BT.709
+      enum:
+      - SDR BT.709
+      - HLG BT.2020
+      - PQ BT.2020
+      - Sony SLog3 BT.2020
+      type: string
+    ColorfrontDynRangeGamutTvModeOut:
+      default: SDR BT.709
+      enum:
+      - SDR BT.709
+      - HLG BT.2020
+      - PQ BT.2020
+      - PQ BT.2020 ConstrainP3
+      - Sony SLog3 BT.2020
+      type: string
+    ColorfrontDynRangeGamutLiveModeIn:
+      default: SDR BT.709 100 Nits
+      enum:
+      - SDR BT.709 100 Nits
+      - SDR Extended BT.709
+      - PQ BT.2020 1000 Nits
+      - PQ P3D65 1000 Nits
+      - HLG BT.2100
+      - HLG Extended BT.709
+      - HLG Extended BT.2100
+      - Sony SLog3 S-Gamut3
+      - Sony SLog3 S-Gamut3 Cine
+      - Sony SLog3 BT.2020
+      - ARRI Log C Wide Gamut
+      - ARRI LogC4 Wide Gamut 4
+      - Panasonic V-Log
+      - Red Log3G10 Wide Gamut
+      - Canon Log 2
+      - Canon Log 3
+      type: string
+    ColorfrontDynRangeGamutLiveModeOut:
+      default: SDR BT.709 100 Nits
+      enum:
+      - SDR BT.709 100 Nits
+      - SDR Extended BT.709
+      - PQ BT.2020 1000 Nits
+      - PQ P3D65 1000 Nits
+      - HLG BT.2100
+      - HLG Extended BT.709
+      - HLG Extended BT.2100
+      - Sony SLog3 S-Gamut3
+      - Sony SLog3 BT.2020
+      - ARRI Log C Wide Gamut
+      - ARRI LogC4 Wide Gamut 4
+      type: string
+    ColorfrontTvMode:
+      example:
+        cameraCorrection: false
+        colorfulness: -0.706837403899411
+        colorTemp: -0.06956301403009135
+        liftMaster: 0.12747533132666566
+        gainBlue: 3.42342634917632
+        tint: 0.08001533286494222
+        saturation: 1.491548954736753
+        highlight: 0.20549123661408064
+        colorCorrector: false
+        gammaGreen: 0.8291216059767872
+        gainGreen: 0.7447079549270852
+        gammaMaster: 0.7232153498503822
+        liftRed: -0.539572822613047
+        gammaRed: 0.40542460460046437
+        gainRed: 0.5123228500720789
+        roundtrip: false
+        brightness: -0.8398343619077977
+        gainMaster: 0.6157567683886278
+        exposure: -3.0615405992352454
+        liftBlue: 0.8602888487865152
+        gammaBlue: 1.4772563896771769
+        superHighlight: 0.19242678333663643
+        liftGreen: 0.4122802483006218
+        clampToLegal: false
+      properties:
+        engine:
+          $ref: '#/components/schemas/ColorfrontEngine'
+        inDynRangeGamut:
+          $ref: '#/components/schemas/ColorfrontDynRangeGamutTvModeIn'
+        outDynRangeGamut:
+          $ref: '#/components/schemas/ColorfrontDynRangeGamutTvModeOut'
+        brightness:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        highlight:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        colorfulness:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        superHighlight:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        roundtrip:
+          default: false
+          type: boolean
+        clampToLegal:
+          default: false
+          type: boolean
+        colorCorrector:
+          default: false
+          type: boolean
+        liftMaster:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        liftRed:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        liftGreen:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        liftBlue:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        gammaMaster:
+          default: 1
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        gammaRed:
+          default: 1
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        gammaGreen:
+          default: 1
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        gammaBlue:
+          default: 1
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        gainMaster:
+          default: 1
+          maximum: 5.0
+          minimum: 0.0
+          type: number
+        gainRed:
+          default: 1
+          maximum: 5.0
+          minimum: 0.0
+          type: number
+        gainGreen:
+          default: 1
+          maximum: 5.0
+          minimum: 0.0
+          type: number
+        gainBlue:
+          default: 1
+          maximum: 5.0
+          minimum: 0.0
+          type: number
+        saturation:
+          default: 1.0
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        cameraCorrection:
+          default: false
+          type: boolean
+        exposure:
+          default: 0
+          maximum: 4.0
+          minimum: -4.0
+          type: number
+        colorTemp:
+          default: 0
+          maximum: 10.0
+          minimum: -10.0
+          type: number
+        tint:
+          default: 0
+          maximum: 16.0
+          minimum: -16.0
+          type: number
+      type: object
+    ColorfrontLiveMode:
+      example:
+        colorTemp: 4.117540703164712
+        hdrAmount: 0.9931562435781123
+        sdrPreview: false
+        hdrLogLook: 0.6683562403749608
+        liftMaster: 0.8036696372141565
+        gainBlue: 1.5468726313332237
+        tint: 4.861379043258822
+        saturation: 1.4287076094024613
+        pqOutputNitLevel: 88.56196063214435
+        p3ColorspaceClamp: false
+        gammaGreen: 1.3556649926096027
+        gainGreen: 1.6765966735056215
+        bt2408Mode: 0.46523964329332457
+        gammaMaster: 0.2569318012233064
+        liftRed: 0.28768471051970934
+        gammaRed: 0.576832425333756
+        gainRed: 3.352009648975018
+        gainMaster: 2.972447803807008
+        exposure: -3.291890020879068
+        liftBlue: 0.39302353952776903
+        ambLightComp: 0.8738620542821338
+        gammaBlue: 1.3756104440255752
+        sdrSoftness: 0.8762042012749002
+        liftGreen: -0.28856095458638054
+      properties:
+        engine:
+          $ref: '#/components/schemas/ColorfrontEngine'
+        inDynRangeGamut:
+          $ref: '#/components/schemas/ColorfrontDynRangeGamutLiveModeIn'
+        outDynRangeGamut:
+          $ref: '#/components/schemas/ColorfrontDynRangeGamutLiveModeOut'
+        sdrPreview:
+          default: false
+          type: boolean
+        hdrAmount:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        ambLightComp:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        hdrLogLook:
+          default: 0.5
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+        sdrSoftness:
+          default: 0
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+        liftMaster:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        liftRed:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        liftGreen:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        liftBlue:
+          default: 0
+          maximum: 1.0
+          minimum: -1.0
+          type: number
+        gammaMaster:
+          default: 1
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        gammaRed:
+          default: 1
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        gammaGreen:
+          default: 1
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        gammaBlue:
+          default: 1
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        gainMaster:
+          default: 1
+          maximum: 5.0
+          minimum: 0.0
+          type: number
+        gainRed:
+          default: 1
+          maximum: 5.0
+          minimum: 0.0
+          type: number
+        gainGreen:
+          default: 1
+          maximum: 5.0
+          minimum: 0.0
+          type: number
+        gainBlue:
+          default: 1
+          maximum: 5.0
+          minimum: 0.0
+          type: number
+        saturation:
+          default: 1.0
+          maximum: 2.0
+          minimum: 0.0
+          type: number
+        exposure:
+          default: 0
+          maximum: 4.0
+          minimum: -4.0
+          type: number
+        colorTemp:
+          default: 0
+          maximum: 10.0
+          minimum: -10.0
+          type: number
+        tint:
+          default: 0
+          maximum: 16.0
+          minimum: -16.0
+          type: number
+        pqOutputNitLevel:
+          default: 1000
+          maximum: 4000
+          minimum: 48
+          type: number
+        p3ColorspaceClamp:
+          default: false
+          type: boolean
+        bt2408Mode:
+          default: 0
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+      type: object
     BbcConfig:
       example:
         lut1d_1:
@@ -2244,6 +2733,7 @@ components:
         systemUptime: systemUptime
         systemCatalogNumber: systemCatalogNumber
         orionEngineLicensed: true
+        systemBoardRevision: systemBoardRevision
         orionVersion: orionVersion
         nbcuLutVersion: nbcuLutVersion
         systemTime: systemTime
@@ -2263,6 +2753,7 @@ components:
         cpuBusy: true
         shutdownTime: 5
         systemSupportInfo: systemSupportInfo
+        resetTime: 5
         bbcLutsLicensed: true
       properties:
         deviceDieTemp:
@@ -2276,6 +2767,8 @@ components:
         systemOsName:
           type: string
         systemSerialNumber:
+          type: string
+        systemBoardRevision:
           type: string
         systemCatalogNumber:
           type: string
@@ -2293,6 +2786,8 @@ components:
           type: boolean
         colorfrontEngineLicensed:
           type: boolean
+        resetTime:
+          type: integer
         shutdownTime:
           type: integer
         colorfrontTransformVersion:
@@ -2440,6 +2935,101 @@ components:
           default: ""
           type: string
       type: object
+    PatternColor:
+      example:
+        red: 39072
+        depth: 8
+        green: 9606
+        blue: 39500
+      properties:
+        depth:
+          default: 10
+          description: 'The color depth in bits, valid values are: 8, 10, 12 & 16'
+          maximum: 16
+          minimum: 8
+          type: integer
+        blue:
+          default: 0
+          description: The blue component of the color, max value depends on bit depth
+          maximum: 65535
+          minimum: 0
+          type: integer
+        green:
+          default: 0
+          description: The green component of the color, max value depends on bit
+            depth
+          maximum: 65535
+          minimum: 0
+          type: integer
+        red:
+          default: 0
+          description: The red component of the color, max value depends on bit depth
+          maximum: 65535
+          minimum: 0
+          type: integer
+      type: object
+    PatternRect:
+      example:
+        width: 0.7061401241503109
+        xstart: 0.5637376656633328
+        ystart: 0.23021358869347652
+        height: 0.9301444243932576
+      properties:
+        xstart:
+          default: 0
+          description: The x start point in for the rect, normalized to 0.0 - 1.0
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+        ystart:
+          default: 0
+          description: The y start point in for the rect, normalized to 0.0 - 1.0
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+        width:
+          default: 0
+          description: The width of the rect, normalized to 0.0 - 1.0
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+        height:
+          default: 0
+          description: The height of the rect, normalized to 0.0 - 1.0
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+      type: object
+    CalibrationPattern:
+      description: Holds the information for a calibration pattern patch
+      example:
+        fgColor:
+          red: 39072
+          depth: 8
+          green: 9606
+          blue: 39500
+        bgColor:
+          red: 39072
+          depth: 8
+          green: 9606
+          blue: 39500
+        fgRect:
+          width: 0.7061401241503109
+          xstart: 0.5637376656633328
+          ystart: 0.23021358869347652
+          height: 0.9301444243932576
+        stamp: stamp
+      properties:
+        bgColor:
+          $ref: '#/components/schemas/PatternColor'
+        fgColor:
+          $ref: '#/components/schemas/PatternColor'
+        fgRect:
+          $ref: '#/components/schemas/PatternRect'
+        stamp:
+          description: For internal use only
+          type: string
+      type: object
     inline_object:
       properties:
         file:
@@ -2448,7 +3038,8 @@ components:
         kind:
           default: ""
           description: 'The kind of file being uploaded valid kinds are: **lut_1d**,
-            **lut_3d**, **matrix**, **image**, **preset**, **license**, **update**'
+            **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**,
+            **license**, **update**'
           type: string
         entry:
           default: -1
