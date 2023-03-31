@@ -317,14 +317,16 @@ void Dialog::handleSetFrameBufferValueButton()
 
 void Dialog::handleLoadImageButton()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open 16 Bit Tiff  File Or Overlay Overlay File"),
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open 16 Bit Tiff  File "),
                                                     ".",
-                                                    tr(".image Files (*.tif *.tiff *.png )"));
+                                                    tr(".image Files (*.tif *.tiff )"));
 
     if ( fileName.length() == 0 )
         return;
+
     if ( (fileName.indexOf(".png",0,Qt::CaseInsensitive) != -1) )
     {
+        ///NOTE: png file not supported now.
         qDebug() << "reading PNG File";
         loadPNGFile(fileName);
     }
@@ -456,12 +458,17 @@ bool Dialog::loadTIFFFile(QString fileName)
         TIFFGetField(tif, TIFFTAG_PLANARCONFIG, &planarConfig);
         TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &_samplesPerPixel);
 
+        // For now only 1920x1080 16 bit tiff files supported. A few are included in the bit directory.
         if (  _width != 1920 || _height != 1080 )
         {
             return false;
         }
 
-        if ( _bitsPerComponent == 16 )
+        if ( _bitsPerComponent != 16 )
+        {
+            return false;
+        }
+        else
         {
             _frameBuffer.resize(static_cast<int32_t>(_width*_height*6));
 
@@ -494,41 +501,7 @@ bool Dialog::loadTIFFFile(QString fileName)
             }
             _alphaMode = false;
         }
-        else if ( _bitsPerComponent == 8  && _samplesPerPixel == 4)
-        {
-            // Overlay
-            _frameBuffer.resize(static_cast<int32_t>(_width*_height*4));
-            uint32_t scanLineSize = static_cast<uint32_t>(TIFFScanlineSize(tif));
-            tdata_t  buf = _TIFFmalloc(scanLineSize*_height);
-            char*  tiffDataBuffer = reinterpret_cast<char*>(buf);
-            for (uint32_t row = 0; row < _height; row++)
-            {
-                TIFFReadScanline(tif, tiffDataBuffer, row);
-                tiffDataBuffer += scanLineSize;
-            }
 
-            uint8_t* rgbaBuffer = reinterpret_cast<uint8_t*>(_frameBuffer.data());
-            for ( uint32_t lineCount=0; lineCount<_height; lineCount++)
-            {
-                uint8_t* tiffByteDataBuffer = (uint8_t*)((uint8_t*)buf+(lineCount*scanLineSize));
-
-                for ( uint32_t pixelCount = 0; pixelCount < _width; pixelCount++)
-                {
-                    uint8_t red      = *tiffByteDataBuffer++;
-                    uint8_t green  = *tiffByteDataBuffer++;
-                    uint8_t blue     = *tiffByteDataBuffer++;
-                    uint8_t alpha   = *tiffByteDataBuffer++;
-
-					// Note swapping red and blue to match ColorBox HW setup
-                    *rgbaBuffer++ = blue;
-                    *rgbaBuffer++ = green;
-                    *rgbaBuffer++ = red;
-                    *rgbaBuffer++ = alpha;
-
-                }
-            }
-            _alphaMode = true;
-        }
         TIFFClose(tif);
 
         this->setWindowTitle(fileName);
