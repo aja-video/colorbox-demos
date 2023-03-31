@@ -110,10 +110,10 @@ class ColorfrontDynRangeGamut(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "SDR BT.709", must be one of ["SDR BT.709", "HLG BT.2100", "PQ BT.2020", ]  # noqa: E501
+            args[0] (str): **NOTE** Used in ColorBox v1, left in for compatibility reasons. if omitted defaults to "SDR BT.709", must be one of ["SDR BT.709", "HLG BT.2100", "PQ BT.2020", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "SDR BT.709", must be one of ["SDR BT.709", "HLG BT.2100", "PQ BT.2020", ]  # noqa: E501
+            value (str): **NOTE** Used in ColorBox v1, left in for compatibility reasons. if omitted defaults to "SDR BT.709", must be one of ["SDR BT.709", "HLG BT.2100", "PQ BT.2020", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -196,10 +196,10 @@ class ColorfrontDynRangeGamut(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "SDR BT.709", must be one of ["SDR BT.709", "HLG BT.2100", "PQ BT.2020", ]  # noqa: E501
+            args[0] (str): **NOTE** Used in ColorBox v1, left in for compatibility reasons. if omitted defaults to "SDR BT.709", must be one of ["SDR BT.709", "HLG BT.2100", "PQ BT.2020", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "SDR BT.709", must be one of ["SDR BT.709", "HLG BT.2100", "PQ BT.2020", ]  # noqa: E501
+            value (str): **NOTE** Used in ColorBox v1, left in for compatibility reasons. if omitted defaults to "SDR BT.709", must be one of ["SDR BT.709", "HLG BT.2100", "PQ BT.2020", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

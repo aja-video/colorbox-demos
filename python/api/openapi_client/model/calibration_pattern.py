@@ -96,6 +96,7 @@ class CalibrationPattern(ModelNormal):
             'bg_color': (PatternColor,),  # noqa: E501
             'fg_color': (PatternColor,),  # noqa: E501
             'fg_rect': (PatternRect,),  # noqa: E501
+            'stamp': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -107,6 +108,7 @@ class CalibrationPattern(ModelNormal):
         'bg_color': 'bgColor',  # noqa: E501
         'fg_color': 'fgColor',  # noqa: E501
         'fg_rect': 'fgRect',  # noqa: E501
+        'stamp': 'stamp',  # noqa: E501
     }
 
     read_only_vars = {
@@ -153,6 +155,7 @@ class CalibrationPattern(ModelNormal):
             bg_color (PatternColor): [optional]  # noqa: E501
             fg_color (PatternColor): [optional]  # noqa: E501
             fg_rect (PatternRect): [optional]  # noqa: E501
+            stamp (str): For internal use only. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -237,6 +240,7 @@ class CalibrationPattern(ModelNormal):
             bg_color (PatternColor): [optional]  # noqa: E501
             fg_color (PatternColor): [optional]  # noqa: E501
             fg_rect (PatternRect): [optional]  # noqa: E501
+            stamp (str): For internal use only. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

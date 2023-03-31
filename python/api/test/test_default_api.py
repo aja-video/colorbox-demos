@@ -75,6 +75,12 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_calibration_pattern(self):
+        """Test case for get_calibration_pattern
+
+        """
+        pass
+
     def test_get_colorfront_config(self):
         """Test case for get_colorfront_config
 
@@ -239,6 +245,12 @@ class TestDefaultApi(unittest.TestCase):
 
     def test_set_bbc_config(self):
         """Test case for set_bbc_config
+
+        """
+        pass
+
+    def test_set_calibration_pattern(self):
+        """Test case for set_calibration_pattern
 
         """
         pass

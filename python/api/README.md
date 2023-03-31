@@ -122,9 +122,11 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_matrix_library**](docs/DefaultApi.md#get_matrix_library) | **GET** /matrixLibrary | 
 *DefaultApi* | [**get_nbc_config**](docs/DefaultApi.md#get_nbc_config) | **GET** /nbcConfig | 
 *DefaultApi* | [**get_orion_config**](docs/DefaultApi.md#get_orion_config) | **GET** /orionConfig | 
+*DefaultApi* | [**get_orion_preset_library**](docs/DefaultApi.md#get_orion_preset_library) | **GET** /orionPresetLibrary | 
 *DefaultApi* | [**get_output_config**](docs/DefaultApi.md#get_output_config) | **GET** /outputConfig | 
 *DefaultApi* | [**get_output_status**](docs/DefaultApi.md#get_output_status) | **GET** /outputStatus | 
 *DefaultApi* | [**get_overlay**](docs/DefaultApi.md#get_overlay) | **GET** /overlay | 
+*DefaultApi* | [**get_overlay_library**](docs/DefaultApi.md#get_overlay_library) | **GET** /overlayLibrary | 
 *DefaultApi* | [**get_pipeline_stages**](docs/DefaultApi.md#get_pipeline_stages) | **GET** /pipelineStages | 
 *DefaultApi* | [**get_preview_image**](docs/DefaultApi.md#get_preview_image) | **GET** /preview | 
 *DefaultApi* | [**get_routing**](docs/DefaultApi.md#get_routing) | **GET** /routing | 
@@ -179,6 +181,14 @@ Class | Method | HTTP request | Description
  - [ColorSpace](docs/ColorSpace.md)
  - [ColorfrontConfig](docs/ColorfrontConfig.md)
  - [ColorfrontDynRangeGamut](docs/ColorfrontDynRangeGamut.md)
+ - [ColorfrontDynRangeGamutLiveModeIn](docs/ColorfrontDynRangeGamutLiveModeIn.md)
+ - [ColorfrontDynRangeGamutLiveModeOut](docs/ColorfrontDynRangeGamutLiveModeOut.md)
+ - [ColorfrontDynRangeGamutTvModeIn](docs/ColorfrontDynRangeGamutTvModeIn.md)
+ - [ColorfrontDynRangeGamutTvModeOut](docs/ColorfrontDynRangeGamutTvModeOut.md)
+ - [ColorfrontEngine](docs/ColorfrontEngine.md)
+ - [ColorfrontLiveMode](docs/ColorfrontLiveMode.md)
+ - [ColorfrontMode](docs/ColorfrontMode.md)
+ - [ColorfrontTvMode](docs/ColorfrontTvMode.md)
  - [Colorimetry](docs/Colorimetry.md)
  - [Connection](docs/Connection.md)
  - [Crop4k2k](docs/Crop4k2k.md)

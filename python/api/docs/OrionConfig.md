@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enabled** | **bool** | true if stage is enabled else disabled (unity passthru) | [optional] 
-**comp100** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**gamma_comp** | **bool** |  | [optional]  if omitted the server will use the default value of False
 **conversion** | [**OrionConversion**](OrionConversion.md) |  | [optional] 
 **mode** | [**OrionMode**](OrionMode.md) |  | [optional] 
 **method** | [**OrionMethod**](OrionMethod.md) |  | [optional] 

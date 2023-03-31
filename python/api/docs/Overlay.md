@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **user_text_line2** | **str** |  | [optional] 
 **pipeline_config** | **bool** |  | [optional] 
 **location** | [**Locations**](Locations.md) |  | [optional] 
+**user_overlay_enabled** | **bool** |  | [optional]  if omitted the server will use the default value of False
+**library_entry** | **int** | library entry number of user overlay graphic | [optional]  if omitted the server will use the default value of 1
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

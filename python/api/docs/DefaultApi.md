@@ -21,9 +21,11 @@ Method | HTTP request | Description
 [**get_matrix_library**](DefaultApi.md#get_matrix_library) | **GET** /matrixLibrary | 
 [**get_nbc_config**](DefaultApi.md#get_nbc_config) | **GET** /nbcConfig | 
 [**get_orion_config**](DefaultApi.md#get_orion_config) | **GET** /orionConfig | 
+[**get_orion_preset_library**](DefaultApi.md#get_orion_preset_library) | **GET** /orionPresetLibrary | 
 [**get_output_config**](DefaultApi.md#get_output_config) | **GET** /outputConfig | 
 [**get_output_status**](DefaultApi.md#get_output_status) | **GET** /outputStatus | 
 [**get_overlay**](DefaultApi.md#get_overlay) | **GET** /overlay | 
+[**get_overlay_library**](DefaultApi.md#get_overlay_library) | **GET** /overlayLibrary | 
 [**get_pipeline_stages**](DefaultApi.md#get_pipeline_stages) | **GET** /pipelineStages | 
 [**get_preview_image**](DefaultApi.md#get_preview_image) | **GET** /preview | 
 [**get_routing**](DefaultApi.md#get_routing) | **GET** /routing | 
@@ -1131,6 +1133,68 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_orion_preset_library**
+> [LibraryEntry] get_orion_preset_library()
+
+
+
+Get the Orion Preset Library array
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.library_entry import LibraryEntry
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_orion_preset_library()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_orion_preset_library: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[LibraryEntry]**](LibraryEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_output_config**
 > OutputConfig get_output_config()
 
@@ -1298,6 +1362,68 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Overlay**](Overlay.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_overlay_library**
+> [LibraryEntry] get_overlay_library()
+
+
+
+Get the overlay Library array
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.library_entry import LibraryEntry
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_overlay_library()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_overlay_library: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[LibraryEntry]**](LibraryEntry.md)
 
 ### Authorization
 
@@ -2220,6 +2346,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         bbc_luts_licensed=True,
         orion_engine_licensed=True,
         colorfront_engine_licensed=True,
+        reset_time=1,
         shutdown_time=1,
         colorfront_transform_version="colorfront_transform_version_example",
         colorfront_engine_version="colorfront_engine_version_example",
@@ -2622,6 +2749,7 @@ with openapi_client.ApiClient() as api_client:
             width=0,
             height=0,
         ),
+        stamp="stamp_example",
     ) # CalibrationPattern | CalibrationPattern object
 
     # example passing only required values which don't have defaults set
@@ -2691,6 +2819,65 @@ with openapi_client.ApiClient() as api_client:
         enabled=True,
         in_dyn_range_gamut=ColorfrontDynRangeGamut("SDR BT.709"),
         out_dyn_range_gamut=ColorfrontDynRangeGamut("SDR BT.709"),
+        mode=ColorfrontMode("TV"),
+        tv_mode=ColorfrontTvMode(
+            engine=ColorfrontEngine("Default"),
+            in_dyn_range_gamut=ColorfrontDynRangeGamutTvModeIn("SDR BT.709"),
+            out_dyn_range_gamut=ColorfrontDynRangeGamutTvModeOut("SDR BT.709"),
+            brightness=0,
+            highlight=0,
+            colorfulness=0,
+            super_highlight=0,
+            roundtrip=False,
+            clamp_to_legal=False,
+            color_corrector=False,
+            lift_master=0,
+            lift_red=0,
+            lift_green=0,
+            lift_blue=0,
+            gamma_master=1,
+            gamma_red=1,
+            gamma_green=1,
+            gamma_blue=1,
+            gain_master=1,
+            gain_red=1,
+            gain_green=1,
+            gain_blue=1,
+            saturation=1.0,
+            camera_correction=False,
+            exposure=0,
+            color_temp=0,
+            tint=0,
+        ),
+        live_mode=ColorfrontLiveMode(
+            engine=ColorfrontEngine("Default"),
+            in_dyn_range_gamut=ColorfrontDynRangeGamutLiveModeIn("SDR BT.709 100 Nits"),
+            out_dyn_range_gamut=ColorfrontDynRangeGamutLiveModeOut("SDR BT.709 100 Nits"),
+            sdr_preview=False,
+            hdr_amount=0,
+            amb_light_comp=0,
+            hdr_log_look=0.5,
+            sdr_softness=0,
+            lift_master=0,
+            lift_red=0,
+            lift_green=0,
+            lift_blue=0,
+            gamma_master=1,
+            gamma_red=1,
+            gamma_green=1,
+            gamma_blue=1,
+            gain_master=1,
+            gain_red=1,
+            gain_green=1,
+            gain_blue=1,
+            saturation=1.0,
+            exposure=0,
+            color_temp=0,
+            tint=0,
+            pq_output_nit_level=1000,
+            p3_colorspace_clamp=False,
+            bt2408_mode=0,
+        ),
     ) # ColorfrontConfig | ColorfrontConfig object
 
     # example passing only required values which don't have defaults set
@@ -3188,7 +3375,7 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     orion_config = OrionConfig(
         enabled=True,
-        comp100=False,
+        gamma_comp=False,
         conversion=OrionConversion("HLG to SDR"),
         mode=OrionMode("Display Light"),
         method=OrionMethod("MAX(RGB)"),
@@ -3437,6 +3624,8 @@ with openapi_client.ApiClient() as api_client:
         user_text_line2="user_text_line2_example",
         pipeline_config=True,
         location=Locations("Bottom Center"),
+        user_overlay_enabled=False,
+        library_entry=1,
     ) # Overlay | Overlay object
 
     # example passing only required values which don't have defaults set
@@ -4489,6 +4678,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         subnet="subnet_example",
         gateway="gateway_example",
         wifi_ip_change_commit=0,
+        wifi_password_length=1,
+        wifi_region="wifi_region_example",
     ) # WiFiDeviceConfig | WiFi Config object
 
     # example passing only required values which don't have defaults set
@@ -4646,7 +4837,7 @@ with openapi_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     file = open('/path/to/file', 'rb') # file_type |  (optional)
-    kind = "" # str | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** (optional) if omitted the server will use the default value of ""
+    kind = "" # str | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**, **license**, **update** (optional) if omitted the server will use the default value of ""
     entry = -1 # int | The entry number to upload the file to, **not** used with kinds: **license** and **update** (optional) if omitted the server will use the default value of -1
 
     # example passing only required values which don't have defaults set
@@ -4663,7 +4854,7 @@ with openapi_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **file_type**|  | [optional]
- **kind** | **str**| The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** | [optional] if omitted the server will use the default value of ""
+ **kind** | **str**| The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**, **license**, **update** | [optional] if omitted the server will use the default value of ""
  **entry** | **int**| The entry number to upload the file to, **not** used with kinds: **license** and **update** | [optional] if omitted the server will use the default value of -1
 
 ### Return type
