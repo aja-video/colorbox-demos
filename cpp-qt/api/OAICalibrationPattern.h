@@ -24,6 +24,7 @@
 
 #include "OAIPatternColor.h"
 #include "OAIPatternRect.h"
+#include <QString>
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
@@ -56,6 +57,11 @@ public:
     bool is_fg_rect_Set() const;
     bool is_fg_rect_Valid() const;
 
+    QString getStamp() const;
+    void setStamp(const QString &stamp);
+    bool is_stamp_Set() const;
+    bool is_stamp_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -74,6 +80,10 @@ private:
     OAIPatternRect m_fg_rect;
     bool m_fg_rect_isSet;
     bool m_fg_rect_isValid;
+
+    QString m_stamp;
+    bool m_stamp_isSet;
+    bool m_stamp_isValid;
 };
 
 } // namespace OpenAPI

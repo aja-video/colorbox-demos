@@ -29,6 +29,14 @@ add_library(${PROJECT_NAME}
     OAIColorSpace.cpp
     OAIColorfrontConfig.cpp
     OAIColorfrontDynRangeGamut.cpp
+    OAIColorfrontDynRangeGamutLiveModeIn.cpp
+    OAIColorfrontDynRangeGamutLiveModeOut.cpp
+    OAIColorfrontDynRangeGamutTvModeIn.cpp
+    OAIColorfrontDynRangeGamutTvModeOut.cpp
+    OAIColorfrontEngine.cpp
+    OAIColorfrontLiveMode.cpp
+    OAIColorfrontMode.cpp
+    OAIColorfrontTvMode.cpp
     OAIColorimetry.cpp
     OAIConnection.cpp
     OAICrop4k2k.cpp

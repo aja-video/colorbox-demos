@@ -143,6 +143,9 @@ public:
     void getOrionConfig();
 
 
+    void getOrionPresetLibrary();
+
+
     void getOutputConfig();
 
 
@@ -150,6 +153,9 @@ public:
 
 
     void getOverlay();
+
+
+    void getOverlayLibrary();
 
 
     void getPipelineStages();
@@ -379,9 +385,11 @@ private:
     void getMatrixLibraryCallback(OAIHttpRequestWorker *worker);
     void getNbcConfigCallback(OAIHttpRequestWorker *worker);
     void getOrionConfigCallback(OAIHttpRequestWorker *worker);
+    void getOrionPresetLibraryCallback(OAIHttpRequestWorker *worker);
     void getOutputConfigCallback(OAIHttpRequestWorker *worker);
     void getOutputStatusCallback(OAIHttpRequestWorker *worker);
     void getOverlayCallback(OAIHttpRequestWorker *worker);
+    void getOverlayLibraryCallback(OAIHttpRequestWorker *worker);
     void getPipelineStagesCallback(OAIHttpRequestWorker *worker);
     void getPreviewImageCallback(OAIHttpRequestWorker *worker);
     void getRoutingCallback(OAIHttpRequestWorker *worker);
@@ -443,9 +451,11 @@ signals:
     void getMatrixLibrarySignal(QList<OAILibraryEntry> summary);
     void getNbcConfigSignal(OAINbcConfig summary);
     void getOrionConfigSignal(OAIOrionConfig summary);
+    void getOrionPresetLibrarySignal(QList<OAILibraryEntry> summary);
     void getOutputConfigSignal(OAIOutputConfig summary);
     void getOutputStatusSignal(OAIOutputConfig summary);
     void getOverlaySignal(OAIOverlay summary);
+    void getOverlayLibrarySignal(QList<OAILibraryEntry> summary);
     void getPipelineStagesSignal(OAIPipelineStages summary);
     void getPreviewImageSignal(OAIPreview summary);
     void getRoutingSignal(OAIRouting summary);
@@ -505,9 +515,11 @@ signals:
     void getMatrixLibrarySignalFull(OAIHttpRequestWorker *worker, QList<OAILibraryEntry> summary);
     void getNbcConfigSignalFull(OAIHttpRequestWorker *worker, OAINbcConfig summary);
     void getOrionConfigSignalFull(OAIHttpRequestWorker *worker, OAIOrionConfig summary);
+    void getOrionPresetLibrarySignalFull(OAIHttpRequestWorker *worker, QList<OAILibraryEntry> summary);
     void getOutputConfigSignalFull(OAIHttpRequestWorker *worker, OAIOutputConfig summary);
     void getOutputStatusSignalFull(OAIHttpRequestWorker *worker, OAIOutputConfig summary);
     void getOverlaySignalFull(OAIHttpRequestWorker *worker, OAIOverlay summary);
+    void getOverlayLibrarySignalFull(OAIHttpRequestWorker *worker, QList<OAILibraryEntry> summary);
     void getPipelineStagesSignalFull(OAIHttpRequestWorker *worker, OAIPipelineStages summary);
     void getPreviewImageSignalFull(OAIHttpRequestWorker *worker, OAIPreview summary);
     void getRoutingSignalFull(OAIHttpRequestWorker *worker, OAIRouting summary);
@@ -567,9 +579,11 @@ signals:
     void getMatrixLibrarySignalE(QList<OAILibraryEntry> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getNbcConfigSignalE(OAINbcConfig summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getOrionConfigSignalE(OAIOrionConfig summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getOrionPresetLibrarySignalE(QList<OAILibraryEntry> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getOutputConfigSignalE(OAIOutputConfig summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getOutputStatusSignalE(OAIOutputConfig summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getOverlaySignalE(OAIOverlay summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getOverlayLibrarySignalE(QList<OAILibraryEntry> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getPipelineStagesSignalE(OAIPipelineStages summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getPreviewImageSignalE(OAIPreview summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRoutingSignalE(OAIRouting summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -629,9 +643,11 @@ signals:
     void getMatrixLibrarySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getNbcConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getOrionConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getOrionPresetLibrarySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getOutputConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getOutputStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getOverlaySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getOverlayLibrarySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getPipelineStagesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getPreviewImageSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRoutingSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);

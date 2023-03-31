@@ -43,6 +43,9 @@ void OAICalibrationPattern::initializeModel() {
 
     m_fg_rect_isSet = false;
     m_fg_rect_isValid = false;
+
+    m_stamp_isSet = false;
+    m_stamp_isValid = false;
 }
 
 void OAICalibrationPattern::fromJson(QString jsonString) {
@@ -62,6 +65,9 @@ void OAICalibrationPattern::fromJsonObject(QJsonObject json) {
 
     m_fg_rect_isValid = ::OpenAPI::fromJsonValue(m_fg_rect, json[QString("fgRect")]);
     m_fg_rect_isSet = !json[QString("fgRect")].isNull() && m_fg_rect_isValid;
+
+    m_stamp_isValid = ::OpenAPI::fromJsonValue(m_stamp, json[QString("stamp")]);
+    m_stamp_isSet = !json[QString("stamp")].isNull() && m_stamp_isValid;
 
     applyMinMaxConstraints();
 }
@@ -83,6 +89,9 @@ QJsonObject OAICalibrationPattern::asJsonObject() const {
     }
     if (m_fg_rect.isSet()) {
         obj.insert(QString("fgRect"), ::OpenAPI::toJsonValue(m_fg_rect));
+    }
+    if (m_stamp_isSet) {
+        obj.insert(QString("stamp"), ::OpenAPI::toJsonValue(m_stamp));
     }
     return obj;
 }
@@ -141,6 +150,25 @@ bool OAICalibrationPattern::is_fg_rect_Valid() const{
 }
 
 
+QString OAICalibrationPattern::getStamp() const {
+    return m_stamp;
+}
+void OAICalibrationPattern::setStamp(const QString &stamp) {
+	QString v = stamp;
+	this->m_stamp = v;
+    this->m_stamp_isSet = true;
+}
+
+bool OAICalibrationPattern::is_stamp_Set() const{
+    return m_stamp_isSet;
+}
+
+bool OAICalibrationPattern::is_stamp_Valid() const{
+    return m_stamp_isValid;
+}
+
+
+
 bool OAICalibrationPattern::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -158,6 +186,11 @@ bool OAICalibrationPattern::isSet() const {
             isObjectUpdated = true;
             break;
         }
+
+        if (m_stamp_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
@@ -169,6 +202,12 @@ bool OAICalibrationPattern::isValid() const {
 
 bool OAICalibrationPattern::applyMinMaxConstraints() {
 	bool anyMinMaxValueChanged = false;
+	if (is_stamp_Set())
+	{
+		bool stampChanged = false;
+		QString v = getStamp();
+		if (stampChanged) { setStamp(v); anyMinMaxValueChanged = true; }
+	}
 	return anyMinMaxValueChanged;
 }
 
