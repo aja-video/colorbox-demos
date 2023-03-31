@@ -60,4 +60,4 @@ This allows you not only to see the data structures for the API but also try it 
 		* [README.md](python/README.md) - more details about these demos
 
 #### Updates
-**03/31/2022** - Added Calibration API, and update DynamicFrameLoad in Qt demos to demonstrate it.
+**03/31/2022** - Added Calibration related API updated ColorFront API with Live Mode and TV Mode controls. The Calibration API is demostrated in the C++ Qt DynamicFrameLoad project.
