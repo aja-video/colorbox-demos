@@ -66,7 +66,9 @@ Dialog::Dialog(QWidget *parent)
 	connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
 
     // UI related Code
-    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);
+    connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);// API related slots
+    connect(&_api, &OAIDefaultApi::getFrameStoreSignal, this, &Dialog::handleGetFrameStore);
+    connect(&_api, &OAIDefaultApi::getFrameStoreSignalE, this, &Dialog::handleGetFrameStoreError);
     connect(_ui->loadImagepushButton,&QPushButton::pressed,this,&Dialog::handleLoadImageButton);
     connect(_ui->setFrameBufferValueButton,&QPushButton::released,this,&Dialog::handleSetFrameBufferValueButton);
     connect(_ui->sendFramePushButton,&QPushButton::pressed,this,&Dialog::updateFrameToColorBox);
@@ -75,13 +77,13 @@ Dialog::Dialog(QWidget *parent)
     connect(_ui->overlayTestLineEdit, &QLineEdit::textChanged,this,&Dialog::handleOverlayTextChanged);
 
     connect(_ui->xStartSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
-        [=](double value){ handleSpinBoxes(value); });
+            [=](double value){ handleSpinBoxes(value); });
     connect(_ui->yStartSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
-        [=](double value){ handleSpinBoxes(value); });
+            [=](double value){ handleSpinBoxes(value); });
     connect(_ui->xWidthSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
-        [=](double value){ handleSpinBoxes(value); });
+            [=](double value){ handleSpinBoxes(value); });
     connect(_ui->yHeightSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
-        [=](double value){ handleSpinBoxes(value); });
+            [=](double value){ handleSpinBoxes(value); });
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getFrameStoreSignal, this, &Dialog::handleGetFrameStore);
@@ -266,7 +268,8 @@ void Dialog::overLayText()
     uint32_t r = 0;
     uint32_t a = 0;
     int size = _width * 6 * _height;
-    // Composite the watermark over the output image
+
+    // Composite the overlay over the output image
     for (uint32_t i = 0; i < size/6; i++)
     {
         if (i < ovlSize/4)
@@ -304,7 +307,6 @@ void Dialog::handleSetFrameBufferValueButton()
         handleSpinBoxes(0);
     else
         updatePreview();
-
 
     _alphaMode = false;
 

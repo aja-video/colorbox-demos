@@ -1,4 +1,4 @@
-bin/*.exe
+ntv2sdk/
 bin/DynamicFrameLoad
 bin/DynamicLutLoad
 bin/DynamicMatrixLoad
@@ -6,5 +6,4 @@ bin/FrameGrab
 bin/Librarian
 bin/PreviewDemo
 bin/RGBTriplet
-build*
-*.pro.user
+*.user
