@@ -58,3 +58,6 @@ This allows you not only to see the data structures for the API but also try it 
 		* [lib_load/](python/lib_load) - command line demo
 		* [set_overlay_text/](python/set_overlay_text) - command line demo
 		* [README.md](python/README.md) - more details about these demos
+
+#### Updates
+**03/31/2022** - Added Calibration API, and update DynamicFrameLoad in Qt demos to demonstrate it.
