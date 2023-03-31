@@ -11,6 +11,7 @@
  * The buffer if prepended with "FS02" so ColorBox recognizes this as a frame to put in the frame store.
  * The REST API is used to set ColorBox into Dynamic Output Mode. You can send a frame with any valid rastersize this demo
  * is just limted to 1920x1080. You can use OAIVideoFormat to set the Framestore to any valid video format.
+ * To actually send the frame to the colorbox from the demo press "Send Frame".
  *
  * There are two ways to preload a _frameBuffer in the code below
  * 1) handleSetFrameBufferValueButton - takes the 12 bit values in the QSpinBoxes and makes 16 bit values for the buffer.
@@ -28,9 +29,11 @@
  *
  * However, if the OAICalibrationPattern API can't describe the frame you need you can always fall back to rendering whatever
  * frame you need and transmitting it over a websocket.
- * In this demo the "Calibration Box" is sent to the Colorbox whenever a box spinbox parameter is changed making it dynamic.
+ * In this demo the "Calibration Box" is sent to the Colorbox whenever a box spinbox parameter is changed making it dynamic
+ * so no need to press the "Send Frame" button.
  *
- * For images and values you must press the "Send Frame" button to send the frame to the ColorBox via the WebSocket.
+ * The "Enable Text Overlay" feature was requested and is just a demonstration of what can done but doesn't have anything to do
+ * with the API. Just uses Qt.
  */
 
 #include "dialog.h"
@@ -67,8 +70,6 @@ Dialog::Dialog(QWidget *parent)
 
     // UI related Code
     connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);// API related slots
-    connect(&_api, &OAIDefaultApi::getFrameStoreSignal, this, &Dialog::handleGetFrameStore);
-    connect(&_api, &OAIDefaultApi::getFrameStoreSignalE, this, &Dialog::handleGetFrameStoreError);
     connect(_ui->loadImagepushButton,&QPushButton::pressed,this,&Dialog::handleLoadImageButton);
     connect(_ui->setFrameBufferValueButton,&QPushButton::released,this,&Dialog::handleSetFrameBufferValueButton);
     connect(_ui->sendFramePushButton,&QPushButton::pressed,this,&Dialog::updateFrameToColorBox);
