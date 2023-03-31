@@ -57,6 +57,10 @@ Overlay::Overlay()
     m_PipelineConfig = false;
     m_PipelineConfigIsSet = false;
     m_LocationIsSet = false;
+    m_UserOverlayEnabled = false;
+    m_UserOverlayEnabledIsSet = false;
+    m_LibraryEntry = 0;
+    m_LibraryEntryIsSet = false;
 }
 
 Overlay::~Overlay()
@@ -90,6 +94,12 @@ bool Overlay::applyMinMaxConstraints()
 		if (v.length() < (size_t)min) { v.resize(min); userTextLine2Changed = true; }
 		if (v.length() > (size_t)max) { v.resize(max); userTextLine2Changed = true; }
 		if (userTextLine2Changed) { setUserTextLine2(v); anyMinMaxValueChanged = true; }
+	}
+	if (libraryEntryIsSet())
+	{
+		bool libraryEntryChanged = false;
+		int32_t v = getLibraryEntry();
+		if (libraryEntryChanged) { setLibraryEntry(v); anyMinMaxValueChanged = true; }
 	}
 	return anyMinMaxValueChanged;
 }
@@ -162,6 +172,14 @@ web::json::value Overlay::toJson() const
     if(m_LocationIsSet)
     {
         val[utility::conversions::to_string_t(U("location"))] = ModelBase::toJson(m_Location);
+    }
+    if(m_UserOverlayEnabledIsSet)
+    {
+        val[utility::conversions::to_string_t(U("userOverlayEnabled"))] = ModelBase::toJson(m_UserOverlayEnabled);
+    }
+    if(m_LibraryEntryIsSet)
+    {
+        val[utility::conversions::to_string_t(U("libraryEntry"))] = ModelBase::toJson(m_LibraryEntry);
     }
 
     return val;
@@ -331,6 +349,26 @@ bool Overlay::fromJson(const web::json::value& val)
             setLocation(refVal_location);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("userOverlayEnabled"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("userOverlayEnabled")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_userOverlayEnabled;
+            ok &= ModelBase::fromJson(fieldValue, refVal_userOverlayEnabled);
+            setUserOverlayEnabled(refVal_userOverlayEnabled);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("libraryEntry"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("libraryEntry")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_libraryEntry;
+            ok &= ModelBase::fromJson(fieldValue, refVal_libraryEntry);
+            setLibraryEntry(refVal_libraryEntry);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -406,6 +444,14 @@ void Overlay::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     if(m_LocationIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("location")), m_Location));
+    }
+    if(m_UserOverlayEnabledIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("userOverlayEnabled")), m_UserOverlayEnabled));
+    }
+    if(m_LibraryEntryIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("libraryEntry")), m_LibraryEntry));
     }
 }
 
@@ -513,6 +559,18 @@ bool Overlay::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         std::shared_ptr<Locations> refVal_location;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("location"))), refVal_location );
         setLocation(refVal_location);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("userOverlayEnabled"))))
+    {
+        bool refVal_userOverlayEnabled;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("userOverlayEnabled"))), refVal_userOverlayEnabled );
+        setUserOverlayEnabled(refVal_userOverlayEnabled);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("libraryEntry"))))
+    {
+        int32_t refVal_libraryEntry;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("libraryEntry"))), refVal_libraryEntry );
+        setLibraryEntry(refVal_libraryEntry);
     }
     
     applyMinMaxConstraints();
@@ -907,6 +965,53 @@ void Overlay::unsetLocation()
 {
     m_LocationIsSet = false;
 }
+
+
+bool Overlay::isUserOverlayEnabled() const
+{
+    return m_UserOverlayEnabled;
+}
+
+void Overlay::setUserOverlayEnabled(bool value)
+{
+	bool v = value;
+    m_UserOverlayEnabled = v;
+    m_UserOverlayEnabledIsSet = true;
+}
+
+bool Overlay::userOverlayEnabledIsSet() const
+{
+    return m_UserOverlayEnabledIsSet;
+}
+
+void Overlay::unsetUserOverlayEnabled()
+{
+    m_UserOverlayEnabledIsSet = false;
+}
+
+
+int32_t Overlay::getLibraryEntry() const
+{
+    return m_LibraryEntry;
+}
+
+void Overlay::setLibraryEntry(int32_t value)
+{
+	int32_t v = value;
+    m_LibraryEntry = v;
+    m_LibraryEntryIsSet = true;
+}
+
+bool Overlay::libraryEntryIsSet() const
+{
+    return m_LibraryEntryIsSet;
+}
+
+void Overlay::unsetLibraryEntry()
+{
+    m_LibraryEntryIsSet = false;
+}
+
 
 
 }

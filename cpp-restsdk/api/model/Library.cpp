@@ -39,6 +39,10 @@ Library::eLibrary toEnum(const EnumUnderlyingType& val)
         return Library::eLibrary::Library_IMAGE;
     if (val == utility::conversions::to_string_t(U("systemPreset")))
         return Library::eLibrary::Library_SYSTEMPRESET;
+    if (val == utility::conversions::to_string_t(U("Overlay")))
+        return Library::eLibrary::Library_OVERLAY;
+    if (val == utility::conversions::to_string_t(U("orionPreset")))
+        return Library::eLibrary::Library_ORIONPRESET;
     return {};
 }
 
@@ -56,6 +60,10 @@ EnumUnderlyingType fromEnum(Library::eLibrary e)
         return U("Image");
     case Library::eLibrary::Library_SYSTEMPRESET:
         return U("systemPreset");
+    case Library::eLibrary::Library_OVERLAY:
+        return U("Overlay");
+    case Library::eLibrary::Library_ORIONPRESET:
+        return U("orionPreset");
     default:
         break;
     }

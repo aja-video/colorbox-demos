@@ -211,6 +211,16 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    int32_t getResetTime() const;
+    bool resetTimeIsSet() const;
+    void unsetResetTime();
+
+    void setResetTime(int32_t value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
     int32_t getShutdownTime() const;
     bool shutdownTimeIsSet() const;
     void unsetShutdownTime();
@@ -310,6 +320,8 @@ protected:
     bool m_OrionEngineLicensedIsSet;
     bool m_ColorfrontEngineLicensed;
     bool m_ColorfrontEngineLicensedIsSet;
+    int32_t m_ResetTime;
+    bool m_ResetTimeIsSet;
     int32_t m_ShutdownTime;
     bool m_ShutdownTimeIsSet;
     utility::string_t m_ColorfrontTransformVersion;

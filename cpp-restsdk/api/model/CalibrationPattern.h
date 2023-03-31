@@ -26,6 +26,7 @@
 
 #include "model/PatternRect.h"
 #include "model/PatternColor.h"
+#include <cpprest/details/basic_types.h>
 
 namespace org {
 namespace openapitools {
@@ -88,6 +89,16 @@ public:
     void setFgRect(const std::shared_ptr<PatternRect>& value);
 
 
+    /// <summary>
+    /// For internal use only
+    /// </summary>
+    utility::string_t getStamp() const;
+    bool stampIsSet() const;
+    void unsetStamp();
+
+    void setStamp(const utility::string_t& value);
+
+
 
 protected:
     std::shared_ptr<PatternColor> m_BgColor;
@@ -96,6 +107,8 @@ protected:
     bool m_FgColorIsSet;
     std::shared_ptr<PatternRect> m_FgRect;
     bool m_FgRectIsSet;
+    utility::string_t m_Stamp;
+    bool m_StampIsSet;
 };
 
 

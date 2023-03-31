@@ -218,6 +218,14 @@ public:
     /// 
     /// </summary>
     /// <remarks>
+    /// Get the Orion Preset Library array
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<LibraryEntry>>> getOrionPresetLibrary(
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
     /// Get the SDI/HDMI output config
     /// </remarks>
     pplx::task<std::shared_ptr<OutputConfig>> getOutputConfig(
@@ -237,6 +245,14 @@ public:
     /// Get the overlay configuration
     /// </remarks>
     pplx::task<std::shared_ptr<Overlay>> getOverlay(
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Get the overlay Library array
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<LibraryEntry>>> getOverlayLibrary(
     ) const;
     /// <summary>
     /// 
@@ -631,7 +647,7 @@ public:
     /// Upload a file
     /// </remarks>
     /// <param name="file"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="kind">The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **preset**, **license**, **update** (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="kind">The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**, **license**, **update** (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="entry">The entry number to upload the file to, **not** used with kinds: **license** and **update** (optional, default to 0)</param>
     pplx::task<void> uploadFile(
         boost::optional<std::shared_ptr<HttpContent>> file,

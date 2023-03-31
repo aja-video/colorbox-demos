@@ -55,6 +55,8 @@ Status::Status()
     m_OrionEngineLicensedIsSet = false;
     m_ColorfrontEngineLicensed = false;
     m_ColorfrontEngineLicensedIsSet = false;
+    m_ResetTime = 0;
+    m_ResetTimeIsSet = false;
     m_ShutdownTime = 0;
     m_ShutdownTimeIsSet = false;
     m_ColorfrontTransformVersion = utility::conversions::to_string_t("");
@@ -136,6 +138,12 @@ bool Status::applyMinMaxConstraints()
 		bool systemSupportInfoChanged = false;
 		utility::string_t v = getSystemSupportInfo();
 		if (systemSupportInfoChanged) { setSystemSupportInfo(v); anyMinMaxValueChanged = true; }
+	}
+	if (resetTimeIsSet())
+	{
+		bool resetTimeChanged = false;
+		int32_t v = getResetTime();
+		if (resetTimeChanged) { setResetTime(v); anyMinMaxValueChanged = true; }
 	}
 	if (shutdownTimeIsSet())
 	{
@@ -240,6 +248,10 @@ web::json::value Status::toJson() const
     if(m_ColorfrontEngineLicensedIsSet)
     {
         val[utility::conversions::to_string_t(U("colorfrontEngineLicensed"))] = ModelBase::toJson(m_ColorfrontEngineLicensed);
+    }
+    if(m_ResetTimeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("resetTime"))] = ModelBase::toJson(m_ResetTime);
     }
     if(m_ShutdownTimeIsSet)
     {
@@ -427,6 +439,16 @@ bool Status::fromJson(const web::json::value& val)
             setColorfrontEngineLicensed(refVal_colorfrontEngineLicensed);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("resetTime"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("resetTime")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_resetTime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_resetTime);
+            setResetTime(refVal_resetTime);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("shutdownTime"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("shutdownTime")));
@@ -569,6 +591,10 @@ void Status::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("colorfrontEngineLicensed")), m_ColorfrontEngineLicensed));
     }
+    if(m_ResetTimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("resetTime")), m_ResetTime));
+    }
     if(m_ShutdownTimeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("shutdownTime")), m_ShutdownTime));
@@ -697,6 +723,12 @@ bool Status::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         bool refVal_colorfrontEngineLicensed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("colorfrontEngineLicensed"))), refVal_colorfrontEngineLicensed );
         setColorfrontEngineLicensed(refVal_colorfrontEngineLicensed);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("resetTime"))))
+    {
+        int32_t refVal_resetTime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("resetTime"))), refVal_resetTime );
+        setResetTime(refVal_resetTime);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("shutdownTime"))))
     {
@@ -1097,6 +1129,30 @@ void Status::unsetColorfrontEngineLicensed()
 {
     m_ColorfrontEngineLicensedIsSet = false;
 }
+
+
+int32_t Status::getResetTime() const
+{
+    return m_ResetTime;
+}
+
+void Status::setResetTime(int32_t value)
+{
+	int32_t v = value;
+    m_ResetTime = v;
+    m_ResetTimeIsSet = true;
+}
+
+bool Status::resetTimeIsSet() const
+{
+    return m_ResetTimeIsSet;
+}
+
+void Status::unsetResetTime()
+{
+    m_ResetTimeIsSet = false;
+}
+
 
 
 int32_t Status::getShutdownTime() const

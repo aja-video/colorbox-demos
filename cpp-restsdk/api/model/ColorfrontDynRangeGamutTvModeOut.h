@@ -13,13 +13,13 @@
  */
 
 /*
- * Library.h
+ * ColorfrontDynRangeGamutTvModeOut.h
  *
  * 
  */
 
-#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_Library_H_
-#define ORG_OPENAPITOOLS_CLIENT_MODEL_Library_H_
+#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_ColorfrontDynRangeGamutTvModeOut_H_
+#define ORG_OPENAPITOOLS_CLIENT_MODEL_ColorfrontDynRangeGamutTvModeOut_H_
 
 
 #include "ModelBase.h"
@@ -30,12 +30,12 @@ namespace openapitools {
 namespace client {
 namespace model {
 
-class  Library
+class  ColorfrontDynRangeGamutTvModeOut
     : public ModelBase
 {
 public:
-    Library();
-    virtual ~Library();
+    ColorfrontDynRangeGamutTvModeOut();
+    virtual ~ColorfrontDynRangeGamutTvModeOut();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -49,22 +49,20 @@ public:
     void toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) const override;
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
-    enum class eLibrary
+    enum class eColorfrontDynRangeGamutTvModeOut
     {
-        Library__1D_LUT,
-        Library__3D_LUT,
-        Library_MATRIX,
-        Library_IMAGE,
-        Library_SYSTEMPRESET,
-        Library_OVERLAY,
-        Library_ORIONPRESET,
+        ColorfrontDynRangeGamutTvModeOut_SDR_BT_709,
+        ColorfrontDynRangeGamutTvModeOut_HLG_BT_2020,
+        ColorfrontDynRangeGamutTvModeOut_PQ_BT_2020,
+        ColorfrontDynRangeGamutTvModeOut_PQ_BT_2020_CONSTRAINP3,
+        ColorfrontDynRangeGamutTvModeOut_SONY_SLOG3_BT_2020,
     };
 
-    eLibrary getValue() const;
-    void setValue(eLibrary const value);
+    eColorfrontDynRangeGamutTvModeOut getValue() const;
+    void setValue(eColorfrontDynRangeGamutTvModeOut const value);
 
     protected:
-        eLibrary m_value;
+        eColorfrontDynRangeGamutTvModeOut m_value;
 };
 
 }
@@ -72,4 +70,4 @@ public:
 }
 }
 
-#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_Library_H_ */
+#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_ColorfrontDynRangeGamutTvModeOut_H_ */

@@ -25,6 +25,9 @@
 #include "ModelBase.h"
 
 #include "model/ColorfrontDynRangeGamut.h"
+#include "model/ColorfrontMode.h"
+#include "model/ColorfrontLiveMode.h"
+#include "model/ColorfrontTvMode.h"
 
 namespace org {
 namespace openapitools {
@@ -87,6 +90,36 @@ public:
     void setOutDynRangeGamut(const std::shared_ptr<ColorfrontDynRangeGamut>& value);
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<ColorfrontMode> getMode() const;
+    bool modeIsSet() const;
+    void unsetMode();
+
+    void setMode(const std::shared_ptr<ColorfrontMode>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<ColorfrontTvMode> getTvMode() const;
+    bool tvModeIsSet() const;
+    void unsetTvMode();
+
+    void setTvMode(const std::shared_ptr<ColorfrontTvMode>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<ColorfrontLiveMode> getLiveMode() const;
+    bool liveModeIsSet() const;
+    void unsetLiveMode();
+
+    void setLiveMode(const std::shared_ptr<ColorfrontLiveMode>& value);
+
+
 
 protected:
     bool m_Enabled;
@@ -95,6 +128,12 @@ protected:
     bool m_InDynRangeGamutIsSet;
     std::shared_ptr<ColorfrontDynRangeGamut> m_OutDynRangeGamut;
     bool m_OutDynRangeGamutIsSet;
+    std::shared_ptr<ColorfrontMode> m_Mode;
+    bool m_ModeIsSet;
+    std::shared_ptr<ColorfrontTvMode> m_TvMode;
+    bool m_TvModeIsSet;
+    std::shared_ptr<ColorfrontLiveMode> m_LiveMode;
+    bool m_LiveModeIsSet;
 };
 
 

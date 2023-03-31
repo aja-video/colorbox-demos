@@ -44,6 +44,10 @@ WiFiDeviceConfig::WiFiDeviceConfig()
     m_GatewayIsSet = false;
     m_WifiIpChangeCommit = 0;
     m_WifiIpChangeCommitIsSet = false;
+    m_WifiPasswordLength = 0;
+    m_WifiPasswordLengthIsSet = false;
+    m_WifiRegion = utility::conversions::to_string_t("");
+    m_WifiRegionIsSet = false;
 }
 
 WiFiDeviceConfig::~WiFiDeviceConfig()
@@ -112,6 +116,18 @@ bool WiFiDeviceConfig::applyMinMaxConstraints()
 		int32_t v = getWifiIpChangeCommit();
 		if (wifiIpChangeCommitChanged) { setWifiIpChangeCommit(v); anyMinMaxValueChanged = true; }
 	}
+	if (wifiPasswordLengthIsSet())
+	{
+		bool wifiPasswordLengthChanged = false;
+		int32_t v = getWifiPasswordLength();
+		if (wifiPasswordLengthChanged) { setWifiPasswordLength(v); anyMinMaxValueChanged = true; }
+	}
+	if (wifiRegionIsSet())
+	{
+		bool wifiRegionChanged = false;
+		utility::string_t v = getWifiRegion();
+		if (wifiRegionChanged) { setWifiRegion(v); anyMinMaxValueChanged = true; }
+	}
 	return anyMinMaxValueChanged;
 }
 
@@ -155,6 +171,14 @@ web::json::value WiFiDeviceConfig::toJson() const
     if(m_WifiIpChangeCommitIsSet)
     {
         val[utility::conversions::to_string_t(U("wifiIpChangeCommit"))] = ModelBase::toJson(m_WifiIpChangeCommit);
+    }
+    if(m_WifiPasswordLengthIsSet)
+    {
+        val[utility::conversions::to_string_t(U("wifiPasswordLength"))] = ModelBase::toJson(m_WifiPasswordLength);
+    }
+    if(m_WifiRegionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("wifiRegion"))] = ModelBase::toJson(m_WifiRegion);
     }
 
     return val;
@@ -254,6 +278,26 @@ bool WiFiDeviceConfig::fromJson(const web::json::value& val)
             setWifiIpChangeCommit(refVal_wifiIpChangeCommit);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("wifiPasswordLength"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("wifiPasswordLength")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_wifiPasswordLength;
+            ok &= ModelBase::fromJson(fieldValue, refVal_wifiPasswordLength);
+            setWifiPasswordLength(refVal_wifiPasswordLength);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("wifiRegion"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("wifiRegion")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_wifiRegion;
+            ok &= ModelBase::fromJson(fieldValue, refVal_wifiRegion);
+            setWifiRegion(refVal_wifiRegion);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -301,6 +345,14 @@ void WiFiDeviceConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_WifiIpChangeCommitIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("wifiIpChangeCommit")), m_WifiIpChangeCommit));
+    }
+    if(m_WifiPasswordLengthIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("wifiPasswordLength")), m_WifiPasswordLength));
+    }
+    if(m_WifiRegionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("wifiRegion")), m_WifiRegion));
     }
 }
 
@@ -366,6 +418,18 @@ bool WiFiDeviceConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         int32_t refVal_wifiIpChangeCommit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("wifiIpChangeCommit"))), refVal_wifiIpChangeCommit );
         setWifiIpChangeCommit(refVal_wifiIpChangeCommit);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("wifiPasswordLength"))))
+    {
+        int32_t refVal_wifiPasswordLength;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("wifiPasswordLength"))), refVal_wifiPasswordLength );
+        setWifiPasswordLength(refVal_wifiPasswordLength);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("wifiRegion"))))
+    {
+        utility::string_t refVal_wifiRegion;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("wifiRegion"))), refVal_wifiRegion );
+        setWifiRegion(refVal_wifiRegion);
     }
     
     applyMinMaxConstraints();
@@ -584,6 +648,54 @@ bool WiFiDeviceConfig::wifiIpChangeCommitIsSet() const
 void WiFiDeviceConfig::unsetWifiIpChangeCommit()
 {
     m_WifiIpChangeCommitIsSet = false;
+}
+
+
+
+int32_t WiFiDeviceConfig::getWifiPasswordLength() const
+{
+    return m_WifiPasswordLength;
+}
+
+void WiFiDeviceConfig::setWifiPasswordLength(int32_t value)
+{
+	int32_t v = value;
+    m_WifiPasswordLength = v;
+    m_WifiPasswordLengthIsSet = true;
+}
+
+bool WiFiDeviceConfig::wifiPasswordLengthIsSet() const
+{
+    return m_WifiPasswordLengthIsSet;
+}
+
+void WiFiDeviceConfig::unsetWifiPasswordLength()
+{
+    m_WifiPasswordLengthIsSet = false;
+}
+
+
+
+utility::string_t WiFiDeviceConfig::getWifiRegion() const
+{
+    return m_WifiRegion;
+}
+
+void WiFiDeviceConfig::setWifiRegion(const utility::string_t& value)
+{
+	utility::string_t v = value;
+    m_WifiRegion = v;
+    m_WifiRegionIsSet = true;
+}
+
+bool WiFiDeviceConfig::wifiRegionIsSet() const
+{
+    return m_WifiRegionIsSet;
+}
+
+void WiFiDeviceConfig::unsetWifiRegion()
+{
+    m_WifiRegionIsSet = false;
 }
 
 

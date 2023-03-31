@@ -222,6 +222,26 @@ public:
     void setLocation(const std::shared_ptr<Locations>& value);
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isUserOverlayEnabled() const;
+    bool userOverlayEnabledIsSet() const;
+    void unsetUserOverlayEnabled();
+
+    void setUserOverlayEnabled(bool value);
+
+
+    /// <summary>
+    /// library entry number of user overlay graphic
+    /// </summary>
+    int32_t getLibraryEntry() const;
+    bool libraryEntryIsSet() const;
+    void unsetLibraryEntry();
+
+    void setLibraryEntry(int32_t value);
+
+
 
 protected:
     bool m_Enabled;
@@ -256,6 +276,10 @@ protected:
     bool m_PipelineConfigIsSet;
     std::shared_ptr<Locations> m_Location;
     bool m_LocationIsSet;
+    bool m_UserOverlayEnabled;
+    bool m_UserOverlayEnabledIsSet;
+    int32_t m_LibraryEntry;
+    bool m_LibraryEntryIsSet;
 };
 
 

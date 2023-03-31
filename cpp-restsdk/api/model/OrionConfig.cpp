@@ -28,8 +28,8 @@ OrionConfig::OrionConfig()
 {
     m_Enabled = false;
     m_EnabledIsSet = false;
-    m_Comp100 = false;
-    m_Comp100IsSet = false;
+    m_GammaComp = false;
+    m_GammaCompIsSet = false;
     m_ConversionIsSet = false;
     m_ModeIsSet = false;
     m_MethodIsSet = false;
@@ -147,9 +147,9 @@ web::json::value OrionConfig::toJson() const
     {
         val[utility::conversions::to_string_t(U("enabled"))] = ModelBase::toJson(m_Enabled);
     }
-    if(m_Comp100IsSet)
+    if(m_GammaCompIsSet)
     {
-        val[utility::conversions::to_string_t(U("comp100"))] = ModelBase::toJson(m_Comp100);
+        val[utility::conversions::to_string_t(U("gammaComp"))] = ModelBase::toJson(m_GammaComp);
     }
     if(m_ConversionIsSet)
     {
@@ -225,14 +225,14 @@ bool OrionConfig::fromJson(const web::json::value& val)
             setEnabled(refVal_enabled);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("comp100"))))
+    if(val.has_field(utility::conversions::to_string_t(U("gammaComp"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("comp100")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("gammaComp")));
         if(!fieldValue.is_null())
         {
-            bool refVal_comp100;
-            ok &= ModelBase::fromJson(fieldValue, refVal_comp100);
-            setComp100(refVal_comp100);
+            bool refVal_gammaComp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_gammaComp);
+            setGammaComp(refVal_gammaComp);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("conversion"))))
@@ -391,9 +391,9 @@ void OrionConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enabled")), m_Enabled));
     }
-    if(m_Comp100IsSet)
+    if(m_GammaCompIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("comp100")), m_Comp100));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("gammaComp")), m_GammaComp));
     }
     if(m_ConversionIsSet)
     {
@@ -468,11 +468,11 @@ bool OrionConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enabled"))), refVal_enabled );
         setEnabled(refVal_enabled);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("comp100"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("gammaComp"))))
     {
-        bool refVal_comp100;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("comp100"))), refVal_comp100 );
-        setComp100(refVal_comp100);
+        bool refVal_gammaComp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("gammaComp"))), refVal_gammaComp );
+        setGammaComp(refVal_gammaComp);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("conversion"))))
     {
@@ -586,26 +586,26 @@ void OrionConfig::unsetEnabled()
 }
 
 
-bool OrionConfig::isComp100() const
+bool OrionConfig::isGammaComp() const
 {
-    return m_Comp100;
+    return m_GammaComp;
 }
 
-void OrionConfig::setComp100(bool value)
+void OrionConfig::setGammaComp(bool value)
 {
 	bool v = value;
-    m_Comp100 = v;
-    m_Comp100IsSet = true;
+    m_GammaComp = v;
+    m_GammaCompIsSet = true;
 }
 
-bool OrionConfig::comp100IsSet() const
+bool OrionConfig::gammaCompIsSet() const
 {
-    return m_Comp100IsSet;
+    return m_GammaCompIsSet;
 }
 
-void OrionConfig::unsetComp100()
+void OrionConfig::unsetGammaComp()
 {
-    m_Comp100IsSet = false;
+    m_GammaCompIsSet = false;
 }
 
 

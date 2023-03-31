@@ -29,6 +29,8 @@ CalibrationPattern::CalibrationPattern()
     m_BgColorIsSet = false;
     m_FgColorIsSet = false;
     m_FgRectIsSet = false;
+    m_Stamp = utility::conversions::to_string_t("");
+    m_StampIsSet = false;
 }
 
 CalibrationPattern::~CalibrationPattern()
@@ -43,6 +45,12 @@ void CalibrationPattern::validate()
 bool CalibrationPattern::applyMinMaxConstraints()
 {
 	bool anyMinMaxValueChanged = false;
+	if (stampIsSet())
+	{
+		bool stampChanged = false;
+		utility::string_t v = getStamp();
+		if (stampChanged) { setStamp(v); anyMinMaxValueChanged = true; }
+	}
 	return anyMinMaxValueChanged;
 }
 
@@ -62,6 +70,10 @@ web::json::value CalibrationPattern::toJson() const
     if(m_FgRectIsSet)
     {
         val[utility::conversions::to_string_t(U("fgRect"))] = ModelBase::toJson(m_FgRect);
+    }
+    if(m_StampIsSet)
+    {
+        val[utility::conversions::to_string_t(U("stamp"))] = ModelBase::toJson(m_Stamp);
     }
 
     return val;
@@ -101,6 +113,16 @@ bool CalibrationPattern::fromJson(const web::json::value& val)
             setFgRect(refVal_fgRect);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("stamp"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("stamp")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_stamp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_stamp);
+            setStamp(refVal_stamp);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -124,6 +146,10 @@ void CalibrationPattern::toMultipart(std::shared_ptr<MultipartFormData> multipar
     if(m_FgRectIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fgRect")), m_FgRect));
+    }
+    if(m_StampIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("stamp")), m_Stamp));
     }
 }
 
@@ -153,6 +179,12 @@ bool CalibrationPattern::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         std::shared_ptr<PatternRect> refVal_fgRect;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fgRect"))), refVal_fgRect );
         setFgRect(refVal_fgRect);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("stamp"))))
+    {
+        utility::string_t refVal_stamp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("stamp"))), refVal_stamp );
+        setStamp(refVal_stamp);
     }
     
     applyMinMaxConstraints();
@@ -226,6 +258,30 @@ void CalibrationPattern::unsetFgRect()
 {
     m_FgRectIsSet = false;
 }
+
+
+utility::string_t CalibrationPattern::getStamp() const
+{
+    return m_Stamp;
+}
+
+void CalibrationPattern::setStamp(const utility::string_t& value)
+{
+	utility::string_t v = value;
+    m_Stamp = v;
+    m_StampIsSet = true;
+}
+
+bool CalibrationPattern::stampIsSet() const
+{
+    return m_StampIsSet;
+}
+
+void CalibrationPattern::unsetStamp()
+{
+    m_StampIsSet = false;
+}
+
 
 
 }

@@ -15,7 +15,7 @@
 /*
  * ColorfrontDynRangeGamut.h
  *
- * 
+ * **NOTE** Used in ColorBox v1, left in for compatibility reasons
  */
 
 #ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_ColorfrontDynRangeGamut_H_
