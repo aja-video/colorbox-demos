@@ -16,19 +16,17 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.colorfront_dyn_range_gamut import ColorfrontDynRangeGamut
-from openapi_client.model.colorfront_live_mode import ColorfrontLiveMode
-from openapi_client.model.colorfront_mode import ColorfrontMode
+from openapi_client.model.colorfront_dyn_range_gamut_tv_mode_in import ColorfrontDynRangeGamutTvModeIn
+from openapi_client.model.colorfront_dyn_range_gamut_tv_mode_out import ColorfrontDynRangeGamutTvModeOut
+from openapi_client.model.colorfront_engine import ColorfrontEngine
+globals()['ColorfrontDynRangeGamutTvModeIn'] = ColorfrontDynRangeGamutTvModeIn
+globals()['ColorfrontDynRangeGamutTvModeOut'] = ColorfrontDynRangeGamutTvModeOut
+globals()['ColorfrontEngine'] = ColorfrontEngine
 from openapi_client.model.colorfront_tv_mode import ColorfrontTvMode
-globals()['ColorfrontDynRangeGamut'] = ColorfrontDynRangeGamut
-globals()['ColorfrontLiveMode'] = ColorfrontLiveMode
-globals()['ColorfrontMode'] = ColorfrontMode
-globals()['ColorfrontTvMode'] = ColorfrontTvMode
-from openapi_client.model.colorfront_config import ColorfrontConfig
 
 
-class TestColorfrontConfig(unittest.TestCase):
-    """ColorfrontConfig unit test stubs"""
+class TestColorfrontTvMode(unittest.TestCase):
+    """ColorfrontTvMode unit test stubs"""
 
     def setUp(self):
         pass
@@ -36,10 +34,10 @@ class TestColorfrontConfig(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testColorfrontConfig(self):
-        """Test ColorfrontConfig"""
+    def testColorfrontTvMode(self):
+        """Test ColorfrontTvMode"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = ColorfrontConfig()  # noqa: E501
+        # model = ColorfrontTvMode()  # noqa: E501
         pass
 
 

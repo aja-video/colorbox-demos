@@ -115,6 +115,8 @@ class Overlay(ModelNormal):
             'user_text_line2': (str,),  # noqa: E501
             'pipeline_config': (bool,),  # noqa: E501
             'location': (Locations,),  # noqa: E501
+            'user_overlay_enabled': (bool,),  # noqa: E501
+            'library_entry': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -139,6 +141,8 @@ class Overlay(ModelNormal):
         'user_text_line2': 'userTextLine2',  # noqa: E501
         'pipeline_config': 'pipelineConfig',  # noqa: E501
         'location': 'location',  # noqa: E501
+        'user_overlay_enabled': 'userOverlayEnabled',  # noqa: E501
+        'library_entry': 'libraryEntry',  # noqa: E501
     }
 
     read_only_vars = {
@@ -198,6 +202,8 @@ class Overlay(ModelNormal):
             user_text_line2 (str): [optional]  # noqa: E501
             pipeline_config (bool): [optional]  # noqa: E501
             location (Locations): [optional]  # noqa: E501
+            user_overlay_enabled (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            library_entry (int): library entry number of user overlay graphic. [optional] if omitted the server will use the default value of 1  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -295,6 +301,8 @@ class Overlay(ModelNormal):
             user_text_line2 (str): [optional]  # noqa: E501
             pipeline_config (bool): [optional]  # noqa: E501
             location (Locations): [optional]  # noqa: E501
+            user_overlay_enabled (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            library_entry (int): library entry number of user overlay graphic. [optional] if omitted the server will use the default value of 1  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

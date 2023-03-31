@@ -106,6 +106,7 @@ class Status(ModelNormal):
             'bbc_luts_licensed': (bool,),  # noqa: E501
             'orion_engine_licensed': (bool,),  # noqa: E501
             'colorfront_engine_licensed': (bool,),  # noqa: E501
+            'reset_time': (int,),  # noqa: E501
             'shutdown_time': (int,),  # noqa: E501
             'colorfront_transform_version': (str,),  # noqa: E501
             'colorfront_engine_version': (str,),  # noqa: E501
@@ -136,6 +137,7 @@ class Status(ModelNormal):
         'bbc_luts_licensed': 'bbcLutsLicensed',  # noqa: E501
         'orion_engine_licensed': 'orionEngineLicensed',  # noqa: E501
         'colorfront_engine_licensed': 'colorfrontEngineLicensed',  # noqa: E501
+        'reset_time': 'resetTime',  # noqa: E501
         'shutdown_time': 'shutdownTime',  # noqa: E501
         'colorfront_transform_version': 'colorfrontTransformVersion',  # noqa: E501
         'colorfront_engine_version': 'colorfrontEngineVersion',  # noqa: E501
@@ -201,6 +203,7 @@ class Status(ModelNormal):
             bbc_luts_licensed (bool): [optional]  # noqa: E501
             orion_engine_licensed (bool): [optional]  # noqa: E501
             colorfront_engine_licensed (bool): [optional]  # noqa: E501
+            reset_time (int): [optional]  # noqa: E501
             shutdown_time (int): [optional]  # noqa: E501
             colorfront_transform_version (str): [optional]  # noqa: E501
             colorfront_engine_version (str): [optional]  # noqa: E501
@@ -304,6 +307,7 @@ class Status(ModelNormal):
             bbc_luts_licensed (bool): [optional]  # noqa: E501
             orion_engine_licensed (bool): [optional]  # noqa: E501
             colorfront_engine_licensed (bool): [optional]  # noqa: E501
+            reset_time (int): [optional]  # noqa: E501
             shutdown_time (int): [optional]  # noqa: E501
             colorfront_transform_version (str): [optional]  # noqa: E501
             colorfront_engine_version (str): [optional]  # noqa: E501

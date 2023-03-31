@@ -132,7 +132,7 @@ class OrionConfig(ModelNormal):
         lazy_import()
         return {
             'enabled': (bool,),  # noqa: E501
-            'comp100': (bool,),  # noqa: E501
+            'gamma_comp': (bool,),  # noqa: E501
             'conversion': (OrionConversion,),  # noqa: E501
             'mode': (OrionMode,),  # noqa: E501
             'method': (OrionMethod,),  # noqa: E501
@@ -156,7 +156,7 @@ class OrionConfig(ModelNormal):
 
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
-        'comp100': 'comp100',  # noqa: E501
+        'gamma_comp': 'gammaComp',  # noqa: E501
         'conversion': 'conversion',  # noqa: E501
         'mode': 'mode',  # noqa: E501
         'method': 'method',  # noqa: E501
@@ -215,7 +215,7 @@ class OrionConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
-            comp100 (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            gamma_comp (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             conversion (OrionConversion): [optional]  # noqa: E501
             mode (OrionMode): [optional]  # noqa: E501
             method (OrionMethod): [optional]  # noqa: E501
@@ -312,7 +312,7 @@ class OrionConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
-            comp100 (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            gamma_comp (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             conversion (OrionConversion): [optional]  # noqa: E501
             mode (OrionMode): [optional]  # noqa: E501
             method (OrionMethod): [optional]  # noqa: E501

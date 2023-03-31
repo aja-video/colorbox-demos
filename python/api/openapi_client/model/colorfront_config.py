@@ -35,7 +35,13 @@ from openapi_client.exceptions import ApiAttributeError
 
 def lazy_import():
     from openapi_client.model.colorfront_dyn_range_gamut import ColorfrontDynRangeGamut
+    from openapi_client.model.colorfront_live_mode import ColorfrontLiveMode
+    from openapi_client.model.colorfront_mode import ColorfrontMode
+    from openapi_client.model.colorfront_tv_mode import ColorfrontTvMode
     globals()['ColorfrontDynRangeGamut'] = ColorfrontDynRangeGamut
+    globals()['ColorfrontLiveMode'] = ColorfrontLiveMode
+    globals()['ColorfrontMode'] = ColorfrontMode
+    globals()['ColorfrontTvMode'] = ColorfrontTvMode
 
 
 class ColorfrontConfig(ModelNormal):
@@ -94,6 +100,9 @@ class ColorfrontConfig(ModelNormal):
             'enabled': (bool,),  # noqa: E501
             'in_dyn_range_gamut': (ColorfrontDynRangeGamut,),  # noqa: E501
             'out_dyn_range_gamut': (ColorfrontDynRangeGamut,),  # noqa: E501
+            'mode': (ColorfrontMode,),  # noqa: E501
+            'tv_mode': (ColorfrontTvMode,),  # noqa: E501
+            'live_mode': (ColorfrontLiveMode,),  # noqa: E501
         }
 
     @cached_property
@@ -105,6 +114,9 @@ class ColorfrontConfig(ModelNormal):
         'enabled': 'enabled',  # noqa: E501
         'in_dyn_range_gamut': 'inDynRangeGamut',  # noqa: E501
         'out_dyn_range_gamut': 'outDynRangeGamut',  # noqa: E501
+        'mode': 'mode',  # noqa: E501
+        'tv_mode': 'tvMode',  # noqa: E501
+        'live_mode': 'liveMode',  # noqa: E501
     }
 
     read_only_vars = {
@@ -151,6 +163,9 @@ class ColorfrontConfig(ModelNormal):
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
             in_dyn_range_gamut (ColorfrontDynRangeGamut): [optional]  # noqa: E501
             out_dyn_range_gamut (ColorfrontDynRangeGamut): [optional]  # noqa: E501
+            mode (ColorfrontMode): [optional]  # noqa: E501
+            tv_mode (ColorfrontTvMode): [optional]  # noqa: E501
+            live_mode (ColorfrontLiveMode): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -235,6 +250,9 @@ class ColorfrontConfig(ModelNormal):
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
             in_dyn_range_gamut (ColorfrontDynRangeGamut): [optional]  # noqa: E501
             out_dyn_range_gamut (ColorfrontDynRangeGamut): [optional]  # noqa: E501
+            mode (ColorfrontMode): [optional]  # noqa: E501
+            tv_mode (ColorfrontTvMode): [optional]  # noqa: E501
+            live_mode (ColorfrontLiveMode): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

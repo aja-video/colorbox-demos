@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **bbc_luts_licensed** | **bool** |  | [optional] 
 **orion_engine_licensed** | **bool** |  | [optional] 
 **colorfront_engine_licensed** | **bool** |  | [optional] 
+**reset_time** | **int** |  | [optional] 
 **shutdown_time** | **int** |  | [optional] 
 **colorfront_transform_version** | **str** |  | [optional] 
 **colorfront_engine_version** | **str** |  | [optional] 
