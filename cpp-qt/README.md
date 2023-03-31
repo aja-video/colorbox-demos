@@ -49,7 +49,11 @@ This demo shows how to transfer an image to ColorBox over WebSockets and the RES
 
 In the demo, the image can come from a flat matte by loading RGB Values or from a Tiff or PNG file. But the image just needs to be a 16 bit RGB image in memory that is transferred via WebSockets to the ColorBox. Once that ColorBox is Connected simply press the “Send Frame” button and the ColorBox will go into Dynamic Frame Store mode and the image will be updated. For this demo the ColorBox format is set to 1080p23.98 but it can be set to “AUTO” to follow the input format. For the WebSocket transfer to work the raster size of the image needs to match the current video format raster size on the ColorBox.
 
+The demo also allow for description of a "Calibration" box to be sent via the API to ColorBox
+![dynamic_frame_load_box.png](docs/dynamic_frame_load_box.png)
+
 For implementation details see [DynamicFrameLoad/dialog.cpp](DynamicFrameLoad/dialog.cpp)
+Please read the comments at the top of the file for some more information.
 
 ### DynamicLutLoad
 This demo shows how to dynamically load any of the 1D LUTs or 3D LUT on the ColorBox Pipeline via WebSockets and the RESTful API. The RESTFul API is used to make the “LUT Choice” and to set that LUT into Dynamic transfer mode. The WebSocket is then used to transfer either a 1DLUT or 3DLut. In this case the 3DLUT is derived from the 1DLUT for demo purposes.
