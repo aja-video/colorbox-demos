@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **UserTextLine2** | Pointer to **string** |  | [optional] 
 **PipelineConfig** | Pointer to **bool** |  | [optional] 
 **Location** | Pointer to [**Locations**](Locations.md) |  | [optional] [default to LOCATIONS_BOTTOM_CENTER]
+**UserOverlayEnabled** | Pointer to **bool** |  | [optional] [default to false]
+**LibraryEntry** | Pointer to **int32** | library entry number of user overlay graphic | [optional] [default to 1]
 
 ## Methods
 
@@ -439,6 +441,56 @@ SetLocation sets Location field to given value.
 `func (o *Overlay) HasLocation() bool`
 
 HasLocation returns a boolean if a field has been set.
+
+### GetUserOverlayEnabled
+
+`func (o *Overlay) GetUserOverlayEnabled() bool`
+
+GetUserOverlayEnabled returns the UserOverlayEnabled field if non-nil, zero value otherwise.
+
+### GetUserOverlayEnabledOk
+
+`func (o *Overlay) GetUserOverlayEnabledOk() (*bool, bool)`
+
+GetUserOverlayEnabledOk returns a tuple with the UserOverlayEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserOverlayEnabled
+
+`func (o *Overlay) SetUserOverlayEnabled(v bool)`
+
+SetUserOverlayEnabled sets UserOverlayEnabled field to given value.
+
+### HasUserOverlayEnabled
+
+`func (o *Overlay) HasUserOverlayEnabled() bool`
+
+HasUserOverlayEnabled returns a boolean if a field has been set.
+
+### GetLibraryEntry
+
+`func (o *Overlay) GetLibraryEntry() int32`
+
+GetLibraryEntry returns the LibraryEntry field if non-nil, zero value otherwise.
+
+### GetLibraryEntryOk
+
+`func (o *Overlay) GetLibraryEntryOk() (*int32, bool)`
+
+GetLibraryEntryOk returns a tuple with the LibraryEntry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLibraryEntry
+
+`func (o *Overlay) SetLibraryEntry(v int32)`
+
+SetLibraryEntry sets LibraryEntry field to given value.
+
+### HasLibraryEntry
+
+`func (o *Overlay) HasLibraryEntry() bool`
+
+HasLibraryEntry returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

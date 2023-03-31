@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **SystemUptime** | Pointer to **string** |  | [optional] 
 **SystemOsName** | Pointer to **string** |  | [optional] 
 **SystemSerialNumber** | Pointer to **string** |  | [optional] 
+**SystemBoardRevision** | Pointer to **string** |  | [optional] 
 **SystemCatalogNumber** | Pointer to **string** |  | [optional] 
 **SystemAppSwVersion** | Pointer to **string** |  | [optional] 
 **SystemSupportInfo** | Pointer to **string** |  | [optional] 
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **BbcLutsLicensed** | Pointer to **bool** |  | [optional] 
 **OrionEngineLicensed** | Pointer to **bool** |  | [optional] 
 **ColorfrontEngineLicensed** | Pointer to **bool** |  | [optional] 
+**ResetTime** | Pointer to **int32** |  | [optional] 
 **ShutdownTime** | Pointer to **int32** |  | [optional] 
 **ColorfrontTransformVersion** | Pointer to **string** |  | [optional] 
 **ColorfrontEngineVersion** | Pointer to **string** |  | [optional] 
@@ -194,6 +196,31 @@ SetSystemSerialNumber sets SystemSerialNumber field to given value.
 `func (o *Status) HasSystemSerialNumber() bool`
 
 HasSystemSerialNumber returns a boolean if a field has been set.
+
+### GetSystemBoardRevision
+
+`func (o *Status) GetSystemBoardRevision() string`
+
+GetSystemBoardRevision returns the SystemBoardRevision field if non-nil, zero value otherwise.
+
+### GetSystemBoardRevisionOk
+
+`func (o *Status) GetSystemBoardRevisionOk() (*string, bool)`
+
+GetSystemBoardRevisionOk returns a tuple with the SystemBoardRevision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSystemBoardRevision
+
+`func (o *Status) SetSystemBoardRevision(v string)`
+
+SetSystemBoardRevision sets SystemBoardRevision field to given value.
+
+### HasSystemBoardRevision
+
+`func (o *Status) HasSystemBoardRevision() bool`
+
+HasSystemBoardRevision returns a boolean if a field has been set.
 
 ### GetSystemCatalogNumber
 
@@ -394,6 +421,31 @@ SetColorfrontEngineLicensed sets ColorfrontEngineLicensed field to given value.
 `func (o *Status) HasColorfrontEngineLicensed() bool`
 
 HasColorfrontEngineLicensed returns a boolean if a field has been set.
+
+### GetResetTime
+
+`func (o *Status) GetResetTime() int32`
+
+GetResetTime returns the ResetTime field if non-nil, zero value otherwise.
+
+### GetResetTimeOk
+
+`func (o *Status) GetResetTimeOk() (*int32, bool)`
+
+GetResetTimeOk returns a tuple with the ResetTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResetTime
+
+`func (o *Status) SetResetTime(v int32)`
+
+SetResetTime sets ResetTime field to given value.
+
+### HasResetTime
+
+`func (o *Status) HasResetTime() bool`
+
+HasResetTime returns a boolean if a field has been set.
 
 ### GetShutdownTime
 

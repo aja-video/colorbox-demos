@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **Subnet** | Pointer to **string** |  | [optional] 
 **Gateway** | Pointer to **string** |  | [optional] 
 **WifiIpChangeCommit** | Pointer to **int32** |  | [optional] [default to 0]
+**WifiPasswordLength** | Pointer to **int32** |  | [optional] 
+**WifiRegion** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -257,6 +259,56 @@ SetWifiIpChangeCommit sets WifiIpChangeCommit field to given value.
 `func (o *WiFiDeviceConfig) HasWifiIpChangeCommit() bool`
 
 HasWifiIpChangeCommit returns a boolean if a field has been set.
+
+### GetWifiPasswordLength
+
+`func (o *WiFiDeviceConfig) GetWifiPasswordLength() int32`
+
+GetWifiPasswordLength returns the WifiPasswordLength field if non-nil, zero value otherwise.
+
+### GetWifiPasswordLengthOk
+
+`func (o *WiFiDeviceConfig) GetWifiPasswordLengthOk() (*int32, bool)`
+
+GetWifiPasswordLengthOk returns a tuple with the WifiPasswordLength field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWifiPasswordLength
+
+`func (o *WiFiDeviceConfig) SetWifiPasswordLength(v int32)`
+
+SetWifiPasswordLength sets WifiPasswordLength field to given value.
+
+### HasWifiPasswordLength
+
+`func (o *WiFiDeviceConfig) HasWifiPasswordLength() bool`
+
+HasWifiPasswordLength returns a boolean if a field has been set.
+
+### GetWifiRegion
+
+`func (o *WiFiDeviceConfig) GetWifiRegion() string`
+
+GetWifiRegion returns the WifiRegion field if non-nil, zero value otherwise.
+
+### GetWifiRegionOk
+
+`func (o *WiFiDeviceConfig) GetWifiRegionOk() (*string, bool)`
+
+GetWifiRegionOk returns a tuple with the WifiRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWifiRegion
+
+`func (o *WiFiDeviceConfig) SetWifiRegion(v string)`
+
+SetWifiRegion sets WifiRegion field to given value.
+
+### HasWifiRegion
+
+`func (o *WiFiDeviceConfig) HasWifiRegion() bool`
+
+HasWifiRegion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

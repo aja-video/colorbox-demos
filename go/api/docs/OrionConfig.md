@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | Pointer to **bool** | true if stage is enabled else disabled (unity passthru) | [optional] 
+**GammaComp** | Pointer to **bool** |  | [optional] [default to false]
 **Conversion** | Pointer to [**OrionConversion**](OrionConversion.md) |  | [optional] [default to ORIONCONVERSION_HLG_TO_SDR]
 **Mode** | Pointer to [**OrionMode**](OrionMode.md) |  | [optional] [default to ORIONMODE_DISPLAY_LIGHT]
 **Method** | Pointer to [**OrionMethod**](OrionMethod.md) |  | [optional] [default to "MAX(RGB)"]
@@ -63,6 +64,31 @@ SetEnabled sets Enabled field to given value.
 `func (o *OrionConfig) HasEnabled() bool`
 
 HasEnabled returns a boolean if a field has been set.
+
+### GetGammaComp
+
+`func (o *OrionConfig) GetGammaComp() bool`
+
+GetGammaComp returns the GammaComp field if non-nil, zero value otherwise.
+
+### GetGammaCompOk
+
+`func (o *OrionConfig) GetGammaCompOk() (*bool, bool)`
+
+GetGammaCompOk returns a tuple with the GammaComp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGammaComp
+
+`func (o *OrionConfig) SetGammaComp(v bool)`
+
+SetGammaComp sets GammaComp field to given value.
+
+### HasGammaComp
+
+`func (o *OrionConfig) HasGammaComp() bool`
+
+HasGammaComp returns a boolean if a field has been set.
 
 ### GetConversion
 
