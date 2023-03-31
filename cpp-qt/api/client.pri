@@ -11,6 +11,14 @@ HEADERS += \
     $${PWD}/OAIColorSpace.h \
     $${PWD}/OAIColorfrontConfig.h \
     $${PWD}/OAIColorfrontDynRangeGamut.h \
+    $${PWD}/OAIColorfrontDynRangeGamutLiveModeIn.h \
+    $${PWD}/OAIColorfrontDynRangeGamutLiveModeOut.h \
+    $${PWD}/OAIColorfrontDynRangeGamutTvModeIn.h \
+    $${PWD}/OAIColorfrontDynRangeGamutTvModeOut.h \
+    $${PWD}/OAIColorfrontEngine.h \
+    $${PWD}/OAIColorfrontLiveMode.h \
+    $${PWD}/OAIColorfrontMode.h \
+    $${PWD}/OAIColorfrontTvMode.h \
     $${PWD}/OAIColorimetry.h \
     $${PWD}/OAIConnection.h \
     $${PWD}/OAICrop4k2k.h \
@@ -90,6 +98,14 @@ SOURCES += \
     $${PWD}/OAIColorSpace.cpp \
     $${PWD}/OAIColorfrontConfig.cpp \
     $${PWD}/OAIColorfrontDynRangeGamut.cpp \
+    $${PWD}/OAIColorfrontDynRangeGamutLiveModeIn.cpp \
+    $${PWD}/OAIColorfrontDynRangeGamutLiveModeOut.cpp \
+    $${PWD}/OAIColorfrontDynRangeGamutTvModeIn.cpp \
+    $${PWD}/OAIColorfrontDynRangeGamutTvModeOut.cpp \
+    $${PWD}/OAIColorfrontEngine.cpp \
+    $${PWD}/OAIColorfrontLiveMode.cpp \
+    $${PWD}/OAIColorfrontMode.cpp \
+    $${PWD}/OAIColorfrontTvMode.cpp \
     $${PWD}/OAIColorimetry.cpp \
     $${PWD}/OAIConnection.cpp \
     $${PWD}/OAICrop4k2k.cpp \

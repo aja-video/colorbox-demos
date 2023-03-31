@@ -71,12 +71,16 @@ void OAIDefaultApi::initializeServerConfigs() {
     _serverIndices.insert("getNbcConfig", 0);
     _serverConfigs.insert("getOrionConfig", defaultConf);
     _serverIndices.insert("getOrionConfig", 0);
+    _serverConfigs.insert("getOrionPresetLibrary", defaultConf);
+    _serverIndices.insert("getOrionPresetLibrary", 0);
     _serverConfigs.insert("getOutputConfig", defaultConf);
     _serverIndices.insert("getOutputConfig", 0);
     _serverConfigs.insert("getOutputStatus", defaultConf);
     _serverIndices.insert("getOutputStatus", 0);
     _serverConfigs.insert("getOverlay", defaultConf);
     _serverIndices.insert("getOverlay", 0);
+    _serverConfigs.insert("getOverlayLibrary", defaultConf);
+    _serverIndices.insert("getOverlayLibrary", 0);
     _serverConfigs.insert("getPipelineStages", defaultConf);
     _serverIndices.insert("getPipelineStages", 0);
     _serverConfigs.insert("getPreviewImage", defaultConf);
@@ -1274,6 +1278,64 @@ void OAIDefaultApi::getOrionConfigCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
+void OAIDefaultApi::getOrionPresetLibrary() {
+    QString fullPath = QString(_serverConfigs["getOrionPresetLibrary"][_serverIndices.value("getOrionPresetLibrary")].URL()+"/orionPresetLibrary");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::getOrionPresetLibraryCallback);
+    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDefaultApi::getOrionPresetLibraryCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    QList<OAILibraryEntry> output;
+    QString json(worker->response);
+    QByteArray array(json.toStdString().c_str());
+    QJsonDocument doc = QJsonDocument::fromJson(array);
+    QJsonArray jsonArray = doc.array();
+    foreach (QJsonValue obj, jsonArray) {
+        OAILibraryEntry val;
+        ::OpenAPI::fromJsonValue(val, obj);
+        output.append(val);
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getOrionPresetLibrarySignal(output);
+        emit getOrionPresetLibrarySignalFull(worker, output);
+    } else {
+        emit getOrionPresetLibrarySignalE(output, error_type, error_str);
+        emit getOrionPresetLibrarySignalEFull(worker, error_type, error_str);
+    }
+}
+
 void OAIDefaultApi::getOutputConfig() {
     QString fullPath = QString(_serverConfigs["getOutputConfig"][_serverIndices.value("getOutputConfig")].URL()+"/outputConfig");
     
@@ -1418,6 +1480,64 @@ void OAIDefaultApi::getOverlayCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getOverlaySignalE(output, error_type, error_str);
         emit getOverlaySignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDefaultApi::getOverlayLibrary() {
+    QString fullPath = QString(_serverConfigs["getOverlayLibrary"][_serverIndices.value("getOverlayLibrary")].URL()+"/overlayLibrary");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::getOverlayLibraryCallback);
+    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDefaultApi::getOverlayLibraryCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    QList<OAILibraryEntry> output;
+    QString json(worker->response);
+    QByteArray array(json.toStdString().c_str());
+    QJsonDocument doc = QJsonDocument::fromJson(array);
+    QJsonArray jsonArray = doc.array();
+    foreach (QJsonValue obj, jsonArray) {
+        OAILibraryEntry val;
+        ::OpenAPI::fromJsonValue(val, obj);
+        output.append(val);
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getOverlayLibrarySignal(output);
+        emit getOverlayLibrarySignalFull(worker, output);
+    } else {
+        emit getOverlayLibrarySignalE(output, error_type, error_str);
+        emit getOverlayLibrarySignalEFull(worker, error_type, error_str);
     }
 }
 
