@@ -30,6 +30,9 @@ ColorfrontConfig::ColorfrontConfig()
     m_EnabledIsSet = false;
     m_InDynRangeGamutIsSet = false;
     m_OutDynRangeGamutIsSet = false;
+    m_ModeIsSet = false;
+    m_TvModeIsSet = false;
+    m_LiveModeIsSet = false;
 }
 
 ColorfrontConfig::~ColorfrontConfig()
@@ -63,6 +66,18 @@ web::json::value ColorfrontConfig::toJson() const
     if(m_OutDynRangeGamutIsSet)
     {
         val[utility::conversions::to_string_t(U("outDynRangeGamut"))] = ModelBase::toJson(m_OutDynRangeGamut);
+    }
+    if(m_ModeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("mode"))] = ModelBase::toJson(m_Mode);
+    }
+    if(m_TvModeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tvMode"))] = ModelBase::toJson(m_TvMode);
+    }
+    if(m_LiveModeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("liveMode"))] = ModelBase::toJson(m_LiveMode);
     }
 
     return val;
@@ -102,6 +117,36 @@ bool ColorfrontConfig::fromJson(const web::json::value& val)
             setOutDynRangeGamut(refVal_outDynRangeGamut);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("mode"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("mode")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<ColorfrontMode> refVal_mode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_mode);
+            setMode(refVal_mode);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("tvMode"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tvMode")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<ColorfrontTvMode> refVal_tvMode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_tvMode);
+            setTvMode(refVal_tvMode);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("liveMode"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("liveMode")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<ColorfrontLiveMode> refVal_liveMode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_liveMode);
+            setLiveMode(refVal_liveMode);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -125,6 +170,18 @@ void ColorfrontConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_OutDynRangeGamutIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("outDynRangeGamut")), m_OutDynRangeGamut));
+    }
+    if(m_ModeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("mode")), m_Mode));
+    }
+    if(m_TvModeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tvMode")), m_TvMode));
+    }
+    if(m_LiveModeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("liveMode")), m_LiveMode));
     }
 }
 
@@ -154,6 +211,24 @@ bool ColorfrontConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         std::shared_ptr<ColorfrontDynRangeGamut> refVal_outDynRangeGamut;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("outDynRangeGamut"))), refVal_outDynRangeGamut );
         setOutDynRangeGamut(refVal_outDynRangeGamut);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("mode"))))
+    {
+        std::shared_ptr<ColorfrontMode> refVal_mode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("mode"))), refVal_mode );
+        setMode(refVal_mode);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tvMode"))))
+    {
+        std::shared_ptr<ColorfrontTvMode> refVal_tvMode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tvMode"))), refVal_tvMode );
+        setTvMode(refVal_tvMode);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("liveMode"))))
+    {
+        std::shared_ptr<ColorfrontLiveMode> refVal_liveMode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("liveMode"))), refVal_liveMode );
+        setLiveMode(refVal_liveMode);
     }
     
     applyMinMaxConstraints();
@@ -226,6 +301,75 @@ bool ColorfrontConfig::outDynRangeGamutIsSet() const
 void ColorfrontConfig::unsetOutDynRangeGamut()
 {
     m_OutDynRangeGamutIsSet = false;
+}
+
+
+std::shared_ptr<ColorfrontMode> ColorfrontConfig::getMode() const
+{
+    return m_Mode;
+}
+
+void ColorfrontConfig::setMode(const std::shared_ptr<ColorfrontMode>& value)
+{
+	std::shared_ptr<ColorfrontMode> v = value;
+    m_Mode = v;
+    m_ModeIsSet = true;
+}
+
+bool ColorfrontConfig::modeIsSet() const
+{
+    return m_ModeIsSet;
+}
+
+void ColorfrontConfig::unsetMode()
+{
+    m_ModeIsSet = false;
+}
+
+
+std::shared_ptr<ColorfrontTvMode> ColorfrontConfig::getTvMode() const
+{
+    return m_TvMode;
+}
+
+void ColorfrontConfig::setTvMode(const std::shared_ptr<ColorfrontTvMode>& value)
+{
+	std::shared_ptr<ColorfrontTvMode> v = value;
+    m_TvMode = v;
+    m_TvModeIsSet = true;
+}
+
+bool ColorfrontConfig::tvModeIsSet() const
+{
+    return m_TvModeIsSet;
+}
+
+void ColorfrontConfig::unsetTvMode()
+{
+    m_TvModeIsSet = false;
+}
+
+
+std::shared_ptr<ColorfrontLiveMode> ColorfrontConfig::getLiveMode() const
+{
+    return m_LiveMode;
+}
+
+void ColorfrontConfig::setLiveMode(const std::shared_ptr<ColorfrontLiveMode>& value)
+{
+	std::shared_ptr<ColorfrontLiveMode> v = value;
+    m_LiveMode = v;
+    m_LiveModeIsSet = true;
+}
+
+bool ColorfrontConfig::liveModeIsSet() const
+{
+    return m_LiveModeIsSet;
+}
+
+void ColorfrontConfig::unsetLiveMode()
+{
+    m_LiveModeIsSet = false;
 }
 
 

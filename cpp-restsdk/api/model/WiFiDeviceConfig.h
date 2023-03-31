@@ -147,6 +147,26 @@ public:
     void setWifiIpChangeCommit(int32_t value);
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    int32_t getWifiPasswordLength() const;
+    bool wifiPasswordLengthIsSet() const;
+    void unsetWifiPasswordLength();
+
+    void setWifiPasswordLength(int32_t value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getWifiRegion() const;
+    bool wifiRegionIsSet() const;
+    void unsetWifiRegion();
+
+    void setWifiRegion(const utility::string_t& value);
+
+
 
 protected:
     utility::string_t m_WifiControl;
@@ -167,6 +187,10 @@ protected:
     bool m_GatewayIsSet;
     int32_t m_WifiIpChangeCommit;
     bool m_WifiIpChangeCommitIsSet;
+    int32_t m_WifiPasswordLength;
+    bool m_WifiPasswordLengthIsSet;
+    utility::string_t m_WifiRegion;
+    bool m_WifiRegionIsSet;
 };
 
 

@@ -76,11 +76,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    bool isComp100() const;
-    bool comp100IsSet() const;
-    void unsetComp100();
+    bool isGammaComp() const;
+    bool gammaCompIsSet() const;
+    void unsetGammaComp();
 
-    void setComp100(bool value);
+    void setGammaComp(bool value);
 
 
     /// <summary>
@@ -241,8 +241,8 @@ public:
 protected:
     bool m_Enabled;
     bool m_EnabledIsSet;
-    bool m_Comp100;
-    bool m_Comp100IsSet;
+    bool m_GammaComp;
+    bool m_GammaCompIsSet;
     std::shared_ptr<OrionConversion> m_Conversion;
     bool m_ConversionIsSet;
     std::shared_ptr<OrionMode> m_Mode;

@@ -13,13 +13,13 @@
  */
 
 /*
- * Library.h
+ * ColorfrontEngine.h
  *
  * 
  */
 
-#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_Library_H_
-#define ORG_OPENAPITOOLS_CLIENT_MODEL_Library_H_
+#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_ColorfrontEngine_H_
+#define ORG_OPENAPITOOLS_CLIENT_MODEL_ColorfrontEngine_H_
 
 
 #include "ModelBase.h"
@@ -30,12 +30,12 @@ namespace openapitools {
 namespace client {
 namespace model {
 
-class  Library
+class  ColorfrontEngine
     : public ModelBase
 {
 public:
-    Library();
-    virtual ~Library();
+    ColorfrontEngine();
+    virtual ~ColorfrontEngine();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -49,22 +49,17 @@ public:
     void toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) const override;
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
-    enum class eLibrary
+    enum class eColorfrontEngine
     {
-        Library__1D_LUT,
-        Library__3D_LUT,
-        Library_MATRIX,
-        Library_IMAGE,
-        Library_SYSTEMPRESET,
-        Library_OVERLAY,
-        Library_ORIONPRESET,
+        ColorfrontEngine_DEFAULT,
+        ColorfrontEngine_ADJUST,
     };
 
-    eLibrary getValue() const;
-    void setValue(eLibrary const value);
+    eColorfrontEngine getValue() const;
+    void setValue(eColorfrontEngine const value);
 
     protected:
-        eLibrary m_value;
+        eColorfrontEngine m_value;
 };
 
 }
@@ -72,4 +67,4 @@ public:
 }
 }
 
-#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_Library_H_ */
+#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_ColorfrontEngine_H_ */
