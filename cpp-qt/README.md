@@ -47,7 +47,7 @@ This demo shows how to transfer an image to ColorBox over WebSockets and the RES
 
 ![dynamic_frame_load.png](docs/dynamic_frame_load.png)
 
-In the demo, the image can come from a flat matte by loading RGB Values or from a Tiff or PNG file. But the image just needs to be a 16 bit RGB image in memory that is transferred via WebSockets to the ColorBox. Once that ColorBox is Connected simply press the “Send Frame” button and the ColorBox will go into Dynamic Frame Store mode and the image will be updated. For this demo the ColorBox format is set to 1080p23.98 but it can be set to “AUTO” to follow the input format. For the WebSocket transfer to work the raster size of the image needs to match the current video format raster size on the ColorBox.
+In the demo, the image can come from a flat matte by loading RGB Values or from a 16 bit Tiff file. The image needs to be a 16 bit RGB image in memory that is transferred via WebSockets to the ColorBox. Once that ColorBox is Connected simply press the “Send Frame” button and the ColorBox will go into Dynamic Frame Store mode and the image will be updated. For this demo the ColorBox format is set to 1080p23.98 but it can be set to “AUTO” to follow the input format. For the WebSocket transfer to work the raster size of the image needs to match the current video format raster size on the ColorBox.
 
 The demo also allow for description of a "Calibration" box to be sent via the API to ColorBox
 ![dynamic_frame_load_box.png](docs/dynamic_frame_load_box.png)
