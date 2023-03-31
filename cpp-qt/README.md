@@ -106,6 +106,8 @@ This demo shows how to interface to the ColorBox Library. The Library consists o
 See the top of [Librarian/dialog.cpp](Librarian/dialog.cpp) for comments on the implementation.
 
 #### Updates
+**03/31/2022** - Added Calibration API, and update DynamicFrameLoad to demonstrate it.
+
 **09/09/2022** - Converted this documentation into markdown. Split the document up, some of it is now in the root level [README.md](../README.md)
 
 **08/11/2022** - Added Librarian demo and updated doc with more info.
