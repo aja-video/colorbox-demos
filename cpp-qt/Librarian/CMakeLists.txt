@@ -33,7 +33,11 @@ set(APP_SOURCES
 	main.cpp
 	${CPP_COMMON_ROOT}/ajawebsocketinterface.cpp)
 
-qt_wrap_ui(QT_UI_HEADERS dialog.ui)
+if (QT_VERSION_MAJOR STREQUAL "5")
+    qt5_wrap_ui(QT_UI_HEADERS dialog.ui)
+else()
+    qt_wrap_ui(QT_UI_HEADERS dialog.ui)
+endif()
 
 list(APPEND TARGET_COMPILE_DEFS
 	-DQT_DEPRECATED_WARNINGS)
