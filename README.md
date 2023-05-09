@@ -1,4 +1,4 @@
-# AJA ColorBox Remote Demos
+# AJA ColorBox API/Demos
 The [ColorBox](https://www.aja.com/products/colorbox) from AJA supports a rich RESTful API using OpenAPI. 
 
 C++, Go and Python OpenAPI implementations are included in this package. Some simple demo projects are included to demonstrate the functionality available via this RESTful API.
@@ -60,4 +60,4 @@ This allows you not only to see the data structures for the API but also try it 
 		* [README.md](python/README.md) - more details about these demos
 
 #### Updates
-**03/31/2022** - Added Calibration related API updated ColorFront API with Live Mode and TV Mode controls. The Calibration API is demostrated in the C++ Qt DynamicFrameLoad project.
+**03/31/2022** - Added Calibration related API updated ColorFront API with Live Mode and TV Mode controls. The Calibration API is demonstrated in the C++ Qt DynamicFrameLoad project.
