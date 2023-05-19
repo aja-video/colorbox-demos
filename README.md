@@ -40,6 +40,7 @@ This allows you not only to see the data structures for the API but also try it 
 		* [dynamic_frame_load/](cpp-restsdk/dynamic_frame_load) - command line demo
 		* [dynamic_lut_load/](cpp-restsdk/dynamic_lut_load) - command line demo
 		* [get_temp/](cpp-restsdk/get_temp) - command line demo
+        * [lib_load/](cpp-restsdk/lib_load) - command line demo
 		* [rgb_triplet/](cpp-restsdk/rgb_triplet) - command line demo
 		* [set_overlay_text/](cpp-restsdk/set_overlay_text) - command line demo
 		* [CMakeLists.txt](cpp-restsdk/CMakeLists.txt) - defines cmake build
