@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
+project(colorbox-cpp-restsdk)
+
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/AJAColorBoxDemosRestSDK.cmake)
 
 #if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -19,5 +21,6 @@ add_api_subdirectory(api)
 add_demo_subdirectory(dynamic_frame_load)
 add_demo_subdirectory(dynamic_lut_load)
 add_demo_subdirectory(get_temp)
+add_demo_subdirectory(lib_load)
 add_demo_subdirectory(rgb_triplet)
 add_demo_subdirectory(set_overlay_text)

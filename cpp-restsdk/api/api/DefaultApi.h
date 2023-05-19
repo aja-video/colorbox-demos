@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  *
- * Copyright (C) 2020-2022 AJA Video Systems Inc.  All rights reserved.
+ * Copyright (C) 2020 AJA Video Systems Inc.  All rights reserved.
  */
 
 /*
@@ -27,6 +27,7 @@
 
 #include "model/AncCaptureFilter.h"
 #include "model/BbcConfig.h"
+#include "model/BuildInfo.h"
 #include "model/CalibrationPattern.h"
 #include "model/ColorfrontConfig.h"
 #include "model/FrameStore.h"
@@ -139,6 +140,14 @@ public:
     /// Get the BbcConfig object
     /// </remarks>
     pplx::task<std::shared_ptr<BbcConfig>> getBbcConfig(
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Return the build info object
+    /// </remarks>
+    pplx::task<std::shared_ptr<BuildInfo>> getBuildInfo(
     ) const;
     /// <summary>
     /// 
@@ -649,7 +658,7 @@ public:
     /// <param name="file"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="kind">The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**, **license**, **update** (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="entry">The entry number to upload the file to, **not** used with kinds: **license** and **update** (optional, default to 0)</param>
-    pplx::task<void> uploadFile(
+    pplx::task<utility::string_t> uploadFile(
         boost::optional<std::shared_ptr<HttpContent>> file,
         boost::optional<utility::string_t> kind,
         boost::optional<int32_t> entry

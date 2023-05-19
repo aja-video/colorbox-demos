@@ -193,13 +193,13 @@ void Dialog::handleUploadImageButton()
 }
 
 
-void Dialog::handleUploadFile()
+void Dialog::handleUploadFile(QString summary)
 {
     // Refresh Library List
     _api.getImageLibrary();
 }
 
-void Dialog:: handleUploadFileError(QNetworkReply::NetworkError error_type, QString error_str)
+void Dialog:: handleUploadFileError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
 {
     qDebug() << error_str;
 }

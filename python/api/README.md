@@ -53,6 +53,7 @@ from pprint import pprint
 from openapi_client.api import default_api
 from openapi_client.model.anc_capture_filter import AncCaptureFilter
 from openapi_client.model.bbc_config import BbcConfig
+from openapi_client.model.build_info import BuildInfo
 from openapi_client.model.calibration_pattern import CalibrationPattern
 from openapi_client.model.colorfront_config import ColorfrontConfig
 from openapi_client.model.device_idx import DeviceIdx
@@ -113,6 +114,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_all_system_discovers**](docs/DefaultApi.md#get_all_system_discovers) | **GET** /discovers | 
 *DefaultApi* | [**get_anc_capture_filter**](docs/DefaultApi.md#get_anc_capture_filter) | **GET** /ancCaptureFilter | 
 *DefaultApi* | [**get_bbc_config**](docs/DefaultApi.md#get_bbc_config) | **GET** /bbcConfig | 
+*DefaultApi* | [**get_build_info**](docs/DefaultApi.md#get_build_info) | **GET** /buildInfo | 
 *DefaultApi* | [**get_calibration_pattern**](docs/DefaultApi.md#get_calibration_pattern) | **GET** /calibrationPattern | 
 *DefaultApi* | [**get_colorfront_config**](docs/DefaultApi.md#get_colorfront_config) | **GET** /colorfrontConfig | 
 *DefaultApi* | [**get_config_for_given_net_device_index**](docs/DefaultApi.md#get_config_for_given_net_device_index) | **GET** /net/device/{devIdx}/config | 
@@ -175,6 +177,7 @@ Class | Method | HTTP request | Description
  - [AncCaptureFilter](docs/AncCaptureFilter.md)
  - [BbcConfig](docs/BbcConfig.md)
  - [BitDepth](docs/BitDepth.md)
+ - [BuildInfo](docs/BuildInfo.md)
  - [CSCFilter](docs/CSCFilter.md)
  - [CalibrationPattern](docs/CalibrationPattern.md)
  - [ColorCorrector](docs/ColorCorrector.md)

@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**GetAllSystemDiscovers**](DefaultApi.md#GetAllSystemDiscovers) | **Get** /discovers | 
 [**GetAncCaptureFilter**](DefaultApi.md#GetAncCaptureFilter) | **Get** /ancCaptureFilter | 
 [**GetBbcConfig**](DefaultApi.md#GetBbcConfig) | **Get** /bbcConfig | 
+[**GetBuildInfo**](DefaultApi.md#GetBuildInfo) | **Get** /buildInfo | 
 [**GetCalibrationPattern**](DefaultApi.md#GetCalibrationPattern) | **Get** /calibrationPattern | 
 [**GetColorfrontConfig**](DefaultApi.md#GetColorfrontConfig) | **Get** /colorfrontConfig | 
 [**GetConfigForGivenNetDeviceIndex**](DefaultApi.md#GetConfigForGivenNetDeviceIndex) | **Get** /net/device/{devIdx}/config | 
@@ -552,6 +553,67 @@ Other parameters are passed through a pointer to a apiGetBbcConfigRequest struct
 ### Return type
 
 [**BbcConfig**](BbcConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBuildInfo
+
+> BuildInfo GetBuildInfo(ctx).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetBuildInfo(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetBuildInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuildInfo`: BuildInfo
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetBuildInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuildInfoRequest struct via the builder pattern
+
+
+### Return type
+
+[**BuildInfo**](BuildInfo.md)
 
 ### Authorization
 
@@ -3995,7 +4057,7 @@ Name | Type | Description  | Notes
 
 ## UploadFile
 
-> UploadFile(ctx).File(file).Kind(kind).Entry(entry).Execute()
+> string UploadFile(ctx).File(file).Kind(kind).Entry(entry).Execute()
 
 
 
@@ -4025,6 +4087,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UploadFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `UploadFile`: string
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.UploadFile`: %v\n", resp)
 }
 ```
 
@@ -4045,7 +4109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+**string**
 
 ### Authorization
 

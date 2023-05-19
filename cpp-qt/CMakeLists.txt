@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
+project(colorbox-cpp-qt)
+
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/AJAColorBoxDemos.cmake)
 
 add_sdk_subdirectory(ntv2sdk)
