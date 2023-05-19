@@ -88,11 +88,18 @@ set_overlay_text --host 192.168.1.100
 ```
 rgb_triplet --host 192.168.1.100
 ```
+
 ## Run dynamic_lut_load example on IP 192.168.1.100
 ```
 dynamic_lut_load --host 192.168.1.100
 ```
+
 ## Run dynamic_frame_load example on IP 192.168.1.100
 ```
 dynamic_frame_load --host 192.168.1.100
+```
+
+## Run lib_load example on IP 192.168.1.100
+```
+lib_load --host 192.168.1.100 -kind "lut_1d" -file "path_to_local_lut" -entry 0
 ```
