@@ -23,6 +23,7 @@ add_library(${PROJECT_NAME}
     OAIAncCaptureFilter.cpp
     OAIBbcConfig.cpp
     OAIBitDepth.cpp
+    OAIBuildInfo.cpp
     OAICSCFilter.cpp
     OAICalibrationPattern.cpp
     OAIColorCorrector.cpp

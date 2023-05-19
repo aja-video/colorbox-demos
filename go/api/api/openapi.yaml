@@ -13,6 +13,17 @@ info:
 servers:
 - url: /v2
 paths:
+  /buildInfo:
+    get:
+      description: Return the build info object
+      operationId: getBuildInfo
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildInfo'
+          description: Successful operation
   /system/config:
     get:
       description: Return an object with the system configuration
@@ -234,6 +245,10 @@ paths:
               type: object
       responses:
         "200":
+          content:
+            text/plain:
+              schema:
+                type: string
           description: Successful operation
         "400":
           content:
@@ -889,6 +904,35 @@ components:
           schema:
             $ref: '#/components/schemas/inline_object'
   schemas:
+    BuildInfo:
+      description: Build particulars from when the application was built.
+      example:
+        date: date
+        appVersion: appVersion
+        repoident: repoident
+        buildType: buildType
+        time: time
+        qtVersion: qtVersion
+      properties:
+        date:
+          description: Date of the build, in local time of build machine
+          type: string
+        time:
+          description: Time of the build, in local time of build machine
+          type: string
+        repoident:
+          description: Code repo identifier, git hash
+          type: string
+        buildType:
+          description: Debug, Release, RelWithDebInfo, etc
+          type: string
+        appVersion:
+          description: Build version of application
+          type: string
+        qtVersion:
+          description: Version of Qt used
+          type: string
+      type: object
     SystemConfig:
       example:
         reboot: false

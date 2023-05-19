@@ -5,6 +5,7 @@ HEADERS += \
     $${PWD}/OAIAncCaptureFilter.h \
     $${PWD}/OAIBbcConfig.h \
     $${PWD}/OAIBitDepth.h \
+    $${PWD}/OAIBuildInfo.h \
     $${PWD}/OAICSCFilter.h \
     $${PWD}/OAICalibrationPattern.h \
     $${PWD}/OAIColorCorrector.h \
@@ -92,6 +93,7 @@ SOURCES += \
     $${PWD}/OAIAncCaptureFilter.cpp \
     $${PWD}/OAIBbcConfig.cpp \
     $${PWD}/OAIBitDepth.cpp \
+    $${PWD}/OAIBuildInfo.cpp \
     $${PWD}/OAICSCFilter.cpp \
     $${PWD}/OAICalibrationPattern.cpp \
     $${PWD}/OAIColorCorrector.cpp \

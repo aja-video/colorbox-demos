@@ -87,6 +87,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**GetAllSystemDiscovers**](docs/DefaultApi.md#getallsystemdiscovers) | **Get** /discovers | 
 *DefaultApi* | [**GetAncCaptureFilter**](docs/DefaultApi.md#getanccapturefilter) | **Get** /ancCaptureFilter | 
 *DefaultApi* | [**GetBbcConfig**](docs/DefaultApi.md#getbbcconfig) | **Get** /bbcConfig | 
+*DefaultApi* | [**GetBuildInfo**](docs/DefaultApi.md#getbuildinfo) | **Get** /buildInfo | 
 *DefaultApi* | [**GetCalibrationPattern**](docs/DefaultApi.md#getcalibrationpattern) | **Get** /calibrationPattern | 
 *DefaultApi* | [**GetColorfrontConfig**](docs/DefaultApi.md#getcolorfrontconfig) | **Get** /colorfrontConfig | 
 *DefaultApi* | [**GetConfigForGivenNetDeviceIndex**](docs/DefaultApi.md#getconfigforgivennetdeviceindex) | **Get** /net/device/{devIdx}/config | 
@@ -149,6 +150,7 @@ Class | Method | HTTP request | Description
  - [AncCaptureFilter](docs/AncCaptureFilter.md)
  - [BbcConfig](docs/BbcConfig.md)
  - [BitDepth](docs/BitDepth.md)
+ - [BuildInfo](docs/BuildInfo.md)
  - [CSCFilter](docs/CSCFilter.md)
  - [CalibrationPattern](docs/CalibrationPattern.md)
  - [ColorCorrector](docs/ColorCorrector.md)

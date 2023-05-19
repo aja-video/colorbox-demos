@@ -12,6 +12,7 @@
 from openapi_client.model.anc_capture_filter import AncCaptureFilter
 from openapi_client.model.bbc_config import BbcConfig
 from openapi_client.model.bit_depth import BitDepth
+from openapi_client.model.build_info import BuildInfo
 from openapi_client.model.csc_filter import CSCFilter
 from openapi_client.model.calibration_pattern import CalibrationPattern
 from openapi_client.model.color_corrector import ColorCorrector

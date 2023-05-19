@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  *
- * Copyright (C) 2020-2022 AJA Video Systems Inc.  All rights reserved.
+ * Copyright (C) 2020 AJA Video Systems Inc.  All rights reserved.
  */
 
 #include "MultipartFormData.h"
@@ -73,7 +73,12 @@ void MultipartFormData::writeTo( std::ostream& target )
         std::shared_ptr<HttpContent> content = m_Contents[i];
 
         // boundary
-        target << "\r\n" << "--" << utility::conversions::to_utf8string( m_Boundary ) << "\r\n";
+        if (i != 0)
+        {
+            target << "\r\n";
+        }
+
+        target << "--" << utility::conversions::to_utf8string( m_Boundary ) << "\r\n";
 
         // headers
         target << "Content-Disposition: " << utility::conversions::to_utf8string( content->getContentDisposition() );

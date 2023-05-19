@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**get_all_system_discovers**](DefaultApi.md#get_all_system_discovers) | **GET** /discovers | 
 [**get_anc_capture_filter**](DefaultApi.md#get_anc_capture_filter) | **GET** /ancCaptureFilter | 
 [**get_bbc_config**](DefaultApi.md#get_bbc_config) | **GET** /bbcConfig | 
+[**get_build_info**](DefaultApi.md#get_build_info) | **GET** /buildInfo | 
 [**get_calibration_pattern**](DefaultApi.md#get_calibration_pattern) | **GET** /calibrationPattern | 
 [**get_colorfront_config**](DefaultApi.md#get_colorfront_config) | **GET** /colorfrontConfig | 
 [**get_config_for_given_net_device_index**](DefaultApi.md#get_config_for_given_net_device_index) | **GET** /net/device/{devIdx}/config | 
@@ -551,6 +552,68 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**BbcConfig**](BbcConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_build_info**
+> BuildInfo get_build_info()
+
+
+
+Return the build info object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.build_info import BuildInfo
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_build_info()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_build_info: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BuildInfo**](BuildInfo.md)
 
 ### Authorization
 
@@ -4811,7 +4874,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_file**
-> upload_file()
+> str upload_file()
 
 
 
@@ -4843,7 +4906,8 @@ with openapi_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_instance.upload_file(file=file, kind=kind, entry=entry)
+        api_response = api_instance.upload_file(file=file, kind=kind, entry=entry)
+        pprint(api_response)
     except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->upload_file: %s\n" % e)
 ```
@@ -4859,7 +4923,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**str**
 
 ### Authorization
 

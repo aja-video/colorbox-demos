@@ -114,7 +114,7 @@ func main() {
 
 	var upReq = client.DefaultApi.UploadFile(ctx)
 	upReq = upReq.Kind(*kind).Entry(int32(entryToUse)).File(file)
-	r, err2 := upReq.Execute()
+	_, r, err2 := upReq.Execute()
 
 	if err2 != nil {
 		fmt.Printf("[%v] error uploading %v to Library via API, err = '%v'\n", hostAndPort, *kind, err2)
