@@ -61,6 +61,7 @@ class TransformMode(ModelSimple):
             'ORION': "ORION",
             'BBC': "BBC",
             'NBC': "NBC",
+            'ACES': "ACES",
         },
     }
 
@@ -112,10 +113,10 @@ class TransformMode(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "LUT", must be one of ["LUT", "COLORFRONT", "ORION", "BBC", "NBC", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "LUT", must be one of ["LUT", "COLORFRONT", "ORION", "BBC", "NBC", "ACES", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "LUT", must be one of ["LUT", "COLORFRONT", "ORION", "BBC", "NBC", ]  # noqa: E501
+            value (str): if omitted defaults to "LUT", must be one of ["LUT", "COLORFRONT", "ORION", "BBC", "NBC", "ACES", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -198,10 +199,10 @@ class TransformMode(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "LUT", must be one of ["LUT", "COLORFRONT", "ORION", "BBC", "NBC", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "LUT", must be one of ["LUT", "COLORFRONT", "ORION", "BBC", "NBC", "ACES", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "LUT", must be one of ["LUT", "COLORFRONT", "ORION", "BBC", "NBC", ]  # noqa: E501
+            value (str): if omitted defaults to "LUT", must be one of ["LUT", "COLORFRONT", "ORION", "BBC", "NBC", "ACES", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

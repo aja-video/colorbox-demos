@@ -9,6 +9,8 @@
 
 * `_444_RGB` (value: `"4:4:4 RGB"`)
 
+* `_420_YCB_CR` (value: `"4:2:0 YCbCr"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

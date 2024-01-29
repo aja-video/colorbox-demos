@@ -11,9 +11,15 @@ Name | Type | Description | Notes
 **colorimetry** | [**Colorimetry**](Colorimetry.md) |  | [optional] 
 **transfer** | [**Transfer**](Transfer.md) |  | [optional] 
 **format** | [**VideoFormat**](VideoFormat.md) |  | [optional] 
+**sdi_format** | [**VideoFormat**](VideoFormat.md) |  | [optional] 
+**sdi_down_convert** | [**DownConvert**](DownConvert.md) |  | [optional] 
 **sdi_mode3g** | [**SdiMode3g**](SdiMode3g.md) |  | [optional] 
-**hdmi_crop4k2k** | [**Crop4k2k**](Crop4k2k.md) |  | [optional] 
+**hdmi_format** | [**VideoFormat**](VideoFormat.md) |  | [optional] 
 **hdmi_connection** | [**Connection**](Connection.md) |  | [optional] 
+**hdmi_crop4k2k** | [**Crop4k2k**](Crop4k2k.md) |  | [optional] 
+**hdmi_down_convert** | [**DownConvert**](DownConvert.md) |  | [optional] 
+**hdmi_color_space** | [**ColorSpace**](ColorSpace.md) |  | [optional] 
+**hdmi_bit_depth** | [**BitDepth**](BitDepth.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

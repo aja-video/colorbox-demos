@@ -29,7 +29,7 @@
 
 * `PANASONIC_V_LOG` (value: `"Panasonic V-Log"`)
 
-* `RED_LOG3_G10_WIDE_GAMUT` (value: `"Red Log3G10 Wide Gamut"`)
+* `RED_LOG3_G10_WIDE_GAMUT` (value: `"RED Log3G10 Wide Gamut"`)
 
 * `CANON_LOG_2` (value: `"Canon Log 2"`)
 

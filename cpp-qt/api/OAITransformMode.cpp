@@ -62,6 +62,10 @@ void OAITransformMode::fromJson(QString jsonString) {
         m_value = eOAITransformMode::NBC;
         m_value_isSet = m_value_isValid = true;
     }
+    else if ( jsonString.compare("ACES", Qt::CaseInsensitive) == 0) {
+        m_value = eOAITransformMode::ACES;
+        m_value_isSet = m_value_isValid = true;
+    }
 }
 
 void OAITransformMode::fromJsonValue(QJsonValue json) {
@@ -88,6 +92,9 @@ QString OAITransformMode::asJson() const {
             break;
         case eOAITransformMode::NBC:
             val = "NBC";
+            break;
+        case eOAITransformMode::ACES:
+            val = "ACES";
             break;
         default:
             break;

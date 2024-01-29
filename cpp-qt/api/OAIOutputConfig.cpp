@@ -56,14 +56,32 @@ void OAIOutputConfig::initializeModel() {
     m_format_isSet = false;
     m_format_isValid = false;
 
+    m_sdi_format_isSet = false;
+    m_sdi_format_isValid = false;
+
+    m_sdi_down_convert_isSet = false;
+    m_sdi_down_convert_isValid = false;
+
     m_sdi_mode3g_isSet = false;
     m_sdi_mode3g_isValid = false;
+
+    m_hdmi_format_isSet = false;
+    m_hdmi_format_isValid = false;
+
+    m_hdmi_connection_isSet = false;
+    m_hdmi_connection_isValid = false;
 
     m_hdmi_crop4k2k_isSet = false;
     m_hdmi_crop4k2k_isValid = false;
 
-    m_hdmi_connection_isSet = false;
-    m_hdmi_connection_isValid = false;
+    m_hdmi_down_convert_isSet = false;
+    m_hdmi_down_convert_isValid = false;
+
+    m_hdmi_color_space_isSet = false;
+    m_hdmi_color_space_isValid = false;
+
+    m_hdmi_bit_depth_isSet = false;
+    m_hdmi_bit_depth_isValid = false;
 }
 
 void OAIOutputConfig::fromJson(QString jsonString) {
@@ -95,14 +113,32 @@ void OAIOutputConfig::fromJsonObject(QJsonObject json) {
     m_format_isValid = ::OpenAPI::fromJsonValue(m_format, json[QString("format")]);
     m_format_isSet = !json[QString("format")].isNull() && m_format_isValid;
 
+    m_sdi_format_isValid = ::OpenAPI::fromJsonValue(m_sdi_format, json[QString("sdiFormat")]);
+    m_sdi_format_isSet = !json[QString("sdiFormat")].isNull() && m_sdi_format_isValid;
+
+    m_sdi_down_convert_isValid = ::OpenAPI::fromJsonValue(m_sdi_down_convert, json[QString("sdiDownConvert")]);
+    m_sdi_down_convert_isSet = !json[QString("sdiDownConvert")].isNull() && m_sdi_down_convert_isValid;
+
     m_sdi_mode3g_isValid = ::OpenAPI::fromJsonValue(m_sdi_mode3g, json[QString("sdiMode3g")]);
     m_sdi_mode3g_isSet = !json[QString("sdiMode3g")].isNull() && m_sdi_mode3g_isValid;
+
+    m_hdmi_format_isValid = ::OpenAPI::fromJsonValue(m_hdmi_format, json[QString("hdmiFormat")]);
+    m_hdmi_format_isSet = !json[QString("hdmiFormat")].isNull() && m_hdmi_format_isValid;
+
+    m_hdmi_connection_isValid = ::OpenAPI::fromJsonValue(m_hdmi_connection, json[QString("hdmiConnection")]);
+    m_hdmi_connection_isSet = !json[QString("hdmiConnection")].isNull() && m_hdmi_connection_isValid;
 
     m_hdmi_crop4k2k_isValid = ::OpenAPI::fromJsonValue(m_hdmi_crop4k2k, json[QString("hdmiCrop4k2k")]);
     m_hdmi_crop4k2k_isSet = !json[QString("hdmiCrop4k2k")].isNull() && m_hdmi_crop4k2k_isValid;
 
-    m_hdmi_connection_isValid = ::OpenAPI::fromJsonValue(m_hdmi_connection, json[QString("hdmiConnection")]);
-    m_hdmi_connection_isSet = !json[QString("hdmiConnection")].isNull() && m_hdmi_connection_isValid;
+    m_hdmi_down_convert_isValid = ::OpenAPI::fromJsonValue(m_hdmi_down_convert, json[QString("hdmiDownConvert")]);
+    m_hdmi_down_convert_isSet = !json[QString("hdmiDownConvert")].isNull() && m_hdmi_down_convert_isValid;
+
+    m_hdmi_color_space_isValid = ::OpenAPI::fromJsonValue(m_hdmi_color_space, json[QString("hdmiColorSpace")]);
+    m_hdmi_color_space_isSet = !json[QString("hdmiColorSpace")].isNull() && m_hdmi_color_space_isValid;
+
+    m_hdmi_bit_depth_isValid = ::OpenAPI::fromJsonValue(m_hdmi_bit_depth, json[QString("hdmiBitDepth")]);
+    m_hdmi_bit_depth_isSet = !json[QString("hdmiBitDepth")].isNull() && m_hdmi_bit_depth_isValid;
 
     applyMinMaxConstraints();
 }
@@ -137,14 +173,32 @@ QJsonObject OAIOutputConfig::asJsonObject() const {
     if (m_format.isSet()) {
         obj.insert(QString("format"), ::OpenAPI::toJsonValue(m_format));
     }
+    if (m_sdi_format.isSet()) {
+        obj.insert(QString("sdiFormat"), ::OpenAPI::toJsonValue(m_sdi_format));
+    }
+    if (m_sdi_down_convert.isSet()) {
+        obj.insert(QString("sdiDownConvert"), ::OpenAPI::toJsonValue(m_sdi_down_convert));
+    }
     if (m_sdi_mode3g.isSet()) {
         obj.insert(QString("sdiMode3g"), ::OpenAPI::toJsonValue(m_sdi_mode3g));
+    }
+    if (m_hdmi_format.isSet()) {
+        obj.insert(QString("hdmiFormat"), ::OpenAPI::toJsonValue(m_hdmi_format));
+    }
+    if (m_hdmi_connection.isSet()) {
+        obj.insert(QString("hdmiConnection"), ::OpenAPI::toJsonValue(m_hdmi_connection));
     }
     if (m_hdmi_crop4k2k.isSet()) {
         obj.insert(QString("hdmiCrop4k2k"), ::OpenAPI::toJsonValue(m_hdmi_crop4k2k));
     }
-    if (m_hdmi_connection.isSet()) {
-        obj.insert(QString("hdmiConnection"), ::OpenAPI::toJsonValue(m_hdmi_connection));
+    if (m_hdmi_down_convert.isSet()) {
+        obj.insert(QString("hdmiDownConvert"), ::OpenAPI::toJsonValue(m_hdmi_down_convert));
+    }
+    if (m_hdmi_color_space.isSet()) {
+        obj.insert(QString("hdmiColorSpace"), ::OpenAPI::toJsonValue(m_hdmi_color_space));
+    }
+    if (m_hdmi_bit_depth.isSet()) {
+        obj.insert(QString("hdmiBitDepth"), ::OpenAPI::toJsonValue(m_hdmi_bit_depth));
     }
     return obj;
 }
@@ -275,6 +329,42 @@ bool OAIOutputConfig::is_format_Valid() const{
 }
 
 
+OAIVideoFormat OAIOutputConfig::getSdiFormat() const {
+    return m_sdi_format;
+}
+void OAIOutputConfig::setSdiFormat(const OAIVideoFormat &sdi_format) {
+	OAIVideoFormat v = sdi_format;
+	this->m_sdi_format = v;
+    this->m_sdi_format_isSet = true;
+}
+
+bool OAIOutputConfig::is_sdi_format_Set() const{
+    return m_sdi_format_isSet;
+}
+
+bool OAIOutputConfig::is_sdi_format_Valid() const{
+    return m_sdi_format_isValid;
+}
+
+
+OAIDownConvert OAIOutputConfig::getSdiDownConvert() const {
+    return m_sdi_down_convert;
+}
+void OAIOutputConfig::setSdiDownConvert(const OAIDownConvert &sdi_down_convert) {
+	OAIDownConvert v = sdi_down_convert;
+	this->m_sdi_down_convert = v;
+    this->m_sdi_down_convert_isSet = true;
+}
+
+bool OAIOutputConfig::is_sdi_down_convert_Set() const{
+    return m_sdi_down_convert_isSet;
+}
+
+bool OAIOutputConfig::is_sdi_down_convert_Valid() const{
+    return m_sdi_down_convert_isValid;
+}
+
+
 OAISdiMode3g OAIOutputConfig::getSdiMode3g() const {
     return m_sdi_mode3g;
 }
@@ -290,6 +380,42 @@ bool OAIOutputConfig::is_sdi_mode3g_Set() const{
 
 bool OAIOutputConfig::is_sdi_mode3g_Valid() const{
     return m_sdi_mode3g_isValid;
+}
+
+
+OAIVideoFormat OAIOutputConfig::getHdmiFormat() const {
+    return m_hdmi_format;
+}
+void OAIOutputConfig::setHdmiFormat(const OAIVideoFormat &hdmi_format) {
+	OAIVideoFormat v = hdmi_format;
+	this->m_hdmi_format = v;
+    this->m_hdmi_format_isSet = true;
+}
+
+bool OAIOutputConfig::is_hdmi_format_Set() const{
+    return m_hdmi_format_isSet;
+}
+
+bool OAIOutputConfig::is_hdmi_format_Valid() const{
+    return m_hdmi_format_isValid;
+}
+
+
+OAIConnection OAIOutputConfig::getHdmiConnection() const {
+    return m_hdmi_connection;
+}
+void OAIOutputConfig::setHdmiConnection(const OAIConnection &hdmi_connection) {
+	OAIConnection v = hdmi_connection;
+	this->m_hdmi_connection = v;
+    this->m_hdmi_connection_isSet = true;
+}
+
+bool OAIOutputConfig::is_hdmi_connection_Set() const{
+    return m_hdmi_connection_isSet;
+}
+
+bool OAIOutputConfig::is_hdmi_connection_Valid() const{
+    return m_hdmi_connection_isValid;
 }
 
 
@@ -311,21 +437,57 @@ bool OAIOutputConfig::is_hdmi_crop4k2k_Valid() const{
 }
 
 
-OAIConnection OAIOutputConfig::getHdmiConnection() const {
-    return m_hdmi_connection;
+OAIDownConvert OAIOutputConfig::getHdmiDownConvert() const {
+    return m_hdmi_down_convert;
 }
-void OAIOutputConfig::setHdmiConnection(const OAIConnection &hdmi_connection) {
-	OAIConnection v = hdmi_connection;
-	this->m_hdmi_connection = v;
-    this->m_hdmi_connection_isSet = true;
-}
-
-bool OAIOutputConfig::is_hdmi_connection_Set() const{
-    return m_hdmi_connection_isSet;
+void OAIOutputConfig::setHdmiDownConvert(const OAIDownConvert &hdmi_down_convert) {
+	OAIDownConvert v = hdmi_down_convert;
+	this->m_hdmi_down_convert = v;
+    this->m_hdmi_down_convert_isSet = true;
 }
 
-bool OAIOutputConfig::is_hdmi_connection_Valid() const{
-    return m_hdmi_connection_isValid;
+bool OAIOutputConfig::is_hdmi_down_convert_Set() const{
+    return m_hdmi_down_convert_isSet;
+}
+
+bool OAIOutputConfig::is_hdmi_down_convert_Valid() const{
+    return m_hdmi_down_convert_isValid;
+}
+
+
+OAIColorSpace OAIOutputConfig::getHdmiColorSpace() const {
+    return m_hdmi_color_space;
+}
+void OAIOutputConfig::setHdmiColorSpace(const OAIColorSpace &hdmi_color_space) {
+	OAIColorSpace v = hdmi_color_space;
+	this->m_hdmi_color_space = v;
+    this->m_hdmi_color_space_isSet = true;
+}
+
+bool OAIOutputConfig::is_hdmi_color_space_Set() const{
+    return m_hdmi_color_space_isSet;
+}
+
+bool OAIOutputConfig::is_hdmi_color_space_Valid() const{
+    return m_hdmi_color_space_isValid;
+}
+
+
+OAIBitDepth OAIOutputConfig::getHdmiBitDepth() const {
+    return m_hdmi_bit_depth;
+}
+void OAIOutputConfig::setHdmiBitDepth(const OAIBitDepth &hdmi_bit_depth) {
+	OAIBitDepth v = hdmi_bit_depth;
+	this->m_hdmi_bit_depth = v;
+    this->m_hdmi_bit_depth_isSet = true;
+}
+
+bool OAIOutputConfig::is_hdmi_bit_depth_Set() const{
+    return m_hdmi_bit_depth_isSet;
+}
+
+bool OAIOutputConfig::is_hdmi_bit_depth_Valid() const{
+    return m_hdmi_bit_depth_isValid;
 }
 
 
@@ -367,7 +529,27 @@ bool OAIOutputConfig::isSet() const {
             break;
         }
 
+        if (m_sdi_format.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_sdi_down_convert.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (m_sdi_mode3g.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_hdmi_format.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_hdmi_connection.isSet()) {
             isObjectUpdated = true;
             break;
         }
@@ -377,7 +559,17 @@ bool OAIOutputConfig::isSet() const {
             break;
         }
 
-        if (m_hdmi_connection.isSet()) {
+        if (m_hdmi_down_convert.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_hdmi_color_space.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_hdmi_bit_depth.isSet()) {
             isObjectUpdated = true;
             break;
         }

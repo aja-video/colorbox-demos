@@ -56,6 +56,7 @@ public:
         TransformMode_ORION,
         TransformMode_BBC,
         TransformMode_NBC,
+        TransformMode_ACES,
     };
 
     eTransformMode getValue() const;

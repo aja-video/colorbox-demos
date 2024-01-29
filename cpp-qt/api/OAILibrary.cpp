@@ -70,6 +70,10 @@ void OAILibrary::fromJson(QString jsonString) {
         m_value = eOAILibrary::ORIONPRESET;
         m_value_isSet = m_value_isValid = true;
     }
+    else if ( jsonString.compare("AMF", Qt::CaseInsensitive) == 0) {
+        m_value = eOAILibrary::AMF;
+        m_value_isSet = m_value_isValid = true;
+    }
 }
 
 void OAILibrary::fromJsonValue(QJsonValue json) {
@@ -102,6 +106,9 @@ QString OAILibrary::asJson() const {
             break;
         case eOAILibrary::ORIONPRESET:
             val = "orionPreset";
+            break;
+        case eOAILibrary::AMF:
+            val = "AMF";
             break;
         default:
             break;

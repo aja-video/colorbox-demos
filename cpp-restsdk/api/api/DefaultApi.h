@@ -25,6 +25,7 @@
 
 #include "ApiClient.h"
 
+#include "model/AcesConfig.h"
 #include "model/AncCaptureFilter.h"
 #include "model/BbcConfig.h"
 #include "model/BuildInfo.h"
@@ -95,6 +96,14 @@ public:
     /// 
     /// </summary>
     /// <remarks>
+    /// Get the AcesConfig object
+    /// </remarks>
+    pplx::task<std::shared_ptr<AcesConfig>> getAcesConfig(
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
     /// Return an object with active params for network interface at devIdx
     /// </remarks>
     /// <param name="devIdx"></param>
@@ -124,6 +133,14 @@ public:
     /// Return an array of objects with the discovered devices
     /// </remarks>
     pplx::task<std::vector<std::shared_ptr<SystemDiscover>>> getAllSystemDiscovers(
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Get the AMF Library array
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<LibraryEntry>>> getAmfLibrary(
     ) const;
     /// <summary>
     /// 
@@ -362,6 +379,16 @@ public:
     /// Return the complete wifi status object
     /// </remarks>
     pplx::task<std::shared_ptr<WiFiDeviceStatus>> getWiFiStatus(
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Modify the AcesConfig object
+    /// </remarks>
+    /// <param name="acesConfig">AcesConfig object</param>
+    pplx::task<void> setAcesConfig(
+        std::shared_ptr<AcesConfig> acesConfig
     ) const;
     /// <summary>
     /// 
@@ -662,6 +689,22 @@ public:
         boost::optional<std::shared_ptr<HttpContent>> file,
         boost::optional<utility::string_t> kind,
         boost::optional<int32_t> entry
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Upload Multiple files
+    /// </remarks>
+    /// <param name="file"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="kind">The kind of file being uploaded valid kinds are: **amf** (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="entry">The entry number to upload the file to (optional, default to 0)</param>
+    /// <param name="selection">The AMF file that should be used from the sent files, an uploaded directory can contain multiple AMF files, the one that matches this parameter will be the one stored to the device. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<utility::string_t> uploadMultipleFiles(
+        boost::optional<std::vector<std::shared_ptr<HttpContent>>> file,
+        boost::optional<utility::string_t> kind,
+        boost::optional<int32_t> entry,
+        boost::optional<utility::string_t> selection
     ) const;
 
 protected:

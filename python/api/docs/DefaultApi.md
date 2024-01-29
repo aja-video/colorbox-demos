@@ -6,10 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get1d_lut_library**](DefaultApi.md#get1d_lut_library) | **GET** /1dLutLibrary | 
 [**get3d_lut_library**](DefaultApi.md#get3d_lut_library) | **GET** /3dLutLibrary | 
+[**get_aces_config**](DefaultApi.md#get_aces_config) | **GET** /acesConfig | 
 [**get_active_params_for_given_net_device_index**](DefaultApi.md#get_active_params_for_given_net_device_index) | **GET** /net/device/{devIdx}/activeParams | 
 [**get_all_net_devices**](DefaultApi.md#get_all_net_devices) | **GET** /net/devices | 
 [**get_all_status**](DefaultApi.md#get_all_status) | **GET** /status | 
 [**get_all_system_discovers**](DefaultApi.md#get_all_system_discovers) | **GET** /discovers | 
+[**get_amf_library**](DefaultApi.md#get_amf_library) | **GET** /amfLibrary | 
 [**get_anc_capture_filter**](DefaultApi.md#get_anc_capture_filter) | **GET** /ancCaptureFilter | 
 [**get_bbc_config**](DefaultApi.md#get_bbc_config) | **GET** /bbcConfig | 
 [**get_build_info**](DefaultApi.md#get_build_info) | **GET** /buildInfo | 
@@ -39,6 +41,7 @@ Method | HTTP request | Description
 [**get_system_status**](DefaultApi.md#get_system_status) | **GET** /system/status | 
 [**get_wi_fi_config**](DefaultApi.md#get_wi_fi_config) | **GET** /wifiConfig | 
 [**get_wi_fi_status**](DefaultApi.md#get_wi_fi_status) | **GET** /wifiStatus | 
+[**set_aces_config**](DefaultApi.md#set_aces_config) | **PUT** /acesConfig | 
 [**set_active_params_for_given_net_device_index**](DefaultApi.md#set_active_params_for_given_net_device_index) | **PUT** /net/device/{devIdx}/activeParams | 
 [**set_all_status**](DefaultApi.md#set_all_status) | **PUT** /status | 
 [**set_all_system_discovers**](DefaultApi.md#set_all_system_discovers) | **PUT** /discovers | 
@@ -68,6 +71,7 @@ Method | HTTP request | Description
 [**set_wi_fi_config**](DefaultApi.md#set_wi_fi_config) | **PUT** /wifiConfig | 
 [**set_wi_fi_status**](DefaultApi.md#set_wi_fi_status) | **PUT** /wifiStatus | 
 [**upload_file**](DefaultApi.md#upload_file) | **POST** /upload | 
+[**upload_multiple_files**](DefaultApi.md#upload_multiple_files) | **POST** /uploadMultiple | 
 
 
 # **get1d_lut_library**
@@ -175,6 +179,68 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**[LibraryEntry]**](LibraryEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_aces_config**
+> AcesConfig get_aces_config()
+
+
+
+Get the AcesConfig object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.aces_config import AcesConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_aces_config()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_aces_config: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AcesConfig**](AcesConfig.md)
 
 ### Authorization
 
@@ -428,6 +494,68 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**[SystemDiscover]**](SystemDiscover.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_amf_library**
+> [LibraryEntry] get_amf_library()
+
+
+
+Get the AMF Library array
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.library_entry import LibraryEntry
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_amf_library()
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_amf_library: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[LibraryEntry]**](LibraryEntry.md)
 
 ### Authorization
 
@@ -2260,6 +2388,77 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **set_aces_config**
+> set_aces_config(aces_config)
+
+
+
+Modify the AcesConfig object
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.aces_config import AcesConfig
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    aces_config = AcesConfig(
+        enabled=True,
+        mode=AcesMode("AMF"),
+        amf_library_entry=1,
+        ocio_source=OcioSource("Camera Rec.709"),
+        ocio_display_view=OcioDisplayView("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"),
+    ) # AcesConfig | AcesConfig object
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.set_aces_config(aces_config)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->set_aces_config: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aces_config** | [**AcesConfig**](AcesConfig.md)| AcesConfig object |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **set_active_params_for_given_net_device_index**
 > set_active_params_for_given_net_device_index(dev_idx, net_params)
 
@@ -3526,9 +3725,15 @@ with openapi_client.ApiClient() as api_client:
         colorimetry=Colorimetry("Auto"),
         transfer=Transfer("Auto"),
         format=VideoFormat("Auto"),
+        sdi_format=VideoFormat("Auto"),
+        sdi_down_convert=DownConvert("Disabled"),
         sdi_mode3g=SdiMode3g("Auto"),
-        hdmi_crop4k2k=Crop4k2k("Auto"),
+        hdmi_format=VideoFormat("Auto"),
         hdmi_connection=Connection("Auto"),
+        hdmi_crop4k2k=Crop4k2k("Auto"),
+        hdmi_down_convert=DownConvert("Disabled"),
+        hdmi_color_space=ColorSpace("Auto"),
+        hdmi_bit_depth=BitDepth("Auto"),
     ) # OutputConfig | OutputConfig object
 
     # example passing only required values which don't have defaults set
@@ -3602,9 +3807,15 @@ with openapi_client.ApiClient() as api_client:
         colorimetry=Colorimetry("Auto"),
         transfer=Transfer("Auto"),
         format=VideoFormat("Auto"),
+        sdi_format=VideoFormat("Auto"),
+        sdi_down_convert=DownConvert("Disabled"),
         sdi_mode3g=SdiMode3g("Auto"),
-        hdmi_crop4k2k=Crop4k2k("Auto"),
+        hdmi_format=VideoFormat("Auto"),
         hdmi_connection=Connection("Auto"),
+        hdmi_crop4k2k=Crop4k2k("Auto"),
+        hdmi_down_convert=DownConvert("Disabled"),
+        hdmi_color_space=ColorSpace("Auto"),
+        hdmi_bit_depth=BitDepth("Auto"),
     ) # OutputConfig | OutputConfig object
 
     # example passing only required values which don't have defaults set
@@ -4920,6 +5131,81 @@ Name | Type | Description  | Notes
  **file** | **file_type**|  | [optional]
  **kind** | **str**| The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**, **license**, **update** | [optional] if omitted the server will use the default value of ""
  **entry** | **int**| The entry number to upload the file to, **not** used with kinds: **license** and **update** | [optional] if omitted the server will use the default value of -1
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: text/plain
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+**400** | Error uploading |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **upload_multiple_files**
+> str upload_multiple_files()
+
+
+
+Upload Multiple files
+
+### Example
+
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from pprint import pprint
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "/v2"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    file = [
+        open('/path/to/file', 'rb'),
+    ] # [file_type] |  (optional)
+    kind = "" # str | The kind of file being uploaded valid kinds are: **amf** (optional) if omitted the server will use the default value of ""
+    entry = -1 # int | The entry number to upload the file to (optional) if omitted the server will use the default value of -1
+    selection = "" # str | The AMF file that should be used from the sent files, an uploaded directory can contain multiple AMF files, the one that matches this parameter will be the one stored to the device. (optional) if omitted the server will use the default value of ""
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_response = api_instance.upload_multiple_files(file=file, kind=kind, entry=entry, selection=selection)
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->upload_multiple_files: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | **[file_type]**|  | [optional]
+ **kind** | **str**| The kind of file being uploaded valid kinds are: **amf** | [optional] if omitted the server will use the default value of ""
+ **entry** | **int**| The entry number to upload the file to | [optional] if omitted the server will use the default value of -1
+ **selection** | **str**| The AMF file that should be used from the sent files, an uploaded directory can contain multiple AMF files, the one that matches this parameter will be the one stored to the device. | [optional] if omitted the server will use the default value of ""
 
 ### Return type
 

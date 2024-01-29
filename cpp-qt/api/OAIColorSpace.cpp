@@ -54,6 +54,10 @@ void OAIColorSpace::fromJson(QString jsonString) {
         m_value = eOAIColorSpace::_4_4_4_RGB;
         m_value_isSet = m_value_isValid = true;
     }
+    else if ( jsonString.compare("4:2:0 YCbCr", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIColorSpace::_4_2_0_YCBCR;
+        m_value_isSet = m_value_isValid = true;
+    }
 }
 
 void OAIColorSpace::fromJsonValue(QJsonValue json) {
@@ -74,6 +78,9 @@ QString OAIColorSpace::asJson() const {
             break;
         case eOAIColorSpace::_4_4_4_RGB:
             val = "4:4:4 RGB";
+            break;
+        case eOAIColorSpace::_4_2_0_YCBCR:
+            val = "4:2:0 YCbCr";
             break;
         default:
             break;

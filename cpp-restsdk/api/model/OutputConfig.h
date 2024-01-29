@@ -33,6 +33,7 @@
 #include "model/BitDepth.h"
 #include "model/ScanMode.h"
 #include "model/Connection.h"
+#include "model/DownConvert.h"
 #include "model/Transfer.h"
 
 namespace org {
@@ -139,11 +140,51 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    std::shared_ptr<VideoFormat> getSdiFormat() const;
+    bool sdiFormatIsSet() const;
+    void unsetSdiFormat();
+
+    void setSdiFormat(const std::shared_ptr<VideoFormat>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<DownConvert> getSdiDownConvert() const;
+    bool sdiDownConvertIsSet() const;
+    void unsetSdiDownConvert();
+
+    void setSdiDownConvert(const std::shared_ptr<DownConvert>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
     std::shared_ptr<SdiMode3g> getSdiMode3g() const;
     bool sdiMode3gIsSet() const;
     void unsetSdiMode3g();
 
     void setSdiMode3g(const std::shared_ptr<SdiMode3g>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<VideoFormat> getHdmiFormat() const;
+    bool hdmiFormatIsSet() const;
+    void unsetHdmiFormat();
+
+    void setHdmiFormat(const std::shared_ptr<VideoFormat>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<Connection> getHdmiConnection() const;
+    bool hdmiConnectionIsSet() const;
+    void unsetHdmiConnection();
+
+    void setHdmiConnection(const std::shared_ptr<Connection>& value);
 
 
     /// <summary>
@@ -159,11 +200,31 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<Connection> getHdmiConnection() const;
-    bool hdmiConnectionIsSet() const;
-    void unsetHdmiConnection();
+    std::shared_ptr<DownConvert> getHdmiDownConvert() const;
+    bool hdmiDownConvertIsSet() const;
+    void unsetHdmiDownConvert();
 
-    void setHdmiConnection(const std::shared_ptr<Connection>& value);
+    void setHdmiDownConvert(const std::shared_ptr<DownConvert>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<ColorSpace> getHdmiColorSpace() const;
+    bool hdmiColorSpaceIsSet() const;
+    void unsetHdmiColorSpace();
+
+    void setHdmiColorSpace(const std::shared_ptr<ColorSpace>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<BitDepth> getHdmiBitDepth() const;
+    bool hdmiBitDepthIsSet() const;
+    void unsetHdmiBitDepth();
+
+    void setHdmiBitDepth(const std::shared_ptr<BitDepth>& value);
 
 
 
@@ -182,12 +243,24 @@ protected:
     bool m_TransferIsSet;
     std::shared_ptr<VideoFormat> m_Format;
     bool m_FormatIsSet;
+    std::shared_ptr<VideoFormat> m_SdiFormat;
+    bool m_SdiFormatIsSet;
+    std::shared_ptr<DownConvert> m_SdiDownConvert;
+    bool m_SdiDownConvertIsSet;
     std::shared_ptr<SdiMode3g> m_SdiMode3g;
     bool m_SdiMode3gIsSet;
-    std::shared_ptr<Crop4k2k> m_HdmiCrop4k2k;
-    bool m_HdmiCrop4k2kIsSet;
+    std::shared_ptr<VideoFormat> m_HdmiFormat;
+    bool m_HdmiFormatIsSet;
     std::shared_ptr<Connection> m_HdmiConnection;
     bool m_HdmiConnectionIsSet;
+    std::shared_ptr<Crop4k2k> m_HdmiCrop4k2k;
+    bool m_HdmiCrop4k2kIsSet;
+    std::shared_ptr<DownConvert> m_HdmiDownConvert;
+    bool m_HdmiDownConvertIsSet;
+    std::shared_ptr<ColorSpace> m_HdmiColorSpace;
+    bool m_HdmiColorSpaceIsSet;
+    std::shared_ptr<BitDepth> m_HdmiBitDepth;
+    bool m_HdmiBitDepthIsSet;
 };
 
 

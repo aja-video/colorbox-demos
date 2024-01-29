@@ -54,6 +54,7 @@ public:
         ColorSpace_AUTO,
         ColorSpace__4_2_2_YCBCR,
         ColorSpace__4_4_4_RGB,
+        ColorSpace__4_2_0_YCBCR,
     };
 
     eColorSpace getValue() const;

@@ -33,9 +33,15 @@ OutputConfig::OutputConfig()
     m_ColorimetryIsSet = false;
     m_TransferIsSet = false;
     m_FormatIsSet = false;
+    m_SdiFormatIsSet = false;
+    m_SdiDownConvertIsSet = false;
     m_SdiMode3gIsSet = false;
-    m_HdmiCrop4k2kIsSet = false;
+    m_HdmiFormatIsSet = false;
     m_HdmiConnectionIsSet = false;
+    m_HdmiCrop4k2kIsSet = false;
+    m_HdmiDownConvertIsSet = false;
+    m_HdmiColorSpaceIsSet = false;
+    m_HdmiBitDepthIsSet = false;
 }
 
 OutputConfig::~OutputConfig()
@@ -86,17 +92,41 @@ web::json::value OutputConfig::toJson() const
     {
         val[utility::conversions::to_string_t(U("format"))] = ModelBase::toJson(m_Format);
     }
+    if(m_SdiFormatIsSet)
+    {
+        val[utility::conversions::to_string_t(U("sdiFormat"))] = ModelBase::toJson(m_SdiFormat);
+    }
+    if(m_SdiDownConvertIsSet)
+    {
+        val[utility::conversions::to_string_t(U("sdiDownConvert"))] = ModelBase::toJson(m_SdiDownConvert);
+    }
     if(m_SdiMode3gIsSet)
     {
         val[utility::conversions::to_string_t(U("sdiMode3g"))] = ModelBase::toJson(m_SdiMode3g);
+    }
+    if(m_HdmiFormatIsSet)
+    {
+        val[utility::conversions::to_string_t(U("hdmiFormat"))] = ModelBase::toJson(m_HdmiFormat);
+    }
+    if(m_HdmiConnectionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("hdmiConnection"))] = ModelBase::toJson(m_HdmiConnection);
     }
     if(m_HdmiCrop4k2kIsSet)
     {
         val[utility::conversions::to_string_t(U("hdmiCrop4k2k"))] = ModelBase::toJson(m_HdmiCrop4k2k);
     }
-    if(m_HdmiConnectionIsSet)
+    if(m_HdmiDownConvertIsSet)
     {
-        val[utility::conversions::to_string_t(U("hdmiConnection"))] = ModelBase::toJson(m_HdmiConnection);
+        val[utility::conversions::to_string_t(U("hdmiDownConvert"))] = ModelBase::toJson(m_HdmiDownConvert);
+    }
+    if(m_HdmiColorSpaceIsSet)
+    {
+        val[utility::conversions::to_string_t(U("hdmiColorSpace"))] = ModelBase::toJson(m_HdmiColorSpace);
+    }
+    if(m_HdmiBitDepthIsSet)
+    {
+        val[utility::conversions::to_string_t(U("hdmiBitDepth"))] = ModelBase::toJson(m_HdmiBitDepth);
     }
 
     return val;
@@ -176,6 +206,26 @@ bool OutputConfig::fromJson(const web::json::value& val)
             setFormat(refVal_format);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("sdiFormat"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("sdiFormat")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<VideoFormat> refVal_sdiFormat;
+            ok &= ModelBase::fromJson(fieldValue, refVal_sdiFormat);
+            setSdiFormat(refVal_sdiFormat);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("sdiDownConvert"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("sdiDownConvert")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<DownConvert> refVal_sdiDownConvert;
+            ok &= ModelBase::fromJson(fieldValue, refVal_sdiDownConvert);
+            setSdiDownConvert(refVal_sdiDownConvert);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("sdiMode3g"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("sdiMode3g")));
@@ -184,6 +234,26 @@ bool OutputConfig::fromJson(const web::json::value& val)
             std::shared_ptr<SdiMode3g> refVal_sdiMode3g;
             ok &= ModelBase::fromJson(fieldValue, refVal_sdiMode3g);
             setSdiMode3g(refVal_sdiMode3g);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("hdmiFormat"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hdmiFormat")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<VideoFormat> refVal_hdmiFormat;
+            ok &= ModelBase::fromJson(fieldValue, refVal_hdmiFormat);
+            setHdmiFormat(refVal_hdmiFormat);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("hdmiConnection"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hdmiConnection")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<Connection> refVal_hdmiConnection;
+            ok &= ModelBase::fromJson(fieldValue, refVal_hdmiConnection);
+            setHdmiConnection(refVal_hdmiConnection);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("hdmiCrop4k2k"))))
@@ -196,14 +266,34 @@ bool OutputConfig::fromJson(const web::json::value& val)
             setHdmiCrop4k2k(refVal_hdmiCrop4k2k);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("hdmiConnection"))))
+    if(val.has_field(utility::conversions::to_string_t(U("hdmiDownConvert"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hdmiConnection")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hdmiDownConvert")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Connection> refVal_hdmiConnection;
-            ok &= ModelBase::fromJson(fieldValue, refVal_hdmiConnection);
-            setHdmiConnection(refVal_hdmiConnection);
+            std::shared_ptr<DownConvert> refVal_hdmiDownConvert;
+            ok &= ModelBase::fromJson(fieldValue, refVal_hdmiDownConvert);
+            setHdmiDownConvert(refVal_hdmiDownConvert);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("hdmiColorSpace"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hdmiColorSpace")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<ColorSpace> refVal_hdmiColorSpace;
+            ok &= ModelBase::fromJson(fieldValue, refVal_hdmiColorSpace);
+            setHdmiColorSpace(refVal_hdmiColorSpace);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("hdmiBitDepth"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hdmiBitDepth")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<BitDepth> refVal_hdmiBitDepth;
+            ok &= ModelBase::fromJson(fieldValue, refVal_hdmiBitDepth);
+            setHdmiBitDepth(refVal_hdmiBitDepth);
         }
     }
     
@@ -246,17 +336,41 @@ void OutputConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("format")), m_Format));
     }
+    if(m_SdiFormatIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("sdiFormat")), m_SdiFormat));
+    }
+    if(m_SdiDownConvertIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("sdiDownConvert")), m_SdiDownConvert));
+    }
     if(m_SdiMode3gIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("sdiMode3g")), m_SdiMode3g));
+    }
+    if(m_HdmiFormatIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hdmiFormat")), m_HdmiFormat));
+    }
+    if(m_HdmiConnectionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hdmiConnection")), m_HdmiConnection));
     }
     if(m_HdmiCrop4k2kIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hdmiCrop4k2k")), m_HdmiCrop4k2k));
     }
-    if(m_HdmiConnectionIsSet)
+    if(m_HdmiDownConvertIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hdmiConnection")), m_HdmiConnection));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hdmiDownConvert")), m_HdmiDownConvert));
+    }
+    if(m_HdmiColorSpaceIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hdmiColorSpace")), m_HdmiColorSpace));
+    }
+    if(m_HdmiBitDepthIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hdmiBitDepth")), m_HdmiBitDepth));
     }
 }
 
@@ -311,11 +425,35 @@ bool OutputConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("format"))), refVal_format );
         setFormat(refVal_format);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("sdiFormat"))))
+    {
+        std::shared_ptr<VideoFormat> refVal_sdiFormat;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("sdiFormat"))), refVal_sdiFormat );
+        setSdiFormat(refVal_sdiFormat);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("sdiDownConvert"))))
+    {
+        std::shared_ptr<DownConvert> refVal_sdiDownConvert;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("sdiDownConvert"))), refVal_sdiDownConvert );
+        setSdiDownConvert(refVal_sdiDownConvert);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("sdiMode3g"))))
     {
         std::shared_ptr<SdiMode3g> refVal_sdiMode3g;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("sdiMode3g"))), refVal_sdiMode3g );
         setSdiMode3g(refVal_sdiMode3g);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("hdmiFormat"))))
+    {
+        std::shared_ptr<VideoFormat> refVal_hdmiFormat;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hdmiFormat"))), refVal_hdmiFormat );
+        setHdmiFormat(refVal_hdmiFormat);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("hdmiConnection"))))
+    {
+        std::shared_ptr<Connection> refVal_hdmiConnection;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hdmiConnection"))), refVal_hdmiConnection );
+        setHdmiConnection(refVal_hdmiConnection);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("hdmiCrop4k2k"))))
     {
@@ -323,11 +461,23 @@ bool OutputConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hdmiCrop4k2k"))), refVal_hdmiCrop4k2k );
         setHdmiCrop4k2k(refVal_hdmiCrop4k2k);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("hdmiConnection"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("hdmiDownConvert"))))
     {
-        std::shared_ptr<Connection> refVal_hdmiConnection;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hdmiConnection"))), refVal_hdmiConnection );
-        setHdmiConnection(refVal_hdmiConnection);
+        std::shared_ptr<DownConvert> refVal_hdmiDownConvert;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hdmiDownConvert"))), refVal_hdmiDownConvert );
+        setHdmiDownConvert(refVal_hdmiDownConvert);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("hdmiColorSpace"))))
+    {
+        std::shared_ptr<ColorSpace> refVal_hdmiColorSpace;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hdmiColorSpace"))), refVal_hdmiColorSpace );
+        setHdmiColorSpace(refVal_hdmiColorSpace);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("hdmiBitDepth"))))
+    {
+        std::shared_ptr<BitDepth> refVal_hdmiBitDepth;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hdmiBitDepth"))), refVal_hdmiBitDepth );
+        setHdmiBitDepth(refVal_hdmiBitDepth);
     }
     
     applyMinMaxConstraints();
@@ -495,6 +645,52 @@ void OutputConfig::unsetFormat()
 }
 
 
+std::shared_ptr<VideoFormat> OutputConfig::getSdiFormat() const
+{
+    return m_SdiFormat;
+}
+
+void OutputConfig::setSdiFormat(const std::shared_ptr<VideoFormat>& value)
+{
+	std::shared_ptr<VideoFormat> v = value;
+    m_SdiFormat = v;
+    m_SdiFormatIsSet = true;
+}
+
+bool OutputConfig::sdiFormatIsSet() const
+{
+    return m_SdiFormatIsSet;
+}
+
+void OutputConfig::unsetSdiFormat()
+{
+    m_SdiFormatIsSet = false;
+}
+
+
+std::shared_ptr<DownConvert> OutputConfig::getSdiDownConvert() const
+{
+    return m_SdiDownConvert;
+}
+
+void OutputConfig::setSdiDownConvert(const std::shared_ptr<DownConvert>& value)
+{
+	std::shared_ptr<DownConvert> v = value;
+    m_SdiDownConvert = v;
+    m_SdiDownConvertIsSet = true;
+}
+
+bool OutputConfig::sdiDownConvertIsSet() const
+{
+    return m_SdiDownConvertIsSet;
+}
+
+void OutputConfig::unsetSdiDownConvert()
+{
+    m_SdiDownConvertIsSet = false;
+}
+
+
 std::shared_ptr<SdiMode3g> OutputConfig::getSdiMode3g() const
 {
     return m_SdiMode3g;
@@ -515,6 +711,52 @@ bool OutputConfig::sdiMode3gIsSet() const
 void OutputConfig::unsetSdiMode3g()
 {
     m_SdiMode3gIsSet = false;
+}
+
+
+std::shared_ptr<VideoFormat> OutputConfig::getHdmiFormat() const
+{
+    return m_HdmiFormat;
+}
+
+void OutputConfig::setHdmiFormat(const std::shared_ptr<VideoFormat>& value)
+{
+	std::shared_ptr<VideoFormat> v = value;
+    m_HdmiFormat = v;
+    m_HdmiFormatIsSet = true;
+}
+
+bool OutputConfig::hdmiFormatIsSet() const
+{
+    return m_HdmiFormatIsSet;
+}
+
+void OutputConfig::unsetHdmiFormat()
+{
+    m_HdmiFormatIsSet = false;
+}
+
+
+std::shared_ptr<Connection> OutputConfig::getHdmiConnection() const
+{
+    return m_HdmiConnection;
+}
+
+void OutputConfig::setHdmiConnection(const std::shared_ptr<Connection>& value)
+{
+	std::shared_ptr<Connection> v = value;
+    m_HdmiConnection = v;
+    m_HdmiConnectionIsSet = true;
+}
+
+bool OutputConfig::hdmiConnectionIsSet() const
+{
+    return m_HdmiConnectionIsSet;
+}
+
+void OutputConfig::unsetHdmiConnection()
+{
+    m_HdmiConnectionIsSet = false;
 }
 
 
@@ -541,26 +783,72 @@ void OutputConfig::unsetHdmiCrop4k2k()
 }
 
 
-std::shared_ptr<Connection> OutputConfig::getHdmiConnection() const
+std::shared_ptr<DownConvert> OutputConfig::getHdmiDownConvert() const
 {
-    return m_HdmiConnection;
+    return m_HdmiDownConvert;
 }
 
-void OutputConfig::setHdmiConnection(const std::shared_ptr<Connection>& value)
+void OutputConfig::setHdmiDownConvert(const std::shared_ptr<DownConvert>& value)
 {
-	std::shared_ptr<Connection> v = value;
-    m_HdmiConnection = v;
-    m_HdmiConnectionIsSet = true;
+	std::shared_ptr<DownConvert> v = value;
+    m_HdmiDownConvert = v;
+    m_HdmiDownConvertIsSet = true;
 }
 
-bool OutputConfig::hdmiConnectionIsSet() const
+bool OutputConfig::hdmiDownConvertIsSet() const
 {
-    return m_HdmiConnectionIsSet;
+    return m_HdmiDownConvertIsSet;
 }
 
-void OutputConfig::unsetHdmiConnection()
+void OutputConfig::unsetHdmiDownConvert()
 {
-    m_HdmiConnectionIsSet = false;
+    m_HdmiDownConvertIsSet = false;
+}
+
+
+std::shared_ptr<ColorSpace> OutputConfig::getHdmiColorSpace() const
+{
+    return m_HdmiColorSpace;
+}
+
+void OutputConfig::setHdmiColorSpace(const std::shared_ptr<ColorSpace>& value)
+{
+	std::shared_ptr<ColorSpace> v = value;
+    m_HdmiColorSpace = v;
+    m_HdmiColorSpaceIsSet = true;
+}
+
+bool OutputConfig::hdmiColorSpaceIsSet() const
+{
+    return m_HdmiColorSpaceIsSet;
+}
+
+void OutputConfig::unsetHdmiColorSpace()
+{
+    m_HdmiColorSpaceIsSet = false;
+}
+
+
+std::shared_ptr<BitDepth> OutputConfig::getHdmiBitDepth() const
+{
+    return m_HdmiBitDepth;
+}
+
+void OutputConfig::setHdmiBitDepth(const std::shared_ptr<BitDepth>& value)
+{
+	std::shared_ptr<BitDepth> v = value;
+    m_HdmiBitDepth = v;
+    m_HdmiBitDepthIsSet = true;
+}
+
+bool OutputConfig::hdmiBitDepthIsSet() const
+{
+    return m_HdmiBitDepthIsSet;
+}
+
+void OutputConfig::unsetHdmiBitDepth()
+{
+    m_HdmiBitDepthIsSet = false;
 }
 
 

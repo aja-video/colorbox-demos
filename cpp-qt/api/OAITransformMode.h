@@ -45,7 +45,8 @@ public:
         COLORFRONT, 
         ORION, 
         BBC, 
-        NBC
+        NBC, 
+        ACES
     };
     OAITransformMode::eOAITransformMode getValue() const;
     void setValue(const OAITransformMode::eOAITransformMode& value);

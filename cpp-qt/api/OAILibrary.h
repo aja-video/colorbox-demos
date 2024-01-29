@@ -47,7 +47,8 @@ public:
         IMAGE, 
         SYSTEMPRESET, 
         OVERLAY, 
-        ORIONPRESET
+        ORIONPRESET, 
+        AMF
     };
     OAILibrary::eOAILibrary getValue() const;
     void setValue(const OAILibrary::eOAILibrary& value);

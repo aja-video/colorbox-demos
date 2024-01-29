@@ -27,6 +27,7 @@
 #include "OAIColorimetry.h"
 #include "OAIConnection.h"
 #include "OAICrop4k2k.h"
+#include "OAIDownConvert.h"
 #include "OAIRgbRange.h"
 #include "OAIScanMode.h"
 #include "OAISdiMode3g.h"
@@ -84,20 +85,50 @@ public:
     bool is_format_Set() const;
     bool is_format_Valid() const;
 
+    OAIVideoFormat getSdiFormat() const;
+    void setSdiFormat(const OAIVideoFormat &sdi_format);
+    bool is_sdi_format_Set() const;
+    bool is_sdi_format_Valid() const;
+
+    OAIDownConvert getSdiDownConvert() const;
+    void setSdiDownConvert(const OAIDownConvert &sdi_down_convert);
+    bool is_sdi_down_convert_Set() const;
+    bool is_sdi_down_convert_Valid() const;
+
     OAISdiMode3g getSdiMode3g() const;
     void setSdiMode3g(const OAISdiMode3g &sdi_mode3g);
     bool is_sdi_mode3g_Set() const;
     bool is_sdi_mode3g_Valid() const;
+
+    OAIVideoFormat getHdmiFormat() const;
+    void setHdmiFormat(const OAIVideoFormat &hdmi_format);
+    bool is_hdmi_format_Set() const;
+    bool is_hdmi_format_Valid() const;
+
+    OAIConnection getHdmiConnection() const;
+    void setHdmiConnection(const OAIConnection &hdmi_connection);
+    bool is_hdmi_connection_Set() const;
+    bool is_hdmi_connection_Valid() const;
 
     OAICrop4k2k getHdmiCrop4k2k() const;
     void setHdmiCrop4k2k(const OAICrop4k2k &hdmi_crop4k2k);
     bool is_hdmi_crop4k2k_Set() const;
     bool is_hdmi_crop4k2k_Valid() const;
 
-    OAIConnection getHdmiConnection() const;
-    void setHdmiConnection(const OAIConnection &hdmi_connection);
-    bool is_hdmi_connection_Set() const;
-    bool is_hdmi_connection_Valid() const;
+    OAIDownConvert getHdmiDownConvert() const;
+    void setHdmiDownConvert(const OAIDownConvert &hdmi_down_convert);
+    bool is_hdmi_down_convert_Set() const;
+    bool is_hdmi_down_convert_Valid() const;
+
+    OAIColorSpace getHdmiColorSpace() const;
+    void setHdmiColorSpace(const OAIColorSpace &hdmi_color_space);
+    bool is_hdmi_color_space_Set() const;
+    bool is_hdmi_color_space_Valid() const;
+
+    OAIBitDepth getHdmiBitDepth() const;
+    void setHdmiBitDepth(const OAIBitDepth &hdmi_bit_depth);
+    bool is_hdmi_bit_depth_Set() const;
+    bool is_hdmi_bit_depth_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -134,17 +165,41 @@ private:
     bool m_format_isSet;
     bool m_format_isValid;
 
+    OAIVideoFormat m_sdi_format;
+    bool m_sdi_format_isSet;
+    bool m_sdi_format_isValid;
+
+    OAIDownConvert m_sdi_down_convert;
+    bool m_sdi_down_convert_isSet;
+    bool m_sdi_down_convert_isValid;
+
     OAISdiMode3g m_sdi_mode3g;
     bool m_sdi_mode3g_isSet;
     bool m_sdi_mode3g_isValid;
+
+    OAIVideoFormat m_hdmi_format;
+    bool m_hdmi_format_isSet;
+    bool m_hdmi_format_isValid;
+
+    OAIConnection m_hdmi_connection;
+    bool m_hdmi_connection_isSet;
+    bool m_hdmi_connection_isValid;
 
     OAICrop4k2k m_hdmi_crop4k2k;
     bool m_hdmi_crop4k2k_isSet;
     bool m_hdmi_crop4k2k_isValid;
 
-    OAIConnection m_hdmi_connection;
-    bool m_hdmi_connection_isSet;
-    bool m_hdmi_connection_isValid;
+    OAIDownConvert m_hdmi_down_convert;
+    bool m_hdmi_down_convert_isSet;
+    bool m_hdmi_down_convert_isValid;
+
+    OAIColorSpace m_hdmi_color_space;
+    bool m_hdmi_color_space_isSet;
+    bool m_hdmi_color_space_isValid;
+
+    OAIBitDepth m_hdmi_bit_depth;
+    bool m_hdmi_bit_depth_isSet;
+    bool m_hdmi_bit_depth_isValid;
 };
 
 } // namespace OpenAPI

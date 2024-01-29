@@ -6,10 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Get1dLutLibrary**](DefaultApi.md#Get1dLutLibrary) | **Get** /1dLutLibrary | 
 [**Get3dLutLibrary**](DefaultApi.md#Get3dLutLibrary) | **Get** /3dLutLibrary | 
+[**GetAcesConfig**](DefaultApi.md#GetAcesConfig) | **Get** /acesConfig | 
 [**GetActiveParamsForGivenNetDeviceIndex**](DefaultApi.md#GetActiveParamsForGivenNetDeviceIndex) | **Get** /net/device/{devIdx}/activeParams | 
 [**GetAllNetDevices**](DefaultApi.md#GetAllNetDevices) | **Get** /net/devices | 
 [**GetAllStatus**](DefaultApi.md#GetAllStatus) | **Get** /status | 
 [**GetAllSystemDiscovers**](DefaultApi.md#GetAllSystemDiscovers) | **Get** /discovers | 
+[**GetAmfLibrary**](DefaultApi.md#GetAmfLibrary) | **Get** /amfLibrary | 
 [**GetAncCaptureFilter**](DefaultApi.md#GetAncCaptureFilter) | **Get** /ancCaptureFilter | 
 [**GetBbcConfig**](DefaultApi.md#GetBbcConfig) | **Get** /bbcConfig | 
 [**GetBuildInfo**](DefaultApi.md#GetBuildInfo) | **Get** /buildInfo | 
@@ -39,6 +41,7 @@ Method | HTTP request | Description
 [**GetSystemStatus**](DefaultApi.md#GetSystemStatus) | **Get** /system/status | 
 [**GetWiFiConfig**](DefaultApi.md#GetWiFiConfig) | **Get** /wifiConfig | 
 [**GetWiFiStatus**](DefaultApi.md#GetWiFiStatus) | **Get** /wifiStatus | 
+[**SetAcesConfig**](DefaultApi.md#SetAcesConfig) | **Put** /acesConfig | 
 [**SetActiveParamsForGivenNetDeviceIndex**](DefaultApi.md#SetActiveParamsForGivenNetDeviceIndex) | **Put** /net/device/{devIdx}/activeParams | 
 [**SetAllStatus**](DefaultApi.md#SetAllStatus) | **Put** /status | 
 [**SetAllSystemDiscovers**](DefaultApi.md#SetAllSystemDiscovers) | **Put** /discovers | 
@@ -68,6 +71,7 @@ Method | HTTP request | Description
 [**SetWiFiConfig**](DefaultApi.md#SetWiFiConfig) | **Put** /wifiConfig | 
 [**SetWiFiStatus**](DefaultApi.md#SetWiFiStatus) | **Put** /wifiStatus | 
 [**UploadFile**](DefaultApi.md#UploadFile) | **Post** /upload | 
+[**UploadMultipleFiles**](DefaultApi.md#UploadMultipleFiles) | **Post** /uploadMultiple | 
 
 
 
@@ -178,6 +182,67 @@ Other parameters are passed through a pointer to a apiGet3dLutLibraryRequest str
 ### Return type
 
 [**[]LibraryEntry**](LibraryEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAcesConfig
+
+> AcesConfig GetAcesConfig(ctx).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetAcesConfig(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetAcesConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAcesConfig`: AcesConfig
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetAcesConfig`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAcesConfigRequest struct via the builder pattern
+
+
+### Return type
+
+[**AcesConfig**](AcesConfig.md)
 
 ### Authorization
 
@@ -431,6 +496,67 @@ Other parameters are passed through a pointer to a apiGetAllSystemDiscoversReque
 ### Return type
 
 [**[]SystemDiscover**](SystemDiscover.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAmfLibrary
+
+> []LibraryEntry GetAmfLibrary(ctx).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetAmfLibrary(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetAmfLibrary``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAmfLibrary`: []LibraryEntry
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetAmfLibrary`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAmfLibraryRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]LibraryEntry**](LibraryEntry.md)
 
 ### Authorization
 
@@ -2236,6 +2362,70 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetAcesConfig
+
+> SetAcesConfig(ctx).AcesConfig(acesConfig).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    acesConfig := *openapiclient.NewAcesConfig() // AcesConfig | AcesConfig object
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.SetAcesConfig(context.Background()).AcesConfig(acesConfig).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SetAcesConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetAcesConfigRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acesConfig** | [**AcesConfig**](AcesConfig.md) | AcesConfig object | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -4106,6 +4296,78 @@ Name | Type | Description  | Notes
  **file** | ***os.File** |  | 
  **kind** | **string** | The kind of file being uploaded valid kinds are: **lut_1d**, **lut_3d**, **matrix**, **image**, **overlay**, **preset**, **orionPreset**, **license**, **update** | [default to &quot;&quot;]
  **entry** | **int32** | The entry number to upload the file to, **not** used with kinds: **license** and **update** | [default to -1]
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: text/plain
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadMultipleFiles
+
+> string UploadMultipleFiles(ctx).File(file).Kind(kind).Entry(entry).Selection(selection).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    file := []*os.File{"TODO"} // []*os.File |  (optional)
+    kind := "kind_example" // string | The kind of file being uploaded valid kinds are: **amf** (optional) (default to "")
+    entry := int32(56) // int32 | The entry number to upload the file to (optional) (default to -1)
+    selection := "selection_example" // string | The AMF file that should be used from the sent files, an uploaded directory can contain multiple AMF files, the one that matches this parameter will be the one stored to the device. (optional) (default to "")
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.UploadMultipleFiles(context.Background()).File(file).Kind(kind).Entry(entry).Selection(selection).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UploadMultipleFiles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UploadMultipleFiles`: string
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.UploadMultipleFiles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUploadMultipleFilesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | **[]*os.File** |  | 
+ **kind** | **string** | The kind of file being uploaded valid kinds are: **amf** | [default to &quot;&quot;]
+ **entry** | **int32** | The entry number to upload the file to | [default to -1]
+ **selection** | **string** | The AMF file that should be used from the sent files, an uploaded directory can contain multiple AMF files, the one that matches this parameter will be the one stored to the device. | [default to &quot;&quot;]
 
 ### Return type
 

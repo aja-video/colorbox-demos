@@ -2,6 +2,8 @@ QT += network
 
 HEADERS += \
 # Models
+    $${PWD}/OAIAcesConfig.h \
+    $${PWD}/OAIAcesMode.h \
     $${PWD}/OAIAncCaptureFilter.h \
     $${PWD}/OAIBbcConfig.h \
     $${PWD}/OAIBitDepth.h \
@@ -24,6 +26,7 @@ HEADERS += \
     $${PWD}/OAIConnection.h \
     $${PWD}/OAICrop4k2k.h \
     $${PWD}/OAIDHCPState.h \
+    $${PWD}/OAIDownConvert.h \
     $${PWD}/OAIFileTypeChoice.h \
     $${PWD}/OAIFrame.h \
     $${PWD}/OAIFrameStore.h \
@@ -40,6 +43,8 @@ HEADERS += \
     $${PWD}/OAINetDevice.h \
     $${PWD}/OAINetParams.h \
     $${PWD}/OAINetStatus.h \
+    $${PWD}/OAIOcioDisplayView.h \
+    $${PWD}/OAIOcioSource.h \
     $${PWD}/OAIOrionClamping.h \
     $${PWD}/OAIOrionConfig.h \
     $${PWD}/OAIOrionConversion.h \
@@ -90,6 +95,8 @@ HEADERS += \
 
 SOURCES += \
 # Models
+    $${PWD}/OAIAcesConfig.cpp \
+    $${PWD}/OAIAcesMode.cpp \
     $${PWD}/OAIAncCaptureFilter.cpp \
     $${PWD}/OAIBbcConfig.cpp \
     $${PWD}/OAIBitDepth.cpp \
@@ -112,6 +119,7 @@ SOURCES += \
     $${PWD}/OAIConnection.cpp \
     $${PWD}/OAICrop4k2k.cpp \
     $${PWD}/OAIDHCPState.cpp \
+    $${PWD}/OAIDownConvert.cpp \
     $${PWD}/OAIFileTypeChoice.cpp \
     $${PWD}/OAIFrame.cpp \
     $${PWD}/OAIFrameStore.cpp \
@@ -128,6 +136,8 @@ SOURCES += \
     $${PWD}/OAINetDevice.cpp \
     $${PWD}/OAINetParams.cpp \
     $${PWD}/OAINetStatus.cpp \
+    $${PWD}/OAIOcioDisplayView.cpp \
+    $${PWD}/OAIOcioSource.cpp \
     $${PWD}/OAIOrionClamping.cpp \
     $${PWD}/OAIOrionConfig.cpp \
     $${PWD}/OAIOrionConversion.cpp \

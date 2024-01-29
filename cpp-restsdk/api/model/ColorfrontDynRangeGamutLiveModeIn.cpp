@@ -55,7 +55,7 @@ ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn toEnum(con
         return ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_ARRI_LOGC4_WIDE_GAMUT_4;
     if (val == utility::conversions::to_string_t(U("Panasonic V-Log")))
         return ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_PANASONIC_V_LOG;
-    if (val == utility::conversions::to_string_t(U("Red Log3G10 Wide Gamut")))
+    if (val == utility::conversions::to_string_t(U("RED Log3G10 Wide Gamut")))
         return ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_RED_LOG3G10_WIDE_GAMUT;
     if (val == utility::conversions::to_string_t(U("Canon Log 2")))
         return ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_CANON_LOG_2;
@@ -95,7 +95,7 @@ EnumUnderlyingType fromEnum(ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRan
     case ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_PANASONIC_V_LOG:
         return U("Panasonic V-Log");
     case ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_RED_LOG3G10_WIDE_GAMUT:
-        return U("Red Log3G10 Wide Gamut");
+        return U("RED Log3G10 Wide Gamut");
     case ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_CANON_LOG_2:
         return U("Canon Log 2");
     case ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_CANON_LOG_3:

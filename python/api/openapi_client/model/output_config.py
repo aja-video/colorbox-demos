@@ -39,6 +39,7 @@ def lazy_import():
     from openapi_client.model.colorimetry import Colorimetry
     from openapi_client.model.connection import Connection
     from openapi_client.model.crop4k2k import Crop4k2k
+    from openapi_client.model.down_convert import DownConvert
     from openapi_client.model.rgb_range import RgbRange
     from openapi_client.model.scan_mode import ScanMode
     from openapi_client.model.sdi_mode3g import SdiMode3g
@@ -49,6 +50,7 @@ def lazy_import():
     globals()['Colorimetry'] = Colorimetry
     globals()['Connection'] = Connection
     globals()['Crop4k2k'] = Crop4k2k
+    globals()['DownConvert'] = DownConvert
     globals()['RgbRange'] = RgbRange
     globals()['ScanMode'] = ScanMode
     globals()['SdiMode3g'] = SdiMode3g
@@ -116,9 +118,15 @@ class OutputConfig(ModelNormal):
             'colorimetry': (Colorimetry,),  # noqa: E501
             'transfer': (Transfer,),  # noqa: E501
             'format': (VideoFormat,),  # noqa: E501
+            'sdi_format': (VideoFormat,),  # noqa: E501
+            'sdi_down_convert': (DownConvert,),  # noqa: E501
             'sdi_mode3g': (SdiMode3g,),  # noqa: E501
-            'hdmi_crop4k2k': (Crop4k2k,),  # noqa: E501
+            'hdmi_format': (VideoFormat,),  # noqa: E501
             'hdmi_connection': (Connection,),  # noqa: E501
+            'hdmi_crop4k2k': (Crop4k2k,),  # noqa: E501
+            'hdmi_down_convert': (DownConvert,),  # noqa: E501
+            'hdmi_color_space': (ColorSpace,),  # noqa: E501
+            'hdmi_bit_depth': (BitDepth,),  # noqa: E501
         }
 
     @cached_property
@@ -134,9 +142,15 @@ class OutputConfig(ModelNormal):
         'colorimetry': 'colorimetry',  # noqa: E501
         'transfer': 'transfer',  # noqa: E501
         'format': 'format',  # noqa: E501
+        'sdi_format': 'sdiFormat',  # noqa: E501
+        'sdi_down_convert': 'sdiDownConvert',  # noqa: E501
         'sdi_mode3g': 'sdiMode3g',  # noqa: E501
-        'hdmi_crop4k2k': 'hdmiCrop4k2k',  # noqa: E501
+        'hdmi_format': 'hdmiFormat',  # noqa: E501
         'hdmi_connection': 'hdmiConnection',  # noqa: E501
+        'hdmi_crop4k2k': 'hdmiCrop4k2k',  # noqa: E501
+        'hdmi_down_convert': 'hdmiDownConvert',  # noqa: E501
+        'hdmi_color_space': 'hdmiColorSpace',  # noqa: E501
+        'hdmi_bit_depth': 'hdmiBitDepth',  # noqa: E501
     }
 
     read_only_vars = {
@@ -187,9 +201,15 @@ class OutputConfig(ModelNormal):
             colorimetry (Colorimetry): [optional]  # noqa: E501
             transfer (Transfer): [optional]  # noqa: E501
             format (VideoFormat): [optional]  # noqa: E501
+            sdi_format (VideoFormat): [optional]  # noqa: E501
+            sdi_down_convert (DownConvert): [optional]  # noqa: E501
             sdi_mode3g (SdiMode3g): [optional]  # noqa: E501
-            hdmi_crop4k2k (Crop4k2k): [optional]  # noqa: E501
+            hdmi_format (VideoFormat): [optional]  # noqa: E501
             hdmi_connection (Connection): [optional]  # noqa: E501
+            hdmi_crop4k2k (Crop4k2k): [optional]  # noqa: E501
+            hdmi_down_convert (DownConvert): [optional]  # noqa: E501
+            hdmi_color_space (ColorSpace): [optional]  # noqa: E501
+            hdmi_bit_depth (BitDepth): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -278,9 +298,15 @@ class OutputConfig(ModelNormal):
             colorimetry (Colorimetry): [optional]  # noqa: E501
             transfer (Transfer): [optional]  # noqa: E501
             format (VideoFormat): [optional]  # noqa: E501
+            sdi_format (VideoFormat): [optional]  # noqa: E501
+            sdi_down_convert (DownConvert): [optional]  # noqa: E501
             sdi_mode3g (SdiMode3g): [optional]  # noqa: E501
-            hdmi_crop4k2k (Crop4k2k): [optional]  # noqa: E501
+            hdmi_format (VideoFormat): [optional]  # noqa: E501
             hdmi_connection (Connection): [optional]  # noqa: E501
+            hdmi_crop4k2k (Crop4k2k): [optional]  # noqa: E501
+            hdmi_down_convert (DownConvert): [optional]  # noqa: E501
+            hdmi_color_space (ColorSpace): [optional]  # noqa: E501
+            hdmi_bit_depth (BitDepth): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
