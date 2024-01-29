@@ -1,2 +1,5 @@
-build*
+/build
+/cpp-qt/build*
+/cpp-restsdk/build*
+/go/build*
 *~
