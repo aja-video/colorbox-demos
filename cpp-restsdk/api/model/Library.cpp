@@ -43,6 +43,8 @@ Library::eLibrary toEnum(const EnumUnderlyingType& val)
         return Library::eLibrary::Library_OVERLAY;
     if (val == utility::conversions::to_string_t(U("orionPreset")))
         return Library::eLibrary::Library_ORIONPRESET;
+    if (val == utility::conversions::to_string_t(U("AMF")))
+        return Library::eLibrary::Library_AMF;
     return {};
 }
 
@@ -64,6 +66,8 @@ EnumUnderlyingType fromEnum(Library::eLibrary e)
         return U("Overlay");
     case Library::eLibrary::Library_ORIONPRESET:
         return U("orionPreset");
+    case Library::eLibrary::Library_AMF:
+        return U("AMF");
     default:
         break;
     }

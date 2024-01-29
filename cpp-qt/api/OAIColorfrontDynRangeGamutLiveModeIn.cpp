@@ -94,7 +94,7 @@ void OAIColorfrontDynRangeGamutLiveModeIn::fromJson(QString jsonString) {
         m_value = eOAIColorfrontDynRangeGamutLiveModeIn::PANASONIC_V_LOG;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("Red Log3G10 Wide Gamut", Qt::CaseInsensitive) == 0) {
+    else if ( jsonString.compare("RED Log3G10 Wide Gamut", Qt::CaseInsensitive) == 0) {
         m_value = eOAIColorfrontDynRangeGamutLiveModeIn::RED_LOG3G10_WIDE_GAMUT;
         m_value_isSet = m_value_isValid = true;
     }
@@ -158,7 +158,7 @@ QString OAIColorfrontDynRangeGamutLiveModeIn::asJson() const {
             val = "Panasonic V-Log";
             break;
         case eOAIColorfrontDynRangeGamutLiveModeIn::RED_LOG3G10_WIDE_GAMUT:
-            val = "Red Log3G10 Wide Gamut";
+            val = "RED Log3G10 Wide Gamut";
             break;
         case eOAIColorfrontDynRangeGamutLiveModeIn::CANON_LOG_2:
             val = "Canon Log 2";

@@ -41,6 +41,8 @@ void OAIDefaultApi::initializeServerConfigs() {
     _serverIndices.insert("get1dLutLibrary", 0);
     _serverConfigs.insert("get3dLutLibrary", defaultConf);
     _serverIndices.insert("get3dLutLibrary", 0);
+    _serverConfigs.insert("getAcesConfig", defaultConf);
+    _serverIndices.insert("getAcesConfig", 0);
     _serverConfigs.insert("getActiveParamsForGivenNetDeviceIndex", defaultConf);
     _serverIndices.insert("getActiveParamsForGivenNetDeviceIndex", 0);
     _serverConfigs.insert("getAllNetDevices", defaultConf);
@@ -49,6 +51,8 @@ void OAIDefaultApi::initializeServerConfigs() {
     _serverIndices.insert("getAllStatus", 0);
     _serverConfigs.insert("getAllSystemDiscovers", defaultConf);
     _serverIndices.insert("getAllSystemDiscovers", 0);
+    _serverConfigs.insert("getAmfLibrary", defaultConf);
+    _serverIndices.insert("getAmfLibrary", 0);
     _serverConfigs.insert("getAncCaptureFilter", defaultConf);
     _serverIndices.insert("getAncCaptureFilter", 0);
     _serverConfigs.insert("getBbcConfig", defaultConf);
@@ -107,6 +111,8 @@ void OAIDefaultApi::initializeServerConfigs() {
     _serverIndices.insert("getWiFiConfig", 0);
     _serverConfigs.insert("getWiFiStatus", defaultConf);
     _serverIndices.insert("getWiFiStatus", 0);
+    _serverConfigs.insert("setAcesConfig", defaultConf);
+    _serverIndices.insert("setAcesConfig", 0);
     _serverConfigs.insert("setActiveParamsForGivenNetDeviceIndex", defaultConf);
     _serverIndices.insert("setActiveParamsForGivenNetDeviceIndex", 0);
     _serverConfigs.insert("setAllStatus", defaultConf);
@@ -165,6 +171,8 @@ void OAIDefaultApi::initializeServerConfigs() {
     _serverIndices.insert("setWiFiStatus", 0);
     _serverConfigs.insert("uploadFile", defaultConf);
     _serverIndices.insert("uploadFile", 0);
+    _serverConfigs.insert("uploadMultipleFiles", defaultConf);
+    _serverIndices.insert("uploadMultipleFiles", 0);
 }
 
 void OAIDefaultApi::setUrlForServers(const QString &host, int port, const QString &protocol, const QString &endPoint)
@@ -479,6 +487,55 @@ void OAIDefaultApi::get3dLutLibraryCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
+void OAIDefaultApi::getAcesConfig() {
+    QString fullPath = QString(_serverConfigs["getAcesConfig"][_serverIndices.value("getAcesConfig")].URL()+"/acesConfig");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::getAcesConfigCallback);
+    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDefaultApi::getAcesConfigCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIAcesConfig output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getAcesConfigSignal(output);
+        emit getAcesConfigSignalFull(worker, output);
+    } else {
+        emit getAcesConfigSignalE(output, error_type, error_str);
+        emit getAcesConfigSignalEFull(worker, error_type, error_str);
+    }
+}
+
 void OAIDefaultApi::getActiveParamsForGivenNetDeviceIndex(const qint32 &dev_idx) {
     QString fullPath = QString(_serverConfigs["getActiveParamsForGivenNetDeviceIndex"][_serverIndices.value("getActiveParamsForGivenNetDeviceIndex")].URL()+"/net/device/{devIdx}/activeParams");
     
@@ -702,6 +759,63 @@ void OAIDefaultApi::getAllSystemDiscoversCallback(OAIHttpRequestWorker *worker) 
     } else {
         emit getAllSystemDiscoversSignalE(output, error_type, error_str);
         emit getAllSystemDiscoversSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDefaultApi::getAmfLibrary() {
+    QString fullPath = QString(_serverConfigs["getAmfLibrary"][_serverIndices.value("getAmfLibrary")].URL()+"/amfLibrary");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::getAmfLibraryCallback);
+    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDefaultApi::getAmfLibraryCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    QList<OAILibraryEntry> output;
+    QString json(worker->response);
+    QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8());
+    QJsonArray jsonArray = doc.array();
+    foreach (QJsonValue obj, jsonArray) {
+        OAILibraryEntry val;
+        ::OpenAPI::fromJsonValue(val, obj);
+        output.append(val);
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getAmfLibrarySignal(output);
+        emit getAmfLibrarySignalFull(worker, output);
+    } else {
+        emit getAmfLibrarySignalE(output, error_type, error_str);
+        emit getAmfLibrarySignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -2205,6 +2319,58 @@ void OAIDefaultApi::getWiFiStatusCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getWiFiStatusSignalE(output, error_type, error_str);
         emit getWiFiStatusSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDefaultApi::setAcesConfig(const OAIAcesConfig &oai_aces_config) {
+    QString fullPath = QString(_serverConfigs["setAcesConfig"][_serverIndices.value("setAcesConfig")].URL()+"/acesConfig");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "PUT");
+
+    {
+
+        QByteArray output = oai_aces_config.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::setAcesConfigCallback);
+    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDefaultApi::setAcesConfigCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit setAcesConfigSignal();
+        emit setAcesConfigSignalFull(worker);
+    } else {
+        emit setAcesConfigSignalE(error_type, error_str);
+        emit setAcesConfigSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -3804,6 +3970,74 @@ void OAIDefaultApi::uploadFileCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit uploadFileSignalE(output, error_type, error_str);
         emit uploadFileSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDefaultApi::uploadMultipleFiles(const ::OpenAPI::OptionalParam<QList<OAIHttpFileElement>> &file, const ::OpenAPI::OptionalParam<QString> &kind, const ::OpenAPI::OptionalParam<qint32> &entry, const ::OpenAPI::OptionalParam<QString> &selection) {
+    QString fullPath = QString(_serverConfigs["uploadMultipleFiles"][_serverIndices.value("uploadMultipleFiles")].URL()+"/uploadMultiple");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    if (file.hasValue())
+    {
+		for (auto const &f : file.value()) {
+			input.add_file("file", f.local_filename, f.request_filename, f.mime_type);
+		}
+    }
+    if (kind.hasValue())
+    {
+        input.add_var("kind", ::OpenAPI::toStringValue(kind.value()));
+    }
+    if (entry.hasValue())
+    {
+        input.add_var("entry", ::OpenAPI::toStringValue(entry.value()));
+    }
+    if (selection.hasValue())
+    {
+        input.add_var("selection", ::OpenAPI::toStringValue(selection.value()));
+    }
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::uploadMultipleFilesCallback);
+    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDefaultApi::uploadMultipleFilesCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    QString output;
+    ::OpenAPI::fromStringValue(QString(worker->response), output);
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit uploadMultipleFilesSignal(output);
+        emit uploadMultipleFilesSignalFull(worker, output);
+    } else {
+        emit uploadMultipleFilesSignalE(output, error_type, error_str);
+        emit uploadMultipleFilesSignalEFull(worker, error_type, error_str);
     }
 }
 

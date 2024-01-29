@@ -20,6 +20,8 @@ set(QT_LIBS Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network)
 
 
 add_library(${PROJECT_NAME}
+    OAIAcesConfig.cpp
+    OAIAcesMode.cpp
     OAIAncCaptureFilter.cpp
     OAIBbcConfig.cpp
     OAIBitDepth.cpp
@@ -42,6 +44,7 @@ add_library(${PROJECT_NAME}
     OAIConnection.cpp
     OAICrop4k2k.cpp
     OAIDHCPState.cpp
+    OAIDownConvert.cpp
     OAIFileTypeChoice.cpp
     OAIFrame.cpp
     OAIFrameStore.cpp
@@ -58,6 +61,8 @@ add_library(${PROJECT_NAME}
     OAINetDevice.cpp
     OAINetParams.cpp
     OAINetStatus.cpp
+    OAIOcioDisplayView.cpp
+    OAIOcioSource.cpp
     OAIOrionClamping.cpp
     OAIOrionConfig.cpp
     OAIOrionConversion.cpp

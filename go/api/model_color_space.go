@@ -27,6 +27,7 @@ const (
 	COLORSPACE_AUTO ColorSpace = "Auto"
 	COLORSPACE__422_YCB_CR ColorSpace = "4:2:2 YCbCr"
 	COLORSPACE__444_RGB ColorSpace = "4:4:4 RGB"
+	COLORSPACE__420_YCB_CR ColorSpace = "4:2:0 YCbCr"
 )
 
 // All allowed values of ColorSpace enum
@@ -34,6 +35,7 @@ var AllowedColorSpaceEnumValues = []ColorSpace{
 	"Auto",
 	"4:2:2 YCbCr",
 	"4:4:4 RGB",
+	"4:2:0 YCbCr",
 }
 
 func (v *ColorSpace) UnmarshalJSON(src []byte) error {

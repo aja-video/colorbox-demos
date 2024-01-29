@@ -31,6 +31,7 @@ const (
 	LIBRARY_SYSTEM_PRESET Library = "systemPreset"
 	LIBRARY_OVERLAY Library = "Overlay"
 	LIBRARY_ORION_PRESET Library = "orionPreset"
+	LIBRARY_AMF Library = "AMF"
 )
 
 // All allowed values of Library enum
@@ -42,6 +43,7 @@ var AllowedLibraryEnumValues = []Library{
 	"systemPreset",
 	"Overlay",
 	"orionPreset",
+	"AMF",
 }
 
 func (v *Library) UnmarshalJSON(src []byte) error {

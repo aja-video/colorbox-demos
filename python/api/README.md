@@ -51,6 +51,7 @@ import time
 import openapi_client
 from pprint import pprint
 from openapi_client.api import default_api
+from openapi_client.model.aces_config import AcesConfig
 from openapi_client.model.anc_capture_filter import AncCaptureFilter
 from openapi_client.model.bbc_config import BbcConfig
 from openapi_client.model.build_info import BuildInfo
@@ -108,10 +109,12 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**get1d_lut_library**](docs/DefaultApi.md#get1d_lut_library) | **GET** /1dLutLibrary | 
 *DefaultApi* | [**get3d_lut_library**](docs/DefaultApi.md#get3d_lut_library) | **GET** /3dLutLibrary | 
+*DefaultApi* | [**get_aces_config**](docs/DefaultApi.md#get_aces_config) | **GET** /acesConfig | 
 *DefaultApi* | [**get_active_params_for_given_net_device_index**](docs/DefaultApi.md#get_active_params_for_given_net_device_index) | **GET** /net/device/{devIdx}/activeParams | 
 *DefaultApi* | [**get_all_net_devices**](docs/DefaultApi.md#get_all_net_devices) | **GET** /net/devices | 
 *DefaultApi* | [**get_all_status**](docs/DefaultApi.md#get_all_status) | **GET** /status | 
 *DefaultApi* | [**get_all_system_discovers**](docs/DefaultApi.md#get_all_system_discovers) | **GET** /discovers | 
+*DefaultApi* | [**get_amf_library**](docs/DefaultApi.md#get_amf_library) | **GET** /amfLibrary | 
 *DefaultApi* | [**get_anc_capture_filter**](docs/DefaultApi.md#get_anc_capture_filter) | **GET** /ancCaptureFilter | 
 *DefaultApi* | [**get_bbc_config**](docs/DefaultApi.md#get_bbc_config) | **GET** /bbcConfig | 
 *DefaultApi* | [**get_build_info**](docs/DefaultApi.md#get_build_info) | **GET** /buildInfo | 
@@ -141,6 +144,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_system_status**](docs/DefaultApi.md#get_system_status) | **GET** /system/status | 
 *DefaultApi* | [**get_wi_fi_config**](docs/DefaultApi.md#get_wi_fi_config) | **GET** /wifiConfig | 
 *DefaultApi* | [**get_wi_fi_status**](docs/DefaultApi.md#get_wi_fi_status) | **GET** /wifiStatus | 
+*DefaultApi* | [**set_aces_config**](docs/DefaultApi.md#set_aces_config) | **PUT** /acesConfig | 
 *DefaultApi* | [**set_active_params_for_given_net_device_index**](docs/DefaultApi.md#set_active_params_for_given_net_device_index) | **PUT** /net/device/{devIdx}/activeParams | 
 *DefaultApi* | [**set_all_status**](docs/DefaultApi.md#set_all_status) | **PUT** /status | 
 *DefaultApi* | [**set_all_system_discovers**](docs/DefaultApi.md#set_all_system_discovers) | **PUT** /discovers | 
@@ -170,10 +174,13 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**set_wi_fi_config**](docs/DefaultApi.md#set_wi_fi_config) | **PUT** /wifiConfig | 
 *DefaultApi* | [**set_wi_fi_status**](docs/DefaultApi.md#set_wi_fi_status) | **PUT** /wifiStatus | 
 *DefaultApi* | [**upload_file**](docs/DefaultApi.md#upload_file) | **POST** /upload | 
+*DefaultApi* | [**upload_multiple_files**](docs/DefaultApi.md#upload_multiple_files) | **POST** /uploadMultiple | 
 
 
 ## Documentation For Models
 
+ - [AcesConfig](docs/AcesConfig.md)
+ - [AcesMode](docs/AcesMode.md)
  - [AncCaptureFilter](docs/AncCaptureFilter.md)
  - [BbcConfig](docs/BbcConfig.md)
  - [BitDepth](docs/BitDepth.md)
@@ -197,6 +204,7 @@ Class | Method | HTTP request | Description
  - [Crop4k2k](docs/Crop4k2k.md)
  - [DHCPState](docs/DHCPState.md)
  - [DeviceIdx](docs/DeviceIdx.md)
+ - [DownConvert](docs/DownConvert.md)
  - [FileTypeChoice](docs/FileTypeChoice.md)
  - [Frame](docs/Frame.md)
  - [FrameStore](docs/FrameStore.md)
@@ -213,6 +221,8 @@ Class | Method | HTTP request | Description
  - [NetDevice](docs/NetDevice.md)
  - [NetParams](docs/NetParams.md)
  - [NetStatus](docs/NetStatus.md)
+ - [OcioDisplayView](docs/OcioDisplayView.md)
+ - [OcioSource](docs/OcioSource.md)
  - [OrionClamping](docs/OrionClamping.md)
  - [OrionConfig](docs/OrionConfig.md)
  - [OrionConversion](docs/OrionConversion.md)

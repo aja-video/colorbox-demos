@@ -39,6 +39,8 @@ TransformMode::eTransformMode toEnum(const EnumUnderlyingType& val)
         return TransformMode::eTransformMode::TransformMode_BBC;
     if (val == utility::conversions::to_string_t(U("NBC")))
         return TransformMode::eTransformMode::TransformMode_NBC;
+    if (val == utility::conversions::to_string_t(U("ACES")))
+        return TransformMode::eTransformMode::TransformMode_ACES;
     return {};
 }
 
@@ -56,6 +58,8 @@ EnumUnderlyingType fromEnum(TransformMode::eTransformMode e)
         return U("BBC");
     case TransformMode::eTransformMode::TransformMode_NBC:
         return U("NBC");
+    case TransformMode::eTransformMode::TransformMode_ACES:
+        return U("ACES");
     default:
         break;
     }

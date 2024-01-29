@@ -43,7 +43,8 @@ public:
         INVALID_VALUE_OPENAPI_GENERATED = 0,
         AUTO, 
         _4_2_2_YCBCR, 
-        _4_4_4_RGB
+        _4_4_4_RGB, 
+        _4_2_0_YCBCR
     };
     OAIColorSpace::eOAIColorSpace getValue() const;
     void setValue(const OAIColorSpace::eOAIColorSpace& value);

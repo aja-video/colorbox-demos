@@ -19,6 +19,7 @@
 #include "OAIServerConfiguration.h"
 
 
+#include "OAIAcesConfig.h"
 #include "OAIAncCaptureFilter.h"
 #include "OAIBbcConfig.h"
 #include "OAIBuildInfo.h"
@@ -94,6 +95,9 @@ public:
 
     void get3dLutLibrary();
 
+
+    void getAcesConfig();
+
     /**
     * @param[in]  dev_idx qint32 [required]
     */
@@ -107,6 +111,9 @@ public:
 
 
     void getAllSystemDiscovers();
+
+
+    void getAmfLibrary();
 
 
     void getAncCaptureFilter();
@@ -200,6 +207,11 @@ public:
 
 
     void getWiFiStatus();
+
+    /**
+    * @param[in]  oai_aces_config OAIAcesConfig [required]
+    */
+    void setAcesConfig(const OAIAcesConfig &oai_aces_config);
 
     /**
     * @param[in]  dev_idx qint32 [required]
@@ -350,6 +362,14 @@ public:
     */
     void uploadFile(const ::OpenAPI::OptionalParam<OAIHttpFileElement> &file = ::OpenAPI::OptionalParam<OAIHttpFileElement>(), const ::OpenAPI::OptionalParam<QString> &kind = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &entry = ::OpenAPI::OptionalParam<qint32>());
 
+    /**
+    * @param[in]  file QList<OAIHttpFileElement> [optional]
+    * @param[in]  kind QString [optional]
+    * @param[in]  entry qint32 [optional]
+    * @param[in]  selection QString [optional]
+    */
+    void uploadMultipleFiles(const ::OpenAPI::OptionalParam<QList<OAIHttpFileElement>> &file = ::OpenAPI::OptionalParam<QList<OAIHttpFileElement>>(), const ::OpenAPI::OptionalParam<QString> &kind = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &entry = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<QString> &selection = ::OpenAPI::OptionalParam<QString>());
+
 
     void setUrlForServers(const QString &host, int port = -1, const QString &protocol = "http", const QString &endPoint = "/v2");
 
@@ -374,10 +394,12 @@ private:
 
     void get1dLutLibraryCallback(OAIHttpRequestWorker *worker);
     void get3dLutLibraryCallback(OAIHttpRequestWorker *worker);
+    void getAcesConfigCallback(OAIHttpRequestWorker *worker);
     void getActiveParamsForGivenNetDeviceIndexCallback(OAIHttpRequestWorker *worker);
     void getAllNetDevicesCallback(OAIHttpRequestWorker *worker);
     void getAllStatusCallback(OAIHttpRequestWorker *worker);
     void getAllSystemDiscoversCallback(OAIHttpRequestWorker *worker);
+    void getAmfLibraryCallback(OAIHttpRequestWorker *worker);
     void getAncCaptureFilterCallback(OAIHttpRequestWorker *worker);
     void getBbcConfigCallback(OAIHttpRequestWorker *worker);
     void getBuildInfoCallback(OAIHttpRequestWorker *worker);
@@ -407,6 +429,7 @@ private:
     void getSystemStatusCallback(OAIHttpRequestWorker *worker);
     void getWiFiConfigCallback(OAIHttpRequestWorker *worker);
     void getWiFiStatusCallback(OAIHttpRequestWorker *worker);
+    void setAcesConfigCallback(OAIHttpRequestWorker *worker);
     void setActiveParamsForGivenNetDeviceIndexCallback(OAIHttpRequestWorker *worker);
     void setAllStatusCallback(OAIHttpRequestWorker *worker);
     void setAllSystemDiscoversCallback(OAIHttpRequestWorker *worker);
@@ -436,15 +459,18 @@ private:
     void setWiFiConfigCallback(OAIHttpRequestWorker *worker);
     void setWiFiStatusCallback(OAIHttpRequestWorker *worker);
     void uploadFileCallback(OAIHttpRequestWorker *worker);
+    void uploadMultipleFilesCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void get1dLutLibrarySignal(QList<OAILibraryEntry> summary);
     void get3dLutLibrarySignal(QList<OAILibraryEntry> summary);
+    void getAcesConfigSignal(OAIAcesConfig summary);
     void getActiveParamsForGivenNetDeviceIndexSignal(OAINetParams summary);
     void getAllNetDevicesSignal(QList<OAINetDevice> summary);
     void getAllStatusSignal(OAIStatus summary);
     void getAllSystemDiscoversSignal(QList<OAISystemDiscover> summary);
+    void getAmfLibrarySignal(QList<OAILibraryEntry> summary);
     void getAncCaptureFilterSignal(OAIAncCaptureFilter summary);
     void getBbcConfigSignal(OAIBbcConfig summary);
     void getBuildInfoSignal(OAIBuildInfo summary);
@@ -474,6 +500,7 @@ signals:
     void getSystemStatusSignal(OAISystemStatus summary);
     void getWiFiConfigSignal(OAIWiFiDeviceConfig summary);
     void getWiFiStatusSignal(OAIWiFiDeviceStatus summary);
+    void setAcesConfigSignal();
     void setActiveParamsForGivenNetDeviceIndexSignal();
     void setAllStatusSignal();
     void setAllSystemDiscoversSignal();
@@ -503,13 +530,16 @@ signals:
     void setWiFiConfigSignal();
     void setWiFiStatusSignal();
     void uploadFileSignal(QString summary);
+    void uploadMultipleFilesSignal(QString summary);
 
     void get1dLutLibrarySignalFull(OAIHttpRequestWorker *worker, QList<OAILibraryEntry> summary);
     void get3dLutLibrarySignalFull(OAIHttpRequestWorker *worker, QList<OAILibraryEntry> summary);
+    void getAcesConfigSignalFull(OAIHttpRequestWorker *worker, OAIAcesConfig summary);
     void getActiveParamsForGivenNetDeviceIndexSignalFull(OAIHttpRequestWorker *worker, OAINetParams summary);
     void getAllNetDevicesSignalFull(OAIHttpRequestWorker *worker, QList<OAINetDevice> summary);
     void getAllStatusSignalFull(OAIHttpRequestWorker *worker, OAIStatus summary);
     void getAllSystemDiscoversSignalFull(OAIHttpRequestWorker *worker, QList<OAISystemDiscover> summary);
+    void getAmfLibrarySignalFull(OAIHttpRequestWorker *worker, QList<OAILibraryEntry> summary);
     void getAncCaptureFilterSignalFull(OAIHttpRequestWorker *worker, OAIAncCaptureFilter summary);
     void getBbcConfigSignalFull(OAIHttpRequestWorker *worker, OAIBbcConfig summary);
     void getBuildInfoSignalFull(OAIHttpRequestWorker *worker, OAIBuildInfo summary);
@@ -539,6 +569,7 @@ signals:
     void getSystemStatusSignalFull(OAIHttpRequestWorker *worker, OAISystemStatus summary);
     void getWiFiConfigSignalFull(OAIHttpRequestWorker *worker, OAIWiFiDeviceConfig summary);
     void getWiFiStatusSignalFull(OAIHttpRequestWorker *worker, OAIWiFiDeviceStatus summary);
+    void setAcesConfigSignalFull(OAIHttpRequestWorker *worker);
     void setActiveParamsForGivenNetDeviceIndexSignalFull(OAIHttpRequestWorker *worker);
     void setAllStatusSignalFull(OAIHttpRequestWorker *worker);
     void setAllSystemDiscoversSignalFull(OAIHttpRequestWorker *worker);
@@ -568,13 +599,16 @@ signals:
     void setWiFiConfigSignalFull(OAIHttpRequestWorker *worker);
     void setWiFiStatusSignalFull(OAIHttpRequestWorker *worker);
     void uploadFileSignalFull(OAIHttpRequestWorker *worker, QString summary);
+    void uploadMultipleFilesSignalFull(OAIHttpRequestWorker *worker, QString summary);
 
     void get1dLutLibrarySignalE(QList<OAILibraryEntry> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void get3dLutLibrarySignalE(QList<OAILibraryEntry> summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getAcesConfigSignalE(OAIAcesConfig summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getActiveParamsForGivenNetDeviceIndexSignalE(OAINetParams summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getAllNetDevicesSignalE(QList<OAINetDevice> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getAllStatusSignalE(OAIStatus summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getAllSystemDiscoversSignalE(QList<OAISystemDiscover> summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getAmfLibrarySignalE(QList<OAILibraryEntry> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getAncCaptureFilterSignalE(OAIAncCaptureFilter summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getBbcConfigSignalE(OAIBbcConfig summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getBuildInfoSignalE(OAIBuildInfo summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -604,6 +638,7 @@ signals:
     void getSystemStatusSignalE(OAISystemStatus summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getWiFiConfigSignalE(OAIWiFiDeviceConfig summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getWiFiStatusSignalE(OAIWiFiDeviceStatus summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void setAcesConfigSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void setActiveParamsForGivenNetDeviceIndexSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void setAllStatusSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void setAllSystemDiscoversSignalE(QNetworkReply::NetworkError error_type, QString error_str);
@@ -633,13 +668,16 @@ signals:
     void setWiFiConfigSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void setWiFiStatusSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void uploadFileSignalE(QString summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void uploadMultipleFilesSignalE(QString summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void get1dLutLibrarySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void get3dLutLibrarySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getAcesConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getActiveParamsForGivenNetDeviceIndexSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getAllNetDevicesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getAllStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getAllSystemDiscoversSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getAmfLibrarySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getAncCaptureFilterSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getBbcConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getBuildInfoSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
@@ -669,6 +707,7 @@ signals:
     void getSystemStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getWiFiConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getWiFiStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void setAcesConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void setActiveParamsForGivenNetDeviceIndexSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void setAllStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void setAllSystemDiscoversSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
@@ -698,6 +737,7 @@ signals:
     void setWiFiConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void setWiFiStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void uploadFileSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void uploadMultipleFilesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

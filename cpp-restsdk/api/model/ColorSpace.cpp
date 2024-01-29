@@ -35,6 +35,8 @@ ColorSpace::eColorSpace toEnum(const EnumUnderlyingType& val)
         return ColorSpace::eColorSpace::ColorSpace__4_2_2_YCBCR;
     if (val == utility::conversions::to_string_t(U("4:4:4 RGB")))
         return ColorSpace::eColorSpace::ColorSpace__4_4_4_RGB;
+    if (val == utility::conversions::to_string_t(U("4:2:0 YCbCr")))
+        return ColorSpace::eColorSpace::ColorSpace__4_2_0_YCBCR;
     return {};
 }
 
@@ -48,6 +50,8 @@ EnumUnderlyingType fromEnum(ColorSpace::eColorSpace e)
         return U("4:2:2 YCbCr");
     case ColorSpace::eColorSpace::ColorSpace__4_4_4_RGB:
         return U("4:4:4 RGB");
+    case ColorSpace::eColorSpace::ColorSpace__4_2_0_YCBCR:
+        return U("4:2:0 YCbCr");
     default:
         break;
     }

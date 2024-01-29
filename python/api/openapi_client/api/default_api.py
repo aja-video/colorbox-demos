@@ -25,6 +25,7 @@ from openapi_client.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from openapi_client.model.aces_config import AcesConfig
 from openapi_client.model.anc_capture_filter import AncCaptureFilter
 from openapi_client.model.bbc_config import BbcConfig
 from openapi_client.model.build_info import BuildInfo
@@ -115,6 +116,48 @@ class DefaultApi(object):
                 'auth': [],
                 'endpoint_path': '/3dLutLibrary',
                 'operation_id': 'get3d_lut_library',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_aces_config_endpoint = _Endpoint(
+            settings={
+                'response_type': (AcesConfig,),
+                'auth': [],
+                'endpoint_path': '/acesConfig',
+                'operation_id': 'get_aces_config',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -290,6 +333,48 @@ class DefaultApi(object):
                 'auth': [],
                 'endpoint_path': '/discovers',
                 'operation_id': 'get_all_system_discovers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_amf_library_endpoint = _Endpoint(
+            settings={
+                'response_type': ([LibraryEntry],),
+                'auth': [],
+                'endpoint_path': '/amfLibrary',
+                'operation_id': 'get_amf_library',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -1562,6 +1647,54 @@ class DefaultApi(object):
                     'application/json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.set_aces_config_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [],
+                'endpoint_path': '/acesConfig',
+                'operation_id': 'set_aces_config',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'aces_config',
+                ],
+                'required': [
+                    'aces_config',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'aces_config':
+                        (AcesConfig,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'aces_config': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -2998,6 +3131,71 @@ class DefaultApi(object):
             },
             api_client=api_client
         )
+        self.upload_multiple_files_endpoint = _Endpoint(
+            settings={
+                'response_type': (str,),
+                'auth': [],
+                'endpoint_path': '/uploadMultiple',
+                'operation_id': 'upload_multiple_files',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'file',
+                    'kind',
+                    'entry',
+                    'selection',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'file':
+                        ([file_type],),
+                    'kind':
+                        (str,),
+                    'entry':
+                        (int,),
+                    'selection':
+                        (str,),
+                },
+                'attribute_map': {
+                    'file': 'file',
+                    'kind': 'kind',
+                    'entry': 'entry',
+                    'selection': 'selection',
+                },
+                'location_map': {
+                    'file': 'form',
+                    'kind': 'form',
+                    'entry': 'form',
+                    'selection': 'form',
+                },
+                'collection_format_map': {
+                    'file': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'text/plain'
+                ],
+                'content_type': [
+                    'multipart/form-data'
+                ]
+            },
+            api_client=api_client
+        )
 
     def get1d_lut_library(
         self,
@@ -3144,6 +3342,79 @@ class DefaultApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.get3d_lut_library_endpoint.call_with_http_info(**kwargs)
+
+    def get_aces_config(
+        self,
+        **kwargs
+    ):
+        """get_aces_config  # noqa: E501
+
+        Get the AcesConfig object  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_aces_config(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AcesConfig
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.get_aces_config_endpoint.call_with_http_info(**kwargs)
 
     def get_active_params_for_given_net_device_index(
         self,
@@ -3441,6 +3712,79 @@ class DefaultApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.get_all_system_discovers_endpoint.call_with_http_info(**kwargs)
+
+    def get_amf_library(
+        self,
+        **kwargs
+    ):
+        """get_amf_library  # noqa: E501
+
+        Get the AMF Library array  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_amf_library(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [LibraryEntry]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.get_amf_library_endpoint.call_with_http_info(**kwargs)
 
     def get_anc_capture_filter(
         self,
@@ -5573,6 +5917,84 @@ class DefaultApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.get_wi_fi_status_endpoint.call_with_http_info(**kwargs)
+
+    def set_aces_config(
+        self,
+        aces_config,
+        **kwargs
+    ):
+        """set_aces_config  # noqa: E501
+
+        Modify the AcesConfig object  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.set_aces_config(aces_config, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            aces_config (AcesConfig): AcesConfig object
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['aces_config'] = \
+            aces_config
+        return self.set_aces_config_endpoint.call_with_http_info(**kwargs)
 
     def set_active_params_for_given_net_device_index(
         self,
@@ -7840,4 +8262,81 @@ class DefaultApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.upload_file_endpoint.call_with_http_info(**kwargs)
+
+    def upload_multiple_files(
+        self,
+        **kwargs
+    ):
+        """upload_multiple_files  # noqa: E501
+
+        Upload Multiple files  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.upload_multiple_files(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            file ([file_type]): [optional]
+            kind (str): The kind of file being uploaded valid kinds are: **amf**. [optional] if omitted the server will use the default value of ""
+            entry (int): The entry number to upload the file to. [optional] if omitted the server will use the default value of -1
+            selection (str): The AMF file that should be used from the sent files, an uploaded directory can contain multiple AMF files, the one that matches this parameter will be the one stored to the device.. [optional] if omitted the server will use the default value of ""
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            str
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.upload_multiple_files_endpoint.call_with_http_info(**kwargs)
 

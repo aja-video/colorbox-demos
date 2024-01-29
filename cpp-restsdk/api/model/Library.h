@@ -58,6 +58,7 @@ public:
         Library_SYSTEMPRESET,
         Library_OVERLAY,
         Library_ORIONPRESET,
+        Library_AMF,
     };
 
     eLibrary getValue() const;

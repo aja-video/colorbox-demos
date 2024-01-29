@@ -29,6 +29,7 @@ const (
 	TRANSFORMMODE_ORION TransformMode = "ORION"
 	TRANSFORMMODE_BBC TransformMode = "BBC"
 	TRANSFORMMODE_NBC TransformMode = "NBC"
+	TRANSFORMMODE_ACES TransformMode = "ACES"
 )
 
 // All allowed values of TransformMode enum
@@ -38,6 +39,7 @@ var AllowedTransformModeEnumValues = []TransformMode{
 	"ORION",
 	"BBC",
 	"NBC",
+	"ACES",
 }
 
 func (v *TransformMode) UnmarshalJSON(src []byte) error {

@@ -81,10 +81,12 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**Get1dLutLibrary**](docs/DefaultApi.md#get1dlutlibrary) | **Get** /1dLutLibrary | 
 *DefaultApi* | [**Get3dLutLibrary**](docs/DefaultApi.md#get3dlutlibrary) | **Get** /3dLutLibrary | 
+*DefaultApi* | [**GetAcesConfig**](docs/DefaultApi.md#getacesconfig) | **Get** /acesConfig | 
 *DefaultApi* | [**GetActiveParamsForGivenNetDeviceIndex**](docs/DefaultApi.md#getactiveparamsforgivennetdeviceindex) | **Get** /net/device/{devIdx}/activeParams | 
 *DefaultApi* | [**GetAllNetDevices**](docs/DefaultApi.md#getallnetdevices) | **Get** /net/devices | 
 *DefaultApi* | [**GetAllStatus**](docs/DefaultApi.md#getallstatus) | **Get** /status | 
 *DefaultApi* | [**GetAllSystemDiscovers**](docs/DefaultApi.md#getallsystemdiscovers) | **Get** /discovers | 
+*DefaultApi* | [**GetAmfLibrary**](docs/DefaultApi.md#getamflibrary) | **Get** /amfLibrary | 
 *DefaultApi* | [**GetAncCaptureFilter**](docs/DefaultApi.md#getanccapturefilter) | **Get** /ancCaptureFilter | 
 *DefaultApi* | [**GetBbcConfig**](docs/DefaultApi.md#getbbcconfig) | **Get** /bbcConfig | 
 *DefaultApi* | [**GetBuildInfo**](docs/DefaultApi.md#getbuildinfo) | **Get** /buildInfo | 
@@ -114,6 +116,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**GetSystemStatus**](docs/DefaultApi.md#getsystemstatus) | **Get** /system/status | 
 *DefaultApi* | [**GetWiFiConfig**](docs/DefaultApi.md#getwificonfig) | **Get** /wifiConfig | 
 *DefaultApi* | [**GetWiFiStatus**](docs/DefaultApi.md#getwifistatus) | **Get** /wifiStatus | 
+*DefaultApi* | [**SetAcesConfig**](docs/DefaultApi.md#setacesconfig) | **Put** /acesConfig | 
 *DefaultApi* | [**SetActiveParamsForGivenNetDeviceIndex**](docs/DefaultApi.md#setactiveparamsforgivennetdeviceindex) | **Put** /net/device/{devIdx}/activeParams | 
 *DefaultApi* | [**SetAllStatus**](docs/DefaultApi.md#setallstatus) | **Put** /status | 
 *DefaultApi* | [**SetAllSystemDiscovers**](docs/DefaultApi.md#setallsystemdiscovers) | **Put** /discovers | 
@@ -143,10 +146,13 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**SetWiFiConfig**](docs/DefaultApi.md#setwificonfig) | **Put** /wifiConfig | 
 *DefaultApi* | [**SetWiFiStatus**](docs/DefaultApi.md#setwifistatus) | **Put** /wifiStatus | 
 *DefaultApi* | [**UploadFile**](docs/DefaultApi.md#uploadfile) | **Post** /upload | 
+*DefaultApi* | [**UploadMultipleFiles**](docs/DefaultApi.md#uploadmultiplefiles) | **Post** /uploadMultiple | 
 
 
 ## Documentation For Models
 
+ - [AcesConfig](docs/AcesConfig.md)
+ - [AcesMode](docs/AcesMode.md)
  - [AncCaptureFilter](docs/AncCaptureFilter.md)
  - [BbcConfig](docs/BbcConfig.md)
  - [BitDepth](docs/BitDepth.md)
@@ -169,6 +175,7 @@ Class | Method | HTTP request | Description
  - [Connection](docs/Connection.md)
  - [Crop4k2k](docs/Crop4k2k.md)
  - [DHCPState](docs/DHCPState.md)
+ - [DownConvert](docs/DownConvert.md)
  - [FileTypeChoice](docs/FileTypeChoice.md)
  - [Frame](docs/Frame.md)
  - [FrameStore](docs/FrameStore.md)
@@ -185,6 +192,8 @@ Class | Method | HTTP request | Description
  - [NetDevice](docs/NetDevice.md)
  - [NetParams](docs/NetParams.md)
  - [NetStatus](docs/NetStatus.md)
+ - [OcioDisplayView](docs/OcioDisplayView.md)
+ - [OcioSource](docs/OcioSource.md)
  - [OrionClamping](docs/OrionClamping.md)
  - [OrionConfig](docs/OrionConfig.md)
  - [OrionConversion](docs/OrionConversion.md)

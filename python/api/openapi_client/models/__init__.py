@@ -9,6 +9,8 @@
 # import sys
 # sys.setrecursionlimit(n)
 
+from openapi_client.model.aces_config import AcesConfig
+from openapi_client.model.aces_mode import AcesMode
 from openapi_client.model.anc_capture_filter import AncCaptureFilter
 from openapi_client.model.bbc_config import BbcConfig
 from openapi_client.model.bit_depth import BitDepth
@@ -32,6 +34,7 @@ from openapi_client.model.connection import Connection
 from openapi_client.model.crop4k2k import Crop4k2k
 from openapi_client.model.dhcp_state import DHCPState
 from openapi_client.model.device_idx import DeviceIdx
+from openapi_client.model.down_convert import DownConvert
 from openapi_client.model.file_type_choice import FileTypeChoice
 from openapi_client.model.frame import Frame
 from openapi_client.model.frame_store import FrameStore
@@ -48,6 +51,8 @@ from openapi_client.model.net_config import NetConfig
 from openapi_client.model.net_device import NetDevice
 from openapi_client.model.net_params import NetParams
 from openapi_client.model.net_status import NetStatus
+from openapi_client.model.ocio_display_view import OcioDisplayView
+from openapi_client.model.ocio_source import OcioSource
 from openapi_client.model.orion_clamping import OrionClamping
 from openapi_client.model.orion_config import OrionConfig
 from openapi_client.model.orion_conversion import OrionConversion

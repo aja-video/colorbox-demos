@@ -27,9 +27,15 @@ type OutputConfig struct {
 	Colorimetry *Colorimetry `json:"colorimetry,omitempty"`
 	Transfer *Transfer `json:"transfer,omitempty"`
 	Format *VideoFormat `json:"format,omitempty"`
+	SdiFormat *VideoFormat `json:"sdiFormat,omitempty"`
+	SdiDownConvert *DownConvert `json:"sdiDownConvert,omitempty"`
 	SdiMode3g *SdiMode3g `json:"sdiMode3g,omitempty"`
-	HdmiCrop4k2k *Crop4k2k `json:"hdmiCrop4k2k,omitempty"`
+	HdmiFormat *VideoFormat `json:"hdmiFormat,omitempty"`
 	HdmiConnection *Connection `json:"hdmiConnection,omitempty"`
+	HdmiCrop4k2k *Crop4k2k `json:"hdmiCrop4k2k,omitempty"`
+	HdmiDownConvert *DownConvert `json:"hdmiDownConvert,omitempty"`
+	HdmiColorSpace *ColorSpace `json:"hdmiColorSpace,omitempty"`
+	HdmiBitDepth *BitDepth `json:"hdmiBitDepth,omitempty"`
 }
 
 // NewOutputConfig instantiates a new OutputConfig object
@@ -38,6 +44,12 @@ type OutputConfig struct {
 // will change when the set of required properties is changed
 func NewOutputConfig() *OutputConfig {
 	this := OutputConfig{}
+	var sdiDownConvert DownConvert = DOWNCONVERT_DISABLED
+	this.SdiDownConvert = &sdiDownConvert
+	var hdmiCrop4k2k Crop4k2k = CROP4K2K_AUTO
+	this.HdmiCrop4k2k = &hdmiCrop4k2k
+	var hdmiDownConvert DownConvert = DOWNCONVERT_DISABLED
+	this.HdmiDownConvert = &hdmiDownConvert
 	return &this
 }
 
@@ -46,6 +58,12 @@ func NewOutputConfig() *OutputConfig {
 // but it doesn't guarantee that properties required by API are set
 func NewOutputConfigWithDefaults() *OutputConfig {
 	this := OutputConfig{}
+	var sdiDownConvert DownConvert = DOWNCONVERT_DISABLED
+	this.SdiDownConvert = &sdiDownConvert
+	var hdmiCrop4k2k Crop4k2k = CROP4K2K_AUTO
+	this.HdmiCrop4k2k = &hdmiCrop4k2k
+	var hdmiDownConvert DownConvert = DOWNCONVERT_DISABLED
+	this.HdmiDownConvert = &hdmiDownConvert
 	return &this
 }
 
@@ -294,6 +312,76 @@ func (o *OutputConfig) SetFormat(v VideoFormat) {
 	o.Format = &tmp
 }
 
+// GetSdiFormat returns the SdiFormat field value if set, zero value otherwise.
+func (o *OutputConfig) GetSdiFormat() VideoFormat {
+	if o == nil || o.SdiFormat == nil {
+		var ret VideoFormat
+		return ret
+	}
+	return *o.SdiFormat
+}
+
+// GetSdiFormatOk returns a tuple with the SdiFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OutputConfig) GetSdiFormatOk() (*VideoFormat, bool) {
+	if o == nil || o.SdiFormat == nil {
+		return nil, false
+	}
+	return o.SdiFormat, true
+}
+
+
+
+// HasSdiFormat returns a boolean if a field has been set.
+func (o *OutputConfig) HasSdiFormat() bool {
+	if o != nil && o.SdiFormat != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSdiFormat gets a reference to the given VideoFormat and assigns it to the SdiFormat field.
+func (o *OutputConfig) SetSdiFormat(v VideoFormat) {
+	tmp := v
+	o.SdiFormat = &tmp
+}
+
+// GetSdiDownConvert returns the SdiDownConvert field value if set, zero value otherwise.
+func (o *OutputConfig) GetSdiDownConvert() DownConvert {
+	if o == nil || o.SdiDownConvert == nil {
+		var ret DownConvert
+		return ret
+	}
+	return *o.SdiDownConvert
+}
+
+// GetSdiDownConvertOk returns a tuple with the SdiDownConvert field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OutputConfig) GetSdiDownConvertOk() (*DownConvert, bool) {
+	if o == nil || o.SdiDownConvert == nil {
+		return nil, false
+	}
+	return o.SdiDownConvert, true
+}
+
+
+
+// HasSdiDownConvert returns a boolean if a field has been set.
+func (o *OutputConfig) HasSdiDownConvert() bool {
+	if o != nil && o.SdiDownConvert != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSdiDownConvert gets a reference to the given DownConvert and assigns it to the SdiDownConvert field.
+func (o *OutputConfig) SetSdiDownConvert(v DownConvert) {
+	tmp := v
+	o.SdiDownConvert = &tmp
+}
+
 // GetSdiMode3g returns the SdiMode3g field value if set, zero value otherwise.
 func (o *OutputConfig) GetSdiMode3g() SdiMode3g {
 	if o == nil || o.SdiMode3g == nil {
@@ -329,39 +417,39 @@ func (o *OutputConfig) SetSdiMode3g(v SdiMode3g) {
 	o.SdiMode3g = &tmp
 }
 
-// GetHdmiCrop4k2k returns the HdmiCrop4k2k field value if set, zero value otherwise.
-func (o *OutputConfig) GetHdmiCrop4k2k() Crop4k2k {
-	if o == nil || o.HdmiCrop4k2k == nil {
-		var ret Crop4k2k
+// GetHdmiFormat returns the HdmiFormat field value if set, zero value otherwise.
+func (o *OutputConfig) GetHdmiFormat() VideoFormat {
+	if o == nil || o.HdmiFormat == nil {
+		var ret VideoFormat
 		return ret
 	}
-	return *o.HdmiCrop4k2k
+	return *o.HdmiFormat
 }
 
-// GetHdmiCrop4k2kOk returns a tuple with the HdmiCrop4k2k field value if set, nil otherwise
+// GetHdmiFormatOk returns a tuple with the HdmiFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputConfig) GetHdmiCrop4k2kOk() (*Crop4k2k, bool) {
-	if o == nil || o.HdmiCrop4k2k == nil {
+func (o *OutputConfig) GetHdmiFormatOk() (*VideoFormat, bool) {
+	if o == nil || o.HdmiFormat == nil {
 		return nil, false
 	}
-	return o.HdmiCrop4k2k, true
+	return o.HdmiFormat, true
 }
 
 
 
-// HasHdmiCrop4k2k returns a boolean if a field has been set.
-func (o *OutputConfig) HasHdmiCrop4k2k() bool {
-	if o != nil && o.HdmiCrop4k2k != nil {
+// HasHdmiFormat returns a boolean if a field has been set.
+func (o *OutputConfig) HasHdmiFormat() bool {
+	if o != nil && o.HdmiFormat != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHdmiCrop4k2k gets a reference to the given Crop4k2k and assigns it to the HdmiCrop4k2k field.
-func (o *OutputConfig) SetHdmiCrop4k2k(v Crop4k2k) {
+// SetHdmiFormat gets a reference to the given VideoFormat and assigns it to the HdmiFormat field.
+func (o *OutputConfig) SetHdmiFormat(v VideoFormat) {
 	tmp := v
-	o.HdmiCrop4k2k = &tmp
+	o.HdmiFormat = &tmp
 }
 
 // GetHdmiConnection returns the HdmiConnection field value if set, zero value otherwise.
@@ -399,6 +487,146 @@ func (o *OutputConfig) SetHdmiConnection(v Connection) {
 	o.HdmiConnection = &tmp
 }
 
+// GetHdmiCrop4k2k returns the HdmiCrop4k2k field value if set, zero value otherwise.
+func (o *OutputConfig) GetHdmiCrop4k2k() Crop4k2k {
+	if o == nil || o.HdmiCrop4k2k == nil {
+		var ret Crop4k2k
+		return ret
+	}
+	return *o.HdmiCrop4k2k
+}
+
+// GetHdmiCrop4k2kOk returns a tuple with the HdmiCrop4k2k field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OutputConfig) GetHdmiCrop4k2kOk() (*Crop4k2k, bool) {
+	if o == nil || o.HdmiCrop4k2k == nil {
+		return nil, false
+	}
+	return o.HdmiCrop4k2k, true
+}
+
+
+
+// HasHdmiCrop4k2k returns a boolean if a field has been set.
+func (o *OutputConfig) HasHdmiCrop4k2k() bool {
+	if o != nil && o.HdmiCrop4k2k != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHdmiCrop4k2k gets a reference to the given Crop4k2k and assigns it to the HdmiCrop4k2k field.
+func (o *OutputConfig) SetHdmiCrop4k2k(v Crop4k2k) {
+	tmp := v
+	o.HdmiCrop4k2k = &tmp
+}
+
+// GetHdmiDownConvert returns the HdmiDownConvert field value if set, zero value otherwise.
+func (o *OutputConfig) GetHdmiDownConvert() DownConvert {
+	if o == nil || o.HdmiDownConvert == nil {
+		var ret DownConvert
+		return ret
+	}
+	return *o.HdmiDownConvert
+}
+
+// GetHdmiDownConvertOk returns a tuple with the HdmiDownConvert field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OutputConfig) GetHdmiDownConvertOk() (*DownConvert, bool) {
+	if o == nil || o.HdmiDownConvert == nil {
+		return nil, false
+	}
+	return o.HdmiDownConvert, true
+}
+
+
+
+// HasHdmiDownConvert returns a boolean if a field has been set.
+func (o *OutputConfig) HasHdmiDownConvert() bool {
+	if o != nil && o.HdmiDownConvert != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHdmiDownConvert gets a reference to the given DownConvert and assigns it to the HdmiDownConvert field.
+func (o *OutputConfig) SetHdmiDownConvert(v DownConvert) {
+	tmp := v
+	o.HdmiDownConvert = &tmp
+}
+
+// GetHdmiColorSpace returns the HdmiColorSpace field value if set, zero value otherwise.
+func (o *OutputConfig) GetHdmiColorSpace() ColorSpace {
+	if o == nil || o.HdmiColorSpace == nil {
+		var ret ColorSpace
+		return ret
+	}
+	return *o.HdmiColorSpace
+}
+
+// GetHdmiColorSpaceOk returns a tuple with the HdmiColorSpace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OutputConfig) GetHdmiColorSpaceOk() (*ColorSpace, bool) {
+	if o == nil || o.HdmiColorSpace == nil {
+		return nil, false
+	}
+	return o.HdmiColorSpace, true
+}
+
+
+
+// HasHdmiColorSpace returns a boolean if a field has been set.
+func (o *OutputConfig) HasHdmiColorSpace() bool {
+	if o != nil && o.HdmiColorSpace != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHdmiColorSpace gets a reference to the given ColorSpace and assigns it to the HdmiColorSpace field.
+func (o *OutputConfig) SetHdmiColorSpace(v ColorSpace) {
+	tmp := v
+	o.HdmiColorSpace = &tmp
+}
+
+// GetHdmiBitDepth returns the HdmiBitDepth field value if set, zero value otherwise.
+func (o *OutputConfig) GetHdmiBitDepth() BitDepth {
+	if o == nil || o.HdmiBitDepth == nil {
+		var ret BitDepth
+		return ret
+	}
+	return *o.HdmiBitDepth
+}
+
+// GetHdmiBitDepthOk returns a tuple with the HdmiBitDepth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OutputConfig) GetHdmiBitDepthOk() (*BitDepth, bool) {
+	if o == nil || o.HdmiBitDepth == nil {
+		return nil, false
+	}
+	return o.HdmiBitDepth, true
+}
+
+
+
+// HasHdmiBitDepth returns a boolean if a field has been set.
+func (o *OutputConfig) HasHdmiBitDepth() bool {
+	if o != nil && o.HdmiBitDepth != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHdmiBitDepth gets a reference to the given BitDepth and assigns it to the HdmiBitDepth field.
+func (o *OutputConfig) SetHdmiBitDepth(v BitDepth) {
+	tmp := v
+	o.HdmiBitDepth = &tmp
+}
+
 func (o OutputConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ColorSpace != nil {
@@ -422,14 +650,32 @@ func (o OutputConfig) MarshalJSON() ([]byte, error) {
 	if o.Format != nil {
 		toSerialize["format"] = o.Format
 	}
+	if o.SdiFormat != nil {
+		toSerialize["sdiFormat"] = o.SdiFormat
+	}
+	if o.SdiDownConvert != nil {
+		toSerialize["sdiDownConvert"] = o.SdiDownConvert
+	}
 	if o.SdiMode3g != nil {
 		toSerialize["sdiMode3g"] = o.SdiMode3g
+	}
+	if o.HdmiFormat != nil {
+		toSerialize["hdmiFormat"] = o.HdmiFormat
+	}
+	if o.HdmiConnection != nil {
+		toSerialize["hdmiConnection"] = o.HdmiConnection
 	}
 	if o.HdmiCrop4k2k != nil {
 		toSerialize["hdmiCrop4k2k"] = o.HdmiCrop4k2k
 	}
-	if o.HdmiConnection != nil {
-		toSerialize["hdmiConnection"] = o.HdmiConnection
+	if o.HdmiDownConvert != nil {
+		toSerialize["hdmiDownConvert"] = o.HdmiDownConvert
+	}
+	if o.HdmiColorSpace != nil {
+		toSerialize["hdmiColorSpace"] = o.HdmiColorSpace
+	}
+	if o.HdmiBitDepth != nil {
+		toSerialize["hdmiBitDepth"] = o.HdmiBitDepth
 	}
 	return json.Marshal(toSerialize)
 }

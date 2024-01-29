@@ -122,6 +122,30 @@ paths:
       responses:
         "200":
           description: Successful operation
+  /acesConfig:
+    get:
+      description: Get the AcesConfig object
+      operationId: getAcesConfig
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcesConfig'
+          description: Successful operation
+    put:
+      description: Modify the AcesConfig object
+      operationId: setAcesConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcesConfig'
+        description: AcesConfig object
+        required: true
+      responses:
+        "200":
+          description: Successful operation
   /bbcConfig:
     get:
       description: Get the BbcConfig object
@@ -242,6 +266,49 @@ paths:
                   description: 'The entry number to upload the file to, **not** used
                     with kinds: **license** and **update**'
                   type: integer
+              type: object
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Successful operation
+        "400":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Error uploading
+  /uploadMultiple:
+    post:
+      description: Upload Multiple files
+      operationId: uploadMultipleFiles
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object_1'
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                file:
+                  items:
+                    format: binary
+                    type: string
+                  type: array
+                kind:
+                  default: ""
+                  description: 'The kind of file being uploaded valid kinds are: **amf**'
+                  type: string
+                entry:
+                  default: -1
+                  description: The entry number to upload the file to
+                  type: integer
+                selection:
+                  default: ""
+                  description: The AMF file that should be used from the sent files,
+                    an uploaded directory can contain multiple AMF files, the one
+                    that matches this parameter will be the one stored to the device.
+                  type: string
               type: object
       responses:
         "200":
@@ -486,6 +553,19 @@ paths:
     get:
       description: Get the overlay Library array
       operationId: getOverlayLibrary
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LibraryEntry'
+                type: array
+          description: Successful operation
+  /amfLibrary:
+    get:
+      description: Get the AMF Library array
+      operationId: getAmfLibrary
       responses:
         "200":
           content:
@@ -898,6 +978,11 @@ paths:
           description: Successful operation
 components:
   requestBodies:
+    inline_object_1:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/components/schemas/inline_object_1'
     inline_object:
       content:
         multipart/form-data:
@@ -1356,14 +1441,27 @@ components:
           $ref: '#/components/schemas/Transfer'
         format:
           $ref: '#/components/schemas/VideoFormat'
+        sdiFormat:
+          $ref: '#/components/schemas/VideoFormat'
+        sdiDownConvert:
+          $ref: '#/components/schemas/DownConvert'
         sdiMode3g:
           $ref: '#/components/schemas/SdiMode3g'
-        hdmiCrop4k2k:
-          $ref: '#/components/schemas/Crop4k2k'
+        hdmiFormat:
+          $ref: '#/components/schemas/VideoFormat'
         hdmiConnection:
           $ref: '#/components/schemas/Connection'
+        hdmiCrop4k2k:
+          $ref: '#/components/schemas/Crop4k2k'
+        hdmiDownConvert:
+          $ref: '#/components/schemas/DownConvert'
+        hdmiColorSpace:
+          $ref: '#/components/schemas/ColorSpace'
+        hdmiBitDepth:
+          $ref: '#/components/schemas/BitDepth'
       type: object
     Crop4k2k:
+      default: Auto
       enum:
       - Auto
       - Enabled
@@ -1380,6 +1478,13 @@ components:
       - Auto
       - 4:2:2 YCbCr
       - 4:4:4 RGB
+      - 4:2:0 YCbCr
+      type: string
+    DownConvert:
+      default: Disabled
+      enum:
+      - Enabled
+      - Disabled
       type: string
     RgbRange:
       enum:
@@ -1661,6 +1766,7 @@ components:
       - systemPreset
       - Overlay
       - orionPreset
+      - AMF
       type: string
     LibraryAction:
       enum:
@@ -1983,6 +2089,7 @@ components:
       - ORION
       - BBC
       - NBC
+      - ACES
       type: string
     PipelineRange:
       default: SMPTEFull
@@ -2233,7 +2340,7 @@ components:
       - ARRI Log C Wide Gamut
       - ARRI LogC4 Wide Gamut 4
       - Panasonic V-Log
-      - Red Log3G10 Wide Gamut
+      - RED Log3G10 Wide Gamut
       - Canon Log 2
       - Canon Log 3
       type: string
@@ -2724,6 +2831,59 @@ components:
         lut3d_1:
           $ref: '#/components/schemas/Stage'
       type: object
+    AcesMode:
+      default: AMF
+      enum:
+      - AMF
+      - OCIO
+      type: string
+    OcioSource:
+      default: Camera Rec.709
+      enum:
+      - ARRI LogC3 (EI800)
+      - ARRI LogC4
+      - BMDFilm WideGamut Gen5
+      - CanonLog2 CinemaGamut D55
+      - CanonLog3 CinemaGamut D55
+      - V-Log V-Gamut
+      - Log3G10 REDWideGamutRGB
+      - S-Log3 S-Gamut3
+      - S-Log3 S-Gamut3.Cine
+      - S-Log3 Venice S-Gamut3
+      - S-Log3 Venice S-Gamut3.Cine
+      - Camera Rec.709
+      type: string
+    OcioDisplayView:
+      default: Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video
+      enum:
+      - Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video
+      - Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)
+      - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)
+      - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)
+      - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)
+      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (1000 nits & P3 lim)
+      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (2000 nits & P3 lim)
+      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (4000 nits & P3 lim)
+      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Cinema (108 nits & P3 lim)
+      type: string
+    AcesConfig:
+      example:
+        amfLibraryEntry: 0
+        enabled: true
+      properties:
+        enabled:
+          description: true if stage is enabled else disabled (unity passthru)
+          type: boolean
+        mode:
+          $ref: '#/components/schemas/AcesMode'
+        amfLibraryEntry:
+          description: library entry number, zero is unity bypass
+          type: integer
+        ocioSource:
+          $ref: '#/components/schemas/OcioSource'
+        ocioDisplayView:
+          $ref: '#/components/schemas/OcioDisplayView'
+      type: object
     StatusState:
       default: StatusStateUnknown
       description: The good/maybe/bad/unknown of the status object
@@ -3090,6 +3250,28 @@ components:
           description: 'The entry number to upload the file to, **not** used with
             kinds: **license** and **update**'
           type: integer
+      type: object
+    inline_object_1:
+      properties:
+        file:
+          items:
+            format: binary
+            type: string
+          type: array
+        kind:
+          default: ""
+          description: 'The kind of file being uploaded valid kinds are: **amf**'
+          type: string
+        entry:
+          default: -1
+          description: The entry number to upload the file to
+          type: integer
+        selection:
+          default: ""
+          description: The AMF file that should be used from the sent files, an uploaded
+            directory can contain multiple AMF files, the one that matches this parameter
+            will be the one stored to the device.
+          type: string
       type: object
   securitySchemes:
     app_id:
