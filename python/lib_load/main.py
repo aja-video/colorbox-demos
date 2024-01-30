@@ -22,7 +22,7 @@ from openapi_client.api import default_api
 from openapi_client.rest import ApiException
 from openapi_client import models
 
-kinds = ["lut_1d", "lut_3d", "matrix", "image", "overlay"]
+kinds = ["lut_1d", "lut_3d", "matrix", "image", "overlay", "amf"]
 
 parser = argparse.ArgumentParser(description="")
 parser.add_argument("--host", default="127.0.0.1", help="the hostname or ip of device")
@@ -36,7 +36,8 @@ parser.add_argument(
 parser.add_argument(
     "--kind", default="lut_1d", help="kind of upload, choices are: " + ", ".join(kinds)
 )
-parser.add_argument("--file", default="", help="the file to upload to library")
+parser.add_argument("--file", nargs='+', default=[], help="the file(s) to upload to library, amf can do multiple")
+parser.add_argument("--selection", default="", help="the selection for use with amf uploads, will default to first found amf file if not specified")
 parser.add_argument(
     "--entry",
     default=0,
@@ -59,8 +60,12 @@ if kindGood == False:
     )
     exit(1)
 
-if args.file == "":
-    print("error: a file must be specified")
+file_err_msg = "error: a file must be specified"
+if args.kind == "amf":
+    file_err_msg = "error: at least 1 file must be specified"
+
+if len(args.file) < 1:
+    print(file_err_msg)
     exit(1)
 
 if args.entry < 0 or args.entry > 16:
@@ -103,6 +108,8 @@ with openapi_client.ApiClient(
             lib = client.get_image_library()
         elif args.kind == "overlay":
             lib = client.get_overlay_library()
+        elif args.kind == "amf":
+            lib = client.get_amf_library()
         if lib:
             # library entries are 1 based, so account for that
             entry_to_use = len(lib)
@@ -111,14 +118,47 @@ with openapi_client.ApiClient(
                     entry_to_use = idx + 1
                     break
 
-    # upload the file
-    f = open(args.file, "rb")
-    if f == None:
-        print(f"error opening file [{args.file}]")
-        exit(1)
+    # upload the file(s)
+    if args.kind == "amf":
+        first_found_amf = None
+        for path in args.file:
+            bn = os.path.basename(path)
+            if bn.lower().endswith('.amf'):
+                first_found_amf = bn
+                break
 
-    print(f"uploading '{args.file}' of kind '{args.kind}' to entry '{entry_to_use}'")
+        if first_found_amf is None:
+            print(f"error, the list of files does not contain an 'amf' file")
+            exit(1)
 
-    client.upload_file(file=f, kind=args.kind, entry=entry_to_use)
-    f.close()
+        selection = args.selection
+        if selection == "":
+            selection = first_found_amf
+
+        files = []
+        for path in args.file:
+            f = open(path, "rb")
+            if f == None:
+                print(f"error opening file [{path}]")
+                exit(1)
+
+            files.append(f)
+
+        print(f"uploading '{args.file}' of kind '{args.kind}' to entry '{entry_to_use}' with selection '{selection}'")
+        client.upload_multiple_files(file=files, kind=args.kind, entry=entry_to_use, selection=selection)
+
+        for f in files:
+            f.close()
+    else:
+        path = args.file[0]
+        f = open(path, "rb")
+        if f == None:
+            print(f"error opening file [{path}]")
+            exit(1)
+
+        print(f"uploading '{path}' of kind '{args.kind}' to entry '{entry_to_use}'")
+
+        client.upload_file(file=f, kind=args.kind, entry=entry_to_use)
+        f.close()
+
     exit(0)
