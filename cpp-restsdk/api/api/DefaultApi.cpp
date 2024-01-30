@@ -8498,7 +8498,12 @@ pplx::task<utility::string_t> DefaultApi::uploadMultipleFiles(boost::optional<st
 
     if (file)
     {
-        localVarFileParams[ utility::conversions::to_string_t("file") ] = *file;
+		// FIXME:
+		// This does not do the correct thing, the map can only contain 1 file, so for now
+		// just select the first. This will fix compilation but the behavior is not correct.
+		if (!(*file).empty()) {
+			localVarFileParams[ utility::conversions::to_string_t("file") ] = (*file).at(0);
+		}
     }
     if (kind)
     {
