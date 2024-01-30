@@ -12,7 +12,7 @@
  * or _api.get1dLutLibrary(), _api.get3dLutLibrary() or _api.getMatrixLibrary() for other libraries.
  * This will generate a signal where you can capture the library items(see Dialog::handleGetImageLibrary)
  *
- * To upload an image to the library(tiff,png,jpg) see Dialog::handleUploadImageButton()
+ * To upload an image to the library(tiff,png,jpg,dpx) see Dialog::handleUploadImageButton()
  *
  * To download an image from the library see Dialog::handleDownloadImageButton().
  * This will download the selected image to the local bin directory for the demos.
@@ -23,6 +23,7 @@
  * /3d/ 3DLUT
  * /mx/ Matrix
  * /im/ Image
+ * /amf/ AMF
  *
  * To select a library element to update the ColorBox Framestore see Dialog::handleSelectImageButton().
  * When you select this button, the selected image file will be recalled to the Framestore.
@@ -60,21 +61,32 @@ Dialog::Dialog(QWidget *parent)
 
     // UI related Code
     connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this,&Dialog::ipAddressEdited);
-    connect(_ui->uploadImageButton,&QPushButton::pressed,this,&Dialog::handleUploadImageButton);
-    connect(_ui->downloadImageButton,&QPushButton::pressed,this,&Dialog::handleDownloadImageButton);
-    connect(_ui->selectImageButton,&QPushButton::pressed,this,&Dialog::handleSelectImageButton);
-    connect(_ui->libraryList,&QListWidget::itemDoubleClicked,this,&Dialog::handleSelectImageButton);
+    connect(_ui->uploadButton,&QPushButton::pressed,this,&Dialog::handleUploadButton);
+    connect(_ui->downloadButton,&QPushButton::pressed,this,&Dialog::handleDownloadButton);
+    connect(_ui->selectButton,&QPushButton::pressed,this,&Dialog::handleSelectButton);
+    connect(_ui->libraryList,&QListWidget::itemDoubleClicked,this,&Dialog::handleSelectButton);
+    connect(_ui->libraryTabWidget,&QTabWidget::currentChanged,this,&Dialog::handleLibraryTabChanged);
 
     // API related slots
+
+    connect(&_api, &OAIDefaultApi::get1dLutLibrarySignal, this, &Dialog::handleGetLibrary);
+    connect(&_api, &OAIDefaultApi::get1dLutLibrarySignalE, this, &Dialog::handleGetLibraryError);
+    connect(&_api, &OAIDefaultApi::get3dLutLibrarySignal, this, &Dialog::handleGetLibrary);
+    connect(&_api, &OAIDefaultApi::get3dLutLibrarySignalE, this, &Dialog::handleGetLibraryError);
+    connect(&_api, &OAIDefaultApi::getMatrixLibrarySignal, this, &Dialog::handleGetLibrary);
+    connect(&_api, &OAIDefaultApi::getMatrixLibrarySignalE, this, &Dialog::handleGetLibraryError);
+    connect(&_api, &OAIDefaultApi::getImageLibrarySignal, this, &Dialog::handleGetLibrary);
+    connect(&_api, &OAIDefaultApi::getImageLibrarySignalE, this, &Dialog::handleGetLibraryError);
+    connect(&_api, &OAIDefaultApi::getOverlayLibrarySignal, this, &Dialog::handleGetLibrary);
+    connect(&_api, &OAIDefaultApi::getOverlayLibrarySignalE, this, &Dialog::handleGetLibraryError);
+    connect(&_api, &OAIDefaultApi::getAmfLibrarySignal, this, &Dialog::handleGetLibrary);
+    connect(&_api, &OAIDefaultApi::getAmfLibrarySignalE, this, &Dialog::handleGetLibraryError);
     connect(&_api, &OAIDefaultApi::uploadFileSignal, this, &Dialog::handleUploadFile);
     connect(&_api, &OAIDefaultApi::uploadFileSignalE, this, &Dialog::handleUploadFileError);
 
-    connect(&_api, &OAIDefaultApi::getImageLibrarySignal, this, &Dialog::handleGetImageLibrary);
-    connect(&_api, &OAIDefaultApi::getImageLibrarySignalE, this, &Dialog::handleGetImageLibrary);
-
-    _ui->uploadImageButton->setToolTip("Select Image to upload to ColorBox");
-    _ui->downloadImageButton->setToolTip("Download Image from ColorBox to demos bin directory");
-    _ui->selectImageButton->setToolTip("Select Image on ColorBox for FrameStore");
+    _ui->uploadButton->setToolTip("Select Image to upload to ColorBox");
+    _ui->downloadButton->setToolTip("Download Image from ColorBox to demos bin directory");
+    _ui->selectButton->setToolTip("Select Image on ColorBox for FrameStore");
 
     recallSettings();
     ipAddressEdited();
@@ -93,6 +105,7 @@ void Dialog::recallSettings()
 {
     QSettings settings(QSettings::UserScope, "aja", "ColorBoxLibraryExample");
     _ui->ipAddressLineEdit->setText(settings.value("IPAddress").toString());
+    _ui->libraryTabWidget->setCurrentIndex(settings.value("LibraryTabIndex").toInt());
 
 }
 
@@ -100,6 +113,71 @@ void Dialog::saveSettings()
 {
     QSettings settings(QSettings::UserScope, "aja", "ColorBoxLibraryExample");
     settings.setValue("IPAddress",_ui->ipAddressLineEdit->text());
+    settings.setValue("LibraryTabIndex",_ui->libraryTabWidget->currentIndex());
+
+}
+
+
+Dialog::LibaryTabEnum Dialog::getCurrentLibraryEnum()
+{
+    int index = _ui->libraryTabWidget->currentIndex();
+    switch ( index )
+    {
+    case 0: return Dialog::OneDLUT;
+    case 1: return Dialog::ThreeDLUT;
+    case 2: return Dialog::MATRIX;
+    case 3: return Dialog::IMAGE;
+    case 4: return Dialog::OVERLAY;
+    case 5: return Dialog::AMF;
+    default: return Dialog::IMAGE;
+    }
+}
+
+void Dialog::getCurrentLibrary()
+{
+    int index = _ui->libraryTabWidget->currentIndex();
+
+    qDebug() << "Current Library" << index;
+    switch ( index )
+    {
+    case Dialog::OneDLUT:
+        _api.get1dLutLibrary();
+        _ui->uploadButton->setText("Upload 1DLUT");
+        _ui->downloadButton->setText("Download 1DLUT");
+        _ui->selectButton->setText("Select 1DLUT");
+    break;
+    case Dialog::ThreeDLUT:
+        _api.get3dLutLibrary();
+        _ui->uploadButton->setText("Upload 3DLUT");
+        _ui->downloadButton->setText("Download 3DLUT");
+        _ui->selectButton->setText("Select 3DLUT");
+
+    break;
+    case Dialog::MATRIX:
+        _api.getMatrixLibrary();
+        _ui->uploadButton->setText("Upload Matrix");
+        _ui->downloadButton->setText("Download Matrix");
+        _ui->selectButton->setText("Select Matrix");
+    break;
+    case Dialog::IMAGE:
+        _api.getImageLibrary();
+        _ui->uploadButton->setText("Upload Image");
+        _ui->downloadButton->setText("Download Image");
+        _ui->selectButton->setText("Select Image");
+    break;
+    case Dialog::OVERLAY:
+        _api.getOverlayLibrary();
+        _ui->uploadButton->setText("Upload Overlay");
+        _ui->downloadButton->setText("Download Overlay");
+        _ui->selectButton->setText("Select Overlay");
+    break;
+    case Dialog::AMF:
+        _api.getAmfLibrary();
+        _ui->uploadButton->setText("Upload AMF File");
+        _ui->downloadButton->setText("Download AMF File");
+        _ui->selectButton->setText("Select AMF File");
+    break;
+    }
 
 }
 
@@ -115,13 +193,19 @@ void Dialog::ipAddressEdited()
     _currentIPAddress = _ui->ipAddressLineEdit->displayText().simplified();
     _api.setUrlForServers(_currentIPAddress);
 
-    // Get current image libary
-    _api.getImageLibrary();
+    // Get current libary based on chosen tab
+    getCurrentLibrary();
 
 }
 
+void Dialog::handleLibraryTabChanged(int index)
+{
+    if ( _cbConnected)
+         getCurrentLibrary();
 
-void Dialog::handleGetImageLibrary(QList<OpenAPI::OAILibraryEntry> summary)
+}
+
+void Dialog::handleGetLibrary(QList<OpenAPI::OAILibraryEntry> summary)
 {
     QMutexLocker lock(&_libraryMutex);
 
@@ -141,15 +225,26 @@ void Dialog::handleGetImageLibrary(QList<OpenAPI::OAILibraryEntry> summary)
 
     _ui->libraryList->setCurrentRow(0);
 
-    // Enable Framestore(obviously optional).
-    OAIFrameStore frameStore;
-    frameStore.setEnabled(true);
-    frameStore.setDynamic(false);
-    _api.setFrameStore(frameStore);
+    // This part of course optional
+    if ( getCurrentLibraryEnum() == Dialog::IMAGE)
+    {
+        OAIFrameStore frameStore;
+        frameStore.setEnabled(true);
+        frameStore.setDynamic(false);
+        _api.setFrameStore(frameStore);
+    }
+    else
+    {
+        OAIFrameStore frameStore;
+        frameStore.setEnabled(false);
+        frameStore.setDynamic(false);
+        _api.setFrameStore(frameStore);
+
+    }
 
 }
 
-void Dialog::handleGetImageLibraryError(QList<OpenAPI::OAILibraryEntry> summary,QNetworkReply::NetworkError error_type, QString error_str)
+void Dialog::handleGetLibraryError(QList<OpenAPI::OAILibraryEntry> summary,QNetworkReply::NetworkError error_type, QString error_str)
 {
     Q_UNUSED(summary)
     Q_UNUSED(error_type)
@@ -160,16 +255,65 @@ void Dialog::handleGetImageLibraryError(QList<OpenAPI::OAILibraryEntry> summary,
 
 }
 
-void Dialog::handleUploadImageButton()
+QString getUploadFileFilter(Dialog::LibaryTabEnum libEnum)
+{
+    switch ( libEnum )
+    {
+    case Dialog::LibaryTabEnum::OneDLUT:
+        return QString("1D LUT Files (*.cube *.spi1d )");
+        break;
+    case Dialog::LibaryTabEnum::ThreeDLUT:
+        return QString("3D LUT Files (*.cube *.spi3d )");
+        break;
+    case Dialog::LibaryTabEnum::MATRIX:
+        return QString("Matrix Files (*.ajamtx *.spimtx )");
+        break;
+    case Dialog::LibaryTabEnum::IMAGE:
+        return QString(".image Files (*.tif *.tiff *.png *.jpg *.dpx)");
+        break;
+    case Dialog::LibaryTabEnum::OVERLAY:
+        return QString(".image Files (*.tif *.tiff *.png )");
+        break;
+    case Dialog::LibaryTabEnum::AMF:
+        return QString("AMF Files (*.amf )");
+        break;
+    }
+}
+QString getCurrentFileAttribute(Dialog::LibaryTabEnum libEnum)
+{
+    switch ( libEnum )
+    {
+    case Dialog::LibaryTabEnum::OneDLUT:
+        return QString("lut_1d");
+        break;
+    case Dialog::LibaryTabEnum::ThreeDLUT:
+        return QString("lut_3d");
+        break;
+    case Dialog::LibaryTabEnum::MATRIX:
+        return QString("matrix");
+        break;
+    case Dialog::LibaryTabEnum::IMAGE:
+        return QString("image");
+        break;
+    case Dialog::LibaryTabEnum::OVERLAY:
+        return QString("overlay");
+        break;
+    case Dialog::LibaryTabEnum::AMF:
+        return QString("amf");
+        break;
+    }
+}
+void Dialog::handleUploadButton()
 {
     QMutexLocker lock(&_libraryMutex);
 
     if ( _cbConnected == false )
         return;
 
+    QString fileFilter = getUploadFileFilter(getCurrentLibraryEnum());
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choose a File to Upload"),
                                                     ".",
-                                                    tr(".image Files (*.tif *.tiff *.png *.jpg)"));
+                                                    fileFilter);
     if ( fileName.length() == 0 )
         return;
 
@@ -186,7 +330,7 @@ void Dialog::handleUploadImageButton()
         int entryChoice = _ui->libraryList->currentRow()+1;
         OAIHttpFileElement fileElement;
         fileElement.setFileName(fileName);
-        QString fileType = "image"; // other choices are lut_1d, lut_3d, matrix
+        QString fileType = getCurrentFileAttribute(getCurrentLibraryEnum());
         _api.uploadFile(fileElement,fileType,entryChoice);
     }
 
@@ -196,7 +340,7 @@ void Dialog::handleUploadImageButton()
 void Dialog::handleUploadFile(QString summary)
 {
     // Refresh Library List
-    _api.getImageLibrary();
+    getCurrentLibrary();
 }
 
 void Dialog:: handleUploadFileError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
@@ -204,7 +348,32 @@ void Dialog:: handleUploadFileError(QString summary, QNetworkReply::NetworkError
     qDebug() << error_str;
 }
 
-void Dialog::handleDownloadImageButton()
+QString getCurrentFilePath(Dialog::LibaryTabEnum libEnum)
+{
+    switch ( libEnum )
+    {
+    case Dialog::LibaryTabEnum::OneDLUT:
+        return QString("1d");
+        break;
+    case Dialog::LibaryTabEnum::ThreeDLUT:
+        return QString("3d");
+        break;
+    case Dialog::LibaryTabEnum::MATRIX:
+        return QString("mx");
+        break;
+    case Dialog::LibaryTabEnum::IMAGE:
+        return QString("im");
+        break;
+    case Dialog::LibaryTabEnum::OVERLAY:
+        return QString("ol");
+        break;
+    case Dialog::LibaryTabEnum::AMF:
+        return QString("amf");
+        break;
+    }
+}
+
+void Dialog::handleDownloadButton()
 {
     QMutexLocker lock(&_libraryMutex);
 
@@ -228,13 +397,9 @@ void Dialog::handleDownloadImageButton()
         if ( fileName.isEmpty() )
             return;
 
-        // Just use http download
-        // im for image
-        // 1d for 1dlut
-        // 3d for 3dlut
-        // mx for matrix
 
-        QString urlName = QStringLiteral("http://%1/library/im/%2/%3").arg(_currentIPAddress).arg(entryNumber, 2, 10, QLatin1Char('0')).arg(fileName);
+        QString filePath = getCurrentFilePath(getCurrentLibraryEnum());
+        QString urlName = QStringLiteral("http://%1/library/%2/%3/%4").arg(_currentIPAddress).arg(filePath).arg(entryNumber, 2, 10, QLatin1Char('0')).arg(fileName);
         QUrl imageUrl(urlName);
         if ( _fileDownloader ) {delete _fileDownloader; _fileDownloader=nullptr;}
         _fileDownloader = new FileDownloader(imageUrl, fileName,  this);
@@ -257,7 +422,7 @@ void Dialog::downLoadImage()
 
 }
 
-void Dialog::handleSelectImageButton()
+void Dialog::handleSelectButton()
 {
     QMutexLocker lock(&_libraryMutex);
 
@@ -276,12 +441,88 @@ void Dialog::handleSelectImageButton()
         QListWidgetItem* item =  _ui->libraryList->currentItem();
         QString fileName = item->text();
 
-        if ( !fileName.isEmpty() )
+        if ( !fileName.isEmpty())
         {
-            OpenAPI::OAIFrameStore frameStore;
-            frameStore.setLibraryEntry(entryChoice);
-            _api.setFrameStore(frameStore);
+            Dialog::LibaryTabEnum libEnum = getCurrentLibraryEnum();
+
+            switch ( libEnum)
+            {
+            case Dialog::OneDLUT:
+            {
+                OAIPipelineStages stages;
+                OAIStage lutStage;
+                lutStage.setDynamic(false);
+                lutStage.setEnabled(true);
+                lutStage.setLibraryEntry(entryChoice);
+                switch (_ui->lut1dChoiceComboBox->currentIndex())
+                {
+                case 0: // "1DL1"
+                    stages.setLut1d1(lutStage);
+                    break;
+                case 1: // "1DL2"
+                    stages.setLut1d2(lutStage);
+                    break;
+                case 2: // "1DL3"
+                    stages.setLut1d3(lutStage);
+                    break;
+                case 3: // "1DL4"
+                    stages.setLut1d4(lutStage);
+                    break;
+                }
+
+                 _api.setPipelineStages(stages);
+                break;
+            }
+            case Dialog::ThreeDLUT:
+            {
+                OAIPipelineStages stages;
+                OAIStage lutStage;
+                lutStage.setDynamic(false);
+                lutStage.setEnabled(true);
+                stages.setLut3d1(lutStage);
+                lutStage.setLibraryEntry(entryChoice);
+                _api.setPipelineStages(stages);
+                break;
+            }
+            case::Dialog::MATRIX:
+            {
+                OAIPipelineStages stages;
+                OAIStage lutStage;
+                lutStage.setDynamic(false);
+                lutStage.setEnabled(true);
+                lutStage.setLibraryEntry(entryChoice);
+                switch (_ui->lut1dChoiceComboBox->currentIndex())
+                {
+                case 0: // "MX2"
+                    stages.setM3x32(lutStage);
+                    break;
+                case 1: // "MX3"
+                    stages.setM3x33(lutStage);
+                    break;
+                }
+                _api.setPipelineStages(stages);
+
+                break;
+            }
+            case Dialog::IMAGE:
+            {
+                OpenAPI::OAIFrameStore frameStore;
+                frameStore.setLibraryEntry(entryChoice);
+                _api.setFrameStore(frameStore);
+                break;
+            }
+            case Dialog::OVERLAY:
+            {
+                break;
+            }
+            case Dialog::AMF:
+            {
+                break;
+            }
+
+            }
         }
+
     }
 
 }
@@ -290,7 +531,7 @@ void Dialog::keyPressEvent(QKeyEvent *event)
 {
     if(  (event->key() == Qt::Key_Return) )
     {
-         handleSelectImageButton();
+         handleSelectButton();
     }
 
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
-    <height>410</height>
+    <width>741</width>
+    <height>529</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,19 +18,25 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>740</width>
-    <height>410</height>
+    <width>1000</width>
+    <height>1000</height>
    </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Lucida Console</family>
+    <pointsize>10</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>ColorBox Librarian</string>
   </property>
-  <widget class="QPushButton" name="uploadImageButton">
+  <widget class="QPushButton" name="uploadButton">
    <property name="geometry">
     <rect>
-     <x>541</x>
+     <x>531</x>
      <y>40</y>
-     <width>181</width>
+     <width>191</width>
      <height>61</height>
     </rect>
    </property>
@@ -51,12 +57,12 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="downloadImageButton">
+  <widget class="QPushButton" name="downloadButton">
    <property name="geometry">
     <rect>
-     <x>541</x>
+     <x>531</x>
      <y>110</y>
-     <width>181</width>
+     <width>191</width>
      <height>71</height>
     </rect>
    </property>
@@ -98,7 +104,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>379</y>
+     <y>459</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -118,7 +124,7 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>379</y>
+     <y>459</y>
      <width>171</width>
      <height>21</height>
     </rect>
@@ -138,7 +144,7 @@
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>380</y>
+     <y>460</y>
      <width>181</width>
      <height>16</height>
     </rect>
@@ -157,19 +163,19 @@
   <widget class="QListWidget" name="libraryList">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>40</y>
+     <x>10</x>
+     <y>80</y>
      <width>501</width>
-     <height>331</height>
+     <height>351</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="selectImageButton">
+  <widget class="QPushButton" name="selectButton">
    <property name="geometry">
     <rect>
-     <x>541</x>
+     <x>531</x>
      <y>190</y>
-     <width>181</width>
+     <width>191</width>
      <height>71</height>
     </rect>
    </property>
@@ -192,7 +198,7 @@
     <rect>
      <x>30</x>
      <y>10</y>
-     <width>451</width>
+     <width>641</width>
      <height>16</height>
     </rect>
    </property>
@@ -204,8 +210,119 @@
     </font>
    </property>
    <property name="text">
-    <string>Choose a Slot(Double Click to Select Image)</string>
+    <string>Choose a Slot(Double Click to Select Library Entry)</string>
    </property>
+  </widget>
+  <widget class="QTabWidget" name="libraryTabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>501</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="onedlut">
+    <attribute name="title">
+     <string>1DLUT</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="threedlut">
+    <attribute name="title">
+     <string>3DLUT</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="matrix">
+    <attribute name="title">
+     <string>Matrix</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="image">
+    <attribute name="title">
+     <string>Image</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="overlay">
+    <attribute name="title">
+     <string>Overlay</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="amf">
+    <attribute name="title">
+     <string>AMF</string>
+    </attribute>
+   </widget>
+  </widget>
+  <widget class="QComboBox" name="matrixChoiceComboBox">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>270</y>
+     <width>83</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <item>
+    <property name="text">
+     <string>MX2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MX3</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="lut1dChoiceComboBox">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>270</y>
+     <width>83</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <item>
+    <property name="text">
+     <string>1DL1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1DL2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1DL3</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1DL4</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

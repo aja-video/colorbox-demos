@@ -24,18 +24,31 @@ public:
     Dialog(QWidget *parent = nullptr);
     ~Dialog();
 
+    // Needs to correspond ot index of tabs.
+    enum LibaryTabEnum
+    {
+        OneDLUT,
+        ThreeDLUT,
+        MATRIX,
+        IMAGE,
+        OVERLAY,
+        AMF
+    };
 public slots:
     void ipAddressEdited();
-    void handleUploadImageButton();
-    void handleDownloadImageButton();
-    void handleSelectImageButton();
+    void handleUploadButton();
+    void handleDownloadButton();
+    void handleSelectButton();
+    void handleLibraryTabChanged(int index);
 
     // OpenAPI Slots
     void handleUploadFile(QString summary);
     void handleUploadFileError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)  ;
-    void handleGetImageLibrary(QList<OpenAPI::OAILibraryEntry> summary);
-    void handleGetImageLibraryError(QList<OpenAPI::OAILibraryEntry> summary,QNetworkReply::NetworkError error_type, QString error_str);
+    void handleGetLibrary(QList<OpenAPI::OAILibraryEntry> summary);
+    void handleGetLibraryError(QList<OpenAPI::OAILibraryEntry> summary,QNetworkReply::NetworkError error_type, QString error_str);
 
+    void getCurrentLibrary();
+    Dialog::LibaryTabEnum getCurrentLibraryEnum();
     void downLoadImage();
 
 signals:
