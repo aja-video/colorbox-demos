@@ -22,7 +22,7 @@ from openapi_client.api import default_api
 from openapi_client.rest import ApiException
 from openapi_client import models
 
-kinds = ["lut_1d", "lut_3d", "matrix", "image"]
+kinds = ["lut_1d", "lut_3d", "matrix", "image", "overlay"]
 
 parser = argparse.ArgumentParser(description="")
 parser.add_argument("--host", default="127.0.0.1", help="the hostname or ip of device")
@@ -101,6 +101,8 @@ with openapi_client.ApiClient(
             lib = client.get_matrix_library()
         elif args.kind == "image":
             lib = client.get_image_library()
+        elif args.kind == "overlay":
+            lib = client.get_overlay_library()
         if lib:
             # library entries are 1 based, so account for that
             entry_to_use = len(lib)

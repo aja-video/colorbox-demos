@@ -29,7 +29,7 @@ void usage()
               << "  --port PORT          the port number to use" << std::endl
               << "  --username USERNAME  username to use if authentication required" << std::endl
               << "  --password PASSWORD  password to use if authentication required" << std::endl
-              << "  --kind KIND          kind of upload, choices are: lut_1d, lut_3d, matrix, image" << std::endl
+              << "  --kind KIND          kind of upload, choices are: lut_1d, lut_3d, matrix, image, overlay" << std::endl
               << "  --file FILE          the file to upload to library" << std::endl
               << "  --entry ENTRY        the library entry to upload to, 1 - 16," << std::endl
               << "                       a value of 0 will find first open entry and use it" << std::endl
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
     }
 
 	// sanity check the input
-	std::vector<std::string>kinds = {"lut_1d", "lut_3d", "matrix", "image"};
+	std::vector<std::string>kinds = {"lut_1d", "lut_3d", "matrix", "image", "overlay"};
 	std::string availKinds = "";
 	bool kindGood = false;
 	for (const auto &k : kinds) {
@@ -173,6 +173,8 @@ int main(int argc, char *argv[])
 			task = api->getMatrixLibrary();
 		} else if (kind == "image") {
 			task = api->getImageLibrary();
+		} else if (kind == "overlay") {
+			task = api->getOverlayLibrary();
 		}
 
 
