@@ -19,7 +19,7 @@ import (
 )
 
 func main() {
-	kinds := []string{"lut_1d", "lut_3d", "matrix", "image"}
+	kinds := []string{"lut_1d", "lut_3d", "matrix", "image", "overlay"}
 
 	host := flag.String("host", "127.0.0.1", "the hostname or ip of device")
 	port := flag.Int("port", 80, "the port number to use")
@@ -83,6 +83,8 @@ func main() {
 			lib, r, err = client.DefaultApi.GetMatrixLibrary(ctx).Execute()
 		case "image":
 			lib, r, err = client.DefaultApi.GetImageLibrary(ctx).Execute()
+		case "overlay":
+			lib, r, err = client.DefaultApi.GetOverlayLibrary(ctx).Execute()
 		}
 
 		if err != nil {
