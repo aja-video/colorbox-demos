@@ -7053,9 +7053,9 @@ func (a *DefaultApiService) UploadFileExecute(r ApiUploadFileRequest) (string, *
 		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
 		fileLocalVarFileBytes = fbs
 		fileLocalVarFileName = fileLocalVarFile.Name()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 		fileLocalVarFile.Close()
 	}
-	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	if r.kind != nil {
 		localVarFormParams.Add("kind", parameterToString(*r.kind, ""))
 	}
@@ -7206,12 +7206,14 @@ func (a *DefaultApiService) UploadMultipleFilesExecute(r ApiUploadMultipleFilesR
 		fileLocalVarFile = *r.file
 	}
 	if fileLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
-		fileLocalVarFileBytes = fbs
-		fileLocalVarFileName = fileLocalVarFile.Name()
-		fileLocalVarFile.Close()
+		for i := 0; i < len(fileLocalVarFile); i++ {
+			fbs, _ := ioutil.ReadAll(fileLocalVarFile[i])
+			fileLocalVarFileBytes = fbs
+			fileLocalVarFileName = fileLocalVarFile[i].Name()
+			formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+			fileLocalVarFile[i].Close()
+		}
 	}
-	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	if r.kind != nil {
 		localVarFormParams.Add("kind", parameterToString(*r.kind, ""))
 	}
