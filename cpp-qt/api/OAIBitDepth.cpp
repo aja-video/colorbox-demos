@@ -54,6 +54,10 @@ void OAIBitDepth::fromJson(QString jsonString) {
         m_value = eOAIBitDepth::_12_BIT;
         m_value_isSet = m_value_isValid = true;
     }
+    else if ( jsonString.compare("8 Bit", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIBitDepth::_8_BIT;
+        m_value_isSet = m_value_isValid = true;
+    }
 }
 
 void OAIBitDepth::fromJsonValue(QJsonValue json) {
@@ -74,6 +78,9 @@ QString OAIBitDepth::asJson() const {
             break;
         case eOAIBitDepth::_12_BIT:
             val = "12 Bit";
+            break;
+        case eOAIBitDepth::_8_BIT:
+            val = "8 Bit";
             break;
         default:
             break;

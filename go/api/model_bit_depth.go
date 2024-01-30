@@ -27,6 +27,7 @@ const (
 	BITDEPTH_AUTO BitDepth = "Auto"
 	BITDEPTH__10_BIT BitDepth = "10 Bit"
 	BITDEPTH__12_BIT BitDepth = "12 Bit"
+	BITDEPTH__8_BIT BitDepth = "8 Bit"
 )
 
 // All allowed values of BitDepth enum
@@ -34,6 +35,7 @@ var AllowedBitDepthEnumValues = []BitDepth{
 	"Auto",
 	"10 Bit",
 	"12 Bit",
+	"8 Bit",
 }
 
 func (v *BitDepth) UnmarshalJSON(src []byte) error {
