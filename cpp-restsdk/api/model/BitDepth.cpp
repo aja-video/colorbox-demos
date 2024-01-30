@@ -35,6 +35,8 @@ BitDepth::eBitDepth toEnum(const EnumUnderlyingType& val)
         return BitDepth::eBitDepth::BitDepth__10_BIT;
     if (val == utility::conversions::to_string_t(U("12 Bit")))
         return BitDepth::eBitDepth::BitDepth__12_BIT;
+    if (val == utility::conversions::to_string_t(U("8 Bit")))
+        return BitDepth::eBitDepth::BitDepth__8_BIT;
     return {};
 }
 
@@ -48,6 +50,8 @@ EnumUnderlyingType fromEnum(BitDepth::eBitDepth e)
         return U("10 Bit");
     case BitDepth::eBitDepth::BitDepth__12_BIT:
         return U("12 Bit");
+    case BitDepth::eBitDepth::BitDepth__8_BIT:
+        return U("8 Bit");
     default:
         break;
     }

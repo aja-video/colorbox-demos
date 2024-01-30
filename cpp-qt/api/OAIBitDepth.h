@@ -43,7 +43,8 @@ public:
         INVALID_VALUE_OPENAPI_GENERATED = 0,
         AUTO, 
         _10_BIT, 
-        _12_BIT
+        _12_BIT, 
+        _8_BIT
     };
     OAIBitDepth::eOAIBitDepth getValue() const;
     void setValue(const OAIBitDepth::eOAIBitDepth& value);

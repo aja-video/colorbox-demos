@@ -54,6 +54,7 @@ public:
         BitDepth_AUTO,
         BitDepth__10_BIT,
         BitDepth__12_BIT,
+        BitDepth__8_BIT,
     };
 
     eBitDepth getValue() const;
