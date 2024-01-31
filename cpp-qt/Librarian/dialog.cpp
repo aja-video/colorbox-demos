@@ -355,8 +355,10 @@ void Dialog::handleUploadButton()
                     qDebug() << "File to Upload" << filesToUpload.at(i);
                     fileElement.setFileName(filesToUpload.at(i));
                     fileElements.push_back(fileElement);
-                    _api.uploadMultipleFiles(fileElements,fileType,entryChoice);
                 }
+                QFileInfo fi(fileName);
+                QString selection = fi.fileName();
+                _api.uploadMultipleFiles(fileElements,fileType,entryChoice,selection);
             }
 
         }
