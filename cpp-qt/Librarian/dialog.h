@@ -50,6 +50,7 @@ public slots:
     void getCurrentLibrary();
     Dialog::LibaryTabEnum getCurrentLibraryEnum();
     void downLoadImage();
+    QStringList parseAMFFile(QString fileName);
 
 signals:
 

@@ -228,6 +228,7 @@ void Dialog::handleGetLibrary(QList<OpenAPI::OAILibraryEntry> summary)
     // This part of course optional
     if ( getCurrentLibraryEnum() == Dialog::IMAGE)
     {
+        // Enable Framestore if using FrameStore Library
         OAIFrameStore frameStore;
         frameStore.setEnabled(true);
         frameStore.setDynamic(false);
@@ -235,6 +236,7 @@ void Dialog::handleGetLibrary(QList<OpenAPI::OAILibraryEntry> summary)
     }
     else
     {
+        // Else use the "Live" pipeline
         OAIFrameStore frameStore;
         frameStore.setEnabled(false);
         frameStore.setDynamic(false);
@@ -327,11 +329,20 @@ void Dialog::handleUploadButton()
     }
     else
     {
-        int entryChoice = _ui->libraryList->currentRow()+1;
-        OAIHttpFileElement fileElement;
-        fileElement.setFileName(fileName);
-        QString fileType = getCurrentFileAttribute(getCurrentLibraryEnum());
-        _api.uploadFile(fileElement,fileType,entryChoice);
+        if ( getCurrentLibraryEnum() != Dialog::AMF)
+        {
+            // Just upload 1 File.
+            int entryChoice = _ui->libraryList->currentRow()+1;
+            OAIHttpFileElement fileElement;
+            fileElement.setFileName(fileName);
+            QString fileType = getCurrentFileAttribute(getCurrentLibraryEnum());
+            _api.uploadFile(fileElement,fileType,entryChoice);
+        }
+        else
+        {
+            // Potential Multiple files to be uploaded with AMF Upload
+            QStringList filesToUpload = parseAMFFile(fileName);
+        }
     }
 
 }
@@ -536,4 +547,180 @@ void Dialog::keyPressEvent(QKeyEvent *event)
 
 }
 
+#include <QtXml>
+QList<QDomElement> findLookTransforms(QDomElement pipeLineElement)
+{
+    QList<QDomElement> lookTransformElements;
+    QDomNodeList lookTransformNodes = pipeLineElement.elementsByTagName("aces:lookTransform");
+    for ( int lookCount=0; lookCount<lookTransformNodes.count();lookCount++)
+    {
+        QDomNode lookTransferNode = lookTransformNodes.at(lookCount);
+        if ( lookTransferNode.isElement())
+        {
+            QDomElement lookTransferElement = lookTransferNode.toElement();
+            lookTransformElements.append(lookTransferElement);
+        }
 
+    }
+    return lookTransformElements;
+}
+
+QDomElement findInputTransform(QDomElement pipeLineElement)
+{
+    QDomNodeList inputTransformNodes = pipeLineElement.elementsByTagName("aces:inputTransform");
+    QDomElement inputTransformElement;
+    if (inputTransformNodes.size() == 1 )
+    {
+        QDomNode inputTransformNode = inputTransformNodes.at(0);
+        if ( inputTransformNode.isElement())
+        {
+            inputTransformElement = inputTransformNode.toElement();
+        }
+
+    }
+    return  inputTransformElement;
+}
+
+QDomElement getPipelineElement(QString fileName)
+{
+    QDomDocument document;
+    QDomElement pipelineElement;
+    // Open a file for reading
+    QFile file(fileName);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Failed to open the file for reading.";
+        return pipelineElement;
+    }
+    else
+    {
+        // loading
+        if(!document.setContent(&file))
+        {
+            qDebug() << "Failed to load the file for reading.";
+            return pipelineElement;
+        }
+        file.close();
+    }
+    QDomElement root = document.firstChildElement();
+    QDomNodeList pipelineNodes = root.elementsByTagName("aces:pipeline");
+    if (pipelineNodes.size() == 1 )
+    {
+        QDomNode pipelineNode = pipelineNodes.at(0);
+        if(pipelineNode.isElement())
+        {
+            pipelineElement = pipelineNode.toElement();
+
+        }
+
+    }
+
+    return pipelineElement;
+
+}
+
+QStringList Dialog::parseAMFFile(QString fileName)
+{
+    qDebug() << "parseAMFFile" << fileName;
+
+    QStringList fileList;
+    // Start with AMF File
+    fileList.push_back(fileName);
+
+    QDir d = QFileInfo(fileName).absoluteDir();
+    QString filePath=d.absolutePath();
+    qDebug() << "Path" << filePath;
+
+    QDomElement pipelineElement = getPipelineElement(fileName);
+    if ( !pipelineElement.isElement())
+    {
+        qDebug() << "Pipeline Element Not Found";
+        fileList.clear();
+        return fileList;
+    }
+
+    QDomElement inputTranformElement = findInputTransform(pipelineElement);
+    if ( inputTranformElement.isElement())
+    {
+        QDomNodeList fileNodes = inputTranformElement.elementsByTagName("aces:file");
+        QDomNode fileNode = fileNodes.at(0);
+        if ( fileNode.isElement())
+        {
+            QDomElement fileElement = fileNode.toElement();
+            QString foundFileName = fileElement.text();
+            QString fullFileName;
+            QFileInfo fi(foundFileName);
+            if (fi.exists() && fi.isFile())
+            {
+                fullFileName = foundFileName;
+            }
+            else
+            {
+                QDirIterator dirIt(filePath,QDirIterator::Subdirectories);
+                while (dirIt.hasNext()) {
+                    dirIt.next();
+                    if (QFileInfo(dirIt.filePath()).isFile())
+                        if ( dirIt.fileInfo().fileName() == foundFileName )
+                        {
+                            fullFileName =  dirIt.fileInfo().absoluteFilePath();
+                            qDebug() << fullFileName;
+                        }
+
+                }
+            }
+
+            if ( fullFileName.size())
+            {
+                qDebug() << "Input File" << fullFileName;
+            }
+        }
+
+
+    }
+    QList<QDomElement> lookTransformElements = findLookTransforms(pipelineElement);
+    qDebug() << "Num Looks " << lookTransformElements.size();
+    for ( int lookNumber=0; lookNumber < lookTransformElements.size(); lookNumber++)
+    {
+        ;//loadLookTransform(lookTransformElements.at(lookNumber),config,grpTransform,filePath);
+        QDomElement lookTransformElement = lookTransformElements.at(lookNumber);
+        QDomElement fileElement =  lookTransformElement.firstChildElement("aces:file");
+        if ( fileElement.isElement())
+        {
+            QString foundFileName = fileElement.text();
+            QString fullFileName;
+            QFileInfo fi(foundFileName);
+            if (fi.exists() && fi.isFile())
+            {
+                fullFileName = foundFileName;
+            }
+            else
+            {
+                ///kluge but this will work
+                if ( foundFileName.startsWith("./"))
+                    foundFileName = foundFileName.remove("./");
+
+                //qDebug() << fileName;
+                QDirIterator dirIt(filePath,QDirIterator::Subdirectories);
+                while (dirIt.hasNext()) {
+                    dirIt.next();
+//                    if (QFileInfo(dirIt.filePath()).isFile())
+//                        qDebug() << dirIt.fileInfo().fileName() << fileName;
+                    if ( dirIt.fileInfo().fileName() == foundFileName )
+                    {
+                        fullFileName =  dirIt.fileInfo().absoluteFilePath();
+                        //qDebug() << fullFileName;
+                    }
+
+                }
+            }
+
+            if ( fullFileName.size())
+            {
+                qDebug() << "Look File" << fullFileName;
+            }
+        }
+
+    }
+
+    return fileList;
+}
