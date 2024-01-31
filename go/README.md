@@ -41,5 +41,8 @@ set_overlay_text/set_overlay_text -host 192.168.1.100
 
 ## To run the lib load example on IP 192.168.1.100
 ```
-lib_load/lib_load -host 192.168.1.100 -kind "lut_1d" -file "path_to_local_lut" -entry 0 
+lib_load/lib_load -host 192.168.1.100 -kind "lut_1d" -file "path_to_local_lut" -entry 0
+
+# or muliple files (for use with amf library items)
+lib_load/lib_load -host 192.168.1.100 -kind "amf" -file "path_to_amf" -file "path_to_sidecar_file" -entry 0
 ```
