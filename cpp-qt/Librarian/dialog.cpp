@@ -139,47 +139,45 @@ void Dialog::getCurrentLibrary()
 {
     int index = _ui->libraryTabWidget->currentIndex();
 
-    qDebug() << "Current Library" << index;
+    QString libraryName;
+    _ui->downloadButton->setDisabled(false);
     switch ( index )
     {
     case Dialog::OneDLUT:
         _api.get1dLutLibrary();
-        _ui->uploadButton->setText("Upload 1DLUT");
-        _ui->downloadButton->setText("Download 1DLUT");
-        _ui->selectButton->setText("Select 1DLUT");
+        libraryName = "1DLUT";
     break;
     case Dialog::ThreeDLUT:
         _api.get3dLutLibrary();
-        _ui->uploadButton->setText("Upload 3DLUT");
-        _ui->downloadButton->setText("Download 3DLUT");
-        _ui->selectButton->setText("Select 3DLUT");
+         libraryName = "3DLUT";
 
     break;
     case Dialog::MATRIX:
         _api.getMatrixLibrary();
-        _ui->uploadButton->setText("Upload Matrix");
-        _ui->downloadButton->setText("Download Matrix");
-        _ui->selectButton->setText("Select Matrix");
+        libraryName = "Matrix";
     break;
     case Dialog::IMAGE:
         _api.getImageLibrary();
-        _ui->uploadButton->setText("Upload Image");
-        _ui->downloadButton->setText("Download Image");
-        _ui->selectButton->setText("Select Image");
+        libraryName = "Image";
     break;
     case Dialog::OVERLAY:
         _api.getOverlayLibrary();
-        _ui->uploadButton->setText("Upload Overlay");
-        _ui->downloadButton->setText("Download Overlay");
-        _ui->selectButton->setText("Select Overlay");
+        libraryName = "Overlay";
     break;
     case Dialog::AMF:
         _api.getAmfLibrary();
-        _ui->uploadButton->setText("Upload AMF File");
-        _ui->downloadButton->setText("Download AMF File");
-        _ui->selectButton->setText("Select AMF File");
+        _ui->downloadButton->setDisabled(true);
+        libraryName = "AMF";
     break;
     }
+
+    _ui->uploadButton->setText(QString("Upload %1 File").arg(libraryName));
+    _ui->downloadButton->setText(QString("Download %1 File").arg(libraryName));
+    _ui->selectButton->setText(QString("Select %1 File").arg(libraryName));
+
+    _ui->uploadButton->setToolTip(QString("Select %1 to upload to ColorBox").arg(libraryName));
+    _ui->downloadButton->setToolTip(QString("Download %1 from ColorBox to demos bin directory").arg(libraryName));
+    _ui->selectButton->setToolTip(QString("Select %1 on ColorBox for FrameStore").arg(libraryName));
 
 }
 
@@ -555,6 +553,10 @@ void Dialog::handleSelectButton()
             }
             case Dialog::OVERLAY:
             {
+                OpenAPI::OAIAcesConfig acesConfig;
+                acesConfig.setAmfLibraryEntry(entryChoice);
+                _api.setAcesConfig(acesConfig);
+
                 break;
             }
             case Dialog::AMF:
