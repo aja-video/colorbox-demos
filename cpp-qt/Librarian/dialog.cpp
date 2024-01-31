@@ -5,7 +5,7 @@
 /*!
  * Librarian
  * The demo demostrates how to interface to a ColorBox Library. This example
- * uses the framestore library but the same basic technique can be used for the
+ * This demo can be used to Upload and Download a file to
  * 1DLUT,3DLUT and Matrix library
  *
  * To get the ColorBox Image library call _api.getImageLibrary();
@@ -83,6 +83,8 @@ Dialog::Dialog(QWidget *parent)
     connect(&_api, &OAIDefaultApi::getAmfLibrarySignalE, this, &Dialog::handleGetLibraryError);
     connect(&_api, &OAIDefaultApi::uploadFileSignal, this, &Dialog::handleUploadFile);
     connect(&_api, &OAIDefaultApi::uploadFileSignalE, this, &Dialog::handleUploadFileError);
+    connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignal, this, &Dialog::handleUploadMultipleFiles);
+    connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignalE, this, &Dialog::handleUploadMultipleFilesError);
 
     _ui->uploadButton->setToolTip("Select Image to upload to ColorBox");
     _ui->downloadButton->setToolTip("Download Image from ColorBox to demos bin directory");
@@ -329,10 +331,10 @@ void Dialog::handleUploadButton()
     }
     else
     {
+        int entryChoice = _ui->libraryList->currentRow()+1;
         if ( getCurrentLibraryEnum() != Dialog::AMF)
         {
             // Just upload 1 File.
-            int entryChoice = _ui->libraryList->currentRow()+1;
             OAIHttpFileElement fileElement;
             fileElement.setFileName(fileName);
             QString fileType = getCurrentFileAttribute(getCurrentLibraryEnum());
@@ -342,6 +344,21 @@ void Dialog::handleUploadButton()
         {
             // Potential Multiple files to be uploaded with AMF Upload
             QStringList filesToUpload = parseAMFFile(fileName);
+            int numFilesToUpload =filesToUpload.size();
+            if (numFilesToUpload)
+            {
+                QString fileType = getCurrentFileAttribute(getCurrentLibraryEnum());
+                QList<OAIHttpFileElement> fileElements;
+                for ( int i=0; i<numFilesToUpload; i++ )
+                {
+                    OAIHttpFileElement fileElement;
+                    qDebug() << "File to Upload" << filesToUpload.at(i);
+                    fileElement.setFileName(filesToUpload.at(i));
+                    fileElements.push_back(fileElement);
+                    _api.uploadMultipleFiles(fileElements,fileType,entryChoice);
+                }
+            }
+
         }
     }
 
@@ -356,6 +373,18 @@ void Dialog::handleUploadFile(QString summary)
 
 void Dialog:: handleUploadFileError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
 {
+    qDebug() << error_str;
+}
+
+void Dialog::handleUploadMultipleFiles(QString summary)
+{
+    // Refresh Library List
+    getCurrentLibrary();
+}
+
+void Dialog:: handleUploadMultipleFilesError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
+{
+    qDebug() << "Multiple File Upload Error";
     qDebug() << error_str;
 }
 
@@ -548,179 +577,62 @@ void Dialog::keyPressEvent(QKeyEvent *event)
 }
 
 #include <QtXml>
-QList<QDomElement> findLookTransforms(QDomElement pipeLineElement)
-{
-    QList<QDomElement> lookTransformElements;
-    QDomNodeList lookTransformNodes = pipeLineElement.elementsByTagName("aces:lookTransform");
-    for ( int lookCount=0; lookCount<lookTransformNodes.count();lookCount++)
-    {
-        QDomNode lookTransferNode = lookTransformNodes.at(lookCount);
-        if ( lookTransferNode.isElement())
-        {
-            QDomElement lookTransferElement = lookTransferNode.toElement();
-            lookTransformElements.append(lookTransferElement);
-        }
-
-    }
-    return lookTransformElements;
-}
-
-QDomElement findInputTransform(QDomElement pipeLineElement)
-{
-    QDomNodeList inputTransformNodes = pipeLineElement.elementsByTagName("aces:inputTransform");
-    QDomElement inputTransformElement;
-    if (inputTransformNodes.size() == 1 )
-    {
-        QDomNode inputTransformNode = inputTransformNodes.at(0);
-        if ( inputTransformNode.isElement())
-        {
-            inputTransformElement = inputTransformNode.toElement();
-        }
-
-    }
-    return  inputTransformElement;
-}
-
-QDomElement getPipelineElement(QString fileName)
-{
-    QDomDocument document;
-    QDomElement pipelineElement;
-    // Open a file for reading
-    QFile file(fileName);
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        qDebug() << "Failed to open the file for reading.";
-        return pipelineElement;
-    }
-    else
-    {
-        // loading
-        if(!document.setContent(&file))
-        {
-            qDebug() << "Failed to load the file for reading.";
-            return pipelineElement;
-        }
-        file.close();
-    }
-    QDomElement root = document.firstChildElement();
-    QDomNodeList pipelineNodes = root.elementsByTagName("aces:pipeline");
-    if (pipelineNodes.size() == 1 )
-    {
-        QDomNode pipelineNode = pipelineNodes.at(0);
-        if(pipelineNode.isElement())
-        {
-            pipelineElement = pipelineNode.toElement();
-
-        }
-
-    }
-
-    return pipelineElement;
-
-}
 
 QStringList Dialog::parseAMFFile(QString fileName)
 {
+/////Read about QStringList::indexOf methods.
     qDebug() << "parseAMFFile" << fileName;
 
     QStringList fileList;
     // Start with AMF File
     fileList.push_back(fileName);
+    QFile file(fileName);
 
     QDir d = QFileInfo(fileName).absoluteDir();
     QString filePath=d.absolutePath();
-    qDebug() << "Path" << filePath;
 
-    QDomElement pipelineElement = getPipelineElement(fileName);
-    if ( !pipelineElement.isElement())
-    {
-        qDebug() << "Pipeline Element Not Found";
-        fileList.clear();
+
+    file.open(QFile::ReadOnly|QFile::Text);
+    QDomDocument dom;
+    QString error;
+
+    int line, column;
+
+    if(!dom.setContent(&file, &error, &line, &column)) {
+        qDebug() << "Error:" << error << "in line " << line << "column" << column;
         return fileList;
     }
-
-    QDomElement inputTranformElement = findInputTransform(pipelineElement);
-    if ( inputTranformElement.isElement())
+    QDomNodeList nodes = dom.elementsByTagName("aces:file");
+    for(int i = 0; i < nodes.count(); i++)
     {
-        QDomNodeList fileNodes = inputTranformElement.elementsByTagName("aces:file");
-        QDomNode fileNode = fileNodes.at(0);
-        if ( fileNode.isElement())
+        QDomNode elm = nodes.at(i);
+        if(elm.isElement())
         {
-            QDomElement fileElement = fileNode.toElement();
-            QString foundFileName = fileElement.text();
+            qDebug() << elm.toElement().tagName()
+                     << " = "
+                     <<  elm.toElement().text();
+            QString foundFileName = elm.toElement().text();
             QString fullFileName;
-            QFileInfo fi(foundFileName);
-            if (fi.exists() && fi.isFile())
-            {
-                fullFileName = foundFileName;
-            }
-            else
-            {
-                QDirIterator dirIt(filePath,QDirIterator::Subdirectories);
-                while (dirIt.hasNext()) {
-                    dirIt.next();
-                    if (QFileInfo(dirIt.filePath()).isFile())
-                        if ( dirIt.fileInfo().fileName() == foundFileName )
-                        {
-                            fullFileName =  dirIt.fileInfo().absoluteFilePath();
-                            qDebug() << fullFileName;
-                        }
-
+            //Kluge needed for Windows.
+            if ( foundFileName.startsWith("./"))
+                foundFileName = foundFileName.remove("./");
+            QDirIterator dirIt(filePath,QDirIterator::Subdirectories);
+            while (dirIt.hasNext()) {
+                dirIt.next();
+//                if (QFileInfo(dirIt.filePath()).isFile())
+//                    qDebug() << dirIt.fileInfo().fileName() << fileName;
+                if ( dirIt.fileInfo().fileName() == foundFileName )
+                {
+                    fullFileName =  dirIt.fileInfo().absoluteFilePath();
+                    //qDebug() << fullFileName;
                 }
-            }
 
-            if ( fullFileName.size())
-            {
-                qDebug() << "Input File" << fullFileName;
             }
+            fileList.push_back(fullFileName);
         }
-
-
-    }
-    QList<QDomElement> lookTransformElements = findLookTransforms(pipelineElement);
-    qDebug() << "Num Looks " << lookTransformElements.size();
-    for ( int lookNumber=0; lookNumber < lookTransformElements.size(); lookNumber++)
-    {
-        ;//loadLookTransform(lookTransformElements.at(lookNumber),config,grpTransform,filePath);
-        QDomElement lookTransformElement = lookTransformElements.at(lookNumber);
-        QDomElement fileElement =  lookTransformElement.firstChildElement("aces:file");
-        if ( fileElement.isElement())
-        {
-            QString foundFileName = fileElement.text();
-            QString fullFileName;
-            QFileInfo fi(foundFileName);
-            if (fi.exists() && fi.isFile())
-            {
-                fullFileName = foundFileName;
-            }
-            else
-            {
-                ///kluge but this will work
-                if ( foundFileName.startsWith("./"))
-                    foundFileName = foundFileName.remove("./");
-
-                //qDebug() << fileName;
-                QDirIterator dirIt(filePath,QDirIterator::Subdirectories);
-                while (dirIt.hasNext()) {
-                    dirIt.next();
-//                    if (QFileInfo(dirIt.filePath()).isFile())
-//                        qDebug() << dirIt.fileInfo().fileName() << fileName;
-                    if ( dirIt.fileInfo().fileName() == foundFileName )
-                    {
-                        fullFileName =  dirIt.fileInfo().absoluteFilePath();
-                        //qDebug() << fullFileName;
-                    }
-
-                }
-            }
-
-            if ( fullFileName.size())
-            {
-                qDebug() << "Look File" << fullFileName;
-            }
-        }
-
     }
 
     return fileList;
+
+
 }
