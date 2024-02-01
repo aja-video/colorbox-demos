@@ -62,9 +62,13 @@ protected:
     void recallSettings();
     void saveSettings();
 
+    void uploadFile(QString fileName);
+
 	bool _cbConnected;
 
     void keyPressEvent(QKeyEvent *);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *ev);
 
 	OpenAPI::OAIDefaultApi _api;
 	QString _currentIPAddress;

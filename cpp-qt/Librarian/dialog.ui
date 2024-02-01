@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>741</width>
-    <height>529</height>
+    <width>825</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>825</width>
+    <height>500</height>
    </size>
   </property>
   <property name="font">
@@ -34,9 +34,9 @@
   <widget class="QPushButton" name="uploadButton">
    <property name="geometry">
     <rect>
-     <x>531</x>
-     <y>40</y>
-     <width>191</width>
+     <x>601</x>
+     <y>90</y>
+     <width>211</width>
      <height>61</height>
     </rect>
    </property>
@@ -60,9 +60,9 @@
   <widget class="QPushButton" name="downloadButton">
    <property name="geometry">
     <rect>
-     <x>531</x>
-     <y>110</y>
-     <width>191</width>
+     <x>601</x>
+     <y>160</y>
+     <width>211</width>
      <height>71</height>
     </rect>
    </property>
@@ -164,18 +164,24 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>80</y>
-     <width>501</width>
+     <y>90</y>
+     <width>581</width>
      <height>351</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QPushButton" name="selectButton">
    <property name="geometry">
     <rect>
-     <x>531</x>
-     <y>190</y>
-     <width>191</width>
+     <x>601</x>
+     <y>240</y>
+     <width>211</width>
      <height>71</height>
     </rect>
    </property>
@@ -218,8 +224,8 @@
     <rect>
      <x>10</x>
      <y>50</y>
-     <width>501</width>
-     <height>21</height>
+     <width>561</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -229,7 +235,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="onedlut">
     <attribute name="title">
@@ -265,9 +271,9 @@
   <widget class="QComboBox" name="matrixChoiceComboBox">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>270</y>
-     <width>83</width>
+     <x>600</x>
+     <y>320</y>
+     <width>101</width>
      <height>30</height>
     </rect>
    </property>
@@ -275,6 +281,7 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
+     <bold>true</bold>
     </font>
    </property>
    <item>
@@ -291,9 +298,9 @@
   <widget class="QComboBox" name="lut1dChoiceComboBox">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>270</y>
-     <width>83</width>
+     <x>710</x>
+     <y>320</y>
+     <width>101</width>
      <height>30</height>
     </rect>
    </property>
@@ -301,6 +308,7 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
+     <bold>true</bold>
     </font>
    </property>
    <item>
