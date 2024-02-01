@@ -93,7 +93,15 @@ Dialog::Dialog(QWidget *parent)
     recallSettings();
     ipAddressEdited();
 
+    qDebug() << "libraryList height" <<    _ui->libraryList->height();
+    QFontMetrics fm(_ui->libraryList->fontMetrics());
+    qDebug() << "Font Height" << fm.height();
+    QFont cf = _ui->libraryList->font();
+    cf.setPixelSize((_ui->libraryList->height()/(fm.height()))-1);
+    _ui->libraryList->setFont(cf);
+
     this->setFocus();
+    setAcceptDrops(true);
 }
 
 Dialog::~Dialog()
@@ -119,6 +127,15 @@ void Dialog::saveSettings()
 
 }
 
+void Dialog::dragEnterEvent( QDragEnterEvent *ev )
+{
+    if (ev->mimeData()->hasFormat("text/uri-list"))
+        ev->acceptProposedAction();
+    else
+        ev->setAccepted( false );
+}
+
+
 
 Dialog::LibaryTabEnum Dialog::getCurrentLibraryEnum()
 {
@@ -137,11 +154,10 @@ Dialog::LibaryTabEnum Dialog::getCurrentLibraryEnum()
 
 void Dialog::getCurrentLibrary()
 {
-    int index = _ui->libraryTabWidget->currentIndex();
-
     QString libraryName;
     _ui->downloadButton->setDisabled(false);
-    switch ( index )
+
+    switch ( _ui->libraryTabWidget->currentIndex() )
     {
     case Dialog::OneDLUT:
         _api.get1dLutLibrary();
@@ -150,7 +166,6 @@ void Dialog::getCurrentLibrary()
     case Dialog::ThreeDLUT:
         _api.get3dLutLibrary();
          libraryName = "3DLUT";
-
     break;
     case Dialog::MATRIX:
         _api.getMatrixLibrary();
@@ -166,7 +181,7 @@ void Dialog::getCurrentLibrary()
     break;
     case Dialog::AMF:
         _api.getAmfLibrary();
-        _ui->downloadButton->setDisabled(true);
+        _ui->downloadButton->setDisabled(true); // Need to download multiple files potentially
         libraryName = "AMF";
     break;
     }
@@ -214,11 +229,14 @@ void Dialog::handleGetLibrary(QList<OpenAPI::OAILibraryEntry> summary)
 
     _ui->libraryList->clear();
     int entryNumber = 1;
+
     foreach (const OpenAPI::OAILibraryEntry entry, summary)
     {
+
         QListWidgetItem *newLibraryItem = new QListWidgetItem;
-        newLibraryItem->setText(entry.getFileName());
-        newLibraryItem->setIcon(this->style()->standardIcon(QStyle::SP_ArrowForward));
+        QString entryNumberString = QString::number(entryNumber).rightJustified(2,'0');
+        QString libraryString = QString("%1 - %2").arg(entryNumberString).arg(entry.getFileName());
+        newLibraryItem->setText(libraryString);
         _ui->libraryList->insertItem(entryNumber,newLibraryItem );
         entryNumber++;
     }
@@ -261,11 +279,12 @@ QString getUploadFileFilter(Dialog::LibaryTabEnum libEnum)
 {
     switch ( libEnum )
     {
+    default:
     case Dialog::LibaryTabEnum::OneDLUT:
         return QString("1D LUT Files (*.cube *.spi1d )");
         break;
     case Dialog::LibaryTabEnum::ThreeDLUT:
-        return QString("3D LUT Files (*.cube *.spi3d )");
+        return QString("3D LUT Files (*.cube *.3dl *.spi3d )");
         break;
     case Dialog::LibaryTabEnum::MATRIX:
         return QString("Matrix Files (*.ajamtx *.spimtx )");
@@ -285,6 +304,7 @@ QString getCurrentFileAttribute(Dialog::LibaryTabEnum libEnum)
 {
     switch ( libEnum )
     {
+    default:
     case Dialog::LibaryTabEnum::OneDLUT:
         return QString("lut_1d");
         break;
@@ -305,6 +325,29 @@ QString getCurrentFileAttribute(Dialog::LibaryTabEnum libEnum)
         break;
     }
 }
+
+void Dialog::dropEvent(QDropEvent *ev)
+{
+    qDebug() << "File Dropped";
+    QList<QUrl> urls = ev->mimeData()->urls();
+    if (urls.isEmpty())
+        return;
+
+    QString fileName = urls.first().toLocalFile();
+    if (fileName.isEmpty())
+        return;
+
+    qDebug() << "Drop FileName" << fileName;
+
+    QFileInfo fi(fileName);
+    QString extension = QString(".%1").arg(fi.suffix());
+    QString uploadFileFilter = getUploadFileFilter(getCurrentLibraryEnum());
+    if ( uploadFileFilter.contains(extension))
+    {
+        uploadFile(fileName);
+    }
+}
+
 void Dialog::handleUploadButton()
 {
     QMutexLocker lock(&_libraryMutex);
@@ -319,6 +362,13 @@ void Dialog::handleUploadButton()
     if ( fileName.length() == 0 )
         return;
 
+    uploadFile(fileName);
+
+
+}
+
+void Dialog::uploadFile(QString fileName)
+{
     if ( _ui->libraryList->currentRow() == -1 )
     {
         // No entry chosen in library list
@@ -361,9 +411,7 @@ void Dialog::handleUploadButton()
 
         }
     }
-
 }
-
 
 void Dialog::handleUploadFile(QString summary)
 {
@@ -384,7 +432,6 @@ void Dialog::handleUploadMultipleFiles(QString summary)
 
 void Dialog:: handleUploadMultipleFilesError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
 {
-    qDebug() << "Multiple File Upload Error";
     qDebug() << error_str;
 }
 
@@ -392,6 +439,7 @@ QString getCurrentFilePath(Dialog::LibaryTabEnum libEnum)
 {
     switch ( libEnum )
     {
+    default:
     case Dialog::LibaryTabEnum::OneDLUT:
         return QString("1d");
         break;
@@ -553,14 +601,14 @@ void Dialog::handleSelectButton()
             }
             case Dialog::OVERLAY:
             {
-                OpenAPI::OAIAcesConfig acesConfig;
-                acesConfig.setAmfLibraryEntry(entryChoice);
-                _api.setAcesConfig(acesConfig);
 
                 break;
             }
             case Dialog::AMF:
             {
+                OpenAPI::OAIAcesConfig acesConfig;
+                acesConfig.setAmfLibraryEntry(entryChoice);
+                _api.setAcesConfig(acesConfig);
                 break;
             }
 
