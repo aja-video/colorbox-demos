@@ -36,14 +36,14 @@
     <rect>
      <x>601</x>
      <y>90</y>
-     <width>211</width>
+     <width>221</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Lucida Console</family>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -62,14 +62,14 @@
     <rect>
      <x>601</x>
      <y>160</y>
-     <width>211</width>
+     <width>221</width>
      <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Lucida Console</family>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -182,14 +182,14 @@
     <rect>
      <x>601</x>
      <y>240</y>
-     <width>211</width>
+     <width>221</width>
      <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Lucida Console</family>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -299,7 +299,7 @@
   <widget class="QComboBox" name="lut1dChoiceComboBox">
    <property name="geometry">
     <rect>
-     <x>710</x>
+     <x>720</x>
      <y>320</y>
      <width>101</width>
      <height>30</height>

@@ -189,9 +189,9 @@ void Dialog::getCurrentLibrary()
     _ui->downloadButton->setText(QString("Download %1 File").arg(libraryName));
     _ui->selectButton->setText(QString("Select %1 File").arg(libraryName));
 
-    _ui->uploadButton->setToolTip(QString("Select %1 to upload to ColorBox").arg(libraryName));
-    _ui->downloadButton->setToolTip(QString("Download %1 from ColorBox to demos bin directory").arg(libraryName));
-    _ui->selectButton->setToolTip(QString("Select %1 on ColorBox for FrameStore").arg(libraryName));
+    _ui->uploadButton->setToolTip(QString("Upload %1  to ColorBox").arg(libraryName));
+    _ui->downloadButton->setToolTip(QString("Download %1  from ColorBox").arg(libraryName));
+    _ui->selectButton->setToolTip(QString("Select %1 on ColorBox").arg(libraryName));
 
 }
 
