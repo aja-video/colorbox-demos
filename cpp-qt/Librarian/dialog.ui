@@ -43,7 +43,7 @@
    <property name="font">
     <font>
      <family>Lucida Console</family>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -69,7 +69,7 @@
    <property name="font">
     <font>
      <family>Lucida Console</family>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -173,6 +173,7 @@
     <font>
      <family>Lucida Console</family>
      <pointsize>12</pointsize>
+     <bold>false</bold>
     </font>
    </property>
   </widget>
@@ -188,7 +189,7 @@
    <property name="font">
     <font>
      <family>Lucida Console</family>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -235,7 +236,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="onedlut">
     <attribute name="title">

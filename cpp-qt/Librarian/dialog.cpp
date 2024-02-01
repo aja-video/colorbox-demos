@@ -45,7 +45,7 @@
 #include <QMessageBox>
 #include <QMutexLocker>
 #include "tiffio.h"
-
+#include <QFontDatabase>
 using namespace OpenAPI;
 
 Dialog::Dialog(QWidget *parent)
@@ -93,12 +93,11 @@ Dialog::Dialog(QWidget *parent)
     recallSettings();
     ipAddressEdited();
 
-    qDebug() << "libraryList height" <<    _ui->libraryList->height();
     QFontMetrics fm(_ui->libraryList->fontMetrics());
-    qDebug() << "Font Height" << fm.height();
     QFont cf = _ui->libraryList->font();
-    cf.setPixelSize((_ui->libraryList->height()/(fm.height()))-1);
+    cf.setPixelSize(17);
     _ui->libraryList->setFont(cf);
+    _ui->libraryList->setSpacing(0);
 
     this->setFocus();
     setAcceptDrops(true);
