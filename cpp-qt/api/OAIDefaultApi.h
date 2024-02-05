@@ -208,6 +208,9 @@ public:
 
     void getWiFiStatus();
 
+
+    void saveDynamicLutRequest();
+
     /**
     * @param[in]  oai_aces_config OAIAcesConfig [required]
     */
@@ -429,6 +432,7 @@ private:
     void getSystemStatusCallback(OAIHttpRequestWorker *worker);
     void getWiFiConfigCallback(OAIHttpRequestWorker *worker);
     void getWiFiStatusCallback(OAIHttpRequestWorker *worker);
+    void saveDynamicLutRequestCallback(OAIHttpRequestWorker *worker);
     void setAcesConfigCallback(OAIHttpRequestWorker *worker);
     void setActiveParamsForGivenNetDeviceIndexCallback(OAIHttpRequestWorker *worker);
     void setAllStatusCallback(OAIHttpRequestWorker *worker);
@@ -500,6 +504,7 @@ signals:
     void getSystemStatusSignal(OAISystemStatus summary);
     void getWiFiConfigSignal(OAIWiFiDeviceConfig summary);
     void getWiFiStatusSignal(OAIWiFiDeviceStatus summary);
+    void saveDynamicLutRequestSignal();
     void setAcesConfigSignal();
     void setActiveParamsForGivenNetDeviceIndexSignal();
     void setAllStatusSignal();
@@ -569,6 +574,7 @@ signals:
     void getSystemStatusSignalFull(OAIHttpRequestWorker *worker, OAISystemStatus summary);
     void getWiFiConfigSignalFull(OAIHttpRequestWorker *worker, OAIWiFiDeviceConfig summary);
     void getWiFiStatusSignalFull(OAIHttpRequestWorker *worker, OAIWiFiDeviceStatus summary);
+    void saveDynamicLutRequestSignalFull(OAIHttpRequestWorker *worker);
     void setAcesConfigSignalFull(OAIHttpRequestWorker *worker);
     void setActiveParamsForGivenNetDeviceIndexSignalFull(OAIHttpRequestWorker *worker);
     void setAllStatusSignalFull(OAIHttpRequestWorker *worker);
@@ -638,6 +644,7 @@ signals:
     void getSystemStatusSignalE(OAISystemStatus summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getWiFiConfigSignalE(OAIWiFiDeviceConfig summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getWiFiStatusSignalE(OAIWiFiDeviceStatus summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void saveDynamicLutRequestSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void setAcesConfigSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void setActiveParamsForGivenNetDeviceIndexSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void setAllStatusSignalE(QNetworkReply::NetworkError error_type, QString error_str);
@@ -707,6 +714,7 @@ signals:
     void getSystemStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getWiFiConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getWiFiStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void saveDynamicLutRequestSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void setAcesConfigSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void setActiveParamsForGivenNetDeviceIndexSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void setAllStatusSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);

@@ -144,6 +144,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_system_status**](docs/DefaultApi.md#get_system_status) | **GET** /system/status | 
 *DefaultApi* | [**get_wi_fi_config**](docs/DefaultApi.md#get_wi_fi_config) | **GET** /wifiConfig | 
 *DefaultApi* | [**get_wi_fi_status**](docs/DefaultApi.md#get_wi_fi_status) | **GET** /wifiStatus | 
+*DefaultApi* | [**save_dynamic_lut_request**](docs/DefaultApi.md#save_dynamic_lut_request) | **POST** /saveDynamicLutRequest | 
 *DefaultApi* | [**set_aces_config**](docs/DefaultApi.md#set_aces_config) | **PUT** /acesConfig | 
 *DefaultApi* | [**set_active_params_for_given_net_device_index**](docs/DefaultApi.md#set_active_params_for_given_net_device_index) | **PUT** /net/device/{devIdx}/activeParams | 
 *DefaultApi* | [**set_all_status**](docs/DefaultApi.md#set_all_status) | **PUT** /status | 

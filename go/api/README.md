@@ -116,6 +116,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**GetSystemStatus**](docs/DefaultApi.md#getsystemstatus) | **Get** /system/status | 
 *DefaultApi* | [**GetWiFiConfig**](docs/DefaultApi.md#getwificonfig) | **Get** /wifiConfig | 
 *DefaultApi* | [**GetWiFiStatus**](docs/DefaultApi.md#getwifistatus) | **Get** /wifiStatus | 
+*DefaultApi* | [**SaveDynamicLutRequest**](docs/DefaultApi.md#savedynamiclutrequest) | **Post** /saveDynamicLutRequest | 
 *DefaultApi* | [**SetAcesConfig**](docs/DefaultApi.md#setacesconfig) | **Put** /acesConfig | 
 *DefaultApi* | [**SetActiveParamsForGivenNetDeviceIndex**](docs/DefaultApi.md#setactiveparamsforgivennetdeviceindex) | **Put** /net/device/{devIdx}/activeParams | 
 *DefaultApi* | [**SetAllStatus**](docs/DefaultApi.md#setallstatus) | **Put** /status | 
