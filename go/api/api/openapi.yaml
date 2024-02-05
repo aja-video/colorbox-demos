@@ -976,6 +976,13 @@ paths:
       responses:
         "200":
           description: Successful operation
+  /saveDynamicLutRequest:
+    post:
+      description: Request a save of the current dynamic lut state
+      operationId: saveDynamicLutRequest
+      responses:
+        "200":
+          description: Successful operation
 components:
   requestBodies:
     inline_object_1:

@@ -111,6 +111,8 @@ void OAIDefaultApi::initializeServerConfigs() {
     _serverIndices.insert("getWiFiConfig", 0);
     _serverConfigs.insert("getWiFiStatus", defaultConf);
     _serverIndices.insert("getWiFiStatus", 0);
+    _serverConfigs.insert("saveDynamicLutRequest", defaultConf);
+    _serverIndices.insert("saveDynamicLutRequest", 0);
     _serverConfigs.insert("setAcesConfig", defaultConf);
     _serverIndices.insert("setAcesConfig", 0);
     _serverConfigs.insert("setActiveParamsForGivenNetDeviceIndex", defaultConf);
@@ -2319,6 +2321,54 @@ void OAIDefaultApi::getWiFiStatusCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getWiFiStatusSignalE(output, error_type, error_str);
         emit getWiFiStatusSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDefaultApi::saveDynamicLutRequest() {
+    QString fullPath = QString(_serverConfigs["saveDynamicLutRequest"][_serverIndices.value("saveDynamicLutRequest")].URL()+"/saveDynamicLutRequest");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::saveDynamicLutRequestCallback);
+    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDefaultApi::saveDynamicLutRequestCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit saveDynamicLutRequestSignal();
+        emit saveDynamicLutRequestSignalFull(worker);
+    } else {
+        emit saveDynamicLutRequestSignalE(error_type, error_str);
+        emit saveDynamicLutRequestSignalEFull(worker, error_type, error_str);
     }
 }
 

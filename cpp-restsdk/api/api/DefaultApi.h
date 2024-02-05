@@ -384,6 +384,14 @@ public:
     /// 
     /// </summary>
     /// <remarks>
+    /// Request a save of the current dynamic lut state
+    /// </remarks>
+    pplx::task<void> saveDynamicLutRequest(
+    ) const;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
     /// Modify the AcesConfig object
     /// </remarks>
     /// <param name="acesConfig">AcesConfig object</param>
