@@ -2482,6 +2482,7 @@ with openapi_client.ApiClient() as api_client:
         amf_library_entry=1,
         ocio_source=OcioSource("Camera Rec.709"),
         ocio_display_view=OcioDisplayView("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"),
+        enable_arri_wvo_log_c4_decoder=False,
     ) # AcesConfig | AcesConfig object
 
     # example passing only required values which don't have defaults set

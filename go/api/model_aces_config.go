@@ -27,6 +27,7 @@ type AcesConfig struct {
 	AmfLibraryEntry *int32 `json:"amfLibraryEntry,omitempty"`
 	OcioSource *OcioSource `json:"ocioSource,omitempty"`
 	OcioDisplayView *OcioDisplayView `json:"ocioDisplayView,omitempty"`
+	EnableArriWVOLogC4Decoder *bool `json:"enableArriWVOLogC4Decoder,omitempty"`
 }
 
 // NewAcesConfig instantiates a new AcesConfig object
@@ -41,6 +42,8 @@ func NewAcesConfig() *AcesConfig {
 	this.OcioSource = &ocioSource
 	var ocioDisplayView OcioDisplayView = OCIODISPLAYVIEW_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
 	this.OcioDisplayView = &ocioDisplayView
+	var enableArriWVOLogC4Decoder bool = false
+	this.EnableArriWVOLogC4Decoder = &enableArriWVOLogC4Decoder
 	return &this
 }
 
@@ -55,6 +58,8 @@ func NewAcesConfigWithDefaults() *AcesConfig {
 	this.OcioSource = &ocioSource
 	var ocioDisplayView OcioDisplayView = OCIODISPLAYVIEW_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
 	this.OcioDisplayView = &ocioDisplayView
+	var enableArriWVOLogC4Decoder bool = false
+	this.EnableArriWVOLogC4Decoder = &enableArriWVOLogC4Decoder
 	return &this
 }
 
@@ -233,6 +238,41 @@ func (o *AcesConfig) SetOcioDisplayView(v OcioDisplayView) {
 	o.OcioDisplayView = &tmp
 }
 
+// GetEnableArriWVOLogC4Decoder returns the EnableArriWVOLogC4Decoder field value if set, zero value otherwise.
+func (o *AcesConfig) GetEnableArriWVOLogC4Decoder() bool {
+	if o == nil || o.EnableArriWVOLogC4Decoder == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableArriWVOLogC4Decoder
+}
+
+// GetEnableArriWVOLogC4DecoderOk returns a tuple with the EnableArriWVOLogC4Decoder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AcesConfig) GetEnableArriWVOLogC4DecoderOk() (*bool, bool) {
+	if o == nil || o.EnableArriWVOLogC4Decoder == nil {
+		return nil, false
+	}
+	return o.EnableArriWVOLogC4Decoder, true
+}
+
+
+
+// HasEnableArriWVOLogC4Decoder returns a boolean if a field has been set.
+func (o *AcesConfig) HasEnableArriWVOLogC4Decoder() bool {
+	if o != nil && o.EnableArriWVOLogC4Decoder != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableArriWVOLogC4Decoder gets a reference to the given bool and assigns it to the EnableArriWVOLogC4Decoder field.
+func (o *AcesConfig) SetEnableArriWVOLogC4Decoder(v bool) {
+	tmp := v
+	o.EnableArriWVOLogC4Decoder = &tmp
+}
+
 func (o AcesConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Enabled != nil {
@@ -249,6 +289,9 @@ func (o AcesConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.OcioDisplayView != nil {
 		toSerialize["ocioDisplayView"] = o.OcioDisplayView
+	}
+	if o.EnableArriWVOLogC4Decoder != nil {
+		toSerialize["enableArriWVOLogC4Decoder"] = o.EnableArriWVOLogC4Decoder
 	}
 	return json.Marshal(toSerialize)
 }

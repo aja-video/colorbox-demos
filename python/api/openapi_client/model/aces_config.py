@@ -100,6 +100,7 @@ class AcesConfig(ModelNormal):
             'amf_library_entry': (int,),  # noqa: E501
             'ocio_source': (OcioSource,),  # noqa: E501
             'ocio_display_view': (OcioDisplayView,),  # noqa: E501
+            'enable_arri_wvo_log_c4_decoder': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -113,6 +114,7 @@ class AcesConfig(ModelNormal):
         'amf_library_entry': 'amfLibraryEntry',  # noqa: E501
         'ocio_source': 'ocioSource',  # noqa: E501
         'ocio_display_view': 'ocioDisplayView',  # noqa: E501
+        'enable_arri_wvo_log_c4_decoder': 'enableArriWVOLogC4Decoder',  # noqa: E501
     }
 
     read_only_vars = {
@@ -161,6 +163,7 @@ class AcesConfig(ModelNormal):
             amf_library_entry (int): library entry number, zero is unity bypass. [optional]  # noqa: E501
             ocio_source (OcioSource): [optional]  # noqa: E501
             ocio_display_view (OcioDisplayView): [optional]  # noqa: E501
+            enable_arri_wvo_log_c4_decoder (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -247,6 +250,7 @@ class AcesConfig(ModelNormal):
             amf_library_entry (int): library entry number, zero is unity bypass. [optional]  # noqa: E501
             ocio_source (OcioSource): [optional]  # noqa: E501
             ocio_display_view (OcioDisplayView): [optional]  # noqa: E501
+            enable_arri_wvo_log_c4_decoder (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

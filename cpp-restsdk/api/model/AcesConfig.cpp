@@ -33,6 +33,8 @@ AcesConfig::AcesConfig()
     m_AmfLibraryEntryIsSet = false;
     m_OcioSourceIsSet = false;
     m_OcioDisplayViewIsSet = false;
+    m_EnableArriWVOLogC4Decoder = false;
+    m_EnableArriWVOLogC4DecoderIsSet = false;
 }
 
 AcesConfig::~AcesConfig()
@@ -80,6 +82,10 @@ web::json::value AcesConfig::toJson() const
     if(m_OcioDisplayViewIsSet)
     {
         val[utility::conversions::to_string_t(U("ocioDisplayView"))] = ModelBase::toJson(m_OcioDisplayView);
+    }
+    if(m_EnableArriWVOLogC4DecoderIsSet)
+    {
+        val[utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))] = ModelBase::toJson(m_EnableArriWVOLogC4Decoder);
     }
 
     return val;
@@ -139,6 +145,16 @@ bool AcesConfig::fromJson(const web::json::value& val)
             setOcioDisplayView(refVal_ocioDisplayView);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_enableArriWVOLogC4Decoder;
+            ok &= ModelBase::fromJson(fieldValue, refVal_enableArriWVOLogC4Decoder);
+            setEnableArriWVOLogC4Decoder(refVal_enableArriWVOLogC4Decoder);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -170,6 +186,10 @@ void AcesConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_OcioDisplayViewIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("ocioDisplayView")), m_OcioDisplayView));
+    }
+    if(m_EnableArriWVOLogC4DecoderIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder")), m_EnableArriWVOLogC4Decoder));
     }
 }
 
@@ -211,6 +231,12 @@ bool AcesConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         std::shared_ptr<OcioDisplayView> refVal_ocioDisplayView;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("ocioDisplayView"))), refVal_ocioDisplayView );
         setOcioDisplayView(refVal_ocioDisplayView);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))))
+    {
+        bool refVal_enableArriWVOLogC4Decoder;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))), refVal_enableArriWVOLogC4Decoder );
+        setEnableArriWVOLogC4Decoder(refVal_enableArriWVOLogC4Decoder);
     }
     
     applyMinMaxConstraints();
@@ -330,6 +356,29 @@ bool AcesConfig::ocioDisplayViewIsSet() const
 void AcesConfig::unsetOcioDisplayView()
 {
     m_OcioDisplayViewIsSet = false;
+}
+
+
+bool AcesConfig::isEnableArriWVOLogC4Decoder() const
+{
+    return m_EnableArriWVOLogC4Decoder;
+}
+
+void AcesConfig::setEnableArriWVOLogC4Decoder(bool value)
+{
+	bool v = value;
+    m_EnableArriWVOLogC4Decoder = v;
+    m_EnableArriWVOLogC4DecoderIsSet = true;
+}
+
+bool AcesConfig::enableArriWVOLogC4DecoderIsSet() const
+{
+    return m_EnableArriWVOLogC4DecoderIsSet;
+}
+
+void AcesConfig::unsetEnableArriWVOLogC4Decoder()
+{
+    m_EnableArriWVOLogC4DecoderIsSet = false;
 }
 
 
