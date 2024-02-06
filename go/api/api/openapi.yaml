@@ -2876,6 +2876,7 @@ components:
       type: string
     AcesConfig:
       example:
+        enableArriWVOLogC4Decoder: false
         amfLibraryEntry: 0
         enabled: true
       properties:
@@ -2891,6 +2892,9 @@ components:
           $ref: '#/components/schemas/OcioSource'
         ocioDisplayView:
           $ref: '#/components/schemas/OcioDisplayView'
+        enableArriWVOLogC4Decoder:
+          default: false
+          type: boolean
       type: object
     StatusState:
       default: StatusStateUnknown

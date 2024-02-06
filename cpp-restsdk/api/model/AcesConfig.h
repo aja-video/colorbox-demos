@@ -109,6 +109,16 @@ public:
     void setOcioDisplayView(const std::shared_ptr<OcioDisplayView>& value);
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isEnableArriWVOLogC4Decoder() const;
+    bool enableArriWVOLogC4DecoderIsSet() const;
+    void unsetEnableArriWVOLogC4Decoder();
+
+    void setEnableArriWVOLogC4Decoder(bool value);
+
+
 
 protected:
     bool m_Enabled;
@@ -121,6 +131,8 @@ protected:
     bool m_OcioSourceIsSet;
     std::shared_ptr<OcioDisplayView> m_OcioDisplayView;
     bool m_OcioDisplayViewIsSet;
+    bool m_EnableArriWVOLogC4Decoder;
+    bool m_EnableArriWVOLogC4DecoderIsSet;
 };
 
 

@@ -49,6 +49,9 @@ void OAIAcesConfig::initializeModel() {
 
     m_ocio_display_view_isSet = false;
     m_ocio_display_view_isValid = false;
+
+    m_enable_arri_wvo_log_c4_decoder_isSet = false;
+    m_enable_arri_wvo_log_c4_decoder_isValid = false;
 }
 
 void OAIAcesConfig::fromJson(QString jsonString) {
@@ -73,6 +76,9 @@ void OAIAcesConfig::fromJsonObject(QJsonObject json) {
 
     m_ocio_display_view_isValid = ::OpenAPI::fromJsonValue(m_ocio_display_view, json[QString("ocioDisplayView")]);
     m_ocio_display_view_isSet = !json[QString("ocioDisplayView")].isNull() && m_ocio_display_view_isValid;
+
+    m_enable_arri_wvo_log_c4_decoder_isValid = ::OpenAPI::fromJsonValue(m_enable_arri_wvo_log_c4_decoder, json[QString("enableArriWVOLogC4Decoder")]);
+    m_enable_arri_wvo_log_c4_decoder_isSet = !json[QString("enableArriWVOLogC4Decoder")].isNull() && m_enable_arri_wvo_log_c4_decoder_isValid;
 
     applyMinMaxConstraints();
 }
@@ -100,6 +106,9 @@ QJsonObject OAIAcesConfig::asJsonObject() const {
     }
     if (m_ocio_display_view.isSet()) {
         obj.insert(QString("ocioDisplayView"), ::OpenAPI::toJsonValue(m_ocio_display_view));
+    }
+    if (m_enable_arri_wvo_log_c4_decoder_isSet) {
+        obj.insert(QString("enableArriWVOLogC4Decoder"), ::OpenAPI::toJsonValue(m_enable_arri_wvo_log_c4_decoder));
     }
     return obj;
 }
@@ -195,6 +204,24 @@ bool OAIAcesConfig::is_ocio_display_view_Valid() const{
 }
 
 
+bool OAIAcesConfig::isEnableArriWvoLogC4Decoder() const {
+    return m_enable_arri_wvo_log_c4_decoder;
+}
+void OAIAcesConfig::setEnableArriWvoLogC4Decoder(const bool &enable_arri_wvo_log_c4_decoder) {
+	bool v = enable_arri_wvo_log_c4_decoder;
+	this->m_enable_arri_wvo_log_c4_decoder = v;
+    this->m_enable_arri_wvo_log_c4_decoder_isSet = true;
+}
+
+bool OAIAcesConfig::is_enable_arri_wvo_log_c4_decoder_Set() const{
+    return m_enable_arri_wvo_log_c4_decoder_isSet;
+}
+
+bool OAIAcesConfig::is_enable_arri_wvo_log_c4_decoder_Valid() const{
+    return m_enable_arri_wvo_log_c4_decoder_isValid;
+}
+
+
 bool OAIAcesConfig::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -219,6 +246,11 @@ bool OAIAcesConfig::isSet() const {
         }
 
         if (m_ocio_display_view.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_enable_arri_wvo_log_c4_decoder_isSet) {
             isObjectUpdated = true;
             break;
         }

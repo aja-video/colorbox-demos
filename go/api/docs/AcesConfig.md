@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **AmfLibraryEntry** | Pointer to **int32** | library entry number, zero is unity bypass | [optional] 
 **OcioSource** | Pointer to [**OcioSource**](OcioSource.md) |  | [optional] [default to OCIOSOURCE_CAMERA_REC_709]
 **OcioDisplayView** | Pointer to [**OcioDisplayView**](OcioDisplayView.md) |  | [optional] [default to OCIODISPLAYVIEW_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO]
+**EnableArriWVOLogC4Decoder** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetOcioDisplayView sets OcioDisplayView field to given value.
 `func (o *AcesConfig) HasOcioDisplayView() bool`
 
 HasOcioDisplayView returns a boolean if a field has been set.
+
+### GetEnableArriWVOLogC4Decoder
+
+`func (o *AcesConfig) GetEnableArriWVOLogC4Decoder() bool`
+
+GetEnableArriWVOLogC4Decoder returns the EnableArriWVOLogC4Decoder field if non-nil, zero value otherwise.
+
+### GetEnableArriWVOLogC4DecoderOk
+
+`func (o *AcesConfig) GetEnableArriWVOLogC4DecoderOk() (*bool, bool)`
+
+GetEnableArriWVOLogC4DecoderOk returns a tuple with the EnableArriWVOLogC4Decoder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableArriWVOLogC4Decoder
+
+`func (o *AcesConfig) SetEnableArriWVOLogC4Decoder(v bool)`
+
+SetEnableArriWVOLogC4Decoder sets EnableArriWVOLogC4Decoder field to given value.
+
+### HasEnableArriWVOLogC4Decoder
+
+`func (o *AcesConfig) HasEnableArriWVOLogC4Decoder() bool`
+
+HasEnableArriWVOLogC4Decoder returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

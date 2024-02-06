@@ -67,6 +67,11 @@ public:
     bool is_ocio_display_view_Set() const;
     bool is_ocio_display_view_Valid() const;
 
+    bool isEnableArriWvoLogC4Decoder() const;
+    void setEnableArriWvoLogC4Decoder(const bool &enable_arri_wvo_log_c4_decoder);
+    bool is_enable_arri_wvo_log_c4_decoder_Set() const;
+    bool is_enable_arri_wvo_log_c4_decoder_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -93,6 +98,10 @@ private:
     OAIOcioDisplayView m_ocio_display_view;
     bool m_ocio_display_view_isSet;
     bool m_ocio_display_view_isValid;
+
+    bool m_enable_arri_wvo_log_c4_decoder;
+    bool m_enable_arri_wvo_log_c4_decoder_isSet;
+    bool m_enable_arri_wvo_log_c4_decoder_isValid;
 };
 
 } // namespace OpenAPI
