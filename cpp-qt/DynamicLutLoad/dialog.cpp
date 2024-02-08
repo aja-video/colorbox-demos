@@ -72,6 +72,7 @@ Dialog::Dialog(QWidget *parent)
     connect(_ui->rCheckBox,&QCheckBox::stateChanged,this,&Dialog::updateColorBox);
     connect(_ui->gCheckBox,&QCheckBox::stateChanged,this,&Dialog::updateColorBox);
     connect(_ui->bCheckBox,&QCheckBox::stateChanged,this,&Dialog::updateColorBox);
+    connect(_ui->dynStateSaveButton,&QPushButton::pressed,this,&Dialog::saveDynamicState);
 
     // API related slots
     connect(&_api, &OAIDefaultApi::getPipelineStagesSignal, this, &Dialog::handleGetStages);
@@ -313,6 +314,17 @@ void Dialog::resetParameters()
     _ui->gCheckBox->setCheckState(Qt::Checked);
     _ui->bCheckBox->setCheckState(Qt::Checked);
 	updateColorBox(0);
+}
+
+///////
+/// \brief Dialog::saveDynamicState
+///
+/// uses the API to save all dynamic LUT data on ColorBox.
+/// If the unit powers up in the AJA Color Pipeline and has no power on presets but has dynamic LUTs enabled
+/// the ColorBox will use this saved data to populate the dynamic LUTs.
+void Dialog::saveDynamicState()
+{
+    _api.saveDynamicLutRequest();
 }
 
 void Dialog::updateColorBox(int value)

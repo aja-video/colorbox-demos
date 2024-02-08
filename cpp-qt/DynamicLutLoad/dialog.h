@@ -29,6 +29,7 @@ public slots:
     void ipAddressEdited();
     void dynmicLutChoiceChanged(int index);
     void resetParameters();
+    void saveDynamicState();
 
     // OpenAPI Slots
     void handleGetStages(OpenAPI::OAIPipelineStages stages);
