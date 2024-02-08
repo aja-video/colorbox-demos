@@ -5,17 +5,18 @@
 /*!
  * Librarian
  * The demo demostrates how to interface to a ColorBox Library. This example
- * This demo can be used to Upload and Download a file to
- * 1DLUT,3DLUT and Matrix library
+ * This demo can be used to Upload and Download and Select a file on the
+ * ColorBox 1DLUT,3DLUT and Matrix, Image, Overlay and AMF libraries
  *
- * To get the ColorBox Image library call _api.getImageLibrary();
- * or _api.get1dLutLibrary(), _api.get3dLutLibrary() or _api.getMatrixLibrary() for other libraries.
- * This will generate a signal where you can capture the library items(see Dialog::handleGetImageLibrary)
+ * To get a ColorBox library content this demo calls _Dialog::getCurrentLibrary()
+ * to use the API to get the desired library.
+ * o
+ * This will generate a signal where you can capture the library items(see Dialog::handleGetLibrary)
  *
- * To upload an image to the library(tiff,png,jpg,dpx) see Dialog::handleUploadImageButton()
+ * To upload an image something library(1d,3d,mx,im,ov,amf) see Dialog::handleUploadButton()
  *
- * To download an image from the library see Dialog::handleDownloadImageButton().
- * This will download the selected image to the local bin directory for the demos.
+ * To download an image from the library see Dialog::handleDownloadButton().
+ * This will download the selected file to the local bin directory for the demos.
  * This just uses http download based on the file location on the colorbox library.
  * For example, http://192.168.1.140/library/im/05/image.jpg
  * or http://192.168.1.140/library/3d/01/ACESConfig1_2_SLog3to709.cube
@@ -23,17 +24,17 @@
  * /3d/ 3DLUT
  * /mx/ Matrix
  * /im/ Image
+ * /ov/ Overlay - needs to be a 8 bit tiff or png with alpha channel
  * /amf/ AMF
  *
- * To select a library element to update the ColorBox Framestore see Dialog::handleSelectImageButton().
- * When you select this button, the selected image file will be recalled to the Framestore.
- * For selecting LUTs and matrices in their respective libraries use
- * OpenAPI::OAIPipelineStages(each OAIStage within has a library entry)
+ * To select a library element to update the ColorBox see Dialog::handleSelectButton().
+ * When you select this button, the selected file will be chosen.
+ * For 1DLUTs and Matrices you need to select which Pipeline element(dropdowns in UI)
  *
  * In the demo's UI, a blank line in the list represents an empty slot in the libary
  *
  * This demo does not constantly update the library so if it is modified somewhere
- * else it will only get updated when an image is uploaded.
+ * else it will only get updated when a file is uploaded or you change libraries.
  *
  */
 
@@ -670,8 +671,6 @@ QStringList Dialog::parseAMFFile(QString fileName)
             QDirIterator dirIt(filePath,QDirIterator::Subdirectories);
             while (dirIt.hasNext()) {
                 dirIt.next();
-//                if (QFileInfo(dirIt.filePath()).isFile())
-//                    qDebug() << dirIt.fileInfo().fileName() << fileName;
                 if ( dirIt.fileInfo().fileName() == foundFileName )
                 {
                     fullFileName =  dirIt.fileInfo().absoluteFilePath();
