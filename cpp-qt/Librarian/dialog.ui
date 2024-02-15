@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>825</width>
+    <width>830</width>
     <height>500</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>740</width>
-    <height>410</height>
+    <width>830</width>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>825</width>
+    <width>830</width>
     <height>500</height>
    </size>
   </property>
@@ -272,7 +272,7 @@
   <widget class="QComboBox" name="matrixChoiceComboBox">
    <property name="geometry">
     <rect>
-     <x>600</x>
+     <x>720</x>
      <y>320</y>
      <width>101</width>
      <height>30</height>
@@ -299,7 +299,7 @@
   <widget class="QComboBox" name="lut1dChoiceComboBox">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>600</x>
      <y>320</y>
      <width>101</width>
      <height>30</height>

@@ -156,12 +156,14 @@ void Dialog::getCurrentLibrary()
 {
     QString libraryName;
     _ui->downloadButton->setDisabled(false);
-
+    _ui->matrixChoiceComboBox->setDisabled(true);
+    _ui->lut1dChoiceComboBox->setDisabled(true);
     switch ( _ui->libraryTabWidget->currentIndex() )
     {
     case Dialog::OneDLUT:
         _api.get1dLutLibrary();
         libraryName = "1DLUT";
+        _ui->lut1dChoiceComboBox->setDisabled(false);
     break;
     case Dialog::ThreeDLUT:
         _api.get3dLutLibrary();
@@ -170,6 +172,7 @@ void Dialog::getCurrentLibrary()
     case Dialog::MATRIX:
         _api.getMatrixLibrary();
         libraryName = "Matrix";
+        _ui->matrixChoiceComboBox->setDisabled(false);
     break;
     case Dialog::IMAGE:
         _api.getImageLibrary();
