@@ -113,9 +113,43 @@ void Dialog::saveSettings()
 
 }
 
+// Only update WebSocket on change.
+int lastLutChoiceComboBoxIndex = -1;
+int lastLiftSliderValue = -1;
+int lastGammaSliderValue = -1;
+int lastGainSliderValue = -1;
+Qt::CheckState lastRCheckBox = Qt::PartiallyChecked;
+Qt::CheckState lastGCheckBox = Qt::PartiallyChecked;
+Qt::CheckState lastBCheckBox = Qt::PartiallyChecked;
+
 void Dialog::updateTimer()
 {
-	updateColorBox(0);
+    int lutChoiceComboBoxIndex = _ui->lutChoiceComboBox->currentIndex();
+    int liftSliderValue = _ui->liftSlider->value();
+    int gammaSliderValue = _ui->gammaSlider->value();
+    int gainSliderValue = _ui->gainSlider->value();
+    Qt::CheckState rCheckBox = _ui->rCheckBox->checkState();
+    Qt::CheckState gCheckBox = _ui->gCheckBox->checkState();
+    Qt::CheckState bCheckBox = _ui->gCheckBox->checkState();
+
+    if ( lutChoiceComboBoxIndex != lastLutChoiceComboBoxIndex ||
+         liftSliderValue        != lastLiftSliderValue ||
+         gammaSliderValue       != lastGammaSliderValue ||
+         gainSliderValue        != lastGainSliderValue ||
+         rCheckBox != lastRCheckBox ||
+         gCheckBox != lastGCheckBox ||
+         bCheckBox != lastBCheckBox )
+    {
+        updateColorBox(0);
+    }
+
+    lastLutChoiceComboBoxIndex = lutChoiceComboBoxIndex;
+    lastLiftSliderValue = liftSliderValue;
+    lastGammaSliderValue = gammaSliderValue;
+    lastGainSliderValue = gainSliderValue;
+    lastRCheckBox = rCheckBox;
+    lastGCheckBox = gCheckBox;
+    lastBCheckBox = bCheckBox;
 }
 
 void Dialog::ipAddressEdited()
@@ -359,9 +393,9 @@ void Dialog::updateColorBox(int value)
     QString gammaString = QString::number(gamma,'f',3);
     QString gainString = QString::number(gain,'f',3);
 
-    _ui->label_Lift->setText(liftString.rightJustified(7));
-    _ui->label_Gamma->setText(gammaString.rightJustified(7));
-    _ui->label_Gain->setText(gainString.rightJustified(7));
+    _ui->label_Lift->setText(liftString);
+    _ui->label_Gamma->setText(gammaString);
+    _ui->label_Gain->setText(gainString);
 
     bool rChecked = _ui->rCheckBox->checkState();
     bool gChecked = _ui->gCheckBox->checkState();
