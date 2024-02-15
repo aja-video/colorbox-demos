@@ -566,7 +566,7 @@ void Dialog::handleSelectButton()
             }
             case Dialog::ThreeDLUT:
             {
-                qDebug() << "Select 3D LUT";
+
                 OAIPipelineStages stages;
                 OAIStage lutStage;
                 lutStage.setLibraryEntry(entryChoice);
