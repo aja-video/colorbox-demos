@@ -28,6 +28,10 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         -DAJAMac
         -DAJA_MAC
         -D__STDC_CONSTANT_MACROS)
+
+		# needed to support c++17 for newer version of Qt, like 6.5 +
+		set(ENV{MACOSX_DEPLOYMENT_TARGET} "10.15")
+		set(CMAKE_OSX_DEPLOYMENT_TARGET $ENV{MACOSX_DEPLOYMENT_TARGET} CACHE STRING "Minimum macOS deployment version" FORCE)
 endif()
 
 # found at https://discourse.cmake.org/t/cmake-list-of-all-project-targets/1077/17
