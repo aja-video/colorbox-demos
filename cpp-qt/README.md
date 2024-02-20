@@ -24,15 +24,15 @@ If you are just setting a parameter you don’t need to have a signal/slot setup
 shipping code so any error can be logged.
 
 ## Building C++ Qt Demo Projects
-The preferred method of building the C++ demo projects is cmake with Qt Creator. In addition, there is a [demos.pro](demos.pro) file that can be used with qmake with Qt Creator.
+The preferred method of building the C++ demo projects is with [CMake](https://cmake.org/) and Qt Creator. In addition, there is a [demos.pro](demos.pro) file that can be used with qmake and Qt Creator.
 
-To build with cmake you need a cmake enabled Qt Creator kit(for M1 Mac you need Qt 6.2.4). For all other platform 5.15.2 or later should be fine.
+To build with CMake you need a CMake enabled Qt Creator kit(for M1 Mac you need Qt 6.2.4). For all other platform 5.15.2 or later should be fine.
 
 1. clone this repository on your local machine (on windows make sure path is not too long as windows has a path limit of 250).
 2. Get [github opensource ntv2 sdk](https://github.com/aja-video/ntv2/archive/refs/tags/v16.2-bugfix5.zip) unzip and put it in **cpp-qt/ntv2sdk** so that ajalibraries is right below ntv2sdk.
 **Note,** on Linux line 455 of [ntv2sdk/ajalibraries/ajantv2/CmakeLists.txt](ntv2sdk/ajalibraries/ajantv2/CmakeLists.txt) needs to be changed to: `rt pthread)`
 3. Open Qt Creator and open cpp-qt/CMakeLists.txt.
-4. Right-click on ”Project” and run cmake.
+4. Right-click on ”Project” and run CMake.
 5. Right-click on ”Project” and run Build
 
 **NOTES:**
