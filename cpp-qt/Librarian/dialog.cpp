@@ -116,7 +116,7 @@ void Dialog::recallSettings()
     QSettings settings(QSettings::UserScope, "aja", "ColorBoxLibraryExample");
     _ui->ipAddressLineEdit->setText(settings.value("IPAddress").toString());
     _ui->libraryTabWidget->setCurrentIndex(settings.value("LibraryTabIndex").toInt());
-
+    _currentDialogDir = settings.value("CurrentDialogDir").toString();
 }
 
 void Dialog::saveSettings()
@@ -124,6 +124,7 @@ void Dialog::saveSettings()
     QSettings settings(QSettings::UserScope, "aja", "ColorBoxLibraryExample");
     settings.setValue("IPAddress",_ui->ipAddressLineEdit->text());
     settings.setValue("LibraryTabIndex",_ui->libraryTabWidget->currentIndex());
+    settings.setValue("CurrentDialogDir",_currentDialogDir);
 
 }
 
@@ -244,7 +245,10 @@ void Dialog::handleGetLibrary(QList<OpenAPI::OAILibraryEntry> summary)
         entryNumber++;
     }
 
-    _ui->libraryList->setCurrentRow(0);
+    if ( _entryChoice > 0 && _entryChoice <= 16 )
+        _ui->libraryList->setCurrentRow(_entryChoice-1);
+    else
+        _ui->libraryList->setCurrentRow(0);
 
     // This part of course optional
     if ( getCurrentLibraryEnum() == Dialog::IMAGE)
@@ -360,10 +364,13 @@ void Dialog::handleUploadButton()
 
     QString fileFilter = getUploadFileFilter(getCurrentLibraryEnum());
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choose a File to Upload"),
-                                                    ".",
+                                                    _currentDialogDir,
                                                     fileFilter);
     if ( fileName.length() == 0 )
         return;
+
+    QFileInfo fi(fileName);
+     _currentDialogDir =  fi.absolutePath();;
 
     uploadFile(fileName);
 
@@ -382,14 +389,14 @@ void Dialog::uploadFile(QString fileName)
     }
     else
     {
-        int entryChoice = _ui->libraryList->currentRow()+1;
+        _entryChoice = _ui->libraryList->currentRow()+1;
         if ( getCurrentLibraryEnum() != Dialog::AMF)
         {
             // Just upload 1 File.
             OAIHttpFileElement fileElement;
             fileElement.setFileName(fileName);
             QString fileType = getCurrentFileAttribute(getCurrentLibraryEnum());
-            _api.uploadFile(fileElement,fileType,entryChoice);
+            _api.uploadFile(fileElement,fileType,_entryChoice);
         }
         else
         {
@@ -409,7 +416,7 @@ void Dialog::uploadFile(QString fileName)
                 }
                 QFileInfo fi(fileName);
                 QString selection = fi.fileName();
-                _api.uploadMultipleFiles(fileElements,fileType,entryChoice,selection);
+                _api.uploadMultipleFiles(fileElements,fileType,_entryChoice,selection);
             }
 
         }
@@ -420,6 +427,8 @@ void Dialog::handleUploadFile(QString summary)
 {
     // Refresh Library List
     getCurrentLibrary();
+    if ( _entryChoice > 0 && _entryChoice <= 16 )
+         _ui->libraryList->setCurrentRow(_entryChoice);
 }
 
 void Dialog:: handleUploadFileError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
@@ -431,6 +440,10 @@ void Dialog::handleUploadMultipleFiles(QString summary)
 {
     // Refresh Library List
     getCurrentLibrary();
+    qDebug() << "entryChoice" << _entryChoice;
+    if ( _entryChoice > 0 && _entryChoice <= 16 )
+         _ui->libraryList->setCurrentRow(_entryChoice);
+
 }
 
 void Dialog:: handleUploadMultipleFilesError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
@@ -566,13 +579,12 @@ void Dialog::handleSelectButton()
             }
             case Dialog::ThreeDLUT:
             {
-
                 OAIPipelineStages stages;
                 OAIStage lutStage;
-                lutStage.setLibraryEntry(entryChoice);
                 lutStage.setDynamic(false);
                 lutStage.setEnabled(true);
                 stages.setLut3d1(lutStage);
+                lutStage.setLibraryEntry(entryChoice);
                 _api.setPipelineStages(stages);
                 break;
             }
@@ -673,7 +685,8 @@ QStringList Dialog::parseAMFFile(QString fileName)
             if ( foundFileName.startsWith("./"))
                 foundFileName = foundFileName.remove("./");
             QDirIterator dirIt(filePath,QDirIterator::Subdirectories);
-            while (dirIt.hasNext()) {
+            while (dirIt.hasNext())
+            {
                 dirIt.next();
                 if ( dirIt.fileInfo().fileName() == foundFileName )
                 {
@@ -682,7 +695,9 @@ QStringList Dialog::parseAMFFile(QString fileName)
                 }
 
             }
-            fileList.push_back(fullFileName);
+
+            if (!fullFileName.isEmpty())
+                fileList.push_back(fullFileName);
         }
     }
 
