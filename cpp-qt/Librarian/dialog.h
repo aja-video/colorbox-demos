@@ -77,6 +77,8 @@ protected:
     QMutex _libraryMutex;
 
 private:
+    QString _currentDialogDir;
+    int _entryChoice;
     Ui::Dialog *_ui;
 };
 #endif // DIALOG_H
