@@ -114,6 +114,7 @@ class Status(ModelNormal):
             'bbc_lut_version': (str,),  # noqa: E501
             'nbcu_lut_version': (str,),  # noqa: E501
             'cpu_busy': (bool,),  # noqa: E501
+            'aces_version': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -145,6 +146,7 @@ class Status(ModelNormal):
         'bbc_lut_version': 'bbcLutVersion',  # noqa: E501
         'nbcu_lut_version': 'nbcuLutVersion',  # noqa: E501
         'cpu_busy': 'cpuBusy',  # noqa: E501
+        'aces_version': 'acesVersion',  # noqa: E501
     }
 
     read_only_vars = {
@@ -211,6 +213,7 @@ class Status(ModelNormal):
             bbc_lut_version (str): [optional]  # noqa: E501
             nbcu_lut_version (str): [optional]  # noqa: E501
             cpu_busy (bool): [optional]  # noqa: E501
+            aces_version (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -315,6 +318,7 @@ class Status(ModelNormal):
             bbc_lut_version (str): [optional]  # noqa: E501
             nbcu_lut_version (str): [optional]  # noqa: E501
             cpu_busy (bool): [optional]  # noqa: E501
+            aces_version (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -288,6 +288,16 @@ public:
     void setCpuBusy(bool value);
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getAcesVersion() const;
+    bool acesVersionIsSet() const;
+    void unsetAcesVersion();
+
+    void setAcesVersion(const utility::string_t& value);
+
+
 
 protected:
     std::shared_ptr<StatusInfo> m_DeviceDieTemp;
@@ -336,6 +346,8 @@ protected:
     bool m_NbcuLutVersionIsSet;
     bool m_CpuBusy;
     bool m_CpuBusyIsSet;
+    utility::string_t m_AcesVersion;
+    bool m_AcesVersionIsSet;
 };
 
 
