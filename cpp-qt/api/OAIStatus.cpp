@@ -103,6 +103,9 @@ void OAIStatus::initializeModel() {
 
     m_cpu_busy_isSet = false;
     m_cpu_busy_isValid = false;
+
+    m_aces_version_isSet = false;
+    m_aces_version_isValid = false;
 }
 
 void OAIStatus::fromJson(QString jsonString) {
@@ -181,6 +184,9 @@ void OAIStatus::fromJsonObject(QJsonObject json) {
 
     m_cpu_busy_isValid = ::OpenAPI::fromJsonValue(m_cpu_busy, json[QString("cpuBusy")]);
     m_cpu_busy_isSet = !json[QString("cpuBusy")].isNull() && m_cpu_busy_isValid;
+
+    m_aces_version_isValid = ::OpenAPI::fromJsonValue(m_aces_version, json[QString("acesVersion")]);
+    m_aces_version_isSet = !json[QString("acesVersion")].isNull() && m_aces_version_isValid;
 
     applyMinMaxConstraints();
 }
@@ -262,6 +268,9 @@ QJsonObject OAIStatus::asJsonObject() const {
     }
     if (m_cpu_busy_isSet) {
         obj.insert(QString("cpuBusy"), ::OpenAPI::toJsonValue(m_cpu_busy));
+    }
+    if (m_aces_version_isSet) {
+        obj.insert(QString("acesVersion"), ::OpenAPI::toJsonValue(m_aces_version));
     }
     return obj;
 }
@@ -696,6 +705,25 @@ bool OAIStatus::is_cpu_busy_Valid() const{
 }
 
 
+QString OAIStatus::getAcesVersion() const {
+    return m_aces_version;
+}
+void OAIStatus::setAcesVersion(const QString &aces_version) {
+	QString v = aces_version;
+	this->m_aces_version = v;
+    this->m_aces_version_isSet = true;
+}
+
+bool OAIStatus::is_aces_version_Set() const{
+    return m_aces_version_isSet;
+}
+
+bool OAIStatus::is_aces_version_Valid() const{
+    return m_aces_version_isValid;
+}
+
+
+
 bool OAIStatus::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -813,6 +841,11 @@ bool OAIStatus::isSet() const {
             isObjectUpdated = true;
             break;
         }
+
+        if (m_aces_version_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
@@ -919,6 +952,12 @@ bool OAIStatus::applyMinMaxConstraints() {
 		bool nbcuLutVersionChanged = false;
 		QString v = getNbcuLutVersion();
 		if (nbcuLutVersionChanged) { setNbcuLutVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (is_aces_version_Set())
+	{
+		bool acesVersionChanged = false;
+		QString v = getAcesVersion();
+		if (acesVersionChanged) { setAcesVersion(v); anyMinMaxValueChanged = true; }
 	}
 	return anyMinMaxValueChanged;
 }

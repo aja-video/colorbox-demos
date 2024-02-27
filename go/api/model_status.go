@@ -43,6 +43,7 @@ type Status struct {
 	BbcLutVersion *string `json:"bbcLutVersion,omitempty"`
 	NbcuLutVersion *string `json:"nbcuLutVersion,omitempty"`
 	CpuBusy *bool `json:"cpuBusy,omitempty"`
+	AcesVersion *string `json:"acesVersion,omitempty"`
 }
 
 // NewStatus instantiates a new Status object
@@ -867,6 +868,41 @@ func (o *Status) SetCpuBusy(v bool) {
 	o.CpuBusy = &tmp
 }
 
+// GetAcesVersion returns the AcesVersion field value if set, zero value otherwise.
+func (o *Status) GetAcesVersion() string {
+	if o == nil || o.AcesVersion == nil {
+		var ret string
+		return ret
+	}
+	return *o.AcesVersion
+}
+
+// GetAcesVersionOk returns a tuple with the AcesVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetAcesVersionOk() (*string, bool) {
+	if o == nil || o.AcesVersion == nil {
+		return nil, false
+	}
+	return o.AcesVersion, true
+}
+
+
+
+// HasAcesVersion returns a boolean if a field has been set.
+func (o *Status) HasAcesVersion() bool {
+	if o != nil && o.AcesVersion != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAcesVersion gets a reference to the given string and assigns it to the AcesVersion field.
+func (o *Status) SetAcesVersion(v string) {
+	tmp := v
+	o.AcesVersion = &tmp
+}
+
 func (o Status) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DeviceDieTemp != nil {
@@ -937,6 +973,9 @@ func (o Status) MarshalJSON() ([]byte, error) {
 	}
 	if o.CpuBusy != nil {
 		toSerialize["cpuBusy"] = o.CpuBusy
+	}
+	if o.AcesVersion != nil {
+		toSerialize["acesVersion"] = o.AcesVersion
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1069,6 +1108,14 @@ func (o *Status) ApplyMinMaxConstraints() bool {
 		var v string = o.GetNbcuLutVersion()
 		if fieldChanged {
 			o.SetNbcuLutVersion(v)
+			valueChanged = true
+		}
+	}
+	if o.HasAcesVersion() {
+		var fieldChanged = false
+		var v string = o.GetAcesVersion()
+		if fieldChanged {
+			o.SetAcesVersion(v)
 			valueChanged = true
 		}
 	}

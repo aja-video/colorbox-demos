@@ -2952,6 +2952,7 @@ components:
         systemBoardRevision: systemBoardRevision
         orionVersion: orionVersion
         nbcuLutVersion: nbcuLutVersion
+        acesVersion: acesVersion
         systemTime: systemTime
         colorfrontEngineVersion: colorfrontEngineVersion
         systemOsName: systemOsName
@@ -3018,6 +3019,8 @@ components:
           type: string
         cpuBusy:
           type: boolean
+        acesVersion:
+          type: string
       type: object
     AncCaptureFilter:
       example:

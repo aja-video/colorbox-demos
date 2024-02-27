@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **BbcLutVersion** | Pointer to **string** |  | [optional] 
 **NbcuLutVersion** | Pointer to **string** |  | [optional] 
 **CpuBusy** | Pointer to **bool** |  | [optional] 
+**AcesVersion** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -621,6 +622,31 @@ SetCpuBusy sets CpuBusy field to given value.
 `func (o *Status) HasCpuBusy() bool`
 
 HasCpuBusy returns a boolean if a field has been set.
+
+### GetAcesVersion
+
+`func (o *Status) GetAcesVersion() string`
+
+GetAcesVersion returns the AcesVersion field if non-nil, zero value otherwise.
+
+### GetAcesVersionOk
+
+`func (o *Status) GetAcesVersionOk() (*string, bool)`
+
+GetAcesVersionOk returns a tuple with the AcesVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAcesVersion
+
+`func (o *Status) SetAcesVersion(v string)`
+
+SetAcesVersion sets AcesVersion field to given value.
+
+### HasAcesVersion
+
+`func (o *Status) HasAcesVersion() bool`
+
+HasAcesVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

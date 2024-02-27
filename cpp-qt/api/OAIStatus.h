@@ -156,6 +156,11 @@ public:
     bool is_cpu_busy_Set() const;
     bool is_cpu_busy_Valid() const;
 
+    QString getAcesVersion() const;
+    void setAcesVersion(const QString &aces_version);
+    bool is_aces_version_Set() const;
+    bool is_aces_version_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -254,6 +259,10 @@ private:
     bool m_cpu_busy;
     bool m_cpu_busy_isSet;
     bool m_cpu_busy_isValid;
+
+    QString m_aces_version;
+    bool m_aces_version_isSet;
+    bool m_aces_version_isValid;
 };
 
 } // namespace OpenAPI

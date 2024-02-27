@@ -2678,6 +2678,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         bbc_lut_version="bbc_lut_version_example",
         nbcu_lut_version="nbcu_lut_version_example",
         cpu_busy=True,
+        aces_version="aces_version_example",
     ) # Status | Status object
 
     # example passing only required values which don't have defaults set

@@ -71,6 +71,8 @@ Status::Status()
     m_NbcuLutVersionIsSet = false;
     m_CpuBusy = false;
     m_CpuBusyIsSet = false;
+    m_AcesVersion = utility::conversions::to_string_t("");
+    m_AcesVersionIsSet = false;
 }
 
 Status::~Status()
@@ -181,6 +183,12 @@ bool Status::applyMinMaxConstraints()
 		utility::string_t v = getNbcuLutVersion();
 		if (nbcuLutVersionChanged) { setNbcuLutVersion(v); anyMinMaxValueChanged = true; }
 	}
+	if (acesVersionIsSet())
+	{
+		bool acesVersionChanged = false;
+		utility::string_t v = getAcesVersion();
+		if (acesVersionChanged) { setAcesVersion(v); anyMinMaxValueChanged = true; }
+	}
 	return anyMinMaxValueChanged;
 }
 
@@ -280,6 +288,10 @@ web::json::value Status::toJson() const
     if(m_CpuBusyIsSet)
     {
         val[utility::conversions::to_string_t(U("cpuBusy"))] = ModelBase::toJson(m_CpuBusy);
+    }
+    if(m_AcesVersionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("acesVersion"))] = ModelBase::toJson(m_AcesVersion);
     }
 
     return val;
@@ -519,6 +531,16 @@ bool Status::fromJson(const web::json::value& val)
             setCpuBusy(refVal_cpuBusy);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("acesVersion"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("acesVersion")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_acesVersion;
+            ok &= ModelBase::fromJson(fieldValue, refVal_acesVersion);
+            setAcesVersion(refVal_acesVersion);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -622,6 +644,10 @@ void Status::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     if(m_CpuBusyIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("cpuBusy")), m_CpuBusy));
+    }
+    if(m_AcesVersionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("acesVersion")), m_AcesVersion));
     }
 }
 
@@ -771,6 +797,12 @@ bool Status::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         bool refVal_cpuBusy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("cpuBusy"))), refVal_cpuBusy );
         setCpuBusy(refVal_cpuBusy);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("acesVersion"))))
+    {
+        utility::string_t refVal_acesVersion;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("acesVersion"))), refVal_acesVersion );
+        setAcesVersion(refVal_acesVersion);
     }
     
     applyMinMaxConstraints();
@@ -1320,6 +1352,30 @@ void Status::unsetCpuBusy()
 {
     m_CpuBusyIsSet = false;
 }
+
+
+utility::string_t Status::getAcesVersion() const
+{
+    return m_AcesVersion;
+}
+
+void Status::setAcesVersion(const utility::string_t& value)
+{
+	utility::string_t v = value;
+    m_AcesVersion = v;
+    m_AcesVersionIsSet = true;
+}
+
+bool Status::acesVersionIsSet() const
+{
+    return m_AcesVersionIsSet;
+}
+
+void Status::unsetAcesVersion()
+{
+    m_AcesVersionIsSet = false;
+}
+
 
 
 }
