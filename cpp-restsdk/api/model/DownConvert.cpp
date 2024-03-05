@@ -29,10 +29,10 @@ using EnumUnderlyingType = utility::string_t;
 
 DownConvert::eDownConvert toEnum(const EnumUnderlyingType& val)
 {
-    if (val == utility::conversions::to_string_t(U("Enabled")))
-        return DownConvert::eDownConvert::DownConvert_ENABLED;
-    if (val == utility::conversions::to_string_t(U("Disabled")))
-        return DownConvert::eDownConvert::DownConvert_DISABLED;
+    if (val == utility::conversions::to_string_t(U("2K/1080p")))
+        return DownConvert::eDownConvert::DownConvert__2K_1080P;
+    if (val == utility::conversions::to_string_t(U("Off")))
+        return DownConvert::eDownConvert::DownConvert_OFF;
     return {};
 }
 
@@ -40,10 +40,10 @@ EnumUnderlyingType fromEnum(DownConvert::eDownConvert e)
 {
     switch (e)
     {
-    case DownConvert::eDownConvert::DownConvert_ENABLED:
-        return U("Enabled");
-    case DownConvert::eDownConvert::DownConvert_DISABLED:
-        return U("Disabled");
+    case DownConvert::eDownConvert::DownConvert__2K_1080P:
+        return U("2K/1080p");
+    case DownConvert::eDownConvert::DownConvert_OFF:
+        return U("Off");
     default:
         break;
     }

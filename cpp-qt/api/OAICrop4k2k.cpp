@@ -46,12 +46,12 @@ void OAICrop4k2k::fromJson(QString jsonString) {
         m_value = eOAICrop4k2k::AUTO;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("Enabled", Qt::CaseInsensitive) == 0) {
-        m_value = eOAICrop4k2k::ENABLED;
+    else if ( jsonString.compare("On", Qt::CaseInsensitive) == 0) {
+        m_value = eOAICrop4k2k::ON;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("Disabled", Qt::CaseInsensitive) == 0) {
-        m_value = eOAICrop4k2k::DISABLED;
+    else if ( jsonString.compare("Off", Qt::CaseInsensitive) == 0) {
+        m_value = eOAICrop4k2k::OFF;
         m_value_isSet = m_value_isValid = true;
     }
 }
@@ -69,11 +69,11 @@ QString OAICrop4k2k::asJson() const {
         case eOAICrop4k2k::AUTO:
             val = "Auto";
             break;
-        case eOAICrop4k2k::ENABLED:
-            val = "Enabled";
+        case eOAICrop4k2k::ON:
+            val = "On";
             break;
-        case eOAICrop4k2k::DISABLED:
-            val = "Disabled";
+        case eOAICrop4k2k::OFF:
+            val = "Off";
             break;
         default:
             break;

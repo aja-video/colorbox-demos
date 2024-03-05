@@ -44,11 +44,11 @@ type OutputConfig struct {
 // will change when the set of required properties is changed
 func NewOutputConfig() *OutputConfig {
 	this := OutputConfig{}
-	var sdiDownConvert DownConvert = DOWNCONVERT_DISABLED
+	var sdiDownConvert DownConvert = DOWNCONVERT_OFF
 	this.SdiDownConvert = &sdiDownConvert
 	var hdmiCrop4k2k Crop4k2k = CROP4K2K_AUTO
 	this.HdmiCrop4k2k = &hdmiCrop4k2k
-	var hdmiDownConvert DownConvert = DOWNCONVERT_DISABLED
+	var hdmiDownConvert DownConvert = DOWNCONVERT_OFF
 	this.HdmiDownConvert = &hdmiDownConvert
 	return &this
 }
@@ -58,11 +58,11 @@ func NewOutputConfig() *OutputConfig {
 // but it doesn't guarantee that properties required by API are set
 func NewOutputConfigWithDefaults() *OutputConfig {
 	this := OutputConfig{}
-	var sdiDownConvert DownConvert = DOWNCONVERT_DISABLED
+	var sdiDownConvert DownConvert = DOWNCONVERT_OFF
 	this.SdiDownConvert = &sdiDownConvert
 	var hdmiCrop4k2k Crop4k2k = CROP4K2K_AUTO
 	this.HdmiCrop4k2k = &hdmiCrop4k2k
-	var hdmiDownConvert DownConvert = DOWNCONVERT_DISABLED
+	var hdmiDownConvert DownConvert = DOWNCONVERT_OFF
 	this.HdmiDownConvert = &hdmiDownConvert
 	return &this
 }

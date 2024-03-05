@@ -25,15 +25,15 @@ type Crop4k2k string
 // List of Crop4k2k
 const (
 	CROP4K2K_AUTO Crop4k2k = "Auto"
-	CROP4K2K_ENABLED Crop4k2k = "Enabled"
-	CROP4K2K_DISABLED Crop4k2k = "Disabled"
+	CROP4K2K_ON Crop4k2k = "On"
+	CROP4K2K_OFF Crop4k2k = "Off"
 )
 
 // All allowed values of Crop4k2k enum
 var AllowedCrop4k2kEnumValues = []Crop4k2k{
 	"Auto",
-	"Enabled",
-	"Disabled",
+	"On",
+	"Off",
 }
 
 func (v *Crop4k2k) UnmarshalJSON(src []byte) error {

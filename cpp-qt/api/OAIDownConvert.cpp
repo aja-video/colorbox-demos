@@ -42,12 +42,12 @@ void OAIDownConvert::initializeModel() {
 
 void OAIDownConvert::fromJson(QString jsonString) {
     
-    if ( jsonString.compare("Enabled", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIDownConvert::ENABLED;
+    if ( jsonString.compare("2K/1080p", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIDownConvert::_2K_1080P;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("Disabled", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIDownConvert::DISABLED;
+    else if ( jsonString.compare("Off", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIDownConvert::OFF;
         m_value_isSet = m_value_isValid = true;
     }
 }
@@ -62,11 +62,11 @@ QString OAIDownConvert::asJson() const {
     
     QString val;
     switch (m_value){
-        case eOAIDownConvert::ENABLED:
-            val = "Enabled";
+        case eOAIDownConvert::_2K_1080P:
+            val = "2K/1080p";
             break;
-        case eOAIDownConvert::DISABLED:
-            val = "Disabled";
+        case eOAIDownConvert::OFF:
+            val = "Off";
             break;
         default:
             break;

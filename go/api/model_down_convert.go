@@ -24,14 +24,14 @@ type DownConvert string
 
 // List of DownConvert
 const (
-	DOWNCONVERT_ENABLED DownConvert = "Enabled"
-	DOWNCONVERT_DISABLED DownConvert = "Disabled"
+	DOWNCONVERT__2_K_1080P DownConvert = "2K/1080p"
+	DOWNCONVERT_OFF DownConvert = "Off"
 )
 
 // All allowed values of DownConvert enum
 var AllowedDownConvertEnumValues = []DownConvert{
-	"Enabled",
-	"Disabled",
+	"2K/1080p",
+	"Off",
 }
 
 func (v *DownConvert) UnmarshalJSON(src []byte) error {

@@ -5,9 +5,9 @@
 
 * `AUTO` (value: `"Auto"`)
 
-* `ENABLED` (value: `"Enabled"`)
+* `ON` (value: `"On"`)
 
-* `DISABLED` (value: `"Disabled"`)
+* `OFF` (value: `"Off"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
