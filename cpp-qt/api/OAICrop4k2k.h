@@ -42,8 +42,8 @@ public:
     enum class eOAICrop4k2k {
         INVALID_VALUE_OPENAPI_GENERATED = 0,
         AUTO, 
-        ENABLED, 
-        DISABLED
+        ON, 
+        OFF
     };
     OAICrop4k2k::eOAICrop4k2k getValue() const;
     void setValue(const OAICrop4k2k::eOAICrop4k2k& value);

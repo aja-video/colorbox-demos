@@ -31,10 +31,10 @@ Crop4k2k::eCrop4k2k toEnum(const EnumUnderlyingType& val)
 {
     if (val == utility::conversions::to_string_t(U("Auto")))
         return Crop4k2k::eCrop4k2k::Crop4k2k_AUTO;
-    if (val == utility::conversions::to_string_t(U("Enabled")))
-        return Crop4k2k::eCrop4k2k::Crop4k2k_ENABLED;
-    if (val == utility::conversions::to_string_t(U("Disabled")))
-        return Crop4k2k::eCrop4k2k::Crop4k2k_DISABLED;
+    if (val == utility::conversions::to_string_t(U("On")))
+        return Crop4k2k::eCrop4k2k::Crop4k2k_ON;
+    if (val == utility::conversions::to_string_t(U("Off")))
+        return Crop4k2k::eCrop4k2k::Crop4k2k_OFF;
     return {};
 }
 
@@ -44,10 +44,10 @@ EnumUnderlyingType fromEnum(Crop4k2k::eCrop4k2k e)
     {
     case Crop4k2k::eCrop4k2k::Crop4k2k_AUTO:
         return U("Auto");
-    case Crop4k2k::eCrop4k2k::Crop4k2k_ENABLED:
-        return U("Enabled");
-    case Crop4k2k::eCrop4k2k::Crop4k2k_DISABLED:
-        return U("Disabled");
+    case Crop4k2k::eCrop4k2k::Crop4k2k_ON:
+        return U("On");
+    case Crop4k2k::eCrop4k2k::Crop4k2k_OFF:
+        return U("Off");
     default:
         break;
     }

@@ -52,8 +52,8 @@ public:
     enum class eCrop4k2k
     {
         Crop4k2k_AUTO,
-        Crop4k2k_ENABLED,
-        Crop4k2k_DISABLED,
+        Crop4k2k_ON,
+        Crop4k2k_OFF,
     };
 
     eCrop4k2k getValue() const;

@@ -1471,8 +1471,8 @@ components:
       default: Auto
       enum:
       - Auto
-      - Enabled
-      - Disabled
+      - "On"
+      - "Off"
       type: string
     Connection:
       enum:
@@ -1488,10 +1488,10 @@ components:
       - 4:2:0 YCbCr
       type: string
     DownConvert:
-      default: Disabled
+      default: "Off"
       enum:
-      - Enabled
-      - Disabled
+      - 2K/1080p
+      - "Off"
       type: string
     RgbRange:
       enum:

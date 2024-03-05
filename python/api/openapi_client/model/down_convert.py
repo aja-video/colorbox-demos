@@ -56,8 +56,8 @@ class DownConvert(ModelSimple):
 
     allowed_values = {
         ('value',): {
-            'ENABLED': "Enabled",
-            'DISABLED': "Disabled",
+            '2K/1080P': "2K/1080p",
+            'OFF': "Off",
         },
     }
 
@@ -109,10 +109,10 @@ class DownConvert(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "Disabled", must be one of ["Enabled", "Disabled", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "Off", must be one of ["2K/1080p", "Off", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "Disabled", must be one of ["Enabled", "Disabled", ]  # noqa: E501
+            value (str): if omitted defaults to "Off", must be one of ["2K/1080p", "Off", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -153,7 +153,7 @@ class DownConvert(ModelSimple):
             args = list(args)
             value = args.pop(0)
         else:
-            value = "Disabled"
+            value = "Off"
 
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
@@ -195,10 +195,10 @@ class DownConvert(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "Disabled", must be one of ["Enabled", "Disabled", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "Off", must be one of ["2K/1080p", "Off", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "Disabled", must be one of ["Enabled", "Disabled", ]  # noqa: E501
+            value (str): if omitted defaults to "Off", must be one of ["2K/1080p", "Off", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -241,7 +241,7 @@ class DownConvert(ModelSimple):
             args = list(args)
             value = args.pop(0)
         else:
-            value = "Disabled"
+            value = "Off"
 
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
