@@ -84,8 +84,9 @@ Dialog::Dialog(QWidget *parent)
     connect(&_api, &OAIDefaultApi::getAmfLibrarySignalE, this, &Dialog::handleGetLibraryError);
     connect(&_api, &OAIDefaultApi::uploadFileSignal, this, &Dialog::handleUploadFile);
     connect(&_api, &OAIDefaultApi::uploadFileSignalE, this, &Dialog::handleUploadFileError);
-    connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignal, this, &Dialog::handleUploadMultipleFiles);
-    connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignalE, this, &Dialog::handleUploadMultipleFilesError);
+    //connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignal, this, &Dialog::handleUploadMultipleFiles);
+    connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignalEFull, this, &Dialog::handleUploadMultipleFilesError);
+    connect(&_api,&OAIDefaultApi::getLibraryControlSignal,this,&Dialog::handleGetLibararyControl);
 
     _ui->uploadButton->setToolTip("Select Image to upload to ColorBox");
     _ui->downloadButton->setToolTip("Download Image from ColorBox to demos bin directory");
@@ -433,10 +434,9 @@ void Dialog::handleUploadFile(QString summary)
 
 void Dialog:: handleUploadFileError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
 {
-    QMessageBox msgBox;
-    msgBox.setText("The Upload Failed.");
-    msgBox.exec();
-    qDebug() << error_str;
+    _api.getLibraryControl();
+
+    qDebug()  << error_str;
 }
 
 void Dialog::handleUploadMultipleFiles(QString summary)
@@ -449,12 +449,19 @@ void Dialog::handleUploadMultipleFiles(QString summary)
 
 }
 
-void Dialog:: handleUploadMultipleFilesError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
+void Dialog::handleUploadMultipleFilesError(OpenAPI::OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str)
+{
+    _api.getLibraryControl();
+
+    qDebug()  << error_str;
+}
+
+void Dialog::handleGetLibararyControl(OAILibraryControl summary)
 {
     QMessageBox msgBox;
-    msgBox.setText("The Upload Failed.");
+    msgBox.setText(QString("Upload Failed: %1").arg(summary.getErrorMsg()));
     msgBox.exec();
-    qDebug() << summary << error_str;
+
 }
 
 QString getCurrentFilePath(Dialog::LibaryTabEnum libEnum)
