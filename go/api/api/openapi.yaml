@@ -1488,10 +1488,10 @@ components:
       - 4:2:0 YCbCr
       type: string
     DownConvert:
-      default: "Off"
+      default: Follow Input
       enum:
+      - Follow Input
       - 2K/1080p
-      - "Off"
       type: string
     RgbRange:
       enum:

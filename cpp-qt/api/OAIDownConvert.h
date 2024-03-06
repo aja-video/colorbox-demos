@@ -41,8 +41,8 @@ public:
 
     enum class eOAIDownConvert {
         INVALID_VALUE_OPENAPI_GENERATED = 0,
-        _2K_1080P, 
-        OFF
+        FOLLOW_INPUT, 
+        _2K_1080P
     };
     OAIDownConvert::eOAIDownConvert getValue() const;
     void setValue(const OAIDownConvert::eOAIDownConvert& value);
