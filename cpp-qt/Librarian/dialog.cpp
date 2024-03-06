@@ -433,6 +433,9 @@ void Dialog::handleUploadFile(QString summary)
 
 void Dialog:: handleUploadFileError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
 {
+    QMessageBox msgBox;
+    msgBox.setText("The Upload Failed.");
+    msgBox.exec();
     qDebug() << error_str;
 }
 
@@ -448,7 +451,10 @@ void Dialog::handleUploadMultipleFiles(QString summary)
 
 void Dialog:: handleUploadMultipleFilesError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)
 {
-    qDebug() << error_str;
+    QMessageBox msgBox;
+    msgBox.setText("The Upload Failed.");
+    msgBox.exec();
+    qDebug() << summary << error_str;
 }
 
 QString getCurrentFilePath(Dialog::LibaryTabEnum libEnum)
