@@ -51,8 +51,8 @@ public:
 
     enum class eDownConvert
     {
+        DownConvert_FOLLOW_INPUT,
         DownConvert__2K_1080P,
-        DownConvert_OFF,
     };
 
     eDownConvert getValue() const;
