@@ -56,7 +56,7 @@ For implementation details see [DynamicFrameLoad/dialog.cpp](DynamicFrameLoad/di
 Please read the comments at the top of the file for some more information.
 
 ### DynamicLutLoad
-This demo shows how to dynamically load any of the 1D LUTs or 3D LUT on the ColorBox Pipeline via WebSockets and the RESTful API. The RESTFul API is used to make the “LUT Choice” and to set that LUT into Dynamic transfer mode. The WebSocket is then used to transfer either a 1DLUT or 3DLut. In this case the 3DLUT is derived from the 1DLUT for demo purposes.
+This demo shows how to dynamically load any of the 1D LUTs or 3D LUT on the ColorBox Pipeline via WebSockets and the RESTful API. The RESTFul API is used to make the “LUT Choice” and to set that LUT into Dynamic transfer mode. The WebSocket is then used to transfer either a 1DLUT or 3DLut. In this case the 3DLUT is derived from the 1DLUT for demo purposes. There is also an "Save LUT Dynamic Values on ColorBox" button that allows the current dynamic LUT values to be saved on ColorBox so on subsequent startup they can be loaded.
 
 ![dynamic_lut_load.png](docs/dynamic_lut_load.png)
 
@@ -99,7 +99,7 @@ and report back both the expected and actual results. For this to work the Pipel
 See the top of [RGBTriplet/dialog.cpp](RGBTriplet/dialog.cpp) for implementation details.
 
 ### Librarian
-This demo shows how to interface to the ColorBox Library. The Library consists of 1DLUTs, 3DLUTs, 3x3Matix and Images. This demo focuses on Images but similar code can be used for the other Elements.
+This demo shows how to interface to the ColorBox Library. The Library consists of 1DLUTs, 3DLUTs, Images, Overlays and AMF Files. 
 
 ![librarian.png](docs/librarian.png)
 
