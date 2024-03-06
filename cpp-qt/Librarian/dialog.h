@@ -45,7 +45,10 @@ public slots:
     void handleUploadFile(QString summary);
     void handleUploadFileError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)  ;
     void handleUploadMultipleFiles(QString summary);
-    void handleUploadMultipleFilesError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)  ;
+    //void handleUploadMultipleFilesError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)  ;
+    void handleUploadMultipleFilesError(OpenAPI::OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void handleGetLibararyControl(OpenAPI::OAILibraryControl summary);
+
     void handleGetLibrary(QList<OpenAPI::OAILibraryEntry> summary);
     void handleGetLibraryError(QList<OpenAPI::OAILibraryEntry> summary,QNetworkReply::NetworkError error_type, QString error_str);
 
