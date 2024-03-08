@@ -3933,7 +3933,7 @@ func (r ApiSaveDynamicLutRequestRequest) Execute() (*http.Response, error) {
 /*
 SaveDynamicLutRequest Method for SaveDynamicLutRequest
 
-Request a save of the current dynamic lut state
+Request a save of the current dynamic lut state. **Note:** This API call should be used sparingly as it writes a file to flash which has a finite number of write cycles.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSaveDynamicLutRequestRequest

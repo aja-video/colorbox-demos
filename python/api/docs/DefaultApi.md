@@ -2394,7 +2394,7 @@ No authorization required
 
 
 
-Request a save of the current dynamic lut state
+Request a save of the current dynamic lut state. **Note:** This API call should be used sparingly as it writes a file to flash which has a finite number of write cycles.
 
 ### Example
 

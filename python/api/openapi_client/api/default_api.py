@@ -5964,7 +5964,7 @@ class DefaultApi(object):
     ):
         """save_dynamic_lut_request  # noqa: E501
 
-        Request a save of the current dynamic lut state  # noqa: E501
+        Request a save of the current dynamic lut state. **Note:** This API call should be used sparingly as it writes a file to flash which has a finite number of write cycles.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
