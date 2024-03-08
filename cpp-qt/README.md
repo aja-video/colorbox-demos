@@ -106,7 +106,7 @@ This demo shows how to interface to the ColorBox Library. The Library consists o
 See the top of [Librarian/dialog.cpp](Librarian/dialog.cpp) for comments on the implementation.
 
 #### Updates
-**03/8/2024** - Extended Libarian Demo to include all libraries:1D,3D,Matrix,Image,Overlay and AMF
+**03/8/2024** - Extended Libarian Demo to include all libraries:1D,3D,Matrix,Image,Overlay and AMF. Added Save saveDynamicLutRequest API Call to DynamicLutLoad demo.
 
 **03/31/2023** - Added Calibration API, and update DynamicFrameLoad to demonstrate it.
 
