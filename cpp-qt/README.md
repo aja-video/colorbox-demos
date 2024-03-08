@@ -1,4 +1,4 @@
-Last update: 09/09/2022
+Last update: 03/8/2024
 
 # Qt C++ Demo Projects
 There are 7 Qt C++ demos included.
@@ -99,14 +99,16 @@ and report back both the expected and actual results. For this to work the Pipel
 See the top of [RGBTriplet/dialog.cpp](RGBTriplet/dialog.cpp) for implementation details.
 
 ### Librarian
-This demo shows how to interface to the ColorBox Library. The Library consists of 1DLUTs, 3DLUTs, Images, Overlays and AMF Files. 
+This demo shows how to interface to the ColorBox Library. The Library consists of 1DLUTs, 3DLUTs, Matrices, Images, Overlays and AMF Files. 
 
 ![librarian.png](docs/librarian.png)
 
 See the top of [Librarian/dialog.cpp](Librarian/dialog.cpp) for comments on the implementation.
 
 #### Updates
-**03/31/2022** - Added Calibration API, and update DynamicFrameLoad to demonstrate it.
+**03/8/2024** - Extended Libarian Demo to include all libraries:1D,3D,Matrix,Image,Overlay and AMF
+
+**03/31/2023** - Added Calibration API, and update DynamicFrameLoad to demonstrate it.
 
 **09/09/2022** - Converted this documentation into markdown. Split the document up, some of it is now in the root level [README.md](../README.md)
 
