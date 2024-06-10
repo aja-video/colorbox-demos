@@ -350,6 +350,19 @@ void Dialog::dropEvent(QDropEvent *ev)
     QFileInfo fi(fileName);
     QString extension = QString(".%1").arg(fi.suffix());
     QString uploadFileFilter = getUploadFileFilter(getCurrentLibraryEnum());
+    // Find empty slot to drop to. if none overwrite 16.
+    for ( int rowCount = 0; rowCount < _ui->libraryList->count() ; rowCount++)
+    {
+        QListWidgetItem* listEntry =_ui->libraryList->item(rowCount) ;
+        qDebug() << listEntry->text();
+        if (listEntry->text().size() < 7 )
+        {
+            qDebug() << "Setting Current Row" << rowCount;
+            _ui->libraryList->setCurrentRow(rowCount);
+            break;
+        }
+    }
+
     if ( uploadFileFilter.contains(extension))
     {
         uploadFile(fileName);
@@ -653,6 +666,10 @@ void Dialog::keyPressEvent(QKeyEvent *event)
     if(  (event->key() == Qt::Key_Return) )
     {
          handleSelectButton();
+    }
+    else if (event->key() == Qt::Key_Delete)
+    {
+        // delete selected entry
     }
 
 }
