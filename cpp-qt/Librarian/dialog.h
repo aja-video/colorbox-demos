@@ -10,6 +10,7 @@
 #include "colorboxdemocommon.h"
 #include "ajawebsocketinterface.h"
 #include <OAIDefaultApi.h>
+
 #include "filedownloader.h"
 
 QT_BEGIN_NAMESPACE
