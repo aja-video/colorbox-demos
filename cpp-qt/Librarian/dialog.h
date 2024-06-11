@@ -40,6 +40,7 @@ public slots:
     void handleUploadButton();
     void handleDownloadButton();
     void handleSelectButton();
+    void handleDeleteButton();
     void handleLibraryTabChanged(int index);
 
     // OpenAPI Slots
@@ -49,6 +50,7 @@ public slots:
     //void handleUploadMultipleFilesError(QString summary, QNetworkReply::NetworkError error_type, QString error_str)  ;
     void handleUploadMultipleFilesError(OpenAPI::OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void handleGetLibararyControl(OpenAPI::OAILibraryControl summary);
+    void handleSetLibararyControl();
 
     void handleGetLibrary(QList<OpenAPI::OAILibraryEntry> summary);
     void handleGetLibraryError(QList<OpenAPI::OAILibraryEntry> summary,QNetworkReply::NetworkError error_type, QString error_str);
