@@ -66,6 +66,7 @@ Dialog::Dialog(QWidget *parent)
     connect(_ui->downloadButton,&QPushButton::pressed,this,&Dialog::handleDownloadButton);
     connect(_ui->selectButton,&QPushButton::pressed,this,&Dialog::handleSelectButton);
     connect(_ui->libraryList,&QListWidget::itemDoubleClicked,this,&Dialog::handleSelectButton);
+    connect(_ui->deleteButton,&QPushButton::pressed,this,&Dialog::handleDeleteButton);
     connect(_ui->libraryTabWidget,&QTabWidget::currentChanged,this,&Dialog::handleLibraryTabChanged);
 
     // API related slots
@@ -87,6 +88,7 @@ Dialog::Dialog(QWidget *parent)
     //connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignal, this, &Dialog::handleUploadMultipleFiles);
     connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignalEFull, this, &Dialog::handleUploadMultipleFilesError);
     connect(&_api,&OAIDefaultApi::getLibraryControlSignal,this,&Dialog::handleGetLibararyControl);
+    connect(&_api,&OAIDefaultApi::setLibraryControlSignal,this,&Dialog::handleSetLibararyControl);
 
     _ui->uploadButton->setToolTip("Select Image to upload to ColorBox");
     _ui->downloadButton->setToolTip("Download Image from ColorBox to demos bin directory");
@@ -477,6 +479,15 @@ void Dialog::handleGetLibararyControl(OAILibraryControl summary)
 
 }
 
+void Dialog::handleSetLibararyControl()
+{
+    if ( _cbConnected)
+        getCurrentLibrary();
+
+    if ( _entryChoice > 0 && _entryChoice <= 16 )
+         _ui->libraryList->setCurrentRow(_entryChoice);
+}
+
 QString getCurrentFilePath(Dialog::LibaryTabEnum libEnum)
 {
     switch ( libEnum )
@@ -661,6 +672,75 @@ void Dialog::handleSelectButton()
 
 }
 
+void Dialog::handleDeleteButton()
+{
+    QMutexLocker lock(&_libraryMutex);
+
+    if ( _cbConnected == false )
+        return;
+
+    if ( _ui->libraryList->currentRow() == -1 )
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Select a location in the library list.");
+        msgBox.exec();
+    }
+    else
+    {
+        _entryChoice = _ui->libraryList->currentRow()+1;
+        QListWidgetItem* item =  _ui->libraryList->currentItem();
+        QString fileName = item->text();
+
+        if ( !fileName.isEmpty())
+        {
+            Dialog::LibaryTabEnum libEnum = getCurrentLibraryEnum();
+            OpenAPI::OAILibraryControl libControl;
+            OpenAPI::OAILibraryAction libAction;
+            libAction.setValue(OpenAPI::OAILibraryAction::eOAILibraryAction::DELETEENTRY);
+            OpenAPI::OAILibrary library;
+            switch ( libEnum)
+            {
+            case Dialog::OneDLUT:
+            {
+                library.setValue(OpenAPI::OAILibrary::eOAILibrary::_1D_LUT);
+                break;
+            }
+            case Dialog::ThreeDLUT:
+            {
+                library.setValue(OpenAPI::OAILibrary::eOAILibrary::_3D_LUT);
+                break;
+            }
+            case::Dialog::MATRIX:
+            {
+                library.setValue(OpenAPI::OAILibrary::eOAILibrary::MATRIX);
+                break;
+            }
+            case Dialog::IMAGE:
+            {
+                library.setValue(OpenAPI::OAILibrary::eOAILibrary::IMAGE);
+                break;
+            }
+            case Dialog::OVERLAY:
+            {
+                library.setValue(OpenAPI::OAILibrary::eOAILibrary::OVERLAY);
+                break;
+            }
+            case Dialog::AMF:
+            {
+                library.setValue(OpenAPI::OAILibrary::eOAILibrary::AMF);
+                break;
+            }
+
+            }
+            libControl.setAction(libAction);
+            libControl.setEntry(_entryChoice);
+            libControl.setLibrary(library);
+            _api.setLibraryControl(libControl);
+
+        }
+    }
+}
+
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
     if(  (event->key() == Qt::Key_Return) )
@@ -669,7 +749,7 @@ void Dialog::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Delete)
     {
-        // delete selected entry
+        handleDeleteButton();
     }
 
 }

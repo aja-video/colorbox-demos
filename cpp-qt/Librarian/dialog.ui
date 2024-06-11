@@ -272,8 +272,8 @@
   <widget class="QComboBox" name="matrixChoiceComboBox">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>320</y>
+     <x>717</x>
+     <y>323</y>
      <width>101</width>
      <height>30</height>
     </rect>
@@ -300,7 +300,7 @@
    <property name="geometry">
     <rect>
      <x>600</x>
-     <y>320</y>
+     <y>323</y>
      <width>101</width>
      <height>30</height>
     </rect>
@@ -332,6 +332,29 @@
      <string>1DL4</string>
     </property>
    </item>
+  </widget>
+  <widget class="QPushButton" name="deleteButton">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>370</y>
+     <width>221</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Delete Entry</string>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
   </widget>
  </widget>
  <resources/>
