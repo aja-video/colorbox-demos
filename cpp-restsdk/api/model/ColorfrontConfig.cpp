@@ -33,6 +33,9 @@ ColorfrontConfig::ColorfrontConfig()
     m_ModeIsSet = false;
     m_TvModeIsSet = false;
     m_LiveModeIsSet = false;
+    m_UpmapModeIsSet = false;
+    m_EnableArriWVOLogC4Decoder = false;
+    m_EnableArriWVOLogC4DecoderIsSet = false;
 }
 
 ColorfrontConfig::~ColorfrontConfig()
@@ -78,6 +81,14 @@ web::json::value ColorfrontConfig::toJson() const
     if(m_LiveModeIsSet)
     {
         val[utility::conversions::to_string_t(U("liveMode"))] = ModelBase::toJson(m_LiveMode);
+    }
+    if(m_UpmapModeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("upmapMode"))] = ModelBase::toJson(m_UpmapMode);
+    }
+    if(m_EnableArriWVOLogC4DecoderIsSet)
+    {
+        val[utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))] = ModelBase::toJson(m_EnableArriWVOLogC4Decoder);
     }
 
     return val;
@@ -147,6 +158,26 @@ bool ColorfrontConfig::fromJson(const web::json::value& val)
             setLiveMode(refVal_liveMode);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("upmapMode"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("upmapMode")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<ColorfrontUpmapMode> refVal_upmapMode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_upmapMode);
+            setUpmapMode(refVal_upmapMode);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_enableArriWVOLogC4Decoder;
+            ok &= ModelBase::fromJson(fieldValue, refVal_enableArriWVOLogC4Decoder);
+            setEnableArriWVOLogC4Decoder(refVal_enableArriWVOLogC4Decoder);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -182,6 +213,14 @@ void ColorfrontConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_LiveModeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("liveMode")), m_LiveMode));
+    }
+    if(m_UpmapModeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("upmapMode")), m_UpmapMode));
+    }
+    if(m_EnableArriWVOLogC4DecoderIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder")), m_EnableArriWVOLogC4Decoder));
     }
 }
 
@@ -229,6 +268,18 @@ bool ColorfrontConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         std::shared_ptr<ColorfrontLiveMode> refVal_liveMode;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("liveMode"))), refVal_liveMode );
         setLiveMode(refVal_liveMode);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("upmapMode"))))
+    {
+        std::shared_ptr<ColorfrontUpmapMode> refVal_upmapMode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("upmapMode"))), refVal_upmapMode );
+        setUpmapMode(refVal_upmapMode);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))))
+    {
+        bool refVal_enableArriWVOLogC4Decoder;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))), refVal_enableArriWVOLogC4Decoder );
+        setEnableArriWVOLogC4Decoder(refVal_enableArriWVOLogC4Decoder);
     }
     
     applyMinMaxConstraints();
@@ -370,6 +421,52 @@ bool ColorfrontConfig::liveModeIsSet() const
 void ColorfrontConfig::unsetLiveMode()
 {
     m_LiveModeIsSet = false;
+}
+
+
+std::shared_ptr<ColorfrontUpmapMode> ColorfrontConfig::getUpmapMode() const
+{
+    return m_UpmapMode;
+}
+
+void ColorfrontConfig::setUpmapMode(const std::shared_ptr<ColorfrontUpmapMode>& value)
+{
+	std::shared_ptr<ColorfrontUpmapMode> v = value;
+    m_UpmapMode = v;
+    m_UpmapModeIsSet = true;
+}
+
+bool ColorfrontConfig::upmapModeIsSet() const
+{
+    return m_UpmapModeIsSet;
+}
+
+void ColorfrontConfig::unsetUpmapMode()
+{
+    m_UpmapModeIsSet = false;
+}
+
+
+bool ColorfrontConfig::isEnableArriWVOLogC4Decoder() const
+{
+    return m_EnableArriWVOLogC4Decoder;
+}
+
+void ColorfrontConfig::setEnableArriWVOLogC4Decoder(bool value)
+{
+	bool v = value;
+    m_EnableArriWVOLogC4Decoder = v;
+    m_EnableArriWVOLogC4DecoderIsSet = true;
+}
+
+bool ColorfrontConfig::enableArriWVOLogC4DecoderIsSet() const
+{
+    return m_EnableArriWVOLogC4DecoderIsSet;
+}
+
+void ColorfrontConfig::unsetEnableArriWVOLogC4Decoder()
+{
+    m_EnableArriWVOLogC4DecoderIsSet = false;
 }
 
 

@@ -27,6 +27,9 @@ type ColorfrontConfig struct {
 	Mode *ColorfrontMode `json:"mode,omitempty"`
 	TvMode *ColorfrontTvMode `json:"tvMode,omitempty"`
 	LiveMode *ColorfrontLiveMode `json:"liveMode,omitempty"`
+	UpmapMode *ColorfrontUpmapMode `json:"upmapMode,omitempty"`
+	// Setting to enable ARRI WVO to LogC4 Decoder on Input
+	EnableArriWVOLogC4Decoder *bool `json:"enableArriWVOLogC4Decoder,omitempty"`
 }
 
 // NewColorfrontConfig instantiates a new ColorfrontConfig object
@@ -41,6 +44,8 @@ func NewColorfrontConfig() *ColorfrontConfig {
 	this.OutDynRangeGamut = &outDynRangeGamut
 	var mode ColorfrontMode = COLORFRONTMODE_TV
 	this.Mode = &mode
+	var enableArriWVOLogC4Decoder bool = false
+	this.EnableArriWVOLogC4Decoder = &enableArriWVOLogC4Decoder
 	return &this
 }
 
@@ -55,6 +60,8 @@ func NewColorfrontConfigWithDefaults() *ColorfrontConfig {
 	this.OutDynRangeGamut = &outDynRangeGamut
 	var mode ColorfrontMode = COLORFRONTMODE_TV
 	this.Mode = &mode
+	var enableArriWVOLogC4Decoder bool = false
+	this.EnableArriWVOLogC4Decoder = &enableArriWVOLogC4Decoder
 	return &this
 }
 
@@ -268,6 +275,76 @@ func (o *ColorfrontConfig) SetLiveMode(v ColorfrontLiveMode) {
 	o.LiveMode = &tmp
 }
 
+// GetUpmapMode returns the UpmapMode field value if set, zero value otherwise.
+func (o *ColorfrontConfig) GetUpmapMode() ColorfrontUpmapMode {
+	if o == nil || o.UpmapMode == nil {
+		var ret ColorfrontUpmapMode
+		return ret
+	}
+	return *o.UpmapMode
+}
+
+// GetUpmapModeOk returns a tuple with the UpmapMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ColorfrontConfig) GetUpmapModeOk() (*ColorfrontUpmapMode, bool) {
+	if o == nil || o.UpmapMode == nil {
+		return nil, false
+	}
+	return o.UpmapMode, true
+}
+
+
+
+// HasUpmapMode returns a boolean if a field has been set.
+func (o *ColorfrontConfig) HasUpmapMode() bool {
+	if o != nil && o.UpmapMode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpmapMode gets a reference to the given ColorfrontUpmapMode and assigns it to the UpmapMode field.
+func (o *ColorfrontConfig) SetUpmapMode(v ColorfrontUpmapMode) {
+	tmp := v
+	o.UpmapMode = &tmp
+}
+
+// GetEnableArriWVOLogC4Decoder returns the EnableArriWVOLogC4Decoder field value if set, zero value otherwise.
+func (o *ColorfrontConfig) GetEnableArriWVOLogC4Decoder() bool {
+	if o == nil || o.EnableArriWVOLogC4Decoder == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableArriWVOLogC4Decoder
+}
+
+// GetEnableArriWVOLogC4DecoderOk returns a tuple with the EnableArriWVOLogC4Decoder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ColorfrontConfig) GetEnableArriWVOLogC4DecoderOk() (*bool, bool) {
+	if o == nil || o.EnableArriWVOLogC4Decoder == nil {
+		return nil, false
+	}
+	return o.EnableArriWVOLogC4Decoder, true
+}
+
+
+
+// HasEnableArriWVOLogC4Decoder returns a boolean if a field has been set.
+func (o *ColorfrontConfig) HasEnableArriWVOLogC4Decoder() bool {
+	if o != nil && o.EnableArriWVOLogC4Decoder != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableArriWVOLogC4Decoder gets a reference to the given bool and assigns it to the EnableArriWVOLogC4Decoder field.
+func (o *ColorfrontConfig) SetEnableArriWVOLogC4Decoder(v bool) {
+	tmp := v
+	o.EnableArriWVOLogC4Decoder = &tmp
+}
+
 func (o ColorfrontConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Enabled != nil {
@@ -287,6 +364,12 @@ func (o ColorfrontConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.LiveMode != nil {
 		toSerialize["liveMode"] = o.LiveMode
+	}
+	if o.UpmapMode != nil {
+		toSerialize["upmapMode"] = o.UpmapMode
+	}
+	if o.EnableArriWVOLogC4Decoder != nil {
+		toSerialize["enableArriWVOLogC4Decoder"] = o.EnableArriWVOLogC4Decoder
 	}
 	return json.Marshal(toSerialize)
 }

@@ -27,8 +27,10 @@ from openapi_client.model.colorfront_dyn_range_gamut_tv_mode_in import Colorfron
 from openapi_client.model.colorfront_dyn_range_gamut_tv_mode_out import ColorfrontDynRangeGamutTvModeOut
 from openapi_client.model.colorfront_engine import ColorfrontEngine
 from openapi_client.model.colorfront_live_mode import ColorfrontLiveMode
+from openapi_client.model.colorfront_low_mid_high import ColorfrontLowMidHigh
 from openapi_client.model.colorfront_mode import ColorfrontMode
 from openapi_client.model.colorfront_tv_mode import ColorfrontTvMode
+from openapi_client.model.colorfront_upmap_mode import ColorfrontUpmapMode
 from openapi_client.model.colorimetry import Colorimetry
 from openapi_client.model.connection import Connection
 from openapi_client.model.crop4k2k import Crop4k2k

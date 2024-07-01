@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **Mode** | Pointer to [**ColorfrontMode**](ColorfrontMode.md) |  | [optional] [default to COLORFRONTMODE_TV]
 **TvMode** | Pointer to [**ColorfrontTvMode**](ColorfrontTvMode.md) |  | [optional] 
 **LiveMode** | Pointer to [**ColorfrontLiveMode**](ColorfrontLiveMode.md) |  | [optional] 
+**UpmapMode** | Pointer to [**ColorfrontUpmapMode**](ColorfrontUpmapMode.md) |  | [optional] 
+**EnableArriWVOLogC4Decoder** | Pointer to **bool** | Setting to enable ARRI WVO to LogC4 Decoder on Input | [optional] [default to false]
 
 ## Methods
 
@@ -179,6 +181,56 @@ SetLiveMode sets LiveMode field to given value.
 `func (o *ColorfrontConfig) HasLiveMode() bool`
 
 HasLiveMode returns a boolean if a field has been set.
+
+### GetUpmapMode
+
+`func (o *ColorfrontConfig) GetUpmapMode() ColorfrontUpmapMode`
+
+GetUpmapMode returns the UpmapMode field if non-nil, zero value otherwise.
+
+### GetUpmapModeOk
+
+`func (o *ColorfrontConfig) GetUpmapModeOk() (*ColorfrontUpmapMode, bool)`
+
+GetUpmapModeOk returns a tuple with the UpmapMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpmapMode
+
+`func (o *ColorfrontConfig) SetUpmapMode(v ColorfrontUpmapMode)`
+
+SetUpmapMode sets UpmapMode field to given value.
+
+### HasUpmapMode
+
+`func (o *ColorfrontConfig) HasUpmapMode() bool`
+
+HasUpmapMode returns a boolean if a field has been set.
+
+### GetEnableArriWVOLogC4Decoder
+
+`func (o *ColorfrontConfig) GetEnableArriWVOLogC4Decoder() bool`
+
+GetEnableArriWVOLogC4Decoder returns the EnableArriWVOLogC4Decoder field if non-nil, zero value otherwise.
+
+### GetEnableArriWVOLogC4DecoderOk
+
+`func (o *ColorfrontConfig) GetEnableArriWVOLogC4DecoderOk() (*bool, bool)`
+
+GetEnableArriWVOLogC4DecoderOk returns a tuple with the EnableArriWVOLogC4Decoder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableArriWVOLogC4Decoder
+
+`func (o *ColorfrontConfig) SetEnableArriWVOLogC4Decoder(v bool)`
+
+SetEnableArriWVOLogC4Decoder sets EnableArriWVOLogC4Decoder field to given value.
+
+### HasEnableArriWVOLogC4Decoder
+
+`func (o *ColorfrontConfig) HasEnableArriWVOLogC4Decoder() bool`
+
+HasEnableArriWVOLogC4Decoder returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

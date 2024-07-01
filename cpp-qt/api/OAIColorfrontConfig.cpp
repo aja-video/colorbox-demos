@@ -52,6 +52,12 @@ void OAIColorfrontConfig::initializeModel() {
 
     m_live_mode_isSet = false;
     m_live_mode_isValid = false;
+
+    m_upmap_mode_isSet = false;
+    m_upmap_mode_isValid = false;
+
+    m_enable_arri_wvo_log_c4_decoder_isSet = false;
+    m_enable_arri_wvo_log_c4_decoder_isValid = false;
 }
 
 void OAIColorfrontConfig::fromJson(QString jsonString) {
@@ -79,6 +85,12 @@ void OAIColorfrontConfig::fromJsonObject(QJsonObject json) {
 
     m_live_mode_isValid = ::OpenAPI::fromJsonValue(m_live_mode, json[QString("liveMode")]);
     m_live_mode_isSet = !json[QString("liveMode")].isNull() && m_live_mode_isValid;
+
+    m_upmap_mode_isValid = ::OpenAPI::fromJsonValue(m_upmap_mode, json[QString("upmapMode")]);
+    m_upmap_mode_isSet = !json[QString("upmapMode")].isNull() && m_upmap_mode_isValid;
+
+    m_enable_arri_wvo_log_c4_decoder_isValid = ::OpenAPI::fromJsonValue(m_enable_arri_wvo_log_c4_decoder, json[QString("enableArriWVOLogC4Decoder")]);
+    m_enable_arri_wvo_log_c4_decoder_isSet = !json[QString("enableArriWVOLogC4Decoder")].isNull() && m_enable_arri_wvo_log_c4_decoder_isValid;
 
     applyMinMaxConstraints();
 }
@@ -109,6 +121,12 @@ QJsonObject OAIColorfrontConfig::asJsonObject() const {
     }
     if (m_live_mode.isSet()) {
         obj.insert(QString("liveMode"), ::OpenAPI::toJsonValue(m_live_mode));
+    }
+    if (m_upmap_mode.isSet()) {
+        obj.insert(QString("upmapMode"), ::OpenAPI::toJsonValue(m_upmap_mode));
+    }
+    if (m_enable_arri_wvo_log_c4_decoder_isSet) {
+        obj.insert(QString("enableArriWVOLogC4Decoder"), ::OpenAPI::toJsonValue(m_enable_arri_wvo_log_c4_decoder));
     }
     return obj;
 }
@@ -221,6 +239,42 @@ bool OAIColorfrontConfig::is_live_mode_Valid() const{
 }
 
 
+OAIColorfrontUpmapMode OAIColorfrontConfig::getUpmapMode() const {
+    return m_upmap_mode;
+}
+void OAIColorfrontConfig::setUpmapMode(const OAIColorfrontUpmapMode &upmap_mode) {
+	OAIColorfrontUpmapMode v = upmap_mode;
+	this->m_upmap_mode = v;
+    this->m_upmap_mode_isSet = true;
+}
+
+bool OAIColorfrontConfig::is_upmap_mode_Set() const{
+    return m_upmap_mode_isSet;
+}
+
+bool OAIColorfrontConfig::is_upmap_mode_Valid() const{
+    return m_upmap_mode_isValid;
+}
+
+
+bool OAIColorfrontConfig::isEnableArriWvoLogC4Decoder() const {
+    return m_enable_arri_wvo_log_c4_decoder;
+}
+void OAIColorfrontConfig::setEnableArriWvoLogC4Decoder(const bool &enable_arri_wvo_log_c4_decoder) {
+	bool v = enable_arri_wvo_log_c4_decoder;
+	this->m_enable_arri_wvo_log_c4_decoder = v;
+    this->m_enable_arri_wvo_log_c4_decoder_isSet = true;
+}
+
+bool OAIColorfrontConfig::is_enable_arri_wvo_log_c4_decoder_Set() const{
+    return m_enable_arri_wvo_log_c4_decoder_isSet;
+}
+
+bool OAIColorfrontConfig::is_enable_arri_wvo_log_c4_decoder_Valid() const{
+    return m_enable_arri_wvo_log_c4_decoder_isValid;
+}
+
+
 bool OAIColorfrontConfig::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -250,6 +304,16 @@ bool OAIColorfrontConfig::isSet() const {
         }
 
         if (m_live_mode.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_upmap_mode.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_enable_arri_wvo_log_c4_decoder_isSet) {
             isObjectUpdated = true;
             break;
         }

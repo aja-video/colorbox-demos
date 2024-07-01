@@ -38,8 +38,10 @@ add_library(${PROJECT_NAME}
     OAIColorfrontDynRangeGamutTvModeOut.cpp
     OAIColorfrontEngine.cpp
     OAIColorfrontLiveMode.cpp
+    OAIColorfrontLowMidHigh.cpp
     OAIColorfrontMode.cpp
     OAIColorfrontTvMode.cpp
+    OAIColorfrontUpmapMode.cpp
     OAIColorimetry.cpp
     OAIConnection.cpp
     OAICrop4k2k.cpp

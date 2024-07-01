@@ -20,8 +20,10 @@ HEADERS += \
     $${PWD}/OAIColorfrontDynRangeGamutTvModeOut.h \
     $${PWD}/OAIColorfrontEngine.h \
     $${PWD}/OAIColorfrontLiveMode.h \
+    $${PWD}/OAIColorfrontLowMidHigh.h \
     $${PWD}/OAIColorfrontMode.h \
     $${PWD}/OAIColorfrontTvMode.h \
+    $${PWD}/OAIColorfrontUpmapMode.h \
     $${PWD}/OAIColorimetry.h \
     $${PWD}/OAIConnection.h \
     $${PWD}/OAICrop4k2k.h \
@@ -113,8 +115,10 @@ SOURCES += \
     $${PWD}/OAIColorfrontDynRangeGamutTvModeOut.cpp \
     $${PWD}/OAIColorfrontEngine.cpp \
     $${PWD}/OAIColorfrontLiveMode.cpp \
+    $${PWD}/OAIColorfrontLowMidHigh.cpp \
     $${PWD}/OAIColorfrontMode.cpp \
     $${PWD}/OAIColorfrontTvMode.cpp \
+    $${PWD}/OAIColorfrontUpmapMode.cpp \
     $${PWD}/OAIColorimetry.cpp \
     $${PWD}/OAIConnection.cpp \
     $${PWD}/OAICrop4k2k.cpp \

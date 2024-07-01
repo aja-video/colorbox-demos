@@ -50,6 +50,10 @@ void OAIColorfrontMode::fromJson(QString jsonString) {
         m_value = eOAIColorfrontMode::LIVE;
         m_value_isSet = m_value_isValid = true;
     }
+    else if ( jsonString.compare("SDR to Dolby Vision Preview", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIColorfrontMode::SDR_TO_DOLBY_VISION_PREVIEW;
+        m_value_isSet = m_value_isValid = true;
+    }
 }
 
 void OAIColorfrontMode::fromJsonValue(QJsonValue json) {
@@ -67,6 +71,9 @@ QString OAIColorfrontMode::asJson() const {
             break;
         case eOAIColorfrontMode::LIVE:
             val = "Live";
+            break;
+        case eOAIColorfrontMode::SDR_TO_DOLBY_VISION_PREVIEW:
+            val = "SDR to Dolby Vision Preview";
             break;
         default:
             break;

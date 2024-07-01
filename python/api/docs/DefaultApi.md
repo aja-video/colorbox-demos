@@ -3203,6 +3203,12 @@ with openapi_client.ApiClient() as api_client:
             p3_colorspace_clamp=False,
             bt2408_mode=0,
         ),
+        upmap_mode=ColorfrontUpmapMode(
+            bypass=False,
+            contrast=ColorfrontLowMidHigh("Mid"),
+            highlights=ColorfrontLowMidHigh("Mid"),
+        ),
+        enable_arri_wvo_log_c4_decoder=False,
     ) # ColorfrontConfig | ColorfrontConfig object
 
     # example passing only required values which don't have defaults set

@@ -2281,6 +2281,9 @@ components:
           gammaBlue: 1.3756104440255752
           sdrSoftness: 0.8762042012749002
           liftGreen: -0.28856095458638054
+        upmapMode:
+          bypass: false
+        enableArriWVOLogC4Decoder: false
         enabled: true
       properties:
         enabled:
@@ -2296,6 +2299,12 @@ components:
           $ref: '#/components/schemas/ColorfrontTvMode'
         liveMode:
           $ref: '#/components/schemas/ColorfrontLiveMode'
+        upmapMode:
+          $ref: '#/components/schemas/ColorfrontUpmapMode'
+        enableArriWVOLogC4Decoder:
+          default: false
+          description: Setting to enable ARRI WVO to LogC4 Decoder on Input
+          type: boolean
       type: object
     ColorfrontDynRangeGamut:
       default: SDR BT.709
@@ -2310,6 +2319,7 @@ components:
       enum:
       - TV
       - Live
+      - SDR to Dolby Vision Preview
       type: string
     ColorfrontEngine:
       default: Default
@@ -2664,6 +2674,25 @@ components:
           maximum: 1.0
           minimum: 0.0
           type: number
+      type: object
+    ColorfrontLowMidHigh:
+      default: Mid
+      enum:
+      - Low
+      - Mid
+      - High
+      type: string
+    ColorfrontUpmapMode:
+      example:
+        bypass: false
+      properties:
+        bypass:
+          default: false
+          type: boolean
+        contrast:
+          $ref: '#/components/schemas/ColorfrontLowMidHigh'
+        highlights:
+          $ref: '#/components/schemas/ColorfrontLowMidHigh'
       type: object
     BbcConfig:
       example:
