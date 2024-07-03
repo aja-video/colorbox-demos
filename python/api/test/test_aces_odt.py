@@ -16,11 +16,11 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.ocio_display_view import OcioDisplayView
+from openapi_client.model.aces_odt import AcesOdt
 
 
-class TestOcioDisplayView(unittest.TestCase):
-    """OcioDisplayView unit test stubs"""
+class TestAcesOdt(unittest.TestCase):
+    """AcesOdt unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestOcioDisplayView(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testOcioDisplayView(self):
-        """Test OcioDisplayView"""
+    def testAcesOdt(self):
+        """Test AcesOdt"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = OcioDisplayView()  # noqa: E501
+        # model = AcesOdt()  # noqa: E501
         pass
 
 

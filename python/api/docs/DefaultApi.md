@@ -2480,8 +2480,8 @@ with openapi_client.ApiClient() as api_client:
         enabled=True,
         mode=AcesMode("AMF"),
         amf_library_entry=1,
-        ocio_source=OcioSource("Camera Rec.709"),
-        ocio_display_view=OcioDisplayView("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"),
+        aces_idt=AcesIdt("ARRI LogC3 (EI800)"),
+        aces_odt=AcesOdt("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"),
         enable_arri_wvo_log_c4_decoder=False,
     ) # AcesConfig | AcesConfig object
 

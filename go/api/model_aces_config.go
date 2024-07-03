@@ -25,8 +25,8 @@ type AcesConfig struct {
 	Mode *AcesMode `json:"mode,omitempty"`
 	// library entry number, zero is unity bypass
 	AmfLibraryEntry *int32 `json:"amfLibraryEntry,omitempty"`
-	OcioSource *OcioSource `json:"ocioSource,omitempty"`
-	OcioDisplayView *OcioDisplayView `json:"ocioDisplayView,omitempty"`
+	AcesIdt *AcesIdt `json:"acesIdt,omitempty"`
+	AcesOdt *AcesOdt `json:"acesOdt,omitempty"`
 	EnableArriWVOLogC4Decoder *bool `json:"enableArriWVOLogC4Decoder,omitempty"`
 }
 
@@ -38,10 +38,10 @@ func NewAcesConfig() *AcesConfig {
 	this := AcesConfig{}
 	var mode AcesMode = ACESMODE_AMF
 	this.Mode = &mode
-	var ocioSource OcioSource = OCIOSOURCE_CAMERA_REC_709
-	this.OcioSource = &ocioSource
-	var ocioDisplayView OcioDisplayView = OCIODISPLAYVIEW_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
-	this.OcioDisplayView = &ocioDisplayView
+	var acesIdt AcesIdt = ACESIDT_ARRI_LOG_C3__EI800
+	this.AcesIdt = &acesIdt
+	var acesOdt AcesOdt = ACESODT_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
+	this.AcesOdt = &acesOdt
 	var enableArriWVOLogC4Decoder bool = false
 	this.EnableArriWVOLogC4Decoder = &enableArriWVOLogC4Decoder
 	return &this
@@ -54,10 +54,10 @@ func NewAcesConfigWithDefaults() *AcesConfig {
 	this := AcesConfig{}
 	var mode AcesMode = ACESMODE_AMF
 	this.Mode = &mode
-	var ocioSource OcioSource = OCIOSOURCE_CAMERA_REC_709
-	this.OcioSource = &ocioSource
-	var ocioDisplayView OcioDisplayView = OCIODISPLAYVIEW_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
-	this.OcioDisplayView = &ocioDisplayView
+	var acesIdt AcesIdt = ACESIDT_ARRI_LOG_C3__EI800
+	this.AcesIdt = &acesIdt
+	var acesOdt AcesOdt = ACESODT_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
+	this.AcesOdt = &acesOdt
 	var enableArriWVOLogC4Decoder bool = false
 	this.EnableArriWVOLogC4Decoder = &enableArriWVOLogC4Decoder
 	return &this
@@ -168,74 +168,74 @@ func (o *AcesConfig) SetAmfLibraryEntry(v int32) {
 	o.AmfLibraryEntry = &tmp
 }
 
-// GetOcioSource returns the OcioSource field value if set, zero value otherwise.
-func (o *AcesConfig) GetOcioSource() OcioSource {
-	if o == nil || o.OcioSource == nil {
-		var ret OcioSource
+// GetAcesIdt returns the AcesIdt field value if set, zero value otherwise.
+func (o *AcesConfig) GetAcesIdt() AcesIdt {
+	if o == nil || o.AcesIdt == nil {
+		var ret AcesIdt
 		return ret
 	}
-	return *o.OcioSource
+	return *o.AcesIdt
 }
 
-// GetOcioSourceOk returns a tuple with the OcioSource field value if set, nil otherwise
+// GetAcesIdtOk returns a tuple with the AcesIdt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AcesConfig) GetOcioSourceOk() (*OcioSource, bool) {
-	if o == nil || o.OcioSource == nil {
+func (o *AcesConfig) GetAcesIdtOk() (*AcesIdt, bool) {
+	if o == nil || o.AcesIdt == nil {
 		return nil, false
 	}
-	return o.OcioSource, true
+	return o.AcesIdt, true
 }
 
 
 
-// HasOcioSource returns a boolean if a field has been set.
-func (o *AcesConfig) HasOcioSource() bool {
-	if o != nil && o.OcioSource != nil {
+// HasAcesIdt returns a boolean if a field has been set.
+func (o *AcesConfig) HasAcesIdt() bool {
+	if o != nil && o.AcesIdt != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetOcioSource gets a reference to the given OcioSource and assigns it to the OcioSource field.
-func (o *AcesConfig) SetOcioSource(v OcioSource) {
+// SetAcesIdt gets a reference to the given AcesIdt and assigns it to the AcesIdt field.
+func (o *AcesConfig) SetAcesIdt(v AcesIdt) {
 	tmp := v
-	o.OcioSource = &tmp
+	o.AcesIdt = &tmp
 }
 
-// GetOcioDisplayView returns the OcioDisplayView field value if set, zero value otherwise.
-func (o *AcesConfig) GetOcioDisplayView() OcioDisplayView {
-	if o == nil || o.OcioDisplayView == nil {
-		var ret OcioDisplayView
+// GetAcesOdt returns the AcesOdt field value if set, zero value otherwise.
+func (o *AcesConfig) GetAcesOdt() AcesOdt {
+	if o == nil || o.AcesOdt == nil {
+		var ret AcesOdt
 		return ret
 	}
-	return *o.OcioDisplayView
+	return *o.AcesOdt
 }
 
-// GetOcioDisplayViewOk returns a tuple with the OcioDisplayView field value if set, nil otherwise
+// GetAcesOdtOk returns a tuple with the AcesOdt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AcesConfig) GetOcioDisplayViewOk() (*OcioDisplayView, bool) {
-	if o == nil || o.OcioDisplayView == nil {
+func (o *AcesConfig) GetAcesOdtOk() (*AcesOdt, bool) {
+	if o == nil || o.AcesOdt == nil {
 		return nil, false
 	}
-	return o.OcioDisplayView, true
+	return o.AcesOdt, true
 }
 
 
 
-// HasOcioDisplayView returns a boolean if a field has been set.
-func (o *AcesConfig) HasOcioDisplayView() bool {
-	if o != nil && o.OcioDisplayView != nil {
+// HasAcesOdt returns a boolean if a field has been set.
+func (o *AcesConfig) HasAcesOdt() bool {
+	if o != nil && o.AcesOdt != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetOcioDisplayView gets a reference to the given OcioDisplayView and assigns it to the OcioDisplayView field.
-func (o *AcesConfig) SetOcioDisplayView(v OcioDisplayView) {
+// SetAcesOdt gets a reference to the given AcesOdt and assigns it to the AcesOdt field.
+func (o *AcesConfig) SetAcesOdt(v AcesOdt) {
 	tmp := v
-	o.OcioDisplayView = &tmp
+	o.AcesOdt = &tmp
 }
 
 // GetEnableArriWVOLogC4Decoder returns the EnableArriWVOLogC4Decoder field value if set, zero value otherwise.
@@ -284,11 +284,11 @@ func (o AcesConfig) MarshalJSON() ([]byte, error) {
 	if o.AmfLibraryEntry != nil {
 		toSerialize["amfLibraryEntry"] = o.AmfLibraryEntry
 	}
-	if o.OcioSource != nil {
-		toSerialize["ocioSource"] = o.OcioSource
+	if o.AcesIdt != nil {
+		toSerialize["acesIdt"] = o.AcesIdt
 	}
-	if o.OcioDisplayView != nil {
-		toSerialize["ocioDisplayView"] = o.OcioDisplayView
+	if o.AcesOdt != nil {
+		toSerialize["acesOdt"] = o.AcesOdt
 	}
 	if o.EnableArriWVOLogC4Decoder != nil {
 		toSerialize["enableArriWVOLogC4Decoder"] = o.EnableArriWVOLogC4Decoder

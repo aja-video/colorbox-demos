@@ -16,11 +16,11 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.ocio_source import OcioSource
+from openapi_client.model.aces_idt import AcesIdt
 
 
-class TestOcioSource(unittest.TestCase):
-    """OcioSource unit test stubs"""
+class TestAcesIdt(unittest.TestCase):
+    """AcesIdt unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestOcioSource(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testOcioSource(self):
-        """Test OcioSource"""
+    def testAcesIdt(self):
+        """Test AcesIdt"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = OcioSource()  # noqa: E501
+        # model = AcesIdt()  # noqa: E501
         pass
 
 

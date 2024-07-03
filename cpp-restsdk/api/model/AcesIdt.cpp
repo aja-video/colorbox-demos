@@ -14,7 +14,7 @@
 
 
 
-#include "OcioSource.h"
+#include "AcesIdt.h"
 
 namespace org {
 namespace openapitools {
@@ -27,63 +27,59 @@ namespace
 {
 using EnumUnderlyingType = utility::string_t;
 
-OcioSource::eOcioSource toEnum(const EnumUnderlyingType& val)
+AcesIdt::eAcesIdt toEnum(const EnumUnderlyingType& val)
 {
     if (val == utility::conversions::to_string_t(U("ARRI LogC3 (EI800)")))
-        return OcioSource::eOcioSource::OcioSource_ARRI_LOGC3_EI800_;
+        return AcesIdt::eAcesIdt::AcesIdt_ARRI_LOGC3_EI800_;
     if (val == utility::conversions::to_string_t(U("ARRI LogC4")))
-        return OcioSource::eOcioSource::OcioSource_ARRI_LOGC4;
-    if (val == utility::conversions::to_string_t(U("BMDFilm WideGamut Gen5")))
-        return OcioSource::eOcioSource::OcioSource_BMDFILM_WIDEGAMUT_GEN5;
+        return AcesIdt::eAcesIdt::AcesIdt_ARRI_LOGC4;
     if (val == utility::conversions::to_string_t(U("CanonLog2 CinemaGamut D55")))
-        return OcioSource::eOcioSource::OcioSource_CANONLOG2_CINEMAGAMUT_D55;
+        return AcesIdt::eAcesIdt::AcesIdt_CANONLOG2_CINEMAGAMUT_D55;
     if (val == utility::conversions::to_string_t(U("CanonLog3 CinemaGamut D55")))
-        return OcioSource::eOcioSource::OcioSource_CANONLOG3_CINEMAGAMUT_D55;
+        return AcesIdt::eAcesIdt::AcesIdt_CANONLOG3_CINEMAGAMUT_D55;
     if (val == utility::conversions::to_string_t(U("V-Log V-Gamut")))
-        return OcioSource::eOcioSource::OcioSource_V_LOG_V_GAMUT;
+        return AcesIdt::eAcesIdt::AcesIdt_V_LOG_V_GAMUT;
     if (val == utility::conversions::to_string_t(U("Log3G10 REDWideGamutRGB")))
-        return OcioSource::eOcioSource::OcioSource_LOG3G10_REDWIDEGAMUTRGB;
+        return AcesIdt::eAcesIdt::AcesIdt_LOG3G10_REDWIDEGAMUTRGB;
     if (val == utility::conversions::to_string_t(U("S-Log3 S-Gamut3")))
-        return OcioSource::eOcioSource::OcioSource_S_LOG3_S_GAMUT3;
+        return AcesIdt::eAcesIdt::AcesIdt_S_LOG3_S_GAMUT3;
     if (val == utility::conversions::to_string_t(U("S-Log3 S-Gamut3.Cine")))
-        return OcioSource::eOcioSource::OcioSource_S_LOG3_S_GAMUT3_CINE;
+        return AcesIdt::eAcesIdt::AcesIdt_S_LOG3_S_GAMUT3_CINE;
     if (val == utility::conversions::to_string_t(U("S-Log3 Venice S-Gamut3")))
-        return OcioSource::eOcioSource::OcioSource_S_LOG3_VENICE_S_GAMUT3;
+        return AcesIdt::eAcesIdt::AcesIdt_S_LOG3_VENICE_S_GAMUT3;
     if (val == utility::conversions::to_string_t(U("S-Log3 Venice S-Gamut3.Cine")))
-        return OcioSource::eOcioSource::OcioSource_S_LOG3_VENICE_S_GAMUT3_CINE;
-    if (val == utility::conversions::to_string_t(U("Camera Rec.709")))
-        return OcioSource::eOcioSource::OcioSource_CAMERA_REC_709;
+        return AcesIdt::eAcesIdt::AcesIdt_S_LOG3_VENICE_S_GAMUT3_CINE;
+    if (val == utility::conversions::to_string_t(U("Non-ACES IDT")))
+        return AcesIdt::eAcesIdt::AcesIdt_NON_ACES_IDT;
     return {};
 }
 
-EnumUnderlyingType fromEnum(OcioSource::eOcioSource e)
+EnumUnderlyingType fromEnum(AcesIdt::eAcesIdt e)
 {
     switch (e)
     {
-    case OcioSource::eOcioSource::OcioSource_ARRI_LOGC3_EI800_:
+    case AcesIdt::eAcesIdt::AcesIdt_ARRI_LOGC3_EI800_:
         return U("ARRI LogC3 (EI800)");
-    case OcioSource::eOcioSource::OcioSource_ARRI_LOGC4:
+    case AcesIdt::eAcesIdt::AcesIdt_ARRI_LOGC4:
         return U("ARRI LogC4");
-    case OcioSource::eOcioSource::OcioSource_BMDFILM_WIDEGAMUT_GEN5:
-        return U("BMDFilm WideGamut Gen5");
-    case OcioSource::eOcioSource::OcioSource_CANONLOG2_CINEMAGAMUT_D55:
+    case AcesIdt::eAcesIdt::AcesIdt_CANONLOG2_CINEMAGAMUT_D55:
         return U("CanonLog2 CinemaGamut D55");
-    case OcioSource::eOcioSource::OcioSource_CANONLOG3_CINEMAGAMUT_D55:
+    case AcesIdt::eAcesIdt::AcesIdt_CANONLOG3_CINEMAGAMUT_D55:
         return U("CanonLog3 CinemaGamut D55");
-    case OcioSource::eOcioSource::OcioSource_V_LOG_V_GAMUT:
+    case AcesIdt::eAcesIdt::AcesIdt_V_LOG_V_GAMUT:
         return U("V-Log V-Gamut");
-    case OcioSource::eOcioSource::OcioSource_LOG3G10_REDWIDEGAMUTRGB:
+    case AcesIdt::eAcesIdt::AcesIdt_LOG3G10_REDWIDEGAMUTRGB:
         return U("Log3G10 REDWideGamutRGB");
-    case OcioSource::eOcioSource::OcioSource_S_LOG3_S_GAMUT3:
+    case AcesIdt::eAcesIdt::AcesIdt_S_LOG3_S_GAMUT3:
         return U("S-Log3 S-Gamut3");
-    case OcioSource::eOcioSource::OcioSource_S_LOG3_S_GAMUT3_CINE:
+    case AcesIdt::eAcesIdt::AcesIdt_S_LOG3_S_GAMUT3_CINE:
         return U("S-Log3 S-Gamut3.Cine");
-    case OcioSource::eOcioSource::OcioSource_S_LOG3_VENICE_S_GAMUT3:
+    case AcesIdt::eAcesIdt::AcesIdt_S_LOG3_VENICE_S_GAMUT3:
         return U("S-Log3 Venice S-Gamut3");
-    case OcioSource::eOcioSource::OcioSource_S_LOG3_VENICE_S_GAMUT3_CINE:
+    case AcesIdt::eAcesIdt::AcesIdt_S_LOG3_VENICE_S_GAMUT3_CINE:
         return U("S-Log3 Venice S-Gamut3.Cine");
-    case OcioSource::eOcioSource::OcioSource_CAMERA_REC_709:
-        return U("Camera Rec.709");
+    case AcesIdt::eAcesIdt::AcesIdt_NON_ACES_IDT:
+        return U("Non-ACES IDT");
     default:
         break;
     }
@@ -91,38 +87,38 @@ EnumUnderlyingType fromEnum(OcioSource::eOcioSource e)
 }
 }
 
-OcioSource::OcioSource()
+AcesIdt::AcesIdt()
 {
 }
 
-OcioSource::~OcioSource()
+AcesIdt::~AcesIdt()
 {
 }
 
-void OcioSource::validate()
+void AcesIdt::validate()
 {
     // TODO: implement validation
 }
 
-bool OcioSource::applyMinMaxConstraints()
+bool AcesIdt::applyMinMaxConstraints()
 {
 	bool anyMinMaxValueChanged = false;
 	return anyMinMaxValueChanged;
 }
 
-web::json::value OcioSource::toJson() const
+web::json::value AcesIdt::toJson() const
 {
     auto val = fromEnum(m_value);
     return web::json::value(val);
 }
 
-bool OcioSource::fromJson(const web::json::value& val)
+bool AcesIdt::fromJson(const web::json::value& val)
 {
     m_value = toEnum(val.as_string());
     return true;
 }
 
-void OcioSource::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void AcesIdt::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if (!namePrefix.empty() && namePrefix.back() != U('.'))
@@ -134,7 +130,7 @@ void OcioSource::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     multipart->add(ModelBase::toHttpContent(namePrefix, e));
 }
 
-bool OcioSource::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool AcesIdt::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -154,12 +150,12 @@ bool OcioSource::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     return ok;
 }
 
-OcioSource::eOcioSource OcioSource::getValue() const
+AcesIdt::eAcesIdt AcesIdt::getValue() const
 {
    return m_value;
 }
 
-void OcioSource::setValue(OcioSource::eOcioSource const value)
+void AcesIdt::setValue(AcesIdt::eAcesIdt const value)
 {
    m_value = value;
 }

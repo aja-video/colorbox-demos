@@ -44,11 +44,11 @@ void OAIAcesConfig::initializeModel() {
     m_amf_library_entry_isSet = false;
     m_amf_library_entry_isValid = false;
 
-    m_ocio_source_isSet = false;
-    m_ocio_source_isValid = false;
+    m_aces_idt_isSet = false;
+    m_aces_idt_isValid = false;
 
-    m_ocio_display_view_isSet = false;
-    m_ocio_display_view_isValid = false;
+    m_aces_odt_isSet = false;
+    m_aces_odt_isValid = false;
 
     m_enable_arri_wvo_log_c4_decoder_isSet = false;
     m_enable_arri_wvo_log_c4_decoder_isValid = false;
@@ -71,11 +71,11 @@ void OAIAcesConfig::fromJsonObject(QJsonObject json) {
     m_amf_library_entry_isValid = ::OpenAPI::fromJsonValue(m_amf_library_entry, json[QString("amfLibraryEntry")]);
     m_amf_library_entry_isSet = !json[QString("amfLibraryEntry")].isNull() && m_amf_library_entry_isValid;
 
-    m_ocio_source_isValid = ::OpenAPI::fromJsonValue(m_ocio_source, json[QString("ocioSource")]);
-    m_ocio_source_isSet = !json[QString("ocioSource")].isNull() && m_ocio_source_isValid;
+    m_aces_idt_isValid = ::OpenAPI::fromJsonValue(m_aces_idt, json[QString("acesIdt")]);
+    m_aces_idt_isSet = !json[QString("acesIdt")].isNull() && m_aces_idt_isValid;
 
-    m_ocio_display_view_isValid = ::OpenAPI::fromJsonValue(m_ocio_display_view, json[QString("ocioDisplayView")]);
-    m_ocio_display_view_isSet = !json[QString("ocioDisplayView")].isNull() && m_ocio_display_view_isValid;
+    m_aces_odt_isValid = ::OpenAPI::fromJsonValue(m_aces_odt, json[QString("acesOdt")]);
+    m_aces_odt_isSet = !json[QString("acesOdt")].isNull() && m_aces_odt_isValid;
 
     m_enable_arri_wvo_log_c4_decoder_isValid = ::OpenAPI::fromJsonValue(m_enable_arri_wvo_log_c4_decoder, json[QString("enableArriWVOLogC4Decoder")]);
     m_enable_arri_wvo_log_c4_decoder_isSet = !json[QString("enableArriWVOLogC4Decoder")].isNull() && m_enable_arri_wvo_log_c4_decoder_isValid;
@@ -101,11 +101,11 @@ QJsonObject OAIAcesConfig::asJsonObject() const {
     if (m_amf_library_entry_isSet) {
         obj.insert(QString("amfLibraryEntry"), ::OpenAPI::toJsonValue(m_amf_library_entry));
     }
-    if (m_ocio_source.isSet()) {
-        obj.insert(QString("ocioSource"), ::OpenAPI::toJsonValue(m_ocio_source));
+    if (m_aces_idt.isSet()) {
+        obj.insert(QString("acesIdt"), ::OpenAPI::toJsonValue(m_aces_idt));
     }
-    if (m_ocio_display_view.isSet()) {
-        obj.insert(QString("ocioDisplayView"), ::OpenAPI::toJsonValue(m_ocio_display_view));
+    if (m_aces_odt.isSet()) {
+        obj.insert(QString("acesOdt"), ::OpenAPI::toJsonValue(m_aces_odt));
     }
     if (m_enable_arri_wvo_log_c4_decoder_isSet) {
         obj.insert(QString("enableArriWVOLogC4Decoder"), ::OpenAPI::toJsonValue(m_enable_arri_wvo_log_c4_decoder));
@@ -168,39 +168,39 @@ bool OAIAcesConfig::is_amf_library_entry_Valid() const{
 
 
 
-OAIOcioSource OAIAcesConfig::getOcioSource() const {
-    return m_ocio_source;
+OAIAcesIdt OAIAcesConfig::getAcesIdt() const {
+    return m_aces_idt;
 }
-void OAIAcesConfig::setOcioSource(const OAIOcioSource &ocio_source) {
-	OAIOcioSource v = ocio_source;
-	this->m_ocio_source = v;
-    this->m_ocio_source_isSet = true;
-}
-
-bool OAIAcesConfig::is_ocio_source_Set() const{
-    return m_ocio_source_isSet;
+void OAIAcesConfig::setAcesIdt(const OAIAcesIdt &aces_idt) {
+	OAIAcesIdt v = aces_idt;
+	this->m_aces_idt = v;
+    this->m_aces_idt_isSet = true;
 }
 
-bool OAIAcesConfig::is_ocio_source_Valid() const{
-    return m_ocio_source_isValid;
+bool OAIAcesConfig::is_aces_idt_Set() const{
+    return m_aces_idt_isSet;
+}
+
+bool OAIAcesConfig::is_aces_idt_Valid() const{
+    return m_aces_idt_isValid;
 }
 
 
-OAIOcioDisplayView OAIAcesConfig::getOcioDisplayView() const {
-    return m_ocio_display_view;
+OAIAcesOdt OAIAcesConfig::getAcesOdt() const {
+    return m_aces_odt;
 }
-void OAIAcesConfig::setOcioDisplayView(const OAIOcioDisplayView &ocio_display_view) {
-	OAIOcioDisplayView v = ocio_display_view;
-	this->m_ocio_display_view = v;
-    this->m_ocio_display_view_isSet = true;
-}
-
-bool OAIAcesConfig::is_ocio_display_view_Set() const{
-    return m_ocio_display_view_isSet;
+void OAIAcesConfig::setAcesOdt(const OAIAcesOdt &aces_odt) {
+	OAIAcesOdt v = aces_odt;
+	this->m_aces_odt = v;
+    this->m_aces_odt_isSet = true;
 }
 
-bool OAIAcesConfig::is_ocio_display_view_Valid() const{
-    return m_ocio_display_view_isValid;
+bool OAIAcesConfig::is_aces_odt_Set() const{
+    return m_aces_odt_isSet;
+}
+
+bool OAIAcesConfig::is_aces_odt_Valid() const{
+    return m_aces_odt_isValid;
 }
 
 
@@ -240,12 +240,12 @@ bool OAIAcesConfig::isSet() const {
             break;
         }
 
-        if (m_ocio_source.isSet()) {
+        if (m_aces_idt.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_ocio_display_view.isSet()) {
+        if (m_aces_odt.isSet()) {
             isObjectUpdated = true;
             break;
         }

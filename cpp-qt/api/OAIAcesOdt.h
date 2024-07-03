@@ -12,13 +12,13 @@
  */
 
 /*
- * OAIOcioSource.h
+ * OAIAcesOdt.h
  *
  * 
  */
 
-#ifndef OAIOcioSource_H
-#define OAIOcioSource_H
+#ifndef OAIAcesOdt_H
+#define OAIAcesOdt_H
 
 #include <QJsonObject>
 
@@ -28,34 +28,28 @@
 
 namespace OpenAPI {
 
-class OAIOcioSource : public OAIEnum {
+class OAIAcesOdt : public OAIEnum {
 public:
-    OAIOcioSource();
-    OAIOcioSource(QString json);
-    ~OAIOcioSource() override;
+    OAIAcesOdt();
+    OAIAcesOdt(QString json);
+    ~OAIAcesOdt() override;
 
     QString asJson() const override;
     QJsonValue asJsonValue() const override;
     void fromJsonValue(QJsonValue json) override;
     void fromJson(QString jsonString) override;
 
-    enum class eOAIOcioSource {
+    enum class eOAIAcesOdt {
         INVALID_VALUE_OPENAPI_GENERATED = 0,
-        ARRI_LOGC3_EI800_, 
-        ARRI_LOGC4, 
-        BMDFILM_WIDEGAMUT_GEN5, 
-        CANONLOG2_CINEMAGAMUT_D55, 
-        CANONLOG3_CINEMAGAMUT_D55, 
-        V_LOG_V_GAMUT, 
-        LOG3G10_REDWIDEGAMUTRGB, 
-        S_LOG3_S_GAMUT3, 
-        S_LOG3_S_GAMUT3_CINE, 
-        S_LOG3_VENICE_S_GAMUT3, 
-        S_LOG3_VENICE_S_GAMUT3_CINE, 
-        CAMERA_REC_709
+        REC_1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO, 
+        REC_2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_, 
+        REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_, 
+        REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_, 
+        REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_, 
+        NON_ACES_ODT
     };
-    OAIOcioSource::eOAIOcioSource getValue() const;
-    void setValue(const OAIOcioSource::eOAIOcioSource& value);
+    OAIAcesOdt::eOAIAcesOdt getValue() const;
+    void setValue(const OAIAcesOdt::eOAIAcesOdt& value);
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -63,13 +57,13 @@ public:
 private:
     void initializeModel();
 
-    eOAIOcioSource m_value;
+    eOAIAcesOdt m_value;
     bool m_value_isSet;
     bool m_value_isValid;
 };
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIOcioSource)
+Q_DECLARE_METATYPE(OpenAPI::OAIAcesOdt)
 
-#endif // OAIOcioSource_H
+#endif // OAIAcesOdt_H

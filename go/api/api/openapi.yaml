@@ -2876,12 +2876,11 @@ components:
       - AMF
       - OCIO
       type: string
-    OcioSource:
-      default: Camera Rec.709
+    AcesIdt:
+      default: ARRI LogC3 (EI800)
       enum:
       - ARRI LogC3 (EI800)
       - ARRI LogC4
-      - BMDFilm WideGamut Gen5
       - CanonLog2 CinemaGamut D55
       - CanonLog3 CinemaGamut D55
       - V-Log V-Gamut
@@ -2890,9 +2889,9 @@ components:
       - S-Log3 S-Gamut3.Cine
       - S-Log3 Venice S-Gamut3
       - S-Log3 Venice S-Gamut3.Cine
-      - Camera Rec.709
+      - Non-ACES IDT
       type: string
-    OcioDisplayView:
+    AcesOdt:
       default: Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video
       enum:
       - Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video
@@ -2900,10 +2899,7 @@ components:
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)
-      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (1000 nits & P3 lim)
-      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (2000 nits & P3 lim)
-      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (4000 nits & P3 lim)
-      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Cinema (108 nits & P3 lim)
+      - Non-ACES ODT
       type: string
     AcesConfig:
       example:
@@ -2919,10 +2915,10 @@ components:
         amfLibraryEntry:
           description: library entry number, zero is unity bypass
           type: integer
-        ocioSource:
-          $ref: '#/components/schemas/OcioSource'
-        ocioDisplayView:
-          $ref: '#/components/schemas/OcioDisplayView'
+        acesIdt:
+          $ref: '#/components/schemas/AcesIdt'
+        acesOdt:
+          $ref: '#/components/schemas/AcesOdt'
         enableArriWVOLogC4Decoder:
           default: false
           type: boolean

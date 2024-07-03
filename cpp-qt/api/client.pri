@@ -3,7 +3,9 @@ QT += network
 HEADERS += \
 # Models
     $${PWD}/OAIAcesConfig.h \
+    $${PWD}/OAIAcesIdt.h \
     $${PWD}/OAIAcesMode.h \
+    $${PWD}/OAIAcesOdt.h \
     $${PWD}/OAIAncCaptureFilter.h \
     $${PWD}/OAIBbcConfig.h \
     $${PWD}/OAIBitDepth.h \
@@ -45,8 +47,6 @@ HEADERS += \
     $${PWD}/OAINetDevice.h \
     $${PWD}/OAINetParams.h \
     $${PWD}/OAINetStatus.h \
-    $${PWD}/OAIOcioDisplayView.h \
-    $${PWD}/OAIOcioSource.h \
     $${PWD}/OAIOrionClamping.h \
     $${PWD}/OAIOrionConfig.h \
     $${PWD}/OAIOrionConversion.h \
@@ -98,7 +98,9 @@ HEADERS += \
 SOURCES += \
 # Models
     $${PWD}/OAIAcesConfig.cpp \
+    $${PWD}/OAIAcesIdt.cpp \
     $${PWD}/OAIAcesMode.cpp \
+    $${PWD}/OAIAcesOdt.cpp \
     $${PWD}/OAIAncCaptureFilter.cpp \
     $${PWD}/OAIBbcConfig.cpp \
     $${PWD}/OAIBitDepth.cpp \
@@ -140,8 +142,6 @@ SOURCES += \
     $${PWD}/OAINetDevice.cpp \
     $${PWD}/OAINetParams.cpp \
     $${PWD}/OAINetStatus.cpp \
-    $${PWD}/OAIOcioDisplayView.cpp \
-    $${PWD}/OAIOcioSource.cpp \
     $${PWD}/OAIOrionClamping.cpp \
     $${PWD}/OAIOrionConfig.cpp \
     $${PWD}/OAIOrionConversion.cpp \

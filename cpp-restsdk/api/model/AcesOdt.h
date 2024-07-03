@@ -13,13 +13,13 @@
  */
 
 /*
- * OcioSource.h
+ * AcesOdt.h
  *
  * 
  */
 
-#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_OcioSource_H_
-#define ORG_OPENAPITOOLS_CLIENT_MODEL_OcioSource_H_
+#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_AcesOdt_H_
+#define ORG_OPENAPITOOLS_CLIENT_MODEL_AcesOdt_H_
 
 
 #include "ModelBase.h"
@@ -30,12 +30,12 @@ namespace openapitools {
 namespace client {
 namespace model {
 
-class  OcioSource
+class  AcesOdt
     : public ModelBase
 {
 public:
-    OcioSource();
-    virtual ~OcioSource();
+    AcesOdt();
+    virtual ~AcesOdt();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -49,27 +49,21 @@ public:
     void toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) const override;
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
-    enum class eOcioSource
+    enum class eAcesOdt
     {
-        OcioSource_ARRI_LOGC3_EI800_,
-        OcioSource_ARRI_LOGC4,
-        OcioSource_BMDFILM_WIDEGAMUT_GEN5,
-        OcioSource_CANONLOG2_CINEMAGAMUT_D55,
-        OcioSource_CANONLOG3_CINEMAGAMUT_D55,
-        OcioSource_V_LOG_V_GAMUT,
-        OcioSource_LOG3G10_REDWIDEGAMUTRGB,
-        OcioSource_S_LOG3_S_GAMUT3,
-        OcioSource_S_LOG3_S_GAMUT3_CINE,
-        OcioSource_S_LOG3_VENICE_S_GAMUT3,
-        OcioSource_S_LOG3_VENICE_S_GAMUT3_CINE,
-        OcioSource_CAMERA_REC_709,
+        AcesOdt_REC_1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO,
+        AcesOdt_REC_2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_,
+        AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_,
+        AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_,
+        AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_,
+        AcesOdt_NON_ACES_ODT,
     };
 
-    eOcioSource getValue() const;
-    void setValue(eOcioSource const value);
+    eAcesOdt getValue() const;
+    void setValue(eAcesOdt const value);
 
     protected:
-        eOcioSource m_value;
+        eAcesOdt m_value;
 };
 
 }
@@ -77,4 +71,4 @@ public:
 }
 }
 
-#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_OcioSource_H_ */
+#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_AcesOdt_H_ */

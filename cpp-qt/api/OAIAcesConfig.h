@@ -22,9 +22,9 @@
 
 #include <QJsonObject>
 
+#include "OAIAcesIdt.h"
 #include "OAIAcesMode.h"
-#include "OAIOcioDisplayView.h"
-#include "OAIOcioSource.h"
+#include "OAIAcesOdt.h"
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
@@ -57,15 +57,15 @@ public:
     bool is_amf_library_entry_Set() const;
     bool is_amf_library_entry_Valid() const;
 
-    OAIOcioSource getOcioSource() const;
-    void setOcioSource(const OAIOcioSource &ocio_source);
-    bool is_ocio_source_Set() const;
-    bool is_ocio_source_Valid() const;
+    OAIAcesIdt getAcesIdt() const;
+    void setAcesIdt(const OAIAcesIdt &aces_idt);
+    bool is_aces_idt_Set() const;
+    bool is_aces_idt_Valid() const;
 
-    OAIOcioDisplayView getOcioDisplayView() const;
-    void setOcioDisplayView(const OAIOcioDisplayView &ocio_display_view);
-    bool is_ocio_display_view_Set() const;
-    bool is_ocio_display_view_Valid() const;
+    OAIAcesOdt getAcesOdt() const;
+    void setAcesOdt(const OAIAcesOdt &aces_odt);
+    bool is_aces_odt_Set() const;
+    bool is_aces_odt_Valid() const;
 
     bool isEnableArriWvoLogC4Decoder() const;
     void setEnableArriWvoLogC4Decoder(const bool &enable_arri_wvo_log_c4_decoder);
@@ -91,13 +91,13 @@ private:
     bool m_amf_library_entry_isSet;
     bool m_amf_library_entry_isValid;
 
-    OAIOcioSource m_ocio_source;
-    bool m_ocio_source_isSet;
-    bool m_ocio_source_isValid;
+    OAIAcesIdt m_aces_idt;
+    bool m_aces_idt_isSet;
+    bool m_aces_idt_isValid;
 
-    OAIOcioDisplayView m_ocio_display_view;
-    bool m_ocio_display_view_isSet;
-    bool m_ocio_display_view_isValid;
+    OAIAcesOdt m_aces_odt;
+    bool m_aces_odt_isSet;
+    bool m_aces_odt_isValid;
 
     bool m_enable_arri_wvo_log_c4_decoder;
     bool m_enable_arri_wvo_log_c4_decoder_isSet;

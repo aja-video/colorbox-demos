@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Enabled** | Pointer to **bool** | true if stage is enabled else disabled (unity passthru) | [optional] 
 **Mode** | Pointer to [**AcesMode**](AcesMode.md) |  | [optional] [default to ACESMODE_AMF]
 **AmfLibraryEntry** | Pointer to **int32** | library entry number, zero is unity bypass | [optional] 
-**OcioSource** | Pointer to [**OcioSource**](OcioSource.md) |  | [optional] [default to OCIOSOURCE_CAMERA_REC_709]
-**OcioDisplayView** | Pointer to [**OcioDisplayView**](OcioDisplayView.md) |  | [optional] [default to OCIODISPLAYVIEW_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO]
+**AcesIdt** | Pointer to [**AcesIdt**](AcesIdt.md) |  | [optional] [default to ACESIDT_ARRI_LOG_C3__EI800]
+**AcesOdt** | Pointer to [**AcesOdt**](AcesOdt.md) |  | [optional] [default to ACESODT_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO]
 **EnableArriWVOLogC4Decoder** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
@@ -105,55 +105,55 @@ SetAmfLibraryEntry sets AmfLibraryEntry field to given value.
 
 HasAmfLibraryEntry returns a boolean if a field has been set.
 
-### GetOcioSource
+### GetAcesIdt
 
-`func (o *AcesConfig) GetOcioSource() OcioSource`
+`func (o *AcesConfig) GetAcesIdt() AcesIdt`
 
-GetOcioSource returns the OcioSource field if non-nil, zero value otherwise.
+GetAcesIdt returns the AcesIdt field if non-nil, zero value otherwise.
 
-### GetOcioSourceOk
+### GetAcesIdtOk
 
-`func (o *AcesConfig) GetOcioSourceOk() (*OcioSource, bool)`
+`func (o *AcesConfig) GetAcesIdtOk() (*AcesIdt, bool)`
 
-GetOcioSourceOk returns a tuple with the OcioSource field if it's non-nil, zero value otherwise
+GetAcesIdtOk returns a tuple with the AcesIdt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOcioSource
+### SetAcesIdt
 
-`func (o *AcesConfig) SetOcioSource(v OcioSource)`
+`func (o *AcesConfig) SetAcesIdt(v AcesIdt)`
 
-SetOcioSource sets OcioSource field to given value.
+SetAcesIdt sets AcesIdt field to given value.
 
-### HasOcioSource
+### HasAcesIdt
 
-`func (o *AcesConfig) HasOcioSource() bool`
+`func (o *AcesConfig) HasAcesIdt() bool`
 
-HasOcioSource returns a boolean if a field has been set.
+HasAcesIdt returns a boolean if a field has been set.
 
-### GetOcioDisplayView
+### GetAcesOdt
 
-`func (o *AcesConfig) GetOcioDisplayView() OcioDisplayView`
+`func (o *AcesConfig) GetAcesOdt() AcesOdt`
 
-GetOcioDisplayView returns the OcioDisplayView field if non-nil, zero value otherwise.
+GetAcesOdt returns the AcesOdt field if non-nil, zero value otherwise.
 
-### GetOcioDisplayViewOk
+### GetAcesOdtOk
 
-`func (o *AcesConfig) GetOcioDisplayViewOk() (*OcioDisplayView, bool)`
+`func (o *AcesConfig) GetAcesOdtOk() (*AcesOdt, bool)`
 
-GetOcioDisplayViewOk returns a tuple with the OcioDisplayView field if it's non-nil, zero value otherwise
+GetAcesOdtOk returns a tuple with the AcesOdt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOcioDisplayView
+### SetAcesOdt
 
-`func (o *AcesConfig) SetOcioDisplayView(v OcioDisplayView)`
+`func (o *AcesConfig) SetAcesOdt(v AcesOdt)`
 
-SetOcioDisplayView sets OcioDisplayView field to given value.
+SetAcesOdt sets AcesOdt field to given value.
 
-### HasOcioDisplayView
+### HasAcesOdt
 
-`func (o *AcesConfig) HasOcioDisplayView() bool`
+`func (o *AcesConfig) HasAcesOdt() bool`
 
-HasOcioDisplayView returns a boolean if a field has been set.
+HasAcesOdt returns a boolean if a field has been set.
 
 ### GetEnableArriWVOLogC4Decoder
 

@@ -31,8 +31,8 @@ AcesConfig::AcesConfig()
     m_ModeIsSet = false;
     m_AmfLibraryEntry = 0;
     m_AmfLibraryEntryIsSet = false;
-    m_OcioSourceIsSet = false;
-    m_OcioDisplayViewIsSet = false;
+    m_AcesIdtIsSet = false;
+    m_AcesOdtIsSet = false;
     m_EnableArriWVOLogC4Decoder = false;
     m_EnableArriWVOLogC4DecoderIsSet = false;
 }
@@ -75,13 +75,13 @@ web::json::value AcesConfig::toJson() const
     {
         val[utility::conversions::to_string_t(U("amfLibraryEntry"))] = ModelBase::toJson(m_AmfLibraryEntry);
     }
-    if(m_OcioSourceIsSet)
+    if(m_AcesIdtIsSet)
     {
-        val[utility::conversions::to_string_t(U("ocioSource"))] = ModelBase::toJson(m_OcioSource);
+        val[utility::conversions::to_string_t(U("acesIdt"))] = ModelBase::toJson(m_AcesIdt);
     }
-    if(m_OcioDisplayViewIsSet)
+    if(m_AcesOdtIsSet)
     {
-        val[utility::conversions::to_string_t(U("ocioDisplayView"))] = ModelBase::toJson(m_OcioDisplayView);
+        val[utility::conversions::to_string_t(U("acesOdt"))] = ModelBase::toJson(m_AcesOdt);
     }
     if(m_EnableArriWVOLogC4DecoderIsSet)
     {
@@ -125,24 +125,24 @@ bool AcesConfig::fromJson(const web::json::value& val)
             setAmfLibraryEntry(refVal_amfLibraryEntry);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("ocioSource"))))
+    if(val.has_field(utility::conversions::to_string_t(U("acesIdt"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("ocioSource")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("acesIdt")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<OcioSource> refVal_ocioSource;
-            ok &= ModelBase::fromJson(fieldValue, refVal_ocioSource);
-            setOcioSource(refVal_ocioSource);
+            std::shared_ptr<AcesIdt> refVal_acesIdt;
+            ok &= ModelBase::fromJson(fieldValue, refVal_acesIdt);
+            setAcesIdt(refVal_acesIdt);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("ocioDisplayView"))))
+    if(val.has_field(utility::conversions::to_string_t(U("acesOdt"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("ocioDisplayView")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("acesOdt")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<OcioDisplayView> refVal_ocioDisplayView;
-            ok &= ModelBase::fromJson(fieldValue, refVal_ocioDisplayView);
-            setOcioDisplayView(refVal_ocioDisplayView);
+            std::shared_ptr<AcesOdt> refVal_acesOdt;
+            ok &= ModelBase::fromJson(fieldValue, refVal_acesOdt);
+            setAcesOdt(refVal_acesOdt);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))))
@@ -179,13 +179,13 @@ void AcesConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("amfLibraryEntry")), m_AmfLibraryEntry));
     }
-    if(m_OcioSourceIsSet)
+    if(m_AcesIdtIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("ocioSource")), m_OcioSource));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("acesIdt")), m_AcesIdt));
     }
-    if(m_OcioDisplayViewIsSet)
+    if(m_AcesOdtIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("ocioDisplayView")), m_OcioDisplayView));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("acesOdt")), m_AcesOdt));
     }
     if(m_EnableArriWVOLogC4DecoderIsSet)
     {
@@ -220,17 +220,17 @@ bool AcesConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("amfLibraryEntry"))), refVal_amfLibraryEntry );
         setAmfLibraryEntry(refVal_amfLibraryEntry);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("ocioSource"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("acesIdt"))))
     {
-        std::shared_ptr<OcioSource> refVal_ocioSource;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("ocioSource"))), refVal_ocioSource );
-        setOcioSource(refVal_ocioSource);
+        std::shared_ptr<AcesIdt> refVal_acesIdt;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("acesIdt"))), refVal_acesIdt );
+        setAcesIdt(refVal_acesIdt);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("ocioDisplayView"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("acesOdt"))))
     {
-        std::shared_ptr<OcioDisplayView> refVal_ocioDisplayView;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("ocioDisplayView"))), refVal_ocioDisplayView );
-        setOcioDisplayView(refVal_ocioDisplayView);
+        std::shared_ptr<AcesOdt> refVal_acesOdt;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("acesOdt"))), refVal_acesOdt );
+        setAcesOdt(refVal_acesOdt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))))
     {
@@ -313,49 +313,49 @@ void AcesConfig::unsetAmfLibraryEntry()
 
 
 
-std::shared_ptr<OcioSource> AcesConfig::getOcioSource() const
+std::shared_ptr<AcesIdt> AcesConfig::getAcesIdt() const
 {
-    return m_OcioSource;
+    return m_AcesIdt;
 }
 
-void AcesConfig::setOcioSource(const std::shared_ptr<OcioSource>& value)
+void AcesConfig::setAcesIdt(const std::shared_ptr<AcesIdt>& value)
 {
-	std::shared_ptr<OcioSource> v = value;
-    m_OcioSource = v;
-    m_OcioSourceIsSet = true;
+	std::shared_ptr<AcesIdt> v = value;
+    m_AcesIdt = v;
+    m_AcesIdtIsSet = true;
 }
 
-bool AcesConfig::ocioSourceIsSet() const
+bool AcesConfig::acesIdtIsSet() const
 {
-    return m_OcioSourceIsSet;
+    return m_AcesIdtIsSet;
 }
 
-void AcesConfig::unsetOcioSource()
+void AcesConfig::unsetAcesIdt()
 {
-    m_OcioSourceIsSet = false;
+    m_AcesIdtIsSet = false;
 }
 
 
-std::shared_ptr<OcioDisplayView> AcesConfig::getOcioDisplayView() const
+std::shared_ptr<AcesOdt> AcesConfig::getAcesOdt() const
 {
-    return m_OcioDisplayView;
+    return m_AcesOdt;
 }
 
-void AcesConfig::setOcioDisplayView(const std::shared_ptr<OcioDisplayView>& value)
+void AcesConfig::setAcesOdt(const std::shared_ptr<AcesOdt>& value)
 {
-	std::shared_ptr<OcioDisplayView> v = value;
-    m_OcioDisplayView = v;
-    m_OcioDisplayViewIsSet = true;
+	std::shared_ptr<AcesOdt> v = value;
+    m_AcesOdt = v;
+    m_AcesOdtIsSet = true;
 }
 
-bool AcesConfig::ocioDisplayViewIsSet() const
+bool AcesConfig::acesOdtIsSet() const
 {
-    return m_OcioDisplayViewIsSet;
+    return m_AcesOdtIsSet;
 }
 
-void AcesConfig::unsetOcioDisplayView()
+void AcesConfig::unsetAcesOdt()
 {
-    m_OcioDisplayViewIsSet = false;
+    m_AcesOdtIsSet = false;
 }
 
 

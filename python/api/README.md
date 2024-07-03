@@ -181,7 +181,9 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AcesConfig](docs/AcesConfig.md)
+ - [AcesIdt](docs/AcesIdt.md)
  - [AcesMode](docs/AcesMode.md)
+ - [AcesOdt](docs/AcesOdt.md)
  - [AncCaptureFilter](docs/AncCaptureFilter.md)
  - [BbcConfig](docs/BbcConfig.md)
  - [BitDepth](docs/BitDepth.md)
@@ -224,8 +226,6 @@ Class | Method | HTTP request | Description
  - [NetDevice](docs/NetDevice.md)
  - [NetParams](docs/NetParams.md)
  - [NetStatus](docs/NetStatus.md)
- - [OcioDisplayView](docs/OcioDisplayView.md)
- - [OcioSource](docs/OcioSource.md)
  - [OrionClamping](docs/OrionClamping.md)
  - [OrionConfig](docs/OrionConfig.md)
  - [OrionConversion](docs/OrionConversion.md)
