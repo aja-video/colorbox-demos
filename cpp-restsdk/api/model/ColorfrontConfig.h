@@ -131,16 +131,6 @@ public:
     void setUpmapMode(const std::shared_ptr<ColorfrontUpmapMode>& value);
 
 
-    /// <summary>
-    /// Setting to enable ARRI WVO to LogC4 Decoder on Input
-    /// </summary>
-    bool isEnableArriWVOLogC4Decoder() const;
-    bool enableArriWVOLogC4DecoderIsSet() const;
-    void unsetEnableArriWVOLogC4Decoder();
-
-    void setEnableArriWVOLogC4Decoder(bool value);
-
-
 
 protected:
     bool m_Enabled;
@@ -157,8 +147,6 @@ protected:
     bool m_LiveModeIsSet;
     std::shared_ptr<ColorfrontUpmapMode> m_UpmapMode;
     bool m_UpmapModeIsSet;
-    bool m_EnableArriWVOLogC4Decoder;
-    bool m_EnableArriWVOLogC4DecoderIsSet;
 };
 
 

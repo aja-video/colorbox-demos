@@ -79,11 +79,6 @@ public:
     bool is_upmap_mode_Set() const;
     bool is_upmap_mode_Valid() const;
 
-    bool isEnableArriWvoLogC4Decoder() const;
-    void setEnableArriWvoLogC4Decoder(const bool &enable_arri_wvo_log_c4_decoder);
-    bool is_enable_arri_wvo_log_c4_decoder_Set() const;
-    bool is_enable_arri_wvo_log_c4_decoder_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -118,10 +113,6 @@ private:
     OAIColorfrontUpmapMode m_upmap_mode;
     bool m_upmap_mode_isSet;
     bool m_upmap_mode_isValid;
-
-    bool m_enable_arri_wvo_log_c4_decoder;
-    bool m_enable_arri_wvo_log_c4_decoder_isSet;
-    bool m_enable_arri_wvo_log_c4_decoder_isValid;
 };
 
 } // namespace OpenAPI

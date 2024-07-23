@@ -33,6 +33,10 @@ AcesConfig::AcesConfig()
     m_AmfLibraryEntryIsSet = false;
     m_AcesIdtIsSet = false;
     m_AcesOdtIsSet = false;
+    m_AcesIdtOverride = false;
+    m_AcesIdtOverrideIsSet = false;
+    m_AcesOdtOverride = false;
+    m_AcesOdtOverrideIsSet = false;
     m_EnableArriWVOLogC4Decoder = false;
     m_EnableArriWVOLogC4DecoderIsSet = false;
 }
@@ -82,6 +86,14 @@ web::json::value AcesConfig::toJson() const
     if(m_AcesOdtIsSet)
     {
         val[utility::conversions::to_string_t(U("acesOdt"))] = ModelBase::toJson(m_AcesOdt);
+    }
+    if(m_AcesIdtOverrideIsSet)
+    {
+        val[utility::conversions::to_string_t(U("acesIdtOverride"))] = ModelBase::toJson(m_AcesIdtOverride);
+    }
+    if(m_AcesOdtOverrideIsSet)
+    {
+        val[utility::conversions::to_string_t(U("acesOdtOverride"))] = ModelBase::toJson(m_AcesOdtOverride);
     }
     if(m_EnableArriWVOLogC4DecoderIsSet)
     {
@@ -145,6 +157,26 @@ bool AcesConfig::fromJson(const web::json::value& val)
             setAcesOdt(refVal_acesOdt);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("acesIdtOverride"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("acesIdtOverride")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_acesIdtOverride;
+            ok &= ModelBase::fromJson(fieldValue, refVal_acesIdtOverride);
+            setAcesIdtOverride(refVal_acesIdtOverride);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("acesOdtOverride"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("acesOdtOverride")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_acesOdtOverride;
+            ok &= ModelBase::fromJson(fieldValue, refVal_acesOdtOverride);
+            setAcesOdtOverride(refVal_acesOdtOverride);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder")));
@@ -186,6 +218,14 @@ void AcesConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_AcesOdtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("acesOdt")), m_AcesOdt));
+    }
+    if(m_AcesIdtOverrideIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("acesIdtOverride")), m_AcesIdtOverride));
+    }
+    if(m_AcesOdtOverrideIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("acesOdtOverride")), m_AcesOdtOverride));
     }
     if(m_EnableArriWVOLogC4DecoderIsSet)
     {
@@ -231,6 +271,18 @@ bool AcesConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         std::shared_ptr<AcesOdt> refVal_acesOdt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("acesOdt"))), refVal_acesOdt );
         setAcesOdt(refVal_acesOdt);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("acesIdtOverride"))))
+    {
+        bool refVal_acesIdtOverride;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("acesIdtOverride"))), refVal_acesIdtOverride );
+        setAcesIdtOverride(refVal_acesIdtOverride);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("acesOdtOverride"))))
+    {
+        bool refVal_acesOdtOverride;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("acesOdtOverride"))), refVal_acesOdtOverride );
+        setAcesOdtOverride(refVal_acesOdtOverride);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("enableArriWVOLogC4Decoder"))))
     {
@@ -356,6 +408,52 @@ bool AcesConfig::acesOdtIsSet() const
 void AcesConfig::unsetAcesOdt()
 {
     m_AcesOdtIsSet = false;
+}
+
+
+bool AcesConfig::isAcesIdtOverride() const
+{
+    return m_AcesIdtOverride;
+}
+
+void AcesConfig::setAcesIdtOverride(bool value)
+{
+	bool v = value;
+    m_AcesIdtOverride = v;
+    m_AcesIdtOverrideIsSet = true;
+}
+
+bool AcesConfig::acesIdtOverrideIsSet() const
+{
+    return m_AcesIdtOverrideIsSet;
+}
+
+void AcesConfig::unsetAcesIdtOverride()
+{
+    m_AcesIdtOverrideIsSet = false;
+}
+
+
+bool AcesConfig::isAcesOdtOverride() const
+{
+    return m_AcesOdtOverride;
+}
+
+void AcesConfig::setAcesOdtOverride(bool value)
+{
+	bool v = value;
+    m_AcesOdtOverride = v;
+    m_AcesOdtOverrideIsSet = true;
+}
+
+bool AcesConfig::acesOdtOverrideIsSet() const
+{
+    return m_AcesOdtOverrideIsSet;
+}
+
+void AcesConfig::unsetAcesOdtOverride()
+{
+    m_AcesOdtOverrideIsSet = false;
 }
 
 

@@ -36,6 +36,7 @@ const (
 	COLORFRONTDYNRANGEGAMUTLIVEMODEIN_SONY_S_LOG3_BT_2020 ColorfrontDynRangeGamutLiveModeIn = "Sony SLog3 BT.2020"
 	COLORFRONTDYNRANGEGAMUTLIVEMODEIN_ARRI_LOG_C_WIDE_GAMUT ColorfrontDynRangeGamutLiveModeIn = "ARRI Log C Wide Gamut"
 	COLORFRONTDYNRANGEGAMUTLIVEMODEIN_ARRI_LOG_C4_WIDE_GAMUT_4 ColorfrontDynRangeGamutLiveModeIn = "ARRI LogC4 Wide Gamut 4"
+	COLORFRONTDYNRANGEGAMUTLIVEMODEIN_ARRI_LOG_C4_WIDE_GAMUT_4_WVO ColorfrontDynRangeGamutLiveModeIn = "ARRI LogC4 Wide Gamut 4 WVO"
 	COLORFRONTDYNRANGEGAMUTLIVEMODEIN_PANASONIC_V_LOG ColorfrontDynRangeGamutLiveModeIn = "Panasonic V-Log"
 	COLORFRONTDYNRANGEGAMUTLIVEMODEIN_RED_LOG3_G10_WIDE_GAMUT ColorfrontDynRangeGamutLiveModeIn = "RED Log3G10 Wide Gamut"
 	COLORFRONTDYNRANGEGAMUTLIVEMODEIN_CANON_LOG_2 ColorfrontDynRangeGamutLiveModeIn = "Canon Log 2"
@@ -56,6 +57,7 @@ var AllowedColorfrontDynRangeGamutLiveModeInEnumValues = []ColorfrontDynRangeGam
 	"Sony SLog3 BT.2020",
 	"ARRI Log C Wide Gamut",
 	"ARRI LogC4 Wide Gamut 4",
+	"ARRI LogC4 Wide Gamut 4 WVO",
 	"Panasonic V-Log",
 	"RED Log3G10 Wide Gamut",
 	"Canon Log 2",

@@ -24,12 +24,11 @@ type AcesOdt string
 
 // List of AcesOdt
 const (
-	ACESODT_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO AcesOdt = "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"
-	ACESODT_REC_2100_HLG___DISPLAY_ACES_1_1___HDR_VIDEO__1000_NITS__REC_2020_LIM AcesOdt = "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)"
-	ACESODT_REC_2100_PQ___DISPLAY_ACES_1_1___HDR_VIDEO__1000_NITS__REC_2020_LIM AcesOdt = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)"
-	ACESODT_REC_2100_PQ___DISPLAY_ACES_1_1___HDR_VIDEO__2000_NITS__REC_2020_LIM AcesOdt = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)"
-	ACESODT_REC_2100_PQ___DISPLAY_ACES_1_1___HDR_VIDEO__4000_NITS__REC_2020_LIM AcesOdt = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)"
-	ACESODT_NON_ACES_ODT AcesOdt = "Non-ACES ODT"
+	ACESODT__1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO AcesOdt = "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"
+	ACESODT__2100_HLG___DISPLAY_ACES_1_1___HDR_VIDEO__1000_NITS__REC_2020_LIM AcesOdt = "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)"
+	ACESODT__2100_PQ___DISPLAY_ACES_1_1___HDR_VIDEO__1000_NITS__REC_2020_LIM AcesOdt = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)"
+	ACESODT__2100_PQ___DISPLAY_ACES_1_1___HDR_VIDEO__2000_NITS__REC_2020_LIM AcesOdt = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)"
+	ACESODT__2100_PQ___DISPLAY_ACES_1_1___HDR_VIDEO__4000_NITS__REC_2020_LIM AcesOdt = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)"
 )
 
 // All allowed values of AcesOdt enum
@@ -39,7 +38,6 @@ var AllowedAcesOdtEnumValues = []AcesOdt{
 	"Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)",
 	"Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)",
 	"Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)",
-	"Non-ACES ODT",
 }
 
 func (v *AcesOdt) UnmarshalJSON(src []byte) error {

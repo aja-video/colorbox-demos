@@ -50,6 +50,12 @@ void OAIAcesConfig::initializeModel() {
     m_aces_odt_isSet = false;
     m_aces_odt_isValid = false;
 
+    m_aces_idt_override_isSet = false;
+    m_aces_idt_override_isValid = false;
+
+    m_aces_odt_override_isSet = false;
+    m_aces_odt_override_isValid = false;
+
     m_enable_arri_wvo_log_c4_decoder_isSet = false;
     m_enable_arri_wvo_log_c4_decoder_isValid = false;
 }
@@ -76,6 +82,12 @@ void OAIAcesConfig::fromJsonObject(QJsonObject json) {
 
     m_aces_odt_isValid = ::OpenAPI::fromJsonValue(m_aces_odt, json[QString("acesOdt")]);
     m_aces_odt_isSet = !json[QString("acesOdt")].isNull() && m_aces_odt_isValid;
+
+    m_aces_idt_override_isValid = ::OpenAPI::fromJsonValue(m_aces_idt_override, json[QString("acesIdtOverride")]);
+    m_aces_idt_override_isSet = !json[QString("acesIdtOverride")].isNull() && m_aces_idt_override_isValid;
+
+    m_aces_odt_override_isValid = ::OpenAPI::fromJsonValue(m_aces_odt_override, json[QString("acesOdtOverride")]);
+    m_aces_odt_override_isSet = !json[QString("acesOdtOverride")].isNull() && m_aces_odt_override_isValid;
 
     m_enable_arri_wvo_log_c4_decoder_isValid = ::OpenAPI::fromJsonValue(m_enable_arri_wvo_log_c4_decoder, json[QString("enableArriWVOLogC4Decoder")]);
     m_enable_arri_wvo_log_c4_decoder_isSet = !json[QString("enableArriWVOLogC4Decoder")].isNull() && m_enable_arri_wvo_log_c4_decoder_isValid;
@@ -106,6 +118,12 @@ QJsonObject OAIAcesConfig::asJsonObject() const {
     }
     if (m_aces_odt.isSet()) {
         obj.insert(QString("acesOdt"), ::OpenAPI::toJsonValue(m_aces_odt));
+    }
+    if (m_aces_idt_override_isSet) {
+        obj.insert(QString("acesIdtOverride"), ::OpenAPI::toJsonValue(m_aces_idt_override));
+    }
+    if (m_aces_odt_override_isSet) {
+        obj.insert(QString("acesOdtOverride"), ::OpenAPI::toJsonValue(m_aces_odt_override));
     }
     if (m_enable_arri_wvo_log_c4_decoder_isSet) {
         obj.insert(QString("enableArriWVOLogC4Decoder"), ::OpenAPI::toJsonValue(m_enable_arri_wvo_log_c4_decoder));
@@ -204,6 +222,42 @@ bool OAIAcesConfig::is_aces_odt_Valid() const{
 }
 
 
+bool OAIAcesConfig::isAcesIdtOverride() const {
+    return m_aces_idt_override;
+}
+void OAIAcesConfig::setAcesIdtOverride(const bool &aces_idt_override) {
+	bool v = aces_idt_override;
+	this->m_aces_idt_override = v;
+    this->m_aces_idt_override_isSet = true;
+}
+
+bool OAIAcesConfig::is_aces_idt_override_Set() const{
+    return m_aces_idt_override_isSet;
+}
+
+bool OAIAcesConfig::is_aces_idt_override_Valid() const{
+    return m_aces_idt_override_isValid;
+}
+
+
+bool OAIAcesConfig::isAcesOdtOverride() const {
+    return m_aces_odt_override;
+}
+void OAIAcesConfig::setAcesOdtOverride(const bool &aces_odt_override) {
+	bool v = aces_odt_override;
+	this->m_aces_odt_override = v;
+    this->m_aces_odt_override_isSet = true;
+}
+
+bool OAIAcesConfig::is_aces_odt_override_Set() const{
+    return m_aces_odt_override_isSet;
+}
+
+bool OAIAcesConfig::is_aces_odt_override_Valid() const{
+    return m_aces_odt_override_isValid;
+}
+
+
 bool OAIAcesConfig::isEnableArriWvoLogC4Decoder() const {
     return m_enable_arri_wvo_log_c4_decoder;
 }
@@ -246,6 +300,16 @@ bool OAIAcesConfig::isSet() const {
         }
 
         if (m_aces_odt.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_aces_idt_override_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_aces_odt_override_isSet) {
             isObjectUpdated = true;
             break;
         }

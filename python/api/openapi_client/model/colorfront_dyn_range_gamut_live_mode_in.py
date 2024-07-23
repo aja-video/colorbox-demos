@@ -68,6 +68,7 @@ class ColorfrontDynRangeGamutLiveModeIn(ModelSimple):
             'SONY_SLOG3_BT.2020': "Sony SLog3 BT.2020",
             'ARRI_LOG_C_WIDE_GAMUT': "ARRI Log C Wide Gamut",
             'ARRI_LOGC4_WIDE_GAMUT_4': "ARRI LogC4 Wide Gamut 4",
+            'ARRI_LOGC4_WIDE_GAMUT_4_WVO': "ARRI LogC4 Wide Gamut 4 WVO",
             'PANASONIC_V-LOG': "Panasonic V-Log",
             'RED_LOG3G10_WIDE_GAMUT': "RED Log3G10 Wide Gamut",
             'CANON_LOG_2': "Canon Log 2",
@@ -123,10 +124,10 @@ class ColorfrontDynRangeGamutLiveModeIn(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "SDR BT.709 100 Nits", must be one of ["SDR BT.709 100 Nits", "SDR Extended BT.709", "PQ BT.2020 1000 Nits", "PQ P3D65 1000 Nits", "HLG BT.2100", "HLG Extended BT.709", "HLG Extended BT.2100", "Sony SLog3 S-Gamut3", "Sony SLog3 S-Gamut3 Cine", "Sony SLog3 BT.2020", "ARRI Log C Wide Gamut", "ARRI LogC4 Wide Gamut 4", "Panasonic V-Log", "RED Log3G10 Wide Gamut", "Canon Log 2", "Canon Log 3", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "SDR BT.709 100 Nits", must be one of ["SDR BT.709 100 Nits", "SDR Extended BT.709", "PQ BT.2020 1000 Nits", "PQ P3D65 1000 Nits", "HLG BT.2100", "HLG Extended BT.709", "HLG Extended BT.2100", "Sony SLog3 S-Gamut3", "Sony SLog3 S-Gamut3 Cine", "Sony SLog3 BT.2020", "ARRI Log C Wide Gamut", "ARRI LogC4 Wide Gamut 4", "ARRI LogC4 Wide Gamut 4 WVO", "Panasonic V-Log", "RED Log3G10 Wide Gamut", "Canon Log 2", "Canon Log 3", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "SDR BT.709 100 Nits", must be one of ["SDR BT.709 100 Nits", "SDR Extended BT.709", "PQ BT.2020 1000 Nits", "PQ P3D65 1000 Nits", "HLG BT.2100", "HLG Extended BT.709", "HLG Extended BT.2100", "Sony SLog3 S-Gamut3", "Sony SLog3 S-Gamut3 Cine", "Sony SLog3 BT.2020", "ARRI Log C Wide Gamut", "ARRI LogC4 Wide Gamut 4", "Panasonic V-Log", "RED Log3G10 Wide Gamut", "Canon Log 2", "Canon Log 3", ]  # noqa: E501
+            value (str): if omitted defaults to "SDR BT.709 100 Nits", must be one of ["SDR BT.709 100 Nits", "SDR Extended BT.709", "PQ BT.2020 1000 Nits", "PQ P3D65 1000 Nits", "HLG BT.2100", "HLG Extended BT.709", "HLG Extended BT.2100", "Sony SLog3 S-Gamut3", "Sony SLog3 S-Gamut3 Cine", "Sony SLog3 BT.2020", "ARRI Log C Wide Gamut", "ARRI LogC4 Wide Gamut 4", "ARRI LogC4 Wide Gamut 4 WVO", "Panasonic V-Log", "RED Log3G10 Wide Gamut", "Canon Log 2", "Canon Log 3", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -209,10 +210,10 @@ class ColorfrontDynRangeGamutLiveModeIn(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "SDR BT.709 100 Nits", must be one of ["SDR BT.709 100 Nits", "SDR Extended BT.709", "PQ BT.2020 1000 Nits", "PQ P3D65 1000 Nits", "HLG BT.2100", "HLG Extended BT.709", "HLG Extended BT.2100", "Sony SLog3 S-Gamut3", "Sony SLog3 S-Gamut3 Cine", "Sony SLog3 BT.2020", "ARRI Log C Wide Gamut", "ARRI LogC4 Wide Gamut 4", "Panasonic V-Log", "RED Log3G10 Wide Gamut", "Canon Log 2", "Canon Log 3", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "SDR BT.709 100 Nits", must be one of ["SDR BT.709 100 Nits", "SDR Extended BT.709", "PQ BT.2020 1000 Nits", "PQ P3D65 1000 Nits", "HLG BT.2100", "HLG Extended BT.709", "HLG Extended BT.2100", "Sony SLog3 S-Gamut3", "Sony SLog3 S-Gamut3 Cine", "Sony SLog3 BT.2020", "ARRI Log C Wide Gamut", "ARRI LogC4 Wide Gamut 4", "ARRI LogC4 Wide Gamut 4 WVO", "Panasonic V-Log", "RED Log3G10 Wide Gamut", "Canon Log 2", "Canon Log 3", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "SDR BT.709 100 Nits", must be one of ["SDR BT.709 100 Nits", "SDR Extended BT.709", "PQ BT.2020 1000 Nits", "PQ P3D65 1000 Nits", "HLG BT.2100", "HLG Extended BT.709", "HLG Extended BT.2100", "Sony SLog3 S-Gamut3", "Sony SLog3 S-Gamut3 Cine", "Sony SLog3 BT.2020", "ARRI Log C Wide Gamut", "ARRI LogC4 Wide Gamut 4", "Panasonic V-Log", "RED Log3G10 Wide Gamut", "Canon Log 2", "Canon Log 3", ]  # noqa: E501
+            value (str): if omitted defaults to "SDR BT.709 100 Nits", must be one of ["SDR BT.709 100 Nits", "SDR Extended BT.709", "PQ BT.2020 1000 Nits", "PQ P3D65 1000 Nits", "HLG BT.2100", "HLG Extended BT.709", "HLG Extended BT.2100", "Sony SLog3 S-Gamut3", "Sony SLog3 S-Gamut3 Cine", "Sony SLog3 BT.2020", "ARRI Log C Wide Gamut", "ARRI LogC4 Wide Gamut 4", "ARRI LogC4 Wide Gamut 4 WVO", "Panasonic V-Log", "RED Log3G10 Wide Gamut", "Canon Log 2", "Canon Log 3", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

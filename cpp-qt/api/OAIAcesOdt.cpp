@@ -43,27 +43,23 @@ void OAIAcesOdt::initializeModel() {
 void OAIAcesOdt::fromJson(QString jsonString) {
     
     if ( jsonString.compare("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIAcesOdt::REC_1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO;
+        m_value = eOAIAcesOdt::_1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIAcesOdt::REC_2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_;
+        m_value = eOAIAcesOdt::_2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIAcesOdt::REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_;
+        m_value = eOAIAcesOdt::_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIAcesOdt::REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_;
+        m_value = eOAIAcesOdt::_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIAcesOdt::REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("Non-ACES ODT", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIAcesOdt::NON_ACES_ODT;
+        m_value = eOAIAcesOdt::_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_;
         m_value_isSet = m_value_isValid = true;
     }
 }
@@ -78,23 +74,20 @@ QString OAIAcesOdt::asJson() const {
     
     QString val;
     switch (m_value){
-        case eOAIAcesOdt::REC_1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO:
+        case eOAIAcesOdt::_1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO:
             val = "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video";
             break;
-        case eOAIAcesOdt::REC_2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_:
+        case eOAIAcesOdt::_2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_:
             val = "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)";
             break;
-        case eOAIAcesOdt::REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_:
+        case eOAIAcesOdt::_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_:
             val = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)";
             break;
-        case eOAIAcesOdt::REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_:
+        case eOAIAcesOdt::_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_:
             val = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)";
             break;
-        case eOAIAcesOdt::REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_:
+        case eOAIAcesOdt::_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_:
             val = "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)";
-            break;
-        case eOAIAcesOdt::NON_ACES_ODT:
-            val = "Non-ACES ODT";
             break;
         default:
             break;

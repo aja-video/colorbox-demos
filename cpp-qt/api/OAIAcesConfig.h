@@ -67,6 +67,16 @@ public:
     bool is_aces_odt_Set() const;
     bool is_aces_odt_Valid() const;
 
+    bool isAcesIdtOverride() const;
+    void setAcesIdtOverride(const bool &aces_idt_override);
+    bool is_aces_idt_override_Set() const;
+    bool is_aces_idt_override_Valid() const;
+
+    bool isAcesOdtOverride() const;
+    void setAcesOdtOverride(const bool &aces_odt_override);
+    bool is_aces_odt_override_Set() const;
+    bool is_aces_odt_override_Valid() const;
+
     bool isEnableArriWvoLogC4Decoder() const;
     void setEnableArriWvoLogC4Decoder(const bool &enable_arri_wvo_log_c4_decoder);
     bool is_enable_arri_wvo_log_c4_decoder_Set() const;
@@ -98,6 +108,14 @@ private:
     OAIAcesOdt m_aces_odt;
     bool m_aces_odt_isSet;
     bool m_aces_odt_isValid;
+
+    bool m_aces_idt_override;
+    bool m_aces_idt_override_isSet;
+    bool m_aces_idt_override_isValid;
+
+    bool m_aces_odt_override;
+    bool m_aces_odt_override_isSet;
+    bool m_aces_odt_override_isValid;
 
     bool m_enable_arri_wvo_log_c4_decoder;
     bool m_enable_arri_wvo_log_c4_decoder_isSet;

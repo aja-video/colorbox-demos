@@ -23,8 +23,6 @@
 
 * `S_LOG3_VENICE_S_GAMUT3_CINE` (value: `"S-Log3 Venice S-Gamut3.Cine"`)
 
-* `NON_ACES_IDT` (value: `"Non-ACES IDT"`)
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

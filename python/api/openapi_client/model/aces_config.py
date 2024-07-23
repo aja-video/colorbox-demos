@@ -100,6 +100,8 @@ class AcesConfig(ModelNormal):
             'amf_library_entry': (int,),  # noqa: E501
             'aces_idt': (AcesIdt,),  # noqa: E501
             'aces_odt': (AcesOdt,),  # noqa: E501
+            'aces_idt_override': (bool,),  # noqa: E501
+            'aces_odt_override': (bool,),  # noqa: E501
             'enable_arri_wvo_log_c4_decoder': (bool,),  # noqa: E501
         }
 
@@ -114,6 +116,8 @@ class AcesConfig(ModelNormal):
         'amf_library_entry': 'amfLibraryEntry',  # noqa: E501
         'aces_idt': 'acesIdt',  # noqa: E501
         'aces_odt': 'acesOdt',  # noqa: E501
+        'aces_idt_override': 'acesIdtOverride',  # noqa: E501
+        'aces_odt_override': 'acesOdtOverride',  # noqa: E501
         'enable_arri_wvo_log_c4_decoder': 'enableArriWVOLogC4Decoder',  # noqa: E501
     }
 
@@ -163,6 +167,8 @@ class AcesConfig(ModelNormal):
             amf_library_entry (int): library entry number, zero is unity bypass. [optional]  # noqa: E501
             aces_idt (AcesIdt): [optional]  # noqa: E501
             aces_odt (AcesOdt): [optional]  # noqa: E501
+            aces_idt_override (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            aces_odt_override (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             enable_arri_wvo_log_c4_decoder (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
@@ -250,6 +256,8 @@ class AcesConfig(ModelNormal):
             amf_library_entry (int): library entry number, zero is unity bypass. [optional]  # noqa: E501
             aces_idt (AcesIdt): [optional]  # noqa: E501
             aces_odt (AcesOdt): [optional]  # noqa: E501
+            aces_idt_override (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            aces_odt_override (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             enable_arri_wvo_log_c4_decoder (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 

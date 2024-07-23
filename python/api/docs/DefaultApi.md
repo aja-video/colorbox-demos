@@ -2482,6 +2482,8 @@ with openapi_client.ApiClient() as api_client:
         amf_library_entry=1,
         aces_idt=AcesIdt("ARRI LogC3 (EI800)"),
         aces_odt=AcesOdt("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"),
+        aces_idt_override=False,
+        aces_odt_override=False,
         enable_arri_wvo_log_c4_decoder=False,
     ) # AcesConfig | AcesConfig object
 
@@ -3208,7 +3210,6 @@ with openapi_client.ApiClient() as api_client:
             contrast=ColorfrontLowMidHigh("Mid"),
             highlights=ColorfrontLowMidHigh("Mid"),
         ),
-        enable_arri_wvo_log_c4_decoder=False,
     ) # ColorfrontConfig | ColorfrontConfig object
 
     # example passing only required values which don't have defaults set

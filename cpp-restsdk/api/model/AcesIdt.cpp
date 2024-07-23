@@ -49,8 +49,6 @@ AcesIdt::eAcesIdt toEnum(const EnumUnderlyingType& val)
         return AcesIdt::eAcesIdt::AcesIdt_S_LOG3_VENICE_S_GAMUT3;
     if (val == utility::conversions::to_string_t(U("S-Log3 Venice S-Gamut3.Cine")))
         return AcesIdt::eAcesIdt::AcesIdt_S_LOG3_VENICE_S_GAMUT3_CINE;
-    if (val == utility::conversions::to_string_t(U("Non-ACES IDT")))
-        return AcesIdt::eAcesIdt::AcesIdt_NON_ACES_IDT;
     return {};
 }
 
@@ -78,8 +76,6 @@ EnumUnderlyingType fromEnum(AcesIdt::eAcesIdt e)
         return U("S-Log3 Venice S-Gamut3");
     case AcesIdt::eAcesIdt::AcesIdt_S_LOG3_VENICE_S_GAMUT3_CINE:
         return U("S-Log3 Venice S-Gamut3.Cine");
-    case AcesIdt::eAcesIdt::AcesIdt_NON_ACES_IDT:
-        return U("Non-ACES IDT");
     default:
         break;
     }

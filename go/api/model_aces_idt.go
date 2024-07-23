@@ -34,7 +34,6 @@ const (
 	ACESIDT_S_LOG3_S_GAMUT3_CINE AcesIdt = "S-Log3 S-Gamut3.Cine"
 	ACESIDT_S_LOG3_VENICE_S_GAMUT3 AcesIdt = "S-Log3 Venice S-Gamut3"
 	ACESIDT_S_LOG3_VENICE_S_GAMUT3_CINE AcesIdt = "S-Log3 Venice S-Gamut3.Cine"
-	ACESIDT_NON_ACES_IDT AcesIdt = "Non-ACES IDT"
 )
 
 // All allowed values of AcesIdt enum
@@ -49,7 +48,6 @@ var AllowedAcesIdtEnumValues = []AcesIdt{
 	"S-Log3 S-Gamut3.Cine",
 	"S-Log3 Venice S-Gamut3",
 	"S-Log3 Venice S-Gamut3.Cine",
-	"Non-ACES IDT",
 }
 
 func (v *AcesIdt) UnmarshalJSON(src []byte) error {

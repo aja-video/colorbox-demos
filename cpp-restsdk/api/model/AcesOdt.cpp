@@ -30,17 +30,15 @@ using EnumUnderlyingType = utility::string_t;
 AcesOdt::eAcesOdt toEnum(const EnumUnderlyingType& val)
 {
     if (val == utility::conversions::to_string_t(U("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video")))
-        return AcesOdt::eAcesOdt::AcesOdt_REC_1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO;
+        return AcesOdt::eAcesOdt::AcesOdt__1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO;
     if (val == utility::conversions::to_string_t(U("Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)")))
-        return AcesOdt::eAcesOdt::AcesOdt_REC_2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_;
+        return AcesOdt::eAcesOdt::AcesOdt__2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_;
     if (val == utility::conversions::to_string_t(U("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)")))
-        return AcesOdt::eAcesOdt::AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_;
+        return AcesOdt::eAcesOdt::AcesOdt__2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_;
     if (val == utility::conversions::to_string_t(U("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)")))
-        return AcesOdt::eAcesOdt::AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_;
+        return AcesOdt::eAcesOdt::AcesOdt__2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_;
     if (val == utility::conversions::to_string_t(U("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)")))
-        return AcesOdt::eAcesOdt::AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_;
-    if (val == utility::conversions::to_string_t(U("Non-ACES ODT")))
-        return AcesOdt::eAcesOdt::AcesOdt_NON_ACES_ODT;
+        return AcesOdt::eAcesOdt::AcesOdt__2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_;
     return {};
 }
 
@@ -48,18 +46,16 @@ EnumUnderlyingType fromEnum(AcesOdt::eAcesOdt e)
 {
     switch (e)
     {
-    case AcesOdt::eAcesOdt::AcesOdt_REC_1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO:
+    case AcesOdt::eAcesOdt::AcesOdt__1886_REC_709_DISPLAY_ACES_1_0_SDR_VIDEO:
         return U("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video");
-    case AcesOdt::eAcesOdt::AcesOdt_REC_2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_:
+    case AcesOdt::eAcesOdt::AcesOdt__2100_HLG_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_:
         return U("Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits &amp; Rec.2020 lim)");
-    case AcesOdt::eAcesOdt::AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_:
+    case AcesOdt::eAcesOdt::AcesOdt__2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_1000_NITS_REC_2020_LIM_:
         return U("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits &amp; Rec.2020 lim)");
-    case AcesOdt::eAcesOdt::AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_:
+    case AcesOdt::eAcesOdt::AcesOdt__2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_2000_NITS_REC_2020_LIM_:
         return U("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits &amp; Rec.2020 lim)");
-    case AcesOdt::eAcesOdt::AcesOdt_REC_2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_:
+    case AcesOdt::eAcesOdt::AcesOdt__2100_PQ_DISPLAY_ACES_1_1_HDR_VIDEO_4000_NITS_REC_2020_LIM_:
         return U("Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits &amp; Rec.2020 lim)");
-    case AcesOdt::eAcesOdt::AcesOdt_NON_ACES_ODT:
-        return U("Non-ACES ODT");
     default:
         break;
     }

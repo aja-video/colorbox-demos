@@ -61,7 +61,6 @@ public:
         AcesIdt_S_LOG3_S_GAMUT3_CINE,
         AcesIdt_S_LOG3_VENICE_S_GAMUT3,
         AcesIdt_S_LOG3_VENICE_S_GAMUT3_CINE,
-        AcesIdt_NON_ACES_IDT,
     };
 
     eAcesIdt getValue() const;

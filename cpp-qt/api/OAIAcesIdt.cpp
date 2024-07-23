@@ -82,10 +82,6 @@ void OAIAcesIdt::fromJson(QString jsonString) {
         m_value = eOAIAcesIdt::S_LOG3_VENICE_S_GAMUT3_CINE;
         m_value_isSet = m_value_isValid = true;
     }
-    else if ( jsonString.compare("Non-ACES IDT", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIAcesIdt::NON_ACES_IDT;
-        m_value_isSet = m_value_isValid = true;
-    }
 }
 
 void OAIAcesIdt::fromJsonValue(QJsonValue json) {
@@ -127,9 +123,6 @@ QString OAIAcesIdt::asJson() const {
             break;
         case eOAIAcesIdt::S_LOG3_VENICE_S_GAMUT3_CINE:
             val = "S-Log3 Venice S-Gamut3.Cine";
-            break;
-        case eOAIAcesIdt::NON_ACES_IDT:
-            val = "Non-ACES IDT";
             break;
         default:
             break;

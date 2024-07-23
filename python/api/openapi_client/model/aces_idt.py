@@ -66,7 +66,6 @@ class AcesIdt(ModelSimple):
             'S-LOG3_S-GAMUT3.CINE': "S-Log3 S-Gamut3.Cine",
             'S-LOG3_VENICE_S-GAMUT3': "S-Log3 Venice S-Gamut3",
             'S-LOG3_VENICE_S-GAMUT3.CINE': "S-Log3 Venice S-Gamut3.Cine",
-            'NON-ACES_IDT': "Non-ACES IDT",
         },
     }
 
@@ -118,10 +117,10 @@ class AcesIdt(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "ARRI LogC3 (EI800)", must be one of ["ARRI LogC3 (EI800)", "ARRI LogC4", "CanonLog2 CinemaGamut D55", "CanonLog3 CinemaGamut D55", "V-Log V-Gamut", "Log3G10 REDWideGamutRGB", "S-Log3 S-Gamut3", "S-Log3 S-Gamut3.Cine", "S-Log3 Venice S-Gamut3", "S-Log3 Venice S-Gamut3.Cine", "Non-ACES IDT", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "ARRI LogC3 (EI800)", must be one of ["ARRI LogC3 (EI800)", "ARRI LogC4", "CanonLog2 CinemaGamut D55", "CanonLog3 CinemaGamut D55", "V-Log V-Gamut", "Log3G10 REDWideGamutRGB", "S-Log3 S-Gamut3", "S-Log3 S-Gamut3.Cine", "S-Log3 Venice S-Gamut3", "S-Log3 Venice S-Gamut3.Cine", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "ARRI LogC3 (EI800)", must be one of ["ARRI LogC3 (EI800)", "ARRI LogC4", "CanonLog2 CinemaGamut D55", "CanonLog3 CinemaGamut D55", "V-Log V-Gamut", "Log3G10 REDWideGamutRGB", "S-Log3 S-Gamut3", "S-Log3 S-Gamut3.Cine", "S-Log3 Venice S-Gamut3", "S-Log3 Venice S-Gamut3.Cine", "Non-ACES IDT", ]  # noqa: E501
+            value (str): if omitted defaults to "ARRI LogC3 (EI800)", must be one of ["ARRI LogC3 (EI800)", "ARRI LogC4", "CanonLog2 CinemaGamut D55", "CanonLog3 CinemaGamut D55", "V-Log V-Gamut", "Log3G10 REDWideGamutRGB", "S-Log3 S-Gamut3", "S-Log3 S-Gamut3.Cine", "S-Log3 Venice S-Gamut3", "S-Log3 Venice S-Gamut3.Cine", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -204,10 +203,10 @@ class AcesIdt(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "ARRI LogC3 (EI800)", must be one of ["ARRI LogC3 (EI800)", "ARRI LogC4", "CanonLog2 CinemaGamut D55", "CanonLog3 CinemaGamut D55", "V-Log V-Gamut", "Log3G10 REDWideGamutRGB", "S-Log3 S-Gamut3", "S-Log3 S-Gamut3.Cine", "S-Log3 Venice S-Gamut3", "S-Log3 Venice S-Gamut3.Cine", "Non-ACES IDT", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "ARRI LogC3 (EI800)", must be one of ["ARRI LogC3 (EI800)", "ARRI LogC4", "CanonLog2 CinemaGamut D55", "CanonLog3 CinemaGamut D55", "V-Log V-Gamut", "Log3G10 REDWideGamutRGB", "S-Log3 S-Gamut3", "S-Log3 S-Gamut3.Cine", "S-Log3 Venice S-Gamut3", "S-Log3 Venice S-Gamut3.Cine", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "ARRI LogC3 (EI800)", must be one of ["ARRI LogC3 (EI800)", "ARRI LogC4", "CanonLog2 CinemaGamut D55", "CanonLog3 CinemaGamut D55", "V-Log V-Gamut", "Log3G10 REDWideGamutRGB", "S-Log3 S-Gamut3", "S-Log3 S-Gamut3.Cine", "S-Log3 Venice S-Gamut3", "S-Log3 Venice S-Gamut3.Cine", "Non-ACES IDT", ]  # noqa: E501
+            value (str): if omitted defaults to "ARRI LogC3 (EI800)", must be one of ["ARRI LogC3 (EI800)", "ARRI LogC4", "CanonLog2 CinemaGamut D55", "CanonLog3 CinemaGamut D55", "V-Log V-Gamut", "Log3G10 REDWideGamutRGB", "S-Log3 S-Gamut3", "S-Log3 S-Gamut3.Cine", "S-Log3 Venice S-Gamut3", "S-Log3 Venice S-Gamut3.Cine", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

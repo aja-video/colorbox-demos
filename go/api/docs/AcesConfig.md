@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 **Mode** | Pointer to [**AcesMode**](AcesMode.md) |  | [optional] [default to ACESMODE_AMF]
 **AmfLibraryEntry** | Pointer to **int32** | library entry number, zero is unity bypass | [optional] 
 **AcesIdt** | Pointer to [**AcesIdt**](AcesIdt.md) |  | [optional] [default to ACESIDT_ARRI_LOG_C3__EI800]
-**AcesOdt** | Pointer to [**AcesOdt**](AcesOdt.md) |  | [optional] [default to ACESODT_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO]
+**AcesOdt** | Pointer to [**AcesOdt**](AcesOdt.md) |  | [optional] [default to ACESODT__1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO]
+**AcesIdtOverride** | Pointer to **bool** |  | [optional] [default to false]
+**AcesOdtOverride** | Pointer to **bool** |  | [optional] [default to false]
 **EnableArriWVOLogC4Decoder** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
@@ -154,6 +156,56 @@ SetAcesOdt sets AcesOdt field to given value.
 `func (o *AcesConfig) HasAcesOdt() bool`
 
 HasAcesOdt returns a boolean if a field has been set.
+
+### GetAcesIdtOverride
+
+`func (o *AcesConfig) GetAcesIdtOverride() bool`
+
+GetAcesIdtOverride returns the AcesIdtOverride field if non-nil, zero value otherwise.
+
+### GetAcesIdtOverrideOk
+
+`func (o *AcesConfig) GetAcesIdtOverrideOk() (*bool, bool)`
+
+GetAcesIdtOverrideOk returns a tuple with the AcesIdtOverride field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAcesIdtOverride
+
+`func (o *AcesConfig) SetAcesIdtOverride(v bool)`
+
+SetAcesIdtOverride sets AcesIdtOverride field to given value.
+
+### HasAcesIdtOverride
+
+`func (o *AcesConfig) HasAcesIdtOverride() bool`
+
+HasAcesIdtOverride returns a boolean if a field has been set.
+
+### GetAcesOdtOverride
+
+`func (o *AcesConfig) GetAcesOdtOverride() bool`
+
+GetAcesOdtOverride returns the AcesOdtOverride field if non-nil, zero value otherwise.
+
+### GetAcesOdtOverrideOk
+
+`func (o *AcesConfig) GetAcesOdtOverrideOk() (*bool, bool)`
+
+GetAcesOdtOverrideOk returns a tuple with the AcesOdtOverride field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAcesOdtOverride
+
+`func (o *AcesConfig) SetAcesOdtOverride(v bool)`
+
+SetAcesOdtOverride sets AcesOdtOverride field to given value.
+
+### HasAcesOdtOverride
+
+`func (o *AcesConfig) HasAcesOdtOverride() bool`
+
+HasAcesOdtOverride returns a boolean if a field has been set.
 
 ### GetEnableArriWVOLogC4Decoder
 

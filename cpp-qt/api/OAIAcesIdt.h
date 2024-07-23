@@ -50,8 +50,7 @@ public:
         S_LOG3_S_GAMUT3, 
         S_LOG3_S_GAMUT3_CINE, 
         S_LOG3_VENICE_S_GAMUT3, 
-        S_LOG3_VENICE_S_GAMUT3_CINE, 
-        NON_ACES_IDT
+        S_LOG3_VENICE_S_GAMUT3_CINE
     };
     OAIAcesIdt::eOAIAcesIdt getValue() const;
     void setValue(const OAIAcesIdt::eOAIAcesIdt& value);

@@ -27,6 +27,8 @@ type AcesConfig struct {
 	AmfLibraryEntry *int32 `json:"amfLibraryEntry,omitempty"`
 	AcesIdt *AcesIdt `json:"acesIdt,omitempty"`
 	AcesOdt *AcesOdt `json:"acesOdt,omitempty"`
+	AcesIdtOverride *bool `json:"acesIdtOverride,omitempty"`
+	AcesOdtOverride *bool `json:"acesOdtOverride,omitempty"`
 	EnableArriWVOLogC4Decoder *bool `json:"enableArriWVOLogC4Decoder,omitempty"`
 }
 
@@ -40,8 +42,12 @@ func NewAcesConfig() *AcesConfig {
 	this.Mode = &mode
 	var acesIdt AcesIdt = ACESIDT_ARRI_LOG_C3__EI800
 	this.AcesIdt = &acesIdt
-	var acesOdt AcesOdt = ACESODT_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
+	var acesOdt AcesOdt = ACESODT__1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
 	this.AcesOdt = &acesOdt
+	var acesIdtOverride bool = false
+	this.AcesIdtOverride = &acesIdtOverride
+	var acesOdtOverride bool = false
+	this.AcesOdtOverride = &acesOdtOverride
 	var enableArriWVOLogC4Decoder bool = false
 	this.EnableArriWVOLogC4Decoder = &enableArriWVOLogC4Decoder
 	return &this
@@ -56,8 +62,12 @@ func NewAcesConfigWithDefaults() *AcesConfig {
 	this.Mode = &mode
 	var acesIdt AcesIdt = ACESIDT_ARRI_LOG_C3__EI800
 	this.AcesIdt = &acesIdt
-	var acesOdt AcesOdt = ACESODT_REC_1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
+	var acesOdt AcesOdt = ACESODT__1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
 	this.AcesOdt = &acesOdt
+	var acesIdtOverride bool = false
+	this.AcesIdtOverride = &acesIdtOverride
+	var acesOdtOverride bool = false
+	this.AcesOdtOverride = &acesOdtOverride
 	var enableArriWVOLogC4Decoder bool = false
 	this.EnableArriWVOLogC4Decoder = &enableArriWVOLogC4Decoder
 	return &this
@@ -238,6 +248,76 @@ func (o *AcesConfig) SetAcesOdt(v AcesOdt) {
 	o.AcesOdt = &tmp
 }
 
+// GetAcesIdtOverride returns the AcesIdtOverride field value if set, zero value otherwise.
+func (o *AcesConfig) GetAcesIdtOverride() bool {
+	if o == nil || o.AcesIdtOverride == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AcesIdtOverride
+}
+
+// GetAcesIdtOverrideOk returns a tuple with the AcesIdtOverride field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AcesConfig) GetAcesIdtOverrideOk() (*bool, bool) {
+	if o == nil || o.AcesIdtOverride == nil {
+		return nil, false
+	}
+	return o.AcesIdtOverride, true
+}
+
+
+
+// HasAcesIdtOverride returns a boolean if a field has been set.
+func (o *AcesConfig) HasAcesIdtOverride() bool {
+	if o != nil && o.AcesIdtOverride != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAcesIdtOverride gets a reference to the given bool and assigns it to the AcesIdtOverride field.
+func (o *AcesConfig) SetAcesIdtOverride(v bool) {
+	tmp := v
+	o.AcesIdtOverride = &tmp
+}
+
+// GetAcesOdtOverride returns the AcesOdtOverride field value if set, zero value otherwise.
+func (o *AcesConfig) GetAcesOdtOverride() bool {
+	if o == nil || o.AcesOdtOverride == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AcesOdtOverride
+}
+
+// GetAcesOdtOverrideOk returns a tuple with the AcesOdtOverride field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AcesConfig) GetAcesOdtOverrideOk() (*bool, bool) {
+	if o == nil || o.AcesOdtOverride == nil {
+		return nil, false
+	}
+	return o.AcesOdtOverride, true
+}
+
+
+
+// HasAcesOdtOverride returns a boolean if a field has been set.
+func (o *AcesConfig) HasAcesOdtOverride() bool {
+	if o != nil && o.AcesOdtOverride != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAcesOdtOverride gets a reference to the given bool and assigns it to the AcesOdtOverride field.
+func (o *AcesConfig) SetAcesOdtOverride(v bool) {
+	tmp := v
+	o.AcesOdtOverride = &tmp
+}
+
 // GetEnableArriWVOLogC4Decoder returns the EnableArriWVOLogC4Decoder field value if set, zero value otherwise.
 func (o *AcesConfig) GetEnableArriWVOLogC4Decoder() bool {
 	if o == nil || o.EnableArriWVOLogC4Decoder == nil {
@@ -289,6 +369,12 @@ func (o AcesConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.AcesOdt != nil {
 		toSerialize["acesOdt"] = o.AcesOdt
+	}
+	if o.AcesIdtOverride != nil {
+		toSerialize["acesIdtOverride"] = o.AcesIdtOverride
+	}
+	if o.AcesOdtOverride != nil {
+		toSerialize["acesOdtOverride"] = o.AcesOdtOverride
 	}
 	if o.EnableArriWVOLogC4Decoder != nil {
 		toSerialize["enableArriWVOLogC4Decoder"] = o.EnableArriWVOLogC4Decoder

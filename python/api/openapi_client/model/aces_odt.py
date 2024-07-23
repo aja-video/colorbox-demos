@@ -56,12 +56,11 @@ class AcesOdt(ModelSimple):
 
     allowed_values = {
         ('value',): {
-            'REC.1886_REC.709_-_DISPLAY/ACES_1.0_-_SDR_VIDEO': "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video",
-            'REC.2100-HLG_-_DISPLAY/ACES_1.1_-_HDR_VIDEO_(1000_NITS_&amp;_REC.2020_LIM)': "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)",
-            'REC.2100-PQ_-_DISPLAY/ACES_1.1_-_HDR_VIDEO_(1000_NITS_&amp;_REC.2020_LIM)': "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)",
-            'REC.2100-PQ_-_DISPLAY/ACES_1.1_-_HDR_VIDEO_(2000_NITS_&amp;_REC.2020_LIM)': "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)",
-            'REC.2100-PQ_-_DISPLAY/ACES_1.1_-_HDR_VIDEO_(4000_NITS_&amp;_REC.2020_LIM)': "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)",
-            'NON-ACES_ODT': "Non-ACES ODT",
+            '1886_REC.709_-_DISPLAY/ACES_1.0_-_SDR_VIDEO': "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video",
+            '2100-HLG_-_DISPLAY/ACES_1.1_-_HDR_VIDEO_(1000_NITS_&amp;_REC.2020_LIM)': "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)",
+            '2100-PQ_-_DISPLAY/ACES_1.1_-_HDR_VIDEO_(1000_NITS_&amp;_REC.2020_LIM)': "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)",
+            '2100-PQ_-_DISPLAY/ACES_1.1_-_HDR_VIDEO_(2000_NITS_&amp;_REC.2020_LIM)': "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)",
+            '2100-PQ_-_DISPLAY/ACES_1.1_-_HDR_VIDEO_(4000_NITS_&amp;_REC.2020_LIM)': "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)",
         },
     }
 
@@ -113,10 +112,10 @@ class AcesOdt(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", must be one of ["Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", "Non-ACES ODT", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", must be one of ["Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", must be one of ["Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", "Non-ACES ODT", ]  # noqa: E501
+            value (str): if omitted defaults to "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", must be one of ["Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -199,10 +198,10 @@ class AcesOdt(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", must be one of ["Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", "Non-ACES ODT", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", must be one of ["Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", must be one of ["Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", "Non-ACES ODT", ]  # noqa: E501
+            value (str): if omitted defaults to "Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", must be one of ["Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video", "Rec.2100-HLG - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)", "Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

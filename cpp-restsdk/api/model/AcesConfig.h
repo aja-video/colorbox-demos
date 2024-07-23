@@ -112,6 +112,26 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    bool isAcesIdtOverride() const;
+    bool acesIdtOverrideIsSet() const;
+    void unsetAcesIdtOverride();
+
+    void setAcesIdtOverride(bool value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isAcesOdtOverride() const;
+    bool acesOdtOverrideIsSet() const;
+    void unsetAcesOdtOverride();
+
+    void setAcesOdtOverride(bool value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
     bool isEnableArriWVOLogC4Decoder() const;
     bool enableArriWVOLogC4DecoderIsSet() const;
     void unsetEnableArriWVOLogC4Decoder();
@@ -131,6 +151,10 @@ protected:
     bool m_AcesIdtIsSet;
     std::shared_ptr<AcesOdt> m_AcesOdt;
     bool m_AcesOdtIsSet;
+    bool m_AcesIdtOverride;
+    bool m_AcesIdtOverrideIsSet;
+    bool m_AcesOdtOverride;
+    bool m_AcesOdtOverrideIsSet;
     bool m_EnableArriWVOLogC4Decoder;
     bool m_EnableArriWVOLogC4DecoderIsSet;
 };

@@ -63,6 +63,7 @@ public:
         ColorfrontDynRangeGamutLiveModeIn_SONY_SLOG3_BT_2020,
         ColorfrontDynRangeGamutLiveModeIn_ARRI_LOG_C_WIDE_GAMUT,
         ColorfrontDynRangeGamutLiveModeIn_ARRI_LOGC4_WIDE_GAMUT_4,
+        ColorfrontDynRangeGamutLiveModeIn_ARRI_LOGC4_WIDE_GAMUT_4_WVO,
         ColorfrontDynRangeGamutLiveModeIn_PANASONIC_V_LOG,
         ColorfrontDynRangeGamutLiveModeIn_RED_LOG3G10_WIDE_GAMUT,
         ColorfrontDynRangeGamutLiveModeIn_CANON_LOG_2,

@@ -2283,7 +2283,6 @@ components:
           liftGreen: -0.28856095458638054
         upmapMode:
           bypass: false
-        enableArriWVOLogC4Decoder: false
         enabled: true
       properties:
         enabled:
@@ -2301,10 +2300,6 @@ components:
           $ref: '#/components/schemas/ColorfrontLiveMode'
         upmapMode:
           $ref: '#/components/schemas/ColorfrontUpmapMode'
-        enableArriWVOLogC4Decoder:
-          default: false
-          description: Setting to enable ARRI WVO to LogC4 Decoder on Input
-          type: boolean
       type: object
     ColorfrontDynRangeGamut:
       default: SDR BT.709
@@ -2359,6 +2354,7 @@ components:
       - Sony SLog3 BT.2020
       - ARRI Log C Wide Gamut
       - ARRI LogC4 Wide Gamut 4
+      - ARRI LogC4 Wide Gamut 4 WVO
       - Panasonic V-Log
       - RED Log3G10 Wide Gamut
       - Canon Log 2
@@ -2889,7 +2885,6 @@ components:
       - S-Log3 S-Gamut3.Cine
       - S-Log3 Venice S-Gamut3
       - S-Log3 Venice S-Gamut3.Cine
-      - Non-ACES IDT
       type: string
     AcesOdt:
       default: Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video
@@ -2899,10 +2894,11 @@ components:
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)
-      - Non-ACES ODT
       type: string
     AcesConfig:
       example:
+        acesOdtOverride: false
+        acesIdtOverride: false
         enableArriWVOLogC4Decoder: false
         amfLibraryEntry: 0
         enabled: true
@@ -2919,6 +2915,12 @@ components:
           $ref: '#/components/schemas/AcesIdt'
         acesOdt:
           $ref: '#/components/schemas/AcesOdt'
+        acesIdtOverride:
+          default: false
+          type: boolean
+        acesOdtOverride:
+          default: false
+          type: boolean
         enableArriWVOLogC4Decoder:
           default: false
           type: boolean

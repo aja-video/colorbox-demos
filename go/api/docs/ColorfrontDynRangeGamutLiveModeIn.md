@@ -27,6 +27,8 @@
 
 * `ARRI_LOG_C4_WIDE_GAMUT_4` (value: `"ARRI LogC4 Wide Gamut 4"`)
 
+* `ARRI_LOG_C4_WIDE_GAMUT_4_WVO` (value: `"ARRI LogC4 Wide Gamut 4 WVO"`)
+
 * `PANASONIC_V_LOG` (value: `"Panasonic V-Log"`)
 
 * `RED_LOG3_G10_WIDE_GAMUT` (value: `"RED Log3G10 Wide Gamut"`)

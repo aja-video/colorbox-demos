@@ -106,7 +106,6 @@ class ColorfrontConfig(ModelNormal):
             'tv_mode': (ColorfrontTvMode,),  # noqa: E501
             'live_mode': (ColorfrontLiveMode,),  # noqa: E501
             'upmap_mode': (ColorfrontUpmapMode,),  # noqa: E501
-            'enable_arri_wvo_log_c4_decoder': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -122,7 +121,6 @@ class ColorfrontConfig(ModelNormal):
         'tv_mode': 'tvMode',  # noqa: E501
         'live_mode': 'liveMode',  # noqa: E501
         'upmap_mode': 'upmapMode',  # noqa: E501
-        'enable_arri_wvo_log_c4_decoder': 'enableArriWVOLogC4Decoder',  # noqa: E501
     }
 
     read_only_vars = {
@@ -173,7 +171,6 @@ class ColorfrontConfig(ModelNormal):
             tv_mode (ColorfrontTvMode): [optional]  # noqa: E501
             live_mode (ColorfrontLiveMode): [optional]  # noqa: E501
             upmap_mode (ColorfrontUpmapMode): [optional]  # noqa: E501
-            enable_arri_wvo_log_c4_decoder (bool): Setting to enable ARRI WVO to LogC4 Decoder on Input. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -262,7 +259,6 @@ class ColorfrontConfig(ModelNormal):
             tv_mode (ColorfrontTvMode): [optional]  # noqa: E501
             live_mode (ColorfrontLiveMode): [optional]  # noqa: E501
             upmap_mode (ColorfrontUpmapMode): [optional]  # noqa: E501
-            enable_arri_wvo_log_c4_decoder (bool): Setting to enable ARRI WVO to LogC4 Decoder on Input. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
