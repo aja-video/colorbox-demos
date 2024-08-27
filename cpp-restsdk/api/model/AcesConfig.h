@@ -24,7 +24,6 @@
 
 #include "ModelBase.h"
 
-#include "model/AcesMode.h"
 #include "model/AcesOdt.h"
 #include "model/AcesIdt.h"
 
@@ -67,16 +66,6 @@ public:
     void unsetEnabled();
 
     void setEnabled(bool value);
-
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::shared_ptr<AcesMode> getMode() const;
-    bool modeIsSet() const;
-    void unsetMode();
-
-    void setMode(const std::shared_ptr<AcesMode>& value);
 
 
     /// <summary>
@@ -143,8 +132,6 @@ public:
 protected:
     bool m_Enabled;
     bool m_EnabledIsSet;
-    std::shared_ptr<AcesMode> m_Mode;
-    bool m_ModeIsSet;
     int32_t m_AmfLibraryEntry;
     bool m_AmfLibraryEntryIsSet;
     std::shared_ptr<AcesIdt> m_AcesIdt;

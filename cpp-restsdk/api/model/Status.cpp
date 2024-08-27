@@ -73,6 +73,12 @@ Status::Status()
     m_CpuBusyIsSet = false;
     m_AcesVersion = utility::conversions::to_string_t("");
     m_AcesVersionIsSet = false;
+    m_HardwareVariant = utility::conversions::to_string_t("");
+    m_HardwareVariantIsSet = false;
+    m_HardwareName = utility::conversions::to_string_t("");
+    m_HardwareNameIsSet = false;
+    m_OgRearModuleValid = false;
+    m_OgRearModuleValidIsSet = false;
 }
 
 Status::~Status()
@@ -189,6 +195,18 @@ bool Status::applyMinMaxConstraints()
 		utility::string_t v = getAcesVersion();
 		if (acesVersionChanged) { setAcesVersion(v); anyMinMaxValueChanged = true; }
 	}
+	if (hardwareVariantIsSet())
+	{
+		bool hardwareVariantChanged = false;
+		utility::string_t v = getHardwareVariant();
+		if (hardwareVariantChanged) { setHardwareVariant(v); anyMinMaxValueChanged = true; }
+	}
+	if (hardwareNameIsSet())
+	{
+		bool hardwareNameChanged = false;
+		utility::string_t v = getHardwareName();
+		if (hardwareNameChanged) { setHardwareName(v); anyMinMaxValueChanged = true; }
+	}
 	return anyMinMaxValueChanged;
 }
 
@@ -292,6 +310,18 @@ web::json::value Status::toJson() const
     if(m_AcesVersionIsSet)
     {
         val[utility::conversions::to_string_t(U("acesVersion"))] = ModelBase::toJson(m_AcesVersion);
+    }
+    if(m_HardwareVariantIsSet)
+    {
+        val[utility::conversions::to_string_t(U("hardwareVariant"))] = ModelBase::toJson(m_HardwareVariant);
+    }
+    if(m_HardwareNameIsSet)
+    {
+        val[utility::conversions::to_string_t(U("hardwareName"))] = ModelBase::toJson(m_HardwareName);
+    }
+    if(m_OgRearModuleValidIsSet)
+    {
+        val[utility::conversions::to_string_t(U("ogRearModuleValid"))] = ModelBase::toJson(m_OgRearModuleValid);
     }
 
     return val;
@@ -541,6 +571,36 @@ bool Status::fromJson(const web::json::value& val)
             setAcesVersion(refVal_acesVersion);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("hardwareVariant"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hardwareVariant")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_hardwareVariant;
+            ok &= ModelBase::fromJson(fieldValue, refVal_hardwareVariant);
+            setHardwareVariant(refVal_hardwareVariant);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("hardwareName"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hardwareName")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_hardwareName;
+            ok &= ModelBase::fromJson(fieldValue, refVal_hardwareName);
+            setHardwareName(refVal_hardwareName);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("ogRearModuleValid"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("ogRearModuleValid")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_ogRearModuleValid;
+            ok &= ModelBase::fromJson(fieldValue, refVal_ogRearModuleValid);
+            setOgRearModuleValid(refVal_ogRearModuleValid);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -648,6 +708,18 @@ void Status::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     if(m_AcesVersionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("acesVersion")), m_AcesVersion));
+    }
+    if(m_HardwareVariantIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hardwareVariant")), m_HardwareVariant));
+    }
+    if(m_HardwareNameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hardwareName")), m_HardwareName));
+    }
+    if(m_OgRearModuleValidIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("ogRearModuleValid")), m_OgRearModuleValid));
     }
 }
 
@@ -803,6 +875,24 @@ bool Status::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         utility::string_t refVal_acesVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("acesVersion"))), refVal_acesVersion );
         setAcesVersion(refVal_acesVersion);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("hardwareVariant"))))
+    {
+        utility::string_t refVal_hardwareVariant;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hardwareVariant"))), refVal_hardwareVariant );
+        setHardwareVariant(refVal_hardwareVariant);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("hardwareName"))))
+    {
+        utility::string_t refVal_hardwareName;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hardwareName"))), refVal_hardwareName );
+        setHardwareName(refVal_hardwareName);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("ogRearModuleValid"))))
+    {
+        bool refVal_ogRearModuleValid;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("ogRearModuleValid"))), refVal_ogRearModuleValid );
+        setOgRearModuleValid(refVal_ogRearModuleValid);
     }
     
     applyMinMaxConstraints();
@@ -1376,6 +1466,77 @@ void Status::unsetAcesVersion()
     m_AcesVersionIsSet = false;
 }
 
+
+
+utility::string_t Status::getHardwareVariant() const
+{
+    return m_HardwareVariant;
+}
+
+void Status::setHardwareVariant(const utility::string_t& value)
+{
+	utility::string_t v = value;
+    m_HardwareVariant = v;
+    m_HardwareVariantIsSet = true;
+}
+
+bool Status::hardwareVariantIsSet() const
+{
+    return m_HardwareVariantIsSet;
+}
+
+void Status::unsetHardwareVariant()
+{
+    m_HardwareVariantIsSet = false;
+}
+
+
+
+utility::string_t Status::getHardwareName() const
+{
+    return m_HardwareName;
+}
+
+void Status::setHardwareName(const utility::string_t& value)
+{
+	utility::string_t v = value;
+    m_HardwareName = v;
+    m_HardwareNameIsSet = true;
+}
+
+bool Status::hardwareNameIsSet() const
+{
+    return m_HardwareNameIsSet;
+}
+
+void Status::unsetHardwareName()
+{
+    m_HardwareNameIsSet = false;
+}
+
+
+
+bool Status::isOgRearModuleValid() const
+{
+    return m_OgRearModuleValid;
+}
+
+void Status::setOgRearModuleValid(bool value)
+{
+	bool v = value;
+    m_OgRearModuleValid = v;
+    m_OgRearModuleValidIsSet = true;
+}
+
+bool Status::ogRearModuleValidIsSet() const
+{
+    return m_OgRearModuleValidIsSet;
+}
+
+void Status::unsetOgRearModuleValid()
+{
+    m_OgRearModuleValidIsSet = false;
+}
 
 
 }

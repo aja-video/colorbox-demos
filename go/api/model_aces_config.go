@@ -22,7 +22,6 @@ import (
 type AcesConfig struct {
 	// true if stage is enabled else disabled (unity passthru)
 	Enabled *bool `json:"enabled,omitempty"`
-	Mode *AcesMode `json:"mode,omitempty"`
 	// library entry number, zero is unity bypass
 	AmfLibraryEntry *int32 `json:"amfLibraryEntry,omitempty"`
 	AcesIdt *AcesIdt `json:"acesIdt,omitempty"`
@@ -38,8 +37,6 @@ type AcesConfig struct {
 // will change when the set of required properties is changed
 func NewAcesConfig() *AcesConfig {
 	this := AcesConfig{}
-	var mode AcesMode = ACESMODE_AMF
-	this.Mode = &mode
 	var acesIdt AcesIdt = ACESIDT_ARRI_LOG_C3__EI800
 	this.AcesIdt = &acesIdt
 	var acesOdt AcesOdt = ACESODT__1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
@@ -58,8 +55,6 @@ func NewAcesConfig() *AcesConfig {
 // but it doesn't guarantee that properties required by API are set
 func NewAcesConfigWithDefaults() *AcesConfig {
 	this := AcesConfig{}
-	var mode AcesMode = ACESMODE_AMF
-	this.Mode = &mode
 	var acesIdt AcesIdt = ACESIDT_ARRI_LOG_C3__EI800
 	this.AcesIdt = &acesIdt
 	var acesOdt AcesOdt = ACESODT__1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO
@@ -106,41 +101,6 @@ func (o *AcesConfig) HasEnabled() bool {
 func (o *AcesConfig) SetEnabled(v bool) {
 	tmp := v
 	o.Enabled = &tmp
-}
-
-// GetMode returns the Mode field value if set, zero value otherwise.
-func (o *AcesConfig) GetMode() AcesMode {
-	if o == nil || o.Mode == nil {
-		var ret AcesMode
-		return ret
-	}
-	return *o.Mode
-}
-
-// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AcesConfig) GetModeOk() (*AcesMode, bool) {
-	if o == nil || o.Mode == nil {
-		return nil, false
-	}
-	return o.Mode, true
-}
-
-
-
-// HasMode returns a boolean if a field has been set.
-func (o *AcesConfig) HasMode() bool {
-	if o != nil && o.Mode != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMode gets a reference to the given AcesMode and assigns it to the Mode field.
-func (o *AcesConfig) SetMode(v AcesMode) {
-	tmp := v
-	o.Mode = &tmp
 }
 
 // GetAmfLibraryEntry returns the AmfLibraryEntry field value if set, zero value otherwise.
@@ -357,9 +317,6 @@ func (o AcesConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
-	}
-	if o.Mode != nil {
-		toSerialize["mode"] = o.Mode
 	}
 	if o.AmfLibraryEntry != nil {
 		toSerialize["amfLibraryEntry"] = o.AmfLibraryEntry

@@ -2478,7 +2478,6 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     aces_config = AcesConfig(
         enabled=True,
-        mode=AcesMode("AMF"),
         amf_library_entry=1,
         aces_idt=AcesIdt("ARRI LogC3 (EI800)"),
         aces_odt=AcesOdt("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"),
@@ -2681,6 +2680,9 @@ with openapi_client.ApiClient(configuration) as api_client:
         nbcu_lut_version="nbcu_lut_version_example",
         cpu_busy=True,
         aces_version="aces_version_example",
+        hardware_variant="hardware_variant_example",
+        hardware_name="hardware_name_example",
+        og_rear_module_valid=True,
     ) # Status | Status object
 
     # example passing only required values which don't have defaults set

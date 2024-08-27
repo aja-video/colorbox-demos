@@ -28,7 +28,6 @@ AcesConfig::AcesConfig()
 {
     m_Enabled = false;
     m_EnabledIsSet = false;
-    m_ModeIsSet = false;
     m_AmfLibraryEntry = 0;
     m_AmfLibraryEntryIsSet = false;
     m_AcesIdtIsSet = false;
@@ -71,10 +70,6 @@ web::json::value AcesConfig::toJson() const
     {
         val[utility::conversions::to_string_t(U("enabled"))] = ModelBase::toJson(m_Enabled);
     }
-    if(m_ModeIsSet)
-    {
-        val[utility::conversions::to_string_t(U("mode"))] = ModelBase::toJson(m_Mode);
-    }
     if(m_AmfLibraryEntryIsSet)
     {
         val[utility::conversions::to_string_t(U("amfLibraryEntry"))] = ModelBase::toJson(m_AmfLibraryEntry);
@@ -115,16 +110,6 @@ bool AcesConfig::fromJson(const web::json::value& val)
             bool refVal_enabled;
             ok &= ModelBase::fromJson(fieldValue, refVal_enabled);
             setEnabled(refVal_enabled);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("mode"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("mode")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<AcesMode> refVal_mode;
-            ok &= ModelBase::fromJson(fieldValue, refVal_mode);
-            setMode(refVal_mode);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("amfLibraryEntry"))))
@@ -203,10 +188,6 @@ void AcesConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enabled")), m_Enabled));
     }
-    if(m_ModeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("mode")), m_Mode));
-    }
     if(m_AmfLibraryEntryIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("amfLibraryEntry")), m_AmfLibraryEntry));
@@ -247,12 +228,6 @@ bool AcesConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         bool refVal_enabled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enabled"))), refVal_enabled );
         setEnabled(refVal_enabled);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("mode"))))
-    {
-        std::shared_ptr<AcesMode> refVal_mode;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("mode"))), refVal_mode );
-        setMode(refVal_mode);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("amfLibraryEntry"))))
     {
@@ -315,29 +290,6 @@ bool AcesConfig::enabledIsSet() const
 void AcesConfig::unsetEnabled()
 {
     m_EnabledIsSet = false;
-}
-
-
-std::shared_ptr<AcesMode> AcesConfig::getMode() const
-{
-    return m_Mode;
-}
-
-void AcesConfig::setMode(const std::shared_ptr<AcesMode>& value)
-{
-	std::shared_ptr<AcesMode> v = value;
-    m_Mode = v;
-    m_ModeIsSet = true;
-}
-
-bool AcesConfig::modeIsSet() const
-{
-    return m_ModeIsSet;
-}
-
-void AcesConfig::unsetMode()
-{
-    m_ModeIsSet = false;
 }
 
 

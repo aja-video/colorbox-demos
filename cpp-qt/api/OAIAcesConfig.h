@@ -23,7 +23,6 @@
 #include <QJsonObject>
 
 #include "OAIAcesIdt.h"
-#include "OAIAcesMode.h"
 #include "OAIAcesOdt.h"
 
 #include "OAIEnum.h"
@@ -46,11 +45,6 @@ public:
     void setEnabled(const bool &enabled);
     bool is_enabled_Set() const;
     bool is_enabled_Valid() const;
-
-    OAIAcesMode getMode() const;
-    void setMode(const OAIAcesMode &mode);
-    bool is_mode_Set() const;
-    bool is_mode_Valid() const;
 
     qint32 getAmfLibraryEntry() const;
     void setAmfLibraryEntry(const qint32 &amf_library_entry);
@@ -92,10 +86,6 @@ private:
     bool m_enabled;
     bool m_enabled_isSet;
     bool m_enabled_isValid;
-
-    OAIAcesMode m_mode;
-    bool m_mode_isSet;
-    bool m_mode_isValid;
 
     qint32 m_amf_library_entry;
     bool m_amf_library_entry_isSet;

@@ -38,9 +38,6 @@ void OAIAcesConfig::initializeModel() {
     m_enabled_isSet = false;
     m_enabled_isValid = false;
 
-    m_mode_isSet = false;
-    m_mode_isValid = false;
-
     m_amf_library_entry_isSet = false;
     m_amf_library_entry_isValid = false;
 
@@ -70,9 +67,6 @@ void OAIAcesConfig::fromJsonObject(QJsonObject json) {
 
     m_enabled_isValid = ::OpenAPI::fromJsonValue(m_enabled, json[QString("enabled")]);
     m_enabled_isSet = !json[QString("enabled")].isNull() && m_enabled_isValid;
-
-    m_mode_isValid = ::OpenAPI::fromJsonValue(m_mode, json[QString("mode")]);
-    m_mode_isSet = !json[QString("mode")].isNull() && m_mode_isValid;
 
     m_amf_library_entry_isValid = ::OpenAPI::fromJsonValue(m_amf_library_entry, json[QString("amfLibraryEntry")]);
     m_amf_library_entry_isSet = !json[QString("amfLibraryEntry")].isNull() && m_amf_library_entry_isValid;
@@ -106,9 +100,6 @@ QJsonObject OAIAcesConfig::asJsonObject() const {
     QJsonObject obj;
     if (m_enabled_isSet) {
         obj.insert(QString("enabled"), ::OpenAPI::toJsonValue(m_enabled));
-    }
-    if (m_mode.isSet()) {
-        obj.insert(QString("mode"), ::OpenAPI::toJsonValue(m_mode));
     }
     if (m_amf_library_entry_isSet) {
         obj.insert(QString("amfLibraryEntry"), ::OpenAPI::toJsonValue(m_amf_library_entry));
@@ -146,24 +137,6 @@ bool OAIAcesConfig::is_enabled_Set() const{
 
 bool OAIAcesConfig::is_enabled_Valid() const{
     return m_enabled_isValid;
-}
-
-
-OAIAcesMode OAIAcesConfig::getMode() const {
-    return m_mode;
-}
-void OAIAcesConfig::setMode(const OAIAcesMode &mode) {
-	OAIAcesMode v = mode;
-	this->m_mode = v;
-    this->m_mode_isSet = true;
-}
-
-bool OAIAcesConfig::is_mode_Set() const{
-    return m_mode_isSet;
-}
-
-bool OAIAcesConfig::is_mode_Valid() const{
-    return m_mode_isValid;
 }
 
 
@@ -280,11 +253,6 @@ bool OAIAcesConfig::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_enabled_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_mode.isSet()) {
             isObjectUpdated = true;
             break;
         }

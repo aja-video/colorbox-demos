@@ -44,6 +44,9 @@ type Status struct {
 	NbcuLutVersion *string `json:"nbcuLutVersion,omitempty"`
 	CpuBusy *bool `json:"cpuBusy,omitempty"`
 	AcesVersion *string `json:"acesVersion,omitempty"`
+	HardwareVariant *string `json:"hardwareVariant,omitempty"`
+	HardwareName *string `json:"hardwareName,omitempty"`
+	OgRearModuleValid *bool `json:"ogRearModuleValid,omitempty"`
 }
 
 // NewStatus instantiates a new Status object
@@ -903,6 +906,111 @@ func (o *Status) SetAcesVersion(v string) {
 	o.AcesVersion = &tmp
 }
 
+// GetHardwareVariant returns the HardwareVariant field value if set, zero value otherwise.
+func (o *Status) GetHardwareVariant() string {
+	if o == nil || o.HardwareVariant == nil {
+		var ret string
+		return ret
+	}
+	return *o.HardwareVariant
+}
+
+// GetHardwareVariantOk returns a tuple with the HardwareVariant field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetHardwareVariantOk() (*string, bool) {
+	if o == nil || o.HardwareVariant == nil {
+		return nil, false
+	}
+	return o.HardwareVariant, true
+}
+
+
+
+// HasHardwareVariant returns a boolean if a field has been set.
+func (o *Status) HasHardwareVariant() bool {
+	if o != nil && o.HardwareVariant != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHardwareVariant gets a reference to the given string and assigns it to the HardwareVariant field.
+func (o *Status) SetHardwareVariant(v string) {
+	tmp := v
+	o.HardwareVariant = &tmp
+}
+
+// GetHardwareName returns the HardwareName field value if set, zero value otherwise.
+func (o *Status) GetHardwareName() string {
+	if o == nil || o.HardwareName == nil {
+		var ret string
+		return ret
+	}
+	return *o.HardwareName
+}
+
+// GetHardwareNameOk returns a tuple with the HardwareName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetHardwareNameOk() (*string, bool) {
+	if o == nil || o.HardwareName == nil {
+		return nil, false
+	}
+	return o.HardwareName, true
+}
+
+
+
+// HasHardwareName returns a boolean if a field has been set.
+func (o *Status) HasHardwareName() bool {
+	if o != nil && o.HardwareName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHardwareName gets a reference to the given string and assigns it to the HardwareName field.
+func (o *Status) SetHardwareName(v string) {
+	tmp := v
+	o.HardwareName = &tmp
+}
+
+// GetOgRearModuleValid returns the OgRearModuleValid field value if set, zero value otherwise.
+func (o *Status) GetOgRearModuleValid() bool {
+	if o == nil || o.OgRearModuleValid == nil {
+		var ret bool
+		return ret
+	}
+	return *o.OgRearModuleValid
+}
+
+// GetOgRearModuleValidOk returns a tuple with the OgRearModuleValid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetOgRearModuleValidOk() (*bool, bool) {
+	if o == nil || o.OgRearModuleValid == nil {
+		return nil, false
+	}
+	return o.OgRearModuleValid, true
+}
+
+
+
+// HasOgRearModuleValid returns a boolean if a field has been set.
+func (o *Status) HasOgRearModuleValid() bool {
+	if o != nil && o.OgRearModuleValid != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOgRearModuleValid gets a reference to the given bool and assigns it to the OgRearModuleValid field.
+func (o *Status) SetOgRearModuleValid(v bool) {
+	tmp := v
+	o.OgRearModuleValid = &tmp
+}
+
 func (o Status) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DeviceDieTemp != nil {
@@ -976,6 +1084,15 @@ func (o Status) MarshalJSON() ([]byte, error) {
 	}
 	if o.AcesVersion != nil {
 		toSerialize["acesVersion"] = o.AcesVersion
+	}
+	if o.HardwareVariant != nil {
+		toSerialize["hardwareVariant"] = o.HardwareVariant
+	}
+	if o.HardwareName != nil {
+		toSerialize["hardwareName"] = o.HardwareName
+	}
+	if o.OgRearModuleValid != nil {
+		toSerialize["ogRearModuleValid"] = o.OgRearModuleValid
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1116,6 +1233,22 @@ func (o *Status) ApplyMinMaxConstraints() bool {
 		var v string = o.GetAcesVersion()
 		if fieldChanged {
 			o.SetAcesVersion(v)
+			valueChanged = true
+		}
+	}
+	if o.HasHardwareVariant() {
+		var fieldChanged = false
+		var v string = o.GetHardwareVariant()
+		if fieldChanged {
+			o.SetHardwareVariant(v)
+			valueChanged = true
+		}
+	}
+	if o.HasHardwareName() {
+		var fieldChanged = false
+		var v string = o.GetHardwareName()
+		if fieldChanged {
+			o.SetHardwareName(v)
 			valueChanged = true
 		}
 	}

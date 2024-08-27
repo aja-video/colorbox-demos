@@ -22,7 +22,6 @@ set(QT_LIBS Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network)
 add_library(${PROJECT_NAME}
     OAIAcesConfig.cpp
     OAIAcesIdt.cpp
-    OAIAcesMode.cpp
     OAIAcesOdt.cpp
     OAIAncCaptureFilter.cpp
     OAIBbcConfig.cpp

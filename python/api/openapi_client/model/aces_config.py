@@ -35,10 +35,8 @@ from openapi_client.exceptions import ApiAttributeError
 
 def lazy_import():
     from openapi_client.model.aces_idt import AcesIdt
-    from openapi_client.model.aces_mode import AcesMode
     from openapi_client.model.aces_odt import AcesOdt
     globals()['AcesIdt'] = AcesIdt
-    globals()['AcesMode'] = AcesMode
     globals()['AcesOdt'] = AcesOdt
 
 
@@ -96,7 +94,6 @@ class AcesConfig(ModelNormal):
         lazy_import()
         return {
             'enabled': (bool,),  # noqa: E501
-            'mode': (AcesMode,),  # noqa: E501
             'amf_library_entry': (int,),  # noqa: E501
             'aces_idt': (AcesIdt,),  # noqa: E501
             'aces_odt': (AcesOdt,),  # noqa: E501
@@ -112,7 +109,6 @@ class AcesConfig(ModelNormal):
 
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
-        'mode': 'mode',  # noqa: E501
         'amf_library_entry': 'amfLibraryEntry',  # noqa: E501
         'aces_idt': 'acesIdt',  # noqa: E501
         'aces_odt': 'acesOdt',  # noqa: E501
@@ -163,7 +159,6 @@ class AcesConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
-            mode (AcesMode): [optional]  # noqa: E501
             amf_library_entry (int): library entry number, zero is unity bypass. [optional]  # noqa: E501
             aces_idt (AcesIdt): [optional]  # noqa: E501
             aces_odt (AcesOdt): [optional]  # noqa: E501
@@ -252,7 +247,6 @@ class AcesConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
-            mode (AcesMode): [optional]  # noqa: E501
             amf_library_entry (int): library entry number, zero is unity bypass. [optional]  # noqa: E501
             aces_idt (AcesIdt): [optional]  # noqa: E501
             aces_odt (AcesOdt): [optional]  # noqa: E501

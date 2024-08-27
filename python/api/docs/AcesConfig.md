@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enabled** | **bool** | true if stage is enabled else disabled (unity passthru) | [optional] 
-**mode** | [**AcesMode**](AcesMode.md) |  | [optional] 
 **amf_library_entry** | **int** | library entry number, zero is unity bypass | [optional] 
 **aces_idt** | [**AcesIdt**](AcesIdt.md) |  | [optional] 
 **aces_odt** | [**AcesOdt**](AcesOdt.md) |  | [optional] 

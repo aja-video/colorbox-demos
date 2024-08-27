@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | Pointer to **bool** | true if stage is enabled else disabled (unity passthru) | [optional] 
-**Mode** | Pointer to [**AcesMode**](AcesMode.md) |  | [optional] [default to ACESMODE_AMF]
 **AmfLibraryEntry** | Pointer to **int32** | library entry number, zero is unity bypass | [optional] 
 **AcesIdt** | Pointer to [**AcesIdt**](AcesIdt.md) |  | [optional] [default to ACESIDT_ARRI_LOG_C3__EI800]
 **AcesOdt** | Pointer to [**AcesOdt**](AcesOdt.md) |  | [optional] [default to ACESODT__1886_REC_709___DISPLAY_ACES_1_0___SDR_VIDEO]
@@ -56,31 +55,6 @@ SetEnabled sets Enabled field to given value.
 `func (o *AcesConfig) HasEnabled() bool`
 
 HasEnabled returns a boolean if a field has been set.
-
-### GetMode
-
-`func (o *AcesConfig) GetMode() AcesMode`
-
-GetMode returns the Mode field if non-nil, zero value otherwise.
-
-### GetModeOk
-
-`func (o *AcesConfig) GetModeOk() (*AcesMode, bool)`
-
-GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMode
-
-`func (o *AcesConfig) SetMode(v AcesMode)`
-
-SetMode sets Mode field to given value.
-
-### HasMode
-
-`func (o *AcesConfig) HasMode() bool`
-
-HasMode returns a boolean if a field has been set.
 
 ### GetAmfLibraryEntry
 

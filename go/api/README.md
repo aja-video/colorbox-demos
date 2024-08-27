@@ -154,7 +154,6 @@ Class | Method | HTTP request | Description
 
  - [AcesConfig](docs/AcesConfig.md)
  - [AcesIdt](docs/AcesIdt.md)
- - [AcesMode](docs/AcesMode.md)
  - [AcesOdt](docs/AcesOdt.md)
  - [AncCaptureFilter](docs/AncCaptureFilter.md)
  - [BbcConfig](docs/BbcConfig.md)

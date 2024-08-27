@@ -4,7 +4,6 @@ HEADERS += \
 # Models
     $${PWD}/OAIAcesConfig.h \
     $${PWD}/OAIAcesIdt.h \
-    $${PWD}/OAIAcesMode.h \
     $${PWD}/OAIAcesOdt.h \
     $${PWD}/OAIAncCaptureFilter.h \
     $${PWD}/OAIBbcConfig.h \
@@ -99,7 +98,6 @@ SOURCES += \
 # Models
     $${PWD}/OAIAcesConfig.cpp \
     $${PWD}/OAIAcesIdt.cpp \
-    $${PWD}/OAIAcesMode.cpp \
     $${PWD}/OAIAcesOdt.cpp \
     $${PWD}/OAIAncCaptureFilter.cpp \
     $${PWD}/OAIBbcConfig.cpp \
