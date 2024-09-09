@@ -415,7 +415,7 @@ void Dialog::updatePreview()
 #if 1
     std::string msgVPIDFormat("No");
     uint32_t numAncDataPkts =  _ancDataList.CountAncillaryData();
-    ts << "Num Packets: " << dec <<  numAncDataPkts << "\n";
+    ts << "Num Packets: " << Qt::dec <<  numAncDataPkts << "\n";
 
     for ( uint32_t ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
     {
