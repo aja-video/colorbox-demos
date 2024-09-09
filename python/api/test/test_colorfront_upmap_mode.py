@@ -16,11 +16,13 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.ocio_display_view import OcioDisplayView
+from openapi_client.model.colorfront_low_mid_high import ColorfrontLowMidHigh
+globals()['ColorfrontLowMidHigh'] = ColorfrontLowMidHigh
+from openapi_client.model.colorfront_upmap_mode import ColorfrontUpmapMode
 
 
-class TestOcioDisplayView(unittest.TestCase):
-    """OcioDisplayView unit test stubs"""
+class TestColorfrontUpmapMode(unittest.TestCase):
+    """ColorfrontUpmapMode unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +30,10 @@ class TestOcioDisplayView(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testOcioDisplayView(self):
-        """Test OcioDisplayView"""
+    def testColorfrontUpmapMode(self):
+        """Test ColorfrontUpmapMode"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = OcioDisplayView()  # noqa: E501
+        # model = ColorfrontUpmapMode()  # noqa: E501
         pass
 
 

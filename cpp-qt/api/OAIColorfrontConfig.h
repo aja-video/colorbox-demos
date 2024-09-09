@@ -26,6 +26,7 @@
 #include "OAIColorfrontLiveMode.h"
 #include "OAIColorfrontMode.h"
 #include "OAIColorfrontTvMode.h"
+#include "OAIColorfrontUpmapMode.h"
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
@@ -73,6 +74,11 @@ public:
     bool is_live_mode_Set() const;
     bool is_live_mode_Valid() const;
 
+    OAIColorfrontUpmapMode getUpmapMode() const;
+    void setUpmapMode(const OAIColorfrontUpmapMode &upmap_mode);
+    bool is_upmap_mode_Set() const;
+    bool is_upmap_mode_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -103,6 +109,10 @@ private:
     OAIColorfrontLiveMode m_live_mode;
     bool m_live_mode_isSet;
     bool m_live_mode_isValid;
+
+    OAIColorfrontUpmapMode m_upmap_mode;
+    bool m_upmap_mode_isSet;
+    bool m_upmap_mode_isValid;
 };
 
 } // namespace OpenAPI

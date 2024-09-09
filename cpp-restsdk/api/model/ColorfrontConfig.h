@@ -24,6 +24,7 @@
 
 #include "ModelBase.h"
 
+#include "model/ColorfrontUpmapMode.h"
 #include "model/ColorfrontDynRangeGamut.h"
 #include "model/ColorfrontMode.h"
 #include "model/ColorfrontLiveMode.h"
@@ -120,6 +121,16 @@ public:
     void setLiveMode(const std::shared_ptr<ColorfrontLiveMode>& value);
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<ColorfrontUpmapMode> getUpmapMode() const;
+    bool upmapModeIsSet() const;
+    void unsetUpmapMode();
+
+    void setUpmapMode(const std::shared_ptr<ColorfrontUpmapMode>& value);
+
+
 
 protected:
     bool m_Enabled;
@@ -134,6 +145,8 @@ protected:
     bool m_TvModeIsSet;
     std::shared_ptr<ColorfrontLiveMode> m_LiveMode;
     bool m_LiveModeIsSet;
+    std::shared_ptr<ColorfrontUpmapMode> m_UpmapMode;
+    bool m_UpmapModeIsSet;
 };
 
 

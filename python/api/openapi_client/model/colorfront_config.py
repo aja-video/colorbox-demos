@@ -38,10 +38,12 @@ def lazy_import():
     from openapi_client.model.colorfront_live_mode import ColorfrontLiveMode
     from openapi_client.model.colorfront_mode import ColorfrontMode
     from openapi_client.model.colorfront_tv_mode import ColorfrontTvMode
+    from openapi_client.model.colorfront_upmap_mode import ColorfrontUpmapMode
     globals()['ColorfrontDynRangeGamut'] = ColorfrontDynRangeGamut
     globals()['ColorfrontLiveMode'] = ColorfrontLiveMode
     globals()['ColorfrontMode'] = ColorfrontMode
     globals()['ColorfrontTvMode'] = ColorfrontTvMode
+    globals()['ColorfrontUpmapMode'] = ColorfrontUpmapMode
 
 
 class ColorfrontConfig(ModelNormal):
@@ -103,6 +105,7 @@ class ColorfrontConfig(ModelNormal):
             'mode': (ColorfrontMode,),  # noqa: E501
             'tv_mode': (ColorfrontTvMode,),  # noqa: E501
             'live_mode': (ColorfrontLiveMode,),  # noqa: E501
+            'upmap_mode': (ColorfrontUpmapMode,),  # noqa: E501
         }
 
     @cached_property
@@ -117,6 +120,7 @@ class ColorfrontConfig(ModelNormal):
         'mode': 'mode',  # noqa: E501
         'tv_mode': 'tvMode',  # noqa: E501
         'live_mode': 'liveMode',  # noqa: E501
+        'upmap_mode': 'upmapMode',  # noqa: E501
     }
 
     read_only_vars = {
@@ -166,6 +170,7 @@ class ColorfrontConfig(ModelNormal):
             mode (ColorfrontMode): [optional]  # noqa: E501
             tv_mode (ColorfrontTvMode): [optional]  # noqa: E501
             live_mode (ColorfrontLiveMode): [optional]  # noqa: E501
+            upmap_mode (ColorfrontUpmapMode): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -253,6 +258,7 @@ class ColorfrontConfig(ModelNormal):
             mode (ColorfrontMode): [optional]  # noqa: E501
             tv_mode (ColorfrontTvMode): [optional]  # noqa: E501
             live_mode (ColorfrontLiveMode): [optional]  # noqa: E501
+            upmap_mode (ColorfrontUpmapMode): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

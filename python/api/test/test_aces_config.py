@@ -16,12 +16,12 @@ import sys
 import unittest
 
 import openapi_client
+from openapi_client.model.aces_idt import AcesIdt
 from openapi_client.model.aces_mode import AcesMode
-from openapi_client.model.ocio_display_view import OcioDisplayView
-from openapi_client.model.ocio_mode import OcioMode
+from openapi_client.model.aces_odt import AcesOdt
+globals()['AcesIdt'] = AcesIdt
 globals()['AcesMode'] = AcesMode
-globals()['OcioDisplayView'] = OcioDisplayView
-globals()['OcioMode'] = OcioMode
+globals()['AcesOdt'] = AcesOdt
 from openapi_client.model.aces_config import AcesConfig
 
 

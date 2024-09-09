@@ -52,6 +52,9 @@ void OAIColorfrontConfig::initializeModel() {
 
     m_live_mode_isSet = false;
     m_live_mode_isValid = false;
+
+    m_upmap_mode_isSet = false;
+    m_upmap_mode_isValid = false;
 }
 
 void OAIColorfrontConfig::fromJson(QString jsonString) {
@@ -79,6 +82,9 @@ void OAIColorfrontConfig::fromJsonObject(QJsonObject json) {
 
     m_live_mode_isValid = ::OpenAPI::fromJsonValue(m_live_mode, json[QString("liveMode")]);
     m_live_mode_isSet = !json[QString("liveMode")].isNull() && m_live_mode_isValid;
+
+    m_upmap_mode_isValid = ::OpenAPI::fromJsonValue(m_upmap_mode, json[QString("upmapMode")]);
+    m_upmap_mode_isSet = !json[QString("upmapMode")].isNull() && m_upmap_mode_isValid;
 
     applyMinMaxConstraints();
 }
@@ -109,6 +115,9 @@ QJsonObject OAIColorfrontConfig::asJsonObject() const {
     }
     if (m_live_mode.isSet()) {
         obj.insert(QString("liveMode"), ::OpenAPI::toJsonValue(m_live_mode));
+    }
+    if (m_upmap_mode.isSet()) {
+        obj.insert(QString("upmapMode"), ::OpenAPI::toJsonValue(m_upmap_mode));
     }
     return obj;
 }
@@ -221,6 +230,24 @@ bool OAIColorfrontConfig::is_live_mode_Valid() const{
 }
 
 
+OAIColorfrontUpmapMode OAIColorfrontConfig::getUpmapMode() const {
+    return m_upmap_mode;
+}
+void OAIColorfrontConfig::setUpmapMode(const OAIColorfrontUpmapMode &upmap_mode) {
+	OAIColorfrontUpmapMode v = upmap_mode;
+	this->m_upmap_mode = v;
+    this->m_upmap_mode_isSet = true;
+}
+
+bool OAIColorfrontConfig::is_upmap_mode_Set() const{
+    return m_upmap_mode_isSet;
+}
+
+bool OAIColorfrontConfig::is_upmap_mode_Valid() const{
+    return m_upmap_mode_isValid;
+}
+
+
 bool OAIColorfrontConfig::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -250,6 +277,11 @@ bool OAIColorfrontConfig::isSet() const {
         }
 
         if (m_live_mode.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_upmap_mode.isSet()) {
             isObjectUpdated = true;
             break;
         }

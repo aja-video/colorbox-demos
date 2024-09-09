@@ -11,7 +11,7 @@
  * Copyright (C) 2020 AJA Video Systems Inc.  All rights reserved.
  */
 
-#include "OAIOcioSource.h"
+#include "OAIAcesIdt.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -22,121 +22,107 @@
 
 namespace OpenAPI {
 
-OAIOcioSource::OAIOcioSource(QString json) {
+OAIAcesIdt::OAIAcesIdt(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-OAIOcioSource::OAIOcioSource() {
+OAIAcesIdt::OAIAcesIdt() {
     this->initializeModel();
 }
 
-OAIOcioSource::~OAIOcioSource() {}
+OAIAcesIdt::~OAIAcesIdt() {}
 
-void OAIOcioSource::initializeModel() {
+void OAIAcesIdt::initializeModel() {
 
     m_value_isSet = false;
     m_value_isValid = false;
-    m_value = eOAIOcioSource::INVALID_VALUE_OPENAPI_GENERATED;
+    m_value = eOAIAcesIdt::INVALID_VALUE_OPENAPI_GENERATED;
 }
 
-void OAIOcioSource::fromJson(QString jsonString) {
+void OAIAcesIdt::fromJson(QString jsonString) {
     
     if ( jsonString.compare("ARRI LogC3 (EI800)", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::ARRI_LOGC3_EI800_;
+        m_value = eOAIAcesIdt::ARRI_LOGC3_EI800_;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("ARRI LogC4", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::ARRI_LOGC4;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("BMDFilm WideGamut Gen5", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::BMDFILM_WIDEGAMUT_GEN5;
+        m_value = eOAIAcesIdt::ARRI_LOGC4;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("CanonLog2 CinemaGamut D55", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::CANONLOG2_CINEMAGAMUT_D55;
+        m_value = eOAIAcesIdt::CANONLOG2_CINEMAGAMUT_D55;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("CanonLog3 CinemaGamut D55", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::CANONLOG3_CINEMAGAMUT_D55;
+        m_value = eOAIAcesIdt::CANONLOG3_CINEMAGAMUT_D55;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("V-Log V-Gamut", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::V_LOG_V_GAMUT;
+        m_value = eOAIAcesIdt::V_LOG_V_GAMUT;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("Log3G10 REDWideGamutRGB", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::LOG3G10_REDWIDEGAMUTRGB;
+        m_value = eOAIAcesIdt::LOG3G10_REDWIDEGAMUTRGB;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("S-Log3 S-Gamut3", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::S_LOG3_S_GAMUT3;
+        m_value = eOAIAcesIdt::S_LOG3_S_GAMUT3;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("S-Log3 S-Gamut3.Cine", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::S_LOG3_S_GAMUT3_CINE;
+        m_value = eOAIAcesIdt::S_LOG3_S_GAMUT3_CINE;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("S-Log3 Venice S-Gamut3", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::S_LOG3_VENICE_S_GAMUT3;
+        m_value = eOAIAcesIdt::S_LOG3_VENICE_S_GAMUT3;
         m_value_isSet = m_value_isValid = true;
     }
     else if ( jsonString.compare("S-Log3 Venice S-Gamut3.Cine", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::S_LOG3_VENICE_S_GAMUT3_CINE;
-        m_value_isSet = m_value_isValid = true;
-    }
-    else if ( jsonString.compare("Camera Rec.709", Qt::CaseInsensitive) == 0) {
-        m_value = eOAIOcioSource::CAMERA_REC_709;
+        m_value = eOAIAcesIdt::S_LOG3_VENICE_S_GAMUT3_CINE;
         m_value_isSet = m_value_isValid = true;
     }
 }
 
-void OAIOcioSource::fromJsonValue(QJsonValue json) {
+void OAIAcesIdt::fromJsonValue(QJsonValue json) {
 fromJson(json.toString());
 
     applyMinMaxConstraints();
 }
 
-QString OAIOcioSource::asJson() const {
+QString OAIAcesIdt::asJson() const {
     
     QString val;
     switch (m_value){
-        case eOAIOcioSource::ARRI_LOGC3_EI800_:
+        case eOAIAcesIdt::ARRI_LOGC3_EI800_:
             val = "ARRI LogC3 (EI800)";
             break;
-        case eOAIOcioSource::ARRI_LOGC4:
+        case eOAIAcesIdt::ARRI_LOGC4:
             val = "ARRI LogC4";
             break;
-        case eOAIOcioSource::BMDFILM_WIDEGAMUT_GEN5:
-            val = "BMDFilm WideGamut Gen5";
-            break;
-        case eOAIOcioSource::CANONLOG2_CINEMAGAMUT_D55:
+        case eOAIAcesIdt::CANONLOG2_CINEMAGAMUT_D55:
             val = "CanonLog2 CinemaGamut D55";
             break;
-        case eOAIOcioSource::CANONLOG3_CINEMAGAMUT_D55:
+        case eOAIAcesIdt::CANONLOG3_CINEMAGAMUT_D55:
             val = "CanonLog3 CinemaGamut D55";
             break;
-        case eOAIOcioSource::V_LOG_V_GAMUT:
+        case eOAIAcesIdt::V_LOG_V_GAMUT:
             val = "V-Log V-Gamut";
             break;
-        case eOAIOcioSource::LOG3G10_REDWIDEGAMUTRGB:
+        case eOAIAcesIdt::LOG3G10_REDWIDEGAMUTRGB:
             val = "Log3G10 REDWideGamutRGB";
             break;
-        case eOAIOcioSource::S_LOG3_S_GAMUT3:
+        case eOAIAcesIdt::S_LOG3_S_GAMUT3:
             val = "S-Log3 S-Gamut3";
             break;
-        case eOAIOcioSource::S_LOG3_S_GAMUT3_CINE:
+        case eOAIAcesIdt::S_LOG3_S_GAMUT3_CINE:
             val = "S-Log3 S-Gamut3.Cine";
             break;
-        case eOAIOcioSource::S_LOG3_VENICE_S_GAMUT3:
+        case eOAIAcesIdt::S_LOG3_VENICE_S_GAMUT3:
             val = "S-Log3 Venice S-Gamut3";
             break;
-        case eOAIOcioSource::S_LOG3_VENICE_S_GAMUT3_CINE:
+        case eOAIAcesIdt::S_LOG3_VENICE_S_GAMUT3_CINE:
             val = "S-Log3 Venice S-Gamut3.Cine";
-            break;
-        case eOAIOcioSource::CAMERA_REC_709:
-            val = "Camera Rec.709";
             break;
         default:
             break;
@@ -144,31 +130,31 @@ QString OAIOcioSource::asJson() const {
     return val;
 }
 
-QJsonValue OAIOcioSource::asJsonValue() const {
+QJsonValue OAIAcesIdt::asJsonValue() const {
     
     return QJsonValue(asJson());
 }
 
 
-OAIOcioSource::eOAIOcioSource OAIOcioSource::getValue() const {
+OAIAcesIdt::eOAIAcesIdt OAIAcesIdt::getValue() const {
     return m_value;
 }
 
-void OAIOcioSource::setValue(const OAIOcioSource::eOAIOcioSource& value){
+void OAIAcesIdt::setValue(const OAIAcesIdt::eOAIAcesIdt& value){
     m_value = value;
     m_value_isSet = true;
 }
-bool OAIOcioSource::isSet() const {
+bool OAIAcesIdt::isSet() const {
     
     return m_value_isSet;
 }
 
-bool OAIOcioSource::isValid() const {
+bool OAIAcesIdt::isValid() const {
     // only required properties are required for the object to be considered valid
     return m_value_isValid;
 }
 
-bool OAIOcioSource::applyMinMaxConstraints() {
+bool OAIAcesIdt::applyMinMaxConstraints() {
 	bool anyMinMaxValueChanged = false;
 	return anyMinMaxValueChanged;
 }

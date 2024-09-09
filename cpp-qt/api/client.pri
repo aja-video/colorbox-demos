@@ -3,7 +3,8 @@ QT += network
 HEADERS += \
 # Models
     $${PWD}/OAIAcesConfig.h \
-    $${PWD}/OAIAcesMode.h \
+    $${PWD}/OAIAcesIdt.h \
+    $${PWD}/OAIAcesOdt.h \
     $${PWD}/OAIAncCaptureFilter.h \
     $${PWD}/OAIBbcConfig.h \
     $${PWD}/OAIBitDepth.h \
@@ -20,8 +21,10 @@ HEADERS += \
     $${PWD}/OAIColorfrontDynRangeGamutTvModeOut.h \
     $${PWD}/OAIColorfrontEngine.h \
     $${PWD}/OAIColorfrontLiveMode.h \
+    $${PWD}/OAIColorfrontLowMidHigh.h \
     $${PWD}/OAIColorfrontMode.h \
     $${PWD}/OAIColorfrontTvMode.h \
+    $${PWD}/OAIColorfrontUpmapMode.h \
     $${PWD}/OAIColorimetry.h \
     $${PWD}/OAIConnection.h \
     $${PWD}/OAICrop4k2k.h \
@@ -43,8 +46,6 @@ HEADERS += \
     $${PWD}/OAINetDevice.h \
     $${PWD}/OAINetParams.h \
     $${PWD}/OAINetStatus.h \
-    $${PWD}/OAIOcioDisplayView.h \
-    $${PWD}/OAIOcioSource.h \
     $${PWD}/OAIOrionClamping.h \
     $${PWD}/OAIOrionConfig.h \
     $${PWD}/OAIOrionConversion.h \
@@ -96,7 +97,8 @@ HEADERS += \
 SOURCES += \
 # Models
     $${PWD}/OAIAcesConfig.cpp \
-    $${PWD}/OAIAcesMode.cpp \
+    $${PWD}/OAIAcesIdt.cpp \
+    $${PWD}/OAIAcesOdt.cpp \
     $${PWD}/OAIAncCaptureFilter.cpp \
     $${PWD}/OAIBbcConfig.cpp \
     $${PWD}/OAIBitDepth.cpp \
@@ -113,8 +115,10 @@ SOURCES += \
     $${PWD}/OAIColorfrontDynRangeGamutTvModeOut.cpp \
     $${PWD}/OAIColorfrontEngine.cpp \
     $${PWD}/OAIColorfrontLiveMode.cpp \
+    $${PWD}/OAIColorfrontLowMidHigh.cpp \
     $${PWD}/OAIColorfrontMode.cpp \
     $${PWD}/OAIColorfrontTvMode.cpp \
+    $${PWD}/OAIColorfrontUpmapMode.cpp \
     $${PWD}/OAIColorimetry.cpp \
     $${PWD}/OAIConnection.cpp \
     $${PWD}/OAICrop4k2k.cpp \
@@ -136,8 +140,6 @@ SOURCES += \
     $${PWD}/OAINetDevice.cpp \
     $${PWD}/OAINetParams.cpp \
     $${PWD}/OAINetStatus.cpp \
-    $${PWD}/OAIOcioDisplayView.cpp \
-    $${PWD}/OAIOcioSource.cpp \
     $${PWD}/OAIOrionClamping.cpp \
     $${PWD}/OAIOrionConfig.cpp \
     $${PWD}/OAIOrionConversion.cpp \

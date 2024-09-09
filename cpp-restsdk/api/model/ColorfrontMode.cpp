@@ -33,6 +33,8 @@ ColorfrontMode::eColorfrontMode toEnum(const EnumUnderlyingType& val)
         return ColorfrontMode::eColorfrontMode::ColorfrontMode_TV;
     if (val == utility::conversions::to_string_t(U("Live")))
         return ColorfrontMode::eColorfrontMode::ColorfrontMode_LIVE;
+    if (val == utility::conversions::to_string_t(U("SDR to Dolby Vision Preview")))
+        return ColorfrontMode::eColorfrontMode::ColorfrontMode_SDR_TO_DOLBY_VISION_PREVIEW;
     return {};
 }
 
@@ -44,6 +46,8 @@ EnumUnderlyingType fromEnum(ColorfrontMode::eColorfrontMode e)
         return U("TV");
     case ColorfrontMode::eColorfrontMode::ColorfrontMode_LIVE:
         return U("Live");
+    case ColorfrontMode::eColorfrontMode::ColorfrontMode_SDR_TO_DOLBY_VISION_PREVIEW:
+        return U("SDR to Dolby Vision Preview");
     default:
         break;
     }

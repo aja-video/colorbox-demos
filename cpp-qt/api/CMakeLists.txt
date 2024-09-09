@@ -21,7 +21,8 @@ set(QT_LIBS Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network)
 
 add_library(${PROJECT_NAME}
     OAIAcesConfig.cpp
-    OAIAcesMode.cpp
+    OAIAcesIdt.cpp
+    OAIAcesOdt.cpp
     OAIAncCaptureFilter.cpp
     OAIBbcConfig.cpp
     OAIBitDepth.cpp
@@ -38,8 +39,10 @@ add_library(${PROJECT_NAME}
     OAIColorfrontDynRangeGamutTvModeOut.cpp
     OAIColorfrontEngine.cpp
     OAIColorfrontLiveMode.cpp
+    OAIColorfrontLowMidHigh.cpp
     OAIColorfrontMode.cpp
     OAIColorfrontTvMode.cpp
+    OAIColorfrontUpmapMode.cpp
     OAIColorimetry.cpp
     OAIConnection.cpp
     OAICrop4k2k.cpp
@@ -61,8 +64,6 @@ add_library(${PROJECT_NAME}
     OAINetDevice.cpp
     OAINetParams.cpp
     OAINetStatus.cpp
-    OAIOcioDisplayView.cpp
-    OAIOcioSource.cpp
     OAIOrionClamping.cpp
     OAIOrionConfig.cpp
     OAIOrionConversion.cpp

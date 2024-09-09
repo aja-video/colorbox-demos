@@ -24,9 +24,8 @@
 
 #include "ModelBase.h"
 
-#include "model/AcesMode.h"
-#include "model/OcioDisplayView.h"
-#include "model/OcioSource.h"
+#include "model/AcesOdt.h"
+#include "model/AcesIdt.h"
 
 namespace org {
 namespace openapitools {
@@ -70,16 +69,6 @@ public:
 
 
     /// <summary>
-    /// 
-    /// </summary>
-    std::shared_ptr<AcesMode> getMode() const;
-    bool modeIsSet() const;
-    void unsetMode();
-
-    void setMode(const std::shared_ptr<AcesMode>& value);
-
-
-    /// <summary>
     /// library entry number, zero is unity bypass
     /// </summary>
     int32_t getAmfLibraryEntry() const;
@@ -92,21 +81,41 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<OcioSource> getOcioSource() const;
-    bool ocioSourceIsSet() const;
-    void unsetOcioSource();
+    std::shared_ptr<AcesIdt> getAcesIdt() const;
+    bool acesIdtIsSet() const;
+    void unsetAcesIdt();
 
-    void setOcioSource(const std::shared_ptr<OcioSource>& value);
+    void setAcesIdt(const std::shared_ptr<AcesIdt>& value);
 
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<OcioDisplayView> getOcioDisplayView() const;
-    bool ocioDisplayViewIsSet() const;
-    void unsetOcioDisplayView();
+    std::shared_ptr<AcesOdt> getAcesOdt() const;
+    bool acesOdtIsSet() const;
+    void unsetAcesOdt();
 
-    void setOcioDisplayView(const std::shared_ptr<OcioDisplayView>& value);
+    void setAcesOdt(const std::shared_ptr<AcesOdt>& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isAcesIdtOverride() const;
+    bool acesIdtOverrideIsSet() const;
+    void unsetAcesIdtOverride();
+
+    void setAcesIdtOverride(bool value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isAcesOdtOverride() const;
+    bool acesOdtOverrideIsSet() const;
+    void unsetAcesOdtOverride();
+
+    void setAcesOdtOverride(bool value);
 
 
     /// <summary>
@@ -123,14 +132,16 @@ public:
 protected:
     bool m_Enabled;
     bool m_EnabledIsSet;
-    std::shared_ptr<AcesMode> m_Mode;
-    bool m_ModeIsSet;
     int32_t m_AmfLibraryEntry;
     bool m_AmfLibraryEntryIsSet;
-    std::shared_ptr<OcioSource> m_OcioSource;
-    bool m_OcioSourceIsSet;
-    std::shared_ptr<OcioDisplayView> m_OcioDisplayView;
-    bool m_OcioDisplayViewIsSet;
+    std::shared_ptr<AcesIdt> m_AcesIdt;
+    bool m_AcesIdtIsSet;
+    std::shared_ptr<AcesOdt> m_AcesOdt;
+    bool m_AcesOdtIsSet;
+    bool m_AcesIdtOverride;
+    bool m_AcesIdtOverrideIsSet;
+    bool m_AcesOdtOverride;
+    bool m_AcesOdtOverrideIsSet;
     bool m_EnableArriWVOLogC4Decoder;
     bool m_EnableArriWVOLogC4DecoderIsSet;
 };

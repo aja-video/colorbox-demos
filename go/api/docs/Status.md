@@ -28,6 +28,9 @@ Name | Type | Description | Notes
 **NbcuLutVersion** | Pointer to **string** |  | [optional] 
 **CpuBusy** | Pointer to **bool** |  | [optional] 
 **AcesVersion** | Pointer to **string** |  | [optional] 
+**HardwareVariant** | Pointer to **string** |  | [optional] 
+**HardwareName** | Pointer to **string** |  | [optional] 
+**OgRearModuleValid** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -647,6 +650,81 @@ SetAcesVersion sets AcesVersion field to given value.
 `func (o *Status) HasAcesVersion() bool`
 
 HasAcesVersion returns a boolean if a field has been set.
+
+### GetHardwareVariant
+
+`func (o *Status) GetHardwareVariant() string`
+
+GetHardwareVariant returns the HardwareVariant field if non-nil, zero value otherwise.
+
+### GetHardwareVariantOk
+
+`func (o *Status) GetHardwareVariantOk() (*string, bool)`
+
+GetHardwareVariantOk returns a tuple with the HardwareVariant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHardwareVariant
+
+`func (o *Status) SetHardwareVariant(v string)`
+
+SetHardwareVariant sets HardwareVariant field to given value.
+
+### HasHardwareVariant
+
+`func (o *Status) HasHardwareVariant() bool`
+
+HasHardwareVariant returns a boolean if a field has been set.
+
+### GetHardwareName
+
+`func (o *Status) GetHardwareName() string`
+
+GetHardwareName returns the HardwareName field if non-nil, zero value otherwise.
+
+### GetHardwareNameOk
+
+`func (o *Status) GetHardwareNameOk() (*string, bool)`
+
+GetHardwareNameOk returns a tuple with the HardwareName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHardwareName
+
+`func (o *Status) SetHardwareName(v string)`
+
+SetHardwareName sets HardwareName field to given value.
+
+### HasHardwareName
+
+`func (o *Status) HasHardwareName() bool`
+
+HasHardwareName returns a boolean if a field has been set.
+
+### GetOgRearModuleValid
+
+`func (o *Status) GetOgRearModuleValid() bool`
+
+GetOgRearModuleValid returns the OgRearModuleValid field if non-nil, zero value otherwise.
+
+### GetOgRearModuleValidOk
+
+`func (o *Status) GetOgRearModuleValidOk() (*bool, bool)`
+
+GetOgRearModuleValidOk returns a tuple with the OgRearModuleValid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOgRearModuleValid
+
+`func (o *Status) SetOgRearModuleValid(v bool)`
+
+SetOgRearModuleValid sets OgRearModuleValid field to given value.
+
+### HasOgRearModuleValid
+
+`func (o *Status) HasOgRearModuleValid() bool`
+
+HasOgRearModuleValid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

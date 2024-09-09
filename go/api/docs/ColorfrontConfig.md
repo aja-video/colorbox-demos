@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Mode** | Pointer to [**ColorfrontMode**](ColorfrontMode.md) |  | [optional] [default to COLORFRONTMODE_TV]
 **TvMode** | Pointer to [**ColorfrontTvMode**](ColorfrontTvMode.md) |  | [optional] 
 **LiveMode** | Pointer to [**ColorfrontLiveMode**](ColorfrontLiveMode.md) |  | [optional] 
+**UpmapMode** | Pointer to [**ColorfrontUpmapMode**](ColorfrontUpmapMode.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetLiveMode sets LiveMode field to given value.
 `func (o *ColorfrontConfig) HasLiveMode() bool`
 
 HasLiveMode returns a boolean if a field has been set.
+
+### GetUpmapMode
+
+`func (o *ColorfrontConfig) GetUpmapMode() ColorfrontUpmapMode`
+
+GetUpmapMode returns the UpmapMode field if non-nil, zero value otherwise.
+
+### GetUpmapModeOk
+
+`func (o *ColorfrontConfig) GetUpmapModeOk() (*ColorfrontUpmapMode, bool)`
+
+GetUpmapModeOk returns a tuple with the UpmapMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpmapMode
+
+`func (o *ColorfrontConfig) SetUpmapMode(v ColorfrontUpmapMode)`
+
+SetUpmapMode sets UpmapMode field to given value.
+
+### HasUpmapMode
+
+`func (o *ColorfrontConfig) HasUpmapMode() bool`
+
+HasUpmapMode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

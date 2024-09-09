@@ -10,7 +10,8 @@
 # sys.setrecursionlimit(n)
 
 from openapi_client.model.aces_config import AcesConfig
-from openapi_client.model.aces_mode import AcesMode
+from openapi_client.model.aces_idt import AcesIdt
+from openapi_client.model.aces_odt import AcesOdt
 from openapi_client.model.anc_capture_filter import AncCaptureFilter
 from openapi_client.model.bbc_config import BbcConfig
 from openapi_client.model.bit_depth import BitDepth
@@ -27,8 +28,10 @@ from openapi_client.model.colorfront_dyn_range_gamut_tv_mode_in import Colorfron
 from openapi_client.model.colorfront_dyn_range_gamut_tv_mode_out import ColorfrontDynRangeGamutTvModeOut
 from openapi_client.model.colorfront_engine import ColorfrontEngine
 from openapi_client.model.colorfront_live_mode import ColorfrontLiveMode
+from openapi_client.model.colorfront_low_mid_high import ColorfrontLowMidHigh
 from openapi_client.model.colorfront_mode import ColorfrontMode
 from openapi_client.model.colorfront_tv_mode import ColorfrontTvMode
+from openapi_client.model.colorfront_upmap_mode import ColorfrontUpmapMode
 from openapi_client.model.colorimetry import Colorimetry
 from openapi_client.model.connection import Connection
 from openapi_client.model.crop4k2k import Crop4k2k
@@ -51,8 +54,6 @@ from openapi_client.model.net_config import NetConfig
 from openapi_client.model.net_device import NetDevice
 from openapi_client.model.net_params import NetParams
 from openapi_client.model.net_status import NetStatus
-from openapi_client.model.ocio_display_view import OcioDisplayView
-from openapi_client.model.ocio_source import OcioSource
 from openapi_client.model.orion_clamping import OrionClamping
 from openapi_client.model.orion_config import OrionConfig
 from openapi_client.model.orion_conversion import OrionConversion

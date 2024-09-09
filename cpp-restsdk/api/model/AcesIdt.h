@@ -13,13 +13,13 @@
  */
 
 /*
- * OcioSource.h
+ * AcesIdt.h
  *
  * 
  */
 
-#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_OcioSource_H_
-#define ORG_OPENAPITOOLS_CLIENT_MODEL_OcioSource_H_
+#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_AcesIdt_H_
+#define ORG_OPENAPITOOLS_CLIENT_MODEL_AcesIdt_H_
 
 
 #include "ModelBase.h"
@@ -30,12 +30,12 @@ namespace openapitools {
 namespace client {
 namespace model {
 
-class  OcioSource
+class  AcesIdt
     : public ModelBase
 {
 public:
-    OcioSource();
-    virtual ~OcioSource();
+    AcesIdt();
+    virtual ~AcesIdt();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -49,27 +49,25 @@ public:
     void toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) const override;
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
-    enum class eOcioSource
+    enum class eAcesIdt
     {
-        OcioSource_ARRI_LOGC3_EI800_,
-        OcioSource_ARRI_LOGC4,
-        OcioSource_BMDFILM_WIDEGAMUT_GEN5,
-        OcioSource_CANONLOG2_CINEMAGAMUT_D55,
-        OcioSource_CANONLOG3_CINEMAGAMUT_D55,
-        OcioSource_V_LOG_V_GAMUT,
-        OcioSource_LOG3G10_REDWIDEGAMUTRGB,
-        OcioSource_S_LOG3_S_GAMUT3,
-        OcioSource_S_LOG3_S_GAMUT3_CINE,
-        OcioSource_S_LOG3_VENICE_S_GAMUT3,
-        OcioSource_S_LOG3_VENICE_S_GAMUT3_CINE,
-        OcioSource_CAMERA_REC_709,
+        AcesIdt_ARRI_LOGC3_EI800_,
+        AcesIdt_ARRI_LOGC4,
+        AcesIdt_CANONLOG2_CINEMAGAMUT_D55,
+        AcesIdt_CANONLOG3_CINEMAGAMUT_D55,
+        AcesIdt_V_LOG_V_GAMUT,
+        AcesIdt_LOG3G10_REDWIDEGAMUTRGB,
+        AcesIdt_S_LOG3_S_GAMUT3,
+        AcesIdt_S_LOG3_S_GAMUT3_CINE,
+        AcesIdt_S_LOG3_VENICE_S_GAMUT3,
+        AcesIdt_S_LOG3_VENICE_S_GAMUT3_CINE,
     };
 
-    eOcioSource getValue() const;
-    void setValue(eOcioSource const value);
+    eAcesIdt getValue() const;
+    void setValue(eAcesIdt const value);
 
     protected:
-        eOcioSource m_value;
+        eAcesIdt m_value;
 };
 
 }
@@ -77,4 +75,4 @@ public:
 }
 }
 
-#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_OcioSource_H_ */
+#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_AcesIdt_H_ */

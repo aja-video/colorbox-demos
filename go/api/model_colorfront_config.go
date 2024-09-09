@@ -27,6 +27,7 @@ type ColorfrontConfig struct {
 	Mode *ColorfrontMode `json:"mode,omitempty"`
 	TvMode *ColorfrontTvMode `json:"tvMode,omitempty"`
 	LiveMode *ColorfrontLiveMode `json:"liveMode,omitempty"`
+	UpmapMode *ColorfrontUpmapMode `json:"upmapMode,omitempty"`
 }
 
 // NewColorfrontConfig instantiates a new ColorfrontConfig object
@@ -268,6 +269,41 @@ func (o *ColorfrontConfig) SetLiveMode(v ColorfrontLiveMode) {
 	o.LiveMode = &tmp
 }
 
+// GetUpmapMode returns the UpmapMode field value if set, zero value otherwise.
+func (o *ColorfrontConfig) GetUpmapMode() ColorfrontUpmapMode {
+	if o == nil || o.UpmapMode == nil {
+		var ret ColorfrontUpmapMode
+		return ret
+	}
+	return *o.UpmapMode
+}
+
+// GetUpmapModeOk returns a tuple with the UpmapMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ColorfrontConfig) GetUpmapModeOk() (*ColorfrontUpmapMode, bool) {
+	if o == nil || o.UpmapMode == nil {
+		return nil, false
+	}
+	return o.UpmapMode, true
+}
+
+
+
+// HasUpmapMode returns a boolean if a field has been set.
+func (o *ColorfrontConfig) HasUpmapMode() bool {
+	if o != nil && o.UpmapMode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpmapMode gets a reference to the given ColorfrontUpmapMode and assigns it to the UpmapMode field.
+func (o *ColorfrontConfig) SetUpmapMode(v ColorfrontUpmapMode) {
+	tmp := v
+	o.UpmapMode = &tmp
+}
+
 func (o ColorfrontConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Enabled != nil {
@@ -287,6 +323,9 @@ func (o ColorfrontConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.LiveMode != nil {
 		toSerialize["liveMode"] = o.LiveMode
+	}
+	if o.UpmapMode != nil {
+		toSerialize["upmapMode"] = o.UpmapMode
 	}
 	return json.Marshal(toSerialize)
 }

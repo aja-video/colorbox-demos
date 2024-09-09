@@ -161,6 +161,21 @@ public:
     bool is_aces_version_Set() const;
     bool is_aces_version_Valid() const;
 
+    QString getHardwareVariant() const;
+    void setHardwareVariant(const QString &hardware_variant);
+    bool is_hardware_variant_Set() const;
+    bool is_hardware_variant_Valid() const;
+
+    QString getHardwareName() const;
+    void setHardwareName(const QString &hardware_name);
+    bool is_hardware_name_Set() const;
+    bool is_hardware_name_Valid() const;
+
+    bool isOgRearModuleValid() const;
+    void setOgRearModuleValid(const bool &og_rear_module_valid);
+    bool is_og_rear_module_valid_Set() const;
+    bool is_og_rear_module_valid_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -263,6 +278,18 @@ private:
     QString m_aces_version;
     bool m_aces_version_isSet;
     bool m_aces_version_isValid;
+
+    QString m_hardware_variant;
+    bool m_hardware_variant_isSet;
+    bool m_hardware_variant_isValid;
+
+    QString m_hardware_name;
+    bool m_hardware_name_isSet;
+    bool m_hardware_name_isValid;
+
+    bool m_og_rear_module_valid;
+    bool m_og_rear_module_valid_isSet;
+    bool m_og_rear_module_valid_isValid;
 };
 
 } // namespace OpenAPI

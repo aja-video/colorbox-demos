@@ -90,6 +90,10 @@ void OAIColorfrontDynRangeGamutLiveModeIn::fromJson(QString jsonString) {
         m_value = eOAIColorfrontDynRangeGamutLiveModeIn::ARRI_LOGC4_WIDE_GAMUT_4;
         m_value_isSet = m_value_isValid = true;
     }
+    else if ( jsonString.compare("ARRI LogC4 Wide Gamut 4 WVO", Qt::CaseInsensitive) == 0) {
+        m_value = eOAIColorfrontDynRangeGamutLiveModeIn::ARRI_LOGC4_WIDE_GAMUT_4_WVO;
+        m_value_isSet = m_value_isValid = true;
+    }
     else if ( jsonString.compare("Panasonic V-Log", Qt::CaseInsensitive) == 0) {
         m_value = eOAIColorfrontDynRangeGamutLiveModeIn::PANASONIC_V_LOG;
         m_value_isSet = m_value_isValid = true;
@@ -153,6 +157,9 @@ QString OAIColorfrontDynRangeGamutLiveModeIn::asJson() const {
             break;
         case eOAIColorfrontDynRangeGamutLiveModeIn::ARRI_LOGC4_WIDE_GAMUT_4:
             val = "ARRI LogC4 Wide Gamut 4";
+            break;
+        case eOAIColorfrontDynRangeGamutLiveModeIn::ARRI_LOGC4_WIDE_GAMUT_4_WVO:
+            val = "ARRI LogC4 Wide Gamut 4 WVO";
             break;
         case eOAIColorfrontDynRangeGamutLiveModeIn::PANASONIC_V_LOG:
             val = "Panasonic V-Log";
