@@ -22,10 +22,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include "tiffio.h"
-#if 0
-#include "arri_file_v3.h"
-uint8_t arriKLVData[23] = { 1,1,0,6,0xe,0x2b,0x34,2,5,1,0xd,0xe,0x17,0,0,0,0x11,1,1,0x83,0,0x10,0 };
-#endif
+
 using namespace OpenAPI;
 
 static bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format);
@@ -52,7 +49,6 @@ Dialog::Dialog(QWidget *parent)
       _ui(new Ui::Dialog)
 {
     _ui->setupUi(this);
-//    qDebug() << "ARRI header size " << sizeof(ArriRawMeta::ArriFileHeaderV3);
 
     setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
@@ -282,80 +278,7 @@ void Dialog::updateFrameFromColorBox()
 
 }
 
-bool checkARRIKLV(const uint8_t* buffer)
-{
-#if 0
-    for( int count = 0; count < sizeof(arriKLVData); count++)
-    {
-        if ( buffer[count] != arriKLVData[count])
-            return false;
-    }
-#endif
-    return true;
 
-}
-#if 0
-// Assuming ARRI Metadata is only RP-214 packets in ANC.
-bool findARRIMetadata(ArriRawMeta::ArriFileHeaderV3* arriHeader,AJAAncillaryList& ancDataList)
-{
-    bool status = false;
-
-    // Look for 18 RP-214 packets with KLV for ARRI camer to fill ArriFileHeaderV3.
-    uint8_t* arriHeaderBuffer = (uint8_t*)arriHeader;
-    AJAAncillaryData* rp214Packet = ancDataList.GetAncillaryDataWithID(0x44, 0x04,0);
-    try
-    {
-        if ( !rp214Packet )
-            throw (QString("No RP-214 Data Packets found."));
-
-        // look for ARRI Specific Metadata
-        int bufferSize = rp214Packet->GetPayloadByteCount();
-        const uint8_t* buffer_p = rp214Packet->GetPayloadData();
-        if ( checkARRIKLV(buffer_p) == false )
-            throw (QString("ARRI KLV Not Found"));
-
-        if ( buffer_p[1] != 1 )
-            throw(QString("MID 1 Expected. Recieved %1").arg(buffer_p[1]));
-
-        memcpy(&arriHeaderBuffer[0],&buffer_p[23],210);
-        arriHeaderBuffer += 210;
-
-        for (int packet = 1; packet < 17; packet++)
-        {
-            rp214Packet = ancDataList.GetAncillaryDataWithID(0x44, 0x04,packet);
-            if ( !rp214Packet )
-                throw (QString("Not Enough RP-214 Data Packets found %1.").arg(packet));
-
-            //bufferSize = rp214Packet->GetPayloadByteCount();
-            buffer_p = rp214Packet->GetPayloadData();
-            if ( buffer_p[1] != (packet+1) )
-                throw(QString("MID %1 Expected. Recieved %2").arg((packet+1)).arg(buffer_p[1]));
-
-            memcpy(&arriHeaderBuffer[0],&buffer_p[3],230);
-            arriHeaderBuffer += 230;
-        }
-        rp214Packet = ancDataList.GetAncillaryDataWithID(0x44, 0x04,17);
-        if ( !rp214Packet )
-            throw (QString("Not Enough RP-214 Data Packets found %1.").arg(17));
-
-        buffer_p = rp214Packet->GetPayloadData();
-        if ( buffer_p[1] != 18 )
-            throw(QString("MID %1 Expected. Recieved %2").arg(18).arg(buffer_p[1]));
-
-        memcpy(&arriHeaderBuffer[0],&buffer_p[3],206);
-
-        status = true;
-
-
-    }
-    catch(QString errorString)
-    {
-        qDebug() << errorString;
-    }
-
-    return status;
-}
-#endif
 void Dialog::updatePreview()
 {
     // convert to 8 bit RGB for preview
@@ -392,27 +315,7 @@ void Dialog::updatePreview()
 
     std::stringstream out;
     out << _ancDataList;
-    //    qDebug() << QString::fromStdString(out.str());
 
-//#define SUPPORT_ARRI
-#ifdef SUPPORT_ARRI
-
-            ArriRawMeta::ArriFileHeaderV3 arriHeader;
-            if ( findARRIMetadata(&arriHeader,_ancDataList) )
-            {
-                ts << "ARRI MetaData " << "\n";
-                ts << "Camera Model " << (char*)arriHeader.cameraDeviceInfo.CameraModel << "\n";
-                ts << "Sensor FPS " << (float)arriHeader.cameraDeviceInfo.SensorFps/1000 << "\n";
-                ts << "Height " << arriHeader.imageDataInfo.Height << " Width " << arriHeader.imageDataInfo.Width << "\n";
-                ts << "Master TC " << hex << arriHeader.cameraDeviceInfo.Master_TC.TimeCode <<  "\n";
-                ts << "Clip Name " << (char*)arriHeader.clipInfo.CameraClipName << "\n";
-                ts << "\n";
-
-            }
-
-#endif
-
-#if 1
     std::string msgVPIDFormat("No");
     uint32_t numAncDataPkts =  _ancDataList.CountAncillaryData();
     ts << "Num Packets: " << Qt::dec <<  numAncDataPkts << "\n";
@@ -478,7 +381,6 @@ void Dialog::updatePreview()
     }
     ts <<  "\n";
 
-#endif
 #endif
 
     _ui->metaDataWindow->setText(metaDataString);
