@@ -22,7 +22,10 @@
 #include <QDebug>
 #include <QMessageBox>
 #include "tiffio.h"
-
+#if 0
+#include "arri_file_v3.h"
+uint8_t arriKLVData[23] = { 1,1,0,6,0xe,0x2b,0x34,2,5,1,0xd,0xe,0x17,0,0,0,0x11,1,1,0x83,0,0x10,0 };
+#endif
 using namespace OpenAPI;
 
 static bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format);
@@ -30,14 +33,14 @@ static bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format);
 // This is needed to compile with older Qt versions like Qt 5.13.2
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
 namespace Qt {
-	QTextStream &endl(QTextStream &s)
-	{
-		return ::endl(s);
-	}
-	QTextStream &hex(QTextStream &s)
-	{
-		return ::hex(s);
-	}
+QTextStream &endl(QTextStream &s)
+{
+    return ::endl(s);
+}
+QTextStream &hex(QTextStream &s)
+{
+    return ::hex(s);
+}
 }
 #endif
 
@@ -46,23 +49,24 @@ Dialog::Dialog(QWidget *parent)
       _width(0),
       _height(0),
       _cbConnected(false),
-	  _ui(new Ui::Dialog)
+      _ui(new Ui::Dialog)
 {
     _ui->setupUi(this);
+//    qDebug() << "ARRI header size " << sizeof(ArriRawMeta::ArriFileHeaderV3);
 
-	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
-	// Web Socket BoilerPlate Code
-	_webSocketThread = new QThread;
-	_webSocketLoad = new AJAWebSocketInterface();
-	_webSocketLoad->moveToThread(_webSocketThread);
-	connect(_webSocketThread, &QThread::finished, _webSocketLoad, &QObject::deleteLater);
-	connect(_webSocketLoad, &AJAWebSocketInterface::connected, this, &Dialog::onConnected);
-	connect(_webSocketLoad, &AJAWebSocketInterface::disconnected, this, &Dialog::onDisconnected);
-	connect(_webSocketLoad, &AJAWebSocketInterface::error, this, &Dialog::onError);
-	connect(this, &Dialog::triggerGrab, _webSocketLoad, &AJAWebSocketInterface::sendTextMessage);
-	connect(_webSocketLoad, &AJAWebSocketInterface::binaryMessageReceived,this, &Dialog::updateGrabBinary);
-	connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
+    // Web Socket BoilerPlate Code
+    _webSocketThread = new QThread;
+    _webSocketLoad = new AJAWebSocketInterface();
+    _webSocketLoad->moveToThread(_webSocketThread);
+    connect(_webSocketThread, &QThread::finished, _webSocketLoad, &QObject::deleteLater);
+    connect(_webSocketLoad, &AJAWebSocketInterface::connected, this, &Dialog::onConnected);
+    connect(_webSocketLoad, &AJAWebSocketInterface::disconnected, this, &Dialog::onDisconnected);
+    connect(_webSocketLoad, &AJAWebSocketInterface::error, this, &Dialog::onError);
+    connect(this, &Dialog::triggerGrab, _webSocketLoad, &AJAWebSocketInterface::sendTextMessage);
+    connect(_webSocketLoad, &AJAWebSocketInterface::binaryMessageReceived,this, &Dialog::updateGrabBinary);
+    connect(this, &Dialog::connectColorBoxWebSocket, _webSocketLoad, &AJAWebSocketInterface::connectColorBoxWebSocket);
 
     // UI related Code
     connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished,this, &Dialog::ipAddressEdited);
@@ -77,11 +81,11 @@ Dialog::Dialog(QWidget *parent)
 
     recallSettings();
 
-	_webSocketThread->start();
+    _webSocketThread->start();
 
-	ipAddressEdited();
+    ipAddressEdited();
 
-	_frameBuffer.reserve(3840*2160*6);
+    _frameBuffer.reserve(3840*2160*6);
 
     this->setFocus();
 }
@@ -94,14 +98,14 @@ Dialog::~Dialog()
 
 void Dialog::recallSettings()
 {
-	QSettings settings(QSettings::UserScope, "aja", "ColorBoxFrameGrab");
+    QSettings settings(QSettings::UserScope, "aja", "ColorBoxFrameGrab");
     _ui->ipAddressLineEdit->setText(settings.value("IPAddress").toString());
 
 }
 
 void Dialog::saveSettings()
 {
-	QSettings settings(QSettings::UserScope, "aja", "ColorBoxFrameGrab");
+    QSettings settings(QSettings::UserScope, "aja", "ColorBoxFrameGrab");
     settings.setValue("IPAddress",_ui->ipAddressLineEdit->text());
 
 }
@@ -128,9 +132,9 @@ void Dialog::handleGetSDIStatus(OpenAPI::OAISDI status)
     _ui->connectLabel->setText("CONNECTED");
 
     // Get Web Socket Going.
-	// don't want any port number from URL
-	QString webSocketIP = _currentIPAddress.split(":").at(0);
-	emit connectColorBoxWebSocket(webSocketIP);
+    // don't want any port number from URL
+    QString webSocketIP = _currentIPAddress.split(":").at(0);
+    emit connectColorBoxWebSocket(webSocketIP);
 
     _status = status;
     qDebug() << status.getFormat().asJson();
@@ -168,40 +172,51 @@ void Dialog::onError(QString msg)
     qDebug() << msg;
 }
 
+void writeANCByteArray(QByteArray ba)
+{
+    QDateTime t = QDateTime::currentDateTime ();
+    QString fileName = t.toString("yy.MM.dd.hh.mm.ss.zzz");
+    fileName += ".ancBA";
+    QFile outputANCFile(fileName);
+    if(outputANCFile.open(QIODevice::WriteOnly)){
+        outputANCFile.write(ba);
+    }
+}
 
 void Dialog::updateGrabBinary(const QByteArray &data)
 {
-	// The QByteArray data is a json string (QString) from an OAIFrame
-	// on the sending side:
-	// OAIFrame -> QString -> QByteArray
-	// frame.asJson().toUtf8()
-	//
-	// here:
-	// QByteArray -> QString -> OAIFrame
-	// OAIFrame frame(QString::fromUtf8(data));
+    // The QByteArray data is a json string (QString) from an OAIFrame
+    // on the sending side:
+    // OAIFrame -> QString -> QByteArray
+    // frame.asJson().toUtf8()
+    //
+    // here:
+    // QByteArray -> QString -> OAIFrame
+    // OAIFrame frame(QString::fromUtf8(data));
 
-	if (_cbConnected)
-	{
-		QJsonDocument doc = QJsonDocument::fromJson(data);
-		OAIFrame frame;
-		frame.fromJsonObject(doc.object());
+    if (_cbConnected)
+    {
+        QJsonDocument doc = QJsonDocument::fromJson(data);
+        OAIFrame frame;
+        frame.fromJsonObject(doc.object());
 
-		QByteArray frameBA = frame.getImage();
-		uint32_t frameSize = frameBA.size();
-		switch ( frameSize )
-		{
-		case 12441600:
-			_width = 1920;
-			_height = 1080;
-			break;
+        QByteArray frameBA = frame.getImage();
+        uint32_t frameSize = frameBA.size();
+        qDebug() << "frameSize" << frameSize;
+        switch ( frameSize )
+        {
+        case 12441600:
+            _width = 1920;
+            _height = 1080;
+            break;
         case 13271040:
             _width = 2048;
             _height = 1080;
             break;
         case 49766400:
-			_width = 3840;
-			_height = 2160;
-			break;
+            _width = 3840;
+            _height = 2160;
+            break;
         case 53084160:
             _width = 4096;
             _height = 2160;
@@ -210,38 +225,39 @@ void Dialog::updateGrabBinary(const QByteArray &data)
             _width = 1280;
             _height = 720;
             break;
-		default:
-			_width = 0;
-			_height = 0;
-			break;
-		}
+        default:
+            _width = 0;
+            _height = 0;
+            break;
+        }
 
-		if ( _width != 0 )
-		{
+        if ( _width != 0 )
+        {
 #ifdef SUPPORT_ANC
-			QByteArray ancBA = frame.getAncData();
+            QByteArray ancBA = frame.getAncData();
+            qDebug() << "Anc Size" << ancBA.size();
+            //writeANCByteArray(ancBA);
+            // Anc data transfered from ColorBox as blob where 1st half is from F1 and second form F2(if available)
+            NTV2_POINTER ancF1Pointer(ancBA.data(), ancBA.size()/2);
+            NTV2_POINTER ancF2Pointer(&ancBA.data()[ ancBA.size()/2], ancBA.size()/2);
 
-			// Anc data transfered from ColorBox as blob where 1st half is from F1 and second form F2(if available)
-			NTV2_POINTER ancF1Pointer(ancBA.data(), ancBA.size()/2);
-			NTV2_POINTER ancF2Pointer(&ancBA.data()[ ancBA.size()/2], ancBA.size()/2);
-
-			_ancDataList.Clear();
-			AJAAncillaryList::SetFromDeviceAncBuffers(ancF1Pointer, ancF2Pointer, _ancDataList);
+            _ancDataList.Clear();
+            AJAAncillaryList::SetFromDeviceAncBuffers(ancF1Pointer, ancF2Pointer, _ancDataList);
 #endif
             _userData1 =  frame.getUserData1();
             _userData2 = frame.getUserData2();
 
-			_frameBuffer.resize(_width*_height*6);
-			memcpy(_frameBuffer.data(),frameBA.data(),frameSize);
-			updatePreview();
-		}
+            _frameBuffer.resize(_width*_height*6);
+            memcpy(_frameBuffer.data(),frameBA.data(),frameSize);
+            updatePreview();
+        }
 
-		qDebug() << "Frame Grab (binary) Successful";
-	}
+        qDebug() << "Frame Grab (binary) Successful";
+    }
 
-	_ui->transferTimeLabel->setText(QString("%1 ms").arg(_timer.elapsed()));
+    _ui->transferTimeLabel->setText(QString("%1 ms").arg(_timer.elapsed()));
 
-	// test grabbing as fast as possible by triggering another grab
+    // test grabbing as fast as possible by triggering another grab
     if (_ui->continuousGrabCheckBox->isChecked() )
     {
         if (_cbConnected)
@@ -250,21 +266,96 @@ void Dialog::updateGrabBinary(const QByteArray &data)
         }
     }
 
-	// end test
+    // end test
 }
 
 void Dialog::updateFrameFromColorBox()
 {
-	if ( _cbConnected)
-	{
-		_timer.start();
+    if ( _cbConnected)
+    {
+        _timer.start();
         QString msg("FRAMEGRAB_OUTPUT");
         if ( _ui->previewComboBox->currentText() == "Grab Input" )
             msg = "FRAMEGRAB_INPUT";
         emit triggerGrab(msg);
     }
+
 }
 
+bool checkARRIKLV(const uint8_t* buffer)
+{
+#if 0
+    for( int count = 0; count < sizeof(arriKLVData); count++)
+    {
+        if ( buffer[count] != arriKLVData[count])
+            return false;
+    }
+#endif
+    return true;
+
+}
+#if 0
+// Assuming ARRI Metadata is only RP-214 packets in ANC.
+bool findARRIMetadata(ArriRawMeta::ArriFileHeaderV3* arriHeader,AJAAncillaryList& ancDataList)
+{
+    bool status = false;
+
+    // Look for 18 RP-214 packets with KLV for ARRI camer to fill ArriFileHeaderV3.
+    uint8_t* arriHeaderBuffer = (uint8_t*)arriHeader;
+    AJAAncillaryData* rp214Packet = ancDataList.GetAncillaryDataWithID(0x44, 0x04,0);
+    try
+    {
+        if ( !rp214Packet )
+            throw (QString("No RP-214 Data Packets found."));
+
+        // look for ARRI Specific Metadata
+        int bufferSize = rp214Packet->GetPayloadByteCount();
+        const uint8_t* buffer_p = rp214Packet->GetPayloadData();
+        if ( checkARRIKLV(buffer_p) == false )
+            throw (QString("ARRI KLV Not Found"));
+
+        if ( buffer_p[1] != 1 )
+            throw(QString("MID 1 Expected. Recieved %1").arg(buffer_p[1]));
+
+        memcpy(&arriHeaderBuffer[0],&buffer_p[23],210);
+        arriHeaderBuffer += 210;
+
+        for (int packet = 1; packet < 17; packet++)
+        {
+            rp214Packet = ancDataList.GetAncillaryDataWithID(0x44, 0x04,packet);
+            if ( !rp214Packet )
+                throw (QString("Not Enough RP-214 Data Packets found %1.").arg(packet));
+
+            //bufferSize = rp214Packet->GetPayloadByteCount();
+            buffer_p = rp214Packet->GetPayloadData();
+            if ( buffer_p[1] != (packet+1) )
+                throw(QString("MID %1 Expected. Recieved %2").arg((packet+1)).arg(buffer_p[1]));
+
+            memcpy(&arriHeaderBuffer[0],&buffer_p[3],230);
+            arriHeaderBuffer += 230;
+        }
+        rp214Packet = ancDataList.GetAncillaryDataWithID(0x44, 0x04,17);
+        if ( !rp214Packet )
+            throw (QString("Not Enough RP-214 Data Packets found %1.").arg(17));
+
+        buffer_p = rp214Packet->GetPayloadData();
+        if ( buffer_p[1] != 18 )
+            throw(QString("MID %1 Expected. Recieved %2").arg(18).arg(buffer_p[1]));
+
+        memcpy(&arriHeaderBuffer[0],&buffer_p[3],206);
+
+        status = true;
+
+
+    }
+    catch(QString errorString)
+    {
+        qDebug() << errorString;
+    }
+
+    return status;
+}
+#endif
 void Dialog::updatePreview()
 {
     // convert to 8 bit RGB for preview
@@ -290,22 +381,42 @@ void Dialog::updatePreview()
     // Information Window
     QString metaDataString;
     QTextStream ts(&metaDataString);
-	ts << "Width: " << _width << Qt::endl;
-	ts << "Height: " <<  _height << Qt::endl;
-	ts << "User Data String1: " << Qt::endl;
-	ts << " " << _userData1 << Qt::endl;
-	ts << "User Data String2: " << Qt::endl;
-	ts << " " << _userData2 << Qt::endl;
+    ts << "Width: " << _width << Qt::endl;
+    ts << "Height: " <<  _height << Qt::endl;
+    ts << "User Data String1: " << Qt::endl;
+    ts << " " << _userData1 << Qt::endl;
+    ts << "User Data String2: " << Qt::endl;
+    ts << " " << _userData2 << Qt::endl;
 
 #ifdef SUPPORT_ANC
 
     std::stringstream out;
     out << _ancDataList;
-    qDebug() << QString::fromStdString(out.str());
+    //    qDebug() << QString::fromStdString(out.str());
 
+//#define SUPPORT_ARRI
+#ifdef SUPPORT_ARRI
+
+            ArriRawMeta::ArriFileHeaderV3 arriHeader;
+            if ( findARRIMetadata(&arriHeader,_ancDataList) )
+            {
+                ts << "ARRI MetaData " << "\n";
+                ts << "Camera Model " << (char*)arriHeader.cameraDeviceInfo.CameraModel << "\n";
+                ts << "Sensor FPS " << (float)arriHeader.cameraDeviceInfo.SensorFps/1000 << "\n";
+                ts << "Height " << arriHeader.imageDataInfo.Height << " Width " << arriHeader.imageDataInfo.Width << "\n";
+                ts << "Master TC " << hex << arriHeader.cameraDeviceInfo.Master_TC.TimeCode <<  "\n";
+                ts << "Clip Name " << (char*)arriHeader.clipInfo.CameraClipName << "\n";
+                ts << "\n";
+
+            }
+
+#endif
+
+#if 1
     std::string msgVPIDFormat("No");
-
     uint32_t numAncDataPkts =  _ancDataList.CountAncillaryData();
+    ts << "Num Packets: " << dec <<  numAncDataPkts << "\n";
+
     for ( uint32_t ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
     {
         AJAAncillaryData *ancData =  _ancDataList.GetAncillaryDataAtIndex (ancCount);
@@ -338,32 +449,40 @@ void Dialog::updatePreview()
             ancTime.ParsePayloadData();
             ancTime.GetDBB1PayloadType(tcType);
             ancTime.GetTimecode(ajaTime, ajaBase);
-
-            bool timecodePres(false);
-           if (isDropFrame(_status.getFormat().getValue()))
+            if (isDropFrame(_status.getFormat().getValue()))
                 ajaTime.QueryString(stdTime, ajaBase, true);
             else
                 ajaTime.QueryString(stdTime, ajaBase, false);
 
             if (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_LTC)
             {
-                 ts << "LTC: " <<  stdTime.c_str() << "\n";
-                timecodePres = true;
+                ts << "LTC: " <<  stdTime.c_str() << "\n";
             }
-            else if ((tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC1) ||
-                    (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC2))
+            else if (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC1)
             {
-                ts << "VITC: " <<  stdTime.c_str() << "\n";
-                timecodePres = true;
+                ts << "VITC1: " <<  stdTime.c_str() << "\n";
             }
+            else if (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC2)
+            {
+                ts << "VITC2: " <<  stdTime.c_str() << "\n";
+            }
+
 
         }
-        ts <<  "\n";
+        else
+        {
+            ;//ts << Qt::hex << "DID/SID: " <<  "0x" << ancData->GetDID() << "/" <<  "0x" << ancData->GetSID() << Qt::endl;
+        }
+
 
     }
+    ts <<  "\n";
+
+#endif
 #endif
 
     _ui->metaDataWindow->setText(metaDataString);
+    delete [] previewBuffer;
 
 }
 
@@ -372,8 +491,8 @@ void Dialog::updatePreview()
 void Dialog::writeTIFFFile()
 {
     QString fileName = QFileDialog::getSaveFileName(NULL, tr("Save File"),
-                               ".",
-                               tr("TIFF Files (*.tif)"));
+                                                    ".",
+                                                    tr("TIFF Files (*.tif)"));
 
     if ( fileName.length() == 0 ) return;
 
@@ -412,7 +531,7 @@ void Dialog::writeTIFFFile()
             *tiffLinePtr++ = r;
             *tiffLinePtr++ = g;
             *tiffLinePtr++ = b;
-         }
+        }
 
         if (TIFFWriteScanline(tif, buf, lineNumber, 0) < 0)
             break;
@@ -433,7 +552,7 @@ bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format)
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P29_97:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P59_94:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP29_97:
-	case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP47_95:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP47_95:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP59_94:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KPSF23_98:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::UHDP23_98:
