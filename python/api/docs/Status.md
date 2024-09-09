@@ -28,6 +28,9 @@ Name | Type | Description | Notes
 **nbcu_lut_version** | **str** |  | [optional] 
 **cpu_busy** | **bool** |  | [optional] 
 **aces_version** | **str** |  | [optional] 
+**hardware_variant** | **str** |  | [optional] 
+**hardware_name** | **str** |  | [optional] 
+**og_rear_module_valid** | **bool** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

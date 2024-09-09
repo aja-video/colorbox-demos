@@ -2478,10 +2478,11 @@ with openapi_client.ApiClient() as api_client:
     api_instance = default_api.DefaultApi(api_client)
     aces_config = AcesConfig(
         enabled=True,
-        mode=AcesMode("AMF"),
         amf_library_entry=1,
-        ocio_source=OcioSource("Camera Rec.709"),
-        ocio_display_view=OcioDisplayView("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"),
+        aces_idt=AcesIdt("ARRI LogC3 (EI800)"),
+        aces_odt=AcesOdt("Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video"),
+        aces_idt_override=False,
+        aces_odt_override=False,
         enable_arri_wvo_log_c4_decoder=False,
     ) # AcesConfig | AcesConfig object
 
@@ -2679,6 +2680,9 @@ with openapi_client.ApiClient(configuration) as api_client:
         nbcu_lut_version="nbcu_lut_version_example",
         cpu_busy=True,
         aces_version="aces_version_example",
+        hardware_variant="hardware_variant_example",
+        hardware_name="hardware_name_example",
+        og_rear_module_valid=True,
     ) # Status | Status object
 
     # example passing only required values which don't have defaults set
@@ -3202,6 +3206,11 @@ with openapi_client.ApiClient() as api_client:
             pq_output_nit_level=1000,
             p3_colorspace_clamp=False,
             bt2408_mode=0,
+        ),
+        upmap_mode=ColorfrontUpmapMode(
+            bypass=False,
+            contrast=ColorfrontLowMidHigh("Mid"),
+            highlights=ColorfrontLowMidHigh("Mid"),
         ),
     ) # ColorfrontConfig | ColorfrontConfig object
 

@@ -53,6 +53,8 @@ ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn toEnum(con
         return ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_ARRI_LOG_C_WIDE_GAMUT;
     if (val == utility::conversions::to_string_t(U("ARRI LogC4 Wide Gamut 4")))
         return ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_ARRI_LOGC4_WIDE_GAMUT_4;
+    if (val == utility::conversions::to_string_t(U("ARRI LogC4 Wide Gamut 4 WVO")))
+        return ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_ARRI_LOGC4_WIDE_GAMUT_4_WVO;
     if (val == utility::conversions::to_string_t(U("Panasonic V-Log")))
         return ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_PANASONIC_V_LOG;
     if (val == utility::conversions::to_string_t(U("RED Log3G10 Wide Gamut")))
@@ -92,6 +94,8 @@ EnumUnderlyingType fromEnum(ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRan
         return U("ARRI Log C Wide Gamut");
     case ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_ARRI_LOGC4_WIDE_GAMUT_4:
         return U("ARRI LogC4 Wide Gamut 4");
+    case ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_ARRI_LOGC4_WIDE_GAMUT_4_WVO:
+        return U("ARRI LogC4 Wide Gamut 4 WVO");
     case ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_PANASONIC_V_LOG:
         return U("Panasonic V-Log");
     case ColorfrontDynRangeGamutLiveModeIn::eColorfrontDynRangeGamutLiveModeIn::ColorfrontDynRangeGamutLiveModeIn_RED_LOG3G10_WIDE_GAMUT:

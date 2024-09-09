@@ -53,6 +53,7 @@ public:
     {
         ColorfrontMode_TV,
         ColorfrontMode_LIVE,
+        ColorfrontMode_SDR_TO_DOLBY_VISION_PREVIEW,
     };
 
     eColorfrontMode getValue() const;

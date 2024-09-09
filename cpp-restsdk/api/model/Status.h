@@ -298,6 +298,36 @@ public:
     void setAcesVersion(const utility::string_t& value);
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getHardwareVariant() const;
+    bool hardwareVariantIsSet() const;
+    void unsetHardwareVariant();
+
+    void setHardwareVariant(const utility::string_t& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getHardwareName() const;
+    bool hardwareNameIsSet() const;
+    void unsetHardwareName();
+
+    void setHardwareName(const utility::string_t& value);
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isOgRearModuleValid() const;
+    bool ogRearModuleValidIsSet() const;
+    void unsetOgRearModuleValid();
+
+    void setOgRearModuleValid(bool value);
+
+
 
 protected:
     std::shared_ptr<StatusInfo> m_DeviceDieTemp;
@@ -348,6 +378,12 @@ protected:
     bool m_CpuBusyIsSet;
     utility::string_t m_AcesVersion;
     bool m_AcesVersionIsSet;
+    utility::string_t m_HardwareVariant;
+    bool m_HardwareVariantIsSet;
+    utility::string_t m_HardwareName;
+    bool m_HardwareNameIsSet;
+    bool m_OgRearModuleValid;
+    bool m_OgRearModuleValidIsSet;
 };
 
 

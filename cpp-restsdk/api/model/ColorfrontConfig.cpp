@@ -33,6 +33,7 @@ ColorfrontConfig::ColorfrontConfig()
     m_ModeIsSet = false;
     m_TvModeIsSet = false;
     m_LiveModeIsSet = false;
+    m_UpmapModeIsSet = false;
 }
 
 ColorfrontConfig::~ColorfrontConfig()
@@ -78,6 +79,10 @@ web::json::value ColorfrontConfig::toJson() const
     if(m_LiveModeIsSet)
     {
         val[utility::conversions::to_string_t(U("liveMode"))] = ModelBase::toJson(m_LiveMode);
+    }
+    if(m_UpmapModeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("upmapMode"))] = ModelBase::toJson(m_UpmapMode);
     }
 
     return val;
@@ -147,6 +152,16 @@ bool ColorfrontConfig::fromJson(const web::json::value& val)
             setLiveMode(refVal_liveMode);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("upmapMode"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("upmapMode")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<ColorfrontUpmapMode> refVal_upmapMode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_upmapMode);
+            setUpmapMode(refVal_upmapMode);
+        }
+    }
     
     applyMinMaxConstraints();
     return ok;
@@ -182,6 +197,10 @@ void ColorfrontConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_LiveModeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("liveMode")), m_LiveMode));
+    }
+    if(m_UpmapModeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("upmapMode")), m_UpmapMode));
     }
 }
 
@@ -229,6 +248,12 @@ bool ColorfrontConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         std::shared_ptr<ColorfrontLiveMode> refVal_liveMode;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("liveMode"))), refVal_liveMode );
         setLiveMode(refVal_liveMode);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("upmapMode"))))
+    {
+        std::shared_ptr<ColorfrontUpmapMode> refVal_upmapMode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("upmapMode"))), refVal_upmapMode );
+        setUpmapMode(refVal_upmapMode);
     }
     
     applyMinMaxConstraints();
@@ -370,6 +395,29 @@ bool ColorfrontConfig::liveModeIsSet() const
 void ColorfrontConfig::unsetLiveMode()
 {
     m_LiveModeIsSet = false;
+}
+
+
+std::shared_ptr<ColorfrontUpmapMode> ColorfrontConfig::getUpmapMode() const
+{
+    return m_UpmapMode;
+}
+
+void ColorfrontConfig::setUpmapMode(const std::shared_ptr<ColorfrontUpmapMode>& value)
+{
+	std::shared_ptr<ColorfrontUpmapMode> v = value;
+    m_UpmapMode = v;
+    m_UpmapModeIsSet = true;
+}
+
+bool ColorfrontConfig::upmapModeIsSet() const
+{
+    return m_UpmapModeIsSet;
+}
+
+void ColorfrontConfig::unsetUpmapMode()
+{
+    m_UpmapModeIsSet = false;
 }
 
 

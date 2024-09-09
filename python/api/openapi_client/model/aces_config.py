@@ -34,12 +34,10 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.aces_mode import AcesMode
-    from openapi_client.model.ocio_display_view import OcioDisplayView
-    from openapi_client.model.ocio_source import OcioSource
-    globals()['AcesMode'] = AcesMode
-    globals()['OcioDisplayView'] = OcioDisplayView
-    globals()['OcioSource'] = OcioSource
+    from openapi_client.model.aces_idt import AcesIdt
+    from openapi_client.model.aces_odt import AcesOdt
+    globals()['AcesIdt'] = AcesIdt
+    globals()['AcesOdt'] = AcesOdt
 
 
 class AcesConfig(ModelNormal):
@@ -96,10 +94,11 @@ class AcesConfig(ModelNormal):
         lazy_import()
         return {
             'enabled': (bool,),  # noqa: E501
-            'mode': (AcesMode,),  # noqa: E501
             'amf_library_entry': (int,),  # noqa: E501
-            'ocio_source': (OcioSource,),  # noqa: E501
-            'ocio_display_view': (OcioDisplayView,),  # noqa: E501
+            'aces_idt': (AcesIdt,),  # noqa: E501
+            'aces_odt': (AcesOdt,),  # noqa: E501
+            'aces_idt_override': (bool,),  # noqa: E501
+            'aces_odt_override': (bool,),  # noqa: E501
             'enable_arri_wvo_log_c4_decoder': (bool,),  # noqa: E501
         }
 
@@ -110,10 +109,11 @@ class AcesConfig(ModelNormal):
 
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
-        'mode': 'mode',  # noqa: E501
         'amf_library_entry': 'amfLibraryEntry',  # noqa: E501
-        'ocio_source': 'ocioSource',  # noqa: E501
-        'ocio_display_view': 'ocioDisplayView',  # noqa: E501
+        'aces_idt': 'acesIdt',  # noqa: E501
+        'aces_odt': 'acesOdt',  # noqa: E501
+        'aces_idt_override': 'acesIdtOverride',  # noqa: E501
+        'aces_odt_override': 'acesOdtOverride',  # noqa: E501
         'enable_arri_wvo_log_c4_decoder': 'enableArriWVOLogC4Decoder',  # noqa: E501
     }
 
@@ -159,10 +159,11 @@ class AcesConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
-            mode (AcesMode): [optional]  # noqa: E501
             amf_library_entry (int): library entry number, zero is unity bypass. [optional]  # noqa: E501
-            ocio_source (OcioSource): [optional]  # noqa: E501
-            ocio_display_view (OcioDisplayView): [optional]  # noqa: E501
+            aces_idt (AcesIdt): [optional]  # noqa: E501
+            aces_odt (AcesOdt): [optional]  # noqa: E501
+            aces_idt_override (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            aces_odt_override (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             enable_arri_wvo_log_c4_decoder (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
@@ -246,10 +247,11 @@ class AcesConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): true if stage is enabled else disabled (unity passthru). [optional]  # noqa: E501
-            mode (AcesMode): [optional]  # noqa: E501
             amf_library_entry (int): library entry number, zero is unity bypass. [optional]  # noqa: E501
-            ocio_source (OcioSource): [optional]  # noqa: E501
-            ocio_display_view (OcioDisplayView): [optional]  # noqa: E501
+            aces_idt (AcesIdt): [optional]  # noqa: E501
+            aces_odt (AcesOdt): [optional]  # noqa: E501
+            aces_idt_override (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            aces_odt_override (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             enable_arri_wvo_log_c4_decoder (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 

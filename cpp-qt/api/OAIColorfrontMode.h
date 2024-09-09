@@ -42,7 +42,8 @@ public:
     enum class eOAIColorfrontMode {
         INVALID_VALUE_OPENAPI_GENERATED = 0,
         TV, 
-        LIVE
+        LIVE, 
+        SDR_TO_DOLBY_VISION_PREVIEW
     };
     OAIColorfrontMode::eOAIColorfrontMode getValue() const;
     void setValue(const OAIColorfrontMode::eOAIColorfrontMode& value);

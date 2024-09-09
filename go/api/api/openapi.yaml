@@ -2281,6 +2281,8 @@ components:
           gammaBlue: 1.3756104440255752
           sdrSoftness: 0.8762042012749002
           liftGreen: -0.28856095458638054
+        upmapMode:
+          bypass: false
         enabled: true
       properties:
         enabled:
@@ -2296,6 +2298,8 @@ components:
           $ref: '#/components/schemas/ColorfrontTvMode'
         liveMode:
           $ref: '#/components/schemas/ColorfrontLiveMode'
+        upmapMode:
+          $ref: '#/components/schemas/ColorfrontUpmapMode'
       type: object
     ColorfrontDynRangeGamut:
       default: SDR BT.709
@@ -2310,6 +2314,7 @@ components:
       enum:
       - TV
       - Live
+      - SDR to Dolby Vision Preview
       type: string
     ColorfrontEngine:
       default: Default
@@ -2349,6 +2354,7 @@ components:
       - Sony SLog3 BT.2020
       - ARRI Log C Wide Gamut
       - ARRI LogC4 Wide Gamut 4
+      - ARRI LogC4 Wide Gamut 4 WVO
       - Panasonic V-Log
       - RED Log3G10 Wide Gamut
       - Canon Log 2
@@ -2665,6 +2671,25 @@ components:
           minimum: 0.0
           type: number
       type: object
+    ColorfrontLowMidHigh:
+      default: Mid
+      enum:
+      - Low
+      - Mid
+      - High
+      type: string
+    ColorfrontUpmapMode:
+      example:
+        bypass: false
+      properties:
+        bypass:
+          default: false
+          type: boolean
+        contrast:
+          $ref: '#/components/schemas/ColorfrontLowMidHigh'
+        highlights:
+          $ref: '#/components/schemas/ColorfrontLowMidHigh'
+      type: object
     BbcConfig:
       example:
         lut1d_1:
@@ -2841,18 +2866,11 @@ components:
         lut3d_1:
           $ref: '#/components/schemas/Stage'
       type: object
-    AcesMode:
-      default: AMF
-      enum:
-      - AMF
-      - OCIO
-      type: string
-    OcioSource:
-      default: Camera Rec.709
+    AcesIdt:
+      default: ARRI LogC3 (EI800)
       enum:
       - ARRI LogC3 (EI800)
       - ARRI LogC4
-      - BMDFilm WideGamut Gen5
       - CanonLog2 CinemaGamut D55
       - CanonLog3 CinemaGamut D55
       - V-Log V-Gamut
@@ -2861,9 +2879,8 @@ components:
       - S-Log3 S-Gamut3.Cine
       - S-Log3 Venice S-Gamut3
       - S-Log3 Venice S-Gamut3.Cine
-      - Camera Rec.709
       type: string
-    OcioDisplayView:
+    AcesOdt:
       default: Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video
       enum:
       - Rec.1886 Rec.709 - Display/ACES 1.0 - SDR Video
@@ -2871,13 +2888,11 @@ components:
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (1000 nits & Rec.2020 lim)
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (2000 nits & Rec.2020 lim)
       - Rec.2100-PQ - Display/ACES 1.1 - HDR Video (4000 nits & Rec.2020 lim)
-      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (1000 nits & P3 lim)
-      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (2000 nits & P3 lim)
-      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Video (4000 nits & P3 lim)
-      - ST2084-P3-D65 - Display/ACES 1.1 - HDR Cinema (108 nits & P3 lim)
       type: string
     AcesConfig:
       example:
+        acesOdtOverride: false
+        acesIdtOverride: false
         enableArriWVOLogC4Decoder: false
         amfLibraryEntry: 0
         enabled: true
@@ -2885,15 +2900,19 @@ components:
         enabled:
           description: true if stage is enabled else disabled (unity passthru)
           type: boolean
-        mode:
-          $ref: '#/components/schemas/AcesMode'
         amfLibraryEntry:
           description: library entry number, zero is unity bypass
           type: integer
-        ocioSource:
-          $ref: '#/components/schemas/OcioSource'
-        ocioDisplayView:
-          $ref: '#/components/schemas/OcioDisplayView'
+        acesIdt:
+          $ref: '#/components/schemas/AcesIdt'
+        acesOdt:
+          $ref: '#/components/schemas/AcesOdt'
+        acesIdtOverride:
+          default: false
+          type: boolean
+        acesOdtOverride:
+          default: false
+          type: boolean
         enableArriWVOLogC4Decoder:
           default: false
           type: boolean
@@ -2943,24 +2962,16 @@ components:
       type: object
     Status:
       example:
-        colorfrontTransformVersion: colorfrontTransformVersion
-        systemAppSwVersion: systemAppSwVersion
-        licenseActive: true
         eulaAccepted: true
         colorfrontEngineLicensed: true
         systemUptime: systemUptime
         systemCatalogNumber: systemCatalogNumber
-        orionEngineLicensed: true
-        systemBoardRevision: systemBoardRevision
         orionVersion: orionVersion
-        nbcuLutVersion: nbcuLutVersion
         acesVersion: acesVersion
         systemTime: systemTime
         colorfrontEngineVersion: colorfrontEngineVersion
+        hardwareVariant: hardwareVariant
         systemOsName: systemOsName
-        systemSerialNumber: systemSerialNumber
-        bbcLutVersion: bbcLutVersion
-        systemDate: systemDate
         deviceDieTemp:
           upperBoundGood: 0.8008281904610115
           label: label
@@ -2969,11 +2980,22 @@ components:
           value: value
           extraValue: extraValue
           upperBoundMaybe: 6.027456183070403
-        cpuBusy: true
         shutdownTime: 5
         systemSupportInfo: systemSupportInfo
         resetTime: 5
+        colorfrontTransformVersion: colorfrontTransformVersion
+        systemAppSwVersion: systemAppSwVersion
+        licenseActive: true
+        orionEngineLicensed: true
+        systemBoardRevision: systemBoardRevision
+        nbcuLutVersion: nbcuLutVersion
+        hardwareName: hardwareName
+        systemSerialNumber: systemSerialNumber
+        bbcLutVersion: bbcLutVersion
+        systemDate: systemDate
+        cpuBusy: true
         bbcLutsLicensed: true
+        ogRearModuleValid: true
       properties:
         deviceDieTemp:
           $ref: '#/components/schemas/StatusInfo'
@@ -3023,6 +3045,12 @@ components:
           type: boolean
         acesVersion:
           type: string
+        hardwareVariant:
+          type: string
+        hardwareName:
+          type: string
+        ogRearModuleValid:
+          type: boolean
       type: object
     AncCaptureFilter:
       example:

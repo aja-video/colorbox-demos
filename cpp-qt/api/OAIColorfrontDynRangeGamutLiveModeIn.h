@@ -53,6 +53,7 @@ public:
         SONY_SLOG3_BT_2020, 
         ARRI_LOG_C_WIDE_GAMUT, 
         ARRI_LOGC4_WIDE_GAMUT_4, 
+        ARRI_LOGC4_WIDE_GAMUT_4_WVO, 
         PANASONIC_V_LOG, 
         RED_LOG3G10_WIDE_GAMUT, 
         CANON_LOG_2, 

@@ -26,12 +26,14 @@ type ColorfrontMode string
 const (
 	COLORFRONTMODE_TV ColorfrontMode = "TV"
 	COLORFRONTMODE_LIVE ColorfrontMode = "Live"
+	COLORFRONTMODE_SDR_TO_DOLBY_VISION_PREVIEW ColorfrontMode = "SDR to Dolby Vision Preview"
 )
 
 // All allowed values of ColorfrontMode enum
 var AllowedColorfrontModeEnumValues = []ColorfrontMode{
 	"TV",
 	"Live",
+	"SDR to Dolby Vision Preview",
 }
 
 func (v *ColorfrontMode) UnmarshalJSON(src []byte) error {

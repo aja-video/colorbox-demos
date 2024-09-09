@@ -106,6 +106,15 @@ void OAIStatus::initializeModel() {
 
     m_aces_version_isSet = false;
     m_aces_version_isValid = false;
+
+    m_hardware_variant_isSet = false;
+    m_hardware_variant_isValid = false;
+
+    m_hardware_name_isSet = false;
+    m_hardware_name_isValid = false;
+
+    m_og_rear_module_valid_isSet = false;
+    m_og_rear_module_valid_isValid = false;
 }
 
 void OAIStatus::fromJson(QString jsonString) {
@@ -187,6 +196,15 @@ void OAIStatus::fromJsonObject(QJsonObject json) {
 
     m_aces_version_isValid = ::OpenAPI::fromJsonValue(m_aces_version, json[QString("acesVersion")]);
     m_aces_version_isSet = !json[QString("acesVersion")].isNull() && m_aces_version_isValid;
+
+    m_hardware_variant_isValid = ::OpenAPI::fromJsonValue(m_hardware_variant, json[QString("hardwareVariant")]);
+    m_hardware_variant_isSet = !json[QString("hardwareVariant")].isNull() && m_hardware_variant_isValid;
+
+    m_hardware_name_isValid = ::OpenAPI::fromJsonValue(m_hardware_name, json[QString("hardwareName")]);
+    m_hardware_name_isSet = !json[QString("hardwareName")].isNull() && m_hardware_name_isValid;
+
+    m_og_rear_module_valid_isValid = ::OpenAPI::fromJsonValue(m_og_rear_module_valid, json[QString("ogRearModuleValid")]);
+    m_og_rear_module_valid_isSet = !json[QString("ogRearModuleValid")].isNull() && m_og_rear_module_valid_isValid;
 
     applyMinMaxConstraints();
 }
@@ -271,6 +289,15 @@ QJsonObject OAIStatus::asJsonObject() const {
     }
     if (m_aces_version_isSet) {
         obj.insert(QString("acesVersion"), ::OpenAPI::toJsonValue(m_aces_version));
+    }
+    if (m_hardware_variant_isSet) {
+        obj.insert(QString("hardwareVariant"), ::OpenAPI::toJsonValue(m_hardware_variant));
+    }
+    if (m_hardware_name_isSet) {
+        obj.insert(QString("hardwareName"), ::OpenAPI::toJsonValue(m_hardware_name));
+    }
+    if (m_og_rear_module_valid_isSet) {
+        obj.insert(QString("ogRearModuleValid"), ::OpenAPI::toJsonValue(m_og_rear_module_valid));
     }
     return obj;
 }
@@ -724,6 +751,62 @@ bool OAIStatus::is_aces_version_Valid() const{
 
 
 
+QString OAIStatus::getHardwareVariant() const {
+    return m_hardware_variant;
+}
+void OAIStatus::setHardwareVariant(const QString &hardware_variant) {
+	QString v = hardware_variant;
+	this->m_hardware_variant = v;
+    this->m_hardware_variant_isSet = true;
+}
+
+bool OAIStatus::is_hardware_variant_Set() const{
+    return m_hardware_variant_isSet;
+}
+
+bool OAIStatus::is_hardware_variant_Valid() const{
+    return m_hardware_variant_isValid;
+}
+
+
+
+QString OAIStatus::getHardwareName() const {
+    return m_hardware_name;
+}
+void OAIStatus::setHardwareName(const QString &hardware_name) {
+	QString v = hardware_name;
+	this->m_hardware_name = v;
+    this->m_hardware_name_isSet = true;
+}
+
+bool OAIStatus::is_hardware_name_Set() const{
+    return m_hardware_name_isSet;
+}
+
+bool OAIStatus::is_hardware_name_Valid() const{
+    return m_hardware_name_isValid;
+}
+
+
+
+bool OAIStatus::isOgRearModuleValid() const {
+    return m_og_rear_module_valid;
+}
+void OAIStatus::setOgRearModuleValid(const bool &og_rear_module_valid) {
+	bool v = og_rear_module_valid;
+	this->m_og_rear_module_valid = v;
+    this->m_og_rear_module_valid_isSet = true;
+}
+
+bool OAIStatus::is_og_rear_module_valid_Set() const{
+    return m_og_rear_module_valid_isSet;
+}
+
+bool OAIStatus::is_og_rear_module_valid_Valid() const{
+    return m_og_rear_module_valid_isValid;
+}
+
+
 bool OAIStatus::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -846,6 +929,21 @@ bool OAIStatus::isSet() const {
             isObjectUpdated = true;
             break;
         }
+
+        if (m_hardware_variant_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_hardware_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_og_rear_module_valid_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
@@ -958,6 +1056,18 @@ bool OAIStatus::applyMinMaxConstraints() {
 		bool acesVersionChanged = false;
 		QString v = getAcesVersion();
 		if (acesVersionChanged) { setAcesVersion(v); anyMinMaxValueChanged = true; }
+	}
+	if (is_hardware_variant_Set())
+	{
+		bool hardwareVariantChanged = false;
+		QString v = getHardwareVariant();
+		if (hardwareVariantChanged) { setHardwareVariant(v); anyMinMaxValueChanged = true; }
+	}
+	if (is_hardware_name_Set())
+	{
+		bool hardwareNameChanged = false;
+		QString v = getHardwareName();
+		if (hardwareNameChanged) { setHardwareName(v); anyMinMaxValueChanged = true; }
 	}
 	return anyMinMaxValueChanged;
 }
