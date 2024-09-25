@@ -56,6 +56,7 @@ protected:
     QMutex _updateLock;
     OpenAPI::OAISDI _status;
     OpenAPI::OAIPreview _preview;
+    bool _newPreviewAvailable;
 
 private:
     Ui::Dialog *_ui;

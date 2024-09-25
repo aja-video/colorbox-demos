@@ -31,32 +31,31 @@ static bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format);
 // This is needed to compile with older Qt versions like Qt 5.13.2
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
 namespace Qt {
-	QTextStream &endl(QTextStream &s)
-	{
-		return ::endl(s);
-	}
-	QTextStream &hex(QTextStream &s)
-	{
-		return ::hex(s);
-	}
+QTextStream &endl(QTextStream &s)
+{
+    return ::endl(s);
+}
+QTextStream &hex(QTextStream &s)
+{
+    return ::hex(s);
+}
 }
 #endif
 
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent),
-      _cbConnected(false),
-      _ui(new Ui::Dialog)
+    _cbConnected(false),
+    _newPreviewAvailable(false),
+    _ui(new Ui::Dialog)
 {
     _api.useBasicAuth("admin","admin");
     _ui->setupUi(this);
 
-	setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
 
     recallSettings();
     ipAddressEdited();
     this->setFocus();
-
-    QTimer::singleShot(200, this, &Dialog::updateUIPreview);
 
     // UI related slots
     connect(_ui->ipAddressLineEdit,&QLineEdit::editingFinished, this, &Dialog::ipAddressEdited);
@@ -70,6 +69,8 @@ Dialog::Dialog(QWidget *parent)
 
     connect(&_api,&OAIDefaultApi::getOverlaySignal,this,&Dialog::getOverlayFromColorbox);
     connect(&_api,&OAIDefaultApi::getRoutingSignal,this,&Dialog::getRoutingFromColorbox);
+
+    QTimer::singleShot(200, this, &Dialog::updateUIPreview);
 
 }
 
@@ -97,6 +98,7 @@ void Dialog::handlePreview(OAIPreview preview)
 
     _cbConnected = true;
     _preview = preview;
+    _newPreviewAvailable = true;
 
     // Start off by syncing to colorbox settings....
     _api.getOverlay();
@@ -174,123 +176,127 @@ void Dialog::getRoutingFromColorbox(OAIRouting routing)
 
 void Dialog::updateUIPreview()
 {
+
     QElapsedTimer timer;
     timer.start();
 
-    if (_cbConnected)
+    if (_cbConnected )
     {
-        _ui->connectLabel->setText("CONNECTED");
+        _ui->connectLabel->setText("CONNECTED ");
 
-        QMutexLocker l(&_updateLock);
-
-        QByteArray imageBA = _preview.getImage();
-        if ( imageBA.size() > 0 )
+        if ( _newPreviewAvailable)
         {
-            QImage image;
-            QString type = _preview.getImageType().toUpper();
-            if (type == "JPG" || type == "JPEG" || type == "PNG")
+            QMutexLocker l(&_updateLock);
+
+            QByteArray imageBA = _preview.getImage();
+            if ( imageBA.size() > 0 )
             {
-                image.loadFromData(imageBA, type.toUtf8().data());
-                image = image.scaled(_ui->originalPreview->width(), _ui->originalPreview->height(),
-                                     Qt::IgnoreAspectRatio, Qt::FastTransformation);
-                QPixmap pixmap = QPixmap::fromImage(image);
-                _ui->originalPreview->setPixmap(pixmap);
-
-                // Information Window
-                QString metaDataString;
-                QTextStream ts(&metaDataString);
-				ts << "Video Format: " << _status.getFormat().asJson() << Qt::endl;
-				ts << "User Data String1: " << Qt::endl;
-				ts << " " << _preview.getUserData1() << Qt::endl;
-				ts << "User Data String2: " << Qt::endl;
-				ts << " " << _preview.getUserData2() << Qt::endl;
-                ts <<  "\n";
-#ifdef SUPPORT_ANC
-                QByteArray ancBA = _preview.getAncData();
-
-				// Anc data transfered from ColorBox as blob where 1st half is from F1 and second form F2(if available)
-                NTV2_POINTER ancF1Pointer(ancBA.data(), ancBA.size()/2);
-                NTV2_POINTER ancF2Pointer(&ancBA.data()[ ancBA.size()/2], ancBA.size()/2);
-
-                 AJAAncillaryList _ancDataList;
-                _ancDataList.Clear();
-                AJAAncillaryList::SetFromDeviceAncBuffers(ancF1Pointer, ancF2Pointer, _ancDataList);
-
-                std::stringstream out;
-                out << _ancDataList;
-
-                std::string msgVPIDFormat("No");
-
-                uint32_t numAncDataPkts =  _ancDataList.CountAncillaryData();
-				for ( uint32_t ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
+                QImage image;
+                QString type = _preview.getImageType().toUpper();
+                if (type == "JPG" || type == "JPEG" || type == "PNG")
                 {
-                    AJAAncillaryData *ancData =  _ancDataList.GetAncillaryDataAtIndex (ancCount);
-					ts << Qt::hex << "DID/SID: " <<  "0x" << ancData->GetDID() << "/" <<  "0x" << ancData->GetSID() << Qt::endl;
-                    if ((ancData->GetDID() == 0x41) &&
+                    image.loadFromData(imageBA, type.toUtf8().data());
+                    image = image.scaled(_ui->originalPreview->width(), _ui->originalPreview->height(),
+                                         Qt::IgnoreAspectRatio, Qt::FastTransformation);
+                    QPixmap pixmap = QPixmap::fromImage(image);
+                    _ui->originalPreview->setPixmap(pixmap);
+
+                    // Information Window
+                    QString metaDataString;
+                    QTextStream ts(&metaDataString);
+                    ts << "Video Format: " << _status.getFormat().asJson() << Qt::endl;
+                    ts << "User Data String1: " << Qt::endl;
+                    ts << " " << _preview.getUserData1() << Qt::endl;
+                    ts << "User Data String2: " << Qt::endl;
+                    ts << " " << _preview.getUserData2() << Qt::endl;
+                    ts <<  "\n";
+#ifdef SUPPORT_ANC
+                    QByteArray ancBA = _preview.getAncData();
+
+                    // Anc data transfered from ColorBox as blob where 1st half is from F1 and second form F2(if available)
+                    NTV2_POINTER ancF1Pointer(ancBA.data(), ancBA.size()/2);
+                    NTV2_POINTER ancF2Pointer(&ancBA.data()[ ancBA.size()/2], ancBA.size()/2);
+
+                    AJAAncillaryList _ancDataList;
+                    _ancDataList.Clear();
+                    AJAAncillaryList::SetFromDeviceAncBuffers(ancF1Pointer, ancF2Pointer, _ancDataList);
+
+                    std::stringstream out;
+                    out << _ancDataList;
+
+                    std::string msgVPIDFormat("No");
+
+                    uint32_t numAncDataPkts =  _ancDataList.CountAncillaryData();
+                    for ( uint32_t ancCount = 0; ancCount < numAncDataPkts; ancCount++ )
+                    {
+                        AJAAncillaryData *ancData =  _ancDataList.GetAncillaryDataAtIndex (ancCount);
+                        ts << Qt::hex << "DID/SID: " <<  "0x" << ancData->GetDID() << "/" <<  "0x" << ancData->GetSID() << Qt::endl;
+                        if ((ancData->GetDID() == 0x41) &&
                             (ancData->GetSID() == 0x01) &&
                             (ancData->GetLocationDataChannel() == AJAAncillaryDataChannel_Y))
-                    {
-                        //SMPTE-352M
-                        uint32_t data = 0;
-                        data |= ancData->GetPayloadByteAtIndex(0) << 24;
-                        data |= ancData->GetPayloadByteAtIndex(1) << 16;
-                        data |= ancData->GetPayloadByteAtIndex(2) << 8;
-                        data |= ancData->GetPayloadByteAtIndex(3) << 0;
+                        {
+                            //SMPTE-352M
+                            uint32_t data = 0;
+                            data |= ancData->GetPayloadByteAtIndex(0) << 24;
+                            data |= ancData->GetPayloadByteAtIndex(1) << 16;
+                            data |= ancData->GetPayloadByteAtIndex(2) << 8;
+                            data |= ancData->GetPayloadByteAtIndex(3) << 0;
 
-                        CNTV2VPID vpid(data);
-                        std::string vf = NTV2VideoFormatToString(vpid.GetVideoFormat());
-                        msgVPIDFormat = ::NTV2VideoFormatToString(vpid.GetVideoFormat()) ;
-                        ts << "VPID Format: " <<  msgVPIDFormat.c_str() << "\n";
+                            CNTV2VPID vpid(data);
+                            std::string vf = NTV2VideoFormatToString(vpid.GetVideoFormat());
+                            msgVPIDFormat = ::NTV2VideoFormatToString(vpid.GetVideoFormat()) ;
+                            ts << "VPID Format: " <<  msgVPIDFormat.c_str() << "\n";
+
+                        }
+                        if( (ancData->GetDID() == 0x60) && (ancData->GetSID() == 0x60))
+                        {
+                            AJAAncillaryData_Timecode_ATC ancTime(ancData);
+                            AJATimeCode ajaTime;
+                            AJATimeBase ajaBase;
+                            std::string stdTime;
+                            AJAAncillaryData_Timecode_ATC_DBB1PayloadType tcType;
+
+                            ancTime.ParsePayloadData();
+                            ancTime.GetDBB1PayloadType(tcType);
+                            ancTime.GetTimecode(ajaTime, ajaBase);
+
+                            bool timecodePres(false);
+                            if (isDropFrame(_status.getFormat().getValue()))
+                                ajaTime.QueryString(stdTime, ajaBase, true);
+                            else
+                                ajaTime.QueryString(stdTime, ajaBase, false);
+
+                            if (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_LTC)
+                            {
+                                ts << "LTC: " <<  stdTime.c_str() << "\n";
+                                timecodePres = true;
+                            }
+                            else if ((tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC1) ||
+                                     (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC2))
+                            {
+                                ts << "VITC: " <<  stdTime.c_str() << "\n";
+                                timecodePres = true;
+                            }
+
+                        }
+                        ts <<  "\n";
 
                     }
-                    if( (ancData->GetDID() == 0x60) && (ancData->GetSID() == 0x60))
-                    {
-                        AJAAncillaryData_Timecode_ATC ancTime(ancData);
-                        AJATimeCode ajaTime;
-                        AJATimeBase ajaBase;
-                        std::string stdTime;
-                        AJAAncillaryData_Timecode_ATC_DBB1PayloadType tcType;
-
-                        ancTime.ParsePayloadData();
-                        ancTime.GetDBB1PayloadType(tcType);
-                        ancTime.GetTimecode(ajaTime, ajaBase);
-
-                        bool timecodePres(false);
-                       if (isDropFrame(_status.getFormat().getValue()))
-                            ajaTime.QueryString(stdTime, ajaBase, true);
-                        else
-                            ajaTime.QueryString(stdTime, ajaBase, false);
-
-                        if (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_LTC)
-                        {
-                             ts << "LTC: " <<  stdTime.c_str() << "\n";
-                            timecodePres = true;
-                        }
-                        else if ((tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC1) ||
-                                (tcType == AJAAncillaryData_Timecode_ATC_DBB1PayloadType_VITC2))
-                        {
-                            ts << "VITC: " <<  stdTime.c_str() << "\n";
-                            timecodePres = true;
-                        }
-
-                    }
-                    ts <<  "\n";
-
-                }
 #endif
-                 _ui->metaDataWindow->setText(metaDataString);
+                    _ui->metaDataWindow->setText(metaDataString);
+                }
+                else
+                {
+                    qDebug() << "unknown image type";
+                }
             }
-            else
-            {
-                qDebug() << "unknown image type";
-            }
-        }
 
-        // trigger the api to get status and preview ready for next loop
-        _api.getSdiInputStatus();
-        _api.getPreviewImage();
-
-        _ui->transferTimeLabel->setText(QString("%1 ms").arg(timer.elapsed()));
+            // trigger the api to get status and preview ready for next loop
+            _api.getSdiInputStatus();
+            _api.getPreviewImage();
+            _newPreviewAvailable = false;
+            _ui->transferTimeLabel->setText(QString(" %1 ms").arg(timer.elapsed()));
+        } // _newPreviewAvailable;
 
     }
     else
@@ -299,21 +305,19 @@ void Dialog::updateUIPreview()
         _ui->connectLabel->setText("DISCONNECTED");
     }
 
-
-
-    // trigger this method again in 16ms
-    QTimer::singleShot(16, this, &Dialog::updateUIPreview);
+    // trigger this method again in 200ms
+    QTimer::singleShot(200, this, &Dialog::updateUIPreview);
 }
 
 void Dialog::recallSettings()
 {
-	QSettings settings(QSettings::UserScope, "aja", "ColorBoxPreviewDemo");
+    QSettings settings(QSettings::UserScope, "aja", "ColorBoxPreviewDemo");
     _ui->ipAddressLineEdit->setText(settings.value("IPAddress").toString());
 }
 
 void Dialog::saveSettings()
 {
-	QSettings settings(QSettings::UserScope, "aja", "ColorBoxPreviewDemo");
+    QSettings settings(QSettings::UserScope, "aja", "ColorBoxPreviewDemo");
     settings.setValue("IPAddress",_ui->ipAddressLineEdit->text());
 }
 
@@ -343,7 +347,7 @@ bool isDropFrame(OpenAPI::OAIVideoFormat::eOAIVideoFormat format)
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P29_97:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_1080P59_94:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP29_97:
-	case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP47_95:
+    case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP47_95:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KP59_94:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::_2KPSF23_98:
     case OpenAPI::OAIVideoFormat::eOAIVideoFormat::UHDP23_98:
