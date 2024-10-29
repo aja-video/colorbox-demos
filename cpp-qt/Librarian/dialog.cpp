@@ -85,7 +85,7 @@ Dialog::Dialog(QWidget *parent)
     connect(&_api, &OAIDefaultApi::getAmfLibrarySignalE, this, &Dialog::handleGetLibraryError);
     connect(&_api, &OAIDefaultApi::uploadFileSignal, this, &Dialog::handleUploadFile);
     connect(&_api, &OAIDefaultApi::uploadFileSignalE, this, &Dialog::handleUploadFileError);
-    //connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignal, this, &Dialog::handleUploadMultipleFiles);
+    connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignal, this, &Dialog::handleUploadMultipleFiles);
     connect(&_api, &OAIDefaultApi::uploadMultipleFilesSignalEFull, this, &Dialog::handleUploadMultipleFilesError);
     connect(&_api,&OAIDefaultApi::getLibraryControlSignal,this,&Dialog::handleGetLibararyControl);
     connect(&_api,&OAIDefaultApi::setLibraryControlSignal,this,&Dialog::handleSetLibararyControl);

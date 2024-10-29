@@ -384,6 +384,7 @@ void Dialog::updatePreview()
 #endif
 
     _ui->metaDataWindow->setText(metaDataString);
+
     delete [] previewBuffer;
 
 }
